@@ -1,0 +1,163 @@
+{
+  "TestName": "fax_test",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "3600",
+      "Port": "11106",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "3600",
+      "Port": "11107",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "3",
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "3600",
+      "Port": "11108",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "4",
+      "Number": "155",
+      "Login": "155",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "3600",
+      "Port": "11109",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%FAX_NUMBER%%": "455",
+      "%%USER_DOM%%": "pv.ssw2"
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/alias/set-for-iface sip.ab %%3.Number%%@%%3.SipDomain%% media-profile no_t_38"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/alias/iface-clean sip.ab %%3.Number%%@%%3.SipDomain%% media-profile"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "test_fax2email_t38",
+      "Description": "test_fax2email_t38",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC_FAX_T38",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_t38.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_fax2email_g711",
+      "Description": "test_fax2email_g711",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAC_FAX_G711",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_g711.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_fax2email_g711_like_SI3000",
+      "Description": "test_fax2email_g711_like_SI3000",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAC_FAX_G711_SI300",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_g711_mp.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_fax2email_g711_like_TAU",
+      "Description": "test_fax2email_g711_like_TAU",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "4",
+              "Name": "UAC_FAX_G711_TAU",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_g711_tau.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

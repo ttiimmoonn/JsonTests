@@ -1,0 +1,54 @@
+{
+  "TestName": "fax_test",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "3600",
+      "Port": "11106",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%FAX_NUMBER%%": "455",
+      "%%USER_DOM%%": "pv.ssw2"
+    }
+  ],
+  "PreCoconConf": [
+    {}
+  ],
+  "PostCoconConf": [
+    {}
+  ],
+  "Tests": [
+    {
+      "Name": "test_mult_fax",
+      "Description": "test_mult_fax",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC_MULT_T38",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_mult_fax.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
