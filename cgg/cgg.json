@@ -1,0 +1,272 @@
+{
+  "TestName": "ss_cgg_test",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "Port": "10106",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "Port": "10107",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "3",
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "Port": "10108",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "4",
+      "Number": "155",
+      "Login": "155",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10109",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%CggUser%%": "133",
+      "%%CggSipDomain%%": "pv.ssw2",
+      "%%CggGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]",
+      "%%СggContext%%": "local_context",
+      "%%CggSipGroup%%": "sip.ab"
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/alias/virtual/declare %%CggUser%% %%СggContext%% %%CggSipGroup%%",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%CggUser%% cgg",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cgg",
+      "command3": "/domain/%%DEV_DOM%%/alias/virtual/remove %%CggUser%%"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "cgg_test_wout_100_rel",
+      "Description": "cgg_test_wout_100_rel",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_CGG_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_CGG_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAS3_CGG_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uac.xml",
+                  "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cgg_test_with_100_rel",
+      "Description": "cgg_test_with_100_rel",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_CGG_WITH100REL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_bye_100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_CGG_WITH100REL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_bye_100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAS3_CGG_WITH100REL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "cgg/uas_bye_100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "Name": "UAC_WITH_100rel",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uac_100rel.xml",
+                  "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
