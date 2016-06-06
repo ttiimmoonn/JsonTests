@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "oa_exchange">
+
+<Global variables="REMOTEDOM,CGPNDOM,REMOTENUM" />
+<User variables="remote_number,remote_domain,local_domain,session_id,session_vrs" />
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="session_id" value="1000000"/>
+        <assignstr assign_to="session_vrs" value="1000000"/>
+        <assignstr assign_to="remote_number" value="[$REMOTENUM]"/>
+        <assignstr assign_to="remote_domain" value="[$REMOTEDOM]"/>
+        <assignstr assign_to="local_domain" value="[$CGPNDOM]"/>
+    </action>
+    </nop>
+
+
+
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: [service] <sip:[service]@[$local_domain]>;tag=[call_number][local_port]
+    To: [$remote_number] <sip:[$remote_number]@[$remote_domain]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=Test1
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio 8192 RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<!--
+
+    From: [service] <sip:[service]@[$local_domain]>;tag=[call_number]
+-->
+
+
+<recv response="100" optional="true"></recv>
+
+<!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
+<recv response="401" auth="true" next="2" optional="true">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="3" />
+
+<recv response="100" optional="true"></recv>
+<recv response="183" optional="true"></recv>
+<recv response="180" optional="true"></recv>
+<recv response="200" auth="true">
+        <action>
+         <!--Забрали CSeq и IP -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+
+<!-- Устанавливаем новый dest IP  -->
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<!--Проигрываем audio-->
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+</action>
+</nop>
+
+
+<pause milliseconds="5000" crlf="true"/>
+
+<!-- 
+8.1 Adding a Media Stream
+-->
+
+<!-- Инкрементируем session version -->
+<nop hide="true">
+    <action>
+        <assignstr assign_to="session_vrs" value="1000001"/>
+    </action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Subject: OA exchange test
+    Content-Length: [len]
+
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=Test2
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio 8192 RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    m=video [auto_media_port+4] RTP/AVP 34
+    b=AS:99910
+    a=rtpmap:34 H263/90000
+    a=fmtp:34 CIF=1; QCIF=1;
+
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+<recv response="200" auth="true">
+        <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+</action>
+</nop>
+
+<pause milliseconds="5000" crlf="true"/>
+
+
+<!-- 
+8.2 Removing a Media Stream
+-->
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="session_vrs" value="1000002"/>
+    </action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=Test3
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio 0 RTP/AVP 8
+    m=video 0 RTP/AVP 34
+    m=audio 8192 RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+<recv response="200" auth="true">
+        <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+</action>
+</nop>
+
+
+
+<pause milliseconds="5000" crlf="true"/>
+
+<!-- 
+8.3.2 Changing the Set of Media Formats
+-->
+<nop hide="true">
+    <action>
+        <assignstr assign_to="session_vrs" value="1000003"/>
+    </action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=Test4
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio 0 RTP/AVP 8
+    m=video 0 RTP/AVP 34
+    m=audio 8192 RTP/AVP 0 8
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+<recv response="200" auth="true">
+        <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
+</action>
+</nop>
+
+
+
+<pause milliseconds="5000" crlf="true"/>
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="session_vrs" value="1000004"/>
+    </action>
+</nop>
+
+
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=Test5
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio 0 RTP/AVP 8
+    m=video 0 RTP/AVP 34
+    m=audio 8192 RTP/AVP 18
+    a=rtpmap:18 G729/8000
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+<recv response="200" auth="true">
+        <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.g729,1,18" />
+</action>
+</nop>
+
+
+
+<pause milliseconds="5000" crlf="true"/>
+
+<!--
+8.3.3 Changing Media Types
+-->
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="session_vrs" value="1000005"/>
+    </action>
+</nop>
+
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=Test6
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio 0 RTP/AVP 8
+    m=video 0 RTP/AVP 34
+    m=image [media_port] udptl t38
+    a=T38FaxVersion:0
+    a=T38MaxBitRate:14400
+    a=T38FaxRateManagement:transferredTCF
+    a=T38FaxMaxBuffer:200
+    a=T38FaxMaxDatagram:200
+    a=T38FaxUdpEC:t38UDPRedundancy
+
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+<recv response="488" auth="true">
+        <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="5000" crlf="true"/>
+
+
+
+<!--
+Возвращаемся обратно к медии
+-->
+<nop hide="true">
+    <action>
+        <assignstr assign_to="session_vrs" value="1000006"/>
+    </action>
+</nop>
+
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=Return to audio
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio 0 RTP/AVP 8
+    m=video 0 RTP/AVP 34
+    m=audio 8192 RTP/AVP 0 8
+    a=rtpmap:0 PCMU/8000
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+<recv response="200" auth="true">
+        <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
+</action>
+</nop>
+
+
+
+<pause milliseconds="5000" crlf="true"/>
+
+<send>
+<![CDATA[
+    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="5" crlf="true"></recv>
+
+
+
+<!--Отправка INVITE c аутентификацией -->
+<label id="2"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Уходим в label 3 -->
+<send next="3" crlf="true">
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: [service] <sip:[service]@[$local_domain]>;tag=[call_number][local_port]
+    To: "[$remote_number]" <sip:[$remote_number]@[$remote_domain]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: [service] <sip:[service]@[local_ip]:[local_port];transport=udp>
+    [authentication]
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Privacy: none
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    t=0 0
+    m=audio 8192 RTP/AVP 8
+    c=IN IP[local_ip_type] [local_ip]
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<label id="5"/>
+</scenario>

@@ -1,0 +1,108 @@
+{
+"TestName" : "oa_exchange",
+"Users": [
+    {
+    "UserId" : "1",
+    "Number" : "157",
+    "Login" : "157",
+    "Password" : "123",
+    "SipDomain" : "pv.ssw2",
+    "Expires" : "90",
+    "Port" : "10106",
+    "QParam" : "0.5"
+    },
+    {
+    "UserId" : "2",
+    "Number" : "158",
+    "Login" : "158",
+    "Password" : "123",
+    "SipDomain" : "pv.ssw2",
+    "Expires" : "90",
+    "Port" : "10107",
+    "QParam" : "1"
+    }
+],
+
+"UserVar" : [
+    {
+    }
+],
+
+"PreCoconConf" : [
+    {
+    "command1" : "/domain/%%DEV_DOM/ss/enable %%1 chold",
+    "command2" : "/domain/%%DEV_DOM/ss/activate %%1 chold"
+    }
+],
+
+"PostCoconConf" : [
+    {
+    "command1" : "/domain/%%DEV_DOM/ss/deactivate %%1 chold",
+    "command2" : "/domain/%%DEV_DOM/ss/disable %%1 chold"
+    }
+],
+
+"Tests": [
+    {
+        "Name" : "oa_exchange_uac_mode",
+        "Description" : "send_only_test",
+        "UA" : [
+            {
+                "Type" : "User",
+                "UserId" : "1",
+                "Name" : "UAC_SENDONLY_OA_EX",
+                "Commands" : [
+                    {
+                    "SourceFile" : "oa_exchange/uac_send_only.xml",
+                    "Options" : "-set REMOTENUM 100 -set REMOTEDOM pv.ssw2 -m 1",
+                    "NeedAuth" : "True",
+                    "SippType" : "uac",
+                    "Timeout" : "200s"
+                    }
+                ]
+            }
+    ]
+},
+    {
+        "Name" : "oa_exchange_uac_mode",
+        "Description" : "oa_exchange_uac_mode",
+        "UA" : [
+            {
+                "Type" : "User",
+                "UserId" : "1",
+                "Name" : "UAC_OA_EX",
+                "Commands" : [
+                    {
+                    "SourceFile" : "oa_exchange/uac_re_inv_rfc3264.xml",
+                    "Options" : "-set REMOTENUM 100 -set REMOTEDOM pv.ssw2 -m 1",
+                    "NeedAuth" : "True",
+                    "SippType" : "uac",
+                    "Timeout" : "200s"
+                    }
+                ]
+            }
+    ]
+},
+{
+        "Name" : "oa_exchange_uas_mode",
+        "Description" : "oa_exchange_uas_mode",
+        "UA" : [
+            {
+                "Type" : "User",
+                "UserId" : "1",
+                "Name" : "UAS_OA_EX",
+                "Commands" : [
+                    {
+                    "SourceFile" : "oa_exchange/uas_re_inv_rfc3264.xml",
+                    "Options" : "-m 1",
+                    "NeedAuth" : "True",
+                    "SippType" : "uas",
+                    "Timeout" : "200s"
+                    }
+                ]
+            }
+    ]
+}
+
+]
+}

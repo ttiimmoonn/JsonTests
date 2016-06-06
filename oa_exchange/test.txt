@@ -1,0 +1,2 @@
+ ~/sipp/sipp/sipp-3.4.1/sipp -sf uac_re_inv_rfc3264.xml  192.168.118.245:5015 -i 192.168.118.249 -m 1 -p 5021 -set REMOTENUM 100 -set REMOTEDOM pv.ssw2 -set LOCALDOM 192.168.118.249 -s 808
+~/sipp/sipp/sipp-3.4.1/sipp -sf uas_re_inv_rfc3264.xml  192.168.118.245:5015 -i 192.168.118.249 -m 1 -p 5021 
