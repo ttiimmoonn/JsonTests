@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_find_me",
+  "TestName": "ss_find_me_req100rel",
   "Users": [
     {
       "UserId": "0",
@@ -709,7 +709,7 @@
     },
     {
       "Name": "find_me_loop_test",
-      "Description": "А-Б-find_me-ВГДЕ-E-find_me-Б(answer)",
+      "Description": "Создаём петлю посредством find_me. Запускаем вызов. Вызов должен отбиться по превышению max_hop",
       "TestProcedure": [
         {
           "CoconCommand": [
@@ -757,7 +757,7 @@
               "Name": "UAC1_FIND_ME_TEST5",
               "Commands": [
                 {
-                  "SourceFile": "find_me/req100rel/uac_recv_487.xml",
+                  "SourceFile": "find_me/uac_recv_487.xml",
                   "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -766,20 +766,10 @@
               ]
             }
           ]
-        },
-        {
-          "CoconCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
-              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me"
-            }
-          ]
         }
       ]
     },
-{
+    {
       "Name": "find_like_tree_test",
       "Description": "Создаём цепочку из трех групп и запускаем вызов. В последнем звене отвечаем",
       "TestProcedure": [
