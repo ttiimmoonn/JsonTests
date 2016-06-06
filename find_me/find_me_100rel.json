@@ -125,7 +125,7 @@
   ],
   "UserVar": [
     {
-      "%%TimeTemplate%%": "1234567 09:00-18:00",
+      "%%TimeTemplate%%": "1234567 09:00-23:00",
       "%%BadTimeTemplate%%": "7 00:00-00:00"
     }
   ],
@@ -158,7 +158,7 @@
               "Name": "UAS1_FIND_ME_TEST0",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas.xml",
+                  "SourceFile": "find_me/req100rel/uas_req100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -172,7 +172,7 @@
               "Name": "UAC1_FIND_ME_TEST0",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uac.xml",
+                  "SourceFile": "find_me/req100rel/uac_req100rel.xml",
                   "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -197,7 +197,7 @@
               "Name": "UAS2_FIND_ME_TEST0",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas.xml",
+                  "SourceFile": "find_me/req100rel/uas_req100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -211,7 +211,7 @@
               "Name": "UAC2_FIND_ME_TEST0",
               "Commands": [
                 {
-                  "SourceFile": "find_me/uac_no_181.xml",
+                  "SourceFile": "find_me/req100rel/uac_req100rel_no_181.xml",
                   "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -252,7 +252,7 @@
               "Name": "UAS1_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas.xml",
+                  "SourceFile": "find_me/req100rel/uas_req100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -266,7 +266,7 @@
               "Name": "UAS2_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -280,7 +280,7 @@
               "Name": "UAS3_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -294,7 +294,7 @@
               "Name": "UAS4_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -308,7 +308,7 @@
               "Name": "UAS5_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -322,7 +322,7 @@
               "Name": "UAS6_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -336,7 +336,7 @@
               "Name": "UAS7_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -350,7 +350,7 @@
               "Name": "UAS8_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -364,7 +364,7 @@
               "Name": "UAS9_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -378,7 +378,7 @@
               "Name": "UAC1_FIND_ME_TEST1",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uac.xml",
+                  "SourceFile": "find_me/req100rel/uac_req100rel.xml",
                   "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -420,7 +420,7 @@
               "Name": "UAS_FIND_ME_TEST2",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas.xml",
+                  "SourceFile": "find_me/req100rel/uas_req100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -476,7 +476,7 @@
               "Name": "UAS1_FIND_ME_TEST3",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas.xml",
+                  "SourceFile": "find_me/req100rel/uas_req100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -490,7 +490,7 @@
               "Name": "UAS2_FIND_ME_TEST3",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -532,7 +532,7 @@
               "Name": "UAS5_FIND_ME_TEST3",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -602,7 +602,7 @@
               "Name": "UAC1_FIND_ME_TEST3",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uac.xml",
+                  "SourceFile": "find_me/req100rel/uac_req100rel.xml",
                   "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -644,7 +644,7 @@
               "Name": "UAS1_FIND_ME_TEST4",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas.xml",
+                  "SourceFile": "find_me/req100rel/uas_req100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -658,7 +658,7 @@
               "Name": "UAS2_FIND_ME_TEST4",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uas_cancel.xml",
+                  "SourceFile": "find_me/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -686,7 +686,7 @@
               "Name": "UAC1_FIND_ME_TEST4",
               "Commands": [
                 {
-                  "SourceFile": "find_me/100rel/uac.xml",
+                  "SourceFile": "find_me/req100rel/uac_req100rel.xml",
                   "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
