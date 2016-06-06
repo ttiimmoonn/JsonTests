@@ -125,7 +125,7 @@
   ],
   "UserVar": [
     {
-      "%%TimeTemplate%%": "1234567 09:00-11:00",
+      "%%TimeTemplate%%": "1234567 09:00-18:00",
       "%%BadTimeTemplate%%": "7 00:00-00:00"
     }
   ],
@@ -702,6 +702,78 @@
               "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
               "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
               "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_me_loop_test",
+      "Description": "А-Б-find_me-ВГДЕ-E-find_me-Б(answer)",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
+              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
+              "command4": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%10.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me/uas_busy.xml",
+                  "Options": "-m 2",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me/uas_busy.xml",
+                  "Options": "-m 2",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me/uac_recv_487.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
+              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me"
             }
           ]
         }
