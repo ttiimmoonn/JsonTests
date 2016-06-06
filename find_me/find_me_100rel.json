@@ -125,7 +125,7 @@
   ],
   "UserVar": [
     {
-      "%%TimeTemplate%%": "1234567 09:00-23:00",
+      "%%TimeTemplate%%": "1234567 00:00-23:59",
       "%%BadTimeTemplate%%": "7 00:00-00:00"
     }
   ],
@@ -850,7 +850,7 @@
               "Name": "UAS7_FIND_ME_TEST6",
               "Commands": [
                 {
-                  "SourceFile": "find_me/req100rel/uas_busy.xml",
+                  "SourceFile": "find_me/uas_busy.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
