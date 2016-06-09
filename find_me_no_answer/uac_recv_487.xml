@@ -18,7 +18,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Find_me_no_response" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -53,16 +53,17 @@
 <recv response="100" optional="true"></recv>
 <recv response="183" optional="true"></recv>
 <recv response="180" optional="true"></recv>
-<recv response="200" auth="true">
+<recv response="183" optional="true"></recv>
+<recv response="487">
     <action>
-    <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
- </recv>
+</recv>
 
-<send>
+<send next="3">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_via:]
     [last_from:]
     [last_to:]
     [last_call-id:]
@@ -71,23 +72,6 @@
     Content-Length: 0
 ]]>
 </send>
-
-<pause milliseconds="1000"/>
-
-<send>
-<![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [cseq] BYE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Content-Length: 0
-]]>
-</send>
-<recv response="200" next="3"></recv>
 
 <label id="1"/>
 
@@ -109,7 +93,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Find_me_no_response" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE

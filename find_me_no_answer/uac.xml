@@ -18,7 +18,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Find_me_no_response" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -53,11 +53,20 @@
 <recv response="100" optional="true"></recv>
 <recv response="183" optional="true"></recv>
 <recv response="180" optional="true"></recv>
+<recv response="181"></recv>
+<recv response="183" optional="true"></recv>
 <recv response="200" auth="true">
     <action>
     <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
     </action>
  </recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
 
 <send>
 <![CDATA[
@@ -72,7 +81,7 @@
 ]]>
 </send>
 
-<pause milliseconds="1000"/>
+<pause milliseconds="4000"/>
 
 <send>
 <![CDATA[
@@ -109,7 +118,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Find_me_no_response" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE

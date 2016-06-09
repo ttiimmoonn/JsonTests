@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "new_script">
+<scenario name = "follow_me_uac_100rel">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn" />
@@ -18,14 +18,15 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>
+    From: "Тест Find_me_no_response" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
-    Subject: FollowMe Test
+    Require: 100rel
+    Subject: FollowMe Test (req100rel)
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -38,31 +39,49 @@
     a=rtpmap:8 PCMA/8000
     a=rtpmap:96 telephone-event/8000
     a=fmtp:96 0-16
+
 ]]>
 </send>
+
 <recv response="100" optional="true"></recv>
 <recv response="401" auth="true" optional="true" next="1">
     <action>
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
  </recv>
 
 <label id="2"/>
-
 <recv response="100" optional="true"></recv>
-<recv response="183" optional="true"></recv>
-<recv response="180" optional="true"></recv>
-<recv response="200" auth="true">
+
+<recv response="180" optional="true" next="3">
     <action>
-    <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<label id="4"/>
+
+<recv response="183" optional="true" next="8" >
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<label id="9"/>
+
+<recv response="487">
+    <action>
+    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
  </recv>
 
-<send>
+<send next="7">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_via:]
     [last_from:]
     [last_to:]
     [last_call-id:]
@@ -72,25 +91,40 @@
 ]]>
 </send>
 
-<pause milliseconds="1000"/>
 
+<label id="3"/>
 <send>
 <![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
     [last_call-id:]
-    CSeq: [cseq] BYE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    CSeq: [cseq] PRACK
+    RAck: [$last_rseq] [$last_cseq] INVITE
     Max-Forwards: 70
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" next="3"></recv>
+<recv response="200" next="4"></recv>
+
+<label id="8"/>
+<send>
+<![CDATA[
+    PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] PRACK
+    RAck: [$last_rseq] [$last_cseq] INVITE
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+<recv response="200" next="9"></recv>
 
 <label id="1"/>
-
 <send>
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -109,15 +143,16 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>
+    From: "Тест Find_me_no_response" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
-    Subject: FollowMe Test
+    Require: 100rel
+    Subject: FollowMe Test (req100rel)
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -133,7 +168,6 @@
 ]]>
 </send>
 
-<label id="3"/>
-
+<label id="7"/>
 
 </scenario>

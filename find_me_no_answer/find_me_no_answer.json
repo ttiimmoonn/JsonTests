@@ -1,0 +1,1071 @@
+{
+  "TestName": "ss_find_me_no_response",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "150",
+      "Login": "150",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "12106",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "151",
+      "Login": "151",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "12107",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "2",
+      "Number": "152",
+      "Login": "152",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "12108",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "3",
+      "Number": "153",
+      "Login": "153",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12109",
+      "QParam": "1"
+    },
+    {
+      "UserId": "4",
+      "Number": "154",
+      "Login": "154",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12110",
+      "QParam": "1"
+    },
+    {
+      "UserId": "5",
+      "Number": "155",
+      "Login": "155",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12111",
+      "QParam": "1"
+    },
+    {
+      "UserId": "6",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12112",
+      "QParam": "1"
+    },
+    {
+      "UserId": "7",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12113",
+      "QParam": "1"
+    },
+    {
+      "UserId": "8",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12114",
+      "QParam": "1"
+    },
+    {
+      "UserId": "9",
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12115",
+      "QParam": "1"
+    },
+    {
+      "UserId": "10",
+      "Number": "149",
+      "Login": "149",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "SipGroup": "sip.ab",
+      "Port": "12116",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%TimeTemplate%%": "1234567 00:00-23:59",
+      "%%BadTimeTemplate%%": "7 00:00-00:00"
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% find_me_no_response",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% find_me_no_response send_call_diversion = true, timeout = 5"
+    }
+  ],
+  "PostCoconConf": [
+    {}
+  ],
+  "Tests": [
+    {
+      "Name": "simple_find_me_no_response_test",
+      "Description": "Создаём группу с одним абонентом и проверяем работоспособность услуги аналогично FollowMe",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%1.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_FIND_ME_TEST0",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS10_FIND_ME_TEST0",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_FIND_ME_TEST0",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/set %%10.Number%% send_call_diversion false"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS2_FIND_ME_TEST0",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS10_FIND_ME_TEST0",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC2_FIND_ME_TEST0",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac_no_181.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/set %%10.Number%% send_call_diversion true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_me_no_response_group_test",
+      "Description": "Создаём несколько групп и начинаем их прозванивать. Ответ даём в последней группе",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAS3_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "Name": "UAS4_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "5",
+              "Name": "UAS5_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "6",
+              "Name": "UAS6_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "7",
+              "Name": "UAS7_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "8",
+              "Name": "UAS8_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "9",
+              "Name": "UAS9_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS10_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_FIND_ME_TEST1",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "no_groups_found(direct_call)",
+      "Description": "Выставляем граппам плохой диапозон и ждём прямой вызов. В отличии от find-me вызов будет отбит",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%BadTimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS_FIND_ME_TEST2",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_FIND_ME_TEST2",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac_recv_487.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_me_no_response_486_test",
+      "Description": "Создаём группы. В одной отвечаем 486 со всех UA. Во второй со всех кроме отдного. В третьей отвечаем на вызов.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAS3_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "Name": "UAS4_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "5",
+              "Name": "UAS5_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "6",
+              "Name": "UAS6_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "7",
+              "Name": "UAS7_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "8",
+              "Name": "UAS8_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "9",
+              "Name": "UAS9_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS10_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_FIND_ME_TEST3",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_me_no_response_manual_test",
+      "Description": "Создаём группы. В одной отвечаем 486 со всех. Во второй со всех кроме отдного. В третьей отвечаем на вызов.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_FIND_ME_TEST4",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_FIND_ME_TEST4",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAS3_FIND_ME_TEST4",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS10_FIND_ME_TEST4",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_FIND_ME_TEST4",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_me_no_response_loop_test",
+      "Description": "Создаём петлю посредством find_me_no_response. Запускаем вызов. Вызов должен отбиться по превышению max_hop",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 20 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me_no_response",
+              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me_no_response send_call_diversion = true, timeout = 2",
+              "command4": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%3.Number%% [%%10.Number%%] 20 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAS3_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS10_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_FIND_ME_TEST5",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac_recv_487.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%3.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me_no_response",
+              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me_no_response"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_like_tree_test",
+      "Description": "Создаём цепочку из трех групп и запускаем вызов. В последнем звене отвечаем",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 30 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me_no_response",
+              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me_no_response send_call_diversion = true, timeout=2",
+              "command4": "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% find_me_no_response",
+              "command5": "/domain/%%DEV_DOM%%/ss/activate %%6.Number%% find_me_no_response send_call_diversion = true, timeout=2",
+              "command6": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%3.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 30 true custom %%TimeTemplate%%",
+              "command7": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%6.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 30 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS2_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAS2_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "Name": "UAS4_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "5",
+              "Name": "UAS5_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "6",
+              "Name": "UAS2_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "7",
+              "Name": "UAS7_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "8",
+              "Name": "UAS8_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "9",
+              "Name": "UAS9_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Name": "UAS10_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_FIND_ME_TEST6",
+              "Commands": [
+                {
+                  "SourceFile": "find_me_no_answer/uac.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%3.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me-no-response/remove-group %%6.Number%% 1",
+              "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me_no_response",
+              "command5": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me_no_response",
+              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% find_me_no_response",
+              "command7": "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% find_me_no_response"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
