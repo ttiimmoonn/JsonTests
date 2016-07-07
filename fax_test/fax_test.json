@@ -6,7 +6,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11106",
       "SipGroup": "sip.ab",
@@ -17,7 +17,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11107",
       "SipGroup": "sip.ab",
@@ -28,7 +28,7 @@
       "Number": "159",
       "Login": "159",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11108",
       "SipGroup": "sip.ab",
@@ -39,7 +39,7 @@
       "Number": "155",
       "Login": "155",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11109",
       "SipGroup": "sip.ab",
@@ -49,7 +49,7 @@
   "UserVar": [
     {
       "%%FAX_NUMBER%%": "455",
-      "%%USER_DOM%%": "pv.ssw2"
+      "%%USER_DOM%%": "pv.ssw3"
     }
   ],
   "PreCoconConf": [

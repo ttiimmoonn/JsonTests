@@ -6,7 +6,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11106",
       "SipGroup": "sip.ab",
@@ -15,8 +15,8 @@
   ],
   "UserVar": [
     {
-      "%%FAX_NUMBER%%": "455",
-      "%%USER_DOM%%": "pv.ssw2"
+      "%%FAX_NUMBER%%": "449",
+      "%%USER_DOM%%": "pv.ssw3"
     }
   ],
   "PreCoconConf": [
@@ -35,7 +35,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAC_MULT_T38",
+              "Name": "UAC_MULT_FAX",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_mult_fax.xml",

@@ -6,7 +6,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10106",
       "SipGroup": "sip.ab",
@@ -17,7 +17,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10107",
       "SipGroup": "sip.ab",
@@ -28,7 +28,7 @@
       "Number": "159",
       "Login": "159",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10108",
       "SipGroup": "sip.ab",
@@ -39,7 +39,7 @@
       "Number": "155",
       "Login": "155",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10109",
@@ -49,8 +49,8 @@
   "UserVar": [
     {
       "%%CggUser%%": "133",
-      "%%CggSipDomain%%": "pv.ssw2",
-      "%%CggGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]",
+      "%%CggSipDomain%%": "pv.ssw3",
+      "%%CggGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%,100]",
       "%%СggContext%%": "local_context",
       "%%CggSipGroup%%": "sip.ab"
     }
@@ -79,6 +79,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAS1_CGG_WOUT100REL",
               "Commands": [
                 {
@@ -104,6 +105,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "WriteStat" : "True",
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
@@ -129,6 +131,7 @@
             {
               "Type": "User",
               "UserId": "3",
+              "WriteStat" : "True",
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
@@ -154,6 +157,7 @@
             {
               "Type": "User",
               "UserId": "4",
+              "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -178,6 +182,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAS1_CGG_WITH100REL",
               "Commands": [
                 {
@@ -203,6 +208,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "WriteStat" : "True",
               "Name": "UAS2_CGG_WITH100REL",
               "Commands": [
                 {
@@ -228,6 +234,7 @@
             {
               "Type": "User",
               "UserId": "3",
+              "WriteStat" : "True",
               "Name": "UAS3_CGG_WITH100REL",
               "Commands": [
                 {
@@ -253,6 +260,7 @@
             {
               "Type": "User",
               "UserId": "4",
+              "WriteStat" : "True",
               "Name": "UAC_WITH_100rel",
               "Commands": [
                 {

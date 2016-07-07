@@ -49,7 +49,7 @@
 ]]>
 </send>
 
-<pause milliseconds="500"/>
+<pause milliseconds="1000"/>
 
 <send retrans="500">
 <![CDATA[
@@ -65,7 +65,7 @@
 
     v=0
     o=update_test 10000 10000 IN IP[local_ip_type] [local_ip]
-    s= Test update
+    s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
     m=audio [auto_media_port] RTP/AVP 8
@@ -106,7 +106,7 @@
 
     v=0
     o=update_test 10000 10001 IN IP[local_ip_type] [local_ip]
-    s= Test update
+    s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
     m=audio [auto_media_port] RTP/AVP 8
@@ -152,7 +152,7 @@
 
     v=0
     o=update_test 20000 20000 IN IP[local_ip_type] [local_ip]
-    s= Test update
+    s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
     m=audio [auto_media_port] RTP/AVP 8
@@ -164,6 +164,7 @@
 <label id="recv_100"/>
 <recv response="100" optional="true"></recv>
 <recv response="180" optional="true"></recv>
+<recv response="183" optional="true"></recv>
 <recv response="200">
         <action>
             <ereg regexp="\s(.*)" search_in="hdr" header="Call-ID:" check_it="true" assign_to="dummy,refer_call_id" />
@@ -307,7 +308,7 @@
 
     v=0
     o=update_test 20000 20000 IN IP[local_ip_type] [local_ip]
-    s= Test update
+    s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
     m=audio [auto_media_port] RTP/AVP 8

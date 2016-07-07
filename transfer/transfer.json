@@ -6,7 +6,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "SipGroup": "sip.ab",
       "Port": "10106",
@@ -17,7 +17,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "SipGroup": "sip.ab",
       "Port": "10107",
@@ -28,7 +28,7 @@
       "Number": "159",
       "Login": "159",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "SipGroup": "sip.ab",
       "Port": "10108",
@@ -39,7 +39,7 @@
       "Number": "155",
       "Login": "155",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "SipGroup": "sip.ab",
       "Port": "10109",
@@ -107,21 +107,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
+                  "Options": "-m 1 -aa -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
+                  "Options": "-m 1 -aa -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM 100 -set REFERDOM pv.ssw2",
+                  "Options": "-m 1 -aa -set REFERNUM 100 -set REFERDOM pv.ssw3",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
@@ -135,21 +135,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -aa  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -aa  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
@@ -163,7 +163,7 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/uac.xml",
-                  "Options": "-m 1 -set CDPNDOM %%2.SipDomain%% -set CDPN %%2.Number%% -r 1 -l 1 -rp 3000",
+                  "Options": "-m 1 -aa -set CDPNDOM %%2.SipDomain%% -set CDPN %%2.Number%% -r 1 -l 1 -rp 3000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "200s"
@@ -187,21 +187,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
+                  "Options": "-m 1 -aa  -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
+                  "Options": "-m 1 -aa -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM 100 -set REFERDOM pv.ssw2",
+                  "Options": "-m 1 -aa  -set REFERNUM 100 -set REFERDOM pv.ssw3",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
@@ -215,21 +215,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -aa  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -aa  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
                 },
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "200s"
@@ -243,7 +243,7 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/uac.xml",
-                  "Options": "-m 1 -set CDPNDOM %%2.SipDomain%% -set CDPN %%2.Number%% -r 1 -l 1 -rp 3000",
+                  "Options": "-m 1 -aa -set CDPNDOM %%2.SipDomain%% -set CDPN %%2.Number%% -r 1 -l 1 -rp 3000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "200s"
