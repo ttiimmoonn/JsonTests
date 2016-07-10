@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "oa_exchange">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="cdpn_dom,cgpn_dom,cdpn" />
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+    </action>
+    </nop>
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: [service] <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: [$cdpn] <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
+    Max-Forwards: 70
+    Require: 100rel
+    Subject: UPDATE TEST
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=update_test 200000 200000 IN IP[local_ip_type] [local_ip]
+    s=Test1
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+
+<recv response="100" optional="true"></recv>
+
+<!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
+<recv response="401" auth="true" next="2" optional="true">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="3" />
+
+<recv response="100" optional="true"></recv>
+<recv response="180">
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq"/>
+    </action>
+</recv>
+
+
+<send>
+<![CDATA[
+    PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] PRACK
+    RAck: [$last_rseq] [$last_cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
+    Max-Forwards: 70
+    Require: 100rel
+    Subject: UPDATE TEST
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200"></recv>
+
+
+<send retrans="500">
+<![CDATA[
+    UPDATE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] UPDATE
+    Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
+    Max-Forwards: 70
+    Subject: UPDATE TEST
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=update_test 200000 200001 IN IP[local_ip_type] [local_ip]
+    s=Test1
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv response="200"></recv>
+
+
+
+<recv response="200" auth="true">
+        <action>
+         <!--Забрали CSeq и IP -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        </action>
+ </recv>
+
+<!-- Устанавливаем новый dest IP  -->
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: UPDATE TEST
+    Content-Length: 0
+]]>
+</send>
+
+<!--Проигрываем audio-->
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+</action>
+</nop>
+
+
+<pause milliseconds="5000" crlf="true"/>
+
+
+<send retrans="500">
+<![CDATA[
+    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="5" crlf="true"></recv>
+
+<!--Отправка INVITE c аутентификацией -->
+<label id="2"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Subject: OA exchange test
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Уходим в label 3 -->
+<send next="3" crlf="true">
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: [service] <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: [$cdpn] <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
+    Max-Forwards: 70
+    [authentication]
+    Require: 100rel
+    Subject: UPDATE TEST
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=update_test 200000 200000 IN IP[local_ip_type] [local_ip]
+    s=Test1
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<label id="5"/>
+</scenario>

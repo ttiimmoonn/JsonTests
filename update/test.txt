@@ -1,0 +1,3 @@
+~/sipp/sipp/sipp-3.4.1/sipp -sf uac.xml  192.168.118.245:5015 -i 192.168.118.249 -m 1 -p 5021 -s 808 -set CGPN 100 -set CGPNDOMpv.ssw2 -set CDPNDOM 192.168.118.249 -m 1
+~/sipp/sipp/sipp-3.4.1/sipp -sf uas_update_before_answer_recv.xml  192.168.118.245:5015 -i 192.168.118.249 -m 1 -p 5021
+

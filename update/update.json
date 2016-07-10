@@ -1,5 +1,5 @@
 {
-  "TestName": "oa_exchange",
+  "TestName": "update_test",
   "Users": [
     {
       "UserId": "1",
@@ -32,20 +32,16 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
     }
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
     }
   ],
   "Tests": [
     {
-      "Name": "send_only_test",
-      "Description": "send_only_test",
+      "Name": "uac_update_test",
+      "Description": "uac_update_test",
       "TestProcedure": [
         {"Print" : "System call to testUser. Please answer."},
         {
@@ -53,11 +49,12 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAC_SENDONLY_OA_EX",
+              "NeedAuth" : "True",
+              "Name": "UAC_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "oa_exchange/uac_send_only.xml",
-                  "Options": "-set REMOTENUM %%TestNumber%% -set REMOTEDOM %%TestDomain%% -m 1",
+                  "SourceFile": "update/uac.xml",
+                  "Options": "-m 1 -set CDPN %%TestNumber%% -set CDPNDOM %%TestDomain%%",
                   "NeedAuth": "True",
                   "SippType": "uac",
                   "Timeout": "200s"
@@ -69,33 +66,8 @@
       ]
     },
     {
-      "Name": "oa_exchange_uac_mode",
-      "Description": "oa_exchange_uac_mode",
-      "TestProcedure": [
-        {"Print" : "System call to testUser. Please answer."},
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": "1",
-              "Name": "UAC_OA_EX",
-              "Commands": [
-                {
-                  "SourceFile": "oa_exchange/uac_re_inv_rfc3264.xml",
-                  "Options": "-set REMOTENUM %%TestNumber%% -set REMOTEDOM %%TestDomain%% -m 1",
-                  "NeedAuth": "True",
-                  "SippType": "uac",
-                  "Timeout": "200s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "oa_exchange_uas_mode",
-      "Description": "oa_exchange_uas_mode",
+      "Name": "uas_update_in_erly_state",
+      "Description": "uas_update_in_erly_state",
       "TestProcedure": [
         {"Print" : "System wait call. Please call to TestUser."},
         {
@@ -103,10 +75,34 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS_OA_EX",
+              "Name": "UAS_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "oa_exchange/uas_re_inv_rfc3264.xml",
+                  "SourceFile": "update/uas_erly_update.xml",
+                  "Options": "-m 1",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "uas_update_in_answer_state",
+      "Description": "uas_update_in_answer_state",
+      "TestProcedure": [
+        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/uas_update.xml",
                   "Options": "-m 1",
                   "NeedAuth": "True",
                   "SippType": "uas",
@@ -119,8 +115,8 @@
       ]
     },
     {
-      "Name": "oa_send_two_codecs_in_answer_180",
-      "Description": "oa_send_two_codecs_in_answer_180",
+      "Name": "uas_two_update",
+      "Description": "uas_two_update",
       "TestProcedure": [
         {"Print" : "System wait call. Please call to TestUser."},
         {
@@ -128,10 +124,10 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS_OA_EX",
+              "Name": "UAS_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "oa_exchange/uas_two_codec_in_answer_180.xml",
+                  "SourceFile": "update/uas_two_updates.xml",
                   "Options": "-m 1",
                   "NeedAuth": "True",
                   "SippType": "uas",
@@ -144,8 +140,8 @@
       ]
     },
     {
-      "Name": "oa_send_two_codecs_in_answer_200",
-      "Description": "oa_send_two_codecs_in_answer_200",
+      "Name": "uas_update_before_answer_recv",
+      "Description": "uas_update_before_answer_recv",
       "TestProcedure": [
         {"Print" : "System wait call. Please call to TestUser."},
         {
@@ -153,10 +149,10 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS_OA_EX",
+              "Name": "UAS_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "oa_exchange/uas_two_codec_in_answer_200.xml",
+                  "SourceFile": "update/uas_update_before_answer_recv.xml",
                   "Options": "-m 1",
                   "NeedAuth": "True",
                   "SippType": "uas",

@@ -37,7 +37,7 @@
     s=Test1
     t=0 0
     c=IN IP[local_ip_type] [local_ip]
-    m=audio 8192 RTP/AVP 8
+    m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
@@ -96,7 +96,7 @@
 <!--Проигрываем audio-->
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
 </action>
 </nop>
 
@@ -133,7 +133,7 @@
     s=Test2
     t=0 0
     c=IN IP[local_ip_type] [local_ip]
-    m=audio 8192 RTP/AVP 8
+    m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
     m=video [auto_media_port+4] RTP/AVP 34
     b=AS:99910
@@ -172,7 +172,7 @@
 
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
 </action>
 </nop>
 
@@ -210,7 +210,7 @@
     c=IN IP[local_ip_type] [local_ip]
     m=audio 0 RTP/AVP 8
     m=video 0 RTP/AVP 34
-    m=audio 8192 RTP/AVP 8
+    m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
@@ -242,7 +242,7 @@
 
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
 </action>
 </nop>
 
@@ -280,7 +280,7 @@
     c=IN IP[local_ip_type] [local_ip]
     m=audio 0 RTP/AVP 8
     m=video 0 RTP/AVP 34
-    m=audio 8192 RTP/AVP 0 8
+    m=audio [auto_media_port] RTP/AVP 0 8
     a=rtpmap:0 PCMU/8000
     a=rtpmap:8 PCMA/8000
 ]]>
@@ -313,7 +313,7 @@
 
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
 </action>
 </nop>
 
@@ -350,7 +350,7 @@
     c=IN IP[local_ip_type] [local_ip]
     m=audio 0 RTP/AVP 8
     m=video 0 RTP/AVP 34
-    m=audio 8192 RTP/AVP 18
+    m=audio [auto_media_port] RTP/AVP 18
     a=rtpmap:18 G729/8000
 ]]>
 </send>
@@ -382,7 +382,7 @@
 
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.g729,1,18" />
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.g729,1,18" />
 </action>
 </nop>
 
@@ -493,7 +493,7 @@
     c=IN IP[local_ip_type] [local_ip]
     m=audio 0 RTP/AVP 8
     m=video 0 RTP/AVP 34
-    m=audio 8192 RTP/AVP 0 8
+    m=audio [auto_media_port] RTP/AVP 0 8
     a=rtpmap:0 PCMU/8000
     a=rtpmap:8 PCMA/8000
 ]]>
@@ -526,7 +526,7 @@
 
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
 </action>
 </nop>
 
@@ -589,7 +589,7 @@
     o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
     s=A conversation
     t=0 0
-    m=audio 8192 RTP/AVP 8
+    m=audio [auto_media_port] RTP/AVP 8
     c=IN IP[local_ip_type] [local_ip]
     a=rtpmap:8 PCMA/8000
 ]]>
