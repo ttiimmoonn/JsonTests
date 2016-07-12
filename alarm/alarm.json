@@ -1,0 +1,169 @@
+{
+  "TestName": "alarm_test",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10107",
+      "QParam": "1"
+    },
+    {
+      "UserId": "3",
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10108",
+      "QParam": "1"
+    },
+    {
+      "UserId": "4",
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10109",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% alarm",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% alarm",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% alarm",
+      "command4": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% alarm"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% alarm",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% alarm",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% alarm",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% alarm"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "test_all_alarms",
+      "Description": "test_all_alarms",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*55*1*%%NowTime+120%%#",
+              "userId": "1"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId": "2"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*56*3*%%NowTime+120%%#",
+              "userId": "3"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId": "4"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat": "True",
+              "Name": "UAS1_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "alarm/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat": "True",
+              "Name": "UAS2_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "alarm/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat": "True",
+              "Name": "UAS3_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "alarm/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "WriteStat": "True",
+              "Name": "UAS4_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "alarm/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

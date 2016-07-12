@@ -2,21 +2,21 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "oa_exchange">
 
-<Global variables="CDPNDOM,CGPNDOM,CGPN" />
-<User variables="cdpn_dom,cgpn_dom,cgpn" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="cdpn_dom,cdpn" />
+<Reference variables="CGPNDOM"/>
 
     <nop hide="true">
     <action>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
-        <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
-        <assignstr assign_to="cdpn_dom" value="[$CGPNDOM]"/>
-        <assignstr assign_to="cgpn" value="[$CGPN]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
     </action>
     </nop>
 
 <send retrans="500">
 <![CDATA[
-    INVITE sip:[$cgpn]@[remote_ip]:[remote_port] SIP/2.0
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
@@ -24,7 +24,7 @@
     Record-Route: <sip:test1.domain.ru;lr>
     Record-Route: <sip:test2.domain.com;lr>
     From: <sip:testuser@record.route.test.ru>;tag=[$local_tag]
-    To: [$cgpn] <sip:[$cgpn]@[$cgpn_dom]>
+    To: [$cdpn] <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
@@ -70,7 +70,7 @@
 
 <send>
 <![CDATA[
-    PRACK sip:[$cgpn]@[remote_ip]:[remote_port] SIP/2.0
+    PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
@@ -94,7 +94,7 @@
 <pause milliseconds="5000"/>
 <send>
 <![CDATA[
-    CANCEL sip:[$cgpn]@[remote_ip]:[remote_port] SIP/2.0
+    CANCEL sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
@@ -118,7 +118,7 @@
 
 <send next="5">
 <![CDATA[
-    ACK sip:[$cgpn]@[remote_ip]:[remote_port] SIP/2.0
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
@@ -140,7 +140,7 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$cgpn]@[remote_ip]:[remote_port] SIP/2.0
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
@@ -156,7 +156,7 @@
 <!-- Уходим в label 3 -->
 <send retrans="500" next="3" crlf="true">
 <![CDATA[
-    INVITE sip:[$cgpn]@[remote_ip]:[remote_port] SIP/2.0
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
@@ -164,7 +164,7 @@
     Record-Route: <sip:test1.domain.ru;lr>
     Record-Route: <sip:test2.domain.com;lr>
     From: [service] <sip:[service]@[$cdpn_dom]>;tag=[$local_tag]
-    To: [$cgpn] <sip:[$cgpn]@[$cgpn_dom]>
+    To: [$cdpn] <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
