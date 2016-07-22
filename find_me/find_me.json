@@ -137,7 +137,10 @@
     }
   ],
   "PostCoconConf": [
-    {}
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%10.Number%% find_me",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%10.Number%%"
+    }
   ],
   "Tests": [
     {
