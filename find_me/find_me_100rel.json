@@ -1,5 +1,6 @@
 {
   "TestName": "ss_find_me_req100rel",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",

@@ -1,5 +1,6 @@
 {
   "TestName": "alarm_test",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "1",

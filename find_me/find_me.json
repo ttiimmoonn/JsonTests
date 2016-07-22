@@ -1,5 +1,6 @@
 {
   "TestName": "ss_find_me",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
