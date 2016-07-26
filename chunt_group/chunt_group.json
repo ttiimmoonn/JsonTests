@@ -1,6 +1,18 @@
 {
   "TestName": "ss_chunt_group",
+  "AutoTest" : "True",
   "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10100",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
     {
       "UserId": "1",
       "Number": "157",
@@ -48,25 +60,21 @@
   ],
   "UserVar": [
     {
-      "%%ChuntUser%%": "134",
-      "%%ChuntSipDomain%%": "pv.ssw3",
-      "%%ChuntGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]",
-      "%%ChuntContext%%": "local_context",
-      "%%ChuntSipGroup%%": "sip.ab"
+      "%%ChuntUser%%": "%%0.Number%%",
+      "%%ChuntSipDomain%%": "%%0.SipDomain%%",
+      "%%ChuntGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]"
     }
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/alias/virtual/declare %%ChuntUser%% %%ChuntContext%% %%ChuntSipGroup%%",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = group, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = group, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3"
     }
   ],
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% Chunt",
-      "command3": "/domain/%%DEV_DOM%%/alias/virtual/remove %%ChuntUser%%"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% Chunt"
     }
   ],
   "Tests": [
