@@ -1,5 +1,6 @@
 {
   "TestName": "follow_me_no_answer",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "1",
