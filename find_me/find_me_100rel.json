@@ -723,7 +723,7 @@
               "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
               "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
               "command4": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%10.Number%%] 5 true custom %%TimeTemplate%%",
-              "command5": "/domain/%%DEV_DOM%%/ss/info"
+              "command5": "/domain/%%DEV_DOM%%/ss/info *"
             }
           ]
         },
