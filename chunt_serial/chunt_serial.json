@@ -83,7 +83,7 @@
       "Name": "chunt_basic_test_wout_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -151,7 +151,7 @@
       "Name": "chunt_basic_test_with_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -226,7 +226,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -301,7 +301,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -376,7 +376,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -452,7 +452,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -528,7 +528,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -604,7 +604,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -680,7 +680,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -762,7 +762,7 @@
             }
           ]
         },
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {

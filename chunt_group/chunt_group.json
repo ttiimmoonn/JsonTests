@@ -82,7 +82,7 @@
       "Name": "chunt_basic_test_wout_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -150,7 +150,7 @@
       "Name": "chunt_basic_test_with_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -218,7 +218,7 @@
       "Name": "chunt_queue_overload_test",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -286,7 +286,7 @@
       "Name": "chunt_queue_overload_test_with_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -354,7 +354,7 @@
       "Name": "chunt_block_on_486_wout_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку. Результат: Все UAS были заблокированы на 15 сек. Последний UAS быстренько рагребает очередь",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -422,7 +422,7 @@
       "Name": "chunt_block_on_486_with_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку. Результат: Все UAS были заблокированы на 15 сек. Последний UAS быстренько рагребает очередь",
       "TestProcedure": [
-        {"Sleep": "2"},
+        {"Sleep": "4"},
         {
           "StartUA": [
             {

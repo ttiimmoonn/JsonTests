@@ -150,6 +150,7 @@
       "Name": "chunt_basic_test_with_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -217,6 +218,7 @@
       "Name": "chunt_queue_overload_test",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -284,6 +286,7 @@
       "Name": "chunt_queue_overload_test_with_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -351,6 +354,7 @@
       "Name": "chunt_break_on_486_wout_100rel",
       "Description": "Запускаем 1 вызовов. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку.",
       "TestProcedure": [
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
@@ -418,6 +422,7 @@
       "Name": "chunt_break_on_486_with_100rel",
       "Description": "Запускаем 1 вызовов. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку.",
       "TestProcedure": [
+        {"Sleep": "4"},
         {
           "StartUA": [
             {
