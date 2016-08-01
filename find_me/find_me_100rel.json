@@ -723,7 +723,8 @@
               "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
               "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
               "command4": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%10.Number%%] 5 true custom %%TimeTemplate%%",
-              "command5": "/domain/%%DEV_DOM%%/ss/info *"
+              "command5": "/domain/%%DEV_DOM%%/alias/set-for-iface %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% line_count 3",
+              "command6": "/domain/%%DEV_DOM%%/alias/set-for-iface %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% line_count 3"
             }
           ]
         },
@@ -736,7 +737,7 @@
               "Commands": [
                 {
                   "SourceFile": "find_me/uas_busy.xml",
-                  "Options": "-m 2",
+                  "Options": "-m 3",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "60s"
@@ -750,7 +751,7 @@
               "Commands": [
                 {
                   "SourceFile": "find_me/uas_busy.xml",
-                  "Options": "-m 2",
+                  "Options": "-m 3",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "60s"
@@ -770,6 +771,18 @@
                   "Timeout": "60s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
+              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me",
+              "command4": "/domain/%%DEV_DOM%%/alias/iface-clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% line_count",
+              "command5": "/domain/%%DEV_DOM%%/alias/iface-clean %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% line_count"
             }
           ]
         }
