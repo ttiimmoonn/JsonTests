@@ -57,12 +57,12 @@
     {
       "command1" : "/domain/%%DEV_DOM%%/media-profile/declare no_t_38 no_t38 system",
       "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add no_t_38 image T38 false",
-      "command3": "/domain/%%DEV_DOM%%/alias/set-for-iface sip.ab %%3.Number%%@%%3.SipDomain%% media-profile no_t_38"
+      "command3": "/domain/%%DEV_DOM%%/alias/set-for-iface %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile no_t_38"
     }
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/alias/iface-clean sip.ab %%3.Number%%@%%3.SipDomain%% media-profile",
+      "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile",
       "command2": "/domain/%%DEV_DOM%%/media-profile/remove no_t_38"
     }
   ],
