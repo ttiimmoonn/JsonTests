@@ -94,7 +94,7 @@
 <![CDATA[
     BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "chunt group delay" "[service]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC chunt group delay тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
