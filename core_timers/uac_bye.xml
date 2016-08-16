@@ -109,7 +109,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
