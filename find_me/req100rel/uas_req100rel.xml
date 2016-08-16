@@ -74,7 +74,7 @@
     SIP/2.0 200 OK
     Via:[$inv_via]
     From:[$inv_from]
-    To:[$inv_to]
+    To:[$inv_to];tag=123456
     Call-ID:[$inv_call_id]
     CSeq:[$inv_cseq]
     Contact: <sip:[$number]@[local_ip]:[local_port];user=phone>
