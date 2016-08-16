@@ -49,7 +49,7 @@
   ],
   "UserVar": [
     {
-      "%%FAX_NUMBER%%": "A0001",
+      "%%FAX_NUMBER%%": "445",
       "%%USER_DOM%%": "%%DEV_DOM%%"
     }
   ],

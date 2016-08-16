@@ -194,19 +194,19 @@
               "Name": "UAS1_CGG_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "cgg/uas_bye_100rel.xml",
+                  "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "cgg/uas_cancel.xml",
+                  "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "cgg/uas_cancel.xml",
+                  "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -220,19 +220,19 @@
               "Name": "UAS2_CGG_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "cgg/uas_cancel.xml",
+                  "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "cgg/uas_bye_100rel.xml",
+                  "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "cgg/uas_cancel.xml",
+                  "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -246,19 +246,19 @@
               "Name": "UAS3_CGG_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "cgg/uas_cancel.xml",
+                  "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "cgg/uas_cancel.xml",
+                  "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "cgg/uas_bye_100rel.xml",
+                  "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -272,7 +272,7 @@
               "Name": "UAC_WITH_100rel",
               "Commands": [
                 {
-                  "SourceFile": "cgg/uac_100rel.xml",
+                  "SourceFile": "cgg/req100rel/uac_100rel.xml",
                   "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",

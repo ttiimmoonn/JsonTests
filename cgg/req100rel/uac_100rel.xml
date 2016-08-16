@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAC CGG тест">
+<scenario name = "UAC req100rel CGG тест">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-    
+
 <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
@@ -13,17 +13,16 @@
     </action>
 </nop>
 
-
-
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC CGG тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC req100rel CGG тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
+    Require: 100rel
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -39,30 +38,50 @@
 </send>
 <recv response="100" optional="true"></recv>
 
-
-
-
 <!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
-<recv response="401" optional="true" auth="true" next="auth_invite">
-    <action>
+<recv response="401" auth="true" next="auth_invite" optional="true">
+	<action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
         <!--Забрали branch -->
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
-    </action>
- </recv>
+ 
+	</action>
+</recv>
 
 <label id="call_continue" />
 
 <recv response="100" optional="true"></recv>
-<recv response="180" optional="true"></recv>
-<recv response="200" auth="true">
+<recv response="180">
     <action>
-        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] PRACK
+    RAck: [$last_rseq] [$last_cseq] INVITE
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+<recv response="200" crlf="true"></recv>
+
+<recv response="200" auth="true">
+        <action>
+         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
-    </action>
+        </action>
  </recv>
+
 
 <nop hide="true">
     <action>
@@ -110,6 +129,7 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -119,13 +139,14 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC CGG тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC req100rel CGG тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
+    Require: 100rel
     Content-Type: application/sdp
     Content-Length: [len]
     

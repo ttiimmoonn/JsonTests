@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "new_script">
+<scenario name = "uas send dtmf in rfc ALARM тест">
 
 <recv request="INVITE">
 <action>
-    <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
+    <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number"/>
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
 
@@ -27,21 +28,21 @@
     SIP/2.0 180 Ringing
     [last_Via:]
     [last_From:]
-    [last_To:];tag=123456
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
-    Contact: <sip:[$number]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
 
 <pause milliseconds="1100"/>
+
 <send retrans="500">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
     [last_From:]
-    [last_To:];tag=123456
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
     Contact: <sip:[$number]@[local_ip]:[local_port];user=phone>
@@ -61,18 +62,16 @@
 </send>
 
 <recv request="ACK"></recv>
+
 <pause milliseconds="1000"/>
+
 <nop>
     <action>
 	    <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/star.pcap"/>
     </action>
 </nop>
 
-<recv request="BYE">
-<action>
-    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="bye_cseq" />
-</action>
-</recv>
+<recv request="BYE"></recv>
 <send>
 <![CDATA[
     SIP/2.0 200 OK
@@ -80,8 +79,7 @@
     [last_From:]
     [last_To:]
     [last_Call-ID:]
-    CSeq: [$bye_cseq] BYE
-    Contact: <sip:[$number]@[local_ip]:[local_port]>
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>

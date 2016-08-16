@@ -177,6 +177,7 @@
 
 <recv request="NOTIFY">
     <action>
+        <assign assign_to="test_sipfrag" value="" />
         <ereg regexp=".*SIP/2.0 ([0-9]+).*" search_in="msg" check_it="true" assign_to="dummy,test_sipfrag" />
         <todouble assign_to="test_sipfrag" variable="test_sipfrag" />
         <test assign_to="success_transfer" variable="test_sipfrag" compare="equal" value="200" />

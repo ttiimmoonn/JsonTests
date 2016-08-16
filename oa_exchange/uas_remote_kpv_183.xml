@@ -36,30 +36,34 @@
 
 <send>
 <![CDATA[
-	SIP/2.0 180 Ringing
+	SIP/2.0 183 Session Progress
 	[last_Via:]
 	[last_From:]
 	[last_To:];tag=123456
 	[last_Call-ID:]
-	[last_CSeq:]
+	CSeq: [$inv_cseq] INVITE
 	Require: 100rel
 	Rseq: [cseq]
 	Contact: <sip:[$number][local_ip]:[local_port]>
 	Content-Type: application/sdp
 	Content-Length: [len]
-
+ 
 	v=0
-	o=[$number] 123456 654321 IN IP[local_ip_type] [local_ip]
+	o=student 123456 654321 IN IP[local_ip_type] [local_ip]
 	s=A conversation
-	c=IN IP[local_ip_type] [local_ip]
 	t=0 0
-	m=audio [auto_media_port] RTP/AVP 8 101
+	m=audio [auto_media_port] RTP/AVP 18 8 3 98 0 101
+	c=IN IP[local_ip_type] [local_ip]
+	a=rtpmap:18 G729/8000
+	a=fmtp:18 annexb=yes
 	a=rtpmap:8 PCMA/8000
-	a=rtpmap:101 telephone-event/8000/1
-	a=fmtp:101 0-11
+	a=rtpmap:3 GSM/8000
+	a=rtpmap:98 GSM-EFR/8000
+	a=rtpmap:0 PCMU/8000
+	a=rtpmap:101 telephone-event/8000
+	a=fmtp:101 0-16
 ]]>
 </send>
-
 
 <recv request="PRACK"></recv>
 
@@ -71,9 +75,15 @@
 	[last_To:]
 	[last_Call-ID:]
 	[last_CSeq:]
-	Content-Length: 0
+	Content-Length: [len]
 ]]>
 </send>
+
+<nop hide="true">
+   <action>
+        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.g729,-1,18" />
+     </action>
+</nop>
 
 
 
@@ -86,7 +96,19 @@
 	Call-ID:[$inv_call_id]
 	CSeq: [$inv_cseq] INVITE
 	Contact: <sip:[$number][local_ip]:[local_port];user=phone>
-	Content-Length: 0
+	Content-Type: application/sdp
+	Content-Length: [len]
+
+	v=0
+	o=student 123456 654321 IN IP[local_ip_type] [local_ip]
+	s=A conversation
+	t=0 0
+	m=audio [auto_media_port] RTP/AVP 18 101
+	c=IN IP[local_ip_type] [local_ip]
+	a=rtpmap:18 G729/8000
+	a=fmtp:18 annexb=no
+	a=rtpmap:101 telephone-event/8000
+	a=fmtp:101 0-16
 ]]>
 </send>
 
@@ -97,6 +119,20 @@
     </action>
 </recv>
 
+
+<nop hide="true">
+   <action>
+        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.g729,-1,18" />
+     </action>
+</nop>
+
+
+
+
+
+
+
+<pause milliseconds = "5000"/>
 
 <recv request="BYE">
     <action>
@@ -112,9 +148,10 @@
 	[last_To:]
 	[last_Call-ID:]
 	[last_CSeq:]
+	Contact: <sip:[$number][local_ip]:[local_port]>
 	Content-Length: 0
 ]]>
 </send>
 
-	
+<pause milliseconds="2000"/>
 </scenario>

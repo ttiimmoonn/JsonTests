@@ -2,21 +2,33 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uas_script">
 <!-- <Global variables="pointer" /> -->
-<Global variables="COMPLITE_CODE" />
-<User variables="drop_acw"/>
 
-<nop>
-    <action>
-            <assignstr assign_to="drop_acw" value="[$COMPLITE_CODE]"/>
-            <assignstr assign_to="local_tag" value="[call_number][pid]"/>
-    </action>
-</nop>
+<Global variables="COMPLITE_CODE,AUXWORK_CODE,OFF_AUX_CODE,DROP_COUNTER,drop_counter,drop_acw,auxwork_code,off_aux_code" />
+<User variables="drop_pointer"/>
+
+
+<init>
+    <nop>
+        <action>
+                <assignstr assign_to="drop_acw" value="[$COMPLITE_CODE]"/>
+                <assignstr assign_to="off_aux_code" value="[$OFF_AUX_CODE]"/>
+                <assignstr assign_to="auxwork_code" value="[$AUXWORK_CODE]"/>
+                <todouble  assign_to="drop_counter" variable="DROP_COUNTER" />
+        </action>
+    </nop>
+</init>
+
+
 
 <recv request="INVITE">
 <action>
+      <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+      <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
       <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="uas_number"/>
       <ereg regexp="[0-9]+" search_in="hdr" header="From:" assign_to="uac_number"/>
       <ereg regexp="tag=.*" search_in="hdr" header="From:" assign_to="remote_tag"/>
+      <add assign_to="drop_counter" value="1" />
+      <test assign_to="drop_pointer" variable="drop_counter" compare="equal" value="10"/>
       <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
 </action>
 </recv>
@@ -36,7 +48,7 @@
 
 
 
-<send>
+<send test="drop_pointer" next="drop_call">
 <![CDATA[
     SIP/2.0 180 Ringing
     [last_Via:]
@@ -49,7 +61,9 @@
 ]]>
 </send>
 
-<pause  distribution="uniform" min="5000" max="7000"/>
+
+<pause  distribution="uniform" min="5000" max="7000"/> 
+
 
 <send retrans="500">
 <![CDATA[
@@ -95,6 +109,7 @@
 <!-- <pause distribution="normal" mean="300000" stdev="15000"/> -->
 <pause distribution="uniform" min="240000" max="350000"/>
 
+
 <nop>
      <action>
         <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
@@ -129,7 +144,7 @@
     INVITE sip:[$drop_acw]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[service]@[$local_domain]>;tag=[$local_tag]complite
-    To: "[$uas_number]" <sip:[$drop_acw]@[$local_domain]>
+    To: <sip:[$drop_acw]@[$local_domain]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
@@ -171,7 +186,7 @@
 <recv response="200" auth="true">
         <action>
          <!--Забрали CSeq -->
-        <ereg regexp="[0-9]*" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         </action>
  </recv>
 
@@ -227,7 +242,7 @@
     INVITE sip:[$drop_acw]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[service]@[$local_domain]>;tag=[$local_tag]complite
-    To: "[$uas_number]" <sip:[$drop_acw]@[$local_domain]>
+    To: <sip:[$drop_acw]@[$local_domain]>
     [last_call-id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
@@ -248,7 +263,168 @@
     a=fmtp:101 0-11,16
 ]]>
 </send>
-<label id="5"/>
-<pause milliseconds="2000"/>
 
+<label id="auth_aux"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$auxwork_code]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send next="aux_continue"  crlf="true">
+<![CDATA[
+    INVITE sip:[$auxwork_code]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[service]@[$local_domain]>;tag=[$local_tag]aux
+    To: <sip:[$auxwork_code]@[$local_domain]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    [authentication]
+    Max-Forwards: 70
+    Subject: Performance Test
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=student 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:101 telephone-event/8000
+    a=fmtp:101 0-11,16
+]]>
+</send>
+
+
+<label id="drop_call"/>
+
+<recv request="CANCEL"></recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    SIP/2.0 487 Request Cancelled
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    CSeq: [$inv_cseq] INVITE
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="ACK"></recv>
+
+<!-- Уходим в AUXWORK -->
+
+<send>
+<![CDATA[
+    INVITE sip:[$auxwork_code]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[service]@[$local_domain]>;tag=[$local_tag]aux
+    To: <sip:[$auxwork_code]@[$local_domain]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
+    Subject: Performance Test
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=student 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=rtpmap:101 telephone-event/8000
+    a=fmtp:101 0-11,16
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+
+<!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
+<recv response="401" auth="true" next="auth_aux">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="aux_continue" />
+
+<recv response="100" optional="true"></recv>
+<recv response="180" optional="true" crlf="true" ></recv>
+<recv response="183" optional="true" crlf="true" ></recv>
+
+<recv response="200" auth="true">
+        <action>
+         <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        </action>
+ </recv>
+
+<send>
+<![CDATA[
+    ACK sip:[$auxwork_code]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="BYE">
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$number]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+<nop next="5">
+    <action>
+        <exec int_cmd="stop_gracefully"/>
+    </action>
+</nop>
+
+<label id="5"/>
 </scenario>

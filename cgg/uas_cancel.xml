@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "uas_script">
-
+<scenario name = "UAS recv CANCEL req100rel CGG тест">
 
 
 <recv request="INVITE">
 <action>
-	<ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
 	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
+	<assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
 
@@ -23,23 +22,17 @@
 ]]>
 </send>
 
-
-
 <send>
 <![CDATA[
 	SIP/2.0 180 Ringing
 	[last_Via:]
 	[last_From:]
-	[last_To:];tag=123456
+	[last_To:];tag=[$local_tag]
 	[last_Call-ID:]
 	[last_CSeq:]
-	Contact: <sip:[$number]@[local_ip]:[local_port]>
 	Content-Length: 0
 ]]>
 </send>
-
-
-
 
 <recv request="CANCEL"></recv>
 
@@ -68,4 +61,5 @@
 </send>
 
 <recv request="ACK"></recv>
+
 </scenario>

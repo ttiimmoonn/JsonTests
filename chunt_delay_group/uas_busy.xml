@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "chunt_group_test_uas_busy">
+<scenario name = "UAS send 486 chunt group delay тест">
 
-<recv request="INVITE"></recv>
+<recv request="INVITE">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    </action>
+</recv>
 
 <send>
 <![CDATA[
@@ -21,7 +25,7 @@
     SIP/2.0 486 Busy Here
     [last_Via:]
     [last_From:]
-    [last_To:];tag=[call_number][local_port]
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
     [last_contact]

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAC CGG тест">
+<scenario name = "new_script">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-    
-<nop hide="true">
+    <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
-        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
-</nop>
+    </nop>
 
 
 
@@ -19,17 +17,18 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC CGG тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "AgentDirCall" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
+    Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
     Content-Type: application/sdp
     Content-Length: [len]
     
     v=0
-    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    o=queue 123456 654321 IN IP[local_ip_type] [local_ip]
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
@@ -42,8 +41,8 @@
 
 
 
-<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
-<recv response="401" optional="true" auth="true" next="auth_invite">
+<!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
+<recv response="401" auth="true" next="2">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -52,17 +51,18 @@
     </action>
  </recv>
 
-<label id="call_continue" />
+<label id="3" />
 
 <recv response="100" optional="true"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="200" auth="true">
-    <action>
-        <!--Забрали CSeq -->
+        <action>
+         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
-    </action>
+        </action>
  </recv>
+
 
 <nop hide="true">
     <action>
@@ -81,26 +81,25 @@
     Content-Length: 0
 ]]>
 </send>
-
 <pause milliseconds="1000" crlf="true"/>
 
-<send>
+<recv request="BYE">
+</recv>
+
+<send next="5">
 <![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "[service]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
-    [last_call-id:]
-    CSeq: [cseq] BYE
-    Max-Forwards: 70
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>
 
-<recv response="200" next="end" crlf="true"></recv>
-
 <!--Отправка INVITE c аутентификацией -->
-<label id="auth_invite"/>
+<label id="2"/>
 
 <send>
 <![CDATA[
@@ -110,16 +109,17 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
 
-<!-- Уходим в label call_continue -->
-<send next="call_continue" crlf="true">
+<!-- Уходим в label 3 -->
+<send next="3" crlf="true">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC CGG тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "AgentDirCall" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
@@ -130,7 +130,7 @@
     Content-Length: [len]
     
     v=0
-    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    o=cgg 123456 654321 IN IP[local_ip_type] [local_ip]
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
@@ -140,6 +140,6 @@
 </send>
 
 
-<label id="end"/>
+<label id="5"/>
 
 </scenario>
