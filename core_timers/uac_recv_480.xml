@@ -24,7 +24,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -40,14 +39,14 @@
 ]]>
 </send>
 <recv response="100" optional="true"></recv>
-<recv response="401" auth="true" optional="true" next="1">
+<recv response="401" auth="true" optional="true" next="auth_invite">
     <action>
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
         <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
  </recv>
 
-<label id="2"/>
+<label id="call_continue"/>
 
 <recv response="100" optional="true"></recv>
 <recv response="183" optional="true"></recv>
@@ -59,7 +58,7 @@
     </action>
 </recv>
 
-<send next="3">
+<send next="end">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     [last_via:]
@@ -72,7 +71,7 @@
 ]]>
 </send>
 
-<label id="1"/>
+<label id="auth_invite"/>
 
 <send>
 <![CDATA[
@@ -88,7 +87,7 @@
 </send>
 
 
-<send next="2">
+<send next="call_continue">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
@@ -99,7 +98,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
-    Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -115,7 +113,7 @@
 ]]>
 </send>
 
-<label id="3"/>
+<label id="end"/>
 
 
 </scenario>

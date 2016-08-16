@@ -8,6 +8,7 @@
         <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
     </nop>
 
@@ -17,19 +18,17 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест CORE_TIMERS" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Тест CORE_TIMERS" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
-    Subject: cgg_test_wout_100_rel
     Content-Type: application/sdp
     Content-Length: [len]
     
     v=0
-    o=core_timer 123456 654321 IN IP[local_ip_type] [local_ip]
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
@@ -42,8 +41,8 @@
 
 
 
-<!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
-<recv response="401" auth="true" next="2">
+<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
+<recv response="401" auth="true" optional="true" next="auth_invite">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -52,10 +51,10 @@
     </action>
  </recv>
 
-<label id="3" />
+<label id="call_continue" />
 
 <recv response="100" optional="true"></recv>
-<recv response="180"></recv>
+<recv response="180" optional="true"></recv>
 <recv response="200" auth="true">
         <action>
          <!--Забрали CSeq -->
@@ -79,7 +78,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: cgg_test_wout_100_rel
     Content-Length: 0
 ]]>
 </send>
@@ -88,7 +86,7 @@
 <recv request="BYE">
 </recv>
 
-<send next="5">
+<send next="end">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -101,7 +99,7 @@
 </send>
 
 <!--Отправка INVITE c аутентификацией -->
-<label id="2"/>
+<label id="auth_invite"/>
 
 <send>
 <![CDATA[
@@ -112,24 +110,22 @@
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Contact: <sip:[service]@[local_ip]:[local_port]>
-    Subject: cgg_test_wout_100_rel
     Content-Length: 0
 ]]>
 </send>
 
-<!-- Уходим в label 3 -->
-<send next="3" crlf="true">
+<!-- Уходим в label call_continue-->
+<send next="call_continue" crlf="true">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест CORE_TIMERS" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Тест CORE_TIMERS" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
-    Subject: cgg_test_wout_100_rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -144,6 +140,6 @@
 </send>
 
 
-<label id="5"/>
+<label id="end"/>
 
 </scenario>

@@ -5,6 +5,7 @@
 <recv request="INVITE">
 <action>
     <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
 
@@ -27,10 +28,9 @@
     SIP/2.0 180 Ringing
     [last_Via:]
     [last_From:]
-    [last_To:];tag=123456
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
-    Contact: <sip:[$number]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -41,7 +41,7 @@
     SIP/2.0 200 OK
     [last_Via:]
     [last_From:]
-    [last_To:];tag=123456
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
     Contact: <sip:[$number]@[local_ip]:[local_port];user=phone>
@@ -55,21 +55,16 @@
     t=0 0
     m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
-    a=rtpmap:101 telephone-event/8000
-    a=fmtp:101 0-11,16
 ]]>
 </send>
 <nop hide="true">
    <action>
-  <!--    <exec play_pcap_audio="/home/ssw/sipp/sipp/pcap/sip.pcap"/> -->
         <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
      </action>
 </nop>
-<recv request="ACK">
-</recv>
+<recv request="ACK"></recv>
  
-<recv request="BYE">
-</recv>
+<recv request="BYE"></recv>
 
 <send>
 <![CDATA[

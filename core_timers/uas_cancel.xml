@@ -6,8 +6,8 @@
 
 <recv request="INVITE">
 <action>
-	<ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
 	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
+	<assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
 
@@ -30,10 +30,9 @@
 	SIP/2.0 180 Ringing
 	[last_Via:]
 	[last_From:]
-	[last_To:];tag=123456
+	[last_To:];tag=[$local_tag]
 	[last_Call-ID:]
 	[last_CSeq:]
-	Contact: <sip:[$number]@[local_ip]:[local_port]>
 	Content-Length: 0
 ]]>
 </send>
