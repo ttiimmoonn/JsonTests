@@ -82,7 +82,7 @@
 </send>
 
 
-<!--Проигрываем audio-->
+<!--Проигрываем audio
 <nop hide="true">
 <action>
     <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
@@ -90,7 +90,7 @@
 </nop>
 
  <pause milliseconds="5000"/> 
-
+-->
 
 
 
@@ -130,14 +130,14 @@
     s=update_test
     t=0 0
     c=IN IP[local_ip_type] [local_ip]
-    m=audio 8192 RTP/AVP 18
+    m=audio [auto_media_port] RTP/AVP 18
     a=rtpmap:18 G729/8000
 ]]>
 </send>
 
 <recv response="200"></recv>
 
-
+<!--
 <nop hide="true">
 <action>
     <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.g729,1,18" />
@@ -145,21 +145,24 @@
 </nop>
 
 <pause milliseconds="5000"/>
+-->
 
-
-
-<recv request="BYE"></recv>
 
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
+    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] BYE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
     Content-Length: 0
 ]]>
 </send>
+
+<recv response="200"></recv>
+<pause milliseconds="2000"/>
 
 </scenario>

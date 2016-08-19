@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 
-<!--
-   A UAS that receives an UPDATE before it has generated a final
-   response to a previous UPDATE on the same dialog MUST return a 500
-   response to the new UPDATE, and MUST include a Retry-After header
-   field with a randomly chosen value between 0 and 10 seconds.
--->
-
 <scenario name = "uas_update">
 
-<Global variables="CGPNDOM,chk_retry_after" />
-<Reference variables="CGPNDOM,chk_retry_after" />
+<Global variables="CGPNDOM" />
+<Reference variables="CGPNDOM" />
 
+<!--
+    UAS тестирующий отправку 488 ответа, при отправке UPDATE c запрещённым в mp кодеком
+--->
 <recv request="INVITE">
 <action>
-    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,local_number"/>
-    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
@@ -24,21 +20,18 @@
     <ereg regexp=".*" search_in="hdr" header="From:" check_it="true" assign_to="inv_from" />
     <ereg regexp=".*" search_in="hdr" header="To:" check_it="true" assign_to="inv_to" />
     <ereg regexp=".*" search_in="hdr" header="Via:" check_it="true" assign_to="inv_via" />
-    <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" check_it="true" header="Contact:" assign_to="new_ip" />
+    <ereg regexp="sip:.*@([0-9A-Za-z\.]+):([0-9]+)" search_in="hdr" header="Contact:" check_it="true" assign_to="dummy,remote_ip,remote_port"/>
 
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
 
-
 <!-- Устанавливаем из контакта dest IP  -->
 <nop hide="true">
     <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+        <setdest host="[$remote_ip]" port="[$remote_port]" protocol="UDP" />
     </action>
 </nop>
-
-
 
 <send>
 <![CDATA[
@@ -52,8 +45,6 @@
 ]]>
 </send>
 
-
-
 <send retrans="500">
 <![CDATA[
     SIP/2.0 180 Ringing
@@ -64,13 +55,13 @@
     [last_CSeq:]
     Require: 100rel
     Rseq: [cseq]
-    Contact: <sip:[$local_number][local_ip]:[local_port]>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Content-Type: application/sdp
     Content-Length: [len]
 
     v=0
     o=update_test 10000 10000 IN IP[local_ip_type] [local_ip]
-    s= Test update
+    s=update_test
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
     m=audio [auto_media_port] RTP/AVP 8
@@ -93,64 +84,16 @@
 </send>
 
 
-<pause milliseconds="1000"/> 
+<!--Проигрываем audio
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+</action>
+</nop>
 
+ <pause milliseconds="5000"/> 
+-->
 
-
-<send>
-<![CDATA[
-    UPDATE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
-    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
-    [last_call-id]
-    CSeq: [cseq] UPDATE
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Subject: UPDATE TEST
-    Content-Type: application/sdp
-    Content-Length: [len]
-    
-    v=0
-    o=update_test 10000 10001 IN IP[local_ip_type] [local_ip]
-    s=A conversation
-    c=IN IP[local_ip_type] [local_ip]
-    t=0 0
-    m=audio [auto_media_port] RTP/AVP 0
-    a=rtpmap:0 PCMU/8000
-]]>
-</send>
-
-<send>
-<![CDATA[
-    UPDATE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
-    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
-    [last_call-id]
-    CSeq: [cseq] UPDATE
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Subject: UPDATE TEST
-    Content-Type: application/sdp
-    Content-Length: [len]
-    
-    v=0
-    o=update_test 10000 10002 IN IP[local_ip_type] [local_ip]
-    s=A conversation
-    c=IN IP[local_ip_type] [local_ip]
-    t=0 0
-    m=audio [auto_media_port] RTP/AVP 0
-    a=rtpmap:0 PCMU/8000
-]]>
-</send>
-<recv response="500" optional="true">
-    <action>
-        <ereg regexp="Retry-After:" search_in="msg" check_it="true" assign_to="chk_retry_after"/>
-    </action>    
-</recv>
-
-<recv response="200"></recv>
 
 
 <send retrans="500">
@@ -159,7 +102,7 @@
     Via:[$inv_via]
     From:[$inv_from]
     To:[$inv_to];tag=[$local_tag]
-    [last_Call-ID:]
+    [last_call-id]
     CSeq: [$inv_cseq] INVITE
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Content-Length: 0
@@ -168,25 +111,86 @@
 
 
 <recv request="ACK"></recv>
+
+
+<send retrans="500">
+<![CDATA[
+    UPDATE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] UPDATE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: UPDATE TEST
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=update_test 10000 10001 IN IP[local_ip_type] [local_ip]
+    s=update_test
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio [auto_media_port] RTP/AVP 18
+    a=rtpmap:18 G729/8000
+]]>
+</send>
+
+<recv response="488"></recv>
+
+<send retrans="500">
+<![CDATA[
+    UPDATE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] UPDATE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Subject: UPDATE TEST
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=update_test 10000 10002 IN IP[local_ip_type] [local_ip]
+    s=update_test
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<recv response="200"></recv>
+
 <!--
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.g729,1,18" />
 </action>
 </nop>
+
+<pause milliseconds="5000"/>
 -->
-<recv request="BYE"></recv>
+
 
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
+    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] BYE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
     Content-Length: 0
 ]]>
 </send>
+
+<recv response="200"></recv>
 <pause milliseconds="2000"/>
+
 </scenario>

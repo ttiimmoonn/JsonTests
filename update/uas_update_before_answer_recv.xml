@@ -8,17 +8,18 @@
 
 <recv request="INVITE">
 <action>
-    <ereg regexp="(\w)*@" search_in="hdr" header="To:" assign_to="local_number" />
-    <ereg regexp="(\w)*@" search_in="hdr" header="From:" assign_to="remote_number" />
-    <ereg regexp="tag=.*" search_in="hdr" header="From:" assign_to="remote_tag" />
-    <ereg regexp="<sip:.*>" search_in="hdr" header="To:" assign_to="local_uri" />
-    <ereg regexp="<sip:.*>" search_in="hdr" header="From:" assign_to="remote_uri" />
-    <assignstr assign_to="local_tag" value="tag=[call_number][pid]"/>
-    <ereg regexp=".*" search_in="hdr" header="From:" assign_to="inv_from" />
-    <ereg regexp=".*" search_in="hdr" header="To:" assign_to="inv_to" />
-    <ereg regexp=".*" search_in="hdr" header="Call-ID:" assign_to="inv_call_id" />
-    <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="inv_via" />
-    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" check_it="true" assign_to="inv_cseq" />
+    <ereg regexp=".*" search_in="hdr" header="From:" check_it="true" assign_to="inv_from" />
+    <ereg regexp=".*" search_in="hdr" header="To:" check_it="true" assign_to="inv_to" />
+    <ereg regexp=".*" search_in="hdr" header="Via:" check_it="true" assign_to="inv_via" />
+    <ereg regexp="sip:.*@([0-9A-Za-z\.]+):([0-9]+)" search_in="hdr" header="Contact:" check_it="true" assign_to="dummy,remote_ip,remote_port"/>
+
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
 
@@ -39,12 +40,12 @@
     SIP/2.0 180 Ringing
     [last_Via:]
     [last_From:]
-    [last_To:];[$local_tag]
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
     Require: 100rel
     Rseq: [cseq]
-    Contact: <sip:[$number][local_ip]:[local_port]>
+    Contact: <sip:[$local_number][local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -67,13 +68,13 @@
 
 <send retrans="500">
 <![CDATA[
-    UPDATE sip:[$remote_number][remote_ip]:[remote_port] SIP/2.0
+    UPDATE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: [$local_uri];[$local_tag]
-    To: [$remote_uri];[$remote_tag]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
     [last_call-id]
     CSeq: [cseq] UPDATE
-    Contact: <sip:[$local_number][local_ip]:[local_port]>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Subject: UPDATE TEST
     Content-Type: application/sdp
@@ -98,7 +99,7 @@
     Via:[$inv_via]
     From:[$inv_from]
     To:[$inv_to];tag=[$local_tag]
-    Call-ID:[$inv_call_id]
+    [last_call-id]
     CSeq: [$inv_cseq] INVITE
     Contact: <sip:[$local_number][local_ip]:[local_port];user=phone>
     Content-Length: [len]
@@ -120,13 +121,13 @@
 
 <send retrans="500">
 <![CDATA[
-    UPDATE sip:[$remote_number][remote_ip]:[remote_port] SIP/2.0
+    UPDATE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: [$local_uri];[$local_tag]
-    To: [$remote_uri];[$remote_tag]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
     [last_call-id]
     CSeq: [cseq] UPDATE
-    Contact: <sip:[$local_number][local_ip]:[local_port]>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Subject: UPDATE TEST
     Content-Type: application/sdp
@@ -143,24 +144,27 @@
 </send>
 
 <recv response="200"></recv>
+<!--
 <nop hide="true">
 <action>
     <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.g729,1,18" />
 </action>
 </nop>
-<recv request="BYE"></recv>
-
+-->
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Contact: <sip:[$number][local_ip]:[local_port]>
+    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] BYE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
     Content-Length: 0
 ]]>
 </send>
 
+<recv response="200"></recv>
+<pause milliseconds="2000"/>
 </scenario>

@@ -82,7 +82,7 @@
 </send>
 
 
-<!--Проигрываем audio-->
+<!--Проигрываем audio
 <nop hide="true">
 <action>
     <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
@@ -90,7 +90,7 @@
 </nop>
 
  <pause milliseconds="5000"/> 
-
+-->
 
 
 <send retrans="500">
@@ -119,6 +119,7 @@
 
 <recv response="200"></recv>
 
+<!--
 
 <nop hide="true">
 <action>
@@ -128,7 +129,7 @@
 
 <pause milliseconds="5000" crlf="true"/>
 
-
+-->
 
 <send retrans="500">
 <![CDATA[
@@ -161,4 +162,5 @@
 ]]>
 </send>
 
+<pause milliseconds="2000"/>
 </scenario>

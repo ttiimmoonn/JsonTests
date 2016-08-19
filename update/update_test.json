@@ -1,0 +1,289 @@
+{
+  "TestName": "update_test",
+  "AutoTest" : "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10116",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10117",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
+      "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "uac_simple_update_test",
+      "Description": "Проверка корректности обработки UPDATE реквеста UAC mode",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC_SIMPLE_UPDATE_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "update/uac.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "uas_update_in_erly_state",
+      "Description": "Проверка корректности отбработки UPDATE реквеста в предответном состоянии UAS mode",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS_UPDATE_IN_ERLY_STATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/uas_erly_update.xml",
+                  "Options": "-m 1",
+                  "SippType": "uac",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "uas_update_in_answer_state",
+      "Description": "Проверка корректности отбработки UPDATE реквеста в ответном состоянии UAS mode",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS_UPDATE_IN_ANSWER_STATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/uas_update.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "uas_two_update",
+      "Description": "Проверка отправки 500 сообщения при отправке двух UPDATE",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/uas_two_updates.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "uas_update_before_answer_recv",
+      "Description": "Проверка отправки 491 ответа на UPDATE, который послали до завершения предыдущего o/a",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/uas_update_before_answer_recv.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "uas_recv_488_to_update",
+      "Description": "Проверка отправки 488 ответа на UPDATE, при использовании кодека запрещённого в mp",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/media-profile/declare drop_729 drop_729 system",
+              "command2": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMA * true",
+              "command3": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMU * true",
+              "command4": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio G729 * false",
+              "command5": "/domain/%%DEV_DOM%%/alias/set-for-iface %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile drop_729"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/uas_update_recv_488.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
+              "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
