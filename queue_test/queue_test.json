@@ -246,7 +246,9 @@
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%20.Number%%} cc_agent",
       "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%20.Number%%} cc_agent",
-      "command3": "/domain/%%DEV_DOM%%/alias/set-for-address {%%1.Number%%-%%20.Number%%} ss\\mgm\\telephone enabled"
+      "command3": "/domain/%%DEV_DOM%%/alias/set-for-address {%%1.Number%%-%%20.Number%%} ss\\mgm\\telephone enabled",
+      "command4": "/domain/%%DEV_DOM%%/sip/user/set  %%1.SipGroup%%  {%%1.Number%%-%%20.Number%%}@%%1.SipDomain%% rfc-4028-force  false", 
+      "command5": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% {%%1.Number%%-%%20.Number%%}@%%1.SipDomain%% rfc-4028-control  false"
     }
   ],
   "PostCoconConf": [
