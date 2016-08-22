@@ -1,6 +1,5 @@
 {
   "TestName": "update_test",
-  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",

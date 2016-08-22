@@ -1,6 +1,5 @@
 {
   "TestName": "fax_test",
-  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "1",

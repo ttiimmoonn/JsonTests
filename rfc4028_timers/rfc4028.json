@@ -1,6 +1,5 @@
 {
   "TestName": "rfc4028_timers",
-  "AutoTest": "True",
   "Users": [
     {
       "UserId": "0",
