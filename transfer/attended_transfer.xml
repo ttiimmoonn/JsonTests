@@ -49,7 +49,7 @@
 ]]>
 </send>
 
-<pause milliseconds="200"/>
+<pause milliseconds="1000"/>
 
 <send retrans="500">
 <![CDATA[
@@ -74,14 +74,14 @@
 </send>
 
 <recv request="ACK" crlf="true"></recv>
-<!-- 
+
 <nop hide="true">
    <action>
         <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
      </action>
 </nop>
 
-<pause milliseconds="7000" crlf="true" />
+<pause milliseconds="2000" crlf="true" />
 
 <nop hide="true">
      <action>
@@ -90,7 +90,6 @@
      </action>
 </nop>
 
--->
 
 <send retrans="500">
 <![CDATA[
@@ -187,14 +186,14 @@
     Content-Length: 0
 ]]>
 </send>
-<!--
+
 <nop hide="true">
 <action>
         <exec rtp_stream="resume" />
 </action>
 </nop>
 
-<pause milliseconds="5000"/>
+<pause milliseconds="2000"/>
 
 <nop hide="true">
 <action>
@@ -202,7 +201,6 @@
 </action>
 </nop>
 
--->
 
 <send retrans="500">
 <![CDATA[
