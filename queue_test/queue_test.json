@@ -268,163 +268,83 @@
             {
               "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
               "userId": "0"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
               "userId": "1"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
               "userId": "2"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%3.Number%%*%%AGENT_PASS%%#",
               "userId": "3"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%4.Number%%*%%AGENT_PASS%%#",
               "userId": "4"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%5.Number%%*%%AGENT_PASS%%#",
               "userId": "5"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%6.Number%%*%%AGENT_PASS%%#",
               "userId": "6"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%7.Number%%*%%AGENT_PASS%%#",
               "userId": "7"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%8.Number%%*%%AGENT_PASS%%#",
               "userId": "8"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%9.Number%%*%%AGENT_PASS%%#",
               "userId": "9"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%10.Number%%*%%AGENT_PASS%%#",
               "userId": "10"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%11.Number%%*%%AGENT_PASS%%#",
               "userId": "11"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%12.Number%%*%%AGENT_PASS%%#",
               "userId": "12"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%13.Number%%*%%AGENT_PASS%%#",
               "userId": "13"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%14.Number%%*%%AGENT_PASS%%#",
               "userId": "14"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%15.Number%%*%%AGENT_PASS%%#",
               "userId": "15"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%16.Number%%*%%AGENT_PASS%%#",
               "userId": "16"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%17.Number%%*%%AGENT_PASS%%#",
               "userId": "17"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%18.Number%%*%%AGENT_PASS%%#",
               "userId": "18"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%19.Number%%*%%AGENT_PASS%%#",
               "userId": "19"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*160*%%20.Number%%*%%AGENT_PASS%%#",
               "userId": "20"

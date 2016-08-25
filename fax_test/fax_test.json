@@ -77,6 +77,7 @@
               "Type": "User",
               "UserId": "1",
               "Name": "UAC_FAX_T38",
+              "Cyclic" : "True",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_t38.xml",

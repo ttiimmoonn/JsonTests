@@ -43,7 +43,7 @@
 ]]>
 </send>
 
-<pause milliseconds="1100"/>
+<pause milliseconds="1000"/>
 
 <send retrans="500">
 <![CDATA[
@@ -70,7 +70,7 @@
 </send>
 
 <recv request="ACK"></recv>
-
+<pause/>
 <send>
 <![CDATA[
     BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
