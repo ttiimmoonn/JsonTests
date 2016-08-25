@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 
-<scenario name = "uas_update">
+<scenario name = "uas_at_transfer_test">
 
 <Global variables="REFERNUM,REFERDOM" />
 <User variables="refer_num,refer_dom,test_sipfrag" />
@@ -64,7 +64,7 @@
     Content-Length: [len]
 
     v=0
-    o=update_test 10000 10000 IN IP[local_ip_type] [local_ip]
+    o=tester 10000 10000 IN IP[local_ip_type] [local_ip]
     s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
@@ -106,7 +106,7 @@
     Content-Length: [len]
 
     v=0
-    o=update_test 10000 10001 IN IP[local_ip_type] [local_ip]
+    o=tester 10000 10001 IN IP[local_ip_type] [local_ip]
     s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
@@ -152,7 +152,7 @@
     Content-Length: [len]
 
     v=0
-    o=update_test 20000 20000 IN IP[local_ip_type] [local_ip]
+    o=tester 20000 20000 IN IP[local_ip_type] [local_ip]
     s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
@@ -307,7 +307,7 @@
     Content-Length: [len]
 
     v=0
-    o=update_test 20000 20000 IN IP[local_ip_type] [local_ip]
+    o=tester 20000 20000 IN IP[local_ip_type] [local_ip]
     s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
