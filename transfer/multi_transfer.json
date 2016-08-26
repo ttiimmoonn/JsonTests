@@ -70,21 +70,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -d 3000",
+                  "Options": "-m 1 -d 3000",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -97,21 +97,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
@@ -149,21 +149,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/req100rel/unattended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/req100rel/unattended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -d 3000",
+                  "Options": "-m 1 -d 3000",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -176,21 +176,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/req100rel/unattended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/req100rel/unattended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
@@ -228,21 +228,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -d 3000",
+                  "Options": "-m 1 -d 3000",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -255,21 +255,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/attended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
@@ -307,21 +307,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/req100rel/attended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/req100rel/attended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -d 3000",
+                  "Options": "-m 1 -d 3000",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -334,21 +334,21 @@
               "Commands": [
                 {
                   "SourceFile": "transfer/req100rel/attended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/req100rel/attended_transfer.xml",
-                  "Options": "-m 1 -aa  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "transfer/req100rel/attended_transfer.xml",
-                  "Options": "-m 1 -aa -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
