@@ -1,5 +1,6 @@
 {
 	"TestName" : "test_420_response",
+  "AutoTest" : "True",
 	"Users" : [
 	    {
 	      "UserId": "0",

@@ -145,6 +145,7 @@
               "Type": "User",
               "UserId": "0",
               "Name": "SIMPLE_UAS_RECV_BYE",
+              "WriteStat" : "True",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -158,6 +159,7 @@
               "Type": "User",
               "UserId": "1",
               "Name": "UAS_SEND_422_RESPONSE",
+              "WriteStat" : "True",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac.xml",
