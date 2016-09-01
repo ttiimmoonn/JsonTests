@@ -124,6 +124,7 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
+    Require: timer
     Session-Expires: [$se];refresher=uac
     Content-Length:[len]
     Content-Type: application/sdp
@@ -178,6 +179,7 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
+    Require: timer
     Session-Expires: [$se];refresher=uac
     Content-Length:[len]
     Content-Type: application/sdp

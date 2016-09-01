@@ -64,7 +64,7 @@
         <!--Забрали IP -->
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
         <!-- Проверяем, что нам прислали Session Expires -->
-        <ereg regexp="Session-Expires:\s?([0-9]+)\s?;\s?(refresher=uas)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uas)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
     </action>
  </recv>
 
@@ -97,7 +97,7 @@
         <assign assign_to="se" value="" />
         <assign assign_to="options" value="" />
         <!-- Ищем Session Expires в UPDATE -->
-        <ereg regexp="Session-Expires:\s?([0-9]+)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
     </action>
 </recv>
 
@@ -109,6 +109,7 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
+    Require: timer
     Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Session-Expires: [$se];refresher=uac
     Content-Length: 0
@@ -125,7 +126,7 @@
         <assign assign_to="se" value="" />
         <assign assign_to="options" value="" />
         <!-- Ищем Session Expires в UPDATE -->
-        <ereg regexp="Session-Expires:\s?([0-9]+)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
     </action>
 </recv>
 
@@ -138,6 +139,7 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
+    Require: timer
     Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Session-Expires: [$se];refresher=uac
     Content-Length: 0
@@ -205,5 +207,5 @@
 
 
 <label id="end"/>
-
+<pause milliseconds="2000"/>
 </scenario>

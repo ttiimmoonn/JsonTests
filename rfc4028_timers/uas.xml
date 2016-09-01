@@ -20,10 +20,10 @@
 <recv request="INVITE">
 	<action>
 		<assignstr assign_to="local_tag" value="[call_number][pid]"/>
-		<!--Проверяем, что нам передали Session-Expires: 100-->
-		<ereg regexp="Session-Expires:\s?(100)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
-		<!--Проверяем, что нам передали Min-SE: 100-->
-		<ereg regexp="Min-SE:\s?(100)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
+		<!--Проверяем, что нам передали Session-Expires: 90-->
+		<ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+		<!--Проверяем, что нам передали Min-SE: 90-->
+		<ereg regexp="Min-SE:\s?(90)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
 	</action>
 </recv>
 
@@ -57,9 +57,56 @@
 </send>
 <recv request="ACK" crlf="true"></recv>
 
+<!-- Принимаем INVITE c Session-Expires 100 и min-se 100 
+и отправляем 422 а se 120 -->
+
+<recv request="INVITE">
+    <action>
+        <assignstr assign_to="dummy" value=""/>
+        <assignstr assign_to="se" value=""/>
+        <assignstr assign_to="options" value=""/>
+        <assignstr assign_to="min_se" value=""/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <!--Проверяем, что нам передали Session-Expires: 100-->
+        <ereg regexp="Session-Expires:\s?(100)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <!--Проверяем, что нам передали Min-SE: 100-->
+        <ereg regexp="Min-SE:\s?(100)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<!-- 
+    Отсылаем 422 с Min-SE: 100
+-->
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 422 Session Interval Too Small
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Min-SE: 120
+    Content-Length: 0
+]]>
+</send>
+<recv request="ACK" crlf="true"></recv>
+
 <!--
 	Принимаем новый INVITE и проверяем, чтобы ссв
-	установил Session-Expires: 100
+	установил Session-Expires: 120
 -->
 
 <recv request="INVITE">
@@ -76,10 +123,10 @@
         <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
 		<assignstr assign_to="local_tag" value="[call_number][pid]"/>
 
-        <!--Проверяем, что нам передали Session-Expires: 100-->
-        <ereg regexp="Session-Expires:\s?(100)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
-        <!--Проверяем, что нам передали Min-SE: 100-->
-        <ereg regexp="Min-SE:\s?(100)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
+        <!--Проверяем, что нам передали Session-Expires: 120-->
+        <ereg regexp="Session-Expires:\s?(120)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <!--Проверяем, что нам передали Min-SE: 120-->
+        <ereg regexp="Min-SE:\s?(120)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
 	</action>
 </recv>
 
@@ -137,7 +184,7 @@
 	2 сек - защита от гонок
 -->
 
-<pause milliseconds="48000"/>
+<pause milliseconds="58000"/>
 
 <!--
 	Поскольку не перевали Allow header
@@ -171,10 +218,10 @@
         <assignstr assign_to="se" value="" />
         <assignstr assign_to="options" value="" />
         <assignstr assign_to="min_se" value=""/>
-		<!--Проверяем, что нам передали Session-Expires: 100-->
-		<ereg regexp="Session-Expires:\s?(100)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
-		<!--Проверяем, что нам передали Min-SE: 100-->
-		<ereg regexp="Min-SE:\s?(100)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
+		<!--Проверяем, что нам передали Session-Expires: 120-->
+		<ereg regexp="Session-Expires:\s?(120)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+		<!--Проверяем, что нам передали Min-SE: 120-->
+		<ereg regexp="Min-SE:\s?(120)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
 	</action>
 </recv>
 
@@ -221,10 +268,10 @@
         <assignstr assign_to="se" value="" />
         <assignstr assign_to="options" value="" />
         <assignstr assign_to="min_se" value=""/>
-		<!--Проверяем, что нам передали Session-Expires: 100-->
-		<ereg regexp="Session-Expires:\s?(100)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
-		<!--Проверяем, что нам передали Min-SE: 100-->
-		<ereg regexp="Min-SE:\s?(100)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
+		<!--Проверяем, что нам передали Session-Expires: 120-->
+		<ereg regexp="Session-Expires:\s?(120)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+		<!--Проверяем, что нам передали Min-SE: 120-->
+		<ereg regexp="Min-SE:\s?(120)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
 
 	</action>
 </recv>
