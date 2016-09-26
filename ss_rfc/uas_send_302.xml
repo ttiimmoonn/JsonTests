@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas send 302 response">
+<Global variables="REDIRECT_TO"/>
+<User variables="dummy,redir_to"/>
+<Reference variables="dummy"/>
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="redir_to" value="[$REDIRECT_TO]"/>
+    </action>
+</nop>
+
+<recv request="INVITE">
+<action>
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+</action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<!--
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+-->
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 302 Moved Temporarily
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$redir_to]@[$remote_domain]>
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="ACK"></recv>
+</scenario>

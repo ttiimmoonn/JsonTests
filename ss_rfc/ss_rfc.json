@@ -1,0 +1,99 @@
+{
+  "TestName": "ss_rfc",
+  "AutoTest" : "True",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10105",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10107",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% rfc",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% rfc",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cf_sip",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cf_sip"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% rfc",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% rfc",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cf_sip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cf_sip"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "simple_rfc_test",
+      "Description": "Звоним на абонента, который перадресовывает нас на абонента с rfc и получаем отбой",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "NeedAuth": "True",
+              "Name": "UAS_REDIRECT",
+              "Commands": [
+                {
+                  "SourceFile": "ss_rfc/uas_send_302.xml",
+                  "Options": "-m 1 -set REDIRECT_TO %%2.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "7s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_rfc/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "5s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
