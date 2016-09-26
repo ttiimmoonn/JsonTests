@@ -1,6 +1,5 @@
 {
   "TestName": "ss_rfc",
-  "AutoTest" : "True",
   "AutoTest": "True",
   "Users": [
     {
