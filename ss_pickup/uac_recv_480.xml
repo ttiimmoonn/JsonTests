@@ -18,7 +18,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -54,7 +54,7 @@
 <recv response="183" optional="true"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="183" optional="true"></recv>
-<recv response="487">
+<recv response="480">
     <action>
         <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
@@ -94,7 +94,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Tест find_me" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
