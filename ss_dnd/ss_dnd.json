@@ -1,0 +1,175 @@
+{
+  "TestName": "ss_dnd",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10105",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10107",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% dnd"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% dnd",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% dnd"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "simple_rfc_test",
+      "Description": "Звоним на абонента с dnd и получаем busy",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*26#",
+              "userId": "2"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC_RECV_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_dnd/uac_recv_486.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "5s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#26#",
+              "userId": "2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "check_white_list",
+      "Description": "Звоним с абонента из белого листа, проверяем, что дозвонились. Потом делаем удаление номера из белого списка и повторяем вызов и в этот раз должны получить 486",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*26#",
+              "userId": "2"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*26*32*%%0.Number%%#",
+              "userId": "2"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -d 200",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#26*%%0.Number%%#",
+              "userId": "2"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_RECV_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_dnd/uac_recv_486.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "5s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

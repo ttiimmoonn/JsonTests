@@ -75,13 +75,14 @@
 <recv response="487">
     <action>
     <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
     </action>
  </recv>
 
 <send next="7">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    [last_via:]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
     [last_from:]
     [last_to:]
     [last_call-id:]
