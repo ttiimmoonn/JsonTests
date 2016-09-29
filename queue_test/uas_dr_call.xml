@@ -93,6 +93,7 @@
 
 <!-- Звоним на юзера -->
 <pause milliseconds="5000"/> 
+
 <send>
 <![CDATA[
     INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
