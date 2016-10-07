@@ -81,7 +81,7 @@
      </action>
 </nop>
 
-<pause milliseconds="2000" crlf="true" />
+<pause milliseconds="4000" crlf="true" />
 
 <nop hide="true">
      <action>
@@ -193,7 +193,7 @@
 </action>
 </nop>
 
-<pause milliseconds="2000"/>
+<pause milliseconds="1000"/>
 
 <nop hide="true">
 <action>
