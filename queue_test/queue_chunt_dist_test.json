@@ -1,0 +1,832 @@
+{
+  "TestName": "queue_test",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10106",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "161",
+      "Login": "161",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10107",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "2",
+      "Number": "162",
+      "Login": "162",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10108",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "3",
+      "Number": "163",
+      "Login": "163",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10109",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "4",
+      "Number": "164",
+      "Login": "164",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10110",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "5",
+      "Number": "165",
+      "Login": "165",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10111",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "6",
+      "Number": "166",
+      "Login": "166",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10112",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "7",
+      "Number": "167",
+      "Login": "167",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10113",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "8",
+      "Number": "168",
+      "Login": "168",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10114",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "9",
+      "Number": "169",
+      "Login": "169",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10115",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "10",
+      "Number": "170",
+      "Login": "170",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10116",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "11",
+      "Number": "171",
+      "Login": "171",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10117",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "12",
+      "Number": "172",
+      "Login": "172",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10118",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "13",
+      "Number": "173",
+      "Login": "173",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10119",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "14",
+      "Number": "174",
+      "Login": "174",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10120",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "15",
+      "Number": "175",
+      "Login": "175",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10121",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "16",
+      "Number": "176",
+      "Login": "176",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10122",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "17",
+      "Number": "177",
+      "Login": "177",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10123",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "18",
+      "Number": "178",
+      "Login": "178",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10124",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "19",
+      "Number": "179",
+      "Login": "179",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10125",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "20",
+      "Number": "180",
+      "Login": "180",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "10126",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%AGENT_PASS%%": "258741",
+      "%%COMPLITE_CODE%%": "#161",
+      "%%AUXWORK_CODE%%" : "#162",
+      "%%OFF_AUXWORK_CODE%%" : "#163",
+      "%%TRUNK_NUMBER%%" : "A002"
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%20.Number%%} cc_agent",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%20.Number%%} cc_agent",
+      "command3": "/domain/%%DEV_DOM%%/alias/set-for-address {%%1.Number%%-%%20.Number%%} ss\\mgm\\telephone enabled",
+      "command4": "/domain/%%DEV_DOM%%/sip/user/set  %%1.SipGroup%%  {%%0.Number%%-%%20.Number%%}@%%1.SipDomain%% rfc-4028-force  false", 
+      "command5": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% {%%0.Number%%-%%20.Number%%}@%%1.SipDomain%% rfc-4028-control  false",
+      "command6": "/domain/%%DEV_DOM%%/cc/agent/set {%%0.Number%%-%%20.Number%%} auto_complete true"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%20.Number%%} cc_agent",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%20.Number%%} cc_agent",
+      "command3": "/domain/%%DEV_DOM%%/alias/address-clean {%%0.Number%%-%%20.Number%%} ss\\mgm\\telephone enabled",
+      "command4": "/domain/%%DEV_DOM%%/cc/agent/set {%%0.Number%%-%%20.Number%%} auto_complete false"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "queue_test",
+      "Description": "queue_test",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": "0"
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": "1"
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": "2"
+            },
+            {
+              "code": "*160*%%3.Number%%*%%AGENT_PASS%%#",
+              "userId": "3"
+            },
+            {
+              "code": "*160*%%4.Number%%*%%AGENT_PASS%%#",
+              "userId": "4"
+            },
+            {
+              "code": "*160*%%5.Number%%*%%AGENT_PASS%%#",
+              "userId": "5"
+            },
+            {
+              "code": "*160*%%6.Number%%*%%AGENT_PASS%%#",
+              "userId": "6"
+            },
+            {
+              "code": "*160*%%7.Number%%*%%AGENT_PASS%%#",
+              "userId": "7"
+            },
+            {
+              "code": "*160*%%8.Number%%*%%AGENT_PASS%%#",
+              "userId": "8"
+            },
+            {
+              "code": "*160*%%9.Number%%*%%AGENT_PASS%%#",
+              "userId": "9"
+            },
+            {
+              "code": "*160*%%10.Number%%*%%AGENT_PASS%%#",
+              "userId": "10"
+            },
+            {
+              "code": "*160*%%11.Number%%*%%AGENT_PASS%%#",
+              "userId": "11"
+            },
+            {
+              "code": "*160*%%12.Number%%*%%AGENT_PASS%%#",
+              "userId": "12"
+            },
+            {
+              "code": "*160*%%13.Number%%*%%AGENT_PASS%%#",
+              "userId": "13"
+            },
+            {
+              "code": "*160*%%14.Number%%*%%AGENT_PASS%%#",
+              "userId": "14"
+            },
+            {
+              "code": "*160*%%15.Number%%*%%AGENT_PASS%%#",
+              "userId": "15"
+            },
+            {
+              "code": "*160*%%16.Number%%*%%AGENT_PASS%%#",
+              "userId": "16"
+            },
+            {
+              "code": "*160*%%17.Number%%*%%AGENT_PASS%%#",
+              "userId": "17"
+            },
+            {
+              "code": "*160*%%18.Number%%*%%AGENT_PASS%%#",
+              "userId": "18"
+            },
+            {
+              "code": "*160*%%19.Number%%*%%AGENT_PASS%%#",
+              "userId": "19"
+            },
+            {
+              "code": "*160*%%20.Number%%*%%AGENT_PASS%%#",
+              "userId": "20"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Cyclic" : "True",
+              "Name": "UAS0_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 20",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Cyclic" : "True",
+              "Name": "UAS1_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 19",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Cyclic" : "True",
+              "Name": "UAS2_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 18",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Cyclic" : "True",
+              "Name": "UAS3_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 17",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "Cyclic" : "True",
+              "Name": "UAS4_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 16",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "5",
+              "Cyclic" : "True",
+              "Name": "UAS5_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 15",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "6",
+              "Cyclic" : "True",
+              "Name": "UAS6_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 14",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "7",
+              "Cyclic" : "True",
+              "Name": "UAS7_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 13",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "8",
+              "Cyclic" : "True",
+              "Name": "UAS8_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 12",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "9",
+              "Cyclic" : "True",
+              "Name": "UAS9_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 11",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "10",
+              "Cyclic" : "True",
+              "Name": "UAS10_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 10",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "11",
+              "Cyclic" : "True",
+              "Name": "UAS11_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 9",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "12",
+              "Cyclic" : "True",
+              "Name": "UAS12_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 8",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "13",
+              "Cyclic" : "True",
+              "Name": "UAS13_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 7",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "14",
+              "Cyclic" : "True",
+              "Name": "UAS14_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 5",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "15",
+              "Cyclic" : "True",
+              "Name": "UAS15_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 5",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "16",
+              "Cyclic" : "True",
+              "Name": "UAS16_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 4",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "17",
+              "Cyclic" : "True",
+              "Name": "UAS17_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 3",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "18",
+              "Cyclic" : "True",
+              "Name": "UAS18_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 2",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "19",
+              "Cyclic" : "True",
+              "Name": "UAS19_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_recv_cancel.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "20",
+              "Cyclic" : "True",
+              "Name": "UAS20_QUEUE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": " -m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "3000000s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "Port" : "5088",
+              "Name": "Trunk_for_direct_calls",
+              "Commands": [
+                {
+                  "SourceFile": "queue_test/uas_dr_call.xml",
+                  "Options": "",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "2000h"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

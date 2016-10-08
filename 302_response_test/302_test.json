@@ -1,0 +1,60 @@
+{
+	"TestName" : "test_302_response",
+	"Users" : [
+	    {
+	      "UserId": "0",
+	      "Number": "156",
+	      "Login": "156",
+	      "Password": "123",
+	      "SipDomain": "pv.ssw3",
+	      "Expires": "90",
+	      "Port": "10100",
+	      "SipGroup": "sip.ab",
+	      "QParam": "0.5"
+	    },
+	    {
+	      "UserId": "1",
+	      "Number": "157",
+	      "Login": "157",
+	      "Password": "123",
+	      "SipDomain": "pv.ssw3",
+	      "Expires": "90",
+	      "Port": "10106",
+	      "SipGroup": "sip.ab",
+	      "QParam": "0.5"
+	    }
+	],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+    }
+  ],
+"Tests": [
+    {
+      "Name": "Moved Temporarily test",
+      "Description": "Moved Temporarily test",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS_SEND_302",
+              "Commands": [
+                {
+                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "Options": "-m 2",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
