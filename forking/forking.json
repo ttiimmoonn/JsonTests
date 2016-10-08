@@ -87,7 +87,7 @@
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId": "1",
               "Name": "UAS2_RECV_CANEL",
               "Commands": [
                 {
@@ -100,7 +100,7 @@
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId": "2",
               "Name": "UAS3_SEND_BYE",
               "Commands": [
                 {
@@ -113,7 +113,7 @@
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId": "3",
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
