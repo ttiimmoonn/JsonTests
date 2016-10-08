@@ -60,8 +60,8 @@
   ],
   "Tests": [
     {
-      "Name": "forking all-contacts test",
-      "Description": "Звоним за номер с форкингом и отвечаем с одного из контактов. Результат: один вызов проключен, остальным CANCEL",
+      "Name": "forking all-contact test",
+      "Description": "Звоним за номер с форкингом и отвечаем с одного из контактов. Вызов проключается, всем остальным высылается CANCEL",
       "TestProcedure": [
         {
           "CoconCommand": [
@@ -92,6 +92,76 @@
               "Commands": [
                 {
                   "SourceFile": "forking/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS3_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "forking all-contact test busy_mode",
+      "Description": "Звоним за номер с форкингом. С одного контакта отвечаем, с других шлём busy.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS1_SEND_BUSY",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_send_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS2_SEND_BUSY",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_send_busy.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
