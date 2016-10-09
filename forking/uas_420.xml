@@ -58,7 +58,6 @@
     <assign assign_to="chk_req_100rel" value="" />
     <ereg regexp="Require:.*100rel.*" search_in="msg" check_it_inverse="true" assign_to="chk_req_100rel"/>
     <log message="[$user_counter] INVITE  [timestamp]"/>
-    <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="uas_number" />
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
@@ -84,7 +83,7 @@
 <![CDATA[
     SIP/2.0 180 Ringing
     [last_Via:]
-    [last_From:]
+    [last_From:];tag=[call_number][local_port]
     [last_To:];tag=[call_number][local_port]
     [last_Call-ID:]
     [last_CSeq:]
@@ -132,9 +131,9 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[call_number][local_port]
     To: <sip:[$remote_number]@[$remote_domain]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
