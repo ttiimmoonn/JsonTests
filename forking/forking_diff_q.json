@@ -1,5 +1,5 @@
 {
-  "TestName": "forking",
+  "TestName": "forking_with_diff_q",
   "Users": [
     {
       "UserId": "0",
@@ -410,78 +410,8 @@
       ]
     },
     {
-      "Name": "forking all-contact test with diff q",
-      "Description": "Проверка того, что режим all-contact не зависит от q параметра",
-      "TestProcedure": [
-        {
-          "CoconCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": "0",
-              "Name": "UAS1_RECV_CANEL",
-              "Commands": [
-                {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "1",
-              "Name": "UAS2_RECV_CANEL",
-              "Commands": [
-                {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "2",
-              "Name": "UAS3_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "Name": "UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": "True",
-                  "Timeout": "20s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "forking all-contact test busy_mode",
-      "Description": "Звоним за номер с форкингом. С одного контакта отвечаем, с других шлём busy.",
+      "Name": "froking test with diff q busy mode",
+      "Description": "Проверяем, что вызов отбивается если последний контакт дал busy",
       "TestProcedure": [
         {
           "CoconCommand": [
@@ -538,6 +468,77 @@
               "Commands": [
                 {
                   "SourceFile": "forking/uac_recv_486.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "forking test 420 response",
+      "Description": "Проверка корректности обработки 420 ответа",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop",
+              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+                        {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS1_420_RECV_CANEL",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_420_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS2_420_RECV_CANEL",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_420_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS_420",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_420.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
