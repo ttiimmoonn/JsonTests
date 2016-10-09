@@ -59,6 +59,10 @@
     <ereg regexp="Require:.*100rel.*" search_in="msg" check_it_inverse="true" assign_to="chk_req_100rel"/>
     <log message="[$user_counter] INVITE  [timestamp]"/>
     <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="uas_number" />
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
 </action>
 </recv>
 
@@ -100,7 +104,7 @@
     [last_Call-ID:]
     [last_CSeq:]
     Subject: Forking test
-    Contact: <sip:[$uas_number]@[local_ip]:[local_port];user=phone>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -130,8 +134,8 @@
 <![CDATA[
     BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "[service]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
     Max-Forwards: 70
