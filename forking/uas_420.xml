@@ -126,22 +126,20 @@
 </nop>
 
 
-
-<recv request="BYE">
-    <action>
-        <log message="[$user_counter] BYE [timestamp]"/>
-    </action>
-</recv>
-
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Subject: Forking test
+    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "[service]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Max-Forwards: 70
     Content-Length: 0
 ]]>
 </send>
+
+<recv response="200"></recv>
+<pause milliseconds="2000"/>
+
+</scenario>
