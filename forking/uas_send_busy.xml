@@ -4,6 +4,7 @@
 
 <recv request="INVITE">
     <action>
+        <log message="INVITE  [timestamp]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
 </recv>

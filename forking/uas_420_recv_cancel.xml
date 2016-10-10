@@ -5,12 +5,6 @@
 
 <Global variables="COUNTER" />
 
-<nop hide="true">
-    <action>
-        <assignstr assign_to="user_counter" value="[$COUNTER]"/>
-    </action>
-</nop>
-
 
 <recv request="INVITE">
 <action>
@@ -51,7 +45,7 @@
 
 <recv request="INVITE">
 <action>
-    <log message="[$user_counter] INVITE  [timestamp]"/>
+    <log message="INVITE  [timestamp]"/>
      <assign assign_to="chk_req_100rel" value="" />
     <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq"/>
     <ereg regexp="Require:.*100rel.*" search_in="msg" check_it_inverse="true" assign_to="chk_req_100rel"/>
@@ -86,7 +80,7 @@
 
 <recv request="CANCEL">
 <action>
-    <log message="[$user_counter] CANCEL [timestamp]"/>
+    <log message="CANCEL [timestamp]"/>
 </action>
 </recv>
 

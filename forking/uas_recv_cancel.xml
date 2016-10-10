@@ -7,6 +7,7 @@
 <action>
 	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
 	<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+	<log message="INVITE [timestamp]"/>
 </action>
 </recv>
 
@@ -34,7 +35,11 @@
 ]]>
 </send>
 
-<recv request="CANCEL"></recv>
+<recv request="CANCEL">
+	<action>
+		<log message="CANCEL [timestamp]"/>
+	</action>
+</recv>
 
 <send>
 <![CDATA[

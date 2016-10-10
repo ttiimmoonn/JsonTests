@@ -1,5 +1,6 @@
 {
   "TestName": "forking",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
@@ -48,14 +49,17 @@
   ],
   "UserVar": [
     {
+      "%%FIND_ME_TIMER%%": "3600"
     }
   ],
   "PreCoconConf": [
-    { 
+    {
+    "command1": "/domain/%%DEV_DOM%%/sip/timer/set find_me %%FIND_ME_TIMER%%"
     }
   ],
   "PostCoconConf": [
     {
+    "command1": "/domain/%%DEV_DOM%%/sip/timer/clean find_me"
     }
   ],
   "Tests": [
@@ -75,6 +79,7 @@
             {
               "Type": "User",
               "UserId": "0",
+              "WriteStat": "True",
               "Name": "UAS1_RECV_CANEL",
               "Commands": [
                 {
@@ -88,6 +93,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat": "True",
               "Name": "UAS2_RECV_CANEL",
               "Commands": [
                 {
@@ -101,6 +107,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "WriteStat": "True",
               "Name": "UAS3_SEND_BYE",
               "Commands": [
                 {
@@ -124,6 +131,20 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Method": "INVITE",
+              "Difference": "0",
+              "UA": "0,1,2"
+            },
+            {
+              "Method": "CANCEL",
+              "Difference": "0",
+              "UA": "0,1"
             }
           ]
         }
@@ -145,6 +166,7 @@
             {
               "Type": "User",
               "UserId": "0",
+              "WriteStat": "True",
               "Name": "UAS1_SEND_BUSY",
               "Commands": [
                 {
@@ -158,6 +180,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat": "True",
               "Name": "UAS2_SEND_BUSY",
               "Commands": [
                 {
@@ -171,6 +194,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "WriteStat": "True",
               "Name": "UAS3_SEND_BYE",
               "Commands": [
                 {
@@ -194,6 +218,20 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Method": "INVITE",
+              "Difference": "0",
+              "UA": "0,1,2"
+            },
+            {
+              "Method": "CANCEL",
+              "Difference": "0",
+              "UA": "0,1"
             }
           ]
         }
