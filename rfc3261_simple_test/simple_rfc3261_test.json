@@ -1,6 +1,5 @@
 {
   "TestName": "rfc3261_simple_test",
-  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
