@@ -3,16 +3,8 @@
 <scenario name = "uas_script">
 <!-- <Global variables="pointer" /> -->
 
-<Global variables="COUNTER" />
 <User variables="chk_req_100rel" />
 <Reference variables="chk_req_100rel" />
-
-
-<nop hide="true">
-    <action>
-        <assignstr assign_to="user_counter" value="[$COUNTER]"/>
-    </action>
-</nop>
 
 
 <recv request="INVITE">
@@ -57,11 +49,12 @@
     <!--Чистим check от прошлого INVITE-->
     <assign assign_to="chk_req_100rel" value="" />
     <ereg regexp="Require:.*100rel.*" search_in="msg" check_it_inverse="true" assign_to="chk_req_100rel"/>
-    <log message="[$user_counter] INVITE  [timestamp]"/>
+    <log message="INVITE  [timestamp]"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+    <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
 </action>
 </recv>
 
@@ -134,7 +127,7 @@
     BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[call_number][local_port]
-    To: <sip:[$remote_number]@[$remote_domain]>[peer_tag_param]
+    To: <sip:[$remote_number]@[$remote_domain]>tag=[$remote_tag]
     [last_call-id:]
     CSeq: [cseq] BYE
     Max-Forwards: 70

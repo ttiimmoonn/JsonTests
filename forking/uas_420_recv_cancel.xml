@@ -3,9 +3,6 @@
 <scenario name = "uas_script">
 <!-- <Global variables="pointer" /> -->
 
-<Global variables="COUNTER" />
-
-
 <recv request="INVITE">
 <action>
     <ereg regexp="Require:.*100rel.*" search_in="msg" check_it="true" assign_to="chk_req_100rel"/>

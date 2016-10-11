@@ -1,5 +1,6 @@
 {
   "TestName": "forking_with_diff_q",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",

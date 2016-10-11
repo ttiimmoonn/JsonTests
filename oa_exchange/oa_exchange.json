@@ -192,6 +192,31 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "send_answer_sdp_in_181",
+      "Description": "send_answer_sdp_in_181",
+      "TestProcedure": [
+        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_OA_EX",
+              "Commands": [
+                {
+                  "SourceFile": "oa_exchange/uas_send_a_sdp_in_181.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
