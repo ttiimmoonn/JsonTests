@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uas send dtmf in rfc ALARM тест">
-
-<User variables="dummy"/>
-<Reference variables="dummy"/>
+<Global variables="FORW_USER,FORW_DOMAIN"/>
+<User variables="forw_user,forw_domain"/>
+ 
 
 <recv request="INVITE">
 <action>
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    <assignstr assign_to="forw_user" value="[$FORW_USER]"/>
+    <assignstr assign_to="forw_domain" value="[$FORW_DOMAIN]"/>
 </action>
 </recv>
 
@@ -45,7 +47,7 @@
     [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
-    Contact: <sip:9655@192.168.118.243:5060>
+    Contact: <sip:[$forw_user]@[$forw_domain]>
     Content-Length: 0
 ]]>
 </send>
