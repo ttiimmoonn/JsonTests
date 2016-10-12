@@ -227,11 +227,6 @@
               "Method": "INVITE",
               "Difference": "0",
               "UA": "0,1,2"
-            },
-            {
-              "Method": "CANCEL",
-              "Difference": "0",
-              "UA": "0,1"
             }
           ]
         }
