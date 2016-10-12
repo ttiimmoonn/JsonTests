@@ -1,5 +1,6 @@
 {
   "TestName": "rfc3261_simple_test",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
@@ -38,7 +39,7 @@
   ],
   "Tests": [
     {
-      "Name": "check transmission of ACK on each retransmission of 200 OK respone ",
+      "Name": "check transmission of ACK on each retransmission of 200 OK response",
       "Description": "Проверка посылки ACK на каждую перепосылку 200 OK",
       "TestProcedure": [
         {
@@ -54,7 +55,7 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -68,7 +69,7 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
