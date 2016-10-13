@@ -53,7 +53,7 @@
 "Tests": [
     {
       "Name": "simple_cfb_test",
-      "Description": "Звоним на абонента с cfb и проверяем переадресацию",
+      "Description": "Звоним на абонента с cfb, даём busy и проверяем переадресацию",
       "TestProcedure": [
         {
           "ServiceFeature": [

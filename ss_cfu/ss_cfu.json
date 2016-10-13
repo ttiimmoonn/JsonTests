@@ -52,7 +52,7 @@
   ],
 "Tests": [
     {
-      "Name": "simple_rfc_test",
+      "Name": "simple_cfu_test",
       "Description": "Звоним на абонента с cfu и проверяем переадресацию",
       "TestProcedure": [
         {
