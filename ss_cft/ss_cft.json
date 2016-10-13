@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_cfu",
+  "TestName": "ss_cft",
   "AutoTest": "True",
   "Users": [
     {
@@ -41,24 +41,25 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cft",
+      "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00"
     }
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfu",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cft",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cft"
     }
   ],
 "Tests": [
     {
-      "Name": "simple_cfu_test",
-      "Description": "Звоним на абонента с cfu и проверяем переадресацию",
+      "Name": "simple_cft_test",
+      "Description": "Звоним на абонента с cft и проверяем переадресацию",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
-              "code": "*21*%%0.Number%%#",
+              "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%0.Number%%#",
               "userId": "2"
             }
           ]
@@ -85,7 +86,7 @@
               "Name": "UAC_RECV_181",
               "Commands": [
                 {
-                  "SourceFile": "ss_cfu/uac_recv_181.xml",
+                  "SourceFile": "ss_cfb/uac_recv_181.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -98,7 +99,7 @@
         {
           "ServiceFeature": [
             {
-              "code": "#21#",
+              "code": "#28#",
               "userId": "2"
             }
           ]

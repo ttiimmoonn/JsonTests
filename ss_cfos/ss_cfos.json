@@ -11,7 +11,7 @@
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10105",
-      "QParam": "0.5"
+      "QParam": "1"
     },
     {
       "UserId": "1",
@@ -22,7 +22,7 @@
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10106",
-      "QParam": "0.5"
+      "QParam": "1"
     },
     {
       "UserId": "2",

@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_cfu",
+  "TestName": "ss_cfnr",
   "AutoTest": "True",
   "Users": [
     {
@@ -41,24 +41,24 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr"
     }
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfu",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr"
     }
   ],
 "Tests": [
     {
-      "Name": "simple_cfu_test",
-      "Description": "Звоним на абонента с cfu и проверяем переадресацию",
+      "Name": "simple_cfb_test",
+      "Description": "Звоним на абонента с cfnr, не отвечаем и проверяем переадресацию",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
-              "code": "*21*%%0.Number%%#",
+              "code": "*27*%%0.Number%%#",
               "userId": "2"
             }
           ]
@@ -81,11 +81,25 @@
             },
             {
               "Type": "User",
+              "UserId": "2",
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
               "UserId": "1",
               "Name": "UAC_RECV_181",
               "Commands": [
                 {
-                  "SourceFile": "ss_cfu/uac_recv_181.xml",
+                  "SourceFile": "ss_cfnr/uac_recv_181.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -98,7 +112,7 @@
         {
           "ServiceFeature": [
             {
-              "code": "#21#",
+             "code": "#27#",
               "userId": "2"
             }
           ]
