@@ -140,6 +140,30 @@
       ]
     },
     {
+      "Name": "test_fax2email_g711_like_SI3000_send_bye",
+      "Description": "test_fax2email_g711_like_SI3000 Bug: #69061",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAC_FAX_G711_SI300",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_g711_mp_send_bye.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Name": "test_fax2email_g711_like_TAU",
       "Description": "test_fax2email_g711_like_TAU",
       "TestProcedure": [

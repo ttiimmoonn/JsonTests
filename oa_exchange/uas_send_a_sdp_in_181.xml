@@ -36,7 +36,7 @@
 
 <send>
 <![CDATA[
-	SIP/2.0 181 Call Is Being Forwarded
+	SIP/2.0 180 Ringing
 	[last_Via:]
 	[last_From:]
 	[last_To:];tag=123456
@@ -45,14 +45,43 @@
 	Require: 100rel
 	Rseq: [cseq]
 	Contact: <sip:[$number][local_ip]:[local_port]>
+	Content-Length: [len]
+]]>
+</send>
+
+<recv request="PRACK"></recv>
+
+<send>
+<![CDATA[
+	SIP/2.0 200 OK
+	[last_Via:]
+	[last_From:]
+	[last_To:]
+	[last_Call-ID:]
+	[last_CSeq:]
+	Content-Length: [len]
+]]>
+</send>
+
+<send>
+<![CDATA[
+	SIP/2.0 181 Call Is Being Forwarded
+	Via:[$inv_via]
+	From:[$inv_from]
+	To:[$inv_to];tag=123456
+	Call-ID:[$inv_call_id]
+	CSeq: [$inv_cseq] INVITE
+	Require: 100rel
+	Rseq: [cseq]
+	Contact: <sip:[$number][local_ip]:[local_port]>
 	Content-Type: application/sdp
 	Content-Length: [len]
  
     v=0
-    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
-    s=Test1
-    t=0 0
+    o=- 10000 10000 IN IP[local_ip_type] [local_ip]
+    s=test
     c=IN IP[local_ip_type] [local_ip]
+    t=0 0
     m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
@@ -80,6 +109,8 @@
 
 
 
+<pause milliseconds="6000"/>
+
 <send retrans="500">
 <![CDATA[
 	SIP/2.0 200 OK
@@ -89,14 +120,14 @@
 	Call-ID:[$inv_call_id]
 	CSeq: [$inv_cseq] INVITE
 	Contact: <sip:[$number][local_ip]:[local_port];user=phone>
-	Content-Type: application/sdp
 	Content-Length: [len]
+	Content-Type: application/sdp
 
     v=0
-    o=- [$session_id] [$session_vrs] IN IP[local_ip_type] [local_ip]
-    s=Test1
-    t=0 0
+    o=- 10000 10001 IN IP[local_ip_type] [local_ip]
+    s=test
     c=IN IP[local_ip_type] [local_ip]
+    t=0 0
     m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
@@ -109,14 +140,14 @@
     </action>
 </recv>
 
-
+<!--
 <nop hide="true">
    <action>
-        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
+        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,-1,0" />
      </action>
 </nop>
 
-
+-->
 
 <pause milliseconds = "5000"/>
 
