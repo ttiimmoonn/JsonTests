@@ -86,7 +86,7 @@
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "5s"
+                  "Timeout": "10s"
                 }
               ]
             }

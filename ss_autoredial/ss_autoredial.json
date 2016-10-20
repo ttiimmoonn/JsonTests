@@ -343,7 +343,7 @@
                   "Options": "-m 2",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             },
