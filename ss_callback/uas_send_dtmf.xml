@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uas send dtmf in rfc ALARM тест">
-
-<User variables="dummy"/>
+<Global variables="CB_DIGITS" />
+<User variables="dummy,cb_digits"/>
 <Reference variables="dummy"/>
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="cb_digits" value="[$CB_DIGITS]"/>
+    </action>
+    </nop>
 
 <recv request="INVITE">
 <action>
@@ -70,7 +76,7 @@
 <pause milliseconds="2000"/>
 <nop>
 <action>
-    <exec play_dtmf="*1111*102#" />
+    <exec play_dtmf="[$cb_digits]" />
 </action>
 </nop>
 

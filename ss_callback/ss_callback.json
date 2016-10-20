@@ -63,7 +63,7 @@
                 },
                  {
                   "SourceFile": "ss_callback/uas_send_dtmf.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -set CB_DIGITS *1111*102#",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "60s"
