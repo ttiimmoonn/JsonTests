@@ -41,13 +41,15 @@
   ],
   "PreCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} pickup"
+      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} pickup",
+      "command2" : "/domain/%%DEV_DOM%%/sip/properties/set blf_enable true"
     }
   ],
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} pickup"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} pickup",
+      "command3": "/domain/%%DEV_DOM%%/sip/properties/clean blf_enable"
     }
   ],
 "Tests": [
