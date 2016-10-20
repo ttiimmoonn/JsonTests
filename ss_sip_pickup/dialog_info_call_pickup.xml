@@ -301,6 +301,5 @@
 </send>
 
 <label id="exit"/>
-
-
+<pause milliseconds="2000"/>
 </scenario>
