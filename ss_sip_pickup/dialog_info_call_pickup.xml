@@ -14,21 +14,6 @@
     </action>
     </nop>
 
-<!--
-SUBSCRIBE sip:136@10.130.130.4;user=phone SIP/2.0
-Via: SIP/2.0/UDP 10.130.130.58:2051;branch=z9hG4bK-0u81ot32wxh9;rport
-From: <sip:106@10.130.130.4>;tag=4fog9tlb9d
-To: <sip:136@10.130.130.4;user=phone>
-Call-ID:qov573
-CSeq: 2 SUBSCRIBE
-Max-Forwards: 70
-Contact: <sip:106@10.130.130.58:2051;line=1ofdyu7v>;flow-id=1
-Event: dialog
-Accept: application/dialog-info+xml
-Expires: 3600
-Content-Length: 0
--->
-
 
 <send>
 <![CDATA[
@@ -216,7 +201,26 @@ Content-Length: 0
 ]]>
 </send>
 
-<recv response="200" next="exit" crlf="true"></recv>
+<recv response="200" crlf="true"></recv>
+
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="exit"></recv>
 
 
 <label id="1"/>

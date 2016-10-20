@@ -173,7 +173,7 @@ Content-Length: 0
     </action>
 </recv>
 
-<send next="exit">
+<send>
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
@@ -184,6 +184,24 @@ Content-Length: 0
     Content-Length: 0
 ]]>
 </send>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="exit"></recv>
 
 
 <label id="1"/>
@@ -261,5 +279,4 @@ Content-Length: 0
 
 <label id="exit"/>
 
-<pause milliseconds="5500"/>
 </scenario>
