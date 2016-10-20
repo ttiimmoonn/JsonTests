@@ -190,8 +190,8 @@ Content-Length: 0
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>
-    Call-ID: [call_id]
+    To: <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
+    [last_call-id:]
     CSeq: [cseq] SUBSCRIBE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Event: dialog
