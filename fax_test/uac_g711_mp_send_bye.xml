@@ -175,7 +175,7 @@
 </nop>
 
 
-<pause milliseconds="42000"/>
+<pause milliseconds="41000"/>
 
 
 <send>

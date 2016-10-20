@@ -105,8 +105,6 @@
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%6.Number%%} pickup",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%6.Number%%} pickup"
     }
   ],
   "Tests": [

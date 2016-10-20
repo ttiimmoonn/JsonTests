@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uac_recv_487">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,check_state,pickup_call_id,pickup_remote_tag,pickup_local_tag" />
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+    </action>
+    </nop>
+
+<!--
+SUBSCRIBE sip:136@10.130.130.4;user=phone SIP/2.0
+Via: SIP/2.0/UDP 10.130.130.58:2051;branch=z9hG4bK-0u81ot32wxh9;rport
+From: <sip:106@10.130.130.4>;tag=4fog9tlb9d
+To: <sip:136@10.130.130.4;user=phone>
+Call-ID:qov573
+CSeq: 2 SUBSCRIBE
+Max-Forwards: 70
+Contact: <sip:106@10.130.130.58:2051;line=1ofdyu7v>;flow-id=1
+Event: dialog
+Accept: application/dialog-info+xml
+Expires: 3600
+Content-Length: 0
+-->
+
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv response="401" auth="true" optional="true" next="1">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+ </recv>
+
+<label id="2"/>
+
+
+<recv response="200"></recv>
+
+<pause milliseconds="1000"/>
+
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check_state" value="" />
+        <ereg regexp=".*(<state>trying</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+    </action>
+</recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check_state" value="" />
+        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+
+        <ereg regexp="call-id=\"([^\"]+)\"\s" search_in="body" check_it="true" assign_to="dummy,pickup_call_id"/>
+        <ereg regexp="local-tag=\"([^\"]+)\"\s" search_in="body" check_it="true" assign_to="dummy,pickup_local_tag"/>
+        <ereg regexp="remote-tag=\"([^\"]+)\"" search_in="body" check_it="true" assign_to="dummy,pickup_remote_tag"/>
+
+
+    </action>
+</recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<send>
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "SIP pickup test" <sip:[service]@[$cgpn_dom]>;tag=inv[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Replaces: [$pickup_call_id];to-tag=[$pickup_remote_tag];from-tag=[$pickup_local_tag]
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv response="100" optional="true"></recv>
+
+
+
+
+<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
+<recv response="401" optional="true" auth="true" next="auth_invite">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="call_continue" />
+
+<recv response="100" optional="true"></recv>
+
+<recv response="403">
+    <action>
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+    </action>
+</recv>
+
+<send next="exit">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+
+<label id="1"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send next="2">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+<label id="auth_invite"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Уходим в label call_continue -->
+<send next="call_continue" crlf="true">
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "SIP pickup test" <sip:[service]@[$cgpn_dom]>;tag=inv[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    [authentication]
+    Max-Forwards: 70
+    Replaces: [$pickup_call_id];to-tag=[$pickup_remote_tag];from-tag=[$pickup_local_tag]
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<label id="exit"/>
+
+<pause milliseconds="5500"/>
+</scenario>
