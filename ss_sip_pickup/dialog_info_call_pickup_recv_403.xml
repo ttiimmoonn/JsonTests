@@ -59,7 +59,7 @@ Content-Length: 0
 
 <recv response="200">
     <action>
-        <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,subscribe_remote_tag" />
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,subscribe_remote_tag" />
     </action>
 </recv>
 
