@@ -57,7 +57,11 @@ Content-Length: 0
 <label id="2"/>
 
 
-<recv response="200"></recv>
+<recv response="200">
+    <action>
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,subscribe_remote_tag" />
+    </action>
+</recv>
 
 <pause milliseconds="1000"/>
 
@@ -190,7 +194,7 @@ Content-Length: 0
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
+    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     [last_call-id:]
     CSeq: [cseq] SUBSCRIBE
     Contact: <sip:[service]@[local_ip]:[local_port]>
