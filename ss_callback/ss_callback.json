@@ -1,0 +1,78 @@
+{
+  "TestName": "ss_callback",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10105",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5"
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% callback",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% callback"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% callback",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% callback"
+
+    }
+  ],
+"Tests": [
+    {
+      "Name": "simple_simple_callback_test",
+      "Description": "Тестирование услуги callback",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_TEST_CALLBACK",
+              "Commands": [
+                 {
+                  "SourceFile": "ss_callback/uac_callback.xml",
+                  "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                },
+                 {
+                  "SourceFile": "ss_callback/uas_send_dtmf.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
