@@ -25,7 +25,9 @@
     }
   ],
   "UserVar": [
-    {}
+    {
+      "%%USER_PIN%%" : "1111"
+    }
   ],
   "PreCoconConf": [
     {
@@ -60,9 +62,24 @@
                   "NeedAuth": "True",
                   "Timeout": "60s"
                 },
-                 {
+                {
                   "SourceFile": "ss_callback/uas_send_dtmf.xml",
-                  "Options": "-m 1 -set CB_DIGITS *1111*102#",
+                  "Options": "-m 1 -set CB_DIGITS *%%USER_PIN%%*%%1.Number%%#",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                 {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "60s"
