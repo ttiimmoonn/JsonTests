@@ -38,7 +38,8 @@
   ],
   "UserVar": [
     {
-      "%%USER_PIN%%" : "1111"
+      "%%USER_PIN%%" : "1111",
+      "%%BAD_PIN%%" : "1145#"
     }
   ],
   "PreCoconConf": [
@@ -86,7 +87,7 @@
             {
               "Type": "User",
               "UserId": "0",
-              "Name": "UAC_SIMPLE_REDIAL_TEST",
+              "Name": "UAC_RBP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_rbp/uac_recv_403.xml",
@@ -133,7 +134,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS_SIMPLE_RBP_TEST",
+              "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -147,7 +148,7 @@
             {
               "Type": "User",
               "UserId": "0",
-              "Name": "UAC_SIMPLE_REDIAL_TEST",
+              "Name": "UAC_INGNORE_RBP_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -179,7 +180,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS_SIMPLE_RBP_TEST",
+              "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -193,11 +194,87 @@
             {
               "Type": "User",
               "UserId": "0",
-              "Name": "UAC_SIMPLE_REDIAL_TEST",
+              "Name": "UAC_INGNORE_RBP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_rbp/uac_send_dtmf.xml",
                   "Options": "-m 1 -set CDPN *32*%%USER_PIN%%# -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rbp_implicit_call_test",
+      "Description": "Активируем rbp c implicit_call = true. Звоним на юзера с запрещённым ni, передаём корректный пин, вызов проключается",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_INGNORE_RBP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_INGNORE_RBP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_rbp/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DIGITS %%USER_PIN%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rbp_implicit_call_test_bad_pin",
+      "Description": "Активируем rbp c implicit_call = true. Звоним на юзера с запрещённым ni, передаём некорректный пин, вызов отбивается",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_INGNORE_RBP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_rbp/uac_send_dtmf_recv_487.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DIGITS %%BAD_PIN%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "20s"
