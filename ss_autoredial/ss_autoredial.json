@@ -303,7 +303,7 @@
                   "Options": "-m 1 -set CDPN *38*%%1.Number%%# -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             }
