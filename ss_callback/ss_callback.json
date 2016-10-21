@@ -1,5 +1,6 @@
 {
   "TestName": "ss_callback",
+  "AutoTest": "True",
   "Users": [
     {
       "UserId": "0",
