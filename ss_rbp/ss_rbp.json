@@ -239,7 +239,7 @@
             {
               "Type": "User",
               "UserId": "0",
-              "Name": "UAC_INGNORE_RBP_TEST",
+              "Name": "UAC_IMPLICIT_CALL_RBP_TEST_GOOD_PIN",
               "Commands": [
                 {
                   "SourceFile": "ss_rbp/uac_send_dtmf.xml",
@@ -270,7 +270,7 @@
             {
               "Type": "User",
               "UserId": "0",
-              "Name": "UAC_INGNORE_RBP_TEST",
+              "Name": "UAC_IMPLICIT_CALL_RBP_TEST_BAD_PIN",
               "Commands": [
                 {
                   "SourceFile": "ss_rbp/uac_send_dtmf_recv_487.xml",
