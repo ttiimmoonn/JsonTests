@@ -1,0 +1,212 @@
+{
+  "TestName": "ss_rbp",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10105",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10107",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%USER_PIN%%" : "1111"
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% rbp",
+      "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% * %%1.Number%%@%%1.SipDomain%% ni intercity"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% rbp",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% rbp",
+      "command3": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "simple_rpb_test",
+      "Description": "Активируем rbp. Звоним на абонента с запрещённым ni, получаем отбой. Звоним на абонента с разрешённым ni, вызов проключается.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*34*%%USER_PIN%%*02#",
+              "userId": "0"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAS_SIMPLE_RBP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_SIMPLE_REDIAL_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_rbp/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                },
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": " #34*%%USER_PIN%%#",
+              "userId": "0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rbp_ignore_test_send_digit_in_feature_code",
+      "Description": "Активируем rbp. Звоним на юзера с запрещённым ni с помощью фича-кода *32*pin*number#",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*34*%%USER_PIN%%*02#",
+              "userId": "0"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_SIMPLE_RBP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_SIMPLE_REDIAL_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *32*%%USER_PIN%%*%%1.Number%%# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rbp_ignore_test_send_digit_in_rfc",
+      "Description": "Активируем rbp. Звоним на юзера с запрещённым ni с помощью фича-кода *32*pin# и последующего набора номера",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*34*%%USER_PIN%%*02#",
+              "userId": "0"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_SIMPLE_RBP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_SIMPLE_REDIAL_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_rbp/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN *32*%%USER_PIN%%# -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
