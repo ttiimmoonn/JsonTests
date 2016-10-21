@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_last_number_redial",
+  "TestName": "ss_speed_dial",
   "AutoTest": "True",
   "Users": [
     {
@@ -41,24 +41,33 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% redial"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% speed_dial",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% speed_dial type = address_book_10"
     }
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% redial",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% redial"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% speed_dial",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% speed_dial"
     }
   ],
 "Tests": [
     {
       "Name": "simple_last_number_redial_test",
-      "Description": "Активируем услугу last_number_redial. Звоним на один номер, делаем редиал. Звоним на второй номер, делаем редиал. После отключаем redial, звоним *# и получаем отбой.",
+      "Description": "Активируем услугу speed_dial. Делаем вызовы на короткие номера. Деактивируем услугу и проверяем, что она деактивировалась",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
-              "code": "*77#",
+              "code": "*51*1*%%1.Number%%#",
+              "userId": "0"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*51*2*%%2.Number%%#",
               "userId": "0"
             }
           ]
@@ -72,7 +81,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 2",
+                  "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "20s"
@@ -86,7 +95,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 2",
+                  "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -100,28 +109,14 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set CDPN **1 -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "10s"
                 },
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN *# -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": "True",
-                  "Timeout": "10s"
-                },
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": "True",
-                  "Timeout": "10s"
-                },
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN *# -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set CDPN **2 -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "10s"
@@ -133,7 +128,15 @@
         {
           "ServiceFeature": [
             {
-              "code": "#77#",
+              "code": " #51*1#",
+              "userId": "0"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": " #51*2#",
               "userId": "0"
             }
           ]
@@ -142,12 +145,19 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "Name": "UAC_RECV_480",
+              "UserId": "1",
+              "Name": "UAC_RECV_404",
               "Commands": [
                 {
-                  "SourceFile": "ss_last_number_redial/uac_recv_480.xml",
-                  "Options": "-m 1 -set CDPN *# -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "ss_speed_dial/uac_recv_404.xml",
+                  "Options": "-m 1 -set CDPN **1 -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                },
+                {
+                  "SourceFile": "ss_speed_dial/uac_recv_404.xml",
+                  "Options": "-m 1 -set CDPN **2 -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "10s"

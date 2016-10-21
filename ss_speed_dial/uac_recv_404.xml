@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "uac_recv_480">
+<scenario name = "uac_recv_404">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn" />
@@ -18,7 +18,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест last_number_redial" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест speed_dial" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -53,7 +53,7 @@
 <recv response="183" optional="true"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="183" optional="true"></recv>
-<recv response="480">
+<recv response="404">
     <action>
         <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
@@ -93,7 +93,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест last_number_redial" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест speed_dial" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
