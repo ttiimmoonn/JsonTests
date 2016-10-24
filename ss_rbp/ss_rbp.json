@@ -45,7 +45,7 @@
   "PreCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% rbp",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% * %%1.Number%%@%%1.SipDomain%% ni intercity"
+      "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni intercity"
     }
   ],
   "PostCoconConf": [
