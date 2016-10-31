@@ -6,6 +6,6 @@
 
 <recv request="INVITE"></recv>
 
-<pause milliseconds="45000"/>
+<pause milliseconds="40000"/>
 
 </scenario>

@@ -108,7 +108,7 @@
 
 <!-- <pause distribution="normal" mean="300000" stdev="20000"/> -->
 <!-- <pause distribution="uniform" min="240000" max="350000"/> -->
-<pause milliseconds="240000" />
+<pause milliseconds="10000" />
 
 
 <nop>
