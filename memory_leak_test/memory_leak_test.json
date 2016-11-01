@@ -1,6 +1,5 @@
 {
   "TestName": "memory_leak",
-  "AutoTest": "True",
   "Users": [
     {
       "UserId": "0",
