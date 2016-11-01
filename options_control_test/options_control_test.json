@@ -1,5 +1,6 @@
 {
   "TestName": "options_control_test",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
