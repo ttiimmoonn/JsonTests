@@ -304,8 +304,8 @@
   ],
   "PreCoconConf": [
     {
-    "command1": " /domain/%%DEV_DOM%%/sip/user/set sip.group {%%20.Number%%-%%24.Number%%}@%%DEV_DOM%% options_control 32",
-     "command2" : "/domain/%%DEV_DOM%%/sip/properties/set blf_enable true"
+    "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group {%%20.Number%%-%%24.Number%%}@%%DEV_DOM%% options_control 32",
+     "command2" :"/domain/%%DEV_DOM%%/sip/properties/set blf_enable true"
     }
   ],
   "PostCoconConf": [

@@ -8,12 +8,12 @@
         "%%SF_XML%%" : "./xml/send_sf.xml",
         "%%LOG_PATH%%" : "/home/vragov/Work/scripts/ecss.3.6.0/temp/log",
         "%%IP%%" : "192.168.118.249",
-        "%%SERV_IP%%" : "192.168.118.243",
-        "%%EXTER_IP%%" : "192.168.118.243",
-        "%%EXTER_PORT%%" : "5061",
+        "%%SERV_IP%%" : "192.168.118.245",
+        "%%EXTER_IP%%" : "192.168.118.245",
+        "%%EXTER_PORT%%" : "5015",
         "%%DEV_USER%%" : "admin",
         "%%DEV_PASS%%" : "password",
-        "%%DEV_DOM%%" : "pv.ssw3"
+        "%%DEV_DOM%%" : "pv.ssw2"
     }
 ]
 }
