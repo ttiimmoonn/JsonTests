@@ -1,0 +1,9 @@
+#Тест на завал некорректными регистрациями
+/home/vragov/Work/sipp/sipp/sipp-master/sipp -sf reg_user_recv_403.xml 192.168.118.243:5061 -i 192.168.118.249  -set DOMAIN sip_fuck_up -set PORT 10106 -set EXPIRES 3600 -set USER_Q 0.5 -set NUMBER 157 -s 157 -ap 123  -r 1000 -l 2000
+#Тест на завал корретными регистрациями
+/home/vragov/Work/sipp/sipp/sipp-master/sipp -sf succ_reg.xml 192.168.118.243:5061 -i 192.168.118.249  -set DOMAIN pv.ssw3 -set PORT 10106 -set EXPIRES 3600 -set USER_Q 0.5 -set NUMBER 157 -s 157 -ap 123  -l 1000 -r 250
+#Тест на завал некорректными подписками
+/home/vragov/Work/sipp/sipp/sipp-master/sipp -sf sub_recv_403.xml 192.168.118.243:5061 -i 192.168.118.249  -set CDPN 156 -set CDPNDOM pv.ssw3 -aa -p 10106 -s 157 -ap 123 -timeout 60s -set CGPNDOM pv.ssw3 -timeout_error  -r 1500 -l 2000
+#Тест на завал некорректными подписками
+/home/vragov/Work/sipp/sipp/sipp-master/sipp -sf succ_reg.xml 192.168.118.243:5061 -i 192.168.118.249  -set DOMAIN pv.ssw3 -set PORT 10106 -set EXPIRES 3600 -set USER_Q 0.5 -set NUMBER 157 -s 157 -ap 123 -m 100000 -m 1 -r 1
+/home/vragov/Work/sipp/sipp/sipp-master/sipp -sf succ_subscribe.xml 192.168.118.243:5061 -i 192.168.118.249  -set CDPN 156 -set CDPNDOM pv.ssw3 -aa -p 10106 -s 157 -ap 123 -timeout 60s -set CGPNDOM pv.ssw3 -timeout_error  -m 1

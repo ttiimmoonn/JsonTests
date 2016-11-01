@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uac_recv_487">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="cdpn_dom,cgpn_dom" />
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+    </action>
+    </nop>
+
+
+<send retrans="500">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200"></recv>
+
+<pause milliseconds="2000"/>
+
+<send retrans="500">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv response="200"></recv>
+
+<pause milliseconds="2000"/>
+</scenario>
