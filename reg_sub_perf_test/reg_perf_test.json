@@ -1,6 +1,5 @@
 {
   "TestName": "reg_test",
-  "AutoTest" : "True",
   "Users": [
 {
 "UserId": 1,
