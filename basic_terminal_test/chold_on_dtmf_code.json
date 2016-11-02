@@ -1,0 +1,208 @@
+{
+  "TestName": "basic_term_chold_on_dtmf_code",
+  "AutoTest" : "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10100",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10106",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10107",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 sip.ab %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 sip.ab %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "chold_send_sequense_in_rfc",
+      "Description": "Тестирование активации chold при отправке последовательности *# посредством передачи dtmf по rfc2833",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_CHOLD_SEQ_IN_RFC",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uac_send_dtmf_in_rfc.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHOLD_DIGITS *# -set CDPN_DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml -d 6000",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "chold_callback",
+      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uac_send_dtmf_in_sip_info.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "chold_cancel_callback",
+      "Description": "Тестирование отмены callback'a при отбое стороны, которая слушает MOH",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uac_send_dtmf_in_sip_info.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "basic_terminal_test/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml -d 5000",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
