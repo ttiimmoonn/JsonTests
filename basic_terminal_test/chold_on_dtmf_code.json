@@ -10,7 +10,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10100",
-      "SipGroup": "sip.ab",
+      "SipGroup": "%%0.SipGroup%%",
       "QParam": "0.5"
     },
     {
@@ -21,7 +21,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10106",
-      "SipGroup": "sip.ab",
+      "SipGroup": "%%0.SipGroup%%",
       "QParam": "0.5"
     },
     {
@@ -32,7 +32,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10107",
-      "SipGroup": "sip.ab",
+      "SipGroup": "%%0.SipGroup%%",
       "QParam": "1"
     }
   ],
@@ -42,7 +42,7 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 sip.ab %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
       "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
@@ -51,7 +51,7 @@
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 sip.ab %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
       "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
       "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
