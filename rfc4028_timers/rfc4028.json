@@ -436,6 +436,44 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "rfc4028_small_se_in_re_invite",
+      "Description": "Посылаем INVITE c SE=60 и ждём 422 от ссв. Далее присылаем re-invite c send_only и снова ставим SE 60",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat": "True",
+              "Name": "UAC_RFC4028_RECV_422_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_send_small_se_in_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
