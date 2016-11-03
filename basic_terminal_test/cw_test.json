@@ -1,5 +1,5 @@
 {
-  "TestName": "basic_term_chold_on_dtmf_code",
+  "TestName": "basic_term_cw_test",
   "AutoTest" : "True",
   "Users": [
     {
@@ -45,8 +45,8 @@
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 sip.ab %%0.Number%%@%%0.SipDomain%% terminal_type basic",
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
+      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cw",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cw"
     }
   ],
   "PostCoconConf": [
@@ -54,14 +54,14 @@
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 sip.ab %%0.Number%%@%%0.SipDomain%% terminal_type smart",
       "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cw",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cw"
     }
   ],
   "Tests": [
     {
-      "Name": "chold_send_sequense_in_rfc",
-      "Description": "Тестирование активации chold при отправке последовательности *# посредством передачи dtmf по rfc2833",
+      "Name": "cw_flash_0_test",
+      "Description": "Тестирование flash 0 – отказ от нового вызова",
       "TestProcedure": [
         {
           "StartUA": [
@@ -69,26 +69,78 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAC_SEND_CHOLD_SEQ_IN_RFC",
+              "BackGround" : "True",
+              "Name": "UAC_CW_FLASH_0_TEST",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_rfc.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHOLD_DIGITS *# -set CDPN_DIGITS %%1.Number%%",
+                  "SourceFile": "basic_terminal_test/cw_uac_send_dtmf_in_sip_info.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DIGIT 0",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 }
               ]
             },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "BackGround" : "True",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : "2"
+        },
+        {
+          "StartUA": [
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Name": "UAC_RECV_487",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 6000",
-                  "Options": "-m 1",
-                  "SippType": "uas",
+                  "SourceFile": "basic_terminal_test/uac_recv_487.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : "4"
+        }
+      ]
+    },
+    {
+      "Name": "cw_flash_1_test",
+      "Description": "Тестирование flash 1 – принять ожидающий вызов с отбоем текущего соединения",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "BackGround" : "True",
+              "Name": "UAC_CW_FLASH_1_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/cw_uac_send_dtmf_in_sip_info.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DIGIT 1",
+                  "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 }
@@ -97,6 +149,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "BackGround" : "True",
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -109,12 +162,33 @@
               ]
             }
           ]
+        },
+        {
+          "Sleep" : "2"
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
-      "Name": "chold_callback",
-      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold",
+      "Name": "cw_flash_2_test",
+      "Description": "Тестирование flash 2 – принять ожидающий вызов с установкой текущего соединения на удержание.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -122,17 +196,18 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
+              "BackGround" : "True",
+              "Name": "UAC_CW_FLASH_2_TEST",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SourceFile": "basic_terminal_test/cw_uac_send_dtmf_in_sip_info.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DIGIT 2",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -143,6 +218,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "BackGround" : "True",
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -155,52 +231,30 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "Name": "chold_cancel_callback",
-      "Description": "Тестирование отмены callback'a при отбое стороны, которая слушает MOH",
-      "TestProcedure": [
+        },
+        {
+          "Sleep" : "2"
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
-              "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
-                  "Timeout": "30s"
-                },
-                {
-                  "SourceFile": "basic_terminal_test/uas_recv_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "NeedAuth": "True",
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "2",
-              "Name": "SIMPLE_UAS_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 5000",
-                  "Options": "-m 1",
-                  "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 }
               ]
             }
           ]
+        },
+        {
+          "Sleep" : "4"
         }
       ]
     }
