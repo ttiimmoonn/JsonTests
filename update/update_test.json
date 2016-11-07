@@ -31,12 +31,20 @@
   ],
   "PreCoconConf": [
     {
+    "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+    "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
     }
   ],
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
-      "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
+      "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
     }
   ],
   "Tests": [
