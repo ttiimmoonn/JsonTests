@@ -170,7 +170,7 @@
 -->
 <nop>
 <action>
-     <exec play_pcap_audio="/home/vragov/Work/sipp_fax/pcap/g711-fax2.pcap"/>
+     <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
 </action>
 </nop>
 

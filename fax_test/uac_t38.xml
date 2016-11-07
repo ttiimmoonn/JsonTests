@@ -119,7 +119,7 @@
 
 <nop>
 <action>
-     <exec play_pcap_image="/home/vragov/Work/sipp_fax/pcap/sendfax.pcap"/>
+     <exec play_pcap_image="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/sendfax.pcap"/>
 </action>
 </nop>
 
