@@ -10,7 +10,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10100",
-      "SipGroup": "%%0.SipGroup%%",
+      "SipGroup": "sip.ab",
       "QParam": "0.5"
     },
     {
@@ -21,7 +21,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10106",
-      "SipGroup": "%%0.SipGroup%%",
+      "SipGroup": "sip.ab",
       "QParam": "0.5"
     },
     {
@@ -32,7 +32,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10107",
-      "SipGroup": "%%0.SipGroup%%",
+      "SipGroup": "sip.ab",
       "QParam": "1"
     }
   ],
