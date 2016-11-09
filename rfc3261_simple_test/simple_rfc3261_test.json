@@ -31,10 +31,14 @@
   ],
   "PreCoconConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip",
+      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} clip"
     }
   ],
   "PostCoconConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} clip",
+      "command2" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip"
     }
   ],
   "Tests": [
@@ -66,6 +70,45 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ignore_cancel_if_200_OK_is_send",
+      "Description": "Проверка обработки встречных CANCEL и 200 OK",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_IGNORE_CANCEL_SEND_200_OK",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261_simple_test/uas_ingnore_cancel_send_200_ok.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC_SEND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261_simple_test/uac_send_cancel.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
