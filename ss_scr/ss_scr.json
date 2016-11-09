@@ -211,7 +211,7 @@
         {
           "ServiceFeature": [
             {
-              "code": "*60*%%USER_PIN%%#",
+              "code": "*61*%%USER_PIN%%#",
               "userId": "0"
             }
           ]
@@ -251,7 +251,7 @@
         {
           "ServiceFeature": [
             {
-              "code": "#60*%%USER_PIN%%#",
+              "code": "#61*%%USER_PIN%%#",
               "userId": "0"
             }
           ]
