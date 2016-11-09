@@ -1,5 +1,6 @@
 {
   "TestName": "ss_sca",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
