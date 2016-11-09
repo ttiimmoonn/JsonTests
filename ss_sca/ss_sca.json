@@ -189,6 +189,60 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "sca_test_outgoing_calls",
+      "Description": "Активируем sca. Делаем исходящий вызов - соединение устанавливается",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*60*%%USER_PIN%%#",
+              "userId": "0"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#60*%%USER_PIN%%#",
+              "userId": "0"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
