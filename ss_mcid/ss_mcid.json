@@ -1,0 +1,102 @@
+{
+  "TestName": "ss_mcid",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10105",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "Port": "10107",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% mcid",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% mcid"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% mcid",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% mcid"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "simple_msid_test",
+      "Description": "Делаем вызов на юзера. После помечаем данный вызов как злонамеренный.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*36#",
+              "userId": "0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
