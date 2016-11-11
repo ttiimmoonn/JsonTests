@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "uas send dtmf in rfc ALARM тест">
+<scenario name = "Simple UAS send BYE">
 
 <User variables="dummy"/>
 <Reference variables="dummy"/>
