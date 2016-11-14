@@ -118,7 +118,7 @@
     Content-Length: [len]
     
     v=0
-    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    o=tester 123456 654322 IN IP[local_ip_type] [local_ip]
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
@@ -130,7 +130,7 @@
 
 <recv response="100" optional="true"/>
 
-<recv response="422" next="send_call_with_new_se">
+<recv response="422">
     <action>
         <assign assign_to="se" value="" />
         <!--Забрали CSeq -->
@@ -171,7 +171,7 @@
     Content-Length: [len]
     
     v=0
-    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    o=tester 123456 654323 IN IP[local_ip_type] [local_ip]
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
