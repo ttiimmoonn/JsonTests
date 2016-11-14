@@ -82,8 +82,8 @@
       ]
     },
     {
-      "Name": "ignore_cancel_if_200_OK_is_send",
-      "Description": "Проверка обработки встречных CANCEL и 200 OK",
+      "Name": "ignore_cancel_if_200_OK_is_send_side_b",
+      "Description": "Проверка обработки встречных CANCEL и 200 OK. Игнорируем CANCEL на стороне Б и шлём 200 OK в ssw. Дальше получаем BYE от ssw.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -91,10 +91,10 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS_IGNORE_CANCEL_SEND_200_OK",
+              "Name": "UAS_IGNORE_CANCEL_SEND_200_OK_SIDE_B",
               "Commands": [
                 {
-                  "SourceFile": "rfc3261_simple_test/uas_ingnore_cancel_send_200_ok.xml",
+                  "SourceFile": "rfc3261_simple_test/uas_ingnore_cancel_send_200_ok_side_b.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -105,10 +105,51 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAC_SEND_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "rfc3261_simple_test/uac_send_cancel.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ignore_cancel_if_200_OK_is_send_side_a",
+      "Description": "Проверка обработки встречных CANCEL и 200 OK. На стороне A получаем 200 OK. Шлём CANCEL, потом шлём ACK на 200 и BYE на сторону Б.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_IGNORE_CANCEL_SIDE_A",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261_simple_test/uac_ingnore_cancel_send_200_ok_side_a.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",

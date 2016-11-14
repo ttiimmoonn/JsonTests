@@ -77,7 +77,7 @@
 
 <pause milliseconds="1000"/>
 
-<send>
+<send retrans="500">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
