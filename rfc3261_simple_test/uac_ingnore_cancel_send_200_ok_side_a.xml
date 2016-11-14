@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "Memory leak test UAC">
+<scenario name = "RFC3261 SimpleTest UAC">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
     <nop hide="true">
@@ -18,7 +18,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Memory leak test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "RFC3261 SimpleTest" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -79,7 +79,7 @@
 <![CDATA[
     CANCEL sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    From: "Memory leak test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "RFC3261 SimpleTest" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id:]
     CSeq: [cseq] CANCEL
@@ -136,7 +136,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Memory leak test" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "RFC3261 SimpleTest" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
