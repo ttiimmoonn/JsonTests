@@ -442,6 +442,14 @@
       "Description": "Посылаем INVITE c SE=60 и ждём 422 от ссв. Далее присылаем re-invite c send_only и снова ставим SE 60",
       "TestProcedure": [
         {
+          "CoconCommand": [
+            {
+              "command1" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
+              "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
+            }
+          ]
+        },
+        {
           "StartUA": [
             {
               "Type": "User",
@@ -470,6 +478,14 @@
                   "Timeout": "200s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+              "command2" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
             }
           ]
         }
