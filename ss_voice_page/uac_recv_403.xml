@@ -54,7 +54,7 @@
 <recv response="183" optional="true"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="183" optional="true"></recv>
-<recv response="403">
+<recv response="502">
     <action>
         <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
