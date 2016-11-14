@@ -43,24 +43,144 @@
   "PreCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% voice_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% voice_page priority = 0_flash_override"
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% voice_page_control",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% voice_page priority = 0_flash_override",
+      "command6" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\"",
+      "command7": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% dnd",
+      "command8": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+      "command9": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
     }
   ],
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% voice_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% voice_page"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% voice_page",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% voice_page_control",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% voice_page_control clip dnd cnip"
     }
   ],
 "Tests": [
     {
-      "Name": "simple voice_page test",
+      "Name": "simple voice_page_test",
       "Description": "Проверка установки Alert-Info хедера, а также подстановки в displayName VoicePage",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_SIMPLE_VP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_voice_page/uas_chk_auto_answer.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_AUTOANSWER_VP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%1.Number%%# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_accept_incoming_vp_false",
+      "Description": "Проверка запрета VP вызовов. (accept_incoming_vp = false)",
       "TestProcedure": [
         {
           "CoconCommand" : [
           {
-            "command1" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
+            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control accept_incoming_vp = false"
+          }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_AUTOANSWER_VP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_voice_page/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN *80*%%1.Number%%# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand" : [
+          {
+            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control accept_incoming_vp = true"
+          }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_dnd_test. (block_incoming_vp_by_dnd)",
+      "Description": "Проверка block_incoming_vp_by_dnd true/false. Активируем DND на юзере, ставим block_incoming_vp_by_dnd true, делаем VP вызов - вызов отбивается. Далее ставим block_incoming_vp_by_dnd=false - VP вызов проходит.",
+      "TestProcedure": [
+        {
+          "CoconCommand" : [
+          {
+            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control block_incoming_vp_by_dnd = true"
+          }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*26#",
+              "userId": "1"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC_AUTOANSWER_VP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_voice_page/uac_recv_486.xml",
+                  "Options": "-m 1 -set CDPN *80*%%1.Number%%# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand" : [
+          {
+            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control block_incoming_vp_by_dnd = false"
           }
           ]
         },
@@ -93,6 +213,14 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#26#",
+              "userId": "1"
             }
           ]
         }
