@@ -41,19 +41,21 @@
   ],
   "PreCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr",
+      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
       "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
       "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
-      "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command4" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
       "command5": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
-      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart"
+      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart"
     }
   ],
   "PostCoconConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
       "command2" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
-      "command3" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr"
+      "command3" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
+      "command4" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip"
     }
   ],
   "Tests": [
