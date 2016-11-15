@@ -226,6 +226,7 @@
 
 <recv request="NOTIFY">
     <action>
+        <assign assign_to="test_sipfrag" value="" />
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
     </action>
 </recv>
@@ -258,7 +259,12 @@
 ]]>
 </send>
 
-<recv request="NOTIFY"></recv>
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="test_sipfrag" value="" />
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
+    </action>
+</recv>
 
 <send>
 <![CDATA[
