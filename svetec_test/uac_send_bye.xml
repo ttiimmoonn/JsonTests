@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<!-- This program is free software; you can redistribute it and/or      -->
+<!-- modify it under the terms of the GNU General Public License as     -->
+<!-- published by the Free Software Foundation; either version 2 of the -->
+<!-- License, or (at your option) any later version.                    -->
+<!--                                                                    -->
+<!-- This program is distributed in the hope that it will be useful,    -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of     -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      -->
+<!-- GNU General Public License for more details.                       -->
+<!--                                                                    -->
+<!-- You should have received a copy of the GNU General Public License  -->
+<!-- along with this program; if not, write to the                      -->
+<!-- Free Software Foundation, Inc.,                                    -->
+<!-- 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA             -->
+<!--                                                                    -->
+<!--                 Sipp default 'uac' scenario.                       -->
+<!--                                                                    -->
+
+<!--
+   INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+ Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+ From: "SimpleTest" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
+ To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+ Call-ID: [call_id]
+ CSeq: 1 INVITE
+ Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+ Max-Forwards: 70
+ P-Visited-Network-ID: 79210000000
+ Geolocation: <cid:spb112@192.168.104.22>
+ Geolocation-Routing: no
+ Accept: application/sdp, application/pidf+xml
+ Content-Type: multipart/mixed; boundary=boundary1
+ Content-Length: [len]
+
+ --boundary1
+ Content-Type: application/sdp
+
+ v=0
+ o=user1 536765 237637 IN IP4 [local_ip]
+ s=-
+ c=IN IP4 [local_ip]
+ t=0 0
+ m=audio [media_port] RTP/AVP 8
+ a=rtpmap:8 PCMA/8000
+ a=ptime:10
+ a=rtpmap:101 telephone-event/8000
+ a=fmtp:101 0-15
+ a=sendrecv
+
+ --boundary1
+ Content-Type: application/pidf+xml
+
+ <?xml version="1.0" encoding="utf-8"?>
+ <response>
+  <resultCode>0</resultCode>
+  <resultDescription/>
+  <presence
+   xmlns="urn:ietf:params:xml:ns:pidf"
+   xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model"
+   xmlns:gml="http://www.opengis.net/gml"
+   xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10"
+   xmlns:gs="http://www.opengis.net/pidflo/1.0"
+   entity="79213699141">
+   <dm:device id="20151123171357.997931slbsgw112-1p82052">
+    <gp:geopriv>
+     <gp:location-info>
+      <gml:location>
+       <gs:Circle srsName="urn:ogc:def:crs:EPSG::4326">
+        <gml:pos>55.031999 82.92243</gml:pos>
+        <gs:radius uom="urn:ogc:def:uom:EPSG::500">200</gs:radius>
+       </gs:Circle>
+      </gml:location>
+     </gp:location-info>
+    </gp:geopriv>
+    <dm:deviceID>250028010326432</dm:deviceID>
+    <dm:timestamp>2015-11-26T15:08:50Z</dm:timestamp>
+   </dm:device>
+  </presence>
+ </response>
+
+ --boundary1--  
+ Content-Disposition: form-data; name="part1"
+ Content-Type: text/plain; charset=utf-8
+ Content-Transfer-Encoding: 16bit
+
+Âîçãîðàíèå æèëîãî äîìà.
+  --boundary1--
+-->
+
+
+<scenario name="Basic Sipstone UAC">
+
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="cgpn" value="[$CGPN]"/>
+    </action>
+    </nop>
+
+<send retrans="500">
+<![CDATA[
+ INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+ Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+ From: "SimpleTest" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
+ To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+ Call-ID: [call_id]
+ CSeq: [cseq] INVITE
+ Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+ Max-Forwards: 70
+ P-Visited-Network-ID: 79210000000
+ Content-Type: application/sdp
+ Content-Length: [len]
+    
+ v=0
+ o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+ s=A conversation
+ c=IN IP[local_ip_type] [local_ip]
+ t=0 0
+ m=audio [auto_media_port] RTP/AVP 8
+ a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv response="100" optional="true"/>
+<recv response="180" optional="true"/>
+<recv response="181" optional="true"/>
+<recv response="183" optional="true"/>
+<!-- <recv response="302" rtd="true"/> -->
+<recv response="200" rtd="true"> 
+        <action>
+         <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        </action>
+</recv> 
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds = "1000"/>
+
+<send retrans="500">
+<![CDATA[
+BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: "SimpleTest" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
+Call-ID: [call_id]
+CSeq: 2 BYE
+Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</send>
+
+<recv response="200" crlf="true"/>
+
+<!-- definition of the response time repartition table (unit is ms)   -->
+<ResponseTimeRepartition value="200, 300, 400,500,600,700,800,900"/>
+
+<!-- definition of the call length repartition table (unit is ms)     -->
+<CallLengthRepartition value="2300, 2400,2500,2600,2700,2800,2900,3000,3100,3200,3300,3400"/>
+
+</scenario>

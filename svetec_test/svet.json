@@ -1,0 +1,66 @@
+{
+  "TestName": "svet_test",
+  "AutoTest": "True",
+  "Users": [
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+    }
+  ],
+"Tests": [
+    {
+      "Name": "simple_svet_test",
+      "Description": "Светец-Элтекс. Тестирвоание.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "Port": "5087",
+              "Name": "SVET_TEST_RECV_302",
+              "Commands": [
+                {
+                  "SourceFile": "svetec_test/uac_recv_302.xml",
+                  "Options": "-m 1 -set CDPN 112 -set CDPNDOM svetec -set CGPN 2000 -set CGPNDOM 192.168.118.249",
+                  "SippType": "uac",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "simple_svet_test",
+      "Description": "Светец-Элтекс. Тестирвоание.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "Port": "5087",
+              "Name": "SVET_TEST_RECV_302",
+              "Commands": [
+                {
+                  "SourceFile": "svetec_test/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN 112 -set CDPNDOM svetec -set CGPN 2000 -set CGPNDOM svetec",
+                  "SippType": "uac",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
