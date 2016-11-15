@@ -1,0 +1,80 @@
+{
+	"TestName" : "test_420_response",
+	"Users" : [
+	    {
+	      "UserId": "0",
+	      "Number": "655",
+	      "Login": "655",
+	      "Password": "123",
+	      "SipDomain": "192.168.118.249",
+	      "Expires": "90",
+	      "Port": "20000",
+	      "SipGroup": "sip.ab",
+	      "Transport" : "TCP",
+	      "QParam": "0.5"
+	    },
+	    {
+	      "UserId": "1",
+	      "Number": "656",
+	      "Login": "656",
+	      "Password": "123",
+	      "SipDomain": "192.168.118.249",
+	      "Expires": "90",
+	      "Port": "20002",
+	      "SipGroup": "sip.ab",
+	      "Transport" : "TCP",
+	      "QParam": "0.5"
+	    }
+	],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+    }
+  ],
+"Tests": [
+    {
+      "Name": "tcp_to_tcp_test",
+      "Description": "Проверка прохождения вызовов если оба юзера используют TCP",
+      "TestProcedure": [
+       {
+	"Sleep" : "2"
+       },
+       {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "TCP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "TCP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
