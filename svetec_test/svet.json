@@ -51,8 +51,8 @@
               "Name": "SVET_TEST_RECV_302",
               "Commands": [
                 {
-                  "SourceFile": "svetec_test/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN 112 -set CDPNDOM svetec -set CGPN 2000 -set CGPNDOM svetec",
+                  "SourceFile": "svetec_test/uac_sipt.xml",
+                  "Options": "-m 1 -set CDPN 112 -set CDPNDOM svetec -set CGPN 900000 -set CGPNDOM svetec",
                   "SippType": "uac",
                   "Timeout": "20s"
                 }
