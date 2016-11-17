@@ -1,0 +1,65 @@
+{
+	"TestName" : "sip_transport",
+	"Users" : [
+	    {
+	      "UserId": "0",
+	      "Number": "156",
+	      "Login": "156",
+	      "Password": "123",
+	      "SipDomain": "pv.ssw2",
+	      "Expires": "90",
+	      "Port": "20000",
+	      "SipGroup": "sip.ab",
+	      "QParam": "0.5"
+	    },
+	    {
+	      "UserId": "1",
+	      "Number": "157",
+	      "Login": "157",
+	      "Password": "123",
+	      "SipDomain": "pv.ssw2",
+	      "Expires": "90",
+	      "Port": "20002",
+	      "SipGroup": "sip.ab",
+	      "QParam": "0.5"
+	    }
+	],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+    }
+  ],
+"Tests": [
+    {
+      "Name": "send_ABCD_dtmf",
+      "Description": "",
+      "TestProcedure": [
+       {
+          "Sleep" : "2"
+       },
+       {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "TCP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_abcd_dtmf.xml",
+                  "Options": "-m 1 -set CDPN 1000 -set CDPNDOM %%1.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
