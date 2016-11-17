@@ -85,7 +85,7 @@
 
 <nop hide="true">
      <action>
-        <setdest host="[$remote_ip]" port="[$remote_port]" protocol="UDP" />
+        <setdest host="[$remote_ip]" port="[$remote_port]" protocol="[transport]" />
         <exec rtp_stream="pause" />
      </action>
 </nop>

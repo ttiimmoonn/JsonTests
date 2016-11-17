@@ -372,6 +372,164 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "multi transfer before answer",
+      "Description": "multi transfer before answer",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS0_TRANS_BEFORE_ANSWER",
+              "Commands": [
+                {
+                  "SourceFile": "transfer/transfer_before_answer.xml",
+                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/transfer_before_answer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/uas_deff_answer.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_TRANS_BEFORE_ANSWER",
+              "Commands": [
+                {
+                  "SourceFile": "transfer/transfer_before_answer.xml",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/transfer_before_answer.xml",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/transfer_before_answer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "120s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "multi transfer before answer req100rel",
+      "Description": "multi transfer before answer req100rel",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS0_TRANS_BEFORE_ANSWER_REQ100REL",
+              "Commands": [
+                {
+                  "SourceFile": "transfer/req100rel/transfer_before_answer.xml",
+                  "Options": "-m 1  -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/req100rel/transfer_before_answer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/uas_deff_answer.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS1_TRANS_BEFORE_ANSWER_REQ100REL",
+              "Commands": [
+                {
+                  "SourceFile": "transfer/req100rel/transfer_before_answer.xml",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/req100rel/transfer_before_answer.xml",
+                  "Options": "-m 1  -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "transfer/req100rel/transfer_before_answer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "120s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
