@@ -54,12 +54,12 @@
   ],
   "PreCoconConf": [
     {
-    "command1": "/domain/%%DEV_DOM%%/sip/timer/set find_me %%FIND_ME_TIMER%%"
+    "command1": "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
     }
   ],
   "PostCoconConf": [
     {
-    "command1": "/domain/%%DEV_DOM%%/sip/timer/clean find_me"
+    "command1": "/domain/%%DEV_DOM%%/timers/sip/clean find_me"
     }
   ],
   "Tests": [
