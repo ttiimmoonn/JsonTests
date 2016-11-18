@@ -33,15 +33,15 @@
 
   "PreCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/properties/timers/set conversation_timeout 5",
-      "command2" : "/domain/%%DEV_DOM%%/properties/timers/set no_answer_timeout 4"
+      "command1" : "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout 5",
+      "command2" : "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 4"
     }
   ],
 
   "PostCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/properties/timers/clean conversation_timeout",
-      "command2" : "/domain/%%DEV_DOM%%/properties/timers/clean no_answer_timeout"
+      "command1" : "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
+      "command2" : "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
     }
   ],
   "Tests": [
