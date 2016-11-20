@@ -92,7 +92,7 @@
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:];tag=[$local_tag]
+    [last_from:]
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
@@ -136,7 +136,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "RFC3261 SimpleTest" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "RFC3261 SimpleTest" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
