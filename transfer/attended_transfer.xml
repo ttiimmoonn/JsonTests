@@ -161,7 +161,14 @@
 ]]>
 </send>
 
-<recv response="401" auth="true" next="inv_auth" optional="true"></recv>
+<recv response="401" auth="true" next="inv_auth" optional="true">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+</recv>
 <label id="recv_100"/>
 <recv response="100" optional="true"></recv>
 <recv response="180" optional="true"></recv>
@@ -297,6 +304,20 @@
 
 
 <label id="inv_auth"/>
+
+
+<send>
+<![CDATA[
+    ACK sip:[$refer_num]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
 <send next="recv_100" crlf="true">
 <![CDATA[
     INVITE sip:[$refer_num]@[$remote_ip]:[$remote_port] SIP/2.0
