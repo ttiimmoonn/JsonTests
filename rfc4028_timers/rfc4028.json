@@ -34,16 +34,16 @@
       "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
       "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
       "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true",
-      "command5": "/domain/%%DEV_DOM%%/sip/timer/set rfc4028_min_se 90",
-      "command6": "/domain/%%DEV_DOM%%/sip/timer/set rfc4028_use_se 90"
+      "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+      "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
     }
   ],
   "PostCoconConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
       "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force true",
-      "command3": "/domain/%%DEV_DOM%%/sip/timer/set rfc4028_min_se 3600",
-      "command4": "/domain/%%DEV_DOM%%/sip/timer/set rfc4028_use_se 3600"
+      "command3": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 3600",
+      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 3600"
     }
   ],
   "Tests": [
@@ -397,8 +397,8 @@
               "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-force false",
               "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
               "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
-              "command5": "/domain/%%DEV_DOM%%/sip/timer/set rfc4028_min_se 90",
-              "command6": "/domain/%%DEV_DOM%%/sip/timer/set rfc4028_use_se 90"
+              "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+              "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
             }
           ]
         },
