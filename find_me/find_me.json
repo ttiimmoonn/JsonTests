@@ -939,6 +939,87 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "find_group_race_of_200Ok_and_cancel",
+      "Description": "Проверяем, что адаптер отбивает вызов через BYE, если получил 200 OK",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%0.Number%%,%%1.Number%%,%%2.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS0_RACE_200OK_AND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "find_me/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAS1_RACE_200OK_AND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "find_me/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat" : "True",
+              "Name": "UAS2_RACE_200OK_AND_CANCEL_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "find_me/uas.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat" : "True",
+              "Name": "UAC_WITH100REL",
+              "Commands": [
+                {
+                  "SourceFile": "find_me/uac.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

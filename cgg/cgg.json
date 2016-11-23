@@ -283,6 +283,140 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "cgg_race_of_200ok_and_cancel",
+      "Description": "Проверка того, что адаптер отбивает вызов через BYE, если абонент Б дал 200 OK",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAS1_RACE_OF_200_AND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat" : "True",
+              "Name": "UAS2_RACE_OF_200_AND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat" : "True",
+              "Name": "UAS3_RACE_OF_200_AND_CANCEL_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uas_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/uac.xml",
+                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cgg_race_of_200ok_and_cancel_req100rel",
+      "Description": "Проверка того, что адаптер отбивает вызов через BYE, если абонент Б дал 200 OK (req100rel)",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAS1_RACE_OF_200_AND_CANCEL_REQ100REl",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/req100rel/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat" : "True",
+              "Name": "UAS2_RACE_OF_200_AND_CANCEL_REQ100REl",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/req100rel/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat" : "True",
+              "Name": "UAS3_RACE_OF_200_AND_CANCEL_REQ100REl_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "4",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_BYE_REQ100REl",
+              "Commands": [
+                {
+                  "SourceFile": "cgg/req100rel/uac_100rel.xml",
+                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

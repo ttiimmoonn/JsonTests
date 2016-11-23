@@ -231,6 +231,79 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "forking all-contact race of 200OK and CANCEL",
+      "Description": "Проверка того, что адаптер отбивает вызов через BYE, если получил 200OK",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat": "True",
+              "Name": "UAS0_RACE_200OK_AND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat": "True",
+              "Name": "UAS1_RACE_200OK_AND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_ignore_cancel.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat": "True",
+              "Name": "UAS2_RACE_200OK_AND_CANCEL_SEND",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
