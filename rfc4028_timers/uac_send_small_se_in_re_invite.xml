@@ -144,7 +144,7 @@
 <send crlf="true">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
     [last_from:]
     [last_to:]
     [last_call-id:]
