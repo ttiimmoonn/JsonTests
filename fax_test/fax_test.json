@@ -186,6 +186,30 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "test_send_bye_on_t38_re_invite",
+      "Description": "Если со стороны клиента сделать гонку BYE реквеста и RE-INVITE на T38, то MSR упадёт",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC_FAX_G711_TAU",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_t38_send_bye_on_re_invite.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
