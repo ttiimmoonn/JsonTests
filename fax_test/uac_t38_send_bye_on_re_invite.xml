@@ -85,7 +85,6 @@
     <action>
         <ereg regexp=".*" search_in="hdr" header="From:" assign_to="inv_from" />
         <ereg regexp=".*" search_in="hdr" header="To:" assign_to="inv_to" />
-        <ereg regexp=".*" search_in="hdr" header="Call-ID:" assign_to="inv_call_id" />
         <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="inv_via" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
     </action>
@@ -109,11 +108,11 @@
 <send retrans="500">
 <![CDATA[
     SIP/2.0 200 OK
-    [$inv_via:]
-    [$inv_from:]
-    [$inv_to:]
+    Via:[$inv_via]
+    From:[$inv_from]
+    To:[$inv_to]
     [last_Call-ID:]
-    [$inv_cseq:]
+    CSeq: [$inv_cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
