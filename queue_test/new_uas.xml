@@ -107,8 +107,8 @@
 
 
 <!-- <pause distribution="normal" mean="300000" stdev="20000"/> -->
-<!-- <pause distribution="uniform" min="240000" max="350000"/> -->
-<pause milliseconds="10000"/>
+<pause distribution="uniform" min="240000" max="350000"/>
+<!-- <pause milliseconds="10000"/> -->
 
 
 
@@ -139,8 +139,8 @@
 <recv response="200"> </recv>
 
 <!-- <pause distribution="normal" mean="60000" stdev="5000"/> -->
-<!-- <pause distribution="uniform" min="15000" max="75000"/> -->
-<pause milliseconds="10000"/>
+<pause distribution="uniform" min="15000" max="75000"/>
+<!--<pause milliseconds="10000"/>-->
 
 <send>
 <![CDATA[

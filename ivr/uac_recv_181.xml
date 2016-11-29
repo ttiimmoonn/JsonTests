@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "IVR BUG TEST">
+<scenario name = "UAC recv 181">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
     <nop hide="true">
@@ -53,6 +53,7 @@
 
 <recv response="100" optional="true"></recv>
 <recv response="183" optional="true"></recv>
+<recv response="181"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="200" auth="true">
         <action>
@@ -61,11 +62,14 @@
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
         </action>
  </recv>
+
+
 <nop hide="true">
     <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="[transport]" />
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
     </action>
 </nop>
+
 <send crlf="true">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -78,96 +82,20 @@
 ]]>
 </send>
 
-<send retrans="500">
+
+<recv request="BYE"></recv>
+
+<send next="end" crlf="true">
 <![CDATA[
-    INFO sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id]
-    CSeq: [cseq] INFO
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Content-Type: application/dtmf-relay
-    Content-Length: [len]
-
-    Signal=A
-    Duration=250
-]]>
-</send>
-<recv response="200" auth="true"></recv>
-
-<send retrans="500">
-<![CDATA[
-    INFO sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id]
-    CSeq: [cseq] INFO
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Content-Type: application/dtmf-relay
-    Content-Length: [len]
-
-    Signal=B
-    Duration=250
-]]>
-</send>
-
-<recv response="200" auth="true"></recv>
-<send retrans="500">
-<![CDATA[
-    INFO sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id]
-    CSeq: [cseq] INFO
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Content-Type: application/dtmf-relay
-    Content-Length: [len]
-
-    Signal=C
-    Duration=250
-]]>
-</send>
-
-<recv response="200" auth="true"></recv>
-<send retrans="500">
-<![CDATA[
-    INFO sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id]
-    CSeq: [cseq] INFO
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Content-Type: application/dtmf-relay
-    Content-Length: [len]
-
-    Signal=D
-    Duration=250
-]]>
-</send>
-
-<recv response="200" auth="true"></recv>
-<send>
-<![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "IVR BUG TEST" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
-    [last_call-id:]
-    CSeq: [cseq] BYE
-    Max-Forwards: 70
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>
-
-<recv response="200" next="end" crlf="true"></recv>
 
 <!--Отправка INVITE c аутентификацией -->
 <label id="auth_invite"/>
