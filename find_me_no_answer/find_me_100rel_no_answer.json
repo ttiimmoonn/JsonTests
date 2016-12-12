@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_find_me_no_response",
+  "TestName": "ss_find_me_no_response_req_100rel",
   "AutoTest" : "True",
   "Users": [
     {
@@ -139,8 +139,7 @@
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%10.Number%% find_me_no_response",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%10.Number%% find_me_no_response",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable * find_me_no_response"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%10.Number%% find_me_no_response"
     }
   ],
   "Tests": [
