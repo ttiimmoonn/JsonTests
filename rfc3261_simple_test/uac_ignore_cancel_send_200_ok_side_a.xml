@@ -68,7 +68,8 @@
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
         <!--Забрали branch -->
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+	<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+	<ereg regexp="tag=(\w|-|_)*" search_in="hdr" header="To:" check_it="true" assign_to="remote_tag" />
     </action>
 </recv>
 
@@ -94,7 +95,7 @@
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
-    [last_to:]
+    [last_to:];[$remote_tag]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Content-Length: 0
