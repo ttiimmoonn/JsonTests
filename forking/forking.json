@@ -59,7 +59,6 @@
   ],
   "PostCoconConf": [
     {
-    "command1": "/domain/%%DEV_DOM%%/sip/timer/clean find_me"
     }
   ],
   "Tests": [
