@@ -74,8 +74,7 @@
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable * chunt"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
     }
   ],
   "Tests": [
