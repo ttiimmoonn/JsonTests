@@ -46,7 +46,6 @@
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/sip/properties/clean blf_enable"
     }
   ],
 "Tests": [
