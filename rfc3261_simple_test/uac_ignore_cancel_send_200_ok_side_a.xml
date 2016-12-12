@@ -87,6 +87,7 @@
 ]]>
 </send>
 
+<recv response="200"> </recv>
 
 <send crlf="true">
 <![CDATA[
