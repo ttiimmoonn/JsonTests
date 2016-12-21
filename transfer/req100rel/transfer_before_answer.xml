@@ -238,7 +238,11 @@
     </action>
 </recv>
 
-<recv response="202"></recv>
+<recv response="202">
+    <action>
+        <log message="This is fucking case!"/>
+    </action>
+</recv>
 
 <send retrans="500">
 <![CDATA[

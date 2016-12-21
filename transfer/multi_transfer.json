@@ -384,6 +384,7 @@
             {
               "Type": "User",
               "UserId": "0",
+              "WriteStat" : "True",
               "Name": "UAS0_TRANS_BEFORE_ANSWER",
               "Commands": [
                 {
@@ -411,6 +412,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAS1_TRANS_BEFORE_ANSWER",
               "Commands": [
                 {
@@ -463,6 +465,7 @@
             {
               "Type": "User",
               "UserId": "0",
+              "WriteStat" : "True",
               "Name": "UAS0_TRANS_BEFORE_ANSWER_REQ100REL",
               "Commands": [
                 {
@@ -490,6 +493,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAS1_TRANS_BEFORE_ANSWER_REQ100REL",
               "Commands": [
                 {
