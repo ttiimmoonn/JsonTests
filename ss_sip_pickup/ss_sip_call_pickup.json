@@ -7,7 +7,7 @@
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10105",
@@ -18,7 +18,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10106",
@@ -30,7 +30,7 @@
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "Port": "10107",
       "QParam": "1"
@@ -124,7 +124,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%}"
+              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
             }
           ]
         }
@@ -202,7 +202,93 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%}"
+              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_dialog_call_pickup_with_a_conference",
+      "Description": "Тестирование dialog info call pickup c активированной conference Bug #72634",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+                "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
+                "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]",
+                "command3" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
+                "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% conference",
+                "command5" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
+                "command6" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% conference"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "BackGround" : "True",
+              "Name": "UAC_SIP_CALL_PICKUP",
+              "Commands": [
+                {
+                  "SourceFile": "ss_sip_pickup/dialog_info_call_pickup.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : "2"
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_sip_pickup/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat" : "True",
+              "Name": "UAC_SIP_CALL_PICKUP",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]  
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
+              "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
+              "command3" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% conference",
+              "command4" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
+              "command5" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% conference"
             }
           ]
         }
