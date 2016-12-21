@@ -206,7 +206,7 @@
     </action>
 </recv>
 
-<recv request="NOTIFY" optional="true" next="send_200_notify" test="recv_202">
+<recv request="NOTIFY" next="send_200_notify" test="recv_202">
     <action>
         <assign assign_to="test_sipfrag" value="" />
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
