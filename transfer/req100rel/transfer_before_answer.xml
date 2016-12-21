@@ -4,8 +4,8 @@
 <scenario name = "transfer_before_answer">
 
 <Global variables="REFERNUM,REFERDOM" />
-<User variables="refer_num,refer_dom,test_sipfrag" />
-<Reference variables="test_sipfrag" />
+<User variables="refer_num,refer_dom,test_sipfrag,recv_test" />
+<Reference variables="test_sipfrag,recv_test" />
 
 <recv request="INVITE">
 <action>
@@ -221,10 +221,39 @@
 
 <recv response="202" crlf="true"></recv>
 
+<recv request="NOTIFY" optional="true" next="send_200_notify">
+    <action>
+        <assign assign_to="test_sipfrag" value="" />
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
+        <assign assign_to="recv_test" value="1"/>
+    </action>
+</recv>
+
+<label id="return_to_recv_487"/>
+
+
+<recv response="487"></recv>
+
+<send next="recv_notify_200" test="recv_test">
+<![CDATA[
+    ACK sip:[$refer_num]@[$remote_ip]:[$remote_port] SIP/2.0
+    [last_via:]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+
+
 <recv request="NOTIFY">
     <action>
         <assign assign_to="test_sipfrag" value="" />
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
+        <assign assign_to="recv_test" value="1"/>
     </action>
 </recv>
 
@@ -240,23 +269,7 @@
 ]]>
 </send>
 
-
-
-<recv response="487"></recv>
-
-<send>
-<![CDATA[
-    ACK sip:[$refer_num]@[$remote_ip]:[$remote_port] SIP/2.0
-    [last_via:]
-    [last_from:]
-    [last_to:]
-    [last_call-id]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Content-Length: 0
-]]>
-</send>
+<label id="recv_notify_200"/>
 
 <recv request="NOTIFY">
     <action>
@@ -276,7 +289,6 @@
     Content-Length: 0
 ]]>
 </send>
-
 
 
 <send>
@@ -335,7 +347,19 @@
   ]]>
 </send>
 
+<label id="send_200_notify"/>
 
+<send next="return_to_recv_487">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
 
 <label id="end"/>
 </scenario>
