@@ -4,8 +4,8 @@
 <scenario name = "uas_transfer_test_with_req_100rel">
 
 <Global variables="REFERNUM,REFERDOM" />
-<User variables="refer_num,refer_dom,test_sipfrag" />
-<Reference variables="test_sipfrag" />
+<User variables="refer_num,refer_dom,test_sipfrag_100,test_sipfrag_200,custom_test" />
+<Reference variables="test_sipfrag_100,test_sipfrag_200,custom_test" />
 
 <recv request="INVITE">
 <action>
@@ -271,9 +271,12 @@
 
 <recv response="202" crlf="true"></recv>
 
-<recv request="NOTIFY">
+<recv request="NOTIFY|BYE" regexp_match="true">
     <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg"  assign_to="test_sipfrag_100"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg"  assign_to="test_sipfrag_200"/>
+        <log message="LOG1. 100 [$test_sipfrag_100]"/>
+        <log message="LOG1. 200 [$test_sipfrag_200]"/>
     </action>
 </recv>
 
@@ -289,23 +292,14 @@
 ]]>
 </send>
 
-
-
-<recv request="BYE"></recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
-
-<recv request="NOTIFY"></recv>
+<recv request="NOTIFY|BYE" regexp_match="true">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="test_sipfrag_100"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="test_sipfrag_200"/>
+        <log message="LOG2. 100 [$test_sipfrag_100]"/>
+        <log message="LOG2. 200 [$test_sipfrag_200]"/>
+    </action>
+</recv>
 
 <send>
 <![CDATA[
@@ -319,7 +313,26 @@
 ]]>
 </send>
 
+<recv request="NOTIFY|BYE" regexp_match="true">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="test_sipfrag_100"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="test_sipfrag_200"/>
+        <log message="LOG3. 100 [$test_sipfrag_100]"/>
+        <log message="LOG3. 200 [$test_sipfrag_200]"/>
+    </action>
+</recv>
 
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
 
 <send>
 <![CDATA[
@@ -334,7 +347,12 @@
 ]]>
 </send>
 
-<recv response="200" next="end"></recv>
+<recv response="200" next="end">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="var" variable="test_sipfrag_100" check_it="true" assign_to="custom_test"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="var" variable="test_sipfrag_200" check_it="true" assign_to="custom_test"/>
+    </action>
+</recv>
 
 
 <label id="inv_auth"/>
