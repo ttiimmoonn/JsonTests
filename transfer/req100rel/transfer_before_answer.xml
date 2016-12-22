@@ -4,8 +4,8 @@
 <scenario name = "transfer_before_answer">
 
 <Global variables="REFERNUM,REFERDOM" />
-<User variables="refer_num,refer_dom,test_sipfrag,recv_test,recv_202" />
-<Reference variables="test_sipfrag,recv_test,recv_202" />
+<User variables="refer_num,refer_dom,test_sipfrag,recv_test" />
+<Reference variables="test_sipfrag,recv_test" />
 
 <recv request="INVITE">
 <action>
@@ -219,43 +219,15 @@
 </send>
 
 
-<recv response="202" crlf="true" optional="true">
-    <action>
-        <assign assign_to="recv_202" value="1"/>
-    </action>
-</recv>
+<recv response="202" crlf="true"></recv>
 
-<recv request="NOTIFY" next="send_200_notify" test="recv_202">
+<recv request="NOTIFY" optional="true" next="send_200_notify">
     <action>
         <assign assign_to="test_sipfrag" value="" />
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
         <assign assign_to="recv_test" value="1"/>
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" check_it="true" assign_to="inv_cseq" />
-        <ereg regexp=".*" search_in="hdr" header="From:" check_it="true" assign_to="not_from" />
-        <ereg regexp=".*" search_in="hdr" header="To:" check_it="true" assign_to="not_to" />
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" check_it="true" assign_to="not_cseq" />
-        <ereg regexp=".*" search_in="hdr" header="Via:" check_it="true" assign_to="not_via" />
     </action>
 </recv>
-
-<recv response="202">
-    <action>
-        <log message="This is fucking case!"/>
-    </action>
-</recv>
-
-<send retrans="500">
-<![CDATA[
-    SIP/2.0 200 OK
-    Via:[$not_via]
-    From:[$not_from]
-    To:[$not_to]
-    [last_call-id]
-    CSeq: [$not_cseq] NOTIFY
-    Content-Length: 0
-
-]]>
-</send>
 
 
 <label id="return_to_recv_487"/>
@@ -320,7 +292,6 @@
 </send>
 
 
-
 <send>
 <![CDATA[
     BYE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
@@ -335,6 +306,7 @@
 </send>
 
 <recv response="200" next="end"></recv>
+
 
 <label id="inv_auth"/>
 
@@ -389,7 +361,6 @@
     Content-Length: 0
 ]]>
 </send>
-
 
 <label id="end"/>
 </scenario>
