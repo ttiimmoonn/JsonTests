@@ -1,0 +1,81 @@
+{
+  "TestName": "rfc3264_simple_test",
+  "AutoTest" : "True",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "Port": "11001",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "0",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "Port": "11002",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "test_o_sdp_with_video_section",
+      "Description": "Отправка offer с video секцией",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_OFFER_WITH_VIDEO_SECTION",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uac_sdp_with_video_section.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
