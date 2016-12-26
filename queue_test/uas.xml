@@ -46,7 +46,8 @@
 ]]>
 </send>
 
-<pause  distribution="uniform" min="5000" max="7000"/>
+<!-- <pause  distribution="uniform" min="5000" max="7000"/> -->
+<pause milliseconds="3000"/>
 
 <send retrans="500">
 <![CDATA[
@@ -87,10 +88,10 @@
 </nop>
 
 
-
+<pause milliseconds="120000"/>
 
 <!-- <pause distribution="normal" mean="300000" stdev="15000"/> -->
-<pause distribution="uniform" min="240000" max="350000"/>
+<!-- <pause distribution="uniform" min="240000" max="350000"/> -->
 
 <nop>
      <action>
