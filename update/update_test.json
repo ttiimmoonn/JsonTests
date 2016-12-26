@@ -99,7 +99,7 @@
                 {
                   "SourceFile": "update/uas_erly_update.xml",
                   "Options": "-m 1",
-                  "SippType": "uac",
+                  "SippType": "uas",
                   "Timeout": "60s"
                 }
               ]
