@@ -3,7 +3,7 @@
   "AutoTest" : "True",
   "Users": [
     {
-      "UserId": "1",
+      "UserId": "0",
       "Number": "157",
       "Login": "157",
       "Password": "123",
@@ -14,7 +14,7 @@
       "QParam": "0.5"
     },
     {
-      "UserId": "0",
+      "UserId": "1",
       "Number": "158",
       "Login": "158",
       "Password": "123",
