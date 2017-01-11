@@ -133,7 +133,8 @@
   "PreCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% find_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% find_me send_call_diversion = true"
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% find_me send_call_diversion = true",
+      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%% - %%10.Number%%}@%%0.SipDomain%% terminal_type smart"
     }
   ],
   "PostCoconConf": [

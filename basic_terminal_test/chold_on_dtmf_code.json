@@ -86,7 +86,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 6000",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -d 15000",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
