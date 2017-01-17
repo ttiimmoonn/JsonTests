@@ -105,6 +105,13 @@
           ]
         },
         {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        },
+        {
           "StartUA": [
             {
               "Type": "User",
@@ -161,6 +168,13 @@
                   "Timeout": "180s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
             }
           ]
         }
@@ -203,6 +217,13 @@
           ]
         },
         {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        },
+        {
           "StartUA": [
             {
               "Type": "User",
@@ -259,6 +280,13 @@
                   "Timeout": "180s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
             }
           ]
         }
@@ -301,6 +329,13 @@
           ]
         },
         {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        },
+        {
           "StartUA": [
             {
               "Type": "User",
@@ -357,6 +392,13 @@
                   "Timeout": "180s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
             }
           ]
         }
