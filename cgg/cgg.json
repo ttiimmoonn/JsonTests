@@ -94,19 +94,19 @@
                   "SourceFile": "cgg/uas_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -120,19 +120,19 @@
                   "SourceFile": "cgg/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/uas_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -146,19 +146,19 @@
                   "SourceFile": "cgg/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/uas_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -173,7 +173,7 @@
                   "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -197,19 +197,19 @@
                   "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -223,19 +223,19 @@
                   "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -249,19 +249,19 @@
                   "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 },
                 {
                   "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -276,7 +276,7 @@
                   "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -300,7 +300,7 @@
                   "SourceFile": "cgg/uas_ignore_cancel.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -314,7 +314,7 @@
                   "SourceFile": "cgg/uas_ignore_cancel.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -328,7 +328,7 @@
                   "SourceFile": "cgg/uas_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -343,7 +343,7 @@
                   "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -367,7 +367,7 @@
                   "SourceFile": "cgg/req100rel/uas_ignore_cancel.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -381,7 +381,7 @@
                   "SourceFile": "cgg/req100rel/uas_ignore_cancel.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -395,7 +395,7 @@
                   "SourceFile": "cgg/req100rel/uas_bye_100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -410,7 +410,7 @@
                   "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
