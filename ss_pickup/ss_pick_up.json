@@ -97,10 +97,10 @@
   "PreCoconConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%6.Number%%} pickup",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1, room2/2, room3/3]",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%2.Number%%} pickup pickup_groups = [room1/1]",
-      "command4" : "/domain/%%DEV_DOM%%/ss/activate {%%3.Number%%-%%4.Number%%} pickup pickup_groups = [room2/2]",
-      "command5" : "/domain/%%DEV_DOM%%/ss/activate {%%5.Number%%-%%6.Number%%} pickup pickup_groups = [room3/3]"
+      "command2" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [sip_room1/1, sip_room2/2, sip_room3/3]",
+      "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%2.Number%%} pickup pickup_groups = [sip_room1/1]",
+      "command4" : "/domain/%%DEV_DOM%%/ss/activate {%%3.Number%%-%%4.Number%%} pickup pickup_groups = [sip_room2/2]",
+      "command5" : "/domain/%%DEV_DOM%%/ss/activate {%%5.Number%%-%%6.Number%%} pickup pickup_groups = [sip_room3/3]"
     }
   ],
   "PostCoconConf": [
