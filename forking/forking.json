@@ -349,7 +349,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat": "True",
-              "Name": "UAS2_RACE_200OK_AND_CANCEL_SEND",
+              "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "forking/uas_repeat_asdp.xml",

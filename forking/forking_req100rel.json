@@ -79,7 +79,7 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat": "True",
-              "Name": "UAS1_REQ100REL_RECV_CANEL",
+              "Name": "UAS0_REQ100REL_RECV_CANEL",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
@@ -93,7 +93,7 @@
               "Type": "User",
               "UserId": "1",
               "WriteStat": "True",
-              "Name": "UAS2_REQ100REL_RECV_CANEL",
+              "Name": "UAS1_REQ100REL_RECV_CANEL",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
@@ -107,7 +107,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat": "True",
-              "Name": "UAS3_REQ100REL_SEND_BYE",
+              "Name": "UAS2_REQ100REL_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_send_bye.xml",
@@ -166,7 +166,7 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat": "True",
-              "Name": "UAS1_REQ100REL_RECV_CANEL",
+              "Name": "UAS0_REQ100REL_RECV_CANEL",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
@@ -180,7 +180,7 @@
               "Type": "User",
               "UserId": "1",
               "WriteStat": "True",
-              "Name": "UAS2_REQ100REL_RECV_CANEL",
+              "Name": "UAS1_REQ100REL_RECV_CANEL",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
@@ -194,7 +194,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat": "True",
-              "Name": "UAS3_REQ100REL_SEND_BYE",
+              "Name": "UAS2_REQ100REL_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "forking/uas_repeat_asdp.xml",
