@@ -388,57 +388,6 @@
       ]
     },
     {
-      "Name": "rfc4028_force_disable",
-      "Description": "Отключаем поддержку rfc4028 и делаем обычный вызов",
-      "TestProcedure": [
-        {
-          "CoconCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-control false",
-              "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-force false",
-              "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
-              "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
-              "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-              "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
-              "Name": "SIMPLE_UAS_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "200s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "1",
-              "Name": "SIMPLE_UAC_SEND_BYE",
-              "WriteStat" : "True",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 50000",
-                  "SippType": "uac",
-                  "NeedAuth": "True",
-                  "Timeout": "200s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "Name": "rfc4028_small_se_in_re_invite",
       "Description": "Посылаем INVITE c SE=60 и ждём 422 от ссв. Далее присылаем re-invite c send_only и снова ставим SE 60",
       "TestProcedure": [
@@ -487,6 +436,57 @@
             {
               "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
               "command2" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rfc4028_force_disable",
+      "Description": "Отключаем поддержку rfc4028 и делаем обычный вызов",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-control false",
+              "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-force false",
+              "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+              "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
+              "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+              "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "SIMPLE_UAC_SEND_BYE",
+              "WriteStat" : "True",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 50000",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "200s"
+                }
+              ]
             }
           ]
         }

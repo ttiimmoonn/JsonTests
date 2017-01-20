@@ -63,7 +63,7 @@
  </recv>
 <nop hide="true">
     <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="[transport]" />
     </action>
 </nop>
 <send crlf="true">
