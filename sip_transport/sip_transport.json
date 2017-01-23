@@ -1,48 +1,79 @@
 {
-	"TestName" : "test_420_response",
-	"Users" : [
-	    {
-	      "UserId": "0",
-	      "Number": "655",
-	      "Login": "655",
-	      "Password": "123",
-	      "SipDomain": "192.168.118.249",
-	      "Expires": "90",
-	      "Port": "20000",
-	      "SipGroup": "sip.ab",
-	      "Transport" : "TCP",
-	      "QParam": "0.5"
-	    },
-	    {
-	      "UserId": "1",
-	      "Number": "656",
-	      "Login": "656",
-	      "Password": "123",
-	      "SipDomain": "192.168.118.249",
-	      "Expires": "90",
-	      "Port": "20002",
-	      "SipGroup": "sip.ab",
-	      "Transport" : "TCP",
-	      "QParam": "0.5"
-	    }
-	],
-  "PreCoconConf": [
+  "TestName": "sip_transport_test",
+  "AutoTest" : "True",
+  "Isolate" : "True",
+  "Users": [
     {
+      "UserId": "0",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "20000",
+      "SipGroup": "sip.ab",
+      "SipTransport": "TCP",
+      "QParam": "1"
+    },
+    {
+      "UserId": "1",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "20003",
+      "SipGroup": "sip.ab",
+      "SipTransport": "TCP",
+      "QParam": "1"
+    },
+    {
+      "UserId": "2",
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "20005",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    },
+    {
+      "UserId": "3",
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "3600",
+      "Port": "20009",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
     }
+  ],
+  "PreCoconConf": [
+    {}
   ],
   "PostCoconConf": [
     {
+      "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
     }
   ],
-"Tests": [
+  "Tests": [
     {
-      "Name": "tcp_to_tcp_test",
-      "Description": "Проверка прохождения вызовов если оба юзера используют TCP",
+      "Name": "test_tcp_only_mode",
+      "Description": "Проверка режима tcp_only",
       "TestProcedure": [
-       {
-	"Sleep" : "2"
-       },
-       {
+        {
+          "CoconCommand": [
+            {
+              "CoconCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_only"
+            }
+          ]
+        },
+        {
+          "Sleep": "2"
+        },
+        {
           "StartUA": [
             {
               "Type": "User",
@@ -53,14 +84,14 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
               "UserId": "1",
-              "WriteStat" : "True",
+              "WriteStat": "True",
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -68,7 +99,357 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "sip_transport/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_tcp_prefer_mode",
+      "Description": "Проверка режима tcp_prefer",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "CoconCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_prefer"
+            }
+          ]
+        },
+        {
+          "Sleep": "2"
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "TCP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat": "True",
+              "Name": "TCP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UDP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat": "True",
+              "Name": "UDP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "TCP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat": "True",
+              "Name": "UDP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UDP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat": "True",
+              "Name": "TCP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_udp_only_mode",
+      "Description": "Проверка режима udp_only",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "CoconCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_only"
+            }
+          ]
+        },
+        {
+          "Sleep": "2"
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UDP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat": "True",
+              "Name": "UDP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "sip_transport/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_udp_prefer_mode",
+      "Description": "Проверка режима udp_prefer",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "CoconCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
+            }
+          ]
+        },
+        {
+          "Sleep": "2"
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "TCP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat": "True",
+              "Name": "TCP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UDP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat": "True",
+              "Name": "UDP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "TCP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "3",
+              "WriteStat": "True",
+              "Name": "UDP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "3",
+              "Name": "UDP_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat": "True",
+              "Name": "TCP_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
                 }
               ]
             }
