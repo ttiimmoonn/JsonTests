@@ -79,6 +79,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "WriteStat": "True",
               "Name": "UAC_INVITE_RETRANS",
               "Commands": [
                 {
@@ -89,6 +90,22 @@
                   "Timeout": "120s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CheckTimer": [
+            {
+              "MsgType": "Request",
+              "Method" : "INVITE",
+              "Timer": "A",
+              "UA": "1"
+            },
+            {
+              "MsgType": "Request",
+              "Method" : "INVITE",
+              "Timer": "B",
+              "UA": "1"
             }
           ]
         }
@@ -129,6 +146,22 @@
               ]
             }
           ]
+        },
+        {
+          "CheckTimer": [
+            {
+              "MsgType": "Request",
+              "Method" : "PRACK",
+              "Timer": "E",
+              "UA": "1"
+            },
+            {
+              "MsgType": "Request",
+              "Method" : "PRACK",
+              "Timer": "F",
+              "UA": "1"
+            }
+          ]
         }
       ]
     },
@@ -165,6 +198,22 @@
                   "Timeout": "120s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CheckTimer": [
+            {
+              "MsgType": "Request",
+              "Method" : "CANCEL",
+              "Timer": "E",
+              "UA": "1"
+            },
+            {
+              "MsgType": "Request",
+              "Method" : "CANCEL",
+              "Timer": "F",
+              "UA": "1"
             }
           ]
         }
@@ -205,6 +254,24 @@
               ]
             }
           ]
+        },
+        {
+          "CheckTimer": [
+            {
+              "MsgType": "Response",
+              "Code" : "200",
+              "Method" : "INVITE",
+              "Timer": "G",
+              "UA": "2"
+            },
+            {
+              "MsgType": "Response",
+              "Code" : "200",
+              "Method" : "INVITE",
+              "Timer": "H",
+              "UA": "2"
+            }
+          ]
         }
       ]
     },
@@ -243,6 +310,22 @@
               ]
             }
           ]
+        },
+        {
+          "CheckTimer": [
+            {
+              "MsgType": "Request",
+              "Method" : "BYE",
+              "Timer": "F",
+              "UA": "1"
+            },
+            {
+              "MsgType": "Request",
+              "Method" : "BYE",
+              "Timer": "E",
+              "UA": "1"
+            }
+          ]
         }
       ]
     },
@@ -273,12 +356,30 @@
               "Commands": [
                 {
                   "SourceFile": "sip_timers/simple_uac.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -d 32000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "120s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CheckTimer": [
+            {
+              "MsgType": "Response",
+              "Code" : "486",
+              "Method" : "INVITE",
+              "Timer": "H",
+              "UA": "2"
+            },
+            {
+              "MsgType": "Response",
+              "Code" : "486",
+              "Method" : "INVITE",
+              "Timer": "G",
+              "UA": "2"
             }
           ]
         }
@@ -311,12 +412,30 @@
               "Commands": [
                 {
                   "SourceFile": "sip_timers/simple_uac.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -d 40000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "120s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CheckTimer": [
+            {
+              "MsgType": "Response",
+              "Code" : "500",
+              "Method" : "INVITE",
+              "Timer": "G",
+              "UA": "2"
+            },
+            {
+              "MsgType": "Response",
+              "Code" : "500",
+              "Method" : "INVITE",
+              "Timer": "G",
+              "UA": "2"
             }
           ]
         }
