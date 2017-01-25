@@ -427,7 +427,7 @@
               "MsgType": "Response",
               "Code" : "500",
               "Method" : "INVITE",
-              "Timer": "G",
+              "Timer": "H",
               "UA": "2"
             },
             {
