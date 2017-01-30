@@ -179,8 +179,8 @@
                 },
                 {
                   "SourceFile": "basic_terminal_test/uas_recv_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas -aa",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 }
@@ -193,8 +193,8 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml -d 5000",
-                  "Options": "-m 1",
-                  "SippType": "uas -aa",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 }

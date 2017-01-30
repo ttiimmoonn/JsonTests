@@ -89,8 +89,8 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas -aa",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
                 }
