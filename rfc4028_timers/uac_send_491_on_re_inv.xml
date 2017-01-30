@@ -100,7 +100,7 @@
         <assign assign_to="dummy" value="" />
         <assign assign_to="se" value="" />
         <assign assign_to="options" value="" />
-        <ereg regexp="Session-Expires:\s?([0-9]+)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
         <ereg regexp=".*" search_in="hdr" header="From:" assign_to="re_inv_from" />
         <ereg regexp=".*" search_in="hdr" header="To:" assign_to="re_inv_to" />
         <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="re_inv_via" />
@@ -190,7 +190,7 @@
         <assign assign_to="dummy" value="" />
         <assign assign_to="se" value="" />
         <assign assign_to="options" value="" />
-        <ereg regexp="Session-Expires:\s?([0-9]+)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
     </action>
 </recv>
 
@@ -272,20 +272,19 @@
 
 <pause milleseconds="1000"/>
 
-<send>
+<recv request="BYE"></recv>
+
+<send next="end">
 <![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "[service]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
-    [last_call-id:]
-    CSeq: [cseq] BYE
-    Max-Forwards: 70
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>
-
-<recv response="200" next="end" crlf="true"></recv>
 
 <!--Отправка INVITE c аутентификацией -->
 <label id="auth_invite"/>

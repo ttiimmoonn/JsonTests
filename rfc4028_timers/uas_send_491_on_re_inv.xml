@@ -176,7 +176,7 @@
         <assign assign_to="dummy" value="" />
         <assign assign_to="se" value="" />
         <assign assign_to="options" value="" />
-        <ereg regexp="Session-Expires:\s?([0-9]+)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
     </action>
 </recv>
 
