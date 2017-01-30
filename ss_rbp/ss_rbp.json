@@ -77,7 +77,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "20s"
@@ -138,7 +138,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "10s"
@@ -184,7 +184,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "20s"
@@ -229,7 +229,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "20s"
