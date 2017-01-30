@@ -491,6 +491,68 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "491_response_handling",
+      "Description": "Включаем юзерам обновление сессии по rfc4028. Ловим re-invite от ссв и отправляем ему свой.",
+      "TestProcedure": [
+        {
+        "CoconCommand":[
+            {
+              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
+              "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force true",
+              "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+              "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true",
+              "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+              "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_send_491_on_re_inv.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_491",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_send_491_on_re_inv.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+        "CoconCommand":[
+            {
+                "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+                "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
+                "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+                "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

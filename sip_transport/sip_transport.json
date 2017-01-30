@@ -84,7 +84,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -99,14 +99,14 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 },
                 {
-                  "SourceFile": "sip_transport/uac_recv_480.xml",
+                  "SourceFile": "sip_transport/uac_recv_502.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -139,7 +139,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -154,7 +154,7 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -171,7 +171,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -186,7 +186,7 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -203,7 +203,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -218,7 +218,7 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -235,7 +235,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -250,7 +250,7 @@
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -283,7 +283,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -298,14 +298,14 @@
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 },
                 {
-                  "SourceFile": "sip_transport/uac_recv_480.xml",
+                  "SourceFile": "sip_transport/uac_recv_502.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -338,7 +338,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -353,7 +353,7 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -370,7 +370,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -385,7 +385,7 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -402,7 +402,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -417,7 +417,7 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }
@@ -434,7 +434,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             },
@@ -449,7 +449,7 @@
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",
-                  "Timeout": "30s"
+                  "Timeout": "15s"
                 }
               ]
             }

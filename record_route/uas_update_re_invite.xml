@@ -43,9 +43,9 @@
 <![CDATA[
     SIP/2.0 180 Ringing
     [last_Via:]
-    Record-Route: <sip:test1.domain.ru;lr>
-    Record-Route: <sip:test2.domain.com;lr>
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:test1.domain.ru>
+    Record-Route: <sip:test2.domain.com>
+    Record-Route: <sip:[local_ip]:[local_port]>
     [last_From:]
     [last_To:];tag=[$local_tag]
     [last_Call-ID:]
@@ -72,9 +72,9 @@
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
-    Record-Route: <sip:test1.domain.ru;lr>
-    Record-Route: <sip:test2.domain.com;lr>
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:test1.domain.ru>
+    Record-Route: <sip:test2.domain.com>
+    Record-Route: <sip:[local_ip]:[local_port]>
     [last_From:]
     [last_To:]
     [last_Call-ID:]
@@ -99,9 +99,9 @@
 <send retrans="500">
 <![CDATA[
     SIP/2.0 200 OK
-    Record-Route: <sip:test1.domain.ru;lr>
-    Record-Route: <sip:test2.domain.com;lr>
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:test1.domain.ru>
+    Record-Route: <sip:test2.domain.com>
+    Record-Route: <sip:[local_ip]:[local_port]>
     Via:[$inv_via]
     From:[$inv_from]
     To:[$inv_to];tag=[$local_tag]
@@ -122,9 +122,9 @@
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
-    Record-Route: <sip:test1.domain.ru;lr>
-    Record-Route: <sip:test2.domain.com;lr>
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:test1.domain.ru>
+    Record-Route: <sip:test2.domain.com>
+    Record-Route: <sip:[local_ip]:[local_port]>
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
     [last_call-id]
@@ -163,9 +163,9 @@
 <send>
 <![CDATA[
     SIP/2.0 200 OK
-    Record-Route: <sip:test1.domain.ru;lr>
-    Record-Route: <sip:test2.domain.com;lr>
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:test1.domain.ru>
+    Record-Route: <sip:test2.domain.com>
+    Record-Route: <sip:[local_ip]:[local_port]>
     [last_Via:]
     [last_From:]
     [last_To:]

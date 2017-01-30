@@ -26,7 +26,7 @@
   ],
   "UserVar": [
     {
-      "%%TestNumber%%" : "108",
+      "%%TestNumber%%" : "109",
       "%%TestDomain%%" : "pv.ssw3"
     }
   ],
@@ -48,7 +48,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port": "5040",
+              "Port": "5088",
               "Name": "UAC_REC_ROUTE",
               "Commands": [
                 {
@@ -72,7 +72,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port": "5040",
+              "Port": "5088",
               "Name": "UAC_REC_ROUTE",
               "Commands": [
                 {
@@ -96,7 +96,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port": "5040",
+              "Port": "5088",
               "Name": "UAS_REC_ROUTE",
               "Commands": [
                 {

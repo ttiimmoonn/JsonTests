@@ -134,7 +134,7 @@
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "SourceFile": "simple_ua/uac_send_491_on_re_inv.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -149,7 +149,7 @@
               "Name": "UAC_IGNORE_CANCEL_SIDE_A",
               "Commands": [
                 {
-                  "SourceFile": "rfc3261_simple_test/uac_ignore_cancel_send_200_ok_side_a.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
