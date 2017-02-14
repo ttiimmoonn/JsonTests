@@ -1,7 +1,6 @@
 {
   "TestName": "sip_info",
-  "AutoTest" : "True",
-  "Users": [
+    "Users": [
     {
       "UserId": "1",
       "Number": "157",
