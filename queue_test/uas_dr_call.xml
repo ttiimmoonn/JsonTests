@@ -155,7 +155,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE sip:[$remote_number]@[$new_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
