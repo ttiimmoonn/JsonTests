@@ -7,9 +7,9 @@
       "Number": "150",
       "Login": "150",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
-      "Port": "12106",
+      "Port": "14106",
       "SipGroup": "sip.ab",
       "QParam": "0.5"
     },
@@ -18,9 +18,9 @@
       "Number": "151",
       "Login": "151",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
-      "Port": "12107",
+      "Port": "14107",
       "SipGroup": "sip.ab",
       "QParam": "1"
     },
@@ -29,9 +29,9 @@
       "Number": "152",
       "Login": "152",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
-      "Port": "12108",
+      "Port": "14108",
       "SipGroup": "sip.ab",
       "QParam": "1"
     },
@@ -40,10 +40,10 @@
       "Number": "153",
       "Login": "153",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12109",
+      "Port": "14109",
       "QParam": "1"
     },
     {
@@ -51,10 +51,10 @@
       "Number": "154",
       "Login": "154",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12110",
+      "Port": "14110",
       "QParam": "1"
     },
     {
@@ -62,10 +62,10 @@
       "Number": "155",
       "Login": "155",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12111",
+      "Port": "14111",
       "QParam": "1"
     },
     {
@@ -73,10 +73,10 @@
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12112",
+      "Port": "14112",
       "QParam": "1"
     },
     {
@@ -84,10 +84,10 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12113",
+      "Port": "14113",
       "QParam": "1"
     },
     {
@@ -95,10 +95,10 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12114",
+      "Port": "14114",
       "QParam": "1"
     },
     {
@@ -106,10 +106,10 @@
       "Number": "159",
       "Login": "159",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12115",
+      "Port": "14115",
       "QParam": "1"
     },
     {
@@ -117,24 +117,25 @@
       "Number": "149",
       "Login": "149",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "SipGroup": "sip.ab",
-      "Port": "12116",
+      "Port": "14116",
       "QParam": "1"
     }
   ],
   "UserVar": [
     {
       "%%TimeTemplate%%": "1234567 00:00-23:59",
-      "%%BadTimeTemplate%%": "7 00:00-00:00"
+      "%%BadTimeTemplate%%": "7 00:00-00:00",
+      "%%FIND_ME_TIMER%%" : "5000"
     }
   ],
   "PreCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% find_me",
       "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% find_me send_call_diversion = true",
-      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%% - %%10.Number%%}@%%0.SipDomain%% terminal_type smart"
+      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%10.Number%%}@%%0.SipDomain%% terminal_type smart"
     }
   ],
   "PostCoconConf": [
@@ -254,6 +255,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAS1_FIND_ME",
               "Commands": [
                 {
@@ -268,6 +270,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "WriteStat" : "True",
               "Name": "UAS2_FIND_ME",
               "Commands": [
                 {
@@ -282,6 +285,7 @@
             {
               "Type": "User",
               "UserId": "3",
+              "WriteStat" : "True",
               "Name": "UAS3_FIND_ME",
               "Commands": [
                 {
@@ -296,6 +300,7 @@
             {
               "Type": "User",
               "UserId": "4",
+              "WriteStat" : "True",
               "Name": "UAS4_FIND_ME",
               "Commands": [
                 {
@@ -310,6 +315,7 @@
             {
               "Type": "User",
               "UserId": "5",
+              "WriteStat" : "True",
               "Name": "UAS5_FIND_ME",
               "Commands": [
                 {
@@ -324,6 +330,7 @@
             {
               "Type": "User",
               "UserId": "6",
+              "WriteStat" : "True",
               "Name": "UAS6_FIND_ME",
               "Commands": [
                 {
@@ -338,6 +345,7 @@
             {
               "Type": "User",
               "UserId": "7",
+              "WriteStat" : "True",
               "Name": "UAS7_FIND_ME",
               "Commands": [
                 {
@@ -352,6 +360,7 @@
             {
               "Type": "User",
               "UserId": "8",
+              "WriteStat" : "True",
               "Name": "UAS8_FIND_ME",
               "Commands": [
                 {
@@ -366,6 +375,7 @@
             {
               "Type": "User",
               "UserId": "9",
+              "WriteStat" : "True",
               "Name": "UAS9_FIND_ME",
               "Commands": [
                 {
@@ -388,6 +398,34 @@
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Difference": "0",
+              "Mode" : "between_ua",
+              "UA": "1,2,3",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : "None"
+                }
+              ]
+            },
+            {
+              "Difference": "%%FIND_ME_TIMER%%",
+              "Mode" : "between_ua",
+              "UA": "4,1",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : "None"
                 }
               ]
             }
