@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "Port": "10106",
       "SipGroup": "sip.ab",
@@ -18,7 +18,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10107",
@@ -29,7 +29,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10108",
@@ -40,7 +40,7 @@
       "Number": "155",
       "Login": "155",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10109",
@@ -137,7 +137,7 @@
           "CheckDifference": [
             {
               "Difference": "0",
-              "Mode" : "inner_ua",
+              "Mode" : "between_ua",
               "UA": "0,1,2",
               "Msg" : [
                 {
@@ -149,7 +149,7 @@
             },
             {
               "Difference": "0",
-              "Mode" : "inner_ua",
+              "Mode" : "between_ua",
               "UA": "0,1",
               "Msg" : [
                 {
@@ -238,7 +238,7 @@
           "CheckDifference": [
             {
               "Difference": "0",
-              "Mode" : "inner_ua",
+              "Mode" : "between_uas",
               "UA": "0,1,2",
               "Msg" : [
                 {
