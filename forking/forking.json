@@ -238,7 +238,7 @@
           "CheckDifference": [
             {
               "Difference": "0",
-              "Mode" : "between_uas",
+              "Mode" : "between_ua",
               "UA": "0,1,2",
               "Msg" : [
                 {
