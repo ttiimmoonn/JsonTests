@@ -7,7 +7,7 @@
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CGPNDOM]"/>
-	<assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
     </action>
     </nop>
 

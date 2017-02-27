@@ -325,7 +325,7 @@
               "UserId": "20",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAS20_OPTIONS_CONTROL_MEM_LEAK_TEST0",
+              "Name": "UAS20_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
@@ -341,7 +341,7 @@
               "UserId": "21",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAS21_OPTIONS_CONTROL_MEM_LEAK_TEST0",
+              "Name": "UAS21_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
@@ -357,7 +357,7 @@
               "UserId": "22",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAS22_OPTIONS_CONTROL_MEM_LEAK_TEST0",
+              "Name": "UAS22_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
@@ -373,7 +373,7 @@
               "UserId": "23",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAS23_OPTIONS_CONTROL_MEM_LEAK_TEST0",
+              "Name": "UAS23_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
@@ -389,7 +389,7 @@
               "UserId": "24",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAS24_OPTIONS_CONTROL_MEM_LEAK_TEST0",
+              "Name": "UAS24_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
@@ -405,7 +405,7 @@
               "UserId": "10",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC10_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC10_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -421,7 +421,7 @@
               "UserId": "11",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC11_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC11_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -437,7 +437,7 @@
               "UserId": "12",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC12_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC12_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -453,7 +453,7 @@
               "UserId": "13",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC13_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC13_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -469,7 +469,7 @@
               "UserId": "14",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC14_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC14_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -485,7 +485,7 @@
               "UserId": "15",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC15_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC15_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -501,7 +501,7 @@
               "UserId": "16",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC16_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC16_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -517,7 +517,7 @@
               "UserId": "17",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC17_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC17_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -533,7 +533,7 @@
               "UserId": "18",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC18_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC18_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -549,7 +549,7 @@
               "UserId": "19",
               "Cyclic": "True",
               "BackGround" : "True",
-              "Name": "UAC19_SUB_MEM_LEAK_TEST0",
+              "Name": "UAC19_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
@@ -568,7 +568,7 @@
               "Type": "User",
               "UserId": "0",
               "Cyclic": "True",
-              "Name": "UAS0_MEM_LEAK_TEST0",
+              "Name": "UAS0_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -583,7 +583,7 @@
               "Type": "User",
               "UserId": "1",
               "Cyclic": "True",
-              "Name": "UAS1_MEM_LEAK_TEST0",
+              "Name": "UAS1_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -598,7 +598,7 @@
               "Type": "User",
               "UserId": "2",
               "Cyclic": "True",
-              "Name": "UAS2_MEM_LEAK_TEST0",
+              "Name": "UAS2_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
@@ -613,7 +613,7 @@
               "Type": "User",
               "UserId": "3",
               "Cyclic": "True",
-              "Name": "UAS3_MEM_LEAK_TEST0",
+              "Name": "UAS3_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
@@ -628,7 +628,7 @@
               "Type": "User",
               "UserId": "4",
               "Cyclic": "True",
-              "Name": "UAS4_MEM_LEAK_TEST0",
+              "Name": "UAS4_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/uas_send_busy.xml",
@@ -643,7 +643,7 @@
               "Type": "User",
               "UserId": "5",
               "Cyclic": "True",
-              "Name": "UAC0_MEM_LEAK_TEST0",
+              "Name": "UAC0_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
@@ -658,7 +658,7 @@
               "Type": "User",
               "UserId": "6",
               "Cyclic": "True",
-              "Name": "UAC1_MEM_LEAK_TEST0",
+              "Name": "UAC1_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -673,7 +673,7 @@
               "Type": "User",
               "UserId": "7",
               "Cyclic": "True",
-              "Name": "UAC2_MEM_LEAK_TEST0",
+              "Name": "UAC2_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
@@ -688,7 +688,7 @@
               "Type": "User",
               "UserId": "8",
               "Cyclic": "True",
-              "Name": "UAC3_MEM_LEAK_TEST0",
+              "Name": "UAC3_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
@@ -703,7 +703,7 @@
               "Type": "User",
               "UserId": "9",
               "Cyclic": "True",
-              "Name": "UAC4_RECV_BUSY_MEM_LEAK_TEST0",
+              "Name": "UAC4_RECV_BUSY_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/uac_recv_486.xml",
