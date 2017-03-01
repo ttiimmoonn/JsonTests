@@ -6,7 +6,7 @@
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10105",
@@ -17,7 +17,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10106",
@@ -29,7 +29,7 @@
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "Port": "10107",
       "QParam": "1"
@@ -40,13 +40,18 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ml"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ml",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
+      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+      "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart"
     }
   ],
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ml",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ml",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ml"
     }
   ],
 "Tests": [
@@ -161,6 +166,178 @@
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ml_only_incoming_call",
+      "Description": "Активируем абоненту ml c line_count = 1, line_count_out = 0. Делаем входящий вызов - вызов проходит, делаем исходящий вызов - получаем отбой",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count = 1, line_count_out = 0"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 4000",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC1_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_RECV_403",
+              "Commands": [
+                {
+                  "SourceFile": "ss_ml/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ml_only_outgoing_call",
+      "Description": "Активируем абоненту ml c line_count = 0, line_count_out = 1. Делаем исходящий вызов - вызов проходит, делаем входящий вызов - получаем отбой",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count = 0, line_count_out = 1"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 4000",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAC1_RECV_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_ml/uac_recv_486.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ml_symmetric_line_test",
+      "Description": "Активируем абоненту ml c line_count = 2, line_count_out = -1. Делаем 2 исходящих вызова и на оба отвечаем",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count = 2, line_count_out = -1",
+              "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count = 2, line_count_out = -1"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 2 -d 4000",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "10s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "Name": "UAC1_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 2 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
                 }
               ]
             }
