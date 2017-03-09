@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "Port": "11001",
       "SipGroup": "sip.ab",
@@ -18,7 +18,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "Port": "11002",
       "SipGroup": "sip.ab",
@@ -67,6 +67,46 @@
                 {
                   "SourceFile": "rfc3264_simple_test/uac_recv_bye_with_sdp_rfc3407.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Check_oa_exchange_2_video_codecs",
+      "Description": "Проверка корректности o/a при передаче 2 видео кодеков в a_sdp",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_2_VIDEO_CODECS",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uas_send_2_video_codecs.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 2000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
