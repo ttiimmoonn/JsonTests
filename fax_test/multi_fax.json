@@ -6,7 +6,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "3600",
       "Port": "11106",
       "SipGroup": "sip.ab",
@@ -16,7 +16,7 @@
   "UserVar": [
     {
       "%%FAX_NUMBER%%": "445",
-      "%%USER_DOM%%": "pv.ssw3"
+      "%%USER_DOM%%": "pv.ssw2"
     }
   ],
   "PreCoconConf": [

@@ -196,6 +196,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAC_RACE_BYE_AND_RE_INV",
               "Commands": [
                 {
