@@ -103,7 +103,7 @@
 
 <pause milliseconds="2000"/>
 
-<nop hide="true" condexec="CHK_DNAME" condexec_inverse="true"/>
+<nop hide="true" condexec="CHK_DNAME" condexec_inverse="true">
     <action>
         <exec int_cmd="stop_gracefully">
     </action>
