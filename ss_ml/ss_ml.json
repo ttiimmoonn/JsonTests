@@ -1,5 +1,6 @@
 {
   "TestName": "ss_ml",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
