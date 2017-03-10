@@ -70,16 +70,18 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg cnip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cnip"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
     }
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%CggUser%% cgg cnip",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cgg",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cnip"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%CggUser%% cgg",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cgg",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip"
     }
   ],
   "Tests": [
