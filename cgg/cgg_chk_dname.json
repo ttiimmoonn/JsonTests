@@ -91,7 +91,7 @@
               "Name": "UAS1_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye_chk_dname.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1 -set CHK_DNAME %%DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"

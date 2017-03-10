@@ -103,13 +103,7 @@
 
 <pause milliseconds="2000"/>
 
-<nop hide="true" condexec="CHK_DNAME" condexec_inverse="true">
-    <action>
-        <exec int_cmd="stop_gracefully"/>
-    </action>
-</nop>
-
-<nop hide="true">
+<nop hide="true" condexec="CHK_DNAME">
     <action>
         <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
         <log message="Point 1. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
