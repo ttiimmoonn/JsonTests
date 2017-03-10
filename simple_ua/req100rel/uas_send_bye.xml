@@ -2,6 +2,17 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAS recv BYE req100rel">
 
+<Global variables="CHK_DNAME" />
+<User variables="chk_dname,dummy,dname" />
+<Reference variables="dummy,dname"/>
+
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
+    </action>
+</nop>
+
 <recv request="INVITE">
 <action>
 	<ereg regexp="(\w)*@" search_in="hdr" header="To:" assign_to="number" />
@@ -108,5 +119,24 @@
 <recv response="200"></recv>
 <pause milliseconds="2000"/>
 
+<nop hide="true" condexec="CHK_DNAME" condexec_inverse="true"/>
+    <action>
+        <exec int_cmd="stop_gracefully">
+    </action>
+</nop>
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
+        <log message="Point 1. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop condexec="compare_result">
+    <action>
+        <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 	
 </scenario>
