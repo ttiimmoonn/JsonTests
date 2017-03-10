@@ -3,17 +3,20 @@
 <scenario name = "Simple UAC send BYE req100rel">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME" />
- 
     <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
-        <assignstr assign_to="display_name" value="[$DISPLAY_NAME]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
     </nop>
 
+    <nop hide="true" condexec="display_name">
+        <action>
+            <assignstr assign_to="display_name" value="[$DISPLAY_NAME]"/>
+        </action>
+    </nop>
     <nop hide="true" condexec="display_name" condexec_inverse="true">
         <action>
             <assignstr assign_to="display_name" value="Simple UAC send BYE req100rel" />
