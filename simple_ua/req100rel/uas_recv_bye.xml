@@ -113,7 +113,7 @@
 
 <nop hide="true" condexec="CHK_DNAME" condexec_inverse="true">
     <action>
-        <exec int_cmd="stop_gracefully">
+        <exec int_cmd="stop_gracefully"/>
     </action>
 </nop>
 
@@ -124,7 +124,7 @@
     </action>
 </nop>
 
-<nop condexec="compare_result">
+<nop hide="true" condexec="compare_result">
     <action>
         <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
