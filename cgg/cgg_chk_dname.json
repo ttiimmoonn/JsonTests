@@ -64,7 +64,8 @@
       "%%CggSipDomain%%": "%%0.SipDomain%%",
       "%%CggSipGroup%%" : "%%0.SipGroup%%",
       "%%SIP_DNAME%%" : "CggSipDNAME",
-      "%%ALIAS_DNAME%%" : "AliasDNAME"
+      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],
   "PreCoconConf": [
@@ -251,7 +252,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
