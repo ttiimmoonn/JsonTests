@@ -13,7 +13,7 @@
     </action>
     </nop>
 
-    <nop hide="true" condexec="display_name">
+    <nop hide="true" condexec="display_name" condexec_inverse="true">
         <action>
             <assignstr assign_to="display_name" value="Simple UAC send bye" />
         </action>
