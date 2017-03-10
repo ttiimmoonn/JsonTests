@@ -3,8 +3,8 @@
 <scenario name = "UAS answer CGG тест">
 
 <Global variables="CHK_DNAME" />
-<User variables="chk_dname,dummy" />
-<Reference variables="dummy"/>
+<User variables="chk_dname,dummy,dname" />
+<Reference variables="dummy,dname"/>
 
 <nop hide="true">
     <action>
@@ -16,7 +16,7 @@
 <recv request="INVITE">
 <action>
     <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
-    <ereg regexp="\"([\w-_\.]+)\"\s+<sip.*>" search_in="hdr" header="From:" assign_to="dummy,dname" />
+    <ereg regexp="\"(.*)\"" search_in="hdr" header="From:" assign_to="dummy,dname" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
@@ -72,7 +72,7 @@
 <nop hide="true">
    <action>
           <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
-     </action>
+    </action>
 </nop>
 
 <recv request="ACK"></recv>
@@ -92,16 +92,16 @@
 </send>
 
 <nop hide="true">
-    <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
-</nop>
-
-<nop hide="true" test="compare_result" next="end"/>
-
-<nop hide="true">
     <action>
-        <exec int_cmd="stop_now"/>
+        <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
+        <log message="Point 1. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
-<label id="end">
+<nop condexec="compare_result">
+    <action>
+        <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 </scenario>

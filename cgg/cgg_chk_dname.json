@@ -61,7 +61,8 @@
     {
       "%%CggGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]",
       "%%CggUser%%": "%%0.Number%%",
-      "%%CggSipDomain%%": "%%0.SipDomain%%"
+      "%%CggSipDomain%%": "%%0.SipDomain%%",
+      "%%DNAME%%" : "CggSipDNAME"
     }
   ],
   "PreCoconConf": [
@@ -91,10 +92,11 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye_chk_dname.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous",
+                  "Options": "-m 1 -set CHK_DNAME %%DNAME%%",
                   "SippType": "uas",
-                  "Timeout": "40s"
+                  "Timeout": "20s"
                 }
+              ]
             },
             {
               "Type": "User",
@@ -103,8 +105,8 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye_chk_dname.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous",
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 }
@@ -117,8 +119,8 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye_chk_dname.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous",
+                  "SourceFile": "cgg/uas_cancel.xml",
+                  "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 }
@@ -131,8 +133,8 @@
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "cgg/uac.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
