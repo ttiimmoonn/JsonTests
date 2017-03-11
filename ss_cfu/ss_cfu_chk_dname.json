@@ -1,69 +1,43 @@
 {
-  "TestName": "ss_cgg_dname_test",
-  "AutoTest" : "True",
+  "TestName": "ss_cfu",
+  "AutoTest": "True",
   "Users": [
     {
       "UserId": "0",
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
-      "Port": "10100",
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "Port": "10105",
+      "QParam": "1"
     },
     {
       "UserId": "1",
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
-      "Port": "10106",
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "Port": "10106",
+      "QParam": "1"
     },
     {
       "UserId": "2",
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "Port": "10107",
-      "SipGroup": "sip.ab",
-      "QParam": "1"
-    },
-    {
-      "UserId": "3",
-      "Number": "159",
-      "Login": "159",
-      "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10108",
-      "SipGroup": "sip.ab",
-      "QParam": "1"
-    },
-    {
-      "UserId": "4",
-      "Number": "155",
-      "Login": "155",
-      "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "SipGroup": "sip.ab",
-      "Port": "10109",
       "QParam": "1"
     }
   ],
   "UserVar": [
     {
-      "%%CggGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]",
-      "%%CggUser%%": "%%0.Number%%",
-      "%%CggSipDomain%%": "%%0.SipDomain%%",
-      "%%CggSipGroup%%" : "%%0.SipGroup%%",
       "%%SIP_DNAME%%" : "SipDNAME",
       "%%ALIAS_DNAME%%" : "AliasDNAME",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
@@ -71,34 +45,33 @@
   ],
   "PreCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfu number = %%0.Number%%",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip"
     }
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%CggUser%% cgg",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cgg",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfu",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip"
     }
   ],
+
   "Tests": [
     {
-      "Name": "cgg_set_dname_only_sip",
+      "Name": "cfu_set_dname_only_sip",
       "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с SIP",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -110,41 +83,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -156,13 +101,13 @@
       ]
     },
     {
-      "Name": "cgg_set_dname_on_sip_and_alias",
+      "Name": "cfu_set_dname_on_sip_and_alias",
       "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
       "TestProcedure": [
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
             }
           ]
         },
@@ -170,13 +115,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -184,41 +129,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -230,7 +147,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
             }
           ]
         }
@@ -244,9 +161,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -258,41 +175,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -304,13 +193,13 @@
       ]
     },
     {
-      "Name": "cgg_set_only_alias_dname",
+      "Name": "cfu_set_only_alias_dname",
       "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
       "TestProcedure": [
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
             }
           ]
         },
@@ -318,9 +207,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -332,41 +221,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -378,14 +239,14 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
             }
           ]
         }
       ]
     },
     {
-      "Name": "cgg_set_dname_on_sip_and_routing",
+      "Name": "cfu_set_dname_on_sip_and_routing",
       "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
@@ -400,9 +261,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -414,41 +275,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -468,13 +301,13 @@
       ]
     },
     {
-      "Name": "cgg_set_dname_on_sip_and_alias_and_routing",
+      "Name": "cfu_set_dname_on_sip_and_alias_and_routing",
       "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0iY2dnX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0icnVsZTEiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxhY3Rpb25zPgogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUUiLz4KICAgIDwvYWN0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4K",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context cgg_test_ctx"
             }
@@ -484,9 +317,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -498,41 +331,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -544,7 +349,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/routing/delete cgg_test_ctx",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
             }
@@ -553,7 +358,7 @@
       ]
     },
     {
-      "Name": "cgg_set_dname_only_routing",
+      "Name": "cfu_set_dname_only_routing",
       "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
@@ -564,13 +369,13 @@
             }
           ]
         },
-        {
+                {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -582,41 +387,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -636,25 +413,25 @@
       ]
     },
     {
-      "Name": "cgg_set_dname_on_alias_and_routing",
+      "Name": "cfu_set_dname_on_alias_and_routing",
       "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0iY2dnX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0icnVsZTEiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxhY3Rpb25zPgogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUUiLz4KICAgIDwvYWN0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4K",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context cgg_test_ctx"
             }
           ]
         },
-        {
+                {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAS1_CGG_WOUT100REL",
+              "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -666,41 +443,13 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
-              "Name": "UAS2_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
-              "Name": "UAS3_CGG_WOUT100REL",
-              "Commands": [
-                {
-                  "SourceFile": "cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "4",
+              "UserId": "1",
               "WriteStat" : "True",
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -712,7 +461,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/routing/delete cgg_test_ctx",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
             }
