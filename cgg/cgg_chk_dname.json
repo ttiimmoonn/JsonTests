@@ -1,5 +1,6 @@
 {
   "TestName": "ss_cgg_dname_test",
+  "AutoTest" : "True",
   "Users": [
     {
       "UserId": "0",
@@ -63,7 +64,7 @@
       "%%CggUser%%": "%%0.Number%%",
       "%%CggSipDomain%%": "%%0.SipDomain%%",
       "%%CggSipGroup%%" : "%%0.SipGroup%%",
-      "%%SIP_DNAME%%" : "CggSipDNAME",
+      "%%SIP_DNAME%%" : "SipDNAME",
       "%%ALIAS_DNAME%%" : "AliasDNAME",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
