@@ -15,6 +15,7 @@
 
 <recv request="INVITE">
 <action>
+	<ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" check_it="true" search_in="hdr" header="From:" assign_to="dummy,dname" />
 	<ereg regexp="(\w)*@" search_in="hdr" header="To:" assign_to="number" />
 	<ereg regexp=".*" search_in="hdr" header="From:" assign_to="inv_from" />
 	<ereg regexp=".*" search_in="hdr" header="To:" assign_to="inv_to" />
