@@ -22,6 +22,7 @@
     <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+    <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" check_it="true" search_in="hdr" header="From:" assign_to="dummy,dname" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
