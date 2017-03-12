@@ -48,7 +48,9 @@
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu",
       "command2": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfu number = %%0.Number%%",
       "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip"
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
     }
   ],
   "PostCoconConf": [
@@ -56,7 +58,9 @@
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfu",
       "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu",
       "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip"
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip"
     }
   ],
 
@@ -75,7 +79,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -121,7 +125,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -167,7 +171,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous",
+                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -213,7 +217,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -267,7 +271,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -323,7 +327,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -379,7 +383,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -435,7 +439,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
