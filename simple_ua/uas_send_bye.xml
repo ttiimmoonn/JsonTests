@@ -2,14 +2,15 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAS send BYE">
 
-<Global variables="CHK_DNAME" />
-<User variables="chk_dname,dummy,dname" />
+<Global variables="CHK_DNAME,CHK_NUMBER" />
+<User variables="chk_dname,chk_number,dummy,dname" />
 <Reference variables="dummy,dname"/>
 
 
 <nop hide="true" condexec="CHK_DNAME">
     <action>
         <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
+        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
     </action>
 </nop>
 
@@ -117,5 +118,20 @@
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_number" variable2="local_number"/>
+        <log message="Point 3. chk_number: [$chk_number]; number: [$local_number]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 4. chk_number: [$chk_number]; number: [$local_number]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
 
 </scenario>

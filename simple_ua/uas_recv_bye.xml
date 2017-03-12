@@ -2,14 +2,15 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAS recv BYE">
 
-<Global variables="CHK_DNAME" />
-<User variables="chk_dname,dummy,dname" />
+<Global variables="CHK_DNAME,CHK_NUMBER" />
+<User variables="chk_dname,chk_number,dummy,dname" />
 <Reference variables="dummy,dname"/>
 
 
 <nop hide="true" condexec="CHK_DNAME">
     <action>
         <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
+        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
     </action>
 </nop>
 
@@ -17,6 +18,7 @@
 <action>
     <log message="INVITE [timestamp]"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
     <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" check_it="true" search_in="hdr" header="From:" assign_to="dummy,dname" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
@@ -109,6 +111,20 @@
 <nop hide="true" condexec="compare_result">
     <action>
         <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
+        <log message="Point 3. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 4. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
