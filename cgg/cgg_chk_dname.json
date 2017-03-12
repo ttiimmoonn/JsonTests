@@ -74,7 +74,9 @@
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg",
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
       "command3": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
     }
   ],
   "PostCoconConf": [
@@ -85,6 +87,8 @@
       "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
       "command5": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
       "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
+      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+      "command8": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
     }
   ],
   "Tests": [
