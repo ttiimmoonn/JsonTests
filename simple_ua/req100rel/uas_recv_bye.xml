@@ -10,10 +10,14 @@
 <nop hide="true" condexec="CHK_DNAME">
     <action>
         <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
-        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
     </action>
 </nop>
 
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
+    </action>
+</nop>
 
 <recv request="INVITE">
 <action>
