@@ -71,7 +71,7 @@
   "PreCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = group, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = manual, window_size = 3, numbers = %%ChuntGroup%%, cyclic = false, queue_size = 1, max_shift_count = 0, window_start_pos = 0, queue_strategy = drop, reset_window_start_pos_after_call = true, window_shift_timeout = 5, search_strategy = first, window_shift = 0",
       "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
       "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
       "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
@@ -85,7 +85,9 @@
       "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
       "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
       "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
+      "command7": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
     }
   ],
   "Tests": [
@@ -251,7 +253,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
