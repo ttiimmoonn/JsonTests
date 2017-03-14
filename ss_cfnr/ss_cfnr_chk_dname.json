@@ -67,10 +67,10 @@
       "command6": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
       "command7": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
       "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
-      "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
-      "command10": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
+      "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
+      "command10": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
+      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
+      "command12": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
     }
   ],
 
@@ -197,7 +197,7 @@
     },
     {
       "Name": "cfnr_wout_dname",
-      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем Anonymous",
+      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем \"\"",
       "TestProcedure": [
         {
           "StartUA": [
