@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "simple uas recv CANCEL">
+<Global variables="CHK_DNAME,CHK_NUMBER" />
+<User variables="chk_dname,chk_number,dummy,dname" />
+<Reference variables="dummy,dname"/>
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
+    </action>
+</nop>
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
+    </action>
+</nop>
 
 
 <recv request="INVITE">
 <action>
 	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
-	<assignstr assign_to="local_tag" value="[call_number][pid]"/>
-	<log message="INVITE [timestamp]"/>
+	<ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
+
 
 <send>
 <![CDATA[
@@ -66,5 +82,35 @@
 </send>
 
 <recv request="ACK"></recv>
+
+
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
+        <log message="Point 1. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
+        <log message="Point 3. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 4. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 
 </scenario>
