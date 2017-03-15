@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10106",
@@ -19,7 +19,7 @@
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10107",
       "QParam": "1"
@@ -30,7 +30,7 @@
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10108",
       "QParam": "1"
@@ -41,7 +41,7 @@
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10109",
       "QParam": "1"
@@ -49,6 +49,8 @@
   ],
   "UserVar": [
     {
+      "%%DEFAULT_ALARM_DNAME%%" : "Alarm\\ clock",
+      "%%MANUAL_ALARM_DNAME%%" : "ManualAlarmDname"
     }
   ],
   "PreCoconConf": [
@@ -77,37 +79,18 @@
             {
               "code": "*55*1*%%NowTime+120%%#",
               "userId": "1"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
               "userId": "2"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*56*3*%%NowTime+120%%#",
               "userId": "3"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
               "userId": "4"
-            }
-          ]
-        },
-        {
-          "CoconCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
             }
           ]
         },
@@ -121,7 +104,7 @@
               "Commands": [
                 {
                   "SourceFile": "alarm/uas.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }
@@ -135,7 +118,7 @@
               "Commands": [
                 {
                   "SourceFile": "alarm/uas.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%2.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }
@@ -149,7 +132,7 @@
               "Commands": [
                 {
                   "SourceFile": "alarm/uas.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%3.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }
@@ -163,7 +146,7 @@
               "Commands": [
                 {
                   "SourceFile": "alarm/uas.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }
@@ -189,27 +172,15 @@
             {
               "code": "*55*1*%%NowTime+120%%#",
               "userId": "1"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
               "userId": "2"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*56*3*%%NowTime+120%%#",
               "userId": "3"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
               "userId": "4"
@@ -301,27 +272,15 @@
             {
               "code": "*55*1*%%NowTime+120%%#",
               "userId": "1"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
               "userId": "2"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*56*3*%%NowTime+120%%#",
               "userId": "3"
-            }
-          ]
-        },
-        {
-          "ServiceFeature": [
+            },
             {
               "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
               "userId": "4"
