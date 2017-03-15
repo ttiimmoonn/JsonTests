@@ -1,0 +1,86 @@
+{
+  "TestName": "ss_call_record",
+  "AutoTest" : "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "Port": "11001",
+      "SipGroup": "sip.ab",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "1",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires": "90",
+      "Port": "11002",
+      "SipGroup": "sip.ab",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} call_recording",
+      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} call_recording mode = always_on"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} call_recording",
+      "command2" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} call_recording"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "send_a_sdp_wout_attr",
+      "Description": "Проверка записи разговора если в a_sdp не выслали описание кодеков",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_call_record/uas_send_bye_a_sdp_wout_attr.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
