@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11106",
       "SipGroup": "sip.ab",
@@ -18,7 +18,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11107",
       "SipGroup": "sip.ab",
@@ -29,7 +29,7 @@
       "Number": "159",
       "Login": "159",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11108",
       "SipGroup": "sip.ab",
@@ -40,7 +40,7 @@
       "Number": "155",
       "Login": "155",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "3600",
       "Port": "11109",
       "SipGroup": "sip.ab",
@@ -49,7 +49,7 @@
   ],
   "UserVar": [
     {
-      "%%FAX_NUMBER%%": "A001",
+      "%%FAX_NUMBER%%": "455",
       "%%USER_DOM%%": "%%DEV_DOM%%"
     }
   ],
@@ -201,6 +201,31 @@
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_t38_send_bye_on_re_invite.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_t38_send_re_invite",
+      "Description": "Проверка, что факс будет принят если юзер отправил re-invite после передачи факса.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_T38_SEND_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_t38_send_re_invite.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
                   "NeedAuth": "True",
                   "SippType": "uac",
