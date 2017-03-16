@@ -1,0 +1,468 @@
+
+{
+  "TestName": "ss_voice_page_chk_dname",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "0",
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10105",
+      "QParam": "1"
+    },
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "1"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%SIP_DNAME%%" : "SipDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ROUTE_DNAME%%" : "RouteDNAME"
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% voice_page",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page priority = 0_flash_override",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% voice_page",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% voice_page",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+      "command7": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
+    }
+  ],
+
+  "Tests": [
+    {
+      "Name": "voice_page_set_dname_only_sip",
+      "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с SIP + VoicePage",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%SIP_DNAME%%\" -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_set_dname_on_sip_and_alias",
+      "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias + VoicePage",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ALIAS_DNAME%%\" -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ml_wout_dname",
+      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем VoicePage",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage\" -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_set_only_alias_dname",
+      "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias + VoicePage",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ALIAS_DNAME%%\" -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_set_dname_on_sip_and_routing",
+      "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0idm9pY2VfcGFnZV90ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ROUTE_DNAME%%\" -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_set_dname_on_sip_and_alias_and_routing",
+      "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0idm9pY2VfcGFnZV90ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ROUTE_DNAME%%\" -set CHK_NUMBER %%1.Number%%", "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_set_dname_only_routing",
+      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0idm9pY2VfcGFnZV90ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
+            }
+          ]
+        },
+                {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ROUTE_DNAME%%\" -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "voice_page_set_dname_on_alias_and_routing",
+      "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0idm9pY2VfcGFnZV90ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
+            }
+          ]
+        },
+                {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS1_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ROUTE_DNAME%%\" -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
