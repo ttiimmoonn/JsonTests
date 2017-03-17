@@ -83,9 +83,10 @@
       "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%1.Number%%-%%3.Number%%} cnip",
       "command4": "/domain/%%DEV_DOM%%/ss/disable {%%1.Number%%-%%3.Number%%} cnip",
       "command5": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate {%%1.Number%%-%%3.Number%%} clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable {%%1.Number%%-%%3.Number%%} clip"
+      "command6": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+      "command8": "/domain/%%DEV_DOM%%/ss/deactivate {%%1.Number%%-%%3.Number%%} clip",
+      "command9": "/domain/%%DEV_DOM%%/ss/disable {%%1.Number%%-%%3.Number%%} clip"
     }
   ],
   "Tests": [
@@ -233,7 +234,7 @@
           "CoconCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%4.SipDomain%% displayName"
+              "command2": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
             }
           ]
         }

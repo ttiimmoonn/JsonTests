@@ -127,7 +127,7 @@
     Принимаем переход на g711
 -->
 
-<pause milliseconds="43000"/>
+<pause milliseconds="43500"/>
 
 <send>
 <![CDATA[
