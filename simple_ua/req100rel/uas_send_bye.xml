@@ -2,8 +2,8 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAS recv BYE req100rel">
 
-<Global variables="CHK_DNAME" />
-<User variables="chk_dname,dummy,dname" />
+<Global variables="CHK_DNAME,CHK_NUMBER" />
+<User variables="chk_dname,chk_number,dummy,dname" />
 <Reference variables="dummy,dname"/>
 
 
@@ -13,8 +13,15 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
+    </action>
+</nop>
+
 <recv request="INVITE">
 <action>
+	<ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
 	<ereg regexp="(\w)*@" search_in="hdr" header="To:" assign_to="number" />
 	<ereg regexp=".*" search_in="hdr" header="From:" assign_to="inv_from" />
 	<ereg regexp=".*" search_in="hdr" header="To:" assign_to="inv_to" />
@@ -129,6 +136,20 @@
 <nop hide="true" condexec="compare_result">
     <action>
         <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
+        <log message="Point 3. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 4. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>

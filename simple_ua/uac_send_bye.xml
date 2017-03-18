@@ -2,20 +2,26 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAC send bye">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME" />
     <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
-        <assignstr assign_to="display_name" value="[$DISPLAY_NAME]"/>
+        <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
     </nop>
 
     <nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
         <action>
-            <assignstr assign_to="display_name" value="Simple UAC send bye" />
+            <assignstr assign_to="display_name" value="\"Simple UAC send bye\" " />
+        </action>
+    </nop>
+
+    <nop hide="true" condexec="WOUT_DNAME">
+        <action>
+            <assignstr assign_to="display_name" value="" />
         </action>
     </nop>
 
@@ -23,7 +29,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "[$display_name]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -60,6 +66,7 @@
 
 <recv response="100" optional="true"></recv>
 <recv response="183" optional="true"></recv>
+<recv response="181" optional="true"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="200" auth="true">
         <action>
@@ -91,7 +98,7 @@
 <![CDATA[
     BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Simple UAC send bye" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
@@ -122,7 +129,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "[$display_name]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
