@@ -1,5 +1,6 @@
 {
   "TestName": "rfc4028_timers",
+  "Isolate" : "True",
   "AutoTest" : "True",
   "Users": [
     {

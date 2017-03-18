@@ -1,5 +1,6 @@
 {
   "TestName": "core_timers",
+  "Isolate" : "True",
   "AutoTest" : "True",
   "Users": [
     {
