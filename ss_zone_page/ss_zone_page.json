@@ -89,7 +89,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
             }
           ]
         },
@@ -162,7 +162,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
             }
           ]
         },
@@ -229,7 +229,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = false, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = false, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
             }
           ]
         },
@@ -302,7 +302,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
             }
           ]
         },
@@ -429,7 +429,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = false, terminate_when_playback_ends = true"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = false, terminate_when_playback_ends = true"
             }
           ]
         },
@@ -502,7 +502,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = false"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = false"
             }
           ]
         },
@@ -575,7 +575,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=members"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=members"
             }
           ]
         },
@@ -652,7 +652,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 1_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=managers"
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=managers"
             }
           ]
         },
