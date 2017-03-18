@@ -65,20 +65,13 @@
   "PreCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% zone_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} clip cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} cnip",
-      "command5" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
+      "command2" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
     }
   ],
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% zone_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% zone_page",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} cnip"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% zone_page"
     }
   ],
 "Tests": [
