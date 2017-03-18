@@ -132,58 +132,6 @@
           ]
         }
       ]
-    },
-    {
-      "Name": "chk_call_without_dname",
-      "Description": "Активируем CNIP. Делаем вызов без dname. На стороне Б ожидаем пустую строку",
-      "TestProcedure": [
-        {
-          "CoconCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip"
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": "0",
-              "Name": "UAS_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER Anonymous",
-                  "SippType": "uas",
-                  "NeedAuth": "True",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": "1",
-              "Name": "UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"\"",
-                  "SippType": "uac",
-                  "NeedAuth": "True",
-                  "Timeout": "20s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "CoconCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip"
-            }
-          ]
-        }
-      ]
     }
   ]
 }
