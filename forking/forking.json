@@ -136,14 +136,28 @@
         {
           "CheckDifference": [
             {
-              "Method": "INVITE",
               "Difference": "0",
-              "UA": "0,1,2"
+              "Mode" : "between_ua",
+              "UA": "0,1,2",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : "None"
+                }
+              ]
             },
             {
-              "Method": "CANCEL",
               "Difference": "0",
-              "UA": "0,1"
+              "Mode" : "between_ua",
+              "UA": "0,1",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "CANCEL",
+                  "Code" : "None"
+                }
+              ]
             }
           ]
         }
@@ -223,9 +237,16 @@
         {
           "CheckDifference": [
             {
-              "Method": "INVITE",
               "Difference": "0",
-              "UA": "0,1,2"
+              "Mode" : "between_ua",
+              "UA": "0,1,2",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : "None"
+                }
+              ]
             }
           ]
         }
