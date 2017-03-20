@@ -45,10 +45,6 @@
 </action>
 </recv>
 
-
-
-
-
 <send>
 <![CDATA[
     SIP/2.0 100 Trying
@@ -77,7 +73,7 @@
 
 <pause milliseconds="1000"/>
 
-<send retrans="500">
+<send>
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
