@@ -52,7 +52,7 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3261_simple_test/uas_retransmit_200_ok.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -nr",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "40s"
