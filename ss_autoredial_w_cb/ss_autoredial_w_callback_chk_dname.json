@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_autoredial_w_cb",
+  "TestName": "ss_autoredial_w_cb_chk_dname",
   "AutoTest": "True",
   "Users": [
     {
