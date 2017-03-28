@@ -52,7 +52,7 @@
   ],
 "Tests": [
     {
-      "Name": "simple_cfb_test",
+      "Name": "simple_cfos_test",
       "Description": "Звоним на абонента с cfos, даём 480 и проверяем переадресацию",
       "TestProcedure": [
         {
