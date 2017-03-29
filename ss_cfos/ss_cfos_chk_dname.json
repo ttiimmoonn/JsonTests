@@ -38,9 +38,10 @@
   ],
   "UserVar": [
     {
-      "%%SIP_DNAME%%" : "SipDNAME",
+      "%%SIP_DNAME%%" : "SipDNAME_CFOS",
       "%%ALIAS_DNAME%%" : "AliasDNAME_CFOS",
-      "%%ROUTE_DNAME%%" : "RouteDNAME"
+      "%%ROUTE_DNAME%%" : "RouteDNAME_CFOS",
+      "%%CFOS_ROUTE_CONTEXT%%" : "Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0ic3NfY2Zvc190ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0NGT1MiLz4KICAgIDwvYWN0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4K"
     }
   ],
   "PreCoconConf": [
@@ -322,7 +323,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0ic3NfY2Zvc190ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFOS_ROUTE_CONTEXT%%",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_cfos_test_ctx"
             }
           ]
@@ -392,7 +393,7 @@
           "CoconCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0ic3NfY2Zvc190ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFOS_ROUTE_CONTEXT%%",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_cfos_test_ctx"
             }
           ]
@@ -462,7 +463,7 @@
         {
           "CoconCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0ic3NfY2Zvc190ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFOS_ROUTE_CONTEXT%%",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_cfos_test_ctx"
             }
           ]
@@ -532,7 +533,7 @@
           "CoconCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 Cjxjb250ZXh0IHhtbG5zOnhzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHM6bm9OYW1lc3BhY2VTY2hlbWFMb2NhdGlvbj0iZWNzc19yb3V0aW5nLnhzZCIgbmFtZT0ic3NfY2Zvc190ZXN0X2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFOS_ROUTE_CONTEXT%%",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_cfos_test_ctx"
             }
           ]
