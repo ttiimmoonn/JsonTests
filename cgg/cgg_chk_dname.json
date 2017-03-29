@@ -65,7 +65,7 @@
       "%%CggSipDomain%%": "%%0.SipDomain%%",
       "%%CggSipGroup%%" : "%%0.SipGroup%%",
       "%%SIP_DNAME%%" : "SipDNAME",
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_CGG",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],

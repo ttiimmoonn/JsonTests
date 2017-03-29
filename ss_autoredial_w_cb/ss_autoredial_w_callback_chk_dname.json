@@ -27,7 +27,7 @@
   ],
   "UserVar": [
     {
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_AUTOREDIAL_W_CB",
       "%%SIP_DNAME%%" : "SipDNAME",
       "%%ROUTE_DNAME%%" : "RouteDNAME",
       "%%ALIAS_DNAME_FOR_B%%" : "AutoRedialDNAME",

@@ -61,7 +61,7 @@
   "UserVar": [
     {
       "%%ZONE_PAGE_NAME%%" : "SimpleTestZONEPAGE",
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_ZONE_PAGE",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],

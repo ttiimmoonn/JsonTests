@@ -64,7 +64,7 @@
       "%%ChuntSipDomain%%": "%%0.SipDomain%%",
       "%%ChuntGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]",
       "%%SIP_DNAME%%" : "SipDNAME",
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_CHUNT_GROUP",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],

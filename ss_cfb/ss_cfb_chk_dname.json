@@ -39,7 +39,7 @@
   "UserVar": [
     {
       "%%SIP_DNAME%%" : "SipDNAME",
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_CFB",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],

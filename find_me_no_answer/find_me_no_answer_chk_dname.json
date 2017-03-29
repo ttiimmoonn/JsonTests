@@ -62,7 +62,7 @@
     {
       "%%TimeTemplate%%" : "1234567 00:00-23:59",
       "%%SIP_DNAME%%" : "SipDNAME",
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_FIND_ME_NO_ANS",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],

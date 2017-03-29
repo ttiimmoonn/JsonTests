@@ -29,7 +29,7 @@
   "UserVar": [
     {
       "%%SIP_DNAME%%" : "SipDNAME",
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_VOICE_PAGE",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],

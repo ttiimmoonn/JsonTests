@@ -38,7 +38,7 @@
   ],
   "UserVar": [
     {
-      "%%ALIAS_DNAME%%" : "AliasDNAME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_CFNR_TYPE2",
       "%%ROUTE_DNAME%%" : "RouteDNAME"
     }
   ],
