@@ -245,6 +245,31 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "fax_pending_test",
+      "Description": "Тестирование обработки встречных реквестов при переходе на t38",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_T38_SEND_RE_INVITE_PENDING",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/fax_491_test.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
