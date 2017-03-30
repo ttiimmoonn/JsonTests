@@ -3,7 +3,8 @@
 <scenario name = "new_script">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<User variables="cdpn_dom,cgpn_dom,cdpn" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,dummy" />\
+<Reference variables="dummy" />
 
     <nop hide="true">
     <action>
@@ -84,6 +85,10 @@
 <recv request="INVITE">
     <action>
         <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="re_inv_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="re_inv_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="re_inv_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="re_inv_cseq" />
     </action>
 </recv>
 
@@ -141,7 +146,7 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
     [last_from:]
     [last_to:]
