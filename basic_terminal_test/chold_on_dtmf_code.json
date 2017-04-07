@@ -7,7 +7,7 @@
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10100",
       "SipGroup": "sip.ab",
@@ -18,7 +18,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10106",
       "SipGroup": "sip.ab",
@@ -29,7 +29,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "10107",
       "SipGroup": "sip.ab",
@@ -38,6 +38,7 @@
   ],
   "UserVar": [
     {
+      "%%ALIAS_B_DNAME%%" : "CHOLD_DNAME_TEST"
     }
   ],
   "PreCoconConf": [
@@ -113,8 +114,8 @@
       ]
     },
     {
-      "Name": "chold_callback",
-      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold",
+      "Name": "chold_callback_wout_alias_dname_on_b_side",
+      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. (проверка Dname)",
       "TestProcedure": [
         {
           "StartUA": [
@@ -133,7 +134,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -set CHK_DNAME Callback -set CHK_NUMBER %%2.Number%%",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "30s"
@@ -153,6 +154,66 @@
                   "Timeout": "30s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "chold_callback_with_alias_dname_on_b_side",
+      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. (проверка Dname)",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_B_DNAME%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
+                  "Options": "-m 1 -set CHK_DNAME \"Callback: %%ALIAS_B_DNAME%%\" -set CHK_NUMBER %%2.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
             }
           ]
         }
