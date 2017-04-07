@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas_script">
+<!-- <Global variables="pointer" /> -->
+
+
+<recv request="INVITE"></recv>
+<recv request="INVITE"></recv>
+<recv request="INVITE"></recv>
+<recv request="INVITE"></recv>
+<recv request="INVITE"></recv>
+<recv request="INVITE"></recv>
+<recv request="INVITE"></recv>
+
+</scenario>
