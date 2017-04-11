@@ -25,6 +25,7 @@
 ]]>
 </send>
 
+<pause milliseconds="1000"/>
 
 <send retrans="500">
 <![CDATA[
@@ -34,7 +35,7 @@
     [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
-    Contact: <sip:[$forw_user]@[$forw_domain]?Subject=tsmn_test&Call-Info=<http://www.habahaba.com>
+    Contact: <sip:[$forw_user]@[$forw_domain]?Subject=tsmn_test&Call-Info=<http://www.habahaba.com>>
     P-Asserted-Identity: <sip:PAssert@Fetched>
     P-Visited-Network-ID: other.2.net, "Visited network number 2"
     Geolocation-Routing: yes
