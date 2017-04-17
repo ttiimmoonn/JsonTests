@@ -1,0 +1,82 @@
+{
+  "TestName": "register_test",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10109",
+      "UserIP": "1.1.1.1",
+      "FakePort" : "5060",
+      "QParam": "0.5"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "register_foreign_contact",
+      "Description" : "Регистрируем левый контакт. Делаем вызов с другого IP:PORT - вызов проходит.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId": "1",
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                 {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
