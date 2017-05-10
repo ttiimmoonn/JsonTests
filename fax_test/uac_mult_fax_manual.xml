@@ -258,6 +258,184 @@
 
 <recv request="ACK"/>
 
+<recv request="INVITE"> </recv>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 488 Not Acceptable Here
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Type: application/sdp
+    Content-Length: 0 
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+
+
+<recv request="INVITE"> </recv>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    Contact: sip:[service]@[local_ip]:[local_port]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654325 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
+    a=ecan:fb on -
+    a=silenceSupp:off - - - -
+    a=sendrecv
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+<!--
+    Передаём факс
+-->
+<nop>
+<action>
+     <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
+</action>
+</nop>
+
+<!--
+    Принимаем переход на g711
+-->
+
+<recv request="INVITE"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    Contact: sip:[service]@[local_ip]:[local_port]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654326 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK"/>
+
+<recv request="INVITE"> </recv>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 488 Not Acceptable Here
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Type: application/sdp
+    Content-Length: 0 
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+
+
+<recv request="INVITE"> </recv>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    Contact: sip:[service]@[local_ip]:[local_port]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654327 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
+    a=ecan:fb on -
+    a=silenceSupp:off - - - -
+    a=sendrecv
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+<!--
+    Передаём факс
+-->
+<nop>
+<action>
+     <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
+</action>
+</nop>
+
+<!--
+    Принимаем переход на g711
+-->
+
+<recv request="INVITE"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    Contact: sip:[service]@[local_ip]:[local_port]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654328 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK"/>
+
 <!--
     Ждём завершение вызова
 -->
