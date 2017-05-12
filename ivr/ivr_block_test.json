@@ -33,6 +33,8 @@
 
       "%%IVR_CALL_TO_EXTENSION%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"ivr_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_2\":{\"name\":\"ivr\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":true,\"direct_call_to_extension\":true,\"category\":\"access_type0\",\"max_digits\":3,\"interdigit_timeout\":2},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"No Match\":\"undefined\",\"Extension\":\"dial_3\"},\"links\":{\"No Match\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Extension\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2}}},\"dial_3\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"EXTENSION\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":360,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":450,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_block_test\",\"description\":\"\",\"version\":\"3.9.0.97\"}",
 
+      "%%IVR_CHANGE_ACCESS_TYPE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"ivr_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_2\":{\"name\":\"ivr\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":true,\"direct_call_to_extension\":true,\"category\":\"ivr_access\",\"max_digits\":3,\"interdigit_timeout\":2},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"No Match\":\"undefined\",\"Extension\":\"dial_3\"},\"links\":{\"No Match\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Extension\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2}}},\"dial_3\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"EXTENSION\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":360,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":450,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_block_test\",\"description\":\"\",\"version\":\"3.9.0.97\"}",
+
       "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdGVzdF9ibG9ja19pdnIiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9ibG9ja190ZXN0Ii8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
   ],
@@ -206,6 +208,47 @@
           "CoconCommand": [
             {
               "command0": "domain/pv.ssw3/ivr/script/delete ivr_block_test"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_block_change_access_type",
+      "Description": "Проверка смены access_type в блоке ivr",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_block_test --json %%IVR_CHANGE_ACCESS_TYPE%%",
+              "command1": "/domain/%%DEV_DOM%%/access-type/declare ivr_access false false false false false false false false false false false false 127 normal"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command0": "domain/pv.ssw3/ivr/script/delete ivr_block_test",
+              "command1": "/domain/%%DEV_DOM%%/access-type/remove ivr_access"
             }
           ]
         }

@@ -93,7 +93,7 @@
 </nop>
 
 
-<recv request="BYE"></recv>
+<recv request="BYE" timeout="5000"></recv>
 
 <send next="end" crlf="true">
 <![CDATA[
