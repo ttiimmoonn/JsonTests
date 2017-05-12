@@ -1,0 +1,215 @@
+{
+	"TestName" : "ivr_block_test",
+  "AutoTest" : "True",
+	"Users" : [
+	    {
+	      "UserId": "0",
+	      "Number": "156",
+	      "Login": "156",
+	      "Password": "123",
+	      "SipDomain": "pv.ssw3",
+	      "Expires": "90",
+	      "Port": "20000",
+	      "SipGroup": "sip.ab",
+	      "QParam": "0.5"
+	    },
+      {
+        "UserId": "1",
+        "Number": "157",
+        "Login": "157",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires": "90",
+        "Port": "20002",
+        "SipGroup": "sip.ab",
+        "QParam": "0.5"
+      }
+	],
+  "UserVar": [
+    {
+      "%%IVR_ONLY_NO_MATCH%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"ivr_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_5\":{\"name\":\"ivr\",\"params\":{\"direct_call_to_extension\":false,\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":false,\"category\":\"access_type0\",\"max_digits\":3,\"interdigit_timeout\":2},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"No Match\":\"dial_7\"},\"links\":{\"No Match\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"dial_7\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}}},\"name\":\"ivr_block_test\",\"description\":\"\",\"version\":\"3.9.0.97\"}",
+
+      "%%IVR_DTMF_DETECT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"ivr_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_2\":{\"name\":\"ivr\",\"params\":{\"direct_call_to_extension\":false,\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[{\"command\":\"0\",\"description\":\"\"}],\"wait_time\":5,\"extension_dialing\":false,\"category\":\"access_type0\",\"max_digits\":3,\"interdigit_timeout\":2},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"0\":\"dial_3\",\"No Match\":\"undefined\"},\"links\":{\"0\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2},\"No Match\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}},\"dial_3\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":2,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":360,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":450,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_block_test\",\"description\":\"\",\"version\":\"3.9.0.97\"}",
+
+      "%%IVR_CALL_TO_EXTENSION%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"ivr_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_2\":{\"name\":\"ivr\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":true,\"direct_call_to_extension\":true,\"category\":\"access_type0\",\"max_digits\":3,\"interdigit_timeout\":2},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"No Match\":\"undefined\",\"Extension\":\"dial_3\"},\"links\":{\"No Match\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Extension\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2}}},\"dial_3\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"EXTENSION\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":360,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":450,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_block_test\",\"description\":\"\",\"version\":\"3.9.0.97\"}",
+
+      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdGVzdF9ibG9ja19pdnIiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9ibG9ja190ZXN0Ii8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
+    }
+  ],
+  "PreCoconConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_test_block_ivr"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_test_block_ivr"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "ivr_block_only_no_match",
+      "Description": "Тестируем прохождение вызова через блок ivr с единственным выходом no_match",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_block_test --json %%IVR_ONLY_NO_MATCH%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command0": "domain/pv.ssw3/ivr/script/delete ivr_block_test"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_block_test_dtmf_detect",
+      "Description": "Тестируем детектирование цифр в блоке ivr",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_block_test --json %%IVR_DTMF_DETECT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS 0",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command0": "domain/pv.ssw3/ivr/script/delete ivr_block_test"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_block_call_to_extension",
+      "Description": "Тестируем донабор в блоке ivr",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_block_test --json %%IVR_CALL_TO_EXTENSION%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command0": "domain/pv.ssw3/ivr/script/delete ivr_block_test"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
