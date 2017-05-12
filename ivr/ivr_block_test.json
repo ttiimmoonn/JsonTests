@@ -1,18 +1,18 @@
 {
-	"TestName" : "ivr_block_test",
+  "TestName" : "ivr_block_test",
   "AutoTest" : "True",
-	"Users" : [
-	    {
-	      "UserId": "0",
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires": "90",
-	      "Port": "20000",
-	      "SipGroup": "sip.ab",
-	      "QParam": "0.5"
-	    },
+  "Users" : [
+      {
+        "UserId": "0",
+        "Number": "156",
+        "Login": "156",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires": "90",
+        "Port": "20000",
+        "SipGroup": "sip.ab",
+        "QParam": "0.5"
+      },
       {
         "UserId": "1",
         "Number": "157",
@@ -24,7 +24,7 @@
         "SipGroup": "sip.ab",
         "QParam": "0.5"
       }
-	],
+  ],
   "UserVar": [
     {
       "%%IVR_ONLY_NO_MATCH%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"ivr_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_5\":{\"name\":\"ivr\",\"params\":{\"direct_call_to_extension\":false,\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":false,\"category\":\"access_type0\",\"max_digits\":3,\"interdigit_timeout\":2},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"No Match\":\"dial_7\"},\"links\":{\"No Match\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"dial_7\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}}},\"name\":\"ivr_block_test\",\"description\":\"\",\"version\":\"3.9.0.97\"}",
