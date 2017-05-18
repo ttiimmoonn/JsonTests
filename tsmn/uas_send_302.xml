@@ -29,41 +29,39 @@
 
 <send retrans="500">
 <![CDATA[
-    SIP/2.0 302 Moved Temporarily
-    [last_Via:]
-    [last_From:]
-    [last_To:];tag=[$local_tag]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Contact: <sip:[$forw_user]@[$forw_domain]?Subject=tsmn_test&Call-Info=<http://www.habahaba.com>>
-    P-Asserted-Identity: <sip:PAssert@Fetched>
-    P-Visited-Network-ID: other.2.net, "Visited network number 2"
-    Geolocation-Routing: yes
-    Content-Type: multipart/mixed; boundary=boundary1 
-    Content-Length: [len]
+SIP/2.0 302 Moved Temporarily
+[last_Via:]
+[last_From:]
+[last_To:];tag=[$local_tag]
+[last_Call-ID:]
+[last_CSeq:]
+Contact: <sip:[$forw_user]@[$forw_domain]?Subject=tsmn_test&Call-Info=<http://www.habahaba.com>>
+P-Asserted-Identity: <sip:PAssert@Fetched>
+P-Visited-Network-ID: other.2.net, "Visited network number 2"
+Geolocation-Routing: yes
+Content-Type: multipart/mixed; boundary=boundary1 
+Content-Length: [len]
 
-	--boundary1
-	 Content-Type: application/pidf+xml
-	 Content-ID: <target123@atlanta.example.com>
-
-	 <?xml version="1.0" encoding="UTF-8"?>
-	 <presence
-	 xmlns="urn:ietf:params:xml:ns:pidf"
-	 xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10"
-	 xmlns:gbp="urn:ietf:params:xml:ns:pidf:geopriv10:basicPolicy"
-	 xmlns:cl="urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr"
-	 xmlns:gml="http://www.opengis.net/gml"
-	 xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model"
-	 entity="pres:alice@atlanta.example.com">
-	 <dm:device id="target123-1">
-	 <gp:geopriv>
-	 </gp:geopriv>
-	 <dm:deviceID>mac:1234567890ab</dm:deviceID>
-	 <dm:timestamp>2010-11-04T20:57:29Z</dm:timestamp>
-	 </dm:device>
-	 </presence>
-
-	--boundary1--
+--boundary1
+Content-Type: application/pidf+xml
+Content-ID: <target123@atlanta.example.com>
+<?xml version="1.0" encoding="UTF-8"?>
+<presence
+xmlns="urn:ietf:params:xml:ns:pidf"
+xmlns:gp="urn:ietf:params:xml:ns:pidf:geopriv10"
+xmlns:gbp="urn:ietf:params:xml:ns:pidf:geopriv10:basicPolicy"
+xmlns:cl="urn:ietf:params:xml:ns:pidf:geopriv10:civicAddr"
+xmlns:gml="http://www.opengis.net/gml"
+xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model"
+entity="pres:alice@atlanta.example.com">
+<dm:device id="target123-1">
+<gp:geopriv>
+</gp:geopriv>
+<dm:deviceID>mac:1234567890ab</dm:deviceID>
+<dm:timestamp>2010-11-04T20:57:29Z</dm:timestamp>
+</dm:device>
+</presence>
+--boundary1--
 ]]>
 </send>
 <recv request="ACK"></recv>

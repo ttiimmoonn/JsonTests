@@ -51,7 +51,7 @@
               "Commands": [
                 {
                   "SourceFile": "tsmn/uas_send_302.xml",
-                  "Options": "-m 2 -set FORW_USER 112 -set FORW_DOMAIN %%1.SipDomain%%",
+                  "Options": "-m 1 -set FORW_USER 112 -set FORW_DOMAIN %%1.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -64,8 +64,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 2",
+                  "SourceFile": "tsmn/uas_chk_tsmn.xml",
+                  "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -79,7 +79,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 2 -set CDPN 112 -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set CDPN 112 -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "20s"
