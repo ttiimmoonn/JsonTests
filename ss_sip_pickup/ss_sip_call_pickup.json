@@ -53,7 +53,7 @@
       "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} pickup",
       "command3" : "/domain/%%DEV_DOM%%/lists/remove blf_for_sip_call_pick_up",
       "command4" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
-      "command5" : "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% blf",
+      "command5" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
       "command6" : "/domain/%%DEV_DOM%%/lists/remove blf_for_sip_call_pick_up"
     }
   ],
