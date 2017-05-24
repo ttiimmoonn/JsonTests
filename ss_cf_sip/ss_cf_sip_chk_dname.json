@@ -89,7 +89,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -149,7 +149,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -209,7 +209,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -269,7 +269,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -337,7 +337,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -407,7 +407,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -477,7 +477,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -547,7 +547,7 @@
               "Name": "UAS1_SEND_302",
               "Commands": [
                 {
-                  "SourceFile": "302_response_test/uas_send_302.xml",
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
                   "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "20s"
