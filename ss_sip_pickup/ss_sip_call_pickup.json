@@ -113,7 +113,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat" : "True",
-              "Name": "UAC_SIP_CALL_PICKUP",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -154,7 +154,7 @@
               "UserId": "1",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "UAC_SIP_CALL_PICKUP",
+              "Name": "UAC_SIP_CALL_PICKUP_BG_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/dialog_info_call_pickup_recv_403.xml",
@@ -236,7 +236,7 @@
               "UserId": "1",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "UAC_SIP_CALL_PICKUP",
+              "Name": "UAC_SIP_CALL_PICKUP_BG",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/dialog_info_call_pickup.xml",
@@ -273,7 +273,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat" : "True",
-              "Name": "UAC_SIP_CALL_PICKUP",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
