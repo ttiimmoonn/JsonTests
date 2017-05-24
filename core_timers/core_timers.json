@@ -8,7 +8,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "10106",
@@ -20,7 +20,7 @@
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires": "90",
       "Port": "10107",
       "QParam": "1"
@@ -121,6 +121,62 @@
                   "Timeout": "10s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "disable_timeouts",
+      "Description": "Проверка того, что вызовы не падают при уствновке таймеров no_answer_timeout и conversation_timeout в disabled. Bug #80285",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+                "command1" : "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout disabled",
+                "command2" : "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout disabled"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "NeedAuth" : "True",
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": "True",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "2",
+              "NeedAuth" : "True",
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -d 10000",
+                  "NeedAuth": "True",
+                  "SippType": "uac",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1" : "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
+              "command2" : "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
             }
           ]
         }
