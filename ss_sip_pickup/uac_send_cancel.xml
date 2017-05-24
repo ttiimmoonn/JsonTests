@@ -17,7 +17,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест 420 response" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Тест ss_sip_call_pickup" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -72,7 +72,7 @@
 <![CDATA[
     CANCEL sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    From: "Тест 420 response" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Тест ss_sip_call_pickup" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id:]
     CSeq: [cseq] CANCEL
@@ -129,7 +129,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест 420 response" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Тест ss_sip_call_pickup" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
