@@ -99,12 +99,16 @@
       "command3" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
       "command4" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% blf",
       "command5" : "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% blf",
-      "command6" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% blf",
-      "command7" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
-      "command8" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% blf",
-      "command9" : "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% blf",
-      "command10" : "/domain/%%DEV_DOM%%/lists/remove neighbor_list_1",
-      "command11" : "/domain/%%DEV_DOM%%/lists/remove neighbor_list_2"
+      "command6" : "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% blf",
+      "command7" : "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% blf",
+      "command8" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% blf",
+      "command9" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
+      "command10" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% blf",
+      "command11" : "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% blf",
+      "command12" : "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% blf",
+      "command13" : "/domain/%%DEV_DOM%%/ss/disable %%5.Number%% blf",
+      "command14" : "/domain/%%DEV_DOM%%/lists/remove neighbor_list_1",
+      "command15" : "/domain/%%DEV_DOM%%/lists/remove neighbor_list_2"
     }
   ],
 
