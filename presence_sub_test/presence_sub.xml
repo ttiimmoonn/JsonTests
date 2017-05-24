@@ -19,7 +19,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Precense Subscriptions" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] SUBSCRIBE
@@ -117,7 +117,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Precense Subscriptions" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     [last_call-id:]
     CSeq: [cseq] SUBSCRIBE
@@ -151,7 +151,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест PICK UP" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Precense Subscriptions" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     [authentication]

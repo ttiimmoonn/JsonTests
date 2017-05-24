@@ -24,9 +24,9 @@
   ],
   "PreCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/media-profile/declare no_t_38 no_t38 system",
-      "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add no_t_38 image T38 false",
-      "command3" : "/domain/%%DEV_DOM%%/alias/set-for-iface %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile no_t_38",
+      "command1" : "/domain/%%DEV_DOM%%/media-profile/declare no_t_38_for_multifax no_t38 system",
+      "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add no_t_38_for_multifax image T38 false",
+      "command3" : "/domain/%%DEV_DOM%%/alias/set-for-iface %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile no_t_38_for_multifax",
       "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_multi_fax --json-base64 %%FAX_SCRIPT%%",
       "command5" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CTX%%",
       "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context to_ivr_multi_fucks"
@@ -35,7 +35,7 @@
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile",
-      "command2": "/domain/%%DEV_DOM%%/media-profile/remove no_t_38",
+      "command2": "/domain/%%DEV_DOM%%/media-profile/remove no_t_38_for_multifax",
       "command3": "/domain/%%DEV_DOM%%/ivr/script/delete to_ivr_multi_fax",
       "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
       "command5": "/domain/%%DEV_DOM%%/routing/delete to_ivr_multi_fucks"

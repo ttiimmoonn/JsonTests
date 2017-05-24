@@ -47,11 +47,11 @@
             {
               "Type": "Trunk",
               "Port": "5087",
-              "Name": "SVET_TEST_RECV_302",
+              "Name": "SVET_TEST_UAC_SIPT",
               "Commands": [
                 {
                   "SourceFile": "svetec_test/uac_sipt.xml",
-                  "Options": "-m 1 -set CDPN 112 -set CDPNDOM svetec -set CGPN 900000 -set CGPNDOM svetec",
+                  "Options": "-m 1 -set CDPN 3108 -set CDPNDOM pv.ssw3 -set CGPN 89133936770 -set CGPNDOM pv.ssw3",
                   "SippType": "uac",
                   "Timeout": "20s"
                 }

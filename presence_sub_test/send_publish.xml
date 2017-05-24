@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "Simple UAC send bye">
+<scenario name = "Тест Precense Subscriptions">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
     <nop hide="true">
@@ -16,7 +16,7 @@
 <![CDATA[
     PUBLISH sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Simple UAC send bye" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Precense Subscriptions" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] PUBLISH
@@ -50,7 +50,7 @@
 <![CDATA[
     PUBLISH sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Simple UAC send bye" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Тест Precense Subscriptions" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] PUBLISH
