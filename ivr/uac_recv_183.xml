@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "IVR UAC SEND DTMF">
+<scenario name = "UAC recv 181">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,DIGITS" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
     <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
-        <assignstr assign_to="digits" value="[$DIGITS]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
     </nop>
@@ -17,7 +16,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "IVR UAC SEND DTMF" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "IVR UAC REQ 183 RESPONSE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -31,10 +30,8 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 8 96
+    m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
-    a=rtpmap:96 telephone-event/8000
-    a=fmtp:96 0-16
 ]]>
 </send>
 <recv response="100" optional="true"></recv>
@@ -54,9 +51,9 @@
 
 <label id="call_continue" />
 
-<recv response="100" optional="true"></recv>
-
-<recv response="180" optional="true"></recv>
+<recv response="100" optional="true"/>
+<recv response="183"/>
+<recv response="180" optional="true"/>
 <recv response="200" auth="true">
         <action>
          <!--Забрали CSeq -->
@@ -85,15 +82,7 @@
 </send>
 
 
-<pause milliseconds="1000"/>
-<nop>
-<action>
-    <exec play_dtmf="[$digits]" />
-</action>
-</nop>
-
-
-<recv request="BYE" timeout="5000"></recv>
+<recv request="BYE"></recv>
 
 <send next="end" crlf="true">
 <![CDATA[
@@ -127,7 +116,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "IVR UAC SEND DTMF" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "IVR UAC REQ 183 RESPONSE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
@@ -142,10 +131,8 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 8 96
+    m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
-    a=rtpmap:96 telephone-event/8000
-    a=fmtp:96 0-16
 ]]>
 </send>
 
