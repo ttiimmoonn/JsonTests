@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAC recv 181">
+<scenario name = "UAC recv 183">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME" />
     <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
+    </nop>
+
+    <nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
+        <action>
+            <assignstr assign_to="display_name" value="\"UAC RECV 183\" " />
+        </action>
+    </nop>
+
+    <nop hide="true" condexec="WOUT_DNAME">
+        <action>
+            <assignstr assign_to="display_name" value="" />
+        </action>
     </nop>
 
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "IVR UAC REQ 183 RESPONSE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -116,7 +129,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "IVR UAC REQ 183 RESPONSE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE

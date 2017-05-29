@@ -71,11 +71,11 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat" : "True",
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_RECV_183",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_recv_183.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR INFO AND PLAY BLOCK TEST\"",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
