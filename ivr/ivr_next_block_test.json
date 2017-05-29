@@ -193,7 +193,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR NEXT BLOCK TEST (CHK VARS)\"",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR NEXT BLOCK TEST (LOOP TEST)\"",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
