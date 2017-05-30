@@ -70,7 +70,7 @@
   "PostCoconConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_test_block_ivr",
+      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_simple_queue_block_test",
       "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ml",
       "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml"
     }
