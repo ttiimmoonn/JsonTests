@@ -68,7 +68,7 @@
 <label id="call_continue" />
 
 <recv response="100" optional="true"></recv>
-
+<recv response="183" optional="true"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="200" auth="true">
         <action>
@@ -98,15 +98,16 @@
 </send>
 
 
-<pause milliseconds="1000"/>
+<pause/>
+
 <nop>
-<action>
-    <exec play_dtmf="[$digits]" />
-</action>
+    <action>
+        <exec play_dtmf="[$digits]" />
+    </action>
 </nop>
 
 
-<recv request="BYE" timeout="5000"></recv>
+<recv request="BYE" timeout="15000"></recv>
 
 <send next="end" crlf="true">
 <![CDATA[

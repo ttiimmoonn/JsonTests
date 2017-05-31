@@ -137,7 +137,7 @@
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS 0 -set DISPLAY_NAME \"IVR BLOCK TEST (DETECT DTMF)\"",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS 0 -set DISPLAY_NAME \"IVR BLOCK TEST (DETECT DTMF)\" -d 1000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -191,7 +191,7 @@
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%% -set DISPLAY_NAME \"IVR BLOCK TEST (CALL TO EXT)\"",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%% -set DISPLAY_NAME \"IVR BLOCK TEST (CALL TO EXT)\" -d 1000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -231,7 +231,7 @@
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%% -set DISPLAY_NAME \"IVR BLOCK TEST (ACCESS TYPE)\"",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%% -set DISPLAY_NAME \"IVR BLOCK TEST (ACCESS TYPE)\" -d 1000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"

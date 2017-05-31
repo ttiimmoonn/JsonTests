@@ -70,7 +70,7 @@ Content-Length: 0
         <assign assign_to="dummy" value="" />
         <assign assign_to="check_state" value="" />
         <ereg regexp=".*(<state>trying</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
     </action>
 </recv>
 
@@ -98,8 +98,8 @@ Content-Length: 0
         <assign assign_to="dummy" value="" />
         <assign assign_to="check_state" value="" />
         <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
-
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
+         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="contact_ip" />
         <ereg regexp="call-id=\"([^\"]+)\"\s" search_in="body" check_it="true" assign_to="dummy,pickup_call_id"/>
         <ereg regexp="local-tag=\"([^\"]+)\"\s" search_in="body" check_it="true" assign_to="dummy,pickup_local_tag"/>
         <ereg regexp="remote-tag=\"([^\"]+)\"" search_in="body" check_it="true" assign_to="dummy,pickup_remote_tag"/>
@@ -126,6 +126,12 @@ Content-Length: 0
 ]]>
 </send>
 
+
+<nop hide="true">
+    <action>
+        <setdest host="[$contact_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
 
 <send>
 <![CDATA[

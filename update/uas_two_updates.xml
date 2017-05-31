@@ -31,14 +31,6 @@
 </recv>
 
 
-<!-- Устанавливаем из контакта dest IP  -->
-<nop hide="true">
-    <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
-    </action>
-</nop>
-
-
 
 <send>
 <![CDATA[
@@ -95,6 +87,12 @@
 
 <pause milliseconds="1000"/> 
 
+<!-- Устанавливаем из контакта dest IP  -->
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
 
 
 <send>

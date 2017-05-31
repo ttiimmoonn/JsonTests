@@ -24,13 +24,6 @@
 </action>
 </recv>
 
-<!-- Устанавливаем из контакта dest IP  -->
-<nop hide="true">
-    <action>
-        <setdest host="[$remote_ip]" port="[$remote_port]" protocol="UDP" />
-    </action>
-</nop>
-
 <send>
 <![CDATA[
     SIP/2.0 100 Trying
@@ -92,6 +85,13 @@
  <pause milliseconds="5000"/> 
 -->
 
+
+<!-- Устанавливаем из контакта dest IP  -->
+<nop hide="true">
+    <action>
+        <setdest host="[$remote_ip]" port="[$remote_port]" protocol="UDP" />
+    </action>
+</nop>
 
 <send retrans="500">
 <![CDATA[
