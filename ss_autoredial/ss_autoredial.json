@@ -54,7 +54,7 @@
     {
       "Name": "simple_autoredial_test (*37)",
       "Description": "Звоним на юзера с помощью autoredial. Первые два раза юзер даёт busy, потом отвечает на вызов.",
-      "TestProcedure": [zzz
+      "TestProcedure": [
         {
           "CoconCommand": [
             {
