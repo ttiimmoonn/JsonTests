@@ -284,8 +284,7 @@
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%2.Number%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (EXTENSION ACCEPT)\" -d 1000
-                ",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%2.Number%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (EXTENSION ACCEPT)\" -d 1000",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
