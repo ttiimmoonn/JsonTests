@@ -18,8 +18,8 @@
 
 <nop hide="true">
     <action>
-        <assignstr assign_to="cgpn_dom" value="[$CDPNDOM]"/>
-        <assignstr assign_to="cdpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
