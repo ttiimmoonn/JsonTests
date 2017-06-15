@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "Simple UAS recv MESSAGE">
+
+<User variables="chk_msg" />
+<Reference variables="chk_msg"/>
+
+
+<recv request="MESSAGE">
+<action>
+    <ereg regexp="Test 123 ТЕСТ !?" search_in="msg" check_it="true" assign_to="chk_msg"/>
+</action>
+</recv>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+</scenario>
