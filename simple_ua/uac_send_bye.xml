@@ -2,8 +2,10 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAC send bye">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME" />
-    <nop hide="true">
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CHK_PRPI" />
+<User variables="dummy,chk_prpi"/>
+<Reference variables="dummy,chk_prpi" />
+<nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
@@ -11,7 +13,7 @@
         <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
-    </nop>
+</nop>
 
     <nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
         <action>
@@ -64,16 +66,25 @@
 
 <label id="call_continue" />
 
-<recv response="100" optional="true"></recv>
+<recv response="100" optional="true">
+    <action>
+        <ereg regexp="Remote-Party-ID:" check_it_inverse="true" search_in="msg" assign_to="dummy"/>
+    </action>
+</recv>
 <recv response="183" optional="true"></recv>
 <recv response="181" optional="true"></recv>
-<recv response="180" optional="true"></recv>
+<recv response="180" optional="true">
+    <action>
+        <ereg regexp="Remote-Party-ID:" check_it="true" search_in="msg" assign_to="dummy"/>
+    </action>
+</recv>
 <recv response="200" auth="true">
-        <action>
+    <action>
          <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
-        </action>
+        <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,chk_prpi"/>
+    </action>
  </recv>
 <nop hide="true">
     <action>
@@ -150,5 +161,20 @@
 </send>
 
 <label id="end"/>
+
+<nop hide="true" condexec="CHK_PRPI">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_prpi" variable2="CHK_PRPI"/>
+        <log message="Point 1. chk_prpi: [$CHK_PRPI]; prpi: [$chk_prpi]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 2. compare_result = [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
 <pause milliseconds="2000"/>
 </scenario>
