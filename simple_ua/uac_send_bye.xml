@@ -2,9 +2,9 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAC send bye">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CHK_PRPI" />
-<User variables="dummy,chk_prpi"/>
-<Reference variables="dummy,chk_prpi" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CHK_RPI" />
+<User variables="dummy,chk_rpi"/>
+<Reference variables="dummy,chk_rpi" />
 <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
@@ -83,7 +83,7 @@
          <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
-        <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,chk_prpi"/>
+        <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,chk_rpi"/>
     </action>
  </recv>
 <nop hide="true">
@@ -162,10 +162,10 @@
 
 <label id="end"/>
 
-<nop hide="true" condexec="CHK_PRPI">
+<nop hide="true" condexec="CHK_RPI">
     <action>
-        <strcmp assign_to="compare_result" variable="chk_prpi" variable2="CHK_PRPI"/>
-        <log message="Point 1. chk_prpi: [$CHK_PRPI]; prpi: [$chk_prpi]; compare_result: [$compare_result]"/>
+        <strcmp assign_to="compare_result" variable="chk_rpi" variable2="CHK_RPI"/>
+        <log message="Point 1. chk_rpi: [$CHK_RPI]; prpi: [$chk_rpi]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
