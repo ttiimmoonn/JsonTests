@@ -90,6 +90,7 @@
             }
           ]
         },
+        {"Sleep":"5"},
         {
           "StartUA": [
             {
@@ -102,7 +103,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
