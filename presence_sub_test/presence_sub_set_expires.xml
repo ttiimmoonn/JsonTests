@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "SIMPLE PRESENCE SUB">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,EXPIRES" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,expires" />
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="expires" value="[$EXPIRES]"/>
+    </action>
+    </nop>
+
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "SIMPLE PRESENCE SUB" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: presence
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv response="401" auth="true" optional="true" next="1">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+ </recv>
+
+<label id="2"/>
+
+
+<recv response="200">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<send next="exit">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<label id="1"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send next="2">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "SIMPLE PRESENCE SUB" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: presence
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+<label id="exit"/>
+<pause milliseconds="2000"/>
+</scenario>
