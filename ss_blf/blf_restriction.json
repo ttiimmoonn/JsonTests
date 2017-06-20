@@ -116,7 +116,7 @@
 "Tests": [
     {
       "Name": "low_priority_test",
-      "Description": "Подписка low_to_high, low_to_normal, low_to_low. Во всех случаях получаем 403.",
+      "Description": "Подписка low_to_high, low_to_normal, low_to_low. Во всех случаях получаем 603.",
       "TestProcedure": [
         {
           "CoconCommand": [
@@ -132,7 +132,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat" : "True",
-              "Name": "FAILED_SUBSCRIBE_TO_NORMAL",
+              "Name": "FAILED_SUBSCRIBE_LOW_TO_NORMAL",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
@@ -151,7 +151,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat" : "True",
-              "Name": "FAILED_SUBSCRIBE_TO_HIGH",
+              "Name": "FAILED_SUBSCRIBE_LOW_TO_HIGH",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
@@ -170,7 +170,7 @@
               "Type": "User",
               "UserId": "2",
               "WriteStat" : "True",
-              "Name": "FAILED_SUBSCRIBE_TO_HIGH",
+              "Name": "FAILED_SUBSCRIBE_LOW_TO_LOW",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
@@ -195,7 +195,7 @@
               "Type": "User",
               "UserId": "1",
               "WriteStat" : "True",
-              "Name": "FAILED_SUBSCRIBE_TO_HIGH",
+              "Name": "FAILED_SUBSCRIBE_NORMAL_TO_HIGH",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
@@ -221,7 +221,7 @@
               "UserId": "1",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "SUCC_SUBSCRIBE_TO_LOW",
+              "Name": "SUCC_SUBSCRIBE_NORMAL_TO_LOW",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
@@ -292,7 +292,7 @@
               "UserId": "1",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "SUCC_SUBSCRIBE_TO_NORMAL",
+              "Name": "SUCC_SUBSCRIBE_NORMAL_TO_NORMAL",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
@@ -355,7 +355,7 @@
               "UserId": "0",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "SUCC_SUBSCRIBE_TO_LOW",
+              "Name": "SUCC_SUBSCRIBE_HIGH_TO_LOW",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
@@ -418,7 +418,7 @@
               "UserId": "0",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "SUCC_SUBSCRIBE_TO_NORMAL",
+              "Name": "SUCC_SUBSCRIBE_HIGH_TO_NORMAL",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
@@ -472,7 +472,7 @@
     },
     {
       "Name": "high_to_high_subsciption_test",
-      "Description": "Подписка с high на normal.",
+      "Description": "Подписка с high на high.",
       "TestProcedure": [
         {
           "CoconCommand": [
@@ -489,7 +489,7 @@
               "UserId": "0",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "SUCC_SUBSCRIBE_TO_NORMAL",
+              "Name": "SUCC_SUBSCRIBE_HIGH_TO_HIGH",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
@@ -684,6 +684,13 @@
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "60s"
+                },
+                {
+                  "SourceFile": "ss_blf/subscribe.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 0",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
                 }
               ]
             }
@@ -707,6 +714,13 @@
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                },
+                {
+                  "SourceFile": "ss_blf/subscribe.xml",
+                  "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "60s"

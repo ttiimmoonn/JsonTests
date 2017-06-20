@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "uac_recv_487">
+<scenario name = "uac_recv_603">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn" />
