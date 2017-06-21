@@ -1,0 +1,148 @@
+{
+	"TestName" : "ivr_voicemail_block_test",
+	"AutoTest" : "True",
+	"Users" : [
+      {
+        "UserId": "0",
+        "Number": "156",
+        "Login": "156",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires": "90",
+        "Port": "20000",
+        "SipGroup": "sip.ab",
+        "QParam": "0.5"
+      },
+      {
+        "UserId": "1",
+        "Number": "157",
+        "Login": "157",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires": "90",
+        "Port": "20002",
+        "SipGroup": "sip.ab",
+        "QParam": "0.5"
+      },
+      {
+        "UserId": "2",
+        "Number": "158",
+        "Login": "158",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires": "90",
+        "Port": "20004",
+        "SipGroup": "sip.ab",
+        "QParam": "0.5"
+      }
+  ],
+  "UserVar": [
+    {
+      "%%IVR_VOICEMAIL_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"voice-mail_31\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"voice-mail_31\":{\"name\":\"voice-mail\",\"params\":{\"description\":\"\",\"owner\":\"%%1.Number%%\",\"intro\":[{\"type\":\"file\",\"location\":\"system\",\"group\":\"voicemail\",\"name\":\"ai_say_message_after_beep.wav\",\"variable_type\":\"\"},{\"type\":\"file\",\"location\":\"system\",\"group\":\"numbers\",\"name\":\"#1.wav\",\"variable_type\":\"\"},{\"type\":\"tone\",\"location\":\"\",\"group\":\"\",\"name\":\"tone://?f1=525&f2=525&on_msec=500&off_msec=500&duration=1000\",\"variable_type\":\"\"}],\"completion\":[{\"type\":\"file\",\"location\":\"system\",\"group\":\"voicemail\",\"name\":\"ai_message_saved.wav\",\"variable_type\":\"\"}],\"stop_digit\":\"#\",\"emails\":[],\"email_from\":\"%DISPLAYNAME%\",\"email_subject\":\"Voicemail from %CALLING% at %DATE% %TIME%\",\"email_body\":\"\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{},\"links\":{}}},\"name\":\"ivr_voicemail_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdm9pY2VtYWlsX2Jsb2NrX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4KICA8cnVsZSBuYW1lPSJ0b19pdnIiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl92b2ljZW1haWxfYmxvY2tfdGVzdCIvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+",
+      "%%VM_PASS%%" : "123"
+    }
+   ],
+  "PreCoconConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_voicemail_block_test",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% voicemail",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voicemail password=%%VM_PASS%%"
+    }
+  ],
+  "PostCoconConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_voicemail_block_test",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% voicemail",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% voicemail"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "ivr_voicemail_block_test",
+      "Description": "Тестирование ivr блока voicemail",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+              {
+                "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_voicemail_block_test --json %%IVR_VOICEMAIL_SCRIPT%%"
+              }
+            ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "BackGround" : "True",
+              "Name": "WMI_SUBSCRIBE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/wmi_subscription.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": "2"
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAC_CALL_TO_VOICEMAIL_SCRIPT",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -d 10000 -set DIGITS #",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "WriteStat" : "True",
+              "Name": "UAC_CHK_VOICEMAIL",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN *91*%%1.Number%%# -set CDPNDOM %%0.SipDomain%% -d 2000 -set DIGITS %%VM_PASS%%141",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": "5"
+        },
+        {
+          "CoconCommand": [
+              {
+                "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_voicemail_block_test"
+              }
+            ]
+        }
+      ]
+    }
+  ]
+}
