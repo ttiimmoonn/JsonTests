@@ -41,7 +41,6 @@
   ],
   "PreCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/sip/properties/set blf_enable true"
     }
   ],
   "PostCoconConf": [
