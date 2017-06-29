@@ -1,0 +1,71 @@
+{
+  "TestName": "reg_expire",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5",
+      "OneTime" : "True"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10109",
+      "QParam": "0.5",
+      "OneTime" : "True"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "reg_expire_test",
+      "Description" : "Проверка, что по истечению expires звонки перестают проходить.",
+      "TestProcedure": [
+        {
+          "Sleep" : "100"
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "2",
+              "Name": "UAC_RECV_403",
+              "Commands": [
+                 {
+                  "SourceFile": "register_test/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
