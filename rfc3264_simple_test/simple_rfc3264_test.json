@@ -156,6 +156,48 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "reject_re_invite_with_t38",
+      "Description": "Проверка пересогласования плеча А на 711 в случае если плечо Б отбило запрос на переход на t38 488 ответом",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Cyclic" : "True",
+              "Name": "UAS_SEND_488_ON_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uas_send_488_on_t38.xml",
+                  "Options": "-m 5",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Cyclic" : "True",
+              "Name": "UAC_SEND_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uac_send_refresh_on_t38_and_wait_ref_from_msr.xml",
+                  "Options": "-m 5 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
