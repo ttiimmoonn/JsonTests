@@ -38,7 +38,7 @@
               "Name": "UAC_MULT_FAX",
               "Commands": [
                 {
-                  "SourceFile": "fax_test/uac_mult_fax.xml",
+                  "SourceFile": "fax_test/uac_mult_fax_manual.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
                   "NeedAuth": "True",
                   "SippType": "uac",

@@ -119,7 +119,7 @@
     },
     {
       "Name": "subscribe_wout_presence_service",
-      "Description": "Получение 403 ответа при деактивированном сервисе blf.",
+      "Description": "Получение 403 ответа при деактивированном сервисе presence.",
       "TestProcedure": [
         {
           "StartUA": [
