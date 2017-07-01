@@ -2,9 +2,9 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAC recv bye">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CHK_RPI" />
-<User variables="dummy,chk_rpi"/>
-<Reference variables="dummy,chk_rpi" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CHK_ALERTING_NAME,CHK_CONNECTED_NAME,CHK_ALERTING_NUMBER,CHK_CONNECTED_NUMBER"/>
+<User variables="dummy,alerting_name,connected_name,alerting_number,connected_number"/>
+<Reference variables="dummy,alerting_name,connected_name,alerting_number,connected_number" />
 
 <nop hide="true">
     <action>
@@ -78,6 +78,7 @@
 <recv response="180" optional="true">
     <action>
         <ereg regexp="Remote-Party-ID:" check_it="true" search_in="msg" assign_to="dummy"/>
+        <ereg regexp="s?\"?([^\"]+)\"?\s<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,alerting_name,alerting_number"/>
     </action>
 </recv>
 
@@ -87,7 +88,8 @@
          <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
-        <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,chk_rpi"/>
+        <!--Remote-Party-ID: "Vragov Pavel" <sip:100@pv.ssw3>-->
+        <ereg regexp="s?\"?([^\"]+)\"?\s<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,connected_name,connected_number"/>
         </action>
  </recv>
 
@@ -109,6 +111,12 @@
     Content-Length: 0
 ]]>
 </send>
+
+<nop>
+  <action>
+     <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
+ </action>
+</nop>
 
 
 <recv request="BYE"></recv>
@@ -167,20 +175,61 @@
 
 <label id="end"/>
 
-<nop hide="true" condexec="CHK_RPI">
+<nop hide="true" condexec="CHK_ALERTING_NUMBER">
     <action>
-        <strcmp assign_to="compare_result" variable="chk_rpi" variable2="CHK_RPI"/>
-        <log message="Point 1. chk_rpi: [$CHK_RPI]; prpi: [$chk_rpi]; compare_result: [$compare_result]"/>
+        <strcmp assign_to="compare_result" variable="CHK_ALERTING_NUMBER" variable2="alerting_number"/>
+        <log message="Alerting number checked. chk_alerting_number: [$CHK_ALERTING_NUMBER]; current_alerting_number: [$alerting_number]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="Point 2. compare_result = [$compare_result]"/>
+        <log message="CHK_ALERTING_NUMBER check failed"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
 
+<nop hide="true" condexec="CHK_ALERTING_NAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_ALERTING_NAME" variable2="alerting_name"/>
+        <log message="Alerting name checked. chk_alerting_name: [$CHK_ALERTING_NAME]; current_alerting_name: [$alerting_name]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="CHK_ALERTING_NAME check failed"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_CONNECTED_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_CONNECTED_NUMBER" variable2="connected_number"/>
+        <log message="Connected number checked. chk_connected_number: [$CHK_CONNECTED_NUMBER]; current_connected_number: [$connected_number]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="CHK_CONNECTED_NUMBER check failed"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_CONNECTED_NAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_CONNECTED_NAME" variable2="connected_name"/>
+        <log message="Connected name checked. chk_connected_name: [$CHK_CONNECTED_NAME]; current_conncted_name: [$connected_name]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="CHK_CONNECTED_NAME check failed"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 
 <pause milliseconds="2000"/>
 </scenario>
