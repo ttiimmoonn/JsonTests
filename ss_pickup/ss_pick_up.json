@@ -92,7 +92,11 @@
     }
   ],
   "UserVar": [
-    {}
+    {
+      "%%ALERTING_NAME%%" : "\"Called User\"",
+      "%%CONNECTED_NAME%%" : "\"Connected User\"",
+      "%%CALLING_NAME%%" : "\"Pickup test User\""
+    }
   ],
   "PreCoconConf": [
     {
@@ -103,7 +107,9 @@
       "command5" : "/domain/%%DEV_DOM%%/ss/activate {%%5.Number%%-%%6.Number%%} pickup pickup_groups = [sip_room3/3]",
       "command6" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%7.Number%%} cnip clip",
       "command7" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%7.Number%%} cnip",
-      "command8" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%7.Number%%} clip"
+      "command8" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%7.Number%%} clip",
+      "command9":  "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALERTING_NAME%%",
+      "command10": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%CONNECTED_NAME%%"
     }
   ],
   "PostCoconConf": [
@@ -112,7 +118,9 @@
       "command2" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%6.Number%%} pickup",
       "command3" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%7.Number%%} clip",
       "command4" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%7.Number%%} cnip",
-      "command5" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%7.Number%%} clip cnip"
+      "command5" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%7.Number%%} clip cnip",
+      "command6": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+      "command7": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
     }
   ],
   "Tests": [
@@ -145,7 +153,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_RPI %%0.Number%%",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%CALLING_NAME%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%0.Number%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "30s"
@@ -166,7 +174,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN *08# -set CDPNDOM %%0.SipDomain%% -d 200 -set CHK_RPI %%7.Number%%",
+                  "Options": "-m 1 -set CDPN *08# -set CDPNDOM %%0.SipDomain%% -d 200 -set CHK_CONNECTED_NAME %%CALLING_NAME%% -set CHK_CONNECTED_NUMBER %%7.Number%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "30s"
