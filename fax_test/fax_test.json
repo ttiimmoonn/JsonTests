@@ -57,9 +57,9 @@
   ],
   "PreCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/media-profile/declare no_t_38 no_t38 system",
-      "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add no_t_38 image T38 false",
-      "command3" : "/domain/%%DEV_DOM%%/alias/set-for-iface %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile no_t_38",
+      "command1" : "/domain/%%DEV_DOM%%/media-profile/declare ivr_no_t38 no_t38 system",
+      "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add ivr_no_t38 image T38 false",
+      "command3" : "/domain/%%DEV_DOM%%/alias/set-for-iface %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile ivr_no_t38",
       "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_fucks --json-base64 %%FAX_IVR_SCRIPT%%",
       "command5" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CONTEXT%%",
       "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks"
@@ -68,7 +68,7 @@
   "PostCoconConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile",
-      "command2": "/domain/%%DEV_DOM%%/media-profile/remove no_t_38",
+      "command2": "/domain/%%DEV_DOM%%/media-profile/remove ivr_no_t38",
       "command3": "/domain/%%DEV_DOM%%/ivr/script/delete to_ivr_fucks",
       "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context default_routing",
       "command5": "/domain/%%DEV_DOM%%/routing/delete to_ivr_fucks"
