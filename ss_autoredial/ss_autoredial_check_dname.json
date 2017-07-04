@@ -576,7 +576,7 @@
           "CoconCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/doman/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
               "command3": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_test_ctx",
               "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
               "command6": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
