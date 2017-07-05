@@ -78,10 +78,10 @@
               "UserId": "1",
               "WriteStat" : "True",
               "BackGround" : "True",
-              "Name": "WMI_SUBSCRIBE",
+              "Name": "MWI_SUBSCRIBE",
               "Commands": [
                 {
-                  "SourceFile": "ivr/wmi_subscription.xml",
+                  "SourceFile": "ivr/mwi_subscription.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": "True",

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "WMI subscription test">
+<scenario name = "MWI subscription test">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn,check,dummy" />
@@ -19,7 +19,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "WMI subscribe" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "MWI subscribe" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] SUBSCRIBE
@@ -54,7 +54,7 @@
     <action>
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip"/>
         <assign assign_to="check" value="" />
-        <ereg regexp="Messages-Waiting: yes\nMessage-Account: sip:\*90#@pv.ssw3\nVoice\-Message: 1/0 \(0/0\)" search_in="body" check_it="true" assign_to="check"/>
+        <ereg regexp="Messages-Waiting: yes\nMessage-Account: sip:\*90#@.*\nVoice\-Message: 1/0 \(0/0\)" search_in="body" check_it="true" assign_to="check"/>
     </action>
 </recv>
 
@@ -82,7 +82,7 @@
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip"/>
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="contact_ip"/>
         <assign assign_to="check" value="" />
-        <ereg regexp="Messages-Waiting: no\nMessage-Account: sip:\*90#@pv.ssw3\nVoice-Message: 0/0 \(0/0\)" search_in="body" check_it="true" assign_to="check"/>
+        <ereg regexp="Messages-Waiting: no\nMessage-Account: sip:\*90#@.*\nVoice-Message: 0/0 \(0/0\)" search_in="body" check_it="true" assign_to="check"/>
     </action>
 </recv>
 
@@ -114,7 +114,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "WMI subscribe" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "MWI subscribe" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     [last_call-id:]
     CSeq: [cseq] SUBSCRIBE
@@ -157,7 +157,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "WMI subscribe" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "MWI subscribe" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     [authentication]
