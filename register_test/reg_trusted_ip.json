@@ -1,5 +1,5 @@
 {
-  "TestName": "register_test",
+  "TestName": "reg_trusted_ip_test",
   "AutoTest": "True",
   "Users": [
     {
