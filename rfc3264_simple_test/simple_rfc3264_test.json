@@ -167,7 +167,6 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat" : "True",
-              "Cyclic" : "True",
               "Name": "UAS_SEND_488_ON_T38_RE_INVITE",
               "Commands": [
                 {
@@ -183,7 +182,6 @@
               "Type": "User",
               "UserId": "1",
               "WriteStat" : "True",
-              "Cyclic" : "True",
               "Name": "UAC_SEND_T38_RE_INVITE",
               "Commands": [
                 {
