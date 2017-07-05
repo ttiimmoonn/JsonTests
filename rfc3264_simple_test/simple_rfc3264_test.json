@@ -172,7 +172,7 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3264_simple_test/uas_send_488_on_t38.xml",
-                  "Options": "-m 5",
+                  "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
                   "Timeout": "40s"
@@ -188,7 +188,7 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3264_simple_test/uac_send_refresh_on_t38_and_wait_ref_from_msr.xml",
-                  "Options": "-m 5 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
                   "Timeout": "40s"
