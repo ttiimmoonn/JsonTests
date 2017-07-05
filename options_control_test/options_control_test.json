@@ -31,12 +31,14 @@
   ],
   "PreCoconConf": [
     {
-      "command2": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 2"
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 2"
     }
   ],
   "PostCoconConf": [
     {
-      "command2": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0"
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0",
+      "command2": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% isActive true",
+      "command3": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% isActive true"
     }
   ],
 "Tests": [
@@ -52,7 +54,7 @@
               "Name": "UAS_RECV_OPTIONS",
               "Commands": [
                 {
-                  "SourceFile": "options_control_test/options_recv.xml",
+                  "SourceFile": "options_control_test/uas_ignore_options.xml",
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",

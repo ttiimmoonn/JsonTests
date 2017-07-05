@@ -49,6 +49,7 @@
 ]]>
 </send>
 
+
 <pause milliseconds="1000"/>
 
 <send retrans="500">
@@ -68,8 +69,8 @@
     s= Аttended Transfer
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 8
-    a=rtpmap:8 PCMA/8000
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
 ]]>
 </send>
 
@@ -77,11 +78,16 @@
 
 <nop hide="true">
    <action>
-        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
+        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,-1,0" />
      </action>
 </nop>
 
-<pause milliseconds="4000" crlf="true" />
+<check_silent packet_count="200"/>
+
+
+<pause milliseconds="1000" crlf="true" />
+
+
 
 <nop hide="true">
      <action>
@@ -200,6 +206,7 @@
 </action>
 </nop>
 
+<check_silent packet_count="10"/>
 <pause milliseconds="1000"/>
 
 <nop hide="true">

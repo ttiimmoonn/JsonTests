@@ -53,12 +53,16 @@
   ],
   "PreCoconConf": [
     {
-      "command2": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 10"
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 10"
     }
   ],
   "PostCoconConf": [
     {
-      "command2": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0"
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0",
+      "command2": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% isActive true",
+      "command3": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% isActive true",
+      "command4": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% isActive true",
+      "command5": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% isActive true"
     }
   ],
 "Tests": [
