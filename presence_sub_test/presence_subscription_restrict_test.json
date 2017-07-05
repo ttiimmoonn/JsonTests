@@ -246,7 +246,7 @@
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
-                  "SourceFile": "presence_sub_test/send_publish.xml",
+                  "SourceFile": "presence_sub_test/uac_send_publish.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -302,7 +302,7 @@
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
-                  "SourceFile": "presence_sub_test/send_publish.xml",
+                  "SourceFile": "presence_sub_test/uac_send_publish.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -350,7 +350,7 @@
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
-                  "SourceFile": "presence_sub_test/send_publish.xml",
+                  "SourceFile": "presence_sub_test/uac_send_publish.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -398,7 +398,7 @@
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
-                  "SourceFile": "presence_sub_test/send_publish.xml",
+                  "SourceFile": "presence_sub_test/uac_send_publish.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -454,7 +454,7 @@
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
-                  "SourceFile": "presence_sub_test/send_publish.xml",
+                  "SourceFile": "presence_sub_test/uac_send_publish.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",

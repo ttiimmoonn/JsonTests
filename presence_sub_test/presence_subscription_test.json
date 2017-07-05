@@ -127,7 +127,6 @@
               "Type": "User",
               "UserId": "0",
               "WriteStat" : "True",
-              "BackGround" : "True",
               "Name": "UAC_RECV_403_ON_SUBSCRIBE",
               "Commands": [
                 {
