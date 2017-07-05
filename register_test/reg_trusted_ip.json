@@ -1,0 +1,531 @@
+{
+  "TestName": "register_test",
+  "AutoTest": "True",
+  "Users": [
+    {
+      "UserId": "1",
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10106",
+      "QParam": "0.5",
+      "Mode" : "Manual",
+      "BindPort" : "10106"
+    },
+    {
+      "UserId": "2",
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10109",
+      "QParam": "0.5",
+      "Mode" : "Manual",
+      "BindPort" : "10109"
+    },
+    {
+      "UserId": "3",
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": "90",
+      "SipGroup": "sip.ab",
+      "Port": "10110",
+      "QParam": "0.5",
+      "Mode" : "Manual",
+      "BindPort" : "10110"
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreCoconConf": [
+    {
+    }
+  ],
+  "PostCoconConf": [
+    {
+        "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip none",
+        "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip none",
+        "command3": "/domain/pv.ssw3/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip none"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "set_only_ip_succ_ip_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_ip. Результат: юзер проходит аутентификацию по ip",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_ip_and_port_succ_ip_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port. Результат: юзер проходит аутентификацию по ip",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:%%1.Port%%",
+              "command4": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_ip_succ_digest_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. Результат: юзер проходит digest аутентификацию.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1:%%1.Port%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_port_succ_digest_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. Результат: юзер проходит digest аутентификацию.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_ip_fail_ip_reg",
+      "Description" : "Параметры: strict=yes; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. Результат: юзер не проходит аутентификацию по ip.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 4.2.4.2:%%1.Port%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_port_fail_ip_reg",
+      "Description" : "Параметры: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. Результат: юзер не проходит аутентификацию по ip.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_port_range_fail_ip_reg",
+      "Description" : "Параметры: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. Результат: юзер не проходит аутентификацию по ip.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123-125",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_port_range_succ_ip_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-%%1.Port%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%:%%2.Port%%-65535",
+              "command3": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command4": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"},
+            "2" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_port_range_succ_digest_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. Результат: юзер проходит digest аутентификацию.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-125",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_ip_range_fail_ip_reg",
+      "Description" : "Параметры: strict=yes; digest=true; trusted-ip=foreign_ip_range. Результат: юзер не проходит аутентификацию по ip.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.2.1.2-4.0.3.1",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_ip_range_succ_ip_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%:123-%%2.Port%%",
+              "command3": "/domain/pv.ssw3/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%:%%3.Port%%-65535",
+              "command4": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command5": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+              "command6": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"},
+            "2" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"},
+            "3" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_ip_range_succ_digest_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=foreign_ip_range, trusted-port=local_port_range. Результат: юзер проходит digest аутентификацию.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-3.4.1.3:112-%%1.Port%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_ip_with_mask_fail_ip_reg",
+      "Description" : "Параметры: strict=yes; digest=true; trusted-ip=foreign_network, trusted-port=local_port. Результат: юзер не проходит аутентификацию по ip.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24:%%1.Port%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"}
+          }
+        }
+      ]
+    },
+
+    {
+      "Name": "set_ip_range_with_mask_succ_ip_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_network, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%/24:%%1.Port%%",
+              "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%/32:112-%%2.Port%%",
+              "command3": "/domain/pv.ssw3/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no %%IP%%/0:%%3.Port%%-65535",
+              "command4": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command5": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+              "command6": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"},
+            "2" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"},
+            "3" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_foreign_ip_range_with_mask_succ_digest_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=foreign_network. Результат: юзер проходит digest аутентификацию.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+          {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_multirange_succ_ip_reg",
+      "Description" : "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит ip авторизацию.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24,.%%IP%%, 2.2.2.2-4.4.4.4:133-422",
+              "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16, 2.6.2.7-4.4.4.4",
+              "command3": "/domain/pv.ssw3/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, 1.1.1.1-%%IP%%:123-%%3.Port%%, 4.6.7.3/32",
+              "command4": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command5": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+              "command6": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+        {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"},
+            "2" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"},
+            "3" : {"script": "register_test/success_registration_wout_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_multirange_fail_ip_reg",
+      "Description" : "Параметры: strict=yes; digest=true; trusted-ip=foreign_tranport. Результат: юзер не проходит авторизацию",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
+              "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= yes 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
+              "command3": "/domain/pv.ssw3/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= yes 1.1.1.1:1234, 1.1.1.1-2.2.2.2:123-%%3.Port%%, 4.6.7.3/32",
+              "command4": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command5": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+              "command6": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+        {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"},
+            "2" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"},
+            "3" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "set_multirange_succ_digest_reg",
+      "Description" : "Параметры: strict=no; digest=true;trusted-ip=foreign_tranport. Результат: юзер проходит digest аутентификацию",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
+              "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
+              "command3": "/domain/pv.ssw3/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, 1.1.1.1-2.2.2.2:123-%%3.Port%%, 4.6.7.3/32",
+              "command4": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command5": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+              "command6": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+        {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"},
+            "2" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"},
+            "3" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "no_trusted_ip_only_strict",
+      "Description" : "Параметры: strict=yes/no; digest=true; Результат: юзер проходит digest аутентификацию.",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip none",
+              "command2": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip none",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes",
+              "command3": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no",
+              "command4": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command5": "/domain/pv.ssw3/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true"
+              
+            }
+          ]
+        },
+        {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "True"},
+            "2" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "test_clean_trusted_ip",
+      "Description" : "Параметры: strict=no; digest=true trusted-ip=foreign_ip; Устанавливаем trusted-ip в foreign_ip, регистрация отбивается, делаем clean trusted-ip, юзер проходит digest",
+      "TestProcedure": [
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1",
+              "command2": "/domain/pv.ssw3/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+            }
+          ]
+        },
+        {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/failed_registration_with_auth.xml", "need_drop": "False"}
+          }
+        },
+        {
+          "CoconCommand": [
+            {
+              "command1": "/domain/pv.ssw3/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
+        },
+        {
+          "ManualReg" : 
+          {
+            "1" : {"script": "register_test/success_registration_with_auth.xml", "need_drop": "True"}
+          }
+        }
+      ]
+    }
+  ]
+}
