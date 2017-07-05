@@ -1,5 +1,5 @@
 {
-  "TestName" : "ivr_dial_block_test",
+  "TestName" : "ivr_dial_loop_test",
   "AutoTest" : "True",
   "Isolate" : "True",
   "Users" : [
