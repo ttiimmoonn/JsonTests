@@ -13,44 +13,10 @@
         "Port": "20000",
         "SipGroup": "sip.ab",
         "QParam": "0.5"
-      },
-      {
-        "UserId": "1",
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20002",
-        "SipGroup": "sip.ab",
-        "QParam": "0.5"
-      },
-      {
-        "UserId": "2",
-        "Number": "158",
-        "Login": "158",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20004",
-        "SipGroup": "sip.ab",
-        "QParam": "0.5"
-      },
-      {
-        "UserId": "3",
-        "Number": "159",
-        "Login": "159",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20006",
-        "SipGroup": "sip.ab",
-        "QParam": "0.5"
       }
   ],
   "UserVar": [
     {
-      "%%IVR_DIAL_TEST%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"dial_26\",\"Error\":\"dial_27\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2}}},\"dial_26\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"dial_27\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":900,\"cy\":575},{\"cx\":990,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}},\"play_28\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"dial_25\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_dial_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
       "%%IVR_LOOP_TEST%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"dial_25\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"CDPN\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}}},\"name\":\"ivr_dial_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
       "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfZGlhbF9ibG9ja190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDEiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfZGlhbF9ibG9ja190ZXN0Ii8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
     }
