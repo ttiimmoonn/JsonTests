@@ -289,45 +289,6 @@
           ]
         }
       ]
-    },
-    {
-      "Name": "ivr_dial_block_loop_test",
-      "Description": "Тестируем детектирование зацикливаний посредством блока dial",
-      "TestProcedure": [
-        {
-          "CoconCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_dial_block_test --json %%IVR_LOOP_TEST%%"
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
-              "Name": "UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "ivr/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR DIAL BLOCK TEST (LOOP TEST)\"",
-                  "SippType": "uac",
-                  "NeedAuth": "True",
-                  "Timeout": "40s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "CoconCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_dial_block_test"
-            }
-          ]
-        }
-      ]
     }
   ]
 }
