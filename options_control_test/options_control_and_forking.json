@@ -83,7 +83,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -97,7 +97,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -111,7 +111,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -199,7 +199,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -213,7 +213,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -227,7 +227,7 @@
                   "Options": "-m 1 -aa -rtcheck loose",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -262,7 +262,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s",
+                  "Timeout": "40s",
                   "NoTimeOutError" : "True"
                 }
               ]
@@ -309,7 +309,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -323,7 +323,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -337,7 +337,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -425,7 +425,7 @@
                   "Options": "-m 1 -aa -rtcheck loose",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -439,7 +439,7 @@
                   "Options": "-m 1 -aa -rtcheck loose",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -453,7 +453,7 @@
                   "Options": "-m 1 -aa -rtcheck loose",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -470,7 +470,7 @@
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "options_control_test/uac_recv_502.xml",
+                  "SourceFile": "options_control_test/uac_recv_480.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
@@ -492,7 +492,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -506,7 +506,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             },
@@ -520,7 +520,7 @@
                   "Options": "-m 1 -aa",
                   "SippType": "uas",
                   "NeedAuth": "True",
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
