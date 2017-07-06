@@ -112,7 +112,6 @@
       CSeq: [cseq] BYE
       Contact: sip:[$uas_number]@[local_ip]:[local_port]
       Max-Forwards: 70
-      Subject: Performance Test
       Content-Length: 0
     ]]>
   </send>

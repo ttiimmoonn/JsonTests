@@ -24,7 +24,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
-    Subject: cgg_test_wout_100_rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -74,7 +73,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [cseq] CANCEL
-    Subject: cgg_test_wout_100_rel
     Content-Length: 0
 ]]>
 </send>
@@ -96,7 +94,6 @@
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Contact: <sip:[service]@[local_ip]:[local_port]>
-    Subject: cgg_test_wout_100_rel
     Content-Length: 0
 ]]>
 
@@ -113,7 +110,6 @@
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Contact: <sip:[service]@[local_ip]:[local_port]>
-    Subject: cgg_test_wout_100_rel
     Content-Length: 0
 ]]>
 </send>
@@ -130,7 +126,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
-    Subject: cgg_test_wout_100_rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -155,7 +150,6 @@
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Contact: <sip:[service]@[local_ip]:[local_port]>
-    Subject: cgg_test_wout_100_rel
     Content-Length: 0
 ]]>
 </send>

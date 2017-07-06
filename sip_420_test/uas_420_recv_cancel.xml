@@ -21,7 +21,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -35,7 +34,6 @@
     [last_Call-ID:]
     [last_CSeq:]
     Unsupported: 100rel
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -60,7 +58,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -75,7 +72,6 @@
     [last_From:]
     [last_To:]
     [last_Call-ID:]
-    Subject: Unsupported 100rel test
     [last_CSeq:]
     Content-Length: 0
 ]]>
@@ -88,7 +84,6 @@
     [last_From:]
     [last_To:]
     [last_Call-ID:]
-    Subject: Unsupported 100rel test
     CSeq: [$inv_cseq] INVITE
     Content-Length: 0
 ]]>

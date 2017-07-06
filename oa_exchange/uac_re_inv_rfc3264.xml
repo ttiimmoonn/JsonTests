@@ -28,7 +28,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -88,7 +87,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -125,7 +123,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
-    Subject: OA exchange test
     Content-Length: [len]
 
     v=0
@@ -164,7 +161,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -199,7 +195,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -235,7 +230,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -269,7 +263,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -306,7 +299,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -339,7 +331,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -375,7 +366,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -411,7 +401,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -453,7 +442,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -482,7 +470,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -519,7 +506,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -543,7 +529,6 @@
     [last_call-id:]
     CSeq: [cseq] BYE
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -563,7 +548,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -580,7 +564,6 @@
     Contact: [service] <sip:[service]@[local_ip]:[local_port];transport=udp>
     [authentication]
     Max-Forwards: 70
-    Subject: OA exchange test
     Privacy: none
     Content-Type: application/sdp
     Content-Length: [len]

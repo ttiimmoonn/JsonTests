@@ -131,7 +131,6 @@
     CSeq: [cseq] UPDATE
     Contact: <sip:test.record@test.record.route.com:[local_port]>
     Max-Forwards: 70
-    Subject: UPDATE TEST
     Content-Type: application/sdp
     Content-Length: [len]
 

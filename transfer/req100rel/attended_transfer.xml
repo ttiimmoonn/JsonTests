@@ -120,7 +120,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: REFER TEST
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -150,7 +149,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: REFER TEST
     Content-Length: 0
 ]]>
 </send>
@@ -167,7 +165,6 @@
     Require: 100rel
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: REFER TEST
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -229,7 +226,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: REFER TEST
     Content-Length: 0
 ]]>
 </send>
@@ -260,7 +256,6 @@
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Event: refer
-    Subject: REFER TEST
     Refer-To: <sip:[$refer_num]@[$refer_dom]?Replaces=[$refer_call_id]%3Bto-tag%3D[$refer_remote_tag]%3Bfrom-tag%3D[$local_tag][call_number]>
     Content-Length: 0
 ]]>
@@ -342,7 +337,6 @@
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
     [last_call-id:]
     CSeq: [cseq] BYE
-    Subject: REFER TEST
     Content-Length: 0
 ]]>
 </send>
@@ -381,7 +375,6 @@
     [authentication]
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: REFER TEST
     Content-Type: application/sdp
     Content-Length: [len]
 

@@ -26,7 +26,6 @@
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
     Require: 100rel
-    Subject: FindMe Test (req100rel)
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -197,7 +196,6 @@
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
     Require: 100rel
-    Subject: FindMe Test (req100rel)
     Content-Type: application/sdp
     Content-Length: [len]
     

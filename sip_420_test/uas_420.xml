@@ -22,7 +22,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -36,7 +35,6 @@
     [last_Call-ID:]
     [last_CSeq:]
     Unsupported: 100rel
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -62,7 +60,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -76,7 +73,6 @@
     [last_To:];tag=[call_number][local_port]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -91,7 +87,6 @@
     [last_To:];tag=[call_number][local_port]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Unsupported 100rel test
     Contact: <sip:[$uas_number]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
@@ -128,7 +123,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>

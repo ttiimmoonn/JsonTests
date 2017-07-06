@@ -21,7 +21,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Forking test
     Content-Length: 0
 ]]>
 </send>
@@ -35,7 +34,6 @@
     [last_Call-ID:]
     [last_CSeq:]
     Unsupported: 100rel
-    Subject: Forking test
     Content-Length: 0
 ]]>
 </send>
@@ -66,7 +64,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Forking test
     Content-Length: 0
 ]]>
 </send>
@@ -80,7 +77,6 @@
     [last_To:];tag=[call_number][local_port]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Forking test
     Content-Length: 0
 ]]>
 </send>
@@ -95,7 +91,6 @@
     [last_To:];tag=[call_number][local_port]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: Forking test
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Content-Type: application/sdp
     Content-Length: [len]

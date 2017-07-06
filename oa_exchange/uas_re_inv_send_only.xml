@@ -31,7 +31,6 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: SENDONLY TEST
     Content-Length: 0
 ]]>
 </send>
@@ -46,7 +45,6 @@
     [last_To:];tag=[call_number][local_port]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: SENDONLY TEST
     Content-Length: 0
 ]]>
 </send>
@@ -59,7 +57,6 @@
     [last_To:];tag=[call_number][local_port]
     [last_Call-ID:]
     [last_CSeq:]
-    Subject: SENDONLY TEST
     Contact: <sip:[$cdpn]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
@@ -107,7 +104,6 @@ SendOnly test
     Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
-    Subject: SENDONLY TEST
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -143,7 +139,6 @@ SendOnly test
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: SENDONLY TEST
     Content-Length: 0
 ]]>
 </send>
@@ -157,7 +152,6 @@ SendOnly test
     [last_call-id:]
     CSeq: [cseq] BYE
     Max-Forwards: 70
-    Subject: SENDONLY TEST
     Content-Length: 0
 ]]>
 </send>

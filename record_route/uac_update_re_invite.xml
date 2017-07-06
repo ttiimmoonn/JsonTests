@@ -30,7 +30,6 @@
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
     Require: 100rel
-    Subject: RECORD ROUTE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -85,7 +84,6 @@
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
     Require: 100rel
-    Subject: RECORD ROUTE TEST
     Content-Length: 0
 ]]>
 </send>
@@ -108,7 +106,6 @@
     CSeq: [cseq] UPDATE
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
-    Subject: RECORD ROUTE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -154,7 +151,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: RECORD ROUTE TEST
     Content-Length: 0
 ]]>
 </send>
@@ -185,7 +181,6 @@
     CSeq: [cseq] UPDATE
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
-    Subject: RECORD ROUTE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -224,7 +219,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
-    Subject: RECORD ROUTE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -258,7 +252,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: RECORD ROUTE TEST
     Content-Length: 0
 ]]>
 </send>
@@ -302,7 +295,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -325,7 +317,6 @@
     Max-Forwards: 70
     [authentication]
     Require: 100rel
-    Subject: RECORD ROUTE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     

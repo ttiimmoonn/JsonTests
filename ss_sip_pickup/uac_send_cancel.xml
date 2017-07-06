@@ -24,7 +24,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
-    Subject: Unsupported 100rel test
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -76,7 +75,6 @@
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id:]
     CSeq: [cseq] CANCEL
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -100,7 +98,6 @@
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Contact: <sip:[service]@[local_ip]:[local_port]>
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -119,7 +116,6 @@
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Contact: <sip:[service]@[local_ip]:[local_port]>
-    Subject: Unsupported 100rel test
     Content-Length: 0
 ]]>
 </send>
@@ -136,7 +132,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
-    Subject: Unsupported 100rel test
     Content-Type: application/sdp
     Content-Length: [len]
     

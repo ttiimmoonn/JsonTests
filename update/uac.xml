@@ -32,7 +32,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
     Max-Forwards: 70
     Require: 100rel
-    Subject: UPDATE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -82,7 +81,6 @@
     Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
     Max-Forwards: 70
     Require: 100rel
-    Subject: UPDATE TEST
     Content-Length: 0
 ]]>
 </send>
@@ -100,7 +98,6 @@
     CSeq: [cseq] UPDATE
     Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
     Max-Forwards: 70
-    Subject: UPDATE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -141,7 +138,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: UPDATE TEST
     Content-Length: 0
 ]]>
 </send>
@@ -156,7 +152,6 @@
     CSeq: [cseq] UPDATE
     Contact: <sip:[service]@[local_ip]:[local_port];transport=udp>
     Max-Forwards: 70
-    Subject: UPDATE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -183,7 +178,6 @@
     CSeq: [cseq] BYE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -201,7 +195,6 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Subject: OA exchange test
     Content-Length: 0
 ]]>
 </send>
@@ -219,7 +212,6 @@
     Max-Forwards: 70
     [authentication]
     Require: 100rel
-    Subject: UPDATE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     

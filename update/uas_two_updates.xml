@@ -105,7 +105,6 @@
     CSeq: [cseq] UPDATE
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: UPDATE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -129,7 +128,6 @@
     CSeq: [cseq] UPDATE
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
-    Subject: UPDATE TEST
     Content-Type: application/sdp
     Content-Length: [len]
     
