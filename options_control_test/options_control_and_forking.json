@@ -70,6 +70,7 @@
       "Name": "options_control_forking_test",
       "Description": "Включаем OPTIONS-контроль на юзере с forking. Проверяем, что всем юзерам рассылается OPTIONS, далее прозваниваем данного юзера",
       "TestProcedure": [
+        {"Sleep": "5"},
         {
           "StartUA": [
             {
@@ -185,6 +186,7 @@
       "Name": "options_control_forking_disable_one_concact_test",
       "Description": "Включаем OPTIONS-контроль на юзере с forking. Не отвечаем на один из OPTIONS, делаем вызов и проверяем, что занятия идут только на те контакты, которые ответили на OPTIONS. После отвечаем на все OPTIONS и проверяем, что вызов приходит на все контакты.",
       "TestProcedure": [
+        {"Sleep": "5"},
         {
           "StartUA": [
             {
@@ -410,6 +412,7 @@
       "Name": "options_control_forking_disable_all_concacts_test",
       "Description": "Включаем OPTIONS-контроль на юзере с forking. Не отвечаем на все OPTIONS, делаем вызов и получаем 502. После отвечаем на все OPTIONS и проверяем, что вызов приходит на все контакты.",
       "TestProcedure": [
+        {"Sleep": "5"},
         {
           "StartUA": [
             {
