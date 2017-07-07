@@ -160,7 +160,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS1_FIND_ME",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas.xml",
@@ -174,7 +174,7 @@
             {
               "Type": "User",
               "UserId": "10",
-              "Name": "UAS10_FIND_ME",
+              "Name": "UAS_ORIG_NUMBER_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -188,7 +188,7 @@
             {
               "Type": "User",
               "UserId": "0",
-              "Name": "UAC1_FIND_ME",
+              "Name": "UAC1_RECV_181_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uac.xml",
@@ -213,7 +213,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS2_FIND_ME",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas.xml",
@@ -227,7 +227,7 @@
             {
               "Type": "User",
               "UserId": "10",
-              "Name": "UAS10_FIND_ME",
+              "Name": "UAS_ORIG_NUMBER_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -282,7 +282,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS1_FIND_ME",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas.xml",
@@ -296,7 +296,7 @@
             {
               "Type": "User",
               "UserId": "2",
-              "Name": "UAS2_FIND_ME",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -310,7 +310,7 @@
             {
               "Type": "User",
               "UserId": "3",
-              "Name": "UAS3_FIND_ME",
+              "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -324,7 +324,7 @@
             {
               "Type": "User",
               "UserId": "4",
-              "Name": "UAS4_FIND_ME",
+              "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -338,7 +338,7 @@
             {
               "Type": "User",
               "UserId": "5",
-              "Name": "UAS5_FIND_ME",
+              "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -352,7 +352,7 @@
             {
               "Type": "User",
               "UserId": "6",
-              "Name": "UAS6_FIND_ME",
+              "Name": "UAS3_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -366,7 +366,7 @@
             {
               "Type": "User",
               "UserId": "7",
-              "Name": "UAS7_FIND_ME",
+              "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -380,7 +380,7 @@
             {
               "Type": "User",
               "UserId": "8",
-              "Name": "UAS8_FIND_ME",
+              "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -394,7 +394,7 @@
             {
               "Type": "User",
               "UserId": "9",
-              "Name": "UAS9_FIND_ME",
+              "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -408,7 +408,7 @@
             {
               "Type": "User",
               "UserId": "10",
-              "Name": "UAS10_FIND_ME",
+              "Name": "UAS_ORIG_NUMBER_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -520,7 +520,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS1_FIND_ME",
+              "Name": "UAS1_GROUP1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas.xml",
@@ -534,7 +534,7 @@
             {
               "Type": "User",
               "UserId": "2",
-              "Name": "UAS2_FIND_ME",
+              "Name": "UAS2_GROUP1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -548,7 +548,7 @@
             {
               "Type": "User",
               "UserId": "3",
-              "Name": "UAS3_FIND_ME",
+              "Name": "UAS3_GROUP1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -562,7 +562,7 @@
             {
               "Type": "User",
               "UserId": "4",
-              "Name": "UAS4_FIND_ME",
+              "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -576,7 +576,7 @@
             {
               "Type": "User",
               "UserId": "5",
-              "Name": "UAS5_FIND_ME",
+              "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -590,7 +590,7 @@
             {
               "Type": "User",
               "UserId": "6",
-              "Name": "UAS6_FIND_ME",
+              "Name": "UAS3_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -604,7 +604,7 @@
             {
               "Type": "User",
               "UserId": "7",
-              "Name": "UAS7_FIND_ME",
+              "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -618,7 +618,7 @@
             {
               "Type": "User",
               "UserId": "8",
-              "Name": "UAS8_FIND_ME",
+              "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -632,7 +632,7 @@
             {
               "Type": "User",
               "UserId": "9",
-              "Name": "UAS9_FIND_ME",
+              "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -646,7 +646,7 @@
             {
               "Type": "User",
               "UserId": "10",
-              "Name": "UAS10_FIND_ME",
+              "Name": "UAS_ORIG_NUMBER_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -685,8 +685,8 @@
       ]
     },
     {
-      "Name": "find_me_no_response_manual_test",
-      "Description": "Создаём группы. В одной отвечаем 486 со всех. Во второй со всех кроме отдного. В третьей отвечаем на вызов.",
+      "Name": "find_break_bad_time_groups_test",
+      "Description": "Создаём 3 группы. В двух первых группах назначаем некорректный временной диапозон. Вызов принимаем в последней группе.",
       "TestProcedure": [
         {
           "CoconCommand": [
@@ -702,7 +702,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS1_FIND_ME",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas.xml",
@@ -716,7 +716,7 @@
             {
               "Type": "User",
               "UserId": "2",
-              "Name": "UAS2_FIND_ME",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -730,7 +730,7 @@
             {
               "Type": "User",
               "UserId": "3",
-              "Name": "UAS3_FIND_ME",
+              "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -744,7 +744,7 @@
             {
               "Type": "User",
               "UserId": "10",
-              "Name": "UAS10_FIND_ME",
+              "Name": "UAS_ORIG_NUMBER_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -844,7 +844,7 @@
             {
               "Type": "User",
               "UserId": "10",
-              "Name": "UAS10_FIND_ME",
+              "Name": "UAS_ORIG_NUMBER_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -905,7 +905,7 @@
             {
               "Type": "User",
               "UserId": "1",
-              "Name": "UAS1_FIND_ME",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -919,7 +919,7 @@
             {
               "Type": "User",
               "UserId": "2",
-              "Name": "UAS2_FIND_ME",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -933,7 +933,7 @@
             {
               "Type": "User",
               "UserId": "3",
-              "Name": "UAS2_FIND_ME",
+              "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -947,7 +947,7 @@
             {
               "Type": "User",
               "UserId": "4",
-              "Name": "UAS4_FIND_ME",
+              "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -961,7 +961,7 @@
             {
               "Type": "User",
               "UserId": "5",
-              "Name": "UAS5_FIND_ME",
+              "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -975,7 +975,7 @@
             {
               "Type": "User",
               "UserId": "6",
-              "Name": "UAS2_FIND_ME",
+              "Name": "UAS3_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -989,7 +989,7 @@
             {
               "Type": "User",
               "UserId": "7",
-              "Name": "UAS7_FIND_ME",
+              "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_busy.xml",
@@ -1003,7 +1003,7 @@
             {
               "Type": "User",
               "UserId": "8",
-              "Name": "UAS8_FIND_ME",
+              "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
@@ -1017,7 +1017,7 @@
             {
               "Type": "User",
               "UserId": "9",
-              "Name": "UAS9_FIND_ME",
+              "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas.xml",
@@ -1031,7 +1031,7 @@
             {
               "Type": "User",
               "UserId": "10",
-              "Name": "UAS10_FIND_ME",
+              "Name": "UAS_ORIG_NUMBER_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "find_me_no_answer/uas_cancel.xml",
