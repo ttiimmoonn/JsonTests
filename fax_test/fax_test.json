@@ -51,7 +51,7 @@
     {
       "%%FAX_NUMBER%%": "A001",
       "%%USER_DOM%%": "%%DEV_DOM%%",
-      "%%FAX_IVR_SCRIPT%%" : "eyJhY3Rpb25zIjp7ImJlZ2luXzEiOnsibmFtZSI6ImJlZ2luIiwicGFyYW1zIjp7ImRlc2NyaXB0aW9uIjoiIn0sInBvcyI6eyJ4IjoxLCJ5IjowfSwiY2FzZXMiOnsibmV4dCI6ImZheF8yIn0sImxpbmtzIjp7Im5leHQiOnsicG9pbnRzIjpbeyJjeCI6MjcwLCJjeSI6NzB9LHsiY3giOjI3MCwiY3kiOjEyNX0seyJjeCI6MjcwLCJjeSI6MTgwfV0sInRleHRfcG9zIjowLjJ9fX0sImZheF8yIjp7Im5hbWUiOiJmYXgiLCJwYXJhbXMiOnsiZGVzY3JpcHRpb24iOiLQotC10YHRgtC+0LLRi9C5INGE0LDQutGBIiwiZW1haWwiOiJlbHRleF90ZXN0ZXJAbWFpbC5ydSIsInN1YmplY3RfbWVzc2FnZSI6ImVsdGV4X3Rlc3RlckBtYWlsLnJ1IiwiYm9keV9tZXNzYWdlIjoiZWx0ZXhfdGVzdGVyQG1haWwucnUiLCJzZW5kZXJfbmFtZSI6ItCi0LXRgdGC0L7QstGL0Lkg0KTQkNCa0KEiLCJmYXhfaWQiOiJGUk9NIFRFU1QiLCJwYXVzZSI6NH0sInBvcyI6eyJ4IjoxLCJ5IjoxfSwiY2FzZXMiOnsiT2siOiJ1bmRlZmluZWQiLCJFcnJvciI6InVuZGVmaW5lZCJ9LCJsaW5rcyI6eyJPayI6eyJwb2ludHMiOlt7ImN4IjoyNzAsImN5IjoyMjB9LHsiY3giOjE4MCwiY3kiOjI3NX0seyJjeCI6OTAsImN5IjozMzB9XSwidGV4dF9wb3MiOjAuMiwicG9zIjp7IngiOjAsInkiOjJ9fSwiRXJyb3IiOnsicG9pbnRzIjpbeyJjeCI6MjcwLCJjeSI6MjIwfSx7ImN4IjoyNzAsImN5IjoyNzV9LHsiY3giOjI3MCwiY3kiOjMzMH1dLCJ0ZXh0X3BvcyI6MC4yLCJwb3MiOnsieCI6MSwieSI6Mn19fX19LCJuYW1lIjoidG9faXZyX2Z1Y2tzIiwiZGVzY3JpcHRpb24iOiIiLCJ2ZXJzaW9uIjoiMy44LjAuMTM5In0=",
+      "%%FAX_IVR_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"fax_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"fax_2\":{\"name\":\"fax\",\"params\":{\"description\":\"Тестовый факс\",\"email\":\"eltex_tester@mail.ru\",\"subject_message\":\"eltex_tester@mail.ru\",\"body_message\":\"eltex_tester@mail.ru\",\"sender_name\":\"Тестовый ФАКС\",\"fax_id\":\"FROM TEST\",\"pause\":4},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Ok\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Ok\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"to_ivr_fucks\",\"description\":\"\",\"version\":\"3.8.0.139\"}",
       "%%FAX_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19pdnJfZnVja3MiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9fZnVja3MiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0idG9faXZyX2Z1Y2tzIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
   ],
@@ -60,7 +60,7 @@
       "command1" : "/domain/%%DEV_DOM%%/media-profile/declare ivr_no_t38 no_t38 system",
       "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add ivr_no_t38 image T38 false",
       "command3" : "/domain/%%DEV_DOM%%/alias/set-for-iface %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile ivr_no_t38",
-      "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_fucks --json-base64 %%FAX_IVR_SCRIPT%%",
+      "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_fucks --json %%FAX_IVR_SCRIPT%%",
       "command5" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CONTEXT%%",
       "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks"
     }
@@ -69,7 +69,7 @@
     {
       "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile",
       "command2": "/domain/%%DEV_DOM%%/media-profile/remove ivr_no_t38",
-      "command3": "/domain/%%DEV_DOM%%/ivr/script/delete to_ivr_fucks",
+      "command3": "/domain/%%DEV_DOM%%/ivr/script/delete --id to_ivr_fucks",
       "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context default_routing",
       "command5": "/domain/%%DEV_DOM%%/routing/delete to_ivr_fucks"
     }
