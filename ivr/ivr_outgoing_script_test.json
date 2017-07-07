@@ -101,7 +101,7 @@
         {
           "CoconCommand": [
               {
-                "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_outgoing_script_test"
+                "command0": "domain/%%DEV_DOM%%/ivr/script/delete --id ivr_outgoing_script_test"
               }
             ]
         }
