@@ -110,7 +110,7 @@
         {
           "ServiceFeature": [
             {
-              "code": " #34*%%USER_PIN%%#",
+              "code": "#34*%%USER_PIN%%#",
               "userId": "0"
             }
           ]
