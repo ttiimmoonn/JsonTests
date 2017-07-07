@@ -91,7 +91,7 @@
         {
           "CoconCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/custom_cb/.do %%0.Number%% %%1.Number%% --id ivr_outgoing_script_test"
+              "command0": "/domain/%%DEV_DOM%%/custom_cb/.do %%1.Number%% %%0.Number%% --id ivr_outgoing_script_test"
             }
           ]
         },
