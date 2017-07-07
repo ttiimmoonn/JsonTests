@@ -115,6 +115,13 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -176,6 +183,13 @@
           "DropManualReg": [
             "1",
             "2"
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
           ]
         }
       ]
@@ -239,6 +253,13 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -301,6 +322,13 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -339,6 +367,13 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
           ]
         }
@@ -381,6 +416,13 @@
               ]
             }
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -419,6 +461,13 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
           ]
         }
@@ -485,6 +534,14 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -496,10 +553,12 @@
           "CoconCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-125",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
+              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+              "command3": "/domain/%%DEV_DOM%%/sip/user/info %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% --complete"
             }
           ]
         },
+        {"Sleep" : "5"},
         {
           "ManualReg": {
             "1": {
@@ -547,6 +606,13 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -585,6 +651,13 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
           ]
         }
@@ -657,6 +730,15 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -719,6 +801,13 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -757,6 +846,13 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
           ]
         }
@@ -829,6 +925,15 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -890,6 +995,13 @@
           "DropManualReg": [
             "1",
             "2"
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
           ]
         }
       ]
@@ -961,6 +1073,15 @@
             "1",
             "2"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -1011,6 +1132,15 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
             }
           ]
         }
@@ -1082,6 +1212,15 @@
           "DropManualReg": [
             "1",
             "2"
+          ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
+            }
           ]
         }
       ]
@@ -1170,6 +1309,14 @@
             "2",
             "1"
           ]
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     },
@@ -1207,6 +1354,13 @@
               "need_drop": "True"
             }
           }
+        },
+        {
+          "CoconCommand": [
+            {
+                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+            }
+          ]
         }
       ]
     }
