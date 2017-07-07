@@ -7,7 +7,7 @@
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "12105",
@@ -18,7 +18,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "SipGroup": "sip.ab",
       "Port": "12106",
@@ -30,7 +30,7 @@
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "12107",
       "QParam": "1"
@@ -52,7 +52,7 @@
   ],
 "Tests": [
     {
-      "Name": "simple_cfb_test",
+      "Name": "simple_cfnr_test",
       "Description": "Звоним на абонента с cfnr, не отвечаем и проверяем переадресацию",
       "TestProcedure": [
         {
