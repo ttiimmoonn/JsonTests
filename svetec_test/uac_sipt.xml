@@ -175,7 +175,6 @@ Call-ID: [call_id]
 CSeq: 2 BYE
 Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
 Max-Forwards: 70
-Subject: Performance Test
 Reason: Q.850;cause=16;text="Normal call clearing"
 Content-Type: application/ISUP;version=itu-t92+
 Content-Length: [len]
