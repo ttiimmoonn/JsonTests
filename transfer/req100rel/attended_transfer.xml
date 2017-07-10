@@ -100,7 +100,7 @@
      </action>
 </nop>
 
-<pause milliseconds="4000" crlf="true" />
+<pause milliseconds="5000" crlf="true" />
 
 <nop hide="true">
      <action>
@@ -153,6 +153,7 @@
 ]]>
 </send>
 
+<pause milliseconds="1500" crlf="true" />
 
 <send retrans="500">
 <![CDATA[

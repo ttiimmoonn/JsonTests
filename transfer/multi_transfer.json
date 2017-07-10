@@ -305,6 +305,7 @@
             {
               "Type": "User",
               "UserId": "0",
+              "WriteStat" : "True",
               "Name": "UAS1_AT_TRANS_REQ100REL",
               "Commands": [
                 {
@@ -332,6 +333,7 @@
             {
               "Type": "User",
               "UserId": "1",
+              "WriteStat" : "True",
               "Name": "UAS2_AT_TRANS_REQ100REL",
               "Commands": [
                 {
@@ -360,6 +362,7 @@
             {
               "Type": "User",
               "UserId": "2",
+              "WriteStat" : "True",
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
