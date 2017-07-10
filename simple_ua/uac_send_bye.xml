@@ -172,13 +172,12 @@
 <nop hide="true" condexec="CHK_ALERTING_NUMBER">
     <action>
         <strcmp assign_to="compare_result" variable="CHK_ALERTING_NUMBER" variable2="alerting_number"/>
-        <log message="Alerting number checked. chk_alerting_number: [$CHK_ALERTING_NUMBER]; current_alerting_number: [$alerting_number]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="CHK_ALERTING_NUMBER check failed"/>
+        <log message="Alerting number check failed. chk_alerting_number: [$CHK_ALERTING_NUMBER]; current_alerting_number: [$alerting_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
@@ -186,13 +185,12 @@
 <nop hide="true" condexec="CHK_ALERTING_NAME">
     <action>
         <strcmp assign_to="compare_result" variable="CHK_ALERTING_NAME" variable2="alerting_name"/>
-        <log message="Alerting name checked. chk_alerting_name: [$CHK_ALERTING_NAME]; current_alerting_name: [$alerting_name]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="CHK_ALERTING_NAME check failed"/>
+        <log message="Alerting name check failed. chk_alerting_name: [$CHK_ALERTING_NAME]; current_alerting_name: [$alerting_name]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
@@ -200,13 +198,12 @@
 <nop hide="true" condexec="CHK_CONNECTED_NUMBER">
     <action>
         <strcmp assign_to="compare_result" variable="CHK_CONNECTED_NUMBER" variable2="connected_number"/>
-        <log message="Connected number checked. chk_connected_number: [$CHK_CONNECTED_NUMBER]; current_connected_number: [$connected_number]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="CHK_CONNECTED_NUMBER check failed"/>
+        <log message="Connected number check failed. chk_connected_number: [$CHK_CONNECTED_NUMBER]; current_connected_number: [$connected_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
@@ -214,13 +211,12 @@
 <nop hide="true" condexec="CHK_CONNECTED_NAME">
     <action>
         <strcmp assign_to="compare_result" variable="CHK_CONNECTED_NAME" variable2="connected_name"/>
-        <log message="Connected name checked. chk_connected_name: [$CHK_CONNECTED_NAME]; current_conncted_name: [$connected_name]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="CHK_CONNECTED_NAME check failed"/>
+        <log message="Connected name check failed. chk_connected_name: [$CHK_CONNECTED_NAME]; current_conncted_name: [$connected_name]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>

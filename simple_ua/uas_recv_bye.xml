@@ -21,7 +21,6 @@
 
 <recv request="INVITE">
 <action>
-    <log message="INVITE [timestamp]"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
     <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
@@ -109,13 +108,12 @@
 <nop hide="true" condexec="CHK_DNAME">
     <action>
         <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
-        <log message="Point 1. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <warning message="Check DName failed. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
@@ -123,13 +121,12 @@
 <nop hide="true" condexec="CHK_NUMBER">
     <action>
         <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
-        <log message="Point 3. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="Point 4. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+        <warning message="Check number failed. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
