@@ -95,7 +95,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -156,7 +156,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -217,7 +217,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME \"\" -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME \"\" -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -278,7 +278,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -339,7 +339,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -402,7 +402,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -465,7 +465,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",
@@ -528,7 +528,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": "True",

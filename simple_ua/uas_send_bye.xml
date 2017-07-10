@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAS send BYE">
 
-<Global variables="CHK_DNAME,CHK_NUMBER" />
+<Global variables="CHK_DNAME,CHK_NUMBER,DIVER_NUMBER,DIVER_REASON" />
 <User variables="chk_dname,chk_number,dummy,dname" />
 <Reference variables="dummy,dname"/>
 
@@ -28,6 +28,7 @@
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
     <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
+    <ereg regexp="<sip:([^;@]+).*?;reason=(.*)$" search_in="hdr" header="Diversion:" assign_to="dummy,diver_num,diver_reason"/>
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
@@ -117,7 +118,7 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Check DName failed. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <warning message="Check DName failed. Require DisplayName: [$chk_dname]; Current DisplayName: [$dname]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
@@ -130,7 +131,34 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Check number failed. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+        <warning message="Check number failed. Require Number: [$chk_number]; Current Number: [$remote_number]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
+<nop hide="true" condexec="DIVER_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="DIVER_NUMBER" variable2="diver_num"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check diversion number failed. Require Diversion Number: [$DIVER_NUMBER]; Current Diversion Number: [$diver_num]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="DIVER_REASON">
+    <action>
+        <strcmp assign_to="compare_result" variable="DIVER_REASON" variable2="diver_reason"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check diversion reason failed. Require Diversion Reason: [$DIVER_REASON]; Current Diversion Reason: [$diver_reason]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
