@@ -66,8 +66,6 @@
     m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
     a=sendrecv
-    m=video 0 RTP/AVP 31
-    a=sendrecv
 ]]>
 </send>
 
@@ -123,24 +121,22 @@
 ]]>
 </send>
 
-<nop>
-<action>
-        <exec play_pcap_image="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/fax_t38.pcap"/>
-</action>
-</nop>
+<recv request="INVITE">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+    </action>
+</recv>
 
-<pause milliseconds="5000"/>
-
-<send>
+<send retrans="500">
 <![CDATA[
-    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
-    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
-    [last_call-id]
-    CSeq: [cseq] INVITE
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[service]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -149,39 +145,13 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [media_port] RTP/AVP 8
-    a=rtpmap:8 PCMA/8000/1
-    a=ptime:20
-    a=sendrecv
-    m=video 0 RTP/AVP 31
-    a=sendrecv
-    m=audio 0 RTP/AVP 8
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
     a=sendrecv
 ]]>
 </send>
 
-
-<recv response="100" optional auth="true"></recv>
-<recv response="200" auth="true">
-    <action>
-        <assign assign_to="sdp_chk" value="" />
-        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
-    </action>
-</recv>
-
-
-<send crlf="true">
-<![CDATA[
-    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Content-Length: 0
-]]>
-</send>
+<recv request="ACK"> </recv>
 
 
 <recv request="BYE"></recv>

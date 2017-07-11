@@ -10,6 +10,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "11001",
+      "RtpPort" : "20000",
       "SipGroup": "sip.ab",
       "QParam": "0.5"
     },
@@ -21,6 +22,7 @@
       "SipDomain": "pv.ssw3",
       "Expires": "90",
       "Port": "11002",
+      "RtpPort" : "20010",
       "SipGroup": "sip.ab",
       "QParam": "1"
     }
@@ -185,7 +187,87 @@
               "Name": "UAC_SEND_T38_RE_INVITE",
               "Commands": [
                 {
-                  "SourceFile": "rfc3264_simple_test/uac_send_refresh_on_t38_and_wait_ref_from_msr.xml",
+                  "SourceFile": "rfc3264_simple_test/uac_recv_re_inv_with_media_after_t38.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_inactive_image_section",
+      "Description": "При получении offer с image, в a_sdp отдаём image c атрибутом a=inactive. После чего со стороны UAC высылаем новый offer с активным image.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_T38_RE_INV",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uas_replace_fax_section.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uac_send_inactive_image_in_answer.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "refresh_inactive_t38_to_audio",
+      "Description": "При получении offer с image, в a_sdp отдаём image c атрибутом a=inactive. Далее со стороны UAC шлём re-invite c PCMA",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": "0",
+              "WriteStat" : "True",
+              "Name": "UAS_SEND_T38_RE_INV",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uas_t38_recv_re_inv_to_media.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": "True",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": "1",
+              "WriteStat" : "True",
+              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uac_refresh_inactive_image_to_audio.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": "True",
