@@ -83,7 +83,7 @@
 </nop>
 
 
-<pause milliseconds="1000" crlf="true" />
+<pause milliseconds="5000" crlf="true" />
 
 
 
@@ -138,6 +138,7 @@
 ]]>
 </send>
 
+<pause milliseconds="1000"/>
 
 <send retrans="500">
 <![CDATA[
