@@ -57,9 +57,9 @@
   ],
   "PreCoconConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/media-profile/declare ivr_no_t38 no_t38 system",
-      "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add ivr_no_t38 image T38 false",
-      "command3" : "/domain/%%DEV_DOM%%/alias/set-for-iface %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile ivr_no_t38",
+      "command1" : "/domain/%%DEV_DOM%%/media-profile/declare ivr_fax2email_no_t38 no_t38 system",
+      "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add ivr_fax2email_no_t38 image T38 false",
+      "command3" : "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile ivr_fax2email_no_t38",
       "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_fucks --json %%FAX_IVR_SCRIPT%%",
       "command5" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CONTEXT%%",
       "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks"
@@ -67,8 +67,8 @@
   ],
   "PostCoconConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile",
-      "command2": "/domain/%%DEV_DOM%%/media-profile/remove ivr_no_t38",
+      "command1": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile media-profile",
+      "command2": "/domain/%%DEV_DOM%%/media-profile/remove ivr_fax2email_no_t38",
       "command3": "/domain/%%DEV_DOM%%/ivr/script/delete --id to_ivr_fucks",
       "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context default_routing",
       "command5": "/domain/%%DEV_DOM%%/routing/delete to_ivr_fucks"
@@ -79,6 +79,7 @@
       "Name": "test_fax2email_t38",
       "Description": "test_fax2email_t38",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
@@ -104,6 +105,7 @@
       "Name": "test_fax2email_g711",
       "Description": "test_fax2email_g711",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
@@ -128,6 +130,7 @@
       "Name": "test_fax2email_g711_like_SI3000",
       "Description": "test_fax2email_g711_like_SI3000",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
@@ -152,6 +155,7 @@
       "Name": "test_fax2email_g711_like_SI3000_send_bye",
       "Description": "test_fax2email_g711_like_SI3000 Bug: #69061",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
@@ -176,6 +180,7 @@
       "Name": "test_fax2email_g711_like_TAU",
       "Description": "test_fax2email_g711_like_TAU",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
@@ -200,6 +205,7 @@
       "Name": "test_send_bye_on_t38_re_invite",
       "Description": "Если со стороны клиента сделать гонку BYE реквеста и RE-INVITE на T38, то MSR упадёт",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
@@ -225,6 +231,7 @@
       "Name": "test_t38_send_re_invite",
       "Description": "Проверка, что факс будет принят если юзер отправил re-invite после передачи факса.",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
@@ -250,6 +257,7 @@
       "Name": "fax_pending_test",
       "Description": "Тестирование обработки встречных реквестов при переходе на t38",
       "TestProcedure": [
+        {"Sleep":"10"},
         {
           "StartUA": [
             {
