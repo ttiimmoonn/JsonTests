@@ -62,7 +62,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -70,7 +70,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -128,7 +128,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -154,7 +154,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -200,7 +200,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -208,7 +208,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*1*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -248,7 +248,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%*1#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -274,7 +274,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }
@@ -288,7 +288,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -296,7 +296,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*1*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -304,7 +304,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*%%2.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -376,7 +376,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%*0#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -420,7 +420,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }
@@ -434,7 +434,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -474,7 +474,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }

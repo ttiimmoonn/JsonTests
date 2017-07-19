@@ -78,19 +78,19 @@
           "ServiceFeature": [
             {
               "code": "*55*1*%%NowTime+120%%#",
-              "userId": "1"
+              "userId" : 1
             },
             {
               "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
-              "userId": "2"
+              "userId" : 2
             },
             {
               "code": "*56*3*%%NowTime+120%%#",
-              "userId": "3"
+              "userId" : 3
             },
             {
               "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
-              "userId": "4"
+              "userId" : 4
             }
           ]
         },
@@ -171,19 +171,19 @@
           "ServiceFeature": [
             {
               "code": "*55*1*%%NowTime+120%%#",
-              "userId": "1"
+              "userId" : 1
             },
             {
               "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
-              "userId": "2"
+              "userId" : 2
             },
             {
               "code": "*56*3*%%NowTime+120%%#",
-              "userId": "3"
+              "userId" : 3
             },
             {
               "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
-              "userId": "4"
+              "userId" : 4
             }
           ]
         },
@@ -271,19 +271,19 @@
           "ServiceFeature": [
             {
               "code": "*55*1*%%NowTime+120%%#",
-              "userId": "1"
+              "userId" : 1
             },
             {
               "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
-              "userId": "2"
+              "userId" : 2
             },
             {
               "code": "*56*3*%%NowTime+120%%#",
-              "userId": "3"
+              "userId" : 3
             },
             {
               "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
-              "userId": "4"
+              "userId" : 4
             }
           ]
         },

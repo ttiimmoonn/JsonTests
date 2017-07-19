@@ -59,7 +59,7 @@
           "ServiceFeature": [
             {
               "code": "*21*%%0.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -99,7 +99,7 @@
           "ServiceFeature": [
             {
               "code": "#21#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },

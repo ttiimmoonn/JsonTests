@@ -238,7 +238,7 @@
         {
           "CheckDifference": [
             {
-              "Difference": "3000",
+              "Difference" : 3000,
               "Mode" : "between_ua",
               "UA": "1,2,3",
               "Msg" : [
@@ -338,7 +338,7 @@
         {
           "CheckDifference": [
             {
-              "Difference": "0",
+              "Difference" : 0,
               "Mode" : "between_ua",
               "UA": "1,2,3",
               "Msg" : [
@@ -459,7 +459,7 @@
         {
           "CheckDifference": [
             {
-              "Difference": "3000",
+              "Difference" : 3000,
               "Mode" : "between_ua",
               "UA": "1,2,3",
               "Msg" : [
@@ -559,7 +559,7 @@
         {
           "CheckDifference": [
             {
-              "Difference": "1000",
+              "Difference" : 1000,
               "Mode" : "between_ua",
               "UA": "1,2,3",
               "Msg" : [

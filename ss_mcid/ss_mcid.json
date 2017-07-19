@@ -92,7 +92,7 @@
           "ServiceFeature": [
             {
               "code": "*36#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }

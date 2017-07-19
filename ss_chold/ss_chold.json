@@ -59,7 +59,7 @@
           "ServiceFeature": [
             {
               "code": "*94#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -99,7 +99,7 @@
           "ServiceFeature": [
             {
               "code": "#94#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }
@@ -113,7 +113,7 @@
           "ServiceFeature": [
             {
               "code": "*94#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -153,7 +153,7 @@
           "ServiceFeature": [
             {
               "code": "#94#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }

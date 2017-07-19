@@ -60,7 +60,7 @@
           "ServiceFeature": [
             {
               "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%0.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -100,7 +100,7 @@
           "ServiceFeature": [
             {
               "code": "#28#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },

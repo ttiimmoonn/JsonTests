@@ -60,7 +60,7 @@
           "ServiceFeature": [
             {
               "code": "*51*1*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -68,7 +68,7 @@
           "ServiceFeature": [
             {
               "code": "*51*2*%%2.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -129,7 +129,7 @@
           "ServiceFeature": [
             {
               "code": "#51*1#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -137,7 +137,7 @@
           "ServiceFeature": [
             {
               "code": "#51*2#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },

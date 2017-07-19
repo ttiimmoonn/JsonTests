@@ -155,7 +155,7 @@
           "ServiceFeature": [
             {
               "code": "*26#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         },
@@ -220,7 +220,7 @@
           "ServiceFeature": [
             {
               "code": "#26#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         }

@@ -59,7 +59,7 @@
           "ServiceFeature": [
             {
               "code": "*26#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -85,7 +85,7 @@
           "ServiceFeature": [
             {
               "code": "#26#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         }
@@ -99,7 +99,7 @@
           "ServiceFeature": [
             {
               "code": "*26#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -107,7 +107,7 @@
           "ServiceFeature": [
             {
               "code": "*26*32*%%0.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -147,7 +147,7 @@
           "ServiceFeature": [
             {
               "code": "#26*%%0.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },

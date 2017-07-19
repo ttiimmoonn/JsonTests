@@ -261,87 +261,87 @@
           "ServiceFeature": [
             {
               "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
-              "userId": "0"
+              "userId" : 0
             },
             {
               "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
-              "userId": "1"
+              "userId" : 1
             },
             {
               "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
-              "userId": "2"
+              "userId" : 2
             },
             {
               "code": "*160*%%3.Number%%*%%AGENT_PASS%%#",
-              "userId": "3"
+              "userId" : 3
             },
             {
               "code": "*160*%%4.Number%%*%%AGENT_PASS%%#",
-              "userId": "4"
+              "userId" : 4
             },
             {
               "code": "*160*%%5.Number%%*%%AGENT_PASS%%#",
-              "userId": "5"
+              "userId" : 5
             },
             {
               "code": "*160*%%6.Number%%*%%AGENT_PASS%%#",
-              "userId": "6"
+              "userId" : 6
             },
             {
               "code": "*160*%%7.Number%%*%%AGENT_PASS%%#",
-              "userId": "7"
+              "userId" : 7
             },
             {
               "code": "*160*%%8.Number%%*%%AGENT_PASS%%#",
-              "userId": "8"
+              "userId" : 8
             },
             {
               "code": "*160*%%9.Number%%*%%AGENT_PASS%%#",
-              "userId": "9"
+              "userId" : 9
             },
             {
               "code": "*160*%%10.Number%%*%%AGENT_PASS%%#",
-              "userId": "10"
+              "userId" : 10
             },
             {
               "code": "*160*%%11.Number%%*%%AGENT_PASS%%#",
-              "userId": "11"
+              "userId" : 11
             },
             {
               "code": "*160*%%12.Number%%*%%AGENT_PASS%%#",
-              "userId": "12"
+              "userId" : 12
             },
             {
               "code": "*160*%%13.Number%%*%%AGENT_PASS%%#",
-              "userId": "13"
+              "userId" : 13
             },
             {
               "code": "*160*%%14.Number%%*%%AGENT_PASS%%#",
-              "userId": "14"
+              "userId" : 14
             },
             {
               "code": "*160*%%15.Number%%*%%AGENT_PASS%%#",
-              "userId": "15"
+              "userId" : 15
             },
             {
               "code": "*160*%%16.Number%%*%%AGENT_PASS%%#",
-              "userId": "16"
+              "userId" : 16
             },
             {
               "code": "*160*%%17.Number%%*%%AGENT_PASS%%#",
-              "userId": "17"
+              "userId" : 17
             },
             {
               "code": "*160*%%18.Number%%*%%AGENT_PASS%%#",
-              "userId": "18"
+              "userId" : 18
             },
             {
               "code": "*160*%%19.Number%%*%%AGENT_PASS%%#",
-              "userId": "19"
+              "userId" : 19
             },
             {
               "code": "*160*%%20.Number%%*%%AGENT_PASS%%#",
-              "userId": "20"
+              "userId" : 20
             }
           ]
         },
@@ -352,87 +352,87 @@
           "ServiceFeature": [
             {
               "code": "#160",
-              "userId": "0"
+              "userId" : 0
             },
             {
               "code": "#160",
-              "userId": "1"
+              "userId" : 1
             },
             {
               "code": "#160",
-              "userId": "2"
+              "userId" : 2
             },
             {
               "code": "#160",
-              "userId": "3"
+              "userId" : 3
             },
             {
               "code": "#160",
-              "userId": "4"
+              "userId" : 4
             },
             {
               "code": "#160",
-              "userId": "5"
+              "userId" : 5
             },
             {
               "code": "#160",
-              "userId": "6"
+              "userId" : 6
             },
             {
               "code": "#160",
-              "userId": "7"
+              "userId" : 7
             },
             {
               "code": "#160",
-              "userId": "8"
+              "userId" : 8
             },
             {
               "code": "#160",
-              "userId": "9"
+              "userId" : 9
             },
             {
               "code": "#160",
-              "userId": "10"
+              "userId" : 10
             },
             {
               "code": "#160",
-              "userId": "11"
+              "userId" : 11
             },
             {
               "code": "#160",
-              "userId": "12"
+              "userId" : 12
             },
             {
               "code": "#160",
-              "userId": "13"
+              "userId" : 13
             },
             {
               "code": "#160",
-              "userId": "14"
+              "userId" : 14
             },
             {
               "code": "#160",
-              "userId": "15"
+              "userId" : 15
             },
             {
               "code": "#160",
-              "userId": "16"
+              "userId" : 16
             },
             {
               "code": "#160",
-              "userId": "17"
+              "userId" : 17
             },
             {
               "code": "#160",
-              "userId": "18"
+              "userId" : 18
             },
             {
               "code": "#160",
-              "userId": "19"
+              "userId" : 19
             },
             {
               "code": "#160",
-              "userId": "20"
+              "userId" : 20
             }
           ]
         }

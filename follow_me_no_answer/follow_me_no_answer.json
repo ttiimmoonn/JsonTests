@@ -75,7 +75,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         },
@@ -83,7 +83,7 @@
           "ServiceFeature": [
             {
               "code": "*%%CountCode%%*1#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         },
@@ -91,7 +91,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -145,7 +145,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -153,7 +153,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         },
@@ -199,7 +199,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         },
@@ -207,7 +207,7 @@
           "ServiceFeature": [
             {
               "code": "*%%CountCode%%*1#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         },
@@ -215,7 +215,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -269,7 +269,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId" : 2
             }
           ]
         },
@@ -277,7 +277,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%#",
-              "userId": "1"
+              "userId" : 1
             }
           ]
         },
