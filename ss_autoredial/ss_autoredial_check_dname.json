@@ -1,28 +1,28 @@
 {
   "TestName": "ss_autoredial_chk_dname",
-  "AutoTest": "True",
+  "AutoTest": true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "20105",
-      "QParam": "0.5"
+      "Port" : 20105,
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "20106",
-      "QParam": "0.5"
+      "Port" : 20106,
+      "QParam" : 0.5
     }
   ],
   "UserVar": [
@@ -33,7 +33,7 @@
       "%%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19hdXRvcmVkaWFsX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0FVVE9SRURJQUwiLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% auto_redial",
       "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% auto_redial recall_count = 2, recall_timeout = 5",
@@ -45,7 +45,7 @@
       "command8": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% auto_redial",
       "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% auto_redial",
@@ -68,8 +68,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -88,15 +88,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -110,7 +110,7 @@
       "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
             }
@@ -120,8 +120,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -140,15 +140,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -156,7 +156,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
             }
@@ -172,8 +172,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -192,15 +192,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -214,7 +214,7 @@
       "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
             }
@@ -224,8 +224,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -244,15 +244,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -260,7 +260,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
             }
@@ -273,7 +273,7 @@
       "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_test_ctx"
@@ -284,8 +284,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -304,15 +304,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -320,7 +320,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_test_ctx",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
@@ -334,7 +334,7 @@
       "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
@@ -346,8 +346,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -366,15 +366,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -382,7 +382,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_test_ctx",
@@ -397,7 +397,7 @@
       "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_test_ctx"
@@ -408,8 +408,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -428,15 +428,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -444,7 +444,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_test_ctx",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
@@ -458,7 +458,7 @@
       "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
@@ -470,8 +470,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -490,15 +490,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -506,7 +506,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_test_ctx",
@@ -521,7 +521,7 @@
       "Description": "Выстваляем DNAME на SIP, на alias, на routing. При этом деативируем cnip и clip. Ждём анонимный вызов и callback",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command3": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
@@ -537,8 +537,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -557,15 +557,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN *37*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -573,7 +573,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",

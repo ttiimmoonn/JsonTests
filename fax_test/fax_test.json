@@ -1,50 +1,50 @@
 {
   "TestName": "fax_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
-      "Port": "11106",
+      "Expires" : 3600,
+      "Port" : 11106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
-      "Port": "11107",
+      "Expires" : 3600,
+      "Port" : 11107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
-      "Port": "11108",
+      "Expires" : 3600,
+      "Port" : 11108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
-      "Port": "11109",
+      "Expires" : 3600,
+      "Port" : 11109,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -55,7 +55,7 @@
       "%%FAX_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19pdnJfZnVja3MiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9fZnVja3MiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0idG9faXZyX2Z1Y2tzIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/media-profile/declare ivr_fax2email_no_t38 no_t38 system",
       "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add ivr_fax2email_no_t38 image T38 false",
@@ -65,7 +65,7 @@
       "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile media-profile",
       "command2": "/domain/%%DEV_DOM%%/media-profile/remove ivr_fax2email_no_t38",
@@ -79,19 +79,19 @@
       "Name": "test_fax2email_t38",
       "Description": "test_fax2email_t38",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_FAX_T38",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_t38.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -105,18 +105,18 @@
       "Name": "test_fax2email_g711",
       "Description": "test_fax2email_g711",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_FAX_G711",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -130,18 +130,18 @@
       "Name": "test_fax2email_g711_like_SI3000",
       "Description": "test_fax2email_g711_like_SI3000",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAC_FAX_G711_SI300",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711_mp.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -155,18 +155,18 @@
       "Name": "test_fax2email_g711_like_SI3000_send_bye",
       "Description": "test_fax2email_g711_like_SI3000 Bug: #69061",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAC_FAX_G711_SI300",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711_mp_send_bye.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -180,18 +180,18 @@
       "Name": "test_fax2email_g711_like_TAU",
       "Description": "test_fax2email_g711_like_TAU",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "4",
+              "UserId" : 4,
               "Name": "UAC_FAX_G711_TAU",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711_tau.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -205,19 +205,19 @@
       "Name": "test_send_bye_on_t38_re_invite",
       "Description": "Если со стороны клиента сделать гонку BYE реквеста и RE-INVITE на T38, то MSR упадёт",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_RACE_BYE_AND_RE_INV",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_t38_send_bye_on_re_invite.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -231,19 +231,19 @@
       "Name": "test_t38_send_re_invite",
       "Description": "Проверка, что факс будет принят если юзер отправил re-invite после передачи факса.",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_T38_SEND_RE_INVITE",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_t38_send_re_invite.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -257,19 +257,19 @@
       "Name": "fax_pending_test",
       "Description": "Тестирование обработки встречных реквестов при переходе на t38",
       "TestProcedure": [
-        {"Sleep":"10"},
+        {"Sleep" : 10},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_T38_SEND_RE_INVITE_PENDING",
               "Commands": [
                 {
                   "SourceFile": "fax_test/fax_491_test.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }

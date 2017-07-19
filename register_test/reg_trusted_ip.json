@@ -1,54 +1,54 @@
 {
   "TestName": "reg_trusted_ip_test",
-  "AutoTest": "True",
+  "AutoTest": true,
   "Users": [
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "0.5",
+      "Port" : 10106,
+      "QParam" : 0.5,
       "Mode": "Manual",
-      "BindPort": "10106"
+      "BindPort" : 10106
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10109",
-      "QParam": "0.5",
+      "Port" : 10109,
+      "QParam" : 0.5,
       "Mode": "Manual",
-      "BindPort": "10109"
+      "BindPort" : 10109
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10110",
-      "QParam": "0.5",
+      "Port" : 10110,
+      "QParam" : 0.5,
       "Mode": "Manual",
-      "BindPort": "10110"
+      "BindPort" : 10110
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {}
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
       "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
@@ -61,7 +61,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -82,28 +82,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_wout_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -117,7 +117,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -130,7 +130,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:%%1.Port%%",
               "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -151,28 +151,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_wout_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -186,7 +186,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -199,7 +199,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1:%%1.Port%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -220,28 +220,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_with_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -255,7 +255,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -268,7 +268,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -289,28 +289,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_with_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -324,7 +324,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -337,7 +337,7 @@
       "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 4.2.4.2:%%1.Port%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -348,7 +348,7 @@
           "ManualReg": {
             "1": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             }
           }
         },
@@ -356,14 +356,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -371,7 +371,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -384,7 +384,7 @@
       "Description": "Параметры: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -395,7 +395,7 @@
           "ManualReg": {
             "1": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             }
           }
         },
@@ -403,14 +403,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -418,7 +418,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -431,7 +431,7 @@
       "Description": "Параметры: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123-125",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -442,7 +442,7 @@
           "ManualReg": {
             "1": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             }
           }
         },
@@ -450,14 +450,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -465,7 +465,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -478,7 +478,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-%%1.Port%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%:%%2.Port%%-65535",
@@ -501,28 +501,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_wout_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -536,7 +536,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
                 "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
@@ -550,7 +550,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-125",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
@@ -558,7 +558,7 @@
             }
           ]
         },
-        {"Sleep" : "5"},
+        {"Sleep" : 5},
         {
           "ManualReg": {
             "1": {
@@ -573,28 +573,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_with_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -608,7 +608,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -621,7 +621,7 @@
       "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_ip_range. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.2.1.2-4.0.3.1",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -632,7 +632,7 @@
           "ManualReg": {
             "1": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             }
           }
         },
@@ -640,14 +640,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -655,7 +655,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -668,7 +668,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%:123-%%2.Port%%",
@@ -689,7 +689,7 @@
             },
             "3": {
               "script": "register_test/success_registration_wout_auth.xml",
-              "need_drop": "True"
+              "need_drop": true
             }
           }
         },
@@ -697,28 +697,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_wout_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -732,7 +732,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
                 "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
@@ -747,7 +747,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=foreign_ip_range, trusted-port=local_port_range. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-3.4.1.3:112-%%1.Port%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -768,28 +768,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_with_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -803,7 +803,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -816,7 +816,7 @@
       "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_network, trusted-port=local_port. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24:%%1.Port%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -827,7 +827,7 @@
           "ManualReg": {
             "1": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             }
           }
         },
@@ -835,14 +835,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -850,7 +850,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -863,7 +863,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_network, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%/24:%%1.Port%%",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%/32:112-%%2.Port%%",
@@ -884,7 +884,7 @@
             },
             "3": {
               "script": "register_test/success_registration_wout_auth.xml",
-              "need_drop": "True"
+              "need_drop": true
             }
           }
         },
@@ -892,28 +892,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_wout_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -927,7 +927,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
                 "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
@@ -942,7 +942,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=foreign_network. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -963,28 +963,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_with_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -998,7 +998,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -1011,7 +1011,7 @@
       "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит ip авторизацию.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24,.%%IP%%, 2.2.2.2-4.4.4.4:133-422",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16, 2.6.2.7-4.4.4.4",
@@ -1032,7 +1032,7 @@
             },
             "3": {
               "script": "register_test/success_registration_wout_auth.xml",
-              "need_drop": "True"
+              "need_drop": true
             }
           }
         },
@@ -1040,28 +1040,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_wout_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -1075,7 +1075,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
                 "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
@@ -1090,7 +1090,7 @@
       "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_tranport. Результат: юзер не проходит авторизацию",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= yes 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
@@ -1105,15 +1105,15 @@
           "ManualReg": {
             "1": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             },
             "2": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             },
             "3": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             }
           }
         },
@@ -1121,14 +1121,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -1136,7 +1136,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
                 "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
@@ -1151,7 +1151,7 @@
       "Description": "Параметры: strict=no; digest=true;trusted-ip=foreign_tranport. Результат: юзер проходит digest аутентификацию",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
@@ -1172,7 +1172,7 @@
             },
             "3": {
               "script": "register_test/success_registration_with_auth.xml",
-              "need_drop": "True"
+              "need_drop": true
             }
           }
         },
@@ -1180,28 +1180,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_with_auth.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -1215,7 +1215,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
                 "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
@@ -1230,7 +1230,7 @@
       "Description": "Параметры: strict=yes/no; digest=true; Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip none",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes",
@@ -1257,14 +1257,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -1275,28 +1275,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "register_test/uac_with_auth.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -1311,7 +1311,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
                 "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
@@ -1325,7 +1325,7 @@
       "Description": "Параметры: strict=no; digest=true trusted-ip=foreign_ip; Устанавливаем trusted-ip в foreign_ip, регистрация отбивается, делаем clean trusted-ip, юзер проходит digest",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
@@ -1336,12 +1336,12 @@
           "ManualReg": {
             "1": {
               "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": "False"
+              "need_drop": false
             }
           }
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }
@@ -1351,12 +1351,12 @@
           "ManualReg": {
             "1": {
               "script": "register_test/success_registration_with_auth.xml",
-              "need_drop": "True"
+              "need_drop": true
             }
           }
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
                 "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
             }

@@ -1,18 +1,18 @@
 {
   "TestName" : "ivr_dial_loop_test",
-  "AutoTest" : "True",
-  "Isolate" : "True",
+  "AutoTest" : true,
+  "Isolate" : true,
   "Users" : [
       {
-        "UserId": "0",
+        "UserId" : 0,
         "Number": "156",
         "Login": "156",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20000",
+        "Expires" : 90,
+        "Port" : 20000,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       }
   ],
   "UserVar": [
@@ -21,14 +21,14 @@
       "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfZGlhbF9ibG9ja190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDEiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfZGlhbF9ibG9ja190ZXN0Ii8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_dial_block_test",
       "command2": "/domain/%%DEV_DOM%%/system-iface/set system:ivr routing.context ivr_dial_block_test"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
       "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_dial_block_test",
@@ -41,7 +41,7 @@
       "Description": "Тестируем детектирование зацикливаний посредством блока dial",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_dial_block_test --json %%IVR_LOOP_TEST%%"
             }
@@ -51,15 +51,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_recv_487.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR DIAL BLOCK TEST (LOOP TEST)\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -67,7 +67,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_dial_block_test"
             }

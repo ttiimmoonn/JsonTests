@@ -1,29 +1,29 @@
 {
   "TestName": "ss_callback",
-  "AutoTest": "True",
-  "Isolate" : "True",
+  "AutoTest": true,
+  "Isolate" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10105",
-      "QParam": "0.5"
+      "Port" : 10105,
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "0.5"
+      "Port" : 10106,
+      "QParam" : 0.5
     }
   ],
   "UserVar": [
@@ -31,13 +31,13 @@
       "%%USER_PIN%%" : "1111"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% callback",
       "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% callback"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% callback",
       "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% callback"
@@ -53,37 +53,37 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_TEST_CALLBACK",
               "Commands": [
                  {
                   "SourceFile": "ss_callback/uac_callback.xml",
                   "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_callback/uas_send_dtmf.xml",
                   "Options": "-m 1 -set CB_DIGITS *%%USER_PIN%%*%%1.Number%%#",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -97,9 +97,9 @@
       "Description": "Тестирование завершение callback вызова в случает если на предыдущий не дали ответ. (BUG #78068)",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
-              "CoconCommand": "/domain/%%DEV_DOM%%/timers/core/set response_timeout 30"
+              "SendSSHCommand": "/domain/%%DEV_DOM%%/timers/core/set response_timeout 30"
             }
           ]
         },
@@ -107,44 +107,44 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_NO_ANSW_CALLBACK",
               "Commands": [
                  {
                   "SourceFile": "ss_callback/uac_callback.xml",
                   "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_callback/uas_no_response_to_invite.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_callback/uas_send_dtmf.xml",
                   "Options": "-m 1 -set CB_DIGITS *%%USER_PIN%%*%%1.Number%%#",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -152,9 +152,9 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
-              "CoconCommand": "/domain/%%DEV_DOM%%/timers/core/clean response_timeout"
+              "SendSSHCommand": "/domain/%%DEV_DOM%%/timers/core/clean response_timeout"
             }
           ]
         }
@@ -168,44 +168,44 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_SEND_BUSY_ON_CALLBACK",
               "Commands": [
                  {
                   "SourceFile": "ss_callback/uac_callback.xml",
                   "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_callback/uas_send_486.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_callback/uas_send_dtmf.xml",
                   "Options": "-m 1 -set CB_DIGITS *%%USER_PIN%%*%%1.Number%%#",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]

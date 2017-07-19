@@ -1,61 +1,61 @@
 {
   "TestName": "transfer_and_group_number_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "0.5"
+      "Port" : 10106,
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "10107",
-      "QParam": "1"
+      "Port" : 10107,
+      "QParam" : 1
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "10108",
-      "QParam": "1"
+      "Port" : 10108,
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "10110",
-      "QParam": "1"
+      "Port" : 10110,
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "161",
       "Login": "161",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "10112",
-      "QParam": "1"
+      "Port" : 10112,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -65,7 +65,7 @@
       "%%USER_DNAME%%" : "TEST USER"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% chold ctr clip cnip",
       "command2" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% chold",
@@ -81,7 +81,7 @@
       "command12": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%USER_DNAME%%"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% chold ctr clip cnip",
       "command2" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% chold ctr clip cnip",
@@ -99,7 +99,7 @@
       "Description": "Проверка корректности номера при трансфере вызова, пришедшего из cgg группы.",
       "TestProcedure": [
         {
-          "CoconCommand" : [
+          "SendSSHCommand" : [
             {
               "command1" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cgg numbers = [%%2.Number%%,%%3.Number%%]"
             }
@@ -109,57 +109,57 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "4",
+              "UserId" : 4,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 7000 -set CHK_DNAME \"%%USER_DNAME%%\" -set CHK_NUMBER %%0.Number%%",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "NeedAuth" : "True",
+              "UserId" : 2,
+              "NeedAuth" : true,
               "Name": "UAS_AT_TRANS",
               "Commands": [
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%4.Number%% -set REFERDOM %%4.SipDomain%%",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -167,7 +167,7 @@
           ]
         },
         {
-          "CoconCommand" : [
+          "SendSSHCommand" : [
             {
               "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cgg"
             }
@@ -180,7 +180,7 @@
       "Description": "Проверка корректности номера при трансфере вызова, пришедшего из chunt группы.",
       "TestProcedure": [
         {
-          "CoconCommand" : [
+          "SendSSHCommand" : [
             {
               "command1" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%%  chunt mode = manual, cyclic = false, max_shift_count = 2, queue_size = 1, queue_strategy = drop, reset_window_start_pos_after_call = false, search_strategy = first, window_start_pos = 0, window_shift=1, window_size = 1, window_shift_timeout = 2, numbers = [%%3.Number%%,%%2.Number%%]"
             }
@@ -190,57 +190,57 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "4",
+              "UserId" : 4,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 7000 -m 1 -d 7000 -set CHK_DNAME \"%%USER_DNAME%%\" -set CHK_NUMBER %%0.Number%%",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "NeedAuth" : "True",
+              "UserId" : 2,
+              "NeedAuth" : true,
               "Name": "UAS_AT_TRANS",
               "Commands": [
                 {
                   "SourceFile": "transfer/unattended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%4.Number%% -set REFERDOM %%4.SipDomain%%",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -248,7 +248,7 @@
           ]
         },
         {
-          "CoconCommand" : [
+          "SendSSHCommand" : [
             {
               "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chunt"
             }

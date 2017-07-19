@@ -1,28 +1,28 @@
 {
 	"TestName" : "ivr_numbers_block_test",
-	"AutoTest" : "True",
+	"AutoTest" : true,
 	"Users" : [
       {
-        "UserId": "0",
+        "UserId" : 0,
         "Number": "156",
         "Login": "156",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20000",
+        "Expires" : 90,
+        "Port" : 20000,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       },
       {
-        "UserId": "1",
+        "UserId" : 1,
         "Number": "157",
         "Login": "157",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20002",
+        "Expires" : 90,
+        "Port" : 20002,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       }
   ],
   "UserVar": [
@@ -32,13 +32,13 @@
       "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfbnVtYmVyc19ibG9ja190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InRvX2l2ciI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDEiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfbnVtYmVyc19ibG9ja190ZXN0Ii8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
    ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_numbers_block_test"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
       "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_numbers_block_test"
@@ -51,7 +51,7 @@
       "Description": "Проверка прохождения вызова по ветке yes в случае совпадения номера",
         "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_numbers_block_test --json %%IVR_REJECT_NUMBER%%"
             }
@@ -61,30 +61,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR NUMBERS BLOCK TEST (ACCEPT)\" ",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -92,7 +92,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_numbers_block_test"
             }
@@ -105,7 +105,7 @@
       "Description": "Проверка прохождения вызова по ветке no в случае не совпадения номера",
         "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_numbers_block_test --json %%IVR_REJECT_NUMBER%%"
             }
@@ -115,30 +115,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR NUMBERS BLOCK TEST (REJECT)\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -146,7 +146,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_numbers_block_test"
             }

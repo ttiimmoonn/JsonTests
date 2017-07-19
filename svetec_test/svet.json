@@ -6,11 +6,11 @@
     {
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -23,7 +23,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port": "5087",
+              "Port" : 5087,
               "Name": "SVET_TEST_RECV_302",
               "Commands": [
                 {
@@ -46,7 +46,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port": "5087",
+              "Port" : 5087,
               "Name": "SVET_TEST_UAC_SIPT",
               "Commands": [
                 {

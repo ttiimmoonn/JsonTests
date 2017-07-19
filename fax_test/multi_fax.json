@@ -1,17 +1,17 @@
 {
   "TestName": "multi_fax_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
-      "Port": "11109",
+      "Expires" : 3600,
+      "Port" : 11109,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     }
   ],
   "UserVar": [
@@ -22,7 +22,7 @@
       "%%USER_DOM%%": "%%DEV_DOM%%"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/media-profile/declare no_t_38_for_multifax no_t38 system",
       "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add no_t_38_for_multifax image T38 false",
@@ -32,7 +32,7 @@
       "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context to_ivr_multi_fucks"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile",
       "command2": "/domain/%%DEV_DOM%%/media-profile/remove no_t_38_for_multifax",
@@ -50,13 +50,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_MULT_FAX",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_mult_fax.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "180s"
                 }

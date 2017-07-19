@@ -2,235 +2,235 @@
   "TestName": "queue_test",
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10106",
+      "Expires" : 3600,
+      "Port" : 10106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "161",
       "Login": "161",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10107",
+      "Expires" : 3600,
+      "Port" : 10107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "162",
       "Login": "162",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10108",
+      "Expires" : 3600,
+      "Port" : 10108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "163",
       "Login": "163",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10109",
+      "Expires" : 3600,
+      "Port" : 10109,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "164",
       "Login": "164",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10110",
+      "Expires" : 3600,
+      "Port" : 10110,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "5",
+      "UserId" : 5,
       "Number": "165",
       "Login": "165",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10111",
+      "Expires" : 3600,
+      "Port" : 10111,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "6",
+      "UserId" : 6,
       "Number": "166",
       "Login": "166",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10112",
+      "Expires" : 3600,
+      "Port" : 10112,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "7",
+      "UserId" : 7,
       "Number": "167",
       "Login": "167",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10113",
+      "Expires" : 3600,
+      "Port" : 10113,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "8",
+      "UserId" : 8,
       "Number": "168",
       "Login": "168",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10114",
+      "Expires" : 3600,
+      "Port" : 10114,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "9",
+      "UserId" : 9,
       "Number": "169",
       "Login": "169",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10115",
+      "Expires" : 3600,
+      "Port" : 10115,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "10",
+      "UserId" : 10,
       "Number": "170",
       "Login": "170",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10116",
+      "Expires" : 3600,
+      "Port" : 10116,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "11",
+      "UserId" : 11,
       "Number": "171",
       "Login": "171",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10117",
+      "Expires" : 3600,
+      "Port" : 10117,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "12",
+      "UserId" : 12,
       "Number": "172",
       "Login": "172",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10118",
+      "Expires" : 3600,
+      "Port" : 10118,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "13",
+      "UserId" : 13,
       "Number": "173",
       "Login": "173",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10119",
+      "Expires" : 3600,
+      "Port" : 10119,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "14",
+      "UserId" : 14,
       "Number": "174",
       "Login": "174",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10120",
+      "Expires" : 3600,
+      "Port" : 10120,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "15",
+      "UserId" : 15,
       "Number": "175",
       "Login": "175",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10121",
+      "Expires" : 3600,
+      "Port" : 10121,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "16",
+      "UserId" : 16,
       "Number": "176",
       "Login": "176",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10122",
+      "Expires" : 3600,
+      "Port" : 10122,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "17",
+      "UserId" : 17,
       "Number": "177",
       "Login": "177",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10123",
+      "Expires" : 3600,
+      "Port" : 10123,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "18",
+      "UserId" : 18,
       "Number": "178",
       "Login": "178",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10124",
+      "Expires" : 3600,
+      "Port" : 10124,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "19",
+      "UserId" : 19,
       "Number": "179",
       "Login": "179",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10125",
+      "Expires" : 3600,
+      "Port" : 10125,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "20",
+      "UserId" : 20,
       "Number": "180",
       "Login": "180",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "10126",
+      "Expires" : 3600,
+      "Port" : 10126,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -242,7 +242,7 @@
       "%%TRUNK_NUMBER%%" : "A002"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%20.Number%%} cc_agent",
       "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%20.Number%%} cc_agent",
@@ -251,7 +251,7 @@
       "command5": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% {%%1.Number%%-%%20.Number%%}@%%1.SipDomain%% rfc-4028-control  false"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%20.Number%%} cc_agent",
       "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%20.Number%%} cc_agent",
@@ -355,35 +355,35 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "Cyclic" : "True",
+              "UserId" : 0,
+              "Cyclic" : true,
               "Name": "UAS0_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 4",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -391,35 +391,35 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "Cyclic" : "True",
+              "UserId" : 1,
+              "Cyclic" : true,
               "Name": "UAS1_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 5",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -427,35 +427,35 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "Cyclic" : "True",
+              "UserId" : 2,
+              "Cyclic" : true,
               "Name": "UAS2_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 6",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -463,35 +463,35 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "Cyclic" : "True",
+              "UserId" : 3,
+              "Cyclic" : true,
               "Name": "UAS3_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -499,35 +499,35 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "Cyclic" : "True",
+              "UserId" : 4,
+              "Cyclic" : true,
               "Name": "UAS4_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 2",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -535,35 +535,35 @@
             },
             {
               "Type": "User",
-              "UserId": "5",
-              "Cyclic" : "True",
+              "UserId" : 5,
+              "Cyclic" : true,
               "Name": "UAS5_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 4",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -571,35 +571,35 @@
             },
             {
               "Type": "User",
-              "UserId": "6",
-              "Cyclic" : "True",
+              "UserId" : 6,
+              "Cyclic" : true,
               "Name": "UAS6_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 3",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -607,35 +607,35 @@
             },
             {
               "Type": "User",
-              "UserId": "7",
-              "Cyclic" : "True",
+              "UserId" : 7,
+              "Cyclic" : true,
               "Name": "UAS7_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 4",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -643,35 +643,35 @@
             },
             {
               "Type": "User",
-              "UserId": "8",
-              "Cyclic" : "True",
+              "UserId" : 8,
+              "Cyclic" : true,
               "Name": "UAS8_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 5",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -679,35 +679,35 @@
             },
             {
               "Type": "User",
-              "UserId": "9",
-              "Cyclic" : "True",
+              "UserId" : 9,
+              "Cyclic" : true,
               "Name": "UAS9_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 4",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -715,35 +715,35 @@
             },
             {
               "Type": "User",
-              "UserId": "10",
-              "Cyclic" : "True",
+              "UserId" : 10,
+              "Cyclic" : true,
               "Name": "UAS10_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -751,35 +751,35 @@
             },
             {
               "Type": "User",
-              "UserId": "11",
-              "Cyclic" : "True",
+              "UserId" : 11,
+              "Cyclic" : true,
               "Name": "UAS11_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 6",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -787,35 +787,35 @@
             },
             {
               "Type": "User",
-              "UserId": "12",
-              "Cyclic" : "True",
+              "UserId" : 12,
+              "Cyclic" : true,
               "Name": "UAS12_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -823,35 +823,35 @@
             },
             {
               "Type": "User",
-              "UserId": "13",
-              "Cyclic" : "True",
+              "UserId" : 13,
+              "Cyclic" : true,
               "Name": "UAS13_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 5",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -859,35 +859,35 @@
             },
             {
               "Type": "User",
-              "UserId": "14",
-              "Cyclic" : "True",
+              "UserId" : 14,
+              "Cyclic" : true,
               "Name": "UAS14_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 2",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -895,35 +895,35 @@
             },
             {
               "Type": "User",
-              "UserId": "15",
-              "Cyclic" : "True",
+              "UserId" : 15,
+              "Cyclic" : true,
               "Name": "UAS15_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 6",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -931,35 +931,35 @@
             },
             {
               "Type": "User",
-              "UserId": "16",
-              "Cyclic" : "True",
+              "UserId" : 16,
+              "Cyclic" : true,
               "Name": "UAS16_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 3",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -967,35 +967,35 @@
             },
             {
               "Type": "User",
-              "UserId": "17",
-              "Cyclic" : "True",
+              "UserId" : 17,
+              "Cyclic" : true,
               "Name": "UAS17_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -1003,35 +1003,35 @@
             },
             {
               "Type": "User",
-              "UserId": "18",
-              "Cyclic" : "True",
+              "UserId" : 18,
+              "Cyclic" : true,
               "Name": "UAS18_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 0",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -1039,35 +1039,35 @@
             },
             {
               "Type": "User",
-              "UserId": "19",
-              "Cyclic" : "True",
+              "UserId" : 19,
+              "Cyclic" : true,
               "Name": "UAS19_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 5",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -1075,35 +1075,35 @@
             },
             {
               "Type": "User",
-              "UserId": "20",
-              "Cyclic" : "True",
+              "UserId" : 20,
+              "Cyclic" : true,
               "Name": "UAS20_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "queue_test/new_uas.xml",
                   "Options": " -set COMPLITE_CODE %%COMPLITE_CODE%% -set AUXWORK_CODE %%AUXWORK_CODE%% -set OFF_AUX_CODE %%OFF_AUXWORK_CODE%%  -set DROP_COUNTER 5",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/recv_call.xml",
                   "Options": " -m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "300s"
                 },
                 {
                   "SourceFile": "queue_test/send_call.xml",
                   "Options": " -m 1 -set CDPN %%OFF_AUXWORK_CODE%% -set CDPNDOM %%DEV_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "300s"
                 }
@@ -1111,13 +1111,13 @@
             },
             {
               "Type": "Trunk",
-              "Port" : "11004",
+              "Port" : 11004,
               "Name": "Trunk_for_direct_calls",
               "Commands": [
                 {
                   "SourceFile": "queue_test/uas_dr_call.xml",
                   "Options": "",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "2000h"
                 }

@@ -1,78 +1,78 @@
 {
   "TestName": "blf_restriction",
-  "AutoTest": "True",
+  "AutoTest": true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10105",
-      "QParam": "0.5"
+      "Port" : 10105,
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "0.5"
+      "Port" : 10106,
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10107,
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10108",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10108,
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10109",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10109,
+      "QParam" : 1
     },
     {
-      "UserId": "5",
+      "UserId" : 5,
       "Number": "161",
       "Login": "161",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10110",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10110,
+      "QParam" : 1
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_restriction blf_restriction blf %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
@@ -92,7 +92,7 @@
       "command16" : "/domain/%%DEV_DOM%%/lists/info blf_restriction"
       }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/lists/remove blf_restriction",
       "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% blf",
@@ -119,7 +119,7 @@
       "Description": "Подписка low_to_high, low_to_normal, low_to_low. Во всех случаях получаем 603.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/lists/numbers-set-property blf_restriction priority low %%3.Number%%",
               "command2": "/domain/%%DEV_DOM%%/lists/info blf_restriction"
@@ -130,15 +130,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "FAILED_SUBSCRIBE_LOW_TO_NORMAL",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -149,15 +149,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "FAILED_SUBSCRIBE_LOW_TO_HIGH",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -168,15 +168,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "FAILED_SUBSCRIBE_LOW_TO_LOW",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -193,15 +193,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "FAILED_SUBSCRIBE_NORMAL_TO_HIGH",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -218,16 +218,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SUCC_SUBSCRIBE_NORMAL_TO_LOW",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -235,36 +235,36 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -278,7 +278,7 @@
       "Description": "Подписка с normal на normal.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/lists/numbers-set-property blf_restriction priority normal %%3.Number%%",
               "command2": "/domain/%%DEV_DOM%%/lists/info blf_restriction"
@@ -289,16 +289,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SUCC_SUBSCRIBE_NORMAL_TO_NORMAL",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -306,36 +306,36 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -352,16 +352,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_LOW",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -369,36 +369,36 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -415,16 +415,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_NORMAL",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -432,36 +432,36 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -475,7 +475,7 @@
       "Description": "Подписка с high на high.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/lists/numbers-set-property blf_restriction priority high %%3.Number%%",
               "command2": "/domain/%%DEV_DOM%%/lists/info blf_restriction"
@@ -486,16 +486,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_HIGH",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -503,36 +503,36 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_blf_restriction",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -546,7 +546,7 @@
       "Description": "Проверяем корректность работы max_subs_limit",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 2"
             }
@@ -556,29 +556,29 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SUBSCRIBE_LIMIT",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -589,22 +589,22 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SUBSCRIBE_LIMIT",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -615,22 +615,22 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SUBSCRIBE_LIMIT",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -638,7 +638,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10"
             }
@@ -651,7 +651,7 @@
       "Description": "Создаём соседние списки и проверяем, что они не оказывают вляние друг на друга",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1" : "/domain/%%DEV_DOM%%/lists/declare neighbor_list_1 neighbor_list_1 blf %%0.Number%% %%4.Number%%",
               "command2" : "/domain/%%DEV_DOM%%/lists/declare neighbor_list_2 neighbor_list_2 blf %%2.Number%% %%5.Number%%",
@@ -667,29 +667,29 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SUBSCRIPTION_NEIGHBOR_UAC_1",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -700,29 +700,29 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "SUBSCRIPTION_NEIGHBOR_UAC_2",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/recv_603_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "ss_blf/subscribe.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -730,7 +730,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1" : "/domain/%%DEV_DOM%%/lists/remove neighbor_list_1",
               "command2" : "/domain/%%DEV_DOM%%/lists/remove neighbor_list_2"

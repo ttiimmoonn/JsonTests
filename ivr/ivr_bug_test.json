@@ -2,44 +2,44 @@
 	"TestName" : "ivr_bug_test",
 	"Users" : [
 	    {
-	      "UserId": "0",
+	      "UserId" : 0,
 	      "Number": "156",
 	      "Login": "156",
 	      "Password": "123",
 	      "SipDomain": "pv.ssw2",
-	      "Expires": "90",
-	      "Port": "20000",
+	      "Expires" : 90,
+	      "Port" : 20000,
 	      "SipGroup": "sip.ab",
-	      "QParam": "0.5"
+	      "QParam" : 0.5
 	    },
 	    {
-	      "UserId": "1",
+	      "UserId" : 1,
 	      "Number": "157",
 	      "Login": "157",
 	      "Password": "123",
 	      "SipDomain": "pv.ssw2",
-	      "Expires": "90",
-	      "Port": "20002",
+	      "Expires" : 90,
+	      "Port" : 20002,
 	      "SipGroup": "sip.ab",
-	      "QParam": "0.5"
+	      "QParam" : 0.5
 	    },
       {
-        "UserId": "2",
+        "UserId" : 2,
         "Number": "158",
         "Login": "158",
         "Password": "123",
         "SipDomain": "pv.ssw2",
-        "Expires": "90",
-        "Port": "20003",
+        "Expires" : 90,
+        "Port" : 20003,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       }
 	],
-  "PreCoconConf": [
+  "PreConf": [
     {
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -52,15 +52,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_SEND_ABCD_DTMF",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_abcd_dtmf.xml",
                   "Options": "-m 1 -set CDPN A005 -set CDPNDOM %%1.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -74,7 +74,7 @@
       "Description": "Падал ivr при поступлении переадресованного вызова",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
               "command": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
@@ -85,8 +85,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS_SEND_302",
               "Commands": [
                 {
@@ -99,8 +99,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -113,15 +113,15 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_RECV_181",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_recv_181.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -129,7 +129,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
               "command": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"

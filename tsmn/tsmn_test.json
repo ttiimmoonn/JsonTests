@@ -2,36 +2,36 @@
 	"TestName" : "tsmn_test",
 	"Users" : [
 	    {
-	      "UserId": "0",
+	      "UserId" : 0,
 	      "Number": "156",
 	      "Login": "156",
 	      "Password": "123",
 	      "SipDomain": "pv.ssw3",
-	      "Expires": "90",
-	      "Port": "10100",
+	      "Expires" : 90,
+	      "Port" : 10100,
 	      "SipGroup": "sip.ab",
-	      "QParam": "0.5"
+	      "QParam" : 0.5
 	    },
 	    {
-	      "UserId": "1",
+	      "UserId" : 1,
 	      "Number": "157",
 	      "Login": "157",
 	      "Password": "123",
 	      "SipDomain": "pv.ssw3",
-	      "Expires": "90",
-	      "Port": "10106",
+	      "Expires" : 90,
+	      "Port" : 10106,
 	      "SipGroup": "sip.ab",
-	      "QParam": "0.5"
+	      "QParam" : 0.5
 	    }
 	],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
       "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count = 2",
       "command3" : "/domain/%%DEV_DOM%%/trunk/services/activate sip.tr to_test_machine tsmn_request timeout = 2000, tsmn_trunk = tsmn_trunk"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/trunk/services/deactivate sip.tr to_test_machine tsmn_request"
     }
@@ -45,8 +45,8 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port": "5075",
-              "WriteStat" : "True",
+              "Port" : 5075,
+              "WriteStat" : true,
               "Name": "UAS_SEND_302",
               "Commands": [
                 {
@@ -59,8 +59,8 @@
             },
             {
               "Type": "Trunk",
-              "Port": "5088",
-              "WriteStat" : "True",
+              "Port" : 5088,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -73,15 +73,15 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_RECV_181",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN 112 -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]

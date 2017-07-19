@@ -1,50 +1,50 @@
 {
   "TestName" : "ivr_test_digitmap_block",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users" : [
       {
-        "UserId": "0",
+        "UserId" : 0,
         "Number": "156",
         "Login": "156",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20000",
+        "Expires" : 90,
+        "Port" : 20000,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       },
       {
-        "UserId": "1",
+        "UserId" : 1,
         "Number": "157",
         "Login": "157",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20002",
+        "Expires" : 90,
+        "Port" : 20002,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       },
       {
-        "UserId": "2",
+        "UserId" : 2,
         "Number": "158",
         "Login": "158",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20004",
+        "Expires" : 90,
+        "Port" : 20004,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       },
       {
-        "UserId": "3",
+        "UserId" : 3,
         "Number": "159",
         "Login": "159",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20006",
+        "Expires" : 90,
+        "Port" : 20006,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       }
   ],
   "UserVar": [
@@ -57,14 +57,14 @@
       "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdGVzdF9kaWdpdG1hcF9ibG9jayIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDA/Ii8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX3Rlc3RfZGlnaXRtYXBfYmxvY2siLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg=="
     }
    ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_test_digitmap_block",
       "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ivr_test_digitmap_block"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
@@ -77,7 +77,7 @@
       "Description": "Тест корретности проверки CGPN в digitmap",
         "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_CGPN%%"
             }
@@ -87,30 +87,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (CGPN ACCEPT)\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -121,30 +121,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (CGPN REJECT)\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -152,7 +152,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
             }
@@ -165,7 +165,7 @@
       "Description": "Тест корретности проверки CDPN в digitmap",
         "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_CDPN%%"
             }
@@ -175,30 +175,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (CDPN ACCEPT)\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -209,30 +209,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN A002 -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (CDPN REJECT)\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -240,7 +240,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
             }
@@ -253,7 +253,7 @@
       "Description": "Тест корретности проверки EXTENSION в digitmap",
         "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_EXTEN%%"
             }
@@ -263,30 +263,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DIGITS %%2.Number%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (EXTENSION ACCEPT)\" -d 1000",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -297,30 +297,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%1.SipDomain%% -set DIGITS %%1.Number%% -set DISPLAY_NAME \"IVR DIGITMAP BLOCK TEST (EXTENSION REJECT)\" -d 1000",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -328,7 +328,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
             }

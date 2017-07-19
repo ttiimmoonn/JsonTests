@@ -1,28 +1,28 @@
 {
   "TestName" : "ivr_caller_info_block_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users" : [
       {
-        "UserId": "0",
+        "UserId" : 0,
         "Number": "156",
         "Login": "156",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20000",
+        "Expires" : 90,
+        "Port" : 20000,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       },
       {
-        "UserId": "1",
+        "UserId" : 1,
         "Number": "157",
         "Login": "157",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20002",
+        "Expires" : 90,
+        "Port" : 20002,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       }
   ],
   "UserVar": [
@@ -31,7 +31,7 @@
       "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfY2FsbGVyX2luZm9fYmxvY2tfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InRvX2l2ciI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8aXZyIHNjcmlwdD0iaXZyX2NhbGxlcl9pbmZvX2Jsb2NrX3Rlc3QiLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+CiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGxvY2FsLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KPC9jb250ZXh0Pg=="
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_caller_info_block_test",
@@ -40,7 +40,7 @@
       "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
       "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_caller_info_block_test",
@@ -55,7 +55,7 @@
       "Description": "Тестируем подмену DName через блок caller_info",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_caller_info_block_test --json %%IVR_CALLER_INFO%%"
             }
@@ -65,30 +65,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -set CHK_DNAME \"Тест IVR DName\" -set CHK_NUMBER %%0.Number%%",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR Caller Info test\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -96,7 +96,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_caller_info_block_test"
             }

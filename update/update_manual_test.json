@@ -2,26 +2,26 @@
   "TestName": "update_test",
   "Users": [
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "0.5"
+      "Port" : 10106,
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw2",
-      "Expires": "90",
-      "Port": "10107",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10107,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -30,11 +30,11 @@
       "%%TestDomain%%" : "pv.ssw2"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -48,14 +48,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "NeedAuth" : "True",
+              "UserId" : 1,
+              "NeedAuth" : true,
               "Name": "UAC_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uac.xml",
                   "Options": "-m 1 -set CDPN %%TestNumber%% -set CDPNDOM %%TestDomain%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -74,7 +74,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -98,13 +98,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uas_update.xml",
                   "Options": "-m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "200s"
                 }
@@ -123,13 +123,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uas_two_updates.xml",
                   "Options": "-m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "200s"
                 }
@@ -148,13 +148,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uas_update_before_answer_recv.xml",
                   "Options": "-m 1",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "200s"
                 }

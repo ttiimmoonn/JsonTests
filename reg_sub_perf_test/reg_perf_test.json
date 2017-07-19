@@ -7,10 +7,10 @@
 "Login": 901,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20001,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -19,10 +19,10 @@
 "Login": 902,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20002,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -31,10 +31,10 @@
 "Login": 903,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20003,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -43,10 +43,10 @@
 "Login": 904,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20004,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -55,10 +55,10 @@
 "Login": 905,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20005,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -67,10 +67,10 @@
 "Login": 906,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20006,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -79,10 +79,10 @@
 "Login": 907,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20007,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -91,10 +91,10 @@
 "Login": 908,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20008,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -103,10 +103,10 @@
 "Login": 909,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20009,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -115,10 +115,10 @@
 "Login": 910,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20010,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -127,10 +127,10 @@
 "Login": 911,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20011,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -139,10 +139,10 @@
 "Login": 912,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20012,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -151,10 +151,10 @@
 "Login": 913,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20013,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -163,10 +163,10 @@
 "Login": 914,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20014,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -175,10 +175,10 @@
 "Login": 915,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20015,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -187,10 +187,10 @@
 "Login": 916,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20016,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -199,10 +199,10 @@
 "Login": 917,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20017,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -211,10 +211,10 @@
 "Login": 918,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20018,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -223,10 +223,10 @@
 "Login": 919,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20019,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -235,10 +235,10 @@
 "Login": 920,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20020,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -247,10 +247,10 @@
 "Login": 921,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20021,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -259,10 +259,10 @@
 "Login": 922,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20022,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -271,10 +271,10 @@
 "Login": 923,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20023,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -283,10 +283,10 @@
 "Login": 924,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20024,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -295,10 +295,10 @@
 "Login": 925,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20025,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -307,10 +307,10 @@
 "Login": 926,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20026,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -319,10 +319,10 @@
 "Login": 927,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20027,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -331,10 +331,10 @@
 "Login": 928,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20028,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -343,10 +343,10 @@
 "Login": 929,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20029,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -355,10 +355,10 @@
 "Login": 930,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20030,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -367,10 +367,10 @@
 "Login": 931,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20031,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -379,10 +379,10 @@
 "Login": 932,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20032,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -391,10 +391,10 @@
 "Login": 933,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20033,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -403,10 +403,10 @@
 "Login": 934,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20034,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -415,10 +415,10 @@
 "Login": 935,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20035,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -427,10 +427,10 @@
 "Login": 936,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20036,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -439,10 +439,10 @@
 "Login": 937,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20037,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -451,10 +451,10 @@
 "Login": 938,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20038,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -463,10 +463,10 @@
 "Login": 939,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20039,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 },
 {
@@ -475,10 +475,10 @@
 "Login": 940,
 "Password": "123",
 "SipDomain": "test_reg",
-"Expires": "90",
+"Expires" : 90,
 "Port": 20040,
 "SipGroup": "sip.ab",
-"QParam": "1",
+"QParam" : 1,
 "Transport": "TCP"
 }
 
@@ -487,12 +487,12 @@
     {
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
 
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -502,7 +502,7 @@
       "Description": "Звоним за номер с форкингом и отвечаем с одного из контактов. Вызов проключается, всем остальным высылается CANCEL",
       "TestProcedure": [
       {
-      "Sleep" : "200000000"
+      "Sleep" : 200000000
       }
       ]  
     }

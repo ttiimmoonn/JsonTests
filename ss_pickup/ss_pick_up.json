@@ -1,94 +1,94 @@
 {
   "TestName": "ss_pickup",
-  "AutoTest": "True",
+  "AutoTest": true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "150",
       "Login": "150",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10105",
-      "QParam": "0.5"
+      "Port" : 10105,
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "151",
       "Login": "151",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "0.5"
+      "Port" : 10106,
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "152",
       "Login": "152",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10107,
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "153",
       "Login": "153",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10108",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10108,
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "154",
       "Login": "154",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10109",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10109,
+      "QParam" : 1
     },
     {
-      "UserId": "5",
+      "UserId" : 5,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10110",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10110,
+      "QParam" : 1
     },
     {
-      "UserId": "6",
+      "UserId" : 6,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10111",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10111,
+      "QParam" : 1
     },
     {
-      "UserId": "7",
+      "UserId" : 7,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10112",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10112,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -98,7 +98,7 @@
       "%%CALLING_NAME%%" : "\"Pickup test User\""
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%6.Number%%} pickup",
       "command2" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [sip_room1/1, sip_room2/2, sip_room3/3]",
@@ -112,7 +112,7 @@
       "command10": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%CONNECTED_NAME%%"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%6.Number%%} pickup",
       "command2" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%6.Number%%} pickup",
@@ -132,30 +132,30 @@
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "2",
-              "BackGround" : "True",
+              "UserId" : 2,
+              "BackGround" : true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_pickup/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "7",
-              "BackGround" : "True",
+              "UserId" : 7,
+              "BackGround" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%CALLING_NAME%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%0.Number%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -163,20 +163,20 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN *08# -set CDPNDOM %%0.SipDomain%% -d 200 -set CHK_CONNECTED_NAME %%CALLING_NAME%% -set CHK_CONNECTED_NUMBER %%7.Number%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -193,30 +193,30 @@
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "4",
-              "BackGround" : "True",
+              "UserId" : 4,
+              "BackGround" : true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_pickup/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "7",
-              "BackGround" : "True",
+              "UserId" : 7,
+              "BackGround" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -224,20 +224,20 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN *07*2# -set CDPNDOM %%0.SipDomain%% -d 200",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -254,30 +254,30 @@
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "5",
-              "BackGround" : "True",
+              "UserId" : 5,
+              "BackGround" : true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_pickup/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "7",
-              "BackGround" : "True",
+              "UserId" : 7,
+              "BackGround" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -285,20 +285,20 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN *07*%%5.Number%%# -set CDPNDOM %%0.SipDomain%% -d 200",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -315,30 +315,30 @@
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "5",
-              "BackGround" : "True",
+              "UserId" : 5,
+              "BackGround" : true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_pickup/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "7",
-              "BackGround" : "True",
+              "UserId" : 7,
+              "BackGround" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
@@ -346,34 +346,34 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA" : [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC_CALL_PICKUP",
               "Commands": [
                 {
                   "SourceFile": "ss_pickup/uac_recv_480.xml",
                   "Options": "-m 1 -set CDPN *07*%%6.Number%%# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "ss_pickup/uac_recv_480.xml",
                   "Options": "-m 1 -set CDPN *07*1# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 },
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN *07*%%5.Number%%# -set CDPNDOM %%0.SipDomain%% -d 200",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]

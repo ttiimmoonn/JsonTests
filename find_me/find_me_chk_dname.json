@@ -1,61 +1,61 @@
 {
   "TestName": "ss_find_me_chk_dname",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10100",
+      "Expires" : 90,
+      "Port" : 10100,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10106",
+      "Expires" : 90,
+      "Port" : 10106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
+      "Expires" : 90,
+      "Port" : 10107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10108",
+      "Expires" : 90,
+      "Port" : 10108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10109",
-      "QParam": "1"
+      "Port" : 10109,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -67,7 +67,7 @@
       "%%FIND_ME_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmaW5kX21lX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0ZJTkRfTUUiLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4NCg=="
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% find_me",
       "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% find_me send_call_diversion = true",
@@ -79,7 +79,7 @@
       "command8": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%0.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% find_me",
       "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% find_me",
@@ -100,8 +100,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -114,8 +114,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -128,8 +128,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -142,15 +142,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -164,7 +164,7 @@
       "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
             }
@@ -174,8 +174,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -188,8 +188,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -202,8 +202,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -216,15 +216,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -232,7 +232,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
             }
@@ -248,8 +248,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -262,8 +262,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -276,8 +276,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -290,15 +290,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -312,7 +312,7 @@
       "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
             }
@@ -322,8 +322,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -336,8 +336,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -350,8 +350,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -364,15 +364,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -380,7 +380,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
             }
@@ -393,7 +393,7 @@
       "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_test_ctx"
@@ -404,8 +404,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -418,8 +418,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -432,8 +432,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -446,15 +446,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -462,7 +462,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
@@ -476,7 +476,7 @@
       "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
@@ -488,8 +488,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -502,8 +502,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -516,8 +516,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -530,15 +530,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -546,7 +546,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",
@@ -561,7 +561,7 @@
       "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_test_ctx"
@@ -572,8 +572,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -586,8 +586,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -600,8 +600,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -614,15 +614,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -630,7 +630,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
@@ -644,7 +644,7 @@
       "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
@@ -656,8 +656,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -670,8 +670,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -684,8 +684,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
@@ -698,15 +698,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "40s"
                 }
               ]
@@ -714,7 +714,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",

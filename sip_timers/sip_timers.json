@@ -1,59 +1,59 @@
 {
   "TestName": "sip_timer_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "12106",
+      "Expires" : 90,
+      "Port" : 12106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "12107",
+      "Expires" : 90,
+      "Port" : 12107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "12108",
+      "Expires" : 90,
+      "Port" : 12108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "12109",
-      "QParam": "1"
+      "Port" : 12109,
+      "QParam" : 1
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {}
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {}
   ],
   "Tests": [
@@ -65,8 +65,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_INVITE_RETRANS",
               "Commands": [
                 {
@@ -79,15 +79,15 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAC_INVITE_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "sip_timers/simple_uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -103,7 +103,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -114,7 +114,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -130,8 +130,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_PRACK_RETRANS",
               "Commands": [
                 {
@@ -144,14 +144,14 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_PRACK_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "sip_timers/simple_uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -167,7 +167,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "PRACK",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -178,7 +178,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "PRACK",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -194,8 +194,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_CANCEL_RETRANS",
               "Commands": [
                 {
@@ -208,14 +208,14 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_CANCEL_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "sip_timers/uac_cancel.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -231,7 +231,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -242,7 +242,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -258,7 +258,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAS1_200_RETRANS",
               "Commands": [
                 {
@@ -271,15 +271,15 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAC_200_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "sip_timers/uac_no_ack_to_200.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -322,8 +322,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_BYE_RETRANS",
               "Commands": [
                 {
@@ -336,14 +336,14 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_BYE_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "sip_timers/simple_uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -359,7 +359,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "BYE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -370,7 +370,7 @@
                 {
                   "MsgType": "Request",
                   "Method" : "BYE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -386,7 +386,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAS1_4XX_RETRANS",
               "Commands": [
                 {
@@ -399,15 +399,15 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAC_4XX_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "sip_timers/simple_uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -d 32000",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -450,7 +450,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAS1_5XX_RETRANS",
               "Commands": [
                 {
@@ -463,15 +463,15 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAC_5XX_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "sip_timers/simple_uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -d 40000",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]

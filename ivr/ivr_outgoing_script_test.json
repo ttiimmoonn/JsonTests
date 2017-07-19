@@ -1,28 +1,28 @@
 {
 	"TestName" : "ivr_outgoing_script_test",
-	"AutoTest" : "True",
+	"AutoTest" : true,
 	"Users" : [
       {
-        "UserId": "0",
+        "UserId" : 0,
         "Number": "156",
         "Login": "156",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20000",
+        "Expires" : 90,
+        "Port" : 20000,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       },
       {
-        "UserId": "1",
+        "UserId" : 1,
         "Number": "157",
         "Login": "157",
         "Password": "123",
         "SipDomain": "pv.ssw3",
-        "Expires": "90",
-        "Port": "20002",
+        "Expires" : 90,
+        "Port" : 20002,
         "SipGroup": "sip.ab",
-        "QParam": "0.5"
+        "QParam" : 0.5
       }
   ],
   "UserVar": [
@@ -32,11 +32,11 @@
       "%%NEXT_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"dial_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_30\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"outgoing_next_script\",\"description\":\"outgoing_next_script\",\"version\":\"3.9.0.117\"}"
     }
    ],
-  "PreCoconConf": [
+  "PreConf": [
     {
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -46,7 +46,7 @@
       "Description": "Тестируем соединение двух абонентов посредством outgoing script",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
               {
                 "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_outgoing_script_test --json %%IVR_SIMPLE_OUTGOING_SCRIPT%%"
               }
@@ -56,32 +56,32 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "BackGround" : "True",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "BackGround" : true,
+              "WriteStat" : true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "BackGround" : "True",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "BackGround" : true,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -89,17 +89,17 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/custom_cb/.do %%1.Number%% %%0.Number%% --id ivr_outgoing_script_test"
             }
           ]
         },
         {
-          "Sleep" : "10"
+          "Sleep" : 10
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
               {
                 "command0": "domain/%%DEV_DOM%%/ivr/script/delete --id ivr_outgoing_script_test"
               }
@@ -112,7 +112,7 @@
       "Description": "Тестируем соединение абонента и вх скрипта.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
               {
                 "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_outgoing_script_test_next --json %%IVR_OUTGOING_SCRIPT_WITH_NEXT%%",
                 "command1": "/domain/%%DEV_DOM%%/ivr/script/.import --id outgoing_next_script --json %%NEXT_SCRIPT%%"
@@ -123,32 +123,32 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "BackGround" : "True",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "BackGround" : true,
+              "WriteStat" : true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "BackGround" : "True",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "BackGround" : true,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -156,17 +156,17 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command0": "/domain/%%DEV_DOM%%/custom_cb/.do %%0.Number%% %%0.Number%% --id ivr_outgoing_script_test_next"
             }
           ]
         },
         {
-          "Sleep" : "10"
+          "Sleep" : 10
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
               {
                 "command0": "domain/%%DEV_DOM%%/ivr/script/delete --id ivr_outgoing_script_test_next",
                 "command1": "domain/%%DEV_DOM%%/ivr/script/delete --id outgoing_next_script"

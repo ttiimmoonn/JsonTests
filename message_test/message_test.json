@@ -1,49 +1,49 @@
 {
   "TestName": "test_message",
-  "AutoTest" : "True",
+  "AutoTest" : true,
     "Users": [
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10106",
+      "Expires" : 90,
+      "Port" : 10106,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
+      "Expires" : 90,
+      "Port" : 10107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
+      "Expires" : 90,
+      "Port" : 10107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -56,8 +56,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS_RECV_MSG",
               "Commands": [
                 {
@@ -70,14 +70,14 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_SEND_MSG",
               "Commands": [
                 {
                   "SourceFile": "message_test/send_message.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME \"Send Simple MESSAGE test\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -94,14 +94,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_SEND_MSG",
               "Commands": [
                 {
                   "SourceFile": "message_test/send_msg_recv_404.xml",
                   "Options": "-m 1 -set CDPN 123456789 -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME \"Send MESSAGE to unknown user\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -115,7 +115,7 @@
       "Description": "Проверка получения 480 ответа на MESSAGE, в случае если юзер неактивен",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive false"
             }
@@ -125,14 +125,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "UAC_SEND_MSG",
               "Commands": [
                 {
                   "SourceFile": "message_test/send_msg_recv_480.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME \"Send MESSAGE to disabled user\"",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "120s"
                 }
               ]
@@ -140,7 +140,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive true"
             }

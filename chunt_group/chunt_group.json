@@ -1,61 +1,61 @@
 {
   "TestName": "ss_chunt_group",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10100",
+      "Expires" : 90,
+      "Port" : 10100,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10106",
+      "Expires" : 90,
+      "Port" : 10106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
+      "Expires" : 90,
+      "Port" : 10107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10108",
+      "Expires" : 90,
+      "Port" : 10108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10109",
-      "QParam": "1"
+      "Port" : 10109,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -65,13 +65,13 @@
       "%%ChuntGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
       "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = group, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
       "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
@@ -82,13 +82,13 @@
       "Name": "chunt_basic_test_wout_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": "4"},
+        {"Sleep" : 4},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -101,8 +101,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -115,8 +115,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -129,15 +129,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "chunt_group/uac.xml",
                   "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -150,13 +150,13 @@
       "Name": "chunt_basic_test_with_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": "4"},
+        {"Sleep" : 4},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -169,8 +169,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -183,8 +183,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -197,15 +197,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
                   "SourceFile": "chunt_group/100rel/uac.xml",
                   "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -218,13 +218,13 @@
       "Name": "chunt_queue_overload_test",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
-        {"Sleep": "4"},
+        {"Sleep" : 4},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -237,8 +237,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -251,8 +251,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -265,15 +265,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "chunt_group/uac.xml",
                   "Options": "-m 4 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -286,13 +286,13 @@
       "Name": "chunt_queue_overload_test_with_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
-        {"Sleep": "4"},
+        {"Sleep" : 4},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -305,8 +305,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -319,8 +319,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -333,15 +333,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
                   "SourceFile": "chunt_group/100rel/uac.xml",
                   "Options": "-m 4 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -354,13 +354,13 @@
       "Name": "chunt_block_on_486_wout_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку. Результат: Все UAS были заблокированы на 15 сек. Последний UAS быстренько рагребает очередь",
       "TestProcedure": [
-        {"Sleep": "4"},
+        {"Sleep" : 4},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -373,8 +373,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -387,8 +387,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -401,15 +401,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "chunt_group/uac.xml",
                   "Options": "-m 4 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -422,13 +422,13 @@
       "Name": "chunt_block_on_486_with_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку. Результат: Все UAS были заблокированы на 15 сек. Последний UAS быстренько рагребает очередь",
       "TestProcedure": [
-        {"Sleep": "4"},
+        {"Sleep" : 4},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -441,8 +441,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -455,8 +455,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -469,15 +469,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
                   "SourceFile": "chunt_group/100rel/uac.xml",
                   "Options": "-m 4 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -490,13 +490,13 @@
       "Name": "chunt_group_race_of_200Ok_and_cancel",
       "Description": "Проверяем, что адаптер отбивает вызов через BYE, если получил 200 OK",
       "TestProcedure": [
-        {"Sleep": "4"},
+        {"Sleep" : 4},
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAS1_RACE_200OK_AND_CANCEL",
               "Commands": [
                 {
@@ -509,8 +509,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "UAS2_RACE_200OK_AND_CANCEL",
               "Commands": [
                 {
@@ -523,8 +523,8 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat" : "True",
+              "UserId" : 3,
+              "WriteStat" : true,
               "Name": "UAS3_RACE_200OK_AND_CANCEL_RECV_BYE",
               "Commands": [
                 {
@@ -537,15 +537,15 @@
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "WriteStat" : "True",
+              "UserId" : 4,
+              "WriteStat" : true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
                   "SourceFile": "chunt_group/uac.xml",
                   "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]

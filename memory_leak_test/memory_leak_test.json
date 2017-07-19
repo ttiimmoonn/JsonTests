@@ -2,313 +2,313 @@
   "TestName": "memory_leak",
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "150",
       "Login": "150",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "12106",
+      "Expires" : 3600,
+      "Port" : 12106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "151",
       "Login": "151",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "12107",
+      "Expires" : 3600,
+      "Port" : 12107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "152",
       "Login": "152",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "12108",
+      "Expires" : 3600,
+      "Port" : 12108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "153",
       "Login": "153",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "12109",
-      "QParam": "1"
+      "Port" : 12109,
+      "QParam" : 1
     },
     {
-      "UserId": "4",
+      "UserId" : 4,
       "Number": "154",
       "Login": "154",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "12110",
-      "QParam": "1"
+      "Port" : 12110,
+      "QParam" : 1
     },
     {
-      "UserId": "5",
+      "UserId" : 5,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "12111",
-      "QParam": "1"
+      "Port" : 12111,
+      "QParam" : 1
     },
     {
-      "UserId": "6",
+      "UserId" : 6,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "12112",
-      "QParam": "1"
+      "Port" : 12112,
+      "QParam" : 1
     },
     {
-      "UserId": "7",
+      "UserId" : 7,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "12113",
-      "QParam": "1"
+      "Port" : 12113,
+      "QParam" : 1
     },
     {
-      "UserId": "8",
+      "UserId" : 8,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "12114",
-      "QParam": "1"
+      "Port" : 12114,
+      "QParam" : 1
     },
     {
-      "UserId": "9",
+      "UserId" : 9,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "12115",
-      "QParam": "1"
+      "Port" : 12115,
+      "QParam" : 1
     },
     {
-      "UserId": "10",
+      "UserId" : 10,
       "Number": "170",
       "Login": "170",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "13107",
+      "Expires" : 3600,
+      "Port" : 13107,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     },
     {
-      "UserId": "11",
+      "UserId" : 11,
       "Number": "171",
       "Login": "171",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "13108",
+      "Expires" : 3600,
+      "Port" : 13108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "12",
+      "UserId" : 12,
       "Number": "172",
       "Login": "172",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "13109",
+      "Expires" : 3600,
+      "Port" : 13109,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     },
     {
-      "UserId": "13",
+      "UserId" : 13,
       "Number": "173",
       "Login": "173",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "13110",
-      "QParam": "1"
+      "Port" : 13110,
+      "QParam" : 1
     },
     {
-      "UserId": "14",
+      "UserId" : 14,
       "Number": "174",
       "Login": "174",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "13111",
-      "QParam": "1"
+      "Port" : 13111,
+      "QParam" : 1
     },
     {
-      "UserId": "15",
+      "UserId" : 15,
       "Number": "175",
       "Login": "175",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "13112",
-      "QParam": "1"
+      "Port" : 13112,
+      "QParam" : 1
     },
     {
-      "UserId": "16",
+      "UserId" : 16,
       "Number": "176",
       "Login": "176",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "13113",
-      "QParam": "1"
+      "Port" : 13113,
+      "QParam" : 1
     },
     {
-      "UserId": "17",
+      "UserId" : 17,
       "Number": "177",
       "Login": "177",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "13114",
-      "QParam": "1"
+      "Port" : 13114,
+      "QParam" : 1
     },
     {
-      "UserId": "18",
+      "UserId" : 18,
       "Number": "178",
       "Login": "178",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "13115",
-      "QParam": "1"
+      "Port" : 13115,
+      "QParam" : 1
     },
     {
-      "UserId": "19",
+      "UserId" : 19,
       "Number": "179",
       "Login": "179",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "13116",
-      "QParam": "1"
+      "Port" : 13116,
+      "QParam" : 1
     },
     {
-      "UserId": "20",
+      "UserId" : 20,
       "Number": "180",
       "Login": "180",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "14000",
-      "QParam": "1"
+      "Port" : 14000,
+      "QParam" : 1
     },
     {
-      "UserId": "21",
+      "UserId" : 21,
       "Number": "181",
       "Login": "181",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "14001",
-      "QParam": "1"
+      "Port" : 14001,
+      "QParam" : 1
     },
     {
-      "UserId": "22",
+      "UserId" : 22,
       "Number": "182",
       "Login": "182",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "14002",
-      "QParam": "1"
+      "Port" : 14002,
+      "QParam" : 1
     },
     {
-      "UserId": "23",
+      "UserId" : 23,
       "Number": "183",
       "Login": "183",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "14003",
-      "QParam": "1"
+      "Port" : 14003,
+      "QParam" : 1
     },
     {
-      "UserId": "24",
+      "UserId" : 24,
       "Number": "184",
       "Login": "184",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "14004",
-      "QParam": "1"
+      "Port" : 14004,
+      "QParam" : 1
     },
     {
-      "UserId": "25",
+      "UserId" : 25,
       "Number": "185",
       "Login": "185",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "14005",
-      "QParam": "1"
+      "Port" : 14005,
+      "QParam" : 1
     },
     {
-      "UserId": "26",
+      "UserId" : 26,
       "Number": "186",
       "Login": "186",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
-      "Port": "14006",
-      "QParam": "1"
+      "Port" : 14006,
+      "QParam" : 1
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
     "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group {%%20.Number%%-%%24.Number%%}@%%DEV_DOM%% options_control 32",
      "command2" :"/domain/%%DEV_DOM%%/sip/properties/set blf_enable true"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     "command1": " /domain/%%DEV_DOM%%/sip/user/set sip.group {%%20.Number%%-%%24.Number%%}@%%DEV_DOM%% options_control 0"
     }
@@ -322,240 +322,240 @@
         "StartUA": [
             {
               "Type": "User",
-              "UserId": "20",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 20,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAS20_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "21",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 21,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAS21_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "22",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 22,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAS22_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "23",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 23,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAS23_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "24",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 24,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAS24_OPTIONS_CONTROL_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/options_control.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "10",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 10,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC10_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "11",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 11,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC11_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "12",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 12,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC12_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "13",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 13,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC13_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "14",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 14,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC14_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "15",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 15,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC15_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "16",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 16,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC16_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%6.Number%% -set CDPNDOM %%6.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "17",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 17,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC17_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%7.Number%% -set CDPNDOM %%7.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "18",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 18,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC18_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%8.Number%% -set CDPNDOM %%8.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "19",
-              "Cyclic": "True",
-              "BackGround" : "True",
+              "UserId" : 19,
+              "Cyclic": true,
+              "BackGround" : true,
               "Name": "UAC19_SUB_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/blf.xml",
                   "Options": "-m 1 -set CDPN %%9.Number%% -set CDPNDOM %%9.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "3600s"
                 }
               ]
@@ -566,150 +566,150 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "Cyclic": "True",
+              "UserId" : 0,
+              "Cyclic": true,
               "Name": "UAS0_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 10 -aa",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "Cyclic": "True",
+              "UserId" : 1,
+              "Cyclic": true,
               "Name": "UAS1_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 10 -aa",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "Cyclic": "True",
+              "UserId" : 2,
+              "Cyclic": true,
               "Name": "UAS2_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 10 -aa",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "Cyclic": "True",
+              "UserId" : 3,
+              "Cyclic": true,
               "Name": "UAS3_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
                   "Options": "-m 10 -aa",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "4",
-              "Cyclic": "True",
+              "UserId" : 4,
+              "Cyclic": true,
               "Name": "UAS4_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/uas_send_busy.xml",
                   "Options": "-m 10 -aa",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "5",
-              "Cyclic": "True",
+              "UserId" : 5,
+              "Cyclic": true,
               "Name": "UAC0_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 10 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -l 1 -r 1 -rp 2000 -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "6",
-              "Cyclic": "True",
+              "UserId" : 6,
+              "Cyclic": true,
               "Name": "UAC1_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 10 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -l 1 -r 1 -rp 2000 -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "7",
-              "Cyclic": "True",
+              "UserId" : 7,
+              "Cyclic": true,
               "Name": "UAC2_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
                   "Options": "-m 10 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -l 1 -r 1 -rp 2000 -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "8",
-              "Cyclic": "True",
+              "UserId" : 8,
+              "Cyclic": true,
               "Name": "UAC3_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
                   "Options": "-m 10 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -l 1 -r 1 -rp 2000 -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "9",
-              "Cyclic": "True",
+              "UserId" : 9,
+              "Cyclic": true,
               "Name": "UAC4_RECV_BUSY_MEM_LEAK",
               "Commands": [
                 {
                   "SourceFile": "memory_leak_test/uac_recv_486.xml",
                   "Options": "-m 10 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -l 1 -r 1 -rp 2000 -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "1800s"
                 }
               ]

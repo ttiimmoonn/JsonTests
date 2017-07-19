@@ -1,50 +1,50 @@
 {
   "TestName": "forking_with_diff_q",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "20106",
+      "Expires" : 90,
+      "Port" : 20106,
       "SipGroup": "sip.ab",
-      "QParam": "0.9"
+      "QParam" : 0.9
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "20107",
-      "QParam": "0.8"
+      "Port" : 20107,
+      "QParam" : 0.8
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "20108",
-      "QParam": "0.7"
+      "Port" : 20108,
+      "QParam" : 0.7
     },
     {
-      "UserId": "3",
+      "UserId" : 3,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "20109",
-      "QParam": "1"
+      "Port" : 20109,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -52,12 +52,12 @@
       "%%FIND_ME_TIMER%%": "3600"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -67,7 +67,7 @@
       "Description": "Проверка find-me-with-q режим previous-continue",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-continue"
             }
@@ -77,8 +77,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat": "True",
+              "UserId" : 0,
+              "WriteStat": true,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -91,8 +91,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -105,8 +105,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
@@ -119,14 +119,14 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -143,7 +143,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -155,7 +155,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -168,7 +168,7 @@
       "Description": "Проверка find-me-with-q режим previous-stop",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop"
             }
@@ -178,8 +178,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat": "True",
+              "UserId" : 0,
+              "WriteStat": true,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -192,8 +192,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -206,8 +206,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAS3_SEND_BYE",
               "Commands": [
                 {
@@ -220,14 +220,14 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -244,7 +244,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -256,7 +256,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -269,7 +269,7 @@
       "Description": "Проверка find-me-one-by-one режим previous-continue",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-one-by-one previous-continue"
             }
@@ -279,8 +279,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat": "True",
+              "UserId" : 0,
+              "WriteStat": true,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -293,8 +293,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -307,8 +307,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
@@ -321,14 +321,14 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -345,7 +345,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -357,7 +357,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -370,7 +370,7 @@
       "Description": "Проверка find-me-one-by-one режим previous-stop",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-one-by-one previous-stop"
             }
@@ -380,8 +380,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat": "True",
+              "UserId" : 0,
+              "WriteStat": true,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -394,8 +394,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -408,8 +408,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
@@ -422,14 +422,14 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -446,7 +446,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -458,7 +458,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -471,7 +471,7 @@
       "Description": "Проверка того, что режим all-contact не зависит от q параметра",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
             }
@@ -481,8 +481,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat": "True",
+              "UserId" : 0,
+              "WriteStat": true,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -495,8 +495,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -509,8 +509,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
@@ -523,14 +523,14 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId" : 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -547,7 +547,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -559,7 +559,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -572,7 +572,7 @@
       "Description": "Проверяем, что вызов отбивается если последний контакт дал busy",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop"
             }
@@ -582,8 +582,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat": "True",
+              "UserId" : 0,
+              "WriteStat": true,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -596,8 +596,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -610,8 +610,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAS2_SEND_BUSY",
               "Commands": [
                 {
@@ -624,15 +624,15 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat": "True",
+              "UserId" : 3,
+              "WriteStat": true,
               "Name": "UAC_RECV_486",
               "Commands": [
                 {
                   "SourceFile": "forking/uac_recv_486.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -649,7 +649,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -661,7 +661,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -674,7 +674,7 @@
       "Description": "Проверка корректности обработки 420 ответа",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
@@ -685,8 +685,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat": "True",
+              "UserId" : 0,
+              "WriteStat": true,
               "Name": "UAS0_420_RECV_CANCEL",
               "Commands": [
                 {
@@ -699,8 +699,8 @@
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat": "True",
+              "UserId" : 1,
+              "WriteStat": true,
               "Name": "UAS1_420_RECV_CACNEL",
               "Commands": [
                 {
@@ -713,8 +713,8 @@
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat": "True",
+              "UserId" : 2,
+              "WriteStat": true,
               "Name": "UAS2_420_SEND_BYE",
               "Commands": [
                 {
@@ -727,15 +727,15 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat": "True",
+              "UserId" : 3,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -752,7 +752,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             },
@@ -764,7 +764,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "CANCEL",
-                  "Code" : "None"
+                  "Code" : null
                 }
               ]
             }
@@ -777,7 +777,7 @@
       "Description": "Проверка disable режима. Тест будет работать только после теста с испоользованием fork-mode find-me-with-q",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode disable"
             }
@@ -787,7 +787,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -800,15 +800,15 @@
             },
             {
               "Type": "User",
-              "UserId": "3",
-              "WriteStat": "True",
+              "UserId" : 3,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -816,7 +816,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
             }

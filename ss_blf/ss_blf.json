@@ -1,45 +1,45 @@
 {
   "TestName": "ss_blf",
-  "AutoTest": "True",
+  "AutoTest": true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10105",
-      "QParam": "0.5"
+      "Port" : 10105,
+      "QParam" : 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "0.5"
+      "Port" : 10106,
+      "QParam" : 0.5
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10107,
+      "QParam" : 1
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_test blf_test blf %%0.Number%% %%1.Number%% %%2.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
@@ -47,7 +47,7 @@
       "command4" : "/domain/%%DEV_DOM%%/lists/info blf_test"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/lists/remove blf_test ",
       "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
@@ -63,16 +63,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -80,36 +80,36 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_BLF_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_BLF_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -126,16 +126,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -143,36 +143,36 @@
           ]
         },
         {
-          "Sleep" : "2"
+          "Sleep" : 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
-              "WriteStat" : "True",
+              "UserId" : 2,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAS_BLF_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "SIMPLE_UAC_BLF_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -189,16 +189,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SUBSCRIBE_TO_UNKNOWN_USER",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_404_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN A9138345 -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -212,7 +212,7 @@
       "Description": "Получение 403 ответа при деактивированном сервисе blf.",
       "TestProcedure": [
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf"
             }
@@ -222,16 +222,16 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
-              "BackGround" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
               "Name": "SUBSCRIBE_WITHOUT_BLF",
               "Commands": [
                 {
                   "SourceFile": "ss_blf/recv_403_to_subscribe.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -239,7 +239,7 @@
           ]
         },
         {
-          "CoconCommand": [
+          "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10"
             }

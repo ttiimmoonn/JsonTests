@@ -2,15 +2,15 @@
   "TestName": "multi_fax_test_manual",
   "Users": [
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "3600",
-      "Port": "11106",
+      "Expires" : 3600,
+      "Port" : 11106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam" : 0.5
     }
   ],
   "UserVar": [
@@ -19,10 +19,10 @@
       "%%USER_DOM%%": "pv.ssw3"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {}
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {}
   ],
   "Tests": [
@@ -34,13 +34,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_MULT_FAX",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_mult_fax_manual.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "10000s"
                 }
