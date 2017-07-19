@@ -101,7 +101,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "INVITE",
                   "Code" : null
                 }
@@ -112,7 +112,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "INVITE",
                   "Code" : null
                 }
@@ -165,7 +165,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "PRACK",
                   "Code" : null
                 }
@@ -176,7 +176,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "PRACK",
                   "Code" : null
                 }
@@ -229,7 +229,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "CANCEL",
                   "Code" : null
                 }
@@ -240,7 +240,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "CANCEL",
                   "Code" : null
                 }
@@ -293,7 +293,7 @@
               "UA": "2",
               "Msg" : [
                 {
-                  "MsgType": "Response",
+                  "MsgType": "response",
                   "Method" : "INVITE",
                   "Code" : 200
                 }
@@ -304,7 +304,7 @@
               "UA": "2",
               "Msg" : [
                 {
-                  "MsgType": "Response",
+                  "MsgType": "response",
                   "Method" : "INVITE",
                   "Code" : 200
                 }
@@ -357,7 +357,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "BYE",
                   "Code" : null
                 }
@@ -368,7 +368,7 @@
               "UA": "1",
               "Msg" : [
                 {
-                  "MsgType": "Request",
+                  "MsgType": "request",
                   "Method" : "BYE",
                   "Code" : null
                 }
@@ -421,7 +421,7 @@
               "UA": "2",
               "Msg" : [
                 {
-                  "MsgType": "Response",
+                  "MsgType": "response",
                   "Method" : "INVITE",
                   "Code" : 486
                 }
@@ -432,7 +432,7 @@
               "UA": "2",
               "Msg" : [
                 {
-                  "MsgType": "Response",
+                  "MsgType": "response",
                   "Method" : "INVITE",
                   "Code" : 486
                 }
@@ -485,7 +485,7 @@
               "UA": "2",
               "Msg" : [
                 {
-                  "MsgType": "Response",
+                  "MsgType": "response",
                   "Method" : "INVITE",
                   "Code" : 500
                 }
@@ -496,7 +496,7 @@
               "UA": "2",
               "Msg" : [
                 {
-                  "MsgType": "Response",
+                  "MsgType": "response",
                   "Method" : "INVITE",
                   "Code" : 500
                 }
