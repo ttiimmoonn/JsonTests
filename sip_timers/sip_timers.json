@@ -295,7 +295,7 @@
                 {
                   "MsgType": "Response",
                   "Method" : "INVITE",
-                  "Code" : "200"
+                  "Code" : 200
                 }
               ]
             },
@@ -306,7 +306,7 @@
                 {
                   "MsgType": "Response",
                   "Method" : "INVITE",
-                  "Code" : "200"
+                  "Code" : 200
                 }
               ]
             }
@@ -423,7 +423,7 @@
                 {
                   "MsgType": "Response",
                   "Method" : "INVITE",
-                  "Code" : "486"
+                  "Code" : 486
                 }
               ]
             },
@@ -434,7 +434,7 @@
                 {
                   "MsgType": "Response",
                   "Method" : "INVITE",
-                  "Code" : "486"
+                  "Code" : 486
                 }
               ]
             }
@@ -487,7 +487,7 @@
                 {
                   "MsgType": "Response",
                   "Method" : "INVITE",
-                  "Code" : "500"
+                  "Code" : 500
                 }
               ]
             },
@@ -498,7 +498,7 @@
                 {
                   "MsgType": "Response",
                   "Method" : "INVITE",
-                  "Code" : "500"
+                  "Code" : 500
                 }
               ]
             }
