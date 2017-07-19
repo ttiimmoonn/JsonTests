@@ -99,7 +99,7 @@
         {
           "SendSSHCommand": [
             {
-              "SendSSHCommand": "/domain/%%DEV_DOM%%/timers/core/set response_timeout 30"
+              "command1": "/domain/%%DEV_DOM%%/timers/core/set response_timeout 30"
             }
           ]
         },
@@ -154,7 +154,7 @@
         {
           "SendSSHCommand": [
             {
-              "SendSSHCommand": "/domain/%%DEV_DOM%%/timers/core/clean response_timeout"
+              "command1": "/domain/%%DEV_DOM%%/timers/core/clean response_timeout"
             }
           ]
         }
