@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Failure to Enclose name-addr URI in angle brackets">
+  
+<!--
+This REGISTER request is malformed. The SIP URI contained in the
+Contact Header field has an escaped header, so the field must be in
+name-addr form (which implies that the URI must be enclosed in <>).
+It is reasonable for an element receiving this request to respond
+with a 400 Bad Request. An element choosing to be liberal in what it
+accepts could infer the angle brackets since there is no ambiguity in
+this example. In general, that won't be possible.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+
+<![CDATA[
+REGISTER sip:[$cdpn][remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: "[$display_test]" <sip:[service][$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+CSeq: 1 REGISTER
+Max-Forwards: 70
+Contact: sip:[service]@[local_ip]:[local_port]?Route=%3Csip:sip.example.com%3E
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<recv response="400" optional="true" next="2">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<recv response="100" optional="true"/>
+<recv response="401" optional="true" next="2"/>
+<recv response="200"/>
+
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+Cseq: 1 ACK
+Content-Length: 0
+]]>
+</send>
+
+<label id="2"/>
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<label id="1"/>
+
+</scenario>

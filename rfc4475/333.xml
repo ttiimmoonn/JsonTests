@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Request-URI with known but atypical scheme">
+  
+<!--
+This OPTIONS contains an Request-URI with an IANA-registered scheme
+that does not commonly appear in Request-URIs of SIP requests. 
+A parser must accept this as a well-formed SIP request.
+If an element will never accept this scheme as meaningful in a
+Request-URI, it is appropriate to treat it as unknown and return a
+416 Unsupported URI Scheme response. If the element might accept
+some URIs with this scheme, then a 404 Not Found is appropriate for
+those URIs it doesn't accept.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+OPTIONS soap.beep://[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: "[$display_test]" <sip:[service]@[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+Accept: application/sdp
+CSeq: 1 OPTIONS
+Max-Forwards: 70
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<recv response="416" optional="true" next="2">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<recv response="404" optional="true" next="2">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<recv response="200"/>
+
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+Cseq: 1 ACK
+Content-Length: 0
+]]>
+</send>
+
+<label id="2"/>
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<label id="1"/>
+
+</scenario>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Overlarge response code">
+
+<!-- 
+This response has a response code larger than 699. 
+An element receiving this response should simply drop it
+-->
+
+<Global variables="DISPLAYTEST,CDPN"/>
+<Reference variables="DISPLAYTEST"/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+</action>
+</nop>
+
+<recv request="INVITE">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<send>
+<![CDATA[
+SIP/2.0 5485304 better not break the receiver
+[last_Via:]
+[last_From:]
+[last_To:];tag=[call_number]
+[last_Call-ID:]
+[last_CSeq:]
+Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="2000"/>
+
+<send>
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Content-Length: 0
+]]>
+</send>
+
+</scenario>

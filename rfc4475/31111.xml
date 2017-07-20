@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Multipart MIME message">
+
+<!--
+This MESSAGE request contains two body parts. The second part is
+binary encoded and contains null (0x00) characters. Receivers must
+take care to frame the received message properly.
+Parsers must accept this message as well formed, even if the
+application above the parser does not support multipart/signed.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+MESSAGE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: "[$display_test]" <sip:[service]@[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+CSeq: 1 MESSAGE
+Contact: <sip:[service]@[local_ip]:[local_port]>
+Max-Forwards: 70
+Subject: [$display_test]
+Content-Transfer-Encoding: binary
+Content-Type: multipart/mixed;boundary=7a9cbec02ceef655
+Content-Length: [len]
+
+--7a9cbec02ceef655
+Content-Type: text/plain
+Content-Transfer-Encoding: binary
+
+Hello
+--7a9cbec02ceef655
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: binary
+
+<hex>
+3082015206092A86
+4886F70D010702A08201433082013F02
+01013109300706052B0E03021A300B06
+092A864886F70D010701318201203082
+011C020101307C3070310B3009060355
+04061302555331133011060355040813
+0A43616C69666F726E69613111300F06
+03550407130853616E204A6F7365310E
+300C060355040A130573697069743129
+3027060355040B132053697069742054
+65737420436572746966696361746520
+417574686F7269747902080195007102
+330113300706052B0E03021A300D0609
+2A864886F70D01010105000481808EF4
+66F948F0522DD2E5978E9D95AAE9F2FE
+15A06659716292E8DA2AA8D8350A68CE
+FFAE3CBD2BFF1675DDD5648E593DD647
+28F26220F7E941749E330D9A15EDABDB
+93D10C42102E7B7289D29CC0C9AE2EFB
+C7C0CFF9172F3B027E4FC027E1546DE4
+B6AA3ABB3E66CCCB5DD6C64B8383149C
+B8E6FF182D944FE57B65BC99D005
+</hex>
+--7a9cbec02ceef655--
+]]>
+</send>
+
+<recv response="403">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<send>
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="2000"/>
+
+</scenario>

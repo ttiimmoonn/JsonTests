@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Negative content-length">
+
+<!--
+This request has a negative value for Content-Length.
+An element receiving this message should respond with an error.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: "[$display_test]" <sip:[service]@[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+CSeq: 1 INVITE
+Contact: <sip:[service]@[local_ip]:[local_port]>
+Max-Forwards: 70
+Subject: [$display_test]
+Content-Type: application/sdp
+Content-Length: -999
+
+v=0
+o=tester 53655765 2353687637 IN IP4 [local_ip]
+s=-
+c=IN IP4 [media_ip]
+t=0 0
+m=audio [media_port] RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<recv response="400">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+</action>
+</recv>
+
+<send>
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+</scenario>

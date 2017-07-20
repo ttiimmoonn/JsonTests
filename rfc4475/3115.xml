@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Use of % when it is not an escape">
+  
+<!--
+In most of the places % can appear in a SIP message, it is not an
+escape character. This can surprise the unwary implementor. The
+following well-formed request has these properties:
+The request method is unknown. It is NOT equivalent to REGISTER.
+The display name portion of the To and From header fields is "%Z%45".
+Note that this is not the same as %ZE.
+This message has two Contact header field values, not three.
+<sip:alias2@host2.example.com> is a C%6Fntact header field value.
+A parser should accept this message as well formed. A proxy would
+forward or reject the message depending on what the Request-URI meant
+to it.  An endpoint would reject this message with a 501.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+RE%47IST%45R sip:[$cdpn][remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: "%Z%45" <sip:[service]@[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: %Z%45" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+CSeq: 1 RE%47IST%45R
+Max-Forwards: 70
+Contact: <sip:5445455@[local_ip]:[local_port]>
+Contact: <sip:347@[local_ip]:[local_port]>
+C%6Fntact: <sip:[service]@[local_ip]:[local_port]>
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<recv response="400" optional="true" next="2">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<recv response="501" next="2">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<label id="2"/>
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<label id="1"/>
+
+</scenario>

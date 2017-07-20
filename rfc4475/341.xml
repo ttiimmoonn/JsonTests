@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="INVITE with RFC 2543 syntax">
+  
+<!--
+This is a legal message per RFC 2543 (and several bis versions) that
+should be accepted by RFC 3261 elements that want to maintain
+backwards compatibility.
+There is no branch parameter at all on the Via header field value.
+There is no From tag.
+There is no explicit Content-Length. (The body is assumed to be
+all octets in the datagram after the null-line.)
+There is no Max-Forwards header field.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port]
+From: "[$display_test]" <sip:[service]@[$cgpn_dom]:[local_port]>
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+CSeq: 1 INVITE
+Contact: <sip:[service]@[local_ip]:[local_port]>
+Subject: [$display_test]
+Content-Type: application/sdp
+
+v=0
+o=tester 53655765 2353687637 IN IP4 [local_ip]
+s=-
+c=IN IP4 [media_ip]
+t=0 0
+m=audio [media_port] RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<recv response="100" optional="true"/>
+<recv response="180" optional="true"/>
+<recv response="200"/>
+
+<send>
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+Max-Forwards: 70
+Cseq: 1 ACK
+Content-Length: 0
+]]>
+</send>
+
+<recv request="BYE">
+</recv>
+
+<send>
+<![CDATA[
+SIP/2.0 200 OK
+[last_Via:]
+[last_From:]
+[last_To:]
+[last_Call-ID:]
+[last_CSeq:]
+Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+Content-Length: 0
+]]>
+</send>
+
+</scenario>

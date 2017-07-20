@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Varied and unknown transport types">
+  
+<!--
+This request contains Via header field values with all known
+transport types and exercises the transport extension mechanism.
+Parsers must accept this message as well formed. Elements receiving
+this message would process it exactly as if the 2nd and subsequent
+header field values specified UDP (or other transport).
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+OPTIONS sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/UDP [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/SCTP [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/TLS [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/UNKNOWN [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/TCP [local_ip]:[local_port];branch=[branch]
+From: "[$display_test]" <sip:[service]@[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+Accept: application/sdp
+CSeq: 1 OPTIONS
+Max-Forwards: 70
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<recv response="200"/>
+
+<send>
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+Cseq: 1 ACK
+Content-Length: 0
+]]>
+</send>
+
+</scenario>

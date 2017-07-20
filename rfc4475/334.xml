@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Unknown_URI_schemes_in_header_fields">
+  
+<!--
+This message contains registered schemes in the To, From, and Contact
+header fields of a request. The message is syntactically valid.
+Parsers must not fail when receiving this message.
+Proxies should treat this message as they would any other request for
+this URI. A registrar would reject this request with a 400 Bad
+Request response, since the To: header field is required to contain a
+SIP or SIPS URI as an AOR.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables="CDPNDOM"/>
+<Reference variables="CDPNDOM"/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+REGISTER sip:[$cdpn][remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: "[$display_test]" <http://[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: isbn:2983792873
+Call-ID: [call_id]
+CSeq: 1 REGISTER
+Max-Forwards: 70
+Contact: <name:John_Smith>
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<recv response="400" optional="true" next="2">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<recv response="100" optional="true"/>
+<recv response="401" optional="true" next="2"/>
+<recv response="200"/>
+
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+Cseq: 1 ACK
+Content-Length: 0
+]]>
+</send>
+
+<label id="2"/>
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<label id="1"/>
+
+</scenario>

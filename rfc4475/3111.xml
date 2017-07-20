@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="A short tortuous INVITE">
+  
+<!--
+This short, relatively human-readable message contains:
+Line folding all over;
+Escaped characters within quotes;
+An empty subject;
+LWS between colons, semicolons, header field values, and other fields;
+Both comma separated and separately listed header field values;
+A mix of short and long form for the same header field name;
+Unknown Request-URI parameter;
+Unknown header fields;
+An unknown header field with a value that would be syntactically
+invalid if it were defined in terms of generic-param;
+Unusual header field ordering;
+Unusual header field name character case;
+Unknown parameters of a known header field;
+A uri parameter with no value;
+A header parameter with no value;
+Integer fields (Max-Forwards and CSeq) with leading zeros;
+All elements should treat this as a well-formed request.
+
+The UnknownHeaderWithUnusualValue header field deserves special
+attention. If this header field were defined in terms of comma-
+separated values with semicolon-separated parameters (as would many
+of the existing defined header fields), this would be invalid.
+However, since the receiving element does not know the definition of
+the syntax for this field, it must parse it as a header value.
+Proxies would forward this header field unchanged. Endpoints would
+ignore the header field.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+INVITE sip:[$cdpn]@[remote_ip]:[remote_port];unknownparam SIP/2.0
+Via: SIP/2.0/UDP [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/TCP [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/UDP [local_ip]:[local_port];branch=[branch]
+From: "[$display_test] \\\"" <sip:[service]@[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>;tag=[$local_tag]
+Call-ID: [call_id]
+CSeq: 1 INVITE
+INVITE
+NewFangledHeader: newfangled value continued newfangled value
+UnknownHeaderWithUnusualValue: ;;,,;;,;
+Route: <sip:services.example.com;lr;unknownwith=value;unknown-no-value>
+Contact: "Quoted string \"\"" <sip:[service]@[local_ip]:[local_port]>; newparam=newvalue ; secondparam ; q = 0.33
+MaX-fOrWaRdS: 0068
+Subject:
+Content-Type: application/sdp
+Content-Length: [len]
+
+v=0
+o=tester 53655765 2353687637 IN IP4 [local_ip]
+s=-
+c=IN IP4 [media_ip]
+t=0 0
+m=audio [media_port] RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<recv response="481">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+</action>
+</recv>
+  
+<send>
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+</scenario>

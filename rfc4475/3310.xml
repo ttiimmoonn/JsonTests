@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="200 OK response with broadcast Via header field value">
+
+<!-- 
+This message is a response with a 2nd Via header field value's sent
+by containing 255.255.255.255. The message is well formed; parsers
+must not fail when receiving it.
+Per [RFC3261], an endpoint receiving this message should simply
+discard it. If a proxy followed normal response processing rules blindly, it
+would forward this response to the broadcast address. To protect
+against this as an avenue of attack, proxies should drop such responses.
+-->
+
+<Global variables="DISPLAYTEST"/>
+<Reference variables="DISPLAYTEST"/>
+
+<recv request="INVITE">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<send retrans="500">
+<![CDATA[
+SIP/2.0 200 OK
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+Via: SIP/2.0/[transport] 255.255.255.255;branch=[branch]
+[last_From:]
+[last_To:];tag=[call_number]
+[last_Call-ID:]
+[last_CSeq:]
+Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+Content-Type: application/sdp
+Content-Length: [len]
+
+v=0
+o=tester 53655765 2353687637 IN IP4 [local_ip]
+s=-
+c=IN IP4 [media_ip]
+t=0 0
+m=audio [media_port] RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<pause milliseconds="2000"/>
+
+</scenario>

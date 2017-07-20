@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Missing required header fields">
+
+<!--
+This request contains no Call-ID, From, or To header fields.
+An element receiving this message must not break because of the
+missing information. Ideally, it will respond with a 400 Bad Request error.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables="local_tag"/>
+<Reference variables="CDPNDOM,CGPNDOM,local_tag"/> 
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+CSeq: 1 INVITE
+Contact: <sip:[service]@[local_ip]:[local_port]>
+Max-Forwards: 70
+Subject: [$local_tag]
+Content-Type: application/sdp
+Content-Length: [len]
+
+v=0
+o=tester 53655765 2353687637 IN IP4 [local_ip]
+s=-
+c=IN IP4 [media_ip]
+t=0 0
+m=audio [media_port] RTP/AVP 0
+a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<recv response="400">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<send>
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+</scenario>

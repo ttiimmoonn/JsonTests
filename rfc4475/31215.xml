@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name="Non-token characters in display name">
+  
+<!--
+This OPTIONS request is malformed, since the display names in the To
+and From header fields contain non-token characters but are unquoted.
+It is reasonable always to reject this kind of error with a 400 Bad Request response.
+An element may attempt to be liberal in what it receives and infer
+the missing quotes. If this element were a proxy, it must not
+propagate the error into the request it forwards.  As a consequence,
+if the fields are covered by a signature, there's not much point in
+trying to be liberal - the message should simply be rejected.
+-->
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAYTEST"/>
+<User variables=""/>
+<Reference variables=""/>
+
+<nop hide="true">
+<action>
+<assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+<assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+<assignstr assign_to="cdpn" value="[$CDPN]"/>
+<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+<assignstr assign_to="display_test" value="[$DISPLAYTEST]"/>
+</action>
+</nop>
+
+<send retrans="500">
+<![CDATA[
+OPTIONS sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: display, test <sip:[service]@[$cgpn_dom]:[local_port]>;tag=[$local_tag]
+To: cdpn, ddd <sip:[$cdpn]@[$cdpn_dom]:[remote_port]>
+Call-ID: [call_id]
+Accept: application/sdp
+CSeq: 1 OPTIONS
+Max-Forwards: 70
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<recv response="400" optional="true" next="2">
+<action>
+<ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+</action>
+</recv>
+
+<recv response="200"/>
+
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+Cseq: 1 ACK
+Content-Length: 0
+]]>
+</send>
+
+<label id="2"/>
+<send next="1">
+<![CDATA[
+ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+[last_from:]
+[last_to:]
+[last_call-id:]
+CSeq: 1 ACK
+Subject: [$display_test]
+Content-Length: 0
+]]>
+</send>
+
+<label id="1"/>
+
+</scenario>
