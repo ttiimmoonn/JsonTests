@@ -1,0 +1,115 @@
+{
+	"TestName": "Follow_me_dname_check",
+    "AutoTest" : true,
+    "Users" : [
+        {
+        	"UserId": 0,
+            "Number": "5120",
+            "Login": "5120",
+            "Password": "test123",
+            "SipDomain": "test.domain",
+            "Expires": 90,
+            "Port": 10105,
+            "SipGroup": "sip.ab"
+        },
+        {
+            "UserId": 1,
+            "Number": "5100",
+            "Login": "5100",
+            "Password": "test123",
+            "SipDomain": "test.domain",
+            "Expires": 90,
+            "Port": 10106,
+            "SipGroup": "sip.ab"
+        },
+        {
+            "UserId": 2,
+            "Number": "5990",
+            "Login": "5990",
+            "Password": "test123",
+            "SipDomain": "test.domain",
+            "Expires": 90,
+            "Port": 10107,
+            "SipGroup": "sip.ab"
+        }
+    ],
+    "UserVar" : [
+        {
+        	"%%FollowMeCode%%": "23",
+            "%%UserPin%%": "2123"
+        }
+    ],
+    "PreConf" :[
+        {
+        	"command1" : "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% ss\\mgm\\telephone enabled",
+        	"command2" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
+            "command3" : "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
+            "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me"    	
+        }
+    ],
+    "PostConf" : [
+        {
+        	"command1" : "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% ss\\mgm\\telephone enabled",
+        	"command2" : "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
+            "command3" : "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
+            "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me"
+        }
+    ],
+    "Tests" : [
+        {
+             "Name": "Follow_me_dname_check",
+             "Description": "checking_dname_in_follow_me_function",
+             "TestProcedure": [
+             	 {
+                     "ServiceFeature": [
+                         {
+                             "code" : "*%%FollowMeCode%%*%%UserPin%%#",
+                             "userId" : 1
+                         }
+                     ]
+             	 },
+             	 {
+             	 	"ServiceFeature": [
+                         {
+                             "code" : "*%%FollowMeCode%%*%%UserPin%%*%%1.Number%%#",
+                             "userId" : 2
+                         }
+                     ]
+             	 },
+                 {
+                 	"StartUA": [
+                        {
+                        	"Type": "User",
+                            "UserId": 2,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                	 "SourceFile": "simple_ua/uas_recv_bye.xml",
+                                     "Options": "-m 1",
+                                     "SippType": "uas",
+                                     "Timeout": "20s" 
+                                }
+                            ]
+                        },
+                        {
+                        	"Type": "User",
+                            "UserId": 0,
+                            "WriteStat" : true,
+                            "Name": "UAC_recv_181",
+                            "Commands" : [
+                                {
+                                	"SourceFile": "follow_me/uac.xml",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                                    "SippType": "uac",
+                                    "NeedAuth": true,
+                                    "Timeout": "40s" 
+                                }
+                            ]
+                        }
+                 	]
+                 }
+             ]
+        }
+    ]
+}
