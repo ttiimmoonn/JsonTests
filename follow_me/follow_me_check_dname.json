@@ -24,8 +24,8 @@
         },
         {
             "UserId": 2,
-            "Number": "5990",
-            "Login": "5990",
+            "Number": "5190",
+            "Login": "5190",
             "Password": "test123",
             "SipDomain": "test.domain",
             "Expires": 90,
@@ -87,6 +87,7 @@
                                 {
                                 	 "SourceFile": "follow_me/uas.xml",
                                      "Options": "-m 1",
+                                     "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
                                 }
