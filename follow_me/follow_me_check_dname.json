@@ -85,10 +85,10 @@
                             "Name": "Remote_number_UAS",
                             "Commands": [
                                 {
-                                	 "SourceFile": "simple_ua/uas_recv_bye.xml",
+                                	 "SourceFile": "follow_me/uas.xml",
                                      "Options": "-m 1",
                                      "SippType": "uas",
-                                     "Timeout": "20s" 
+                                     "Timeout": "40s" 
                                 }
                             ]
                         },

@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "new_script">
+<scenario name = "Simple UAS recv BYE">
+
+<Global variables="CHK_DNAME,CHK_NUMBER,DIVER_NUMBER,DIVER_REASON" />
+<User variables="chk_dname,chk_number,dummy,dname,diver_num,diver_reason" />
+<Reference variables="dummy,dname"/>
+
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
+    </action>
+</nop>
 
 <recv request="INVITE">
 <action>
-    <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="<sip:([^;@]+).*?;reason=(.*)$" search_in="hdr" header="Diversion:" assign_to="dummy,diver_num,diver_reason"/>
+    <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
 
@@ -27,24 +48,24 @@
     SIP/2.0 180 Ringing
     [last_Via:]
     [last_From:]
-    [last_To:];tag=123456
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
-    Contact: <sip:[$number]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
 
 <pause milliseconds="1100"/>
+
 <send retrans="500">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
     [last_From:]
-    [last_To:];tag=123456
+    [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
-    Contact: <sip:[$number]@[local_ip]:[local_port];user=phone>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -61,11 +82,9 @@
 </send>
 
 <recv request="ACK"></recv>
-<recv request="BYE">
-<action>
-    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="bye_cseq" />
-</action>
-</recv>
+
+<recv request="BYE"></recv>
+
 <send>
 <![CDATA[
     SIP/2.0 200 OK
@@ -73,9 +92,66 @@
     [last_From:]
     [last_To:]
     [last_Call-ID:]
-    CSeq: [$bye_cseq] BYE
-    Contact: <sip:[$number]@[local_ip]:[local_port]>
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>
+
+<pause milliseconds="2000"/>
+
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check DName failed. Require DisplayName: [$chk_dname]; Current DisplayName: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check number failed. Require Number: [$chk_number]; Current Number: [$remote_number]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
+<nop hide="true" condexec="DIVER_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="DIVER_NUMBER" variable2="diver_num"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check diversion number failed. Require Diversion Number: [$DIVER_NUMBER]; Current Diversion Number: [$diver_num]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="DIVER_REASON">
+    <action>
+        <strcmp assign_to="compare_result" variable="DIVER_REASON" variable2="diver_reason"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check diversion reason failed. Require Diversion Reason: [$DIVER_REASON]; Current Diversion Reason: [$diver_reason]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
 </scenario>
