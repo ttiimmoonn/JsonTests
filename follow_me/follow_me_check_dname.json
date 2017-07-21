@@ -49,8 +49,10 @@
         	"command2" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
             "command3" : "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
             "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me",
-            "command5": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
-            "command6": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"    	
+            "command5": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
+            "command6": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
+            "command7": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
+            "command8": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"    	
         }
     ],
     "PostConf" : [
@@ -59,8 +61,10 @@
         	"command2" : "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
             "command3" : "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
             "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me",
-            "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
-            "command6": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
+            "command5": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
+            "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
+            "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
+            "command8": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
         }
     ],
     "Tests" : [
