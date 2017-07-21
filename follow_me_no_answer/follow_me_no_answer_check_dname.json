@@ -80,6 +80,14 @@
                          }
                      ]
              	 },
+                 {
+                     "ServiceFeature" : [
+                         {
+                             "code" : "*%%FollowMeNoAnswerCode%%*timeout#",
+                             "userId" : 1
+                         }
+                     ]
+                 }
              	 {
              	 	"ServiceFeature": [
                          {
@@ -90,6 +98,21 @@
              	 },
                  {
                  	"StartUA": [
+                        {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
                         {
                         	"Type": "User",
                             "UserId": 2,
@@ -138,6 +161,21 @@
                 {
                  	"StartUA": [
                         {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
+                        {
                         	"Type": "User",
                             "UserId": 2,
                             "WriteStat" : true,
@@ -185,6 +223,21 @@
                 {
                  	"StartUA": [
                         {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
+                        {
                         	"Type": "User",
                             "UserId": 2,
                             "WriteStat" : true,
@@ -231,6 +284,21 @@
                 },
                 {
                  	"StartUA": [
+                        {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
                         {
                         	"Type": "User",
                             "UserId": 2,
@@ -286,6 +354,21 @@
                 },
                 {
                  	"StartUA": [
+                        {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
                         {
                         	"Type": "User",
                             "UserId": 2,
@@ -344,6 +427,21 @@
                  {
                  	"StartUA": [
                         {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
+                        {
                         	"Type": "User",
                             "UserId": 2,
                             "WriteStat" : true,
@@ -401,6 +499,21 @@
                 {
                  	"StartUA": [
                         {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
+                        {
                         	"Type": "User",
                             "UserId": 2,
                             "WriteStat" : true,
@@ -457,6 +570,21 @@
                 },
                 {
                  	"StartUA": [
+                        {
+                            "Type": "User",
+                            "UserId": 1,
+                            "WriteStat" : true,
+                            "Name": "Remote_number_UAS",
+                            "Commands": [
+                                {
+                                     "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "NeedAuth": true,
+                                     "SippType": "uas",
+                                     "Timeout": "40s" 
+                                }
+                            ]
+                        },
                         {
                         	"Type": "User",
                             "UserId": 2,
