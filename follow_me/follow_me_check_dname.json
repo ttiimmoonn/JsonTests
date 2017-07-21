@@ -431,7 +431,7 @@
                         	"command2" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
                         }
                 	]
-                },
+                }
         	]
         },
         {
