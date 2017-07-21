@@ -37,7 +37,7 @@
         {
         	"%%FollowMeCode%%": "23",
             "%%UserPin%%": "2123",
-            "%%SIP_DNAME%%" : "SipDNAME_CFU",
+            "%%SIP_DNAME%%" : "SipDNAME_Follow_me",
             "%%CONNECTED_NAME%%" : "\"Connected user\""
         }
     ],
