@@ -29,8 +29,8 @@
                  "Name": "UAC_3111",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3111.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3111.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -53,8 +53,8 @@
                  "Name": "UAC_3112",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3112.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3112.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -77,8 +77,8 @@
                  "Name": "UAC_3113",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3113.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3113.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -101,8 +101,8 @@
                  "Name": "UAC_3114",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3114.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3114.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -125,8 +125,8 @@
                  "Name": "UAC_3115",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3115.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3115.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -149,8 +149,8 @@
                  "Name": "UAC_3116",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3116.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3116.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -173,8 +173,8 @@
                  "Name": "UAC_3117",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3117.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3117.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -197,8 +197,8 @@
                  "Name": "UAC_3118",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3118.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3118.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -221,8 +221,8 @@
                  "Name": "UAC_3119",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3119.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3119.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -245,8 +245,8 @@
                  "Name": "UAC_31110",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31110.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31110.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -269,8 +269,8 @@
                  "Name": "UAC_31111",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31111.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31111.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -293,7 +293,7 @@
                  "Name": "UAS_31112",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31112.xml",
+                        "SourceFile": "rfc4475/31112.xml",
                         "Options": "-m 1",
                         "SippType": "uas",
                         "Timeout": "40s" 
@@ -317,7 +317,7 @@
                  "Name": "UAS_31113",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31113.xml",
+                        "SourceFile": "rfc4475/31113.xml",
                         "Options": "-m 1",
                         "SippType": "uas",
                         "Timeout": "40s" 
@@ -341,8 +341,8 @@
                  "Name": "UAC_3121",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3121.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3121.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -365,8 +365,8 @@
                  "Name": "UAC_3122",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3122.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3122.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        } 
@@ -389,8 +389,8 @@
                  "Name": "UAC_3123a",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3123a.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3123a.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -413,8 +413,8 @@
                  "Name": "UAC_3123b",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3123b.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3123b.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -437,8 +437,8 @@
                  "Name": "UAC_3124_max_forw",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3124_max_forw.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3124_max_forw.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -461,8 +461,8 @@
                  "Name": "UAC_3124_exp",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3124_exp.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3124_exp.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -485,8 +485,8 @@
                  "Name": "UAC_3124_cseq",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3124_cseq.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3124_cseq.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -509,7 +509,7 @@
                  "Name": "UAS_3125",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3125.xml",
+                        "SourceFile": "rfc4475/3125.xml",
                         "Options": "-m 1",
                         "SippType": "uas",
                         "Timeout": "40s" 
@@ -533,8 +533,8 @@
                  "Name": "UAC_3126",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3126.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3126.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -557,8 +557,8 @@
                  "Name": "UAC_3127",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3127.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3127.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -581,8 +581,8 @@
                  "Name": "UAC_3128",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3128.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3128.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -605,8 +605,8 @@
                  "Name": "UAC_3129",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3129.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3129.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -629,8 +629,8 @@
                  "Name": "UAC_31210",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31210.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31210.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -653,8 +653,8 @@
                  "Name": "UAC_31211",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31211.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31211.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -677,8 +677,8 @@
                  "Name": "UAC_31212",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31212.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31212.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -701,8 +701,8 @@
                  "Name": "UAC_31213",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31213.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31213.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -725,8 +725,8 @@
                  "Name": "UAC_31214",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31214.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31214.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -749,8 +749,8 @@
                  "Name": "UAC_31215",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31215.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31215.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -773,8 +773,8 @@
                  "Name": "UAC_31216",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31216.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31216.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -797,8 +797,8 @@
                  "Name": "UAC_31217",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31217.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31217.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -821,8 +821,8 @@
                  "Name": "UAC_31218",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31218.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/31218.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -845,7 +845,7 @@
                  "Name": "UAS_31219",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/31219.xml",
+                        "SourceFile": "rfc4475/31219.xml",
                         "Options": "-m 1",
                         "SippType": "uas",
                         "Timeout": "40s" 
@@ -869,8 +869,8 @@
                  "Name": "UAC_321",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/321.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/321.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -893,8 +893,8 @@
                  "Name": "UAC_331",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/331.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/331.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -917,8 +917,8 @@
                  "Name": "UAC_332",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/332.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/332.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -941,8 +941,8 @@
                  "Name": "UAC_333",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/333.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/333.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -965,8 +965,8 @@
                  "Name": "UAC_334",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/334.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/334.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -989,8 +989,8 @@
                  "Name": "UAC_335",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/335.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/335.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1013,8 +1013,8 @@
                  "Name": "UAC_336",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/336.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/336.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1037,8 +1037,8 @@
                  "Name": "UAC_337",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/337.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/337.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1061,8 +1061,8 @@
                  "Name": "UAC_338",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/338.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/338.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1085,8 +1085,8 @@
                  "Name": "UAC_339",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/339.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/339.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1109,7 +1109,7 @@
                  "Name": "UAS_3310",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3310.xml",
+                        "SourceFile": "rfc4475/3310.xml",
                         "Options": "-m 1",
                         "SippType": "uas",
                         "Timeout": "40s" 
@@ -1133,8 +1133,8 @@
                  "Name": "UAC_3311",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3311.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3311.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1157,8 +1157,8 @@
                  "Name": "UAC_3312",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3312.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3312.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1181,8 +1181,8 @@
                  "Name": "UAC_3313",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3313.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3313.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1205,8 +1205,8 @@
                  "Name": "UAC_3314",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3314.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3314.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1229,8 +1229,8 @@
                  "Name": "UAC_3315",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/3315.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/3315.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
@@ -1253,8 +1253,8 @@
                  "Name": "UAC_341",
                      "Commands": [
                        {
-                        "SourceFile": "tests_rfc4475/341.xml",
-                        "Options": "-m 1 -set CDPN 400 -set CDPNDOM 192.168.1.2",
+                        "SourceFile": "rfc4475/341.xml",
+                        "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                         "SippType": "uac",
                         "Timeout": "40s" 
                        }
