@@ -37,8 +37,7 @@
         {
         	"%%FollowMeCode%%": "23",
             "%%UserPin%%": "2123",
-            "%%SIP_DNAME%%" : "SipDNAME_Follow_me",
-            "%%CONNECTED_NAME%%" : "\"Connected user\""
+            "%%SIP_DNAME%%" : "SipDNAME_Follow_me"
         }
     ],
     "PreConf" :[
@@ -88,7 +87,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"unconditional\"",
+                                	 "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -103,7 +102,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_ALERTING_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_ALERTING_NUMBER %%2.Number%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
