@@ -39,7 +39,7 @@
             "%%UserPin%%": "2123",
             "%%SIP_DNAME%%" : "SipDNAME_Follow_me_sip",
             "%%ALIAS_DNAME%%" : "SipDNAME_Follow_me_alias",
-            "ROUTE_DNAME" : "SipDNAME_Follow_me_route",
+            "%%ROUTE_DNAME%%" : "SipDNAME_Follow_me_route",
             "%%FOLLOW_ME_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmb2xsb3dfbWVfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0icnVsZTEiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxhY3Rpb25zPgogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlNpcEROQU1FX0ZvbGxvd19tZV9yb3V0ZSIvPgogICAgPC9hY3Rpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGxvY2FsLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KPC9jb250ZXh0Pg=="
         }
     ],
