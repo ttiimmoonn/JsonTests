@@ -49,10 +49,14 @@
         	"command2" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
             "command3" : "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
             "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
-            "command5": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
-            "command6": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
-            "command7": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
-            "command8": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"    	
+            "command5" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+            "command6" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+            "command7" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+            "command8" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+            "command9" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
+            "command10" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
+            "command11" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
+            "command12" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"
         }
     ],
     "PostConf" : [
@@ -61,10 +65,14 @@
         	"command2" : "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
             "command3" : "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
             "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response",
-            "command5": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
-            "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
-            "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
-            "command8": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
+            "command5" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+            "command6" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",        
+            "command7" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+            "command8" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
+            "command9" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
+            "command10" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
+            "command11" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
+            "command12" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
         }
     ],
     "Tests" : [
@@ -83,7 +91,7 @@
                  {
                      "ServiceFeature" : [
                          {
-                             "code" : "*%%FollowMeNoAnswerCode%%*timeout#",
+                             "code" : "*125*1#",
                              "userId" : 1
                          }
                      ]
@@ -102,7 +110,7 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
@@ -164,11 +172,11 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -226,11 +234,11 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME \"\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -288,11 +296,11 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -358,11 +366,11 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -430,11 +438,11 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -502,11 +510,11 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -574,11 +582,11 @@
                             "Type": "User",
                             "UserId": 1,
                             "WriteStat" : true,
-                            "Name": "Remote_number_UAS",
+                            "Name": "Local_number_UAS",
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
