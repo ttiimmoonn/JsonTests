@@ -122,7 +122,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
@@ -184,7 +184,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
@@ -246,7 +246,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
@@ -308,7 +308,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
@@ -378,7 +378,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
@@ -450,7 +450,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
@@ -522,7 +522,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
@@ -594,7 +594,7 @@
                             "Commands" : [
                                 {
                                 	"SourceFile": "simple_ua/uac_send_bye.xml",
-                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE",
+                                    "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set WOUT_DNAME TRUE -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                                     "SippType": "uac",
                                     "NeedAuth": true,
                                     "Timeout": "40s" 
