@@ -37,42 +37,40 @@
         {
         	"%%FollowMeNoAnswerCode%%": "25",
             "%%UserPin%%": "2326",
-            "%%SIP_DNAME%%" : "SipDNAME_Follow_me_no_answer_sip",
-            "%%ALIAS_DNAME%%" : "SipDNAME_Follow_me_no_answer_alias",
-            "%%ROUTE_DNAME%%" : "SipDNAME_Follow_me_no_answer_route",
-            "%%FOLLOW_ME_NO_ANSWER_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmb2xsb3dfbWVfbm9fYW5zd2VyX2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJTaXBETkFNRV9Gb2xsb3dfbWVfbm9fYW5zd2VyX3JvdXRlIi8+CiAgICA8L2FjdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+"
+            "%%SIP_DNAME%%" : "SipDNAME_Follow_me_no_answer",
+            "%%ALIAS_DNAME%%" : "AliasDNAME_Follow_me_no_answer",
+            "%%ROUTE_DNAME%%" : "RouteDNAME_Follow_me_no_answer",
+            "%%ALERTING_NAME%%" : "\"Called user\"",
+            "%%CONNECTED_NAME%%" : "\"Connected user\"",
+            "%%FOLLOW_ME_NO_ANSWER_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmb2xsb3dfbWVfbm9fYW5zd2VyX2N0eCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InJ1bGUxIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0ZvbGxvd19tZV9ub19hbnN3ZXIiLz4KICAgIDwvYWN0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
         }
     ],
     "PreConf" :[
         {
-        	"command1" : "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% ss\\mgm\\telephone enabled",
-        	"command2" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
-            "command3" : "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
-            "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
-            "command5" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
-            "command6" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
-            "command7" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
-            "command8" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-            "command9" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
-            "command10" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
-            "command11" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
-            "command12" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"
+            "command1" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
+            "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% follow_me_no_response number = %%2.Number%%, timeout=2",
+            "command3" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+            "command4" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+            "command5" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+            "command6" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+            "command7" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
+            "command8" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
+            "command9" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
+            "command10" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"
         }
     ],
     "PostConf" : [
         {
-        	"command1" : "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% ss\\mgm\\telephone enabled",
-        	"command2" : "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
-            "command3" : "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled",
-            "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response",
-            "command5" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-            "command6" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",        
-            "command7" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-            "command8" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
-            "command9" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
-            "command10" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
-            "command11" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
-            "command12" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
+            "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% follow_me_no_response",
+            "command2" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response",
+            "command3" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+            "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",        
+            "command5" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+            "command6" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
+            "command7" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
+            "command8" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
+            "command9" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
+            "command10" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
         }
     ],
     "Tests" : [
@@ -80,30 +78,6 @@
              "Name": "follow_me_no_answer_set_dname_only_sip",
              "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с SIP",
              "TestProcedure": [
-             	 {
-                     "ServiceFeature": [
-                         {
-                             "code" : "*%%FollowMeNoAnswerCode%%*%%UserPin%%#",
-                             "userId" : 1
-                         }
-                     ]
-             	 },
-                 {
-                     "ServiceFeature" : [
-                         {
-                             "code" : "*125*1#",
-                             "userId" : 1
-                         }
-                     ]
-                 },
-             	 {
-             	 	"ServiceFeature": [
-                         {
-                             "code" : "*%%FollowMeNoAnswerCode%%*%%UserPin%%*%%1.Number%%#",
-                             "userId" : 2
-                         }
-                     ]
-             	 },
                  {
                  	"StartUA": [
                         {
@@ -114,7 +88,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -129,7 +103,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%%",
+                                	 "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -176,7 +150,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -191,7 +165,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                                	 "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -238,7 +212,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME \"\"",
+                                     "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -253,7 +227,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME \"\"",
+                                	 "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -300,7 +274,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -315,7 +289,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%%",
+                                	 "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -370,7 +344,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -385,7 +359,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -442,7 +416,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -457,7 +431,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -514,7 +488,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -529,7 +503,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -586,7 +560,7 @@
                             "Commands": [
                                 {
                                      "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
-                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                     "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%%",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
@@ -601,7 +575,7 @@
                             "Commands": [
                                 {
                                 	 "SourceFile": "simple_ua/uas_recv_bye.xml",
-                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%%",
+                                	 "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"no-answer\"",
                                      "NeedAuth": true,
                                      "SippType": "uas",
                                      "Timeout": "40s" 
