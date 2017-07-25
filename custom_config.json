@@ -13,7 +13,9 @@
         "%%EXTER_PORT%%" : "5061",
         "%%DEV_USER%%" : "admin",
         "%%DEV_PASS%%" : "password",
-        "%%DEV_DOM%%" : "pv.ssw3"
+        "%%DEV_DOM%%" : "pv.ssw3",
+        "%%SSW_DEF_ROUTE%%" : "default_routing",
+        "%%SSW_IPSET%%" : "pv.ssw3.ip"
     }
 ]
 }
