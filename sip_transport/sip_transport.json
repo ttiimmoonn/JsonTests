@@ -66,7 +66,7 @@
         {
           "SendSSHCommand": [
             {
-              "SendSSHCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_only"
+              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_only"
             }
           ]
         },
