@@ -1,7 +1,7 @@
 {
   "TestName": "sip_transport_test",
   "AutoTest" : true,
-  "Isolate" : "True",
+  "Isolate" : true,
   "Users": [
     {
       "UserId" : 0,
