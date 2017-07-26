@@ -186,7 +186,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -200,7 +200,7 @@
                   "SourceFile": "ss_rbp/uac_send_dtmf.xml",
                   "Options": "-m 1 -set CDPN *32*%%USER_PIN%%# -set CDPNDOM %%0.SipDomain%% -set DIGITS %%1.Number%%",
                   "SippType": "uac",
-                  "NeedAuth" : true
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -231,7 +231,7 @@
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -245,7 +245,7 @@
                   "SourceFile": "ss_rbp/uac_send_dtmf.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DIGITS %%USER_PIN%%",
                   "SippType": "uac",
-                  "NeedAuth" : true
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -276,7 +276,7 @@
                   "SourceFile": "ss_rbp/uac_send_dtmf_recv_487.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DIGITS %%BAD_PIN%%",
                   "SippType": "uac",
-                  "NeedAuth" : true
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
