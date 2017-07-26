@@ -1,50 +1,50 @@
 {
   "TestName": "follow_me_no_answer",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "1",
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10106",
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam": 0.5
     },
     {
-      "UserId": "2",
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam": 1
     },
     {
-      "UserId": "3",
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10108",
+      "Expires": 90,
+      "Port": 10108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam": 1
     },
     {
-      "UserId": "4",
+      "UserId": 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port": "10109",
-      "QParam": "1"
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -54,14 +54,14 @@
       "%%UserPin%%": "2123"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
       "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
       "command3": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response"
     }
@@ -75,7 +75,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%#",
-              "userId": "1"
+              "userId": 1
             }
           ]
         },
@@ -83,7 +83,7 @@
           "ServiceFeature": [
             {
               "code": "*%%CountCode%%*1#",
-              "userId": "1"
+              "userId": 1
             }
           ]
         },
@@ -91,7 +91,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId": 2
             }
           ]
         },
@@ -99,42 +99,42 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": 1,
               "Name": "UAS1_FM_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId": 2,
               "Name": "UAS2_FM_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/uas.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId": 3,
               "Name": "UAC_FM_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -145,7 +145,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId": 2
             }
           ]
         },
@@ -153,7 +153,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%#",
-              "userId": "1"
+              "userId": 1
             }
           ]
         },
@@ -161,28 +161,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": 1,
               "Name": "UAS_FM_WOUT100REL_DISABLE",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/uas.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId": 3,
               "Name": "UAC_FM_WOUT100REL_DISABLE",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/uac_no_181.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -199,7 +199,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%#",
-              "userId": "1"
+              "userId": 1
             }
           ]
         },
@@ -207,7 +207,7 @@
           "ServiceFeature": [
             {
               "code": "*%%CountCode%%*1#",
-              "userId": "1"
+              "userId": 1
             }
           ]
         },
@@ -215,7 +215,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId": 2
             }
           ]
         },
@@ -223,42 +223,42 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": 1,
               "Name": "UAS1_FM_WITH_100REL",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/req100rel/uas_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId": 2,
               "Name": "UAS2_FM_WITH_100REL",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/req100rel/uas_req100rel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId": 3,
               "Name": "UAC_FM_WITH_100REL",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/req100rel/uac_req100rel.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -269,7 +269,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId": "2"
+              "userId": 2
             }
           ]
         },
@@ -277,7 +277,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%#",
-              "userId": "1"
+              "userId": 1
             }
           ]
         },
@@ -285,28 +285,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": 1,
               "Name": "UAS_FM_WITH_100REL_DISABLE",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/uas.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId": 3,
               "Name": "UAC_FM_WITH_100REL_DISABLE",
               "Commands": [
                 {
                   "SourceFile": "follow_me_no_answer/uac_no_181.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]

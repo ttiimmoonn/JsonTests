@@ -1,39 +1,39 @@
 {
   "TestName": "rfc3264_simple_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "90",
-      "Port": "11001",
+      "Expires" : 90,
+      "Port" : 11001,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam": 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "90",
-      "Port": "11002",
+      "Expires" : 90,
+      "Port" : 11002,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     }
   ],
   "UserVar": [
     {
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
     }
   ],
@@ -46,29 +46,29 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS_SEND_BYE_RFC3407_SDP",
               "Commands": [
                 {
                   "SourceFile": "rfc3264_simple_test/uas_send_bye_with_sdp_rfc3407.xml",
                   "Options": "-m 1 -d 5000",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "UAC_RECV_BYE_RFC3407_SDP",
               "Commands": [
                 {
                   "SourceFile": "rfc3264_simple_test/uac_recv_bye_with_sdp_rfc3407.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
@@ -85,30 +85,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS_SEND_2_VIDEO_CODECS",
               "Commands": [
                 {
                   "SourceFile": "rfc3264_simple_test/uas_send_2_video_codecs.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -d 2000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]

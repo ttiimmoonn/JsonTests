@@ -1,50 +1,50 @@
 {
   "TestName": "fax_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "1",
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "11106",
+      "Expires": 3600,
+      "Port": 11106,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam": 0.5
     },
     {
-      "UserId": "2",
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "11107",
+      "Expires": 3600,
+      "Port": 11107,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam": 1
     },
     {
-      "UserId": "3",
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "11108",
+      "Expires": 3600,
+      "Port": 11108,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam": 1
     },
     {
-      "UserId": "4",
+      "UserId": 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires": "3600",
-      "Port": "11109",
+      "Expires": 3600,
+      "Port": 11109,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -53,14 +53,14 @@
       "%%USER_DOM%%": "%%DEV_DOM%%"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/media-profile/declare no_t_38 no_t38 system",
       "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add no_t_38 image T38 false",
       "command3": "/domain/%%DEV_DOM%%/alias/set-for-iface %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile no_t_38"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/alias/iface-clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile",
       "command2": "/domain/%%DEV_DOM%%/media-profile/remove no_t_38"
@@ -75,13 +75,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": 1,
               "Name": "UAC_FAX_T38",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_t38.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -99,13 +99,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId": 2,
               "Name": "UAC_FAX_G711",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -123,13 +123,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId": 3,
               "Name": "UAC_FAX_G711_SI300",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711_mp.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -147,13 +147,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "3",
+              "UserId": 3,
               "Name": "UAC_FAX_G711_SI300",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711_mp_send_bye.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -171,13 +171,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "4",
+              "UserId": 4,
               "Name": "UAC_FAX_G711_TAU",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_g711_tau.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -195,13 +195,13 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId": 1,
               "Name": "UAC_RACE_BYE_AND_RE_INV",
               "Commands": [
                 {
                   "SourceFile": "fax_test/uac_t38_send_bye_on_re_invite.xml",
                   "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
-                  "NeedAuth": "True",
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }

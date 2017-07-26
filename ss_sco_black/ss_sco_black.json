@@ -1,39 +1,39 @@
 {
   "TestName": "ss_sco_black",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10105",
-      "QParam": "1"
+      "Port" : 10105,
+      "QParam" : 1
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
+      "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port": "10106",
-      "QParam": "1"
+      "Port" : 10106,
+      "QParam" : 1
     },
     {
-      "UserId": "2",
+      "UserId" : 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "10107",
-      "QParam": "1"
+      "Expires" : 90,
+      "Port" : 10107,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -41,12 +41,12 @@
       "%%USER_PIN%%" : "1111"
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% sco_black"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% sco_black",
       "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% sco_black"
@@ -61,7 +61,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -69,7 +69,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -77,14 +77,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC1_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "ss_scr/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -95,28 +95,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -127,7 +127,7 @@
           "ServiceFeature": [
             {
               "code": "#63*%%USER_PIN%%*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -135,28 +135,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -167,7 +167,7 @@
           "ServiceFeature": [
             {
               "code": "#63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -175,28 +175,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -213,7 +213,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -221,7 +221,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%*1*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -229,14 +229,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "ss_sca/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -247,7 +247,7 @@
           "ServiceFeature": [
             {
               "code": "#63*%%USER_PIN%%*1#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -255,28 +255,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -287,7 +287,7 @@
           "ServiceFeature": [
             {
               "code": "#63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }
@@ -301,7 +301,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -309,7 +309,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%*1*%%1.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -317,7 +317,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%*%%2.Number%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -325,14 +325,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "ss_sca/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -343,14 +343,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "ss_sca/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -361,7 +361,7 @@
           "ServiceFeature": [
             {
               "code": "#63*%%USER_PIN%%*0#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -369,28 +369,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -401,28 +401,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -433,7 +433,7 @@
           "ServiceFeature": [
             {
               "code": "#63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }
@@ -447,7 +447,7 @@
           "ServiceFeature": [
             {
               "code": "*63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         },
@@ -455,28 +455,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
+              "UserId" : 0,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "2",
+              "UserId" : 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "20s"
                 }
               ]
@@ -487,7 +487,7 @@
           "ServiceFeature": [
             {
               "code": "#63*%%USER_PIN%%#",
-              "userId": "0"
+              "userId" : 0
             }
           ]
         }

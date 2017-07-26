@@ -1,41 +1,41 @@
 {
   "TestName": "rfc3261_simple_test",
-  "AutoTest" : "True",
+  "AutoTest" : true,
   "Users": [
     {
-      "UserId": "0",
+      "UserId" : 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "11001",
+      "Expires" : 90,
+      "Port" : 11001,
       "SipGroup": "sip.ab",
-      "QParam": "0.5"
+      "QParam": 0.5
     },
     {
-      "UserId": "1",
+      "UserId" : 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires": "90",
-      "Port": "11002",
+      "Expires" : 90,
+      "Port" : 11002,
       "SipGroup": "sip.ab",
-      "QParam": "1"
+      "QParam" : 1
     }
   ],
   "UserVar": [
     {
     }
   ],
-  "PreCoconConf": [
+  "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip",
       "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} clip"
     }
   ],
-  "PostCoconConf": [
+  "PostConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} clip",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip"
@@ -50,29 +50,29 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS_RETRANS_200_OK",
               "Commands": [
                 {
                   "SourceFile": "rfc3261_simple_test/uas_retransmit_200_ok.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
+              "UserId" : 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
@@ -89,30 +89,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS_IGNORE_CANCEL_SEND_200_OK_SIDE_B",
               "Commands": [
                 {
                   "SourceFile": "rfc3261_simple_test/uas_ignore_cancel_send_200_ok_side_b.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_SEND_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "rfc3261_simple_test/uac_send_cancel.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
@@ -129,30 +129,30 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": "0",
-              "WriteStat" : "True",
+              "UserId" : 0,
+              "WriteStat" : true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId": "1",
-              "WriteStat" : "True",
+              "UserId" : 1,
+              "WriteStat" : true,
               "Name": "UAC_IGNORE_CANCEL_SIDE_A",
               "Commands": [
                 {
                   "SourceFile": "rfc3261_simple_test/uac_ignore_cancel_send_200_ok_side_a.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth": "True",
+                  "NeedAuth" : true,
                   "Timeout": "40s"
                 }
               ]
