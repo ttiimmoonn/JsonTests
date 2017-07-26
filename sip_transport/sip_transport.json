@@ -121,7 +121,7 @@
         {
           "SendSSHCommand": [
             {
-              "SendSSHCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_prefer"
+              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_prefer"
             }
           ]
         },
@@ -265,7 +265,7 @@
         {
           "SendSSHCommand": [
             {
-              "SendSSHCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_only"
+              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_only"
             }
           ]
         },
@@ -320,7 +320,7 @@
         {
           "SendSSHCommand": [
             {
-              "SendSSHCommand": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
+              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
             }
           ]
         },

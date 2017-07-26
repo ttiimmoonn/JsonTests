@@ -552,7 +552,7 @@
               ]
             },
             {
-              "Difference": "0",
+              "Difference": 0,
               "Mode" : "between_ua",
               "UA": "0,1",
               "Msg" : [

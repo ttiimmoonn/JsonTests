@@ -295,7 +295,7 @@
                 {
                   "MsgType": "response",
                   "Method" : "INVITE",
-                  "Code" : "200"
+                  "Code" : 200
                 }
               ]
             },
@@ -306,7 +306,7 @@
                 {
                   "MsgType": "response",
                   "Method" : "INVITE",
-                  "Code" : "200"
+                  "Code" : 200
                 }
               ]
             }
