@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "test script">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,sdp_chk" />
+<Reference variables="sdp_chk"/>
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+    </action>
+    </nop>
+
+<send>
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "rfc3264 send T38 offer" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=- 123456 654322 IN IP[local_ip_type] [local_ip]
+    s=-
+    c=IN IP[media_ip_type] [media_ip]
+    t=0 0
+    m=image [auto_media_port] udptl t38
+    a=T38FaxVersion:0
+    a=T38MaxBitRate:14400
+    a=T38FaxFillBitRemoval:0
+    a=T38FaxTranscodingMMR:0
+    a=T38FaxTranscodingJBIG:0
+    a=T38FaxRateManagement:transferredTCF
+    a=T38FaxUdpEC:t38UDPRedundancy
+    a=sendrecv
+]]>
+</send>
+
+<recv response="100" optional="true"></recv>
+
+<recv response="401" auth="true" optional="true" next="send_inv_with_auth">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+    </action>
+ </recv>
+
+<label id="recv_100"/>
+
+<recv response="100" optional="true"></recv>
+<recv response="183" optional="true"></recv>
+<recv response="180" optional="true"></recv>
+<recv response="200" auth="true">
+<action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+</action>
+</recv>
+
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv request="INVITE">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+    </action>
+</recv>
+
+<pause milliseconds="200"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 123456 654323 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+
+<pause milliseconds="3000"/>
+
+<send>
+<![CDATA[
+    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "rfc3264 send T38 offer" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="exit" crlf="true"></recv>
+
+
+<!--
+   Отправка INVITE c auth
+-->
+
+<label id="send_inv_with_auth"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    [last_CSeq:]    
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send next="recv_100">
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "rfc3264 send T38 offer" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    [authentication]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=- 123456 654322 IN IP[local_ip_type] [local_ip]
+    s=-
+    c=IN IP[media_ip_type] [media_ip]
+    t=0 0
+    m=image [auto_media_port] udptl t38
+    a=T38FaxVersion:0
+    a=T38MaxBitRate:14400
+    a=T38FaxFillBitRemoval:0
+    a=T38FaxTranscodingMMR:0
+    a=T38FaxTranscodingJBIG:0
+    a=T38FaxRateManagement:transferredTCF
+    a=T38FaxUdpEC:t38UDPRedundancy
+    a=sendrecv
+]]>
+</send>
+
+<label id="exit"/>
+
+<!--
+    Ждём 2 секунды
+-->
+
+<timewait milliseconds="2000"/>
+
+</scenario>
