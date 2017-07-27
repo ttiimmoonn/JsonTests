@@ -133,10 +133,6 @@
     t=0 0
     m=audio [media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000/1
-    a=ecan:fb on -
-    a=silenceSupp:off - - - -
-    a=ptime:20
-    a=sendrecv
 ]]>
 </send>
 
