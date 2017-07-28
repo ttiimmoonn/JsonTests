@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_ss_call_park/",
+  "TestName": "ss_call_park",
   "AutoTest": true,
   "Users": [
     {
@@ -65,7 +65,7 @@
   ],
   "Tests": [
     {
-      "Name": "simple_ss_call_park/_test",
+      "Name": "simple_ss_call_park_test",
       "Description": "Звоним за абонента с call park, тот ставит нас в слот. Забираем вызов с другого абонента",
       "TestProcedure": [
         {
@@ -77,7 +77,7 @@
               "Name": "UAS_UNATTENDED_TR_TO_PARK_SLOT",
               "Commands": [
                 {
-                  "SourceFile": "ss_call_park//unattended_transfer.xml",
+                  "SourceFile": "ss_call_park/unattended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM *57*1# -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "Timeout": "30s"
