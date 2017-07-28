@@ -103,7 +103,7 @@
                 {
                   "MsgType": "request",
                   "Method" : "INVITE",
-                  "Code" : 200
+                  "Code" : null
                 }
               ]
             },
