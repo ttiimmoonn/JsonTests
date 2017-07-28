@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas_update">
+<User variables="chk_sdp,dummy"/>
+<Reference variables="chk_sdp,dummy" />
+
+<recv request="INVITE">
+<action>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+</action>
+</recv>
+
+
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="1000"/> 
+
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=sipp 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=sendrecv
+    m=video 0 RTP/AVP 31
+    a=sendrecv
+]]>
+</send>
+
+<recv request="ACK">
+</recv>
+
+<!--
+Скидываем попытку перехода на t38.
+-->
+
+<recv request="INVITE">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="T38FaxVersion" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="T38FaxRateManagement" search_in="body" check_it="true" assign_to="sdp_chk" />
+    </action>
+</recv>
+
+<pause milliseconds="200"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 488 Not Acceptable Here
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Type: application/sdp
+    Content-Length: 0 
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+<!--
+Принимаем переход на 711
+-->
+
+<recv request="INVITE">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+    </action>
+</recv>
+
+<pause milliseconds="200"/>
+
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654323 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000/1
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+
+
+<recv request="BYE"></recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="2000"/>
+</scenario>

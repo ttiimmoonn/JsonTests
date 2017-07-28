@@ -1,0 +1,351 @@
+{
+  "TestName": "rfc3264",
+  "AutoTest" : true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 90,
+      "Port" : 11001,
+      "RtpPort" : 20000,
+      "SipGroup": "sip.ab",
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 90,
+      "Port" : 11002,
+      "RtpPort" : 20010,
+      "SipGroup": "sip.ab",
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreConf": [
+    {
+    }
+  ],
+  "PostConf": [
+    {
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "check_oa_exchange_with_simcap_rfc3407",
+      "Description": "Проверка согласования медии при наличии sdp-атрибутов из rfc3407",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE_RFC3407_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_send_bye_with_sdp_rfc3407.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_BYE_RFC3407_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_recv_bye_with_sdp_rfc3407.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "Check_oa_exchange_2_video_codecs",
+      "Description": "Проверка корректности o/a при передаче 2 видео кодеков в a_sdp",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_2_VIDEO_CODECS",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_send_2_video_codecs.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 2000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "replace_fax_section_to_media",
+      "Description": "Проверка перехода на медию при замене секции image на audio",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_REPLACE_IMAGE_TO_AUDIO",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_replace_fax_section.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_recv_t38_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "reject_re_invite_with_t38",
+      "Description": "Проверка пересогласования плеча А на 711 в случае если плечо Б отбило запрос на переход на t38 488 ответом",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_488_ON_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_send_488_on_t38.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_recv_re_inv_with_media_after_t38.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_inactive_image_section",
+      "Description": "При получении offer с image, в a_sdp отдаём image c атрибутом a=inactive. После чего со стороны UAC высылаем новый offer с активным image.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_T38_RE_INV",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_replace_fax_section.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_send_inactive_image_in_answer.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "refresh_inactive_t38_to_audio",
+      "Description": "При получении offer с image, в a_sdp отдаём image c атрибутом a=inactive. Далее со стороны UAC шлём re-invite c PCMA",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_T38_RE_INV",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_t38_recv_re_inv_to_media.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_refresh_inactive_image_to_audio.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_t38_initial_offer_test",
+      "Description": "Отправляем initial INVITE c оффером t38",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_T38_OFFER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_recv_t38_offer.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3264/uas_send_488_on_t38.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3264/uas_send_488_on_t38_and_recv_re_invite.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_T38_OFFER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_send_t38_offer.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3264/uac_send_t38_o_and_recv_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3264/uac_send_t38_o_and_reject_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
