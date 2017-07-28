@@ -1,0 +1,367 @@
+{
+  "TestName": "alarm_test",
+  "AutoTest" : true,
+  "Users": [
+    {
+      "UserId" : 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10106,
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 10107,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 10108,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 4,
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 10109,
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%DEFAULT_ALARM_DNAME%%" : "Alarm\\ clock",
+      "%%MANUAL_ALARM_DNAME%%" : "ManualAlarmDname"
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% alarm",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% alarm",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% alarm",
+      "command4": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% alarm"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% alarm",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% alarm",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% alarm",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% alarm"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "test_alarm_send_dtmf_rfc_2833",
+      "Description": "test_alarm_send_dtmf_rfc_2833",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*55*1*%%NowTime+120%%#",
+              "userId" : 1
+            },
+            {
+              "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId" : 2
+            },
+            {
+              "code": "*56*3*%%NowTime+120%%#",
+              "userId" : 3
+            },
+            {
+              "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId" : 4
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat": true,
+              "Name": "UAS1_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat": true,
+              "Name": "UAS2_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%2.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat": true,
+              "Name": "UAS3_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%3.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat": true,
+              "Name": "UAS4_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_alarm_send_dtmf_in_sip_info",
+      "Description": "test_alarm_send_dtmf_in_sip_info",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*55*1*%%NowTime+120%%#",
+              "userId" : 1
+            },
+            {
+              "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId" : 2
+            },
+            {
+              "code": "*56*3*%%NowTime+120%%#",
+              "userId" : 3
+            },
+            {
+              "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId" : 4
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat": true,
+              "Name": "UAS1_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_info.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat": true,
+              "Name": "UAS2_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_info.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat": true,
+              "Name": "UAS3_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_info.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat": true,
+              "Name": "UAS4_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_info.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_alarm_send_dtmf_inband",
+      "Description": "test_alarm_send_dtmf_inband",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*55*1*%%NowTime+120%%#",
+              "userId" : 1
+            },
+            {
+              "code": "*55*2*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId" : 2
+            },
+            {
+              "code": "*56*3*%%NowTime+120%%#",
+              "userId" : 3
+            },
+            {
+              "code": "*56*4*%%NowWeekDay%%*%%NowTime+120%%#",
+              "userId" : 4
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat": true,
+              "Name": "UAS1_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_inband.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat": true,
+              "Name": "UAS2_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_inband.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat": true,
+              "Name": "UAS3_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_inband.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat": true,
+              "Name": "UAS4_ALARM_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_inband.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "180s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

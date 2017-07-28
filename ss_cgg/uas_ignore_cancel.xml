@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas ignore cancel">
+
+<!--
+
+https://tools.ietf.org/html/rfc5407#page-11
+3.1.2.  Callee Receives CANCEL (Early State) While in the Moratorium
+        State
+
+   State  Alice                        Bob  State
+          |                              |
+          |          INVITE F1           |
+          |----------------------------+>|
+     Pre  |       180 Ringing F2         |  Pre
+          |<-----------------------------|
+     Ear  |                              |  Ear
+          |CANCEL F3       200(INVITE) F4|
+          |------------     -------------|
+          |             \ /              |  Mora
+          |              X               |
+          |             / \              |
+          |<-----------     -----------+>|  *race*
+    Mora  |                              |
+          | ACK F6         200(CANCEL) F5|
+          |------------     -------------|
+     Est  |             \ /              |
+          |              X               |
+          |             / \              |
+          |<-----------     -----------+>|
+          |                              |  Est
+          |       One Way RTP Media      |
+          | (Two Way RTP Media possible) |
+          |<=============================|
+          |            BYE F7            |
+          |----------------------------+>|
+    Mort  |            200 F8            |  Mort
+          |<-----------------------------|
+          | ^                          ^ |
+          | | Timer K                  | |
+          | V                          | |
+    Morg  |                    Timer J | |
+          |                            V |
+          |                              |  Morg
+          |                              |
+
+
+9.2 Server Behavior
+
+   If the UAS did not find a matching transaction for the CANCEL
+   according to the procedure above, it SHOULD respond to the CANCEL
+   with a 481 (Call Leg/Transaction Does Not Exist).  If the transaction
+   for the original request still exists, the behavior of the UAS on
+   receiving a CANCEL request depends on whether it has already sent a
+   final response for the original request.  If it has, the CANCEL
+   request has no effect on the processing of the original request, no
+   effect on any session state, and no effect on the responses generated
+   for the original request.  If the UAS has not issued a final response
+   for the original request, its behavior depends on the method of the
+   original request.  If the original request was an INVITE, the UAS
+   SHOULD immediately respond to the INVITE with a 487 (Request
+   Terminated).  A CANCEL request has no impact on the processing of
+   transactions with any other method defined in this specification.
+-->
+
+<recv request="INVITE">
+<action>
+  <ereg regexp="(\w)*@" search_in="hdr" header="To:" assign_to="number" />
+  <ereg regexp=".*" search_in="hdr" header="From:" assign_to="inv_from" />
+  <ereg regexp=".*" search_in="hdr" header="To:" assign_to="inv_to" />
+  <ereg regexp=".*" search_in="hdr" header="Call-ID:" assign_to="inv_call_id" />
+  <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="inv_via" />
+  <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
+  <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+</action>
+</recv>
+
+<send>
+<![CDATA[
+  SIP/2.0 100 Trying
+  [last_Via:]
+  [last_From:]
+  [last_To:]
+  [last_Call-ID:]
+  [last_CSeq:]
+  Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+  SIP/2.0 180 Ringing
+  [last_Via:]
+  [last_From:]
+  [last_To:];tag=[$local_tag]
+  [last_Call-ID:]
+  [last_CSeq:]
+  Content-Length: 0
+]]>
+</send>
+
+<recv request="CANCEL"></recv>
+<recv request="CANCEL"></recv>
+<recv request="CANCEL"></recv>
+<recv request="CANCEL"></recv>
+<recv request="CANCEL"></recv>
+
+
+<send retrans="500">
+<![CDATA[
+  SIP/2.0 200 OK
+  Via:[$inv_via]
+  From:[$inv_from]
+  To:[$inv_to];tag=[$local_tag]
+  Call-ID:[$inv_call_id]
+  CSeq: [$inv_cseq] INVITE
+  Contact: <sip:[$number][local_ip]:[local_port];user=phone>
+  Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv request="ACK"></recv>
+
+<recv request="BYE"></recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="2000"/>
+</scenario>

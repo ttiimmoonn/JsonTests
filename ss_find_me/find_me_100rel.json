@@ -1,0 +1,944 @@
+{
+  "TestName": "ss_ss_find_me_req100rel",
+  "AutoTest" : true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "150",
+      "Login": "150",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "Port" : 12106,
+      "SipGroup": "sip.ab",
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "151",
+      "Login": "151",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "Port" : 12107,
+      "SipGroup": "sip.ab",
+      "QParam" : 1
+    },
+    {
+      "UserId" : 2,
+      "Number": "152",
+      "Login": "152",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "Port" : 12108,
+      "SipGroup": "sip.ab",
+      "QParam" : 1
+    },
+    {
+      "UserId" : 3,
+      "Number": "153",
+      "Login": "153",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12109,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 4,
+      "Number": "154",
+      "Login": "154",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12110,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 5,
+      "Number": "155",
+      "Login": "155",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12111,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 6,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12112,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 7,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12113,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 8,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12114,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 9,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12115,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 10,
+      "Number": "149",
+      "Login": "149",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 12116,
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%TimeTemplate%%": "1234567 00:00-23:59",
+      "%%BadTimeTemplate%%": "7 00:00-00:00"
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% ss_find_me",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% ss_find_me send_call_diversion = true",
+      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%10.Number%%}@%%0.SipDomain%% terminal_type smart"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%10.Number%% ss_find_me",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%10.Number%% ss_find_me"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "simple_ss_find_me_test",
+      "Description": "Создаём группу с одним абонентом и проверяем работоспособность услуги аналогично FollowMe",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_req100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uac_req100rel.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/set %%10.Number%% send_call_diversion false"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_req100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uac_req100rel_no_181.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/set %%10.Number%% send_call_diversion true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ss_find_me_group_test",
+      "Description": "Создаём несколько групп и начинаем их прозванивать. Ответ даём в последней группе",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_req100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "Name": "UAS3_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "Name": "UAS1_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 5,
+              "Name": "UAS2_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 6,
+              "Name": "UAS3_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 7,
+              "Name": "UAS1_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 8,
+              "Name": "UAS2_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 9,
+              "Name": "UAS3_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uac_req100rel.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "no_groups_found",
+      "Description": "Выставляем граппам плохой диапозон и ждём прямой вызов",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%BadTimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 10,
+              "Name": "UAS_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_req100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uac_no_181.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ss_find_me_486_test",
+      "Description": "Создаём группы. В одной отвечаем 486 со всех UA. Во второй со всех кроме отдного. В третьей отвечаем на вызов.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_req100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "Name": "UAS3_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "Name": "UAS1_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 5,
+              "Name": "UAS2_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 6,
+              "Name": "UAS3_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 7,
+              "Name": "UAS1_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 8,
+              "Name": "UAS2_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 9,
+              "Name": "UAS3_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uac_req100rel.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_break_bad_time_groups_test",
+      "Description": "Создаём 3 группы. В двух первых группах назначаем некорректный временной диапозон. Вызов принимаем в последней группе.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_req100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "Name": "UAS3_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uac_req100rel.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ss_find_me_loop_test",
+      "Description": "Создаём петлю посредством ss_find_me. Запускаем вызов. Вызов должен отбиться по превышению max_hop",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% ss_find_me",
+              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% ss_find_me send_call_diversion = true",
+              "command4": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%10.Number%%] 5 true custom %%TimeTemplate%%",
+              "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
+              "command6": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% ml",
+              "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count = 3",
+              "command8": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% ml line_count = 3"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uac_recv_487.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% ss_find_me",
+              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% ss_find_me",
+              "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ml",
+              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% ml",
+              "command7": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ml",
+              "command8": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% ml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "find_like_tree_test",
+      "Description": "Создаём цепочку из трех групп и запускаем вызов. В последнем звене отвечаем",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% ss_find_me",
+              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% ss_find_me send_call_diversion = true",
+              "command4": "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% ss_find_me",
+              "command5": "/domain/%%DEV_DOM%%/ss/activate %%6.Number%% ss_find_me send_call_diversion = true",
+              "command6": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+              "command7": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%6.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "Name": "UAS1_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 5,
+              "Name": "UAS2_GROUP_2_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 7,
+              "Name": "UAS1_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uas_busy.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 8,
+              "Name": "UAS2_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 9,
+              "Name": "UAS3_GROUP_3_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uas_req100rel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC1_ss_find_me",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/req100rel/uac_req100rel.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
+              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%6.Number%% 1",
+              "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% ss_find_me",
+              "command5": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% ss_find_me",
+              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% ss_find_me",
+              "command7": "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% ss_find_me"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
