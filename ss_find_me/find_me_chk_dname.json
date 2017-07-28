@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_ss_find_me_chk_dname",
+  "TestName": "ss_find_me_chk_dname",
   "AutoTest" : true,
   "Users": [
     {
@@ -61,16 +61,16 @@
   "UserVar": [
     {
       "%%TimeTemplate%%" : "1234567 00:00-23:59",
-      "%%SIP_DNAME%%" : "SipDNAME_ss_find_me",
-      "%%ALIAS_DNAME%%" : "AliasDNAME_ss_find_me",
-      "%%ROUTE_DNAME%%" : "RouteDNAME_ss_find_me",
-      "%%ss_find_me_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmaW5kX21lX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0ZJTkRfTUUiLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4NCg=="
+      "%%SIP_DNAME%%" : "SipDNAME_FIND_ME",
+      "%%ALIAS_DNAME%%" : "AliasDNAME_FIND_ME",
+      "%%ROUTE_DNAME%%" : "RouteDNAME_FIND_ME",
+      "%%FIND_ME_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmaW5kX21lX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0ZJTkRfTUUiLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4NCg=="
     }
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ss_find_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ss_find_me send_call_diversion = true",
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% find_me",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% find_me send_call_diversion = true",
       "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%4.Number%%}@%%0.SipDomain%% terminal_type smart",
       "command4": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
       "command5": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
@@ -81,8 +81,8 @@
   ],
   "PostConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ss_find_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ss_find_me",
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% find_me",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% find_me",
       "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
       "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
       "command5": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
@@ -102,7 +102,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -116,7 +116,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -130,7 +130,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -176,7 +176,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -190,7 +190,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -204,7 +204,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -250,7 +250,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -264,7 +264,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -278,7 +278,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -324,7 +324,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -338,7 +338,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -352,7 +352,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -395,8 +395,8 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ss_find_me_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ss_find_me_test_ctx"
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_test_ctx"
             }
           ]
         },
@@ -406,7 +406,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -420,7 +420,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -434,7 +434,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -464,7 +464,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_find_me_test_ctx",
+              "command1": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
             }
           ]
@@ -479,8 +479,8 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ss_find_me_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ss_find_me_test_ctx"
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_test_ctx"
             }
           ]
         },
@@ -490,7 +490,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -504,7 +504,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -518,7 +518,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -549,7 +549,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_find_me_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
             }
           ]
@@ -563,8 +563,8 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ss_find_me_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ss_find_me_test_ctx"
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_test_ctx"
             }
           ]
         },
@@ -574,7 +574,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -588,7 +588,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -602,7 +602,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -632,7 +632,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_find_me_test_ctx",
+              "command1": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
             }
           ]
@@ -647,8 +647,8 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ss_find_me_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ss_find_me_test_ctx"
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_ROUTE_CONTEXT%%",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_test_ctx"
             }
           ]
         },
@@ -658,7 +658,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_ss_find_me_WOUT100REL",
+              "Name": "UAS1_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -672,7 +672,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_ss_find_me_WOUT100REL",
+              "Name": "UAS2_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -686,7 +686,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_ss_find_me_WOUT100REL",
+              "Name": "UAS3_FIND_ME_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -717,7 +717,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_find_me_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete find_me_test_ctx",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
             }
           ]

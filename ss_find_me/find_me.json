@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_ss_find_me",
+  "TestName": "ss_find_me",
   "AutoTest" : true,
   "Users": [
     {
@@ -128,20 +128,20 @@
     {
       "%%TimeTemplate%%": "1234567 00:00-23:59",
       "%%BadTimeTemplate%%": "7 00:00-00:00",
-      "%%ss_find_me_TIMER%%" : "5000"
+      "%%FIND_ME_TIMER%%" : "5000"
     }
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% ss_find_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% ss_find_me send_call_diversion = true",
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% find_me",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% find_me send_call_diversion = true",
       "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%10.Number%%}@%%0.SipDomain%% terminal_type smart"
     }
   ],
   "PostConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%10.Number%% ss_find_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%10.Number%% ss_find_me"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%10.Number%% find_me",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%10.Number%% find_me"
     }
   ],
   "Tests": [
@@ -175,7 +175,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC1_ss_find_me",
+              "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac.xml",
@@ -200,7 +200,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas.xml",
@@ -214,7 +214,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC2_ss_find_me",
+              "Name": "UAC2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac_no_181.xml",
@@ -256,7 +256,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas.xml",
@@ -271,7 +271,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -286,7 +286,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS3_GROUP_1_ss_find_me",
+              "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -301,7 +301,7 @@
               "Type": "User",
               "UserId" : 4,
               "WriteStat" : true,
-              "Name": "UAS1_GROUP_2_ss_find_me",
+              "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -316,7 +316,7 @@
               "Type": "User",
               "UserId" : 5,
               "WriteStat" : true,
-              "Name": "UAS2_GROUP_2_ss_find_me",
+              "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -331,7 +331,7 @@
               "Type": "User",
               "UserId" : 6,
               "WriteStat" : true,
-              "Name": "UAS3_GROUP_2_ss_find_me",
+              "Name": "UAS3_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -346,7 +346,7 @@
               "Type": "User",
               "UserId" : 7,
               "WriteStat" : true,
-              "Name": "UAS1_GROUP_3_ss_find_me",
+              "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -361,7 +361,7 @@
               "Type": "User",
               "UserId" : 8,
               "WriteStat" : true,
-              "Name": "UAS2_GROUP_3_ss_find_me",
+              "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -376,7 +376,7 @@
               "Type": "User",
               "UserId" : 9,
               "WriteStat" : true,
-              "Name": "UAS3_GROUP_3_ss_find_me",
+              "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -390,7 +390,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC1_ss_find_me",
+              "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac.xml",
@@ -418,7 +418,7 @@
               ]
             },
             {
-              "Difference": "%%ss_find_me_TIMER%%",
+              "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
               "UA": "4,1",
               "Msg" : [
@@ -460,7 +460,7 @@
             {
               "Type": "User",
               "UserId" : 10,
-              "Name": "UAS_ss_find_me",
+              "Name": "UAS_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas.xml",
@@ -474,7 +474,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC_ss_find_me",
+              "Name": "UAC_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac_no_181.xml",
@@ -516,7 +516,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas.xml",
@@ -530,7 +530,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -544,7 +544,7 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAS3_GROUP_1_ss_find_me",
+              "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -558,7 +558,7 @@
             {
               "Type": "User",
               "UserId" : 4,
-              "Name": "UAS1_GROUP_2_ss_find_me",
+              "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -572,7 +572,7 @@
             {
               "Type": "User",
               "UserId" : 5,
-              "Name": "UAS2_GROUP_2_ss_find_me",
+              "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -586,7 +586,7 @@
             {
               "Type": "User",
               "UserId" : 6,
-              "Name": "UAS3_GROUP_2_ss_find_me",
+              "Name": "UAS3_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -600,7 +600,7 @@
             {
               "Type": "User",
               "UserId" : 7,
-              "Name": "UAS1_GROUP_3_ss_find_me",
+              "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -614,7 +614,7 @@
             {
               "Type": "User",
               "UserId" : 8,
-              "Name": "UAS2_GROUP_3_ss_find_me",
+              "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -628,7 +628,7 @@
             {
               "Type": "User",
               "UserId" : 9,
-              "Name": "UAS3_GROUP_3_ss_find_me",
+              "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -642,7 +642,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC1_ss_find_me",
+              "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac.xml",
@@ -684,7 +684,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas.xml",
@@ -698,7 +698,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -712,7 +712,7 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAS3_GROUP_1_ss_find_me",
+              "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -726,7 +726,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC1_ss_find_me",
+              "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac.xml",
@@ -752,14 +752,14 @@
     },
     {
       "Name": "ss_find_me_loop_test",
-      "Description": "Создаём петлю посредством ss_find_me. Запускаем вызов. Вызов должен отбиться по превышению max_hop",
+      "Description": "Создаём петлю посредством find_me. Запускаем вызов. Вызов должен отбиться по превышению max_hop",
       "TestProcedure": [
         {
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% ss_find_me",
-              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% ss_find_me send_call_diversion = true",
+              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
+              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
               "command4": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%10.Number%%] 5 true custom %%TimeTemplate%%",
               "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
               "command6": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% ml",
@@ -787,7 +787,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -801,7 +801,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC1_ss_find_me",
+              "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac_recv_487.xml",
@@ -819,8 +819,8 @@
             {
               "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
               "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% ss_find_me",
-              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% ss_find_me",
+              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
+              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me",
               "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ml",
               "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% ml",
               "command7": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ml",
@@ -838,10 +838,10 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% ss_find_me",
-              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% ss_find_me send_call_diversion = true",
-              "command4": "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% ss_find_me",
-              "command5": "/domain/%%DEV_DOM%%/ss/activate %%6.Number%% ss_find_me send_call_diversion = true",
+              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
+              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
+              "command4": "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% find_me",
+              "command5": "/domain/%%DEV_DOM%%/ss/activate %%6.Number%% find_me send_call_diversion = true",
               "command6": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
               "command7": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%6.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
             }
@@ -852,7 +852,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -866,7 +866,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS2_GROUP_1_ss_find_me",
+              "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -880,7 +880,7 @@
             {
               "Type": "User",
               "UserId" : 4,
-              "Name": "UAS1_GROUP_2_ss_find_me",
+              "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -894,7 +894,7 @@
             {
               "Type": "User",
               "UserId" : 5,
-              "Name": "UAS2_GROUP_2_ss_find_me",
+              "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -908,7 +908,7 @@
             {
               "Type": "User",
               "UserId" : 7,
-              "Name": "UAS1_GROUP_3_ss_find_me",
+              "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
@@ -922,7 +922,7 @@
             {
               "Type": "User",
               "UserId" : 8,
-              "Name": "UAS2_GROUP_3_ss_find_me",
+              "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_cancel.xml",
@@ -936,7 +936,7 @@
             {
               "Type": "User",
               "UserId" : 9,
-              "Name": "UAS3_GROUP_3_ss_find_me",
+              "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas.xml",
@@ -950,7 +950,7 @@
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC1_ss_find_me",
+              "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uac.xml",
@@ -969,10 +969,10 @@
               "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
               "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
               "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%6.Number%% 1",
-              "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% ss_find_me",
-              "command5": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% ss_find_me",
-              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% ss_find_me",
-              "command7": "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% ss_find_me"
+              "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
+              "command5": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me",
+              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% find_me",
+              "command7": "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% find_me"
             }
           ]
         }
