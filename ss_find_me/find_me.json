@@ -161,7 +161,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas.xml",
@@ -773,7 +773,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS1_GROUP_1_ss_find_me",
+              "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
                   "SourceFile": "ss_find_me/uas_busy.xml",
