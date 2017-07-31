@@ -64,6 +64,8 @@
       "%%SIP_DNAME%%" : "SipDNAME_FIND_ME_NO_ANS",
       "%%ALIAS_DNAME%%" : "AliasDNAME_FIND_ME_NO_ANS",
       "%%ROUTE_DNAME%%" : "RouteDNAME_FIND_ME_NO_ANS",
+      "%%ALERTING_NAME%%" : "\"Called user\"",
+      "%%CONNECTED_NAME%%" : "\"Connected user\"",
       "%%FIND_ME_NO_ANS_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmaW5kX21lX25vX3Jlc3BvbnNlX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0ZJTkRfTUVfTk9fQU5TIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
     }
   ],
@@ -80,7 +82,9 @@
       "command9": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
       "command10": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
       "command11": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-      "command12": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
+      "command12": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+      "command13": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALERTING_NAME%%",
+      "command14" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CONNECTED_NAME%%"
     }
   ],
   "PostConf": [
@@ -96,7 +100,9 @@
       "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
       "command10": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
       "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command12": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip"
+      "command12": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+      "command13": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALERTING_NAME%%",
+      "command14" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CONNECTED_NAME%%"
     }
   ],
   "Tests": [
@@ -128,7 +134,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "40s"
                 }
@@ -170,7 +176,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%  -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -216,7 +222,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -258,7 +264,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -304,7 +310,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -346,7 +352,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -392,7 +398,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -434,7 +440,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE  -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -488,7 +494,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -530,7 +536,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%  -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -586,7 +592,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -628,7 +634,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%  -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -684,7 +690,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -726,7 +732,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE  -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -782,7 +788,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -824,7 +830,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME TRUE  -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
