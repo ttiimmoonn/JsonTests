@@ -35,7 +35,6 @@
       "SipDomain": "pv.ssw3",
       "Expires" : 3600,
       "Port" : 20005,
-      "SipTransport": "UDP",
       "SipGroup": "sip.ab",
       "QParam" : 1
     },
@@ -43,18 +42,6 @@
       "UserId" : 3,
       "Number": "160",
       "Login": "160",
-      "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires" : 3600,
-      "Port" : 20009,
-      "SipGroup": "sip.ab",
-      "SipTransport": "UDP",
-      "QParam" : 1
-    },
-    {
-      "UserId" : 4,
-      "Number": "161",
-      "Login": "161",
       "Password": "123",
       "SipDomain": "pv.ssw3",
       "Expires" : 3600,
@@ -117,38 +104,6 @@
                 {
                   "SourceFile": "sip_transport/uac_recv_502.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "15s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 4,
-              "Name": "USER_WOUT_REQ_TRANSPORT",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -t tn -max_socket 25",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "WriteStat": true,
-              "Name": "TCP_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "15s"
@@ -300,70 +255,6 @@
               ]
             }
           ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 4,
-              "Name": "USER_WOUT_REQ_TRANSPORT",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -t tn -max_socket 25",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "WriteStat": true,
-              "Name": "TCP_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "15s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 4,
-              "Name": "USER_WOUT_REQ_TRANSPORT",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -t tn -max_socket 25",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 3,
-              "WriteStat": true,
-              "Name": "UDP_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "15s"
-                }
-              ]
-            }
-          ]
         }
       ]
     },
@@ -412,38 +303,6 @@
                 {
                   "SourceFile": "sip_transport/uac_recv_502.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "15s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 4,
-              "Name": "USER_WOUT_REQ_TRANSPORT",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "WriteStat": true,
-              "Name": "UDP_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "15s"
@@ -588,70 +447,6 @@
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "15s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 4,
-              "Name": "USER_WOUT_REQ_TRANSPORT",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "WriteStat": true,
-              "Name": "UDP_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "15s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 4,
-              "Name": "USER_WOUT_REQ_TRANSPORT",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
-                  "SippType": "uas",
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "WriteStat": true,
-              "Name": "TCP_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "15s"
