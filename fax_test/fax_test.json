@@ -278,6 +278,84 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "fax_send_bye_after_sending_pps",
+      "Description": "Тестирование частичного приёма факса. Отправка BYE после отправки сигнала PPS",
+      "TestProcedure": [
+        {"Sleep" : 10},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_T38_SEND_BYE_AFTER_PPS",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_t38_send_bye_after_pps.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": true,
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "fax_abort_t38_after_sending_pps",
+      "Description": "Тестирование частичного приёма факса. Остановка t38 трафика после отправки PPS",
+      "TestProcedure": [
+        {"Sleep" : 10},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_T38_STOP_T38_AFTER_PPS",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_t38_abort_after_pps.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": true,
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "fax_send_multi_page",
+      "Description": "Тестирование передачи двух страниц.",
+      "TestProcedure": [
+        {"Sleep" : 10},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_T38_SEND_MULTI_PAGE",
+              "Commands": [
+                {
+                  "SourceFile": "fax_test/uac_t38_send_multipage.xml",
+                  "Options": "-m 1  -set CDPN %%FAX_NUMBER%% -set CDPNDOM %%USER_DOM%%",
+                  "NeedAuth": true,
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

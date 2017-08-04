@@ -52,8 +52,7 @@
 <recv response="180" optional="true"></recv>
 <recv response="200" auth="true">
 <action>
-    	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-<!--        <ereg regexp="tag=.*" search_in="hdr" header="From:" assign_to="local_tag"/> -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="tag=.*" search_in="hdr" header="To:" assign_to="remote_tag"/>
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
 </action>
@@ -145,8 +144,7 @@
 <recv response="100"> </recv> 
 <recv response="200"> 
 <action>
-    	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-<!--        <ereg regexp="tag=.*" search_in="hdr" header="From:" assign_to="local_tag"/> -->
+    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
 </action>
 
 </recv>
