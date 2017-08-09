@@ -160,6 +160,46 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "send_cancel_on_re_invite",
+      "Description": "Проверка отправки CANCEL на незавершённый re-invite в случае отбоя противоположной стороны",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_OSDP_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_send_osdp_t38.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_CANCEL_ON_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_recv_re_invite_and_cancel.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
