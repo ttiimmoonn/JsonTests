@@ -31,7 +31,7 @@
       "Password": "123",
       "SipDomain": "pv.ssw3",
       "Expires" : 90,
-      "Port" : 10107,
+      "Port" : 10108,
       "SipGroup": "sip.ab",
       "QParam" : 1
     }
@@ -143,6 +143,37 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_message_with_unknown_content_type",
+      "Description": "Проверка получения 415 ответа в случае отправки MESSAGE c неподдерживаемым content-type.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_SEND_MSG",
+              "Commands": [
+                {
+                  "SourceFile": "message_test/send_rfc3994_message.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME \"Send Simple MESSAGE test\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                },
+                {
+                  "SourceFile": "message_test/send_message_with_unkn_cont_type.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME \"Send Simple MESSAGE test\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
             }
           ]
         }
