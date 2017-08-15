@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires" : 90,
       "Port" : 11001,
       "RtpPort" : 20000,
@@ -19,7 +19,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw2",
+      "SipDomain": "pv.ssw3",
       "Expires" : 90,
       "Port" : 11002,
       "RtpPort" : 20010,
@@ -33,10 +33,18 @@
   ],
   "PreConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ml",
+      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
+      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count=5",
+      "command4" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count=5"
     }
   ],
   "PostConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/ss/deativate %%0.Number%% ml",
+      "command2" : "/domain/%%DEV_DOM%%/ss/deativate %%1.Number%% ml",
+      "command3" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml",
+      "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ml"
     }
   ],
   "Tests": [
