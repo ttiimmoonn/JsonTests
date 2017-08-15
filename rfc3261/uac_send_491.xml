@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "new_script">
+<scenario name = "uac send 491">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn,sdp_chk" />
@@ -194,7 +194,7 @@
     Content-Length: [len]
 
     v=0
-    o=- 123456 654322 IN IP[local_ip_type] [local_ip]
+    o=- 123456 654323 IN IP[local_ip_type] [local_ip]
     s=-
     c=IN IP[media_ip_type] [media_ip]
     t=0 0
@@ -226,7 +226,7 @@
     Content-Length: [len]
 
     v=0
-    o=tester 123456 654323 IN IP[local_ip_type] [local_ip]
+    o=tester 123456 654324 IN IP[local_ip_type] [local_ip]
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0

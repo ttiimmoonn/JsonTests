@@ -48,7 +48,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_RECV_RE_INVITE",
+              "Name": "UAS_RECV_491",
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uas_recv_491.xml",
@@ -63,7 +63,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Name": "UAC_RECV_491",
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uac_recv_491.xml",
@@ -102,7 +102,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_RECV_RE_INVITE",
+              "Name": "UAS_RECV_491_AND_SEND_RE_INVITE",
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uas_recv_491_and_send_re_invite.xml",
@@ -117,7 +117,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Name": "UAC_RECV_491_AND_SEND_RE_INVITE",
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uac_recv_491_and_send_re_invite.xml",
@@ -156,7 +156,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_RE_INVITE",
+              "Name": "UAS_SEND_491",
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uas_send_491.xml",
@@ -171,7 +171,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Name": "UAC_SEND_491",
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uac_send_491.xml",
