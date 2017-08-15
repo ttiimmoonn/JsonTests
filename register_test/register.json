@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires" : 90,
       "SipGroup": "sip.ab",
       "Port" : 10106,
@@ -18,13 +18,25 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires" : 90,
       "SipGroup": "sip.ab",
       "Port" : 10109,
       "UserIP": "1.1.1.1",
       "FakePort" : 5060,
       "QParam" : 0.5
+    },
+   {
+      "UserId" : 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw2",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10109,
+      "QParam" : 0.5,
+      "Mode" : "Manual"
     }
   ],
   "UserVar": [
@@ -75,6 +87,26 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "Name": "register_contact_with_uuid",
+      "Description" : "Регистрируем контакт с uuid:313230-AABB-0000-0000-B40EDC015E9A",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+          "3": {
+              "script": "register_test/reg_contact_with_uuid.xml"
+            }
+          }
+        },
+        {
+          "ManualReg": {
+          "3": {
+              "script": "register_test/reg_contact_with_uuid.xml"
+            }
+          }
         }
       ]
     }
