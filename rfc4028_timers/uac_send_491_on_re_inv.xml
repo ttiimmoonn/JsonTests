@@ -90,10 +90,6 @@
 </send>
 
 
-
-
-<pause milleseconds="43"/>
-
 <recv request="INVITE">
     <action>
         <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
@@ -222,7 +218,7 @@
 
 
 
-<pause milleseconds="3000"/>
+<pause milliseconds="3000"/>
 
 <send>
 <![CDATA[
@@ -270,7 +266,7 @@
 ]]>
 </send>
 
-<pause milleseconds="1000"/>
+<pause milliseconds="1000"/>
 
 <recv request="BYE"></recv>
 

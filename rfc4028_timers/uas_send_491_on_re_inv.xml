@@ -208,7 +208,7 @@
 
 
 
-<pause milleseconds="3000"/>
+<pause milliseconds="3000"/>
 
 <send>
 <![CDATA[
@@ -256,7 +256,7 @@
 ]]>
 </send>
 
-<pause milleseconds="4000"/>
+<pause milliseconds="7000"/>
 
 <send>
 <![CDATA[
