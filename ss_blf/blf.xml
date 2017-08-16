@@ -180,7 +180,7 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Event: dialog
     Accept: application/dialog-info+xml
-    Expires: 90
+    Expires: 0
     Content-Length: 0
 ]]>
 </send>
@@ -259,7 +259,7 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Event: dialog
     Accept: application/dialog-info+xml
-    Expires: 90
+    Expires: 0
     Content-Length: 0
 ]]>
 </send>
