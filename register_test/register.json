@@ -34,7 +34,7 @@
       "SipDomain": "pv.ssw3",
       "Expires" : 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
+      "Port" : 10110,
       "QParam" : 0.5,
       "Mode" : "Manual"
     }
