@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas recv 491 and send re-invite">
+<User variables="chk_sdp"/>
+<Reference variables="chk_sdp" />
+
+<recv request="INVITE">
+<action>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+</action>
+</recv>
+
+
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="1000"/> 
+
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=sipp 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=sendrecv
+]]>
+</send>
+
+<recv request="ACK">
+</recv>
+
+<send>
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=sipp 123456 654322 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=image [auto_media_port] udptl t38
+    a=T38FaxVersion:0
+    a=T38FaxRateManagement:transferredTCF
+    a=sendrecv
+]]>
+</send>
+
+<recv response="100" optional auth="true"></recv>
+<recv response="200" auth="true">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="T38FaxVersion" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="T38FaxRateManagement" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+    </action>
+</recv>
+
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=sipp 123456 654323 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=sendrecv
+]]>
+</send>
+
+
+<recv response="100" optional auth="true"></recv>
+<recv response="491" optional="true" crlf="true" next="491_hadling">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+    </action>
+</recv>
+<recv response="200" auth="true">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+    </action>
+</recv>
+
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<label id="recv_bye"/>
+<nop hide="true">
+<action>
+    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+</action>
+</nop>
+
+<recv request="BYE"></recv>
+
+<send next="exit">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<label id="491_hadling"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    [last_CSeq:]    
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=sipp 123456 654324 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=sendrecv
+]]>
+</send>
+
+<recv response="100" optional auth="true"></recv>
+<recv response="200" auth="true">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+    </action>
+</recv>
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv request="INVITE">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+    </action>
+</recv>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[service]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 123456 654325 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK" next="recv_bye"> </recv>
+
+
+<label id="exit"/>
+
+<pause milliseconds="2000"/>
+
+
+
+</scenario>

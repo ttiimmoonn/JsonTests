@@ -1,0 +1,190 @@
+{
+  "TestName": "rfc3261_491_response_test",
+  "AutoTest" : true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 11001,
+      "SipGroup": "sip.ab",
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 11002,
+      "SipGroup": "sip.ab",
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreConf": [
+    {
+    }
+  ],
+  "PostConf": [
+    {
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "test_491_on_msr_and_core",
+      "Description": "Пытаемся столкнуть реквесты на ядре или MSR. При этом на сип должен протранслироваться 491 ответ. После получения 491 ожидаем пересогласование от MSR.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_491",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_recv_491.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_491",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_recv_491.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3261/uac_recv_491.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 10",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3261/uac_recv_491.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 15",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_491_on_msr_and_core_send_re_invite",
+      "Description": "Пытаемся столкнуть реквесты на ядре или MSR. При этом на сип должен протранслироваться 491 ответ. После получения 491 отправляем повторный re-invite.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_491_AND_SEND_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_recv_491_and_send_re_invite.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_491_AND_SEND_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_recv_491_and_send_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3261/uac_recv_491_and_send_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 10",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3261/uac_recv_491_and_send_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 15",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_491_on_sip",
+      "Description": "Со стороны UAC отсылаем 491 на t38 и ожидаём повторного re-invite, со стороны UAS отсылаем 491 на g711 и повторного re-invite",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_491",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_send_491.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_491",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_send_491.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
