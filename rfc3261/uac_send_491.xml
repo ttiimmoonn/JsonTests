@@ -262,7 +262,7 @@
 </nop>
 
 
-<pause milliseconds="6000"/>
+<pause milliseconds="9000"/>
 
 <send>
 <![CDATA[
