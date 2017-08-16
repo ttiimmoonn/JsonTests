@@ -101,8 +101,8 @@
       "command10": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
       "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
       "command12": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command13": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALERTING_NAME%%",
-      "command14" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CONNECTED_NAME%%"
+      "command13": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+      "command14": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
     }
   ],
   "Tests": [
