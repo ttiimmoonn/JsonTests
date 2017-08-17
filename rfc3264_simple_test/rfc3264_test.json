@@ -372,10 +372,10 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_SEND_INITIAL_INVITE_WOUT_OFFER",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "SourceFile": "rfc3264/uac_send_invite_wout_offer.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
