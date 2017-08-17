@@ -4,7 +4,7 @@
 <User variables="chk_sdp"/>
 <Reference variables="chk_sdp" />
 
-<recv request="INVITE">
+<recv request="INVITE">:Z
 <action>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
@@ -91,6 +91,7 @@
     <action>
         <assign assign_to="sdp_chk" value="" />
         <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
     </action>
 </recv>
 
