@@ -1,6 +1,7 @@
 {
   "TestName": "rfc3261_491_response_test",
   "AutoTest" : true,
+  "Isolate" : true, 
   "Users": [
     {
       "UserId" : 0,
