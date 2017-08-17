@@ -383,7 +383,7 @@
               "Name": "UAC_SEND_INITIAL_INVITE_WOUT_OFFER",
               "Commands": [
                 {
-                  "SourceFile": "rfc3264/uac_send_invite_wout_offer.xml",
+                  "SourceFile": "rfc3264_simple_test/uac_send_invite_wout_offer.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
