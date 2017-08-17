@@ -354,6 +354,46 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "send_re_invite_wout_sdp",
+      "Description": "Проверка корректности обработки re-invite без sdp.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_RE_INVITE_WOUT_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264_simple_test/uas_send_re_invite_wout_offer.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
