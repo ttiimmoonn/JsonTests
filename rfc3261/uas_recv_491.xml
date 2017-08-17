@@ -72,6 +72,8 @@
 <recv request="ACK">
 </recv>
 
+<pause milliseconds="1000"/> 
+
 <send>
 <![CDATA[
     INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
