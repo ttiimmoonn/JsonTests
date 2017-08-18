@@ -3,6 +3,8 @@
 <scenario name = "uac_send_invite_wout_o_sdp">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="chk_sdp"/>
+<Reference variables="chk_sdp" />
     <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
@@ -45,6 +47,9 @@
 <recv response="200" auth="true">
         <action>
          <!--Забрали CSeq -->
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
         </action>
