@@ -58,7 +58,7 @@
       "Password": "123",
       "SipDomain": "pv.ssw3",
       "Expires" : 3600,
-      "Port" : 20009,
+      "Port" : 20010,
       "SipGroup": "sip.ab",
       "QParam" : 1
     }
@@ -152,6 +152,26 @@
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "15s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat": true,
+              "Name": "UAC_NO_ANSW_TO_INVITE",
+              "Commands": [
+                {
+                  "NoTimeOutError" : true,
+                  "SourceFile": "sip_transport/uac_no_answ_to_invite.xml",
+                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -447,6 +467,26 @@
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "15s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat": true,
+              "Name": "UAC_NO_ANSW_TO_INVITE",
+              "Commands": [
+                {
+                  "NoTimeOutError" : true,
+                  "SourceFile": "sip_transport/uac_no_answ_to_invite.xml",
+                  "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
                 }
               ]
             }
