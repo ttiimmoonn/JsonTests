@@ -123,6 +123,8 @@
 ]]>
 </send>
 
+<pause milliseconds ="15"/>
+
 <send>
 <![CDATA[
     INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0

@@ -1,6 +1,7 @@
 {
   "TestName": "rfc3261_491_response_test",
   "AutoTest" : true,
+  "Isolate" : true,
   "Users": [
     {
       "UserId" : 0,
@@ -74,14 +75,14 @@
                 },
                 {
                   "SourceFile": "rfc3261/uac_recv_491.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 10",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 5",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
                 },
                 {
                   "SourceFile": "rfc3261/uac_recv_491.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 15",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 7",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
