@@ -166,6 +166,81 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "forking contact not reachable test",
+      "Description": "Звоним на номер с форкингом. При этом на одном из контактов не поднимаем UA, чтобы позникла ошибка по транспорту.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat": true,
+              "Name": "UAS2_RECV_CANEL",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat": true,
+              "Name": "UAS3_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Difference" : 0,
+              "Mode" : "between_ua",
+              "UA": "1,2",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : null
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
