@@ -1,0 +1,106 @@
+{
+  "TestName": "ss_alarm_chk_dname",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10105,
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%ALIAS_DNAME%%" : "AliasDNAME_ALARM",
+      "%%ALARM_DNAME%%" : "\"Тест Будильника\"",
+      "%%ALARM_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19hbGFybV9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQUxBUk0iLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% alarm",
+      "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ALARM_ROUTE_CONTEXT%%",
+      "command3": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%",
+      "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ss_alarm_ctx"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% alarm",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% alarm",
+      "command3": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+      "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+      "command5": "/domain/%%DEV_DOM%%/routing/delete ss_alarm_ctx"
+    }
+  ],
+
+  "Tests": [
+    {
+      "Name":"alarm_set_dname_in_activating_cmd",
+      "Description": "Dname выставлен на alias и routing. Активируем команду с dname и проверяем, что вызов придёт с этим dname",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/alarm/activate %%0.Number%% alarm_1 one-time %%NowWeekDay%% %%NowTime+120;%H:%M%% %%ALARM_DNAME%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_ALARM_CHK_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_info.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%ALARM_DNAME%% -set CHK_NUMBER %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "130s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name":"alarm_wout_dname",
+      "Description": "Dname выставлен на alias и routing. Активируем будильник без dname и проверяем, что приходит Alarm clock",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/alarm/activate %%0.Number%% alarm_1 one-time %%NowWeekDay%% %%NowTime+120;%H:%M%% \"\""
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_ALARM_CHK_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "ss_alarm/uas_info.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"Alarm clock\" -set CHK_NUMBER %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "130s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

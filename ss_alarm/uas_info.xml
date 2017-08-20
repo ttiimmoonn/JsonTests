@@ -2,6 +2,22 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uas send dtmf in sip INFO ALARM тест">
 
+<Global variables="CHK_DNAME,CHK_NUMBER" />
+<User variables="chk_dname,chk_number,dummy,dname" />
+<Reference variables="dummy,dname"/>
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
+    </action>
+</nop>
+
 <recv request="INVITE">
 <action>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
@@ -10,6 +26,7 @@
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
     <ereg regexp="sip:.*@([0-9A-Za-z\.]+):([0-9]+)" search_in="hdr" header="Contact:" check_it="true" assign_to="dummy,remote_ip,remote_port"/>
+    <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
@@ -99,4 +116,33 @@
     Content-Length: 0
 ]]>
 </send>
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check DName failed. Require DisplayName: [$chk_dname]; Current DisplayName: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check number failed. Require Number: [$chk_number]; Current Number: [$remote_number]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
+
 </scenario>
