@@ -63,7 +63,7 @@
                   "SourceFile": "ss_alarm/uas_info.xml",
                   "Options": "-m 1 -set CHK_DNAME %%ALARM_DNAME%% -set CHK_NUMBER %%0.Number%%",
                   "SippType": "uas",
-                  "Timeout": "130s"
+                  "Timeout": "160s"
                 }
               ]
             }
@@ -78,7 +78,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/ss/alarm/activate %%0.Number%% alarm_1 one-time %%NowWeekDay%% %%NowTime+120;%H:%M%% \"\""
+              "command1": "/domain/%%DEV_DOM%%/ss/alarm/activate %%0.Number%% alarm_1 one-time %%NowWeekDay%% %%NowTime+120;%H:%M%%"
             }
           ]
         },
@@ -94,7 +94,7 @@
                   "SourceFile": "ss_alarm/uas_info.xml",
                   "Options": "-m 1 -set CHK_DNAME \"Alarm clock\" -set CHK_NUMBER %%0.Number%%",
                   "SippType": "uas",
-                  "Timeout": "130s"
+                  "Timeout": "160s"
                 }
               ]
             }
