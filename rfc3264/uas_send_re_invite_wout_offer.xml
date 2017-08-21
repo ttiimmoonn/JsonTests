@@ -72,7 +72,6 @@
 <recv request="ACK">
 </recv>
 
-<recv request="ACK"></recv>
 <nop>
   <action>
      <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
@@ -127,7 +126,7 @@
 ]]>
 </send>
 
-<pause milliseconds="20000"/>
+<pause milliseconds="5000"/>
 
 
 <send>
