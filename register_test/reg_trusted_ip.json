@@ -1232,7 +1232,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip none",
+              "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
               "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes",
               "command3": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no",
               "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
