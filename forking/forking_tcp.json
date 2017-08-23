@@ -168,7 +168,7 @@
       ]
     },
     {
-      "Name": "forking contact not reachable test",
+      "Name": "forking one contact not reachable test",
       "Description": "Звоним на номер с форкингом. При этом на одном из контактов не поднимаем UA, чтобы позникла ошибка по транспорту.",
       "TestProcedure": [
         {
@@ -235,6 +235,37 @@
                   "MsgType": "request",
                   "Method" : "INVITE",
                   "Code" : null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "forking all contact not reachable test",
+      "Description": "Звоним на номер с форкингом. При этом ни на одном из контактов не поднимаем UA, чтобы позникла ошибка по транспорту.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "forking/uac_recv_502_response.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
                 }
               ]
             }
