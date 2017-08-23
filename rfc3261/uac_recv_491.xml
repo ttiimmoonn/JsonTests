@@ -23,6 +23,7 @@
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
+    p-uac-call-id: [call_id]
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
@@ -231,12 +232,13 @@
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
+    p-uac-call-id: Call-ID: [call_id]
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
-    
+
     v=0
     o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
     s=A conversation
@@ -277,6 +279,7 @@
     [last_From:]
     [last_To:]
     [last_Call-ID:]
+    p-uac-call-id: Call-ID: [call_id]
     [last_CSeq:]
     Contact: <sip:[service]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp

@@ -32,10 +32,14 @@
   ],
   "PreConf": [
     {
+      "command1" :"/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]",
+      "command2" :"/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]"
     }
   ],
   "PostConf": [
     {
+      "command1" :"/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit clean --force",
+      "command2" :"/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit clean --force"
     }
   ],
   "Tests": [
