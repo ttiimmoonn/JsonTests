@@ -609,6 +609,53 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "rfc4028_pending_4028_re_invite",
+      "Description": "Проверка повтора попытки обновления сессии в случае если на момент срабатывания таймера был незавершённый re-invite",
+      "TestProcedure": [
+        {
+        "SendSSHCommand":[
+            {
+              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
+              "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control false",
+              "command3": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+              "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_initiate_re_invite.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_recv_refresh_and_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
