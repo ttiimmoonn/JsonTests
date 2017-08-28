@@ -11,7 +11,7 @@
     <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
-    <ereg regexp=".*" search_in="hdr" header="p-uac-call-id:" check_it="true" assign_to="remote_call_id" />
+    <ereg regexp="\s?(.*)" search_in="hdr" header="p-uac-call-id:" check_it="true" assign_to="dummy,remote_call_id" />
     <warning message="Recv call-id: [$remote_call_id]"/>
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
@@ -124,6 +124,11 @@
     Content-Length: 0
 ]]>
 </send>
+
+
+<!-- Recv Sync cmd from UAC -->
+
+<recvCmd/>
 
 <send>
 <![CDATA[
@@ -248,7 +253,7 @@
 
 <label id="exit"/>
 
-<pause milliseconds="2000"/>
+<pause milliseconds="1500"/>
 
 
 
