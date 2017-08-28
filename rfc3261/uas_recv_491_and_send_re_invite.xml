@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uas recv 491 and send re-invite">
-<User variables="chk_sdp"/>
-<Reference variables="chk_sdp" />
+<User variables="chk_sdp,dummy,remote_call_id"/>
+<Reference variables="chk_sdp,dummy,remote_call_id" />
 
 <recv request="INVITE">
 <action>
@@ -11,6 +11,7 @@
     <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+    <ereg regexp="\s?(.*)" search_in="hdr" header="p-uac-call-id:" check_it="true" assign_to="dummy,remote_call_id" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
@@ -54,6 +55,7 @@
     [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
+    p-uas-call-id: [last_call-id]
     Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
@@ -123,7 +125,8 @@
 ]]>
 </send>
 
-<pause/>
+<recvCmd/>
+
 
 <send>
 <![CDATA[
@@ -213,6 +216,8 @@
 ]]>
 </send>
 
+<pause milliseconds="2000"/>
+
 <send>
 <![CDATA[
     INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
@@ -292,7 +297,7 @@
 
 <label id="exit"/>
 
-<pause milliseconds="2000"/>
+<pause milliseconds="1500"/>
 
 
 

@@ -3,8 +3,8 @@
 <scenario name = "uac recv 491">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<User variables="cdpn_dom,cgpn_dom,cdpn,sdp_chk" />
-<Reference variables="sdp_chk"/>
+<User variables="cdpn_dom,cgpn_dom,cdpn,sdp_chk,remote_call_id,dummy" />
+<Reference variables="sdp_chk,remote_call_id,dummy"/>
 
     <nop hide="true">
     <action>
@@ -23,6 +23,7 @@
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
+    p-uac-call-id: [call_id]
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
@@ -55,6 +56,7 @@
 <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        <ereg regexp="\s?(.*)" search_in="hdr" header="p-uas-call-id:" check_it="true" assign_to="dummy,remote_call_id" />
 </action>
 </recv>
 
@@ -118,11 +120,16 @@
 <recv request="ACK"> </recv>
 
 
+<!-- Send Sync cmd to UAS -->
+<sendCmd>
+  <![CDATA[
+    [$remote_call_id]
+   ]]>
+</sendCmd>
 
 <pause/>
-<!--
-    Принимаем переход на g711
--->
+
+
 <send retrans="500">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -230,6 +237,7 @@
     From: "Pending Test Wout Re-INVITE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
+    p-uac-call-id: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
