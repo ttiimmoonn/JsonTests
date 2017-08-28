@@ -467,7 +467,7 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_RECV_480",
               "Commands": [
                 {
                   "SourceFile": "options_control_test/uac_recv_480.xml",
