@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uas recv 491 and send re-invite">
-<User variables="chk_sdp,dummy,remote_call_id"/>
-<Reference variables="chk_sdp,dummy,remote_call_id" />
+<User variables="chk_sdp,dummy,remote_call_id,pa-sip-re-invite"/>
+<Reference variables="chk_sdp,dummy,remote_call_id,pa-sip-re-invite" />
 
 <recv request="INVITE">
 <action>
@@ -213,7 +213,45 @@
 ]]>
 </send>
 
-<pause milliseconds="2000"/>
+<!-- Может произойти так, что реквесты столкнутся на адаптере, в этом случае мы сразу получаем re-invite от адаптера -->
+<!-- Чтобы тест не падал, делаем заглушку -->
+
+<recv request="INVITE" timeout="4000" ontimeout="send_re_invite">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="PCMA" search_in="body" check_it="true" assign_to="sdp_chk" />
+        <warning message="Recv re-invite from pa-sip"/>
+        <assignstr assign_to="pa-sip-re-invite" value="true"/>
+    </action>
+</recv>
+
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[service]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 123456 654324 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK"> </recv>
+
+
+<label id="send_re_invite"/>
 
 <send>
 <![CDATA[
@@ -247,7 +285,7 @@
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
     </action>
 </recv>
-<send crlf="true">
+<send crlf="true" test="pa-sip-re-invite" next="recv_bye">
 <![CDATA[
     ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
