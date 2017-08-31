@@ -75,7 +75,8 @@
       "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
       "command10": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip",
       "command11": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command12": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
+      "command12": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+      "command13": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
     }
   ],
   "Tests": [
