@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uac_send_481_on_notify">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,check_state" />
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+    </action>
+</nop>
+
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "BLF send 481 on NOTIFY" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv response="401" auth="true" optional="true" next="auth_subscribe">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+ </recv>
+
+<label id="recv_200_on_subscribe"/>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check_state" value="" />
+        <ereg regexp=".*(<state>trying</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
+    </action>
+</recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<!-- Засылаем 481 на NOTIFY 
+
+Послушный ссв должен сделать вот так:
+
+rfc3265:
+
+If a NOTIFY request receives a 481 response, the notifier MUST remove
+   the corresponding subscription even if such subscription was
+   installed by non-SUBSCRIBE means (such as an administrative
+   interface).
+
+-->
+
+<send>
+<![CDATA[
+    SIP/2.0 481 Transaction does not exist
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<!-- Ждём нотификацию 10 сек. Если её не прислали, то значит всё нормально. А вот если прислали, то выходим с ошибкой -->
+
+<recv request="NOTIFY" ontimeout="exit" timeout="10000">
+    <action>
+        <warning message="Ecss-10 send notify to non-existent subscription. Call to A. Petrov (2211) and ask him: wtf!?"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</recv>
+
+
+<label id="auth_subscribe"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send next="recv_200_on_subscribe">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "BLF send 481 on NOTIFY" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+
+<label id="exit"/>
+<pause milliseconds="2000"/>
+</scenario>
