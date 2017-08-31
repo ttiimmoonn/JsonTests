@@ -88,7 +88,7 @@ If a NOTIFY request receives a 481 response, the notifier MUST remove
 
 <!-- Ждём нотификацию 10 сек. Если её не прислали, то значит всё нормально. А вот если прислали, то выходим с ошибкой -->
 
-<recv request="NOTIFY" ontimeout="exit" timeout="10000">
+<recv request="NOTIFY" timeout="5000" ontimeout="exit">
     <action>
         <warning message="Ecss-10 send notify to non-existent subscription. Call to A. Petrov (2211) and ask him: wtf!?"/>
         <exec int_cmd="stop_now"/>
