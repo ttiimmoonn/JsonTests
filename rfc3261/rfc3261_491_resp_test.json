@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires" : 90,
       "Port" : 11001,
       "SipGroup": "sip.ab",
@@ -18,7 +18,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "pv.ssw2",
       "Expires" : 90,
       "Port" : 11002,
       "SipGroup": "sip.ab",
@@ -83,7 +83,7 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uac_recv_491.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -3pcc %%IP%%:65001",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 3 -3pcc %%IP%%:65001",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -149,7 +149,7 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uac_recv_491_and_send_re_invite.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -3pcc %%IP%%:65001",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 3 -3pcc %%IP%%:65001",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
