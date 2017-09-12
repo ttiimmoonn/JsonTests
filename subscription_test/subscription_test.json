@@ -165,7 +165,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
