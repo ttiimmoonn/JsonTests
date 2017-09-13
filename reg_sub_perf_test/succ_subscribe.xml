@@ -3,8 +3,8 @@
 <scenario name = "uac_recv_487">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<User variables="cdpn_dom,cgpn_dom" />
-
+<User variables="cdpn_dom,cgpn_dom,dummy" />
+<Reference variables="dummy"/>
     <nop hide="true">
     <action>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
@@ -31,7 +31,11 @@
 ]]>
 </send>
 
-<recv response="200"></recv>
+<recv response="200">
+    <action>
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,subscribe_remote_tag" />
+    </action>
+</recv>
 
 <pause milliseconds="2000"/>
 
@@ -40,7 +44,7 @@
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>
+    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     Call-ID: [call_id]
     CSeq: [cseq] SUBSCRIBE
     Contact: <sip:[service]@[local_ip]:[local_port]>

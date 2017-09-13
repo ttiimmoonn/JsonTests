@@ -3,7 +3,8 @@
 <scenario name = "PRESENCE SUB тест RECV NOTIFY">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<User variables="cdpn_dom,cgpn_dom,cdpn,check" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,check,dummy" />
+<Reference variables="dummy"/>
 
     <nop hide="true">
     <action>
@@ -31,14 +32,14 @@
 </send>
 
 
-<recv response="401" auth="true" optional="true" next="1">
+<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe">
     <action>
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
         <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
  </recv>
 
-<label id="2"/>
+<label id="recv_200_to_subscribe"/>
 
 
 <recv response="200">
@@ -138,50 +139,17 @@
 ]]>
 </send>
 
-<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe">
+<recv response="401" auth="true" optional="true" next="send_auth_to_unsubscribe">
     <action>
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
         <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
  </recv>
 
-<label id="recv_200_to_subscribe"/>
+<label id="recv_200_to_unsubscribe"/>
 
 <recv response="200" next="exit"></recv>
 
-
-<label id="1"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
-
-<send next="2">
-<![CDATA[
-    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "PRESENCE SUB тест RECV NOTIFY" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>
-    Call-ID: [call_id]
-    [authentication]
-    CSeq: [cseq] SUBSCRIBE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Event: presence
-    Accept: application/dialog-info+xml
-    Expires: 3600
-    Content-Length: 0
-]]>
-</send>
 
 <label id="send_auth_to_subscribe"/>
 
@@ -203,8 +171,41 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "PRESENCE SUB тест RECV NOTIFY" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: presence
+    Accept: application/dialog-info+xml
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+<label id="send_auth_to_unsubscribe"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send next="recv_200_to_unsubscribe">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "PRESENCE SUB тест RECV NOTIFY" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     Call-ID: [call_id]
     [authentication]
     CSeq: [cseq] SUBSCRIBE
