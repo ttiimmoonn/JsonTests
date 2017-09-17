@@ -23,6 +23,18 @@
       "SipGroup": "sip.ab",
       "Port" : 10106,
       "QParam" : 0.5
+    },
+    {
+      "UserId" : 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10106,
+      "QParam" : 0.5,
+      "Mode" : "Manual"
     }
   ],
   "UserVar": [
@@ -30,7 +42,7 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare simple_presence_test simple_presence_test presence %%0.Number%% %%1.Number%%",
+      "command1" : "/domain/%%DEV_DOM%%/lists/declare simple_presence_test simple_presence_test presence %%0.Number%% %%1.Number%% %%2.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
       "command3" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 2"
     }
@@ -138,6 +150,59 @@
                 }
               ]
             }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "check_reg_unreg_notification",
+      "Description": "Проверка получения нотификаций при регистрации/разрегистрации юзера",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "UAC_RECV_PRE_NOTIFY",
+              "Commands": [
+                {
+                  "SourceFile": "presence_sub_test/presence_sub_reg_unreg_notifications.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep":4},
+        {
+          "ManualReg": {
+            "2": {
+              "script": "register_test/success_registration_with_auth.xml"
+            }
+          }
+        },
+        {"Sleep": 1},
+        {
+          "DropManualReg": [
+            "2"
+          ]
+        },
+        {
+          "ManualReg": {
+            "2": {
+              "script": "register_test/success_registration_with_auth.xml"
+            }
+          }
+        },
+        {"Sleep": 1},
+        {
+          "DropManualReg": [
+            "2"
           ]
         }
       ]
