@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "UAS_REG_SEND_423_RESPONSE">
+
+<Global variables="USERNAME,PASSWORD,REG_DOMAIN" />
+<User variables="dummy,chk_expires"/>
+<Reference variables="dummy,PASSWORD,USERNAME,REG_DOMAIN,chk_expires"/>
+
+<recv request="REGISTER">
+  <action>
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="Expires:\s?(180)" search_in="msg" check_it="true" assign_to="dummy,chk_expires"/>
+  </action>
+</recv>
+
+<send>
+<![CDATA[
+      SIP/2.0 401 Authorization Required
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+      WWW-Authenticate: Digest realm="[$local_domain]", nonce="47ebe028cda119c35d4877b383027d28da013815"
+      Content-Length: [len]
+]]>
+</send>
+
+<recv request="REGISTER"/>
+
+<send>
+<![CDATA[
+      SIP/2.0 423 Interval Too Brief
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Min-Expires: 90
+      Content-Length: [len]
+]]>
+</send>
+
+
+<recv request="REGISTER">
+  <action>
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="Expires:\s?(90)" search_in="msg" check_it="true" assign_to="dummy,chk_expires"/>
+  </action>
+</recv>
+
+<send>
+<![CDATA[
+      SIP/2.0 401 Authorization Required
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+      WWW-Authenticate: Digest realm="[$local_domain]", nonce="47ebe028cda119c35d4877b383027d28da013815"
+      Content-Length: [len]
+]]>
+</send>
+
+<recv request="REGISTER">
+        <action>
+                <verifyauth assign_to="authvalid" username="[$USERNAME]" password="[$PASSWORD]"/>
+        </action>
+  </recv>
+
+<nop hide="true" test="authvalid" next="goodauth" />
+<nop hide="true" next="badauth" />
+
+<label id="badauth"/>
+<send>
+<![CDATA[
+      SIP/2.0 403 Forbidden
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Content-Length: 0
+]]>
+</send>
+
+<nop hide="true" next="exit">
+  <action>
+    <warning message="Auth failed."/>
+    <exec int_cmd="stop_now"/>
+  </action>
+</nop>
+
+<label id="goodauth"/>
+<send>
+<![CDATA[
+      SIP/2.0 200 OK
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Contact: <sip:[local_ip]:[local_port];transport=[transport]>;expires=90
+      Content-Length: 0
+]]>
+</send>
+
+<label id="exit"/>
+
+<nop hide="true" condexec="REG_DOMAIN">
+    <action>
+        <strcmp assign_to="compare_result" variable="REG_DOMAIN" variable2="local_domain"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong registration domain"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
+</scenario>

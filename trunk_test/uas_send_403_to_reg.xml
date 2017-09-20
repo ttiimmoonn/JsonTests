@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas_send_403_to_register">
+
+<User variables="dummy"/>
+<Reference variables="dummy"/>
+
+<recv request="REGISTER">
+  <action>
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+  </action>
+</recv>
+
+<send>
+<![CDATA[
+      SIP/2.0 401 Authorization Required
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+      WWW-Authenticate: Digest realm="[$local_domain]", nonce="47ebe028cda119c35d4877b383027d28da013815"
+      Content-Length: [len]
+]]>
+</send>
+
+<recv request="REGISTER"/>
+
+
+<send>
+<![CDATA[
+      SIP/2.0 403 Forbidden
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Content-Length: 0
+]]>
+</send>
+
+</scenario>
