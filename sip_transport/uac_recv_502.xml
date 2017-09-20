@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "new_script">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn" />
 
     <nop hide="true">
@@ -14,15 +14,27 @@
     </action>
     </nop>
 
+    <nop hide="true" condexec="CGPN" condexec_inverse="true">
+        <action>
+            <assignstr assign_to="cgpn" value="[service]" />
+        </action>
+    </nop>
+
+    <nop hide="true" condexec="CGPN">
+        <action>
+            <assignstr assign_to="cgpn" value="[$CGPN]" />
+        </action>
+    </nop>
+
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "SIP transport тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "SIP transport тест" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -90,11 +102,11 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "SIP transport тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "SIP transport тест" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Content-Type: application/sdp

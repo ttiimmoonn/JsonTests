@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "new_script">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
     <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
@@ -11,13 +11,23 @@
     </action>
     </nop>
 
+    <nop hide="true" condexec="CGPN" condexec_inverse="true">
+        <action>
+            <assignstr assign_to="cgpn" value="[service]" />
+        </action>
+    </nop>
 
+    <nop hide="true" condexec="CGPN">
+        <action>
+            <assignstr assign_to="cgpn" value="[$CGPN]" />
+        </action>
+    </nop>
 
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Тест 420 response" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Тест 420 response" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
