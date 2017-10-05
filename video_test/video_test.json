@@ -1,0 +1,66 @@
+{
+  "TestName": "video_manual_test",
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10105,
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10106,
+      "QParam" : 0.5
+    }
+  ],
+
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    {
+    }
+  ],
+  "PostConf": [
+    {
+    }
+  ],
+"Tests": [
+    {
+      "Name": "vidio_test_h264",
+      "Description": "Тестирование h264 кодека",
+      "TestProcedure": [
+      {
+          "StartUA": [
+            {
+              "Type" : "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_VIDEO_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "video_test/uac_send_h264.xml",
+                  "Options": "-m 1 -set CDPN 105 -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+SEQUENTIAL,PRINTF=100
+1%02d;2%02d;subtest;[authentication username=1%02d password=123];90
