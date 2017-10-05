@@ -61,7 +61,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_alarm/uas_info.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALARM_DNAME%% -set CHK_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALARM_DNAME%% -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "Timeout": "160s"
                 }
@@ -92,7 +92,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_alarm/uas_info.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"Alarm clock\" -set CHK_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"Alarm clock\" -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "Timeout": "160s"
                 }

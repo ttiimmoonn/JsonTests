@@ -134,7 +134,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
-                  "Options": "-m 1 -set CHK_DNAME Callback -set CHK_NUMBER %%2.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME Callback -set CHK_CGPN %%2.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -187,7 +187,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
-                  "Options": "-m 1 -set CHK_DNAME \"Callback: %%ALIAS_B_DNAME%%\" -set CHK_NUMBER %%2.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"Callback: %%ALIAS_B_DNAME%%\" -set CHK_CGPN %%2.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"

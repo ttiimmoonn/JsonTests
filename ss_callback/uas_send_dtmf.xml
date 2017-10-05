@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uas">
 
-<Global variables="CHK_DNAME,CHK_NUMBER,CB_DIGITS" />
+<Global variables="CHK_DNAME,CHK_CGPN,CB_DIGITS" />
 <User variables="chk_dname,chk_number,dummy,dname,cb_digits,remote_number" />
 <Reference variables="dummy,dname,remote_number"/>
 
@@ -13,9 +13,9 @@
     </action>
 </nop>
 
-<nop hide="true" condexec="CHK_NUMBER">
+<nop hide="true" condexec="CHK_CGPN">
     <action>
-        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
+        <assignstr assign_to="chk_number" value="[$CHK_CGPN]"/>
     </action>
 </nop>
 
@@ -125,7 +125,7 @@
     </action>
 </nop>
 
-<nop hide="true" condexec="CHK_NUMBER">
+<nop hide="true" condexec="CHK_CGPN">
     <action>
         <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
         <log message="Point 3. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>

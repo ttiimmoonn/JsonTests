@@ -104,7 +104,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_alarm/uas.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_CGPN %%1.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }
@@ -118,7 +118,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_alarm/uas.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%2.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_CGPN %%2.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }
@@ -132,7 +132,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_alarm/uas.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%3.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_CGPN %%3.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }
@@ -146,7 +146,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_alarm/uas.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%DEFAULT_ALARM_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "180s"
                 }

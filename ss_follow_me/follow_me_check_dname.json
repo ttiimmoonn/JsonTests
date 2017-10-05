@@ -85,7 +85,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -132,7 +132,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -179,7 +179,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -226,7 +226,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -281,7 +281,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -338,7 +338,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -395,7 +395,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -452,7 +452,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%0.Number%% -set DIVER_NUMBER %%1.Number%% -set DIVER_REASON \"follow-me\"",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "40s"

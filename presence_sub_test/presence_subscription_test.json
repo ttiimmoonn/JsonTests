@@ -3,38 +3,38 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5,
-      "Mode" : "Manual"
+      "Port": 10107,
+      "QParam": 0.5,
+      "RegMode": "Manual"
     }
   ],
   "UserVar": [
@@ -42,19 +42,19 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare simple_presence_test simple_presence_test presence %%0.Number%% %%1.Number%% %%2.Number%%",
-      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 2"
+      "command1": "/domain/%%DEV_DOM%%/lists/declare simple_presence_test simple_presence_test presence %%0.Number%% %%1.Number%% %%2.Number%%",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 2"
     }
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/remove simple_presence_test",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
-      "command3" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
+      "command1": "/domain/%%DEV_DOM%%/lists/remove simple_presence_test",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
     }
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_presence_sub_test",
       "Description": "Тестирование нотификации при precense подписке",
@@ -63,9 +63,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUB_PRECENSE",
               "Commands": [
                 {
@@ -80,14 +80,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
@@ -99,7 +99,7 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     },
@@ -111,9 +111,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_RECV_404_ON_SUBSCRIBE",
               "Commands": [
                 {
@@ -137,8 +137,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_403_ON_SUBSCRIBE",
               "Commands": [
                 {
@@ -162,9 +162,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_RECV_PRE_NOTIFY",
               "Commands": [
                 {
@@ -178,32 +178,46 @@
             }
           ]
         },
-        {"Sleep":4},
         {
-          "ManualReg": {
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
-            }
-          }
-        },
-        {"Sleep": 1},
-        {
-          "DropManualReg": [
-            "2"
-          ]
+          "Sleep": 4
         },
         {
           "ManualReg": {
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
           }
         },
-        {"Sleep": 1},
         {
-          "DropManualReg": [
-            "2"
-          ]
+          "Sleep": 1
+        },
+        {
+          "DropManualReg": {
+            "Users": [
+              "2"
+            ]
+          }
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
+            }
+          }
+        },
+        {
+          "Sleep": 1
+        },
+        {
+          "DropManualReg": {
+            "Users": [
+              "2"
+            ]
+          }
         }
       ]
     }

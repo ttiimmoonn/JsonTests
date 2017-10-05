@@ -2,8 +2,8 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAS recv BYE">
 
-<Global variables="CHK_DNAME,CHK_NUMBER,DIVER_NUMBER,DIVER_REASON" />
-<User variables="chk_dname,chk_number,dummy,dname,diver_num,diver_reason" />
+<Global variables="CHK_DNAME,CHK_CGPN,CHK_CDPN,DIVER_NUMBER,DIVER_REASON" />
+<User variables="chk_dname,chk_cgpn,dummy,dname,diver_num,diver_reason" />
 <Reference variables="dummy,dname"/>
 
 
@@ -13,9 +13,15 @@
     </action>
 </nop>
 
-<nop hide="true" condexec="CHK_NUMBER">
+<nop hide="true" condexec="CHK_CGPN">
     <action>
-        <assignstr assign_to="chk_number" value="[$CHK_NUMBER]"/>
+        <assignstr assign_to="chk_cgpn" value="[$CHK_CGPN]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_CDPN">
+    <action>
+        <assignstr assign_to="chk_cdpn" value="[$CHK_CDPN]"/>
     </action>
 </nop>
 
@@ -119,19 +125,32 @@
     </action>
 </nop>
 
-<nop hide="true" condexec="CHK_NUMBER">
+<nop hide="true" condexec="CHK_CGPN">
     <action>
-        <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
+        <strcmp assign_to="compare_result" variable="chk_cgpn" variable2="remote_number"/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Check number failed. Require Number: [$chk_number]; Current Number: [$remote_number]; compare_result: [$compare_result]"/>
+        <warning message="Check cgpn failed. Require Number: [$chk_cgpn]; Current Number: [$remote_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
 
+
+<nop hide="true" condexec="CHK_CDPN">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_cdpn" variable2="local_number"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check cdpn failed. Require Number: [$chk_cdpn]; Current Number: [$local_number]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 
 <nop hide="true" condexec="DIVER_NUMBER">
     <action>

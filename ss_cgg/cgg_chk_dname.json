@@ -107,7 +107,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -181,7 +181,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -255,7 +255,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -329,7 +329,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -411,7 +411,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -495,7 +495,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -579,7 +579,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -663,7 +663,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_NUMBER %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }

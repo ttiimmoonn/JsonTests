@@ -71,7 +71,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"Тест IVR DName\" -set CHK_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"Тест IVR DName\" -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"

@@ -114,7 +114,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -d 7000 -set CHK_DNAME \"%%USER_DNAME%%\" -set CHK_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -d 7000 -set CHK_DNAME \"%%USER_DNAME%%\" -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -195,7 +195,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -d 7000 -m 1 -d 7000 -set CHK_DNAME \"%%USER_DNAME%%\" -set CHK_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -d 7000 -m 1 -d 7000 -set CHK_DNAME \"%%USER_DNAME%%\" -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"

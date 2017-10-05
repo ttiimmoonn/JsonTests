@@ -75,13 +75,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%SIP_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%SIP_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -101,7 +101,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -135,13 +135,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -161,7 +161,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME \"%%ALIAS_DNAME_FOR_B%%\"",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME \"%%ALIAS_DNAME_FOR_B%%\"",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -195,13 +195,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME \"\"",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME \"\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME \"\"",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME \"\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -221,7 +221,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -254,13 +254,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -280,7 +280,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -321,13 +321,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -347,7 +347,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -390,13 +390,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -416,7 +416,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -459,13 +459,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -485,7 +485,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -528,13 +528,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -554,7 +554,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -603,13 +603,13 @@
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial_w_cb/uas_send_486.xml",
-                  "Options": "-m 1 -set CHK_NUMBER Anonymous -set CHK_DNAME Anonymous",
+                  "Options": "-m 1 -set CHK_CGPN Anonymous -set CHK_DNAME Anonymous",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_NUMBER Anonymous -set CHK_DNAME Anonymous",
+                  "Options": "-m 1 -set CHK_CGPN Anonymous -set CHK_DNAME Anonymous",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -629,7 +629,7 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_NUMBER %%0.Number%% -set CHK_DNAME Callback",
+                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,

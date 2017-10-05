@@ -61,7 +61,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -107,7 +107,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_NUMBER Anonymous",
+                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_CGPN Anonymous",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -161,7 +161,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"%%DISPLAY_NAME%%\" -set CHK_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"%%DISPLAY_NAME%%\" -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -215,7 +215,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_NUMBER Anonymous",
+                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_CGPN Anonymous",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"

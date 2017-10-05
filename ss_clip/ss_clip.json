@@ -56,7 +56,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_NUMBER Anonymous",
+                  "Options": "-m 1 -set CHK_DNAME Anonymous -set CHK_CGPN Anonymous",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -101,7 +101,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%1.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"

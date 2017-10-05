@@ -249,7 +249,7 @@
               "Name": "UAC_TEST",
               "Commands": [
                 {
-                  "SourceFile": "options_control/uac_recv_502.xml",
+                  "SourceFile": "options_control_test/uac_recv_502.xml",
                   "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -323,6 +323,131 @@
                   "Timeout": "60s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "DropManualReg": {
+            "Trunks": [
+              "1"
+            ]
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% options_control 0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_call_to_unregistered_trunk",
+      "Description": "Пытаемся прозвонить разрегистрированный транк",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Trunks": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml",
+                "expires" : 3600,
+                "need_drop" : true
+              }
+            }
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "options_control_test/uac_recv_502.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_call_to_after_reg_expired_time",
+      "Description": "Пытаемся прозвонить в транк, регистрация которого истекла",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Trunks": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml",
+                "expires" : 90
+              }
+            }
+          }
+        },
+        {
+          "Sleep" : 100
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "options_control_test/uac_recv_502.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_423_response",
+      "Description": "Проверка 423 ответа",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Trunks": {
+              "1": {
+                "script": "register_test/succ_reg_recv_423.xml",
+                "expires" : 90
+              }
+            }
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
             }
           ]
         },
