@@ -1,6 +1,5 @@
 {
   "TestName": "trunk_with_inc_regisration",
-  "AutoTest": true,
   "Trunks": [
     {
       "TrunkId": 1,
