@@ -213,6 +213,38 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "callback_send_re_invite",
+      "Description": "Отправка re_invite_send_only",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_RE_INVITE_ON_CALLBACK",
+              "Commands": [
+                 {
+                  "SourceFile": "ss_callback/uac_callback.xml",
+                  "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                },
+                {
+                  "SourceFile": "ss_callback/uas_send_re_invite.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
