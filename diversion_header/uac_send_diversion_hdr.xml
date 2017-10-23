@@ -21,7 +21,7 @@
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "uac send diver hdr" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
-    Diversion: <sip:89133936790@[local_ip]:[local_port];user=phone>;reason=unconditional;counter=2
+    Diversion: <sip:89133936790@[local_ip]:[local_port];user=phone>;reason=unconditional;counter=1
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[$cgpn]@[local_ip]:[local_port]>

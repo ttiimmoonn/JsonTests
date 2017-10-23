@@ -30,7 +30,9 @@
       "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
       "command2" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
       "command3" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%",
-      "command4" : "/domain/%%DEV_DOM%%/routing/show %%trunk_ctx_name%%"
+      "command4" : "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% original-cdpn-to false",
+      "command5" : "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% original-cdpn-to false",
+      "command6" : "/domain/%%DEV_DOM%%/routing/show %%trunk_ctx_name%%"
     }
   ],
   "PostConf": [
@@ -42,7 +44,7 @@
 "Tests": [
     {
       "Name": "diversion_header_test",
-      "Description": "Прверка того, что ssw делает вызов на номер из RURI, а не из DIVERSION",
+      "Description": "Проверка опции original-cdpn-to",
       "TestProcedure": [
       {
           "StartUA": [
@@ -54,7 +56,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN 100",
+                  "Options": "-m 1 -set CHK_CGPN 101 -set CHK_CDPN 655",
                   "SippType": "uas",
                   "Timeout": "60s"
                 }
