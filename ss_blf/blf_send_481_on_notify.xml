@@ -43,8 +43,6 @@
 
 <recv response="200"/>
 
-<pause milliseconds="1000"/>
-
 <recv request="NOTIFY">
     <action>
         <assign assign_to="dummy" value="" />
@@ -85,29 +83,6 @@ If a NOTIFY request receives a 481 response, the notifier MUST remove
 ]]>
 </send>
 
-<!--
-
-Поскольку адаптер не понимает, что слать NOTIFY в данный диалог бесполезно, принимаем от него ещё один NOTIFY с Subscription-State: terminated;reason=noresource
-
--->
-
-<recv request="NOTIFY">
-    <action>
-        <ereg regexp=".*(terminated;reason=noresource)" search_in="hdr" header="Subscription-State:" check_it="true" assign_to="dummy,check_state"/>
-    </action>
-</recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 481 Transaction does not exist
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
 
 <!-- Ждём нотификацию 10 сек. Если её не прислали, то значит всё нормально. А вот если прислали, то выходим с ошибкой -->
 
