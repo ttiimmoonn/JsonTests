@@ -1,5 +1,7 @@
 {
   "TestName": "trunk_with_inc_regisration",
+  "AutoTest": true,
+  "Isolated" : true,
   "Trunks": [
     {
       "TrunkId": 1,
@@ -133,14 +135,21 @@
       "Description": "Регистируемся на ссв как транк и делаем вызов через данный транк.",
       "TestProcedure": [
         {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% nat_traversal true",
+              "command2": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+            }
+          ]
+        },
+        {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "register_test/success_registration_with_auth.xml",
                 "contact_port" : 10112,
                 "contact_ip" : "1.1.1.1",
-                "need_drop" : true,
-                "expires" : 2
+                "expires" : 90
               }
             }
           }
@@ -148,8 +157,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% nat_traversal true",
-              "command2": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
             }
           ]
         },
