@@ -54,8 +54,7 @@
       "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_to_trunk%%",
       "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_from_trunk%%",
       "command3": "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_for_trunk%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% dynamic %%Tr.1.Login%% %%Tr.1.Password%%",
-      "command4": "/domain/pv.ssw3/trunk/sip/info sip.tr %%Tr.1.TrunkName%%",
-      "command5": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
+      "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
     }
   ],
   "PostConf": [
@@ -137,8 +136,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% nat_traversal true",
-              "command2": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% nat_traversal true"
             }
           ]
         },
