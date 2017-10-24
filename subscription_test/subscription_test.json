@@ -86,7 +86,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -100,7 +100,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId" : 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                  {
