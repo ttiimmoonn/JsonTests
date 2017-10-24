@@ -83,7 +83,7 @@
 
 <pause/>
 
-<recv request="BYE" timeout="3000"></recv>
+<recv request="BYE" timeout="5000"></recv>
 
 <send next="end" crlf="true">
 <![CDATA[
