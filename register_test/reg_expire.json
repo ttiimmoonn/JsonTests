@@ -25,6 +25,18 @@
       "Port" : 10109,
       "QParam" : 0.5,
       "OneTime" : true
+    },
+    {
+      "UserId": 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10110,
+      "QParam": 0.5,
+      "RegMode": "Manual"
     }
   ],
   "UserVar": [
@@ -62,6 +74,69 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_register_expire_min",
+      "Description": "Тестирование опции register-expire-min.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% register-expire-min 3600"
+            }
+          ]
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "3": {
+                "script": "register_test/succ_reg_recv_423.xml",
+                "expires" : 90,
+                "need_drop" : true
+              }
+            }
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% register-expire-min 90"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_register_expire_max",
+      "Description": "Тестирование опции register-expire-max.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% register-expire-max 7200"
+            }
+          ]
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "3": {
+                "script": "register_test/success_registration_with_auth.xml",
+                "expires" : 7200,
+                "additional_options" : "-set CHK_EXP 7200",
+                "need_drop" : true
+              }
+            }
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% register-expire-max 3600"
             }
           ]
         }
