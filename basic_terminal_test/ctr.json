@@ -1,0 +1,228 @@
+{
+  "TestName": "basic_term_ctr_test",
+  "AutoTest" : true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 10100,
+      "SipGroup": "sip.ab",
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 10106,
+      "SipGroup": "sip.ab",
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 10107,
+      "SipGroup": "sip.ab",
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "ctr_send_bye_after_answer",
+      "Description": "Тестирование CT по отбою после ответа абонета С.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC_CT_AFTER_ANSER",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/ctr_uac_send_dtmf_in_rfc.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml -d 15000",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ctr_send_bye_before_answer",
+      "Description": "Тестирование CT по отбою до ответа абонета С.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC_CT_BEFORE_ANSER",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/ctr_uac_send_dtmf_in_rfc.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_DELAYED_ANSWER",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uas_delayed_answer.xml -d 20000",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ctr_flush_plus_4",
+      "Description": "Тестирование CT по flash + 4",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC_CT_FLASH_4",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/ctr_flash_plus_4.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_DIGITS %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml -d 15000",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
