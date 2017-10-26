@@ -2,8 +2,9 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "user_registr">
 
-<Global variables="DOMAIN,PORT,EXPIRES,NUMBER,USER_Q,USER_IP" />
-<User variables="user_dom,user_port,user_exp,user_number,user_q,user_ip" />
+<Global variables="DOMAIN,PORT,EXPIRES,NUMBER,USER_Q,USER_IP,CHK_EXP" />
+<User variables="user_dom,user_port,user_exp,user_number,user_q,user_ip,server_exp,dummy" />
+<Reference variables="server_exp,dummy"/>
 
     <nop hide="true">
     <action>
@@ -41,7 +42,9 @@
     Max-Forwards: 70
 ]]>
 </send>
+
 <recv response="401" auth="true"></recv>
+
 <send retrans="500">
 <![CDATA[
     REGISTER sip:[remote_ip] SIP/2.0
@@ -57,5 +60,25 @@
     Max-Forwards: 70
 ]]>
 </send>
-<recv response="200"> </recv>
+
+<recv response="200">
+    <action>
+        <ereg regexp="expires=([0-9]+)" search_in="hdr" header="Contact:" assign_to="dummy,server_exp" check_it="true"/>
+    </action>
+</recv>
+
+<nop hide="true" condexec="CHK_EXP">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_EXP" variable2="server_exp"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Server exp check failed. Require exp: [$CHK_EXP]; Current exp: [$server_exp]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
 </scenario>
