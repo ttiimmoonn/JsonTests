@@ -130,6 +130,37 @@
           }
         }
       ]
+    },
+    {
+      "Name": "test_register_expire_min",
+      "Description": "Тестирование опции register-expire-min.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% register-expire-min 3600"
+            }
+          ]
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "3": {
+                "script": "register_test/succ_reg_recv_423.xml",
+                "expires" : 90,
+                "need_drop" : true
+              }
+            }
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% register-expire-min 90"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

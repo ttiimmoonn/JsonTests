@@ -38,7 +38,7 @@
     CSeq: [cseq] REGISTER
     Contact: <sip:[$user_number]@[$user_ip]:[$user_port];transport=[transport]>;q=[$user_q]
     Content-Length: 0
-    Expires: 1
+    Expires: [$user_exp]
     Max-Forwards: 70
 ]]>
 </send>
@@ -56,12 +56,16 @@
     CSeq: [cseq] REGISTER
     Contact: <sip:[$user_number]@[$user_ip]:[$user_port];transport=[transport]>;q=[$user_q]
     Content-Length: 0
-    Expires: 1
+    Expires: [$user_exp]
     Max-Forwards: 70
 ]]>
 </send>
 
-<recv response="423" auth="true"></recv>
+<recv response="423" auth="true">
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="Min-Expires:" assign_to="req_exp" />
+    </action>
+</recv>
 
 
 <send retrans="500">
@@ -75,7 +79,7 @@
     Contact: <sip:[$user_number]@[$user_ip]:[$user_port];transport=[transport]>;q=[$user_q]
     [authentication]
     Content-Length: 0
-    Expires: [$user_exp]
+    Expires: [$req_exp]
     Max-Forwards: 70
 ]]>
 </send>
@@ -93,7 +97,7 @@
     Contact: <sip:[$user_number]@[$user_ip]:[$user_port];transport=[transport]>;q=[$user_q]
     [authentication]
     Content-Length: 0
-    Expires: [$user_exp]
+    Expires: [$req_exp]
     Max-Forwards: 70
 ]]>
 </send>
