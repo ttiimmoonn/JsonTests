@@ -78,7 +78,7 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "25s"
                 }
               ]
             },
@@ -92,7 +92,7 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "25s"
                 }
               ]
             },
@@ -106,7 +106,7 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "25s"
                 }
               ]
             }
@@ -132,7 +132,7 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "25s"
                 }
               ]
             },
@@ -146,7 +146,7 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "25s"
                 }
               ]
             }
@@ -159,14 +159,10 @@
       "Description": "Настраиваем cfnr двум абонентам друг на друга. На все занятия не отвечаем. При звонке на одного из юзеров ожидаем получение 483 ответа",
       "TestProcedure": [
         {
-          "ServiceFeature": [
+          "SendSSHCommand": [
             {
-              "code": "*27*%%0.Number%%#",
-              "userId" : 2
-            },
-            {
-              "code": "*27*%%2.Number%%#",
-              "userId" : 0
+              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr number = %%2.Number%%, timeout = 2",
+              "command2": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfnr number = %%0.Number%%, timeout = 2"
             }
           ]
         },
@@ -182,7 +178,7 @@
                   "Options": "-m 3",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "120s"
+                  "Timeout": "60s"
                 }
               ]
             },
@@ -196,7 +192,7 @@
                   "Options": "-m 3",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "120s"
+                  "Timeout": "60s"
                 }
               ]
             },
@@ -210,21 +206,17 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "120s"
+                  "Timeout": "60s"
                 }
               ]
             }
           ]
         },
         {
-          "ServiceFeature": [
+          "SendSSHCommand": [
             {
-              "code": "#27#",
-              "userId" : 2
-            },
-            {
-              "code": "#27#",
-              "userId" : 0
+              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
+              "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr"
             }
           ]
         }
