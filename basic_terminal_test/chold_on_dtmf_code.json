@@ -264,6 +264,52 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "chold_cancel_callback_after_timeout",
+      "Description": "Тестирование отмены callback по истечению таймаута.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC_DROP_CALL_ON_HOLD",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                },
+                {
+                  "SourceFile": "basic_terminal_test/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -aa",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
