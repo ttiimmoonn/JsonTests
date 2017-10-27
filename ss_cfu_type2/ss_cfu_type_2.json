@@ -41,13 +41,16 @@
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu_type2"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu_type2",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfu_type2"
     }
   ],
   "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfu_type2",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu_type2"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu_type2",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfu_type2",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfu_type2"
     }
   ],
 "Tests": [
@@ -132,6 +135,61 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_too_many_hops",
+      "Description": "Настраиваем cfu_type2 двум абонентам друг на друга. При звонке на одного из юзеров ожидаем получение 483 ответа",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*41*%%0.Number%%#",
+              "userId" : 2
+            },
+            {
+              "code": "*41*%%2.Number%%#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_483_WOUT_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfu_type2/uac_recv_483.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "ss_cfu_type2/uac_recv_483.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#41#",
+              "userId" : 2
+            },
+            {
+              "code": "#41#",
+              "userId" : 0
             }
           ]
         }

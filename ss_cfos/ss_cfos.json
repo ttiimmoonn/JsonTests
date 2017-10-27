@@ -41,13 +41,16 @@
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfos"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfos",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfos"
     }
   ],
   "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfos",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfos"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfos",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfos",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfos"
     }
   ],
 "Tests": [
@@ -146,6 +149,82 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_too_many_hops",
+      "Description": "Настраиваем cfos двум абонентам друг на друга. На все занятия отвечаем 480. При звонке на одного из юзеров ожидаем получение 483 ответа",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*24*%%0.Number%%#",
+              "userId" : 2
+            },
+            {
+              "code": "*24*%%2.Number%%#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAS2_SEND_480",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfos/uas_send_480.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS0_SEND_480",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfos/uas_send_480.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_483_REQ_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfos/uac_recv_483_req_181.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#24#",
+              "userId" : 2
+            },
+            {
+              "code": "#24#",
+              "userId" : 0
             }
           ]
         }

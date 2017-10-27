@@ -39,13 +39,17 @@
   "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cf_sip",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cf_sip"
     }
   ],
   "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cf_sip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cf_sip"
     }
   ],
 "Tests": [
@@ -95,6 +99,58 @@
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_too_many_hops",
+      "Description": "Настраиваем cf_sip двум абонентам. На все занятия отвечаем 302 в контакте ставим соседа. При звонке ожидаем получение 483 ответа",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS0_SEND_302",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
+                  "Options": "-m 3 -set FORW_USER %%2.Number%% -set FORW_DOMAIN %%2.SipDomain%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS2_SEND_302",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
+                  "Options": "-m 3 -set FORW_USER %%0.Number%% -set FORW_DOMAIN %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_483_REQ_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfnr/uac_recv_483_req_181.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
                 }
               ]
             }

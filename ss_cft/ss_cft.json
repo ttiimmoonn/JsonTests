@@ -42,13 +42,17 @@
   "PreConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cft",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00"
+      "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cft",
+      "command4": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00"
     }
   ],
   "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cft",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cft"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cft",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cft",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cft"
     }
   ],
 "Tests": [
@@ -133,6 +137,61 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_too_many_hops",
+      "Description": "Настраиваем cft двум абонентам друг на друга. При звонке на одного из юзеров ожидаем получение 483 ответа",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%0.Number%%#",
+              "userId" : 2
+            },
+            {
+              "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%0.Number%%#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_483_REQ_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cft/uac_recv_483_req_181.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "ss_cft/uac_recv_483_req_181.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#28#",
+              "userId" : 2
+            },
+            {
+              "code": "#28#",
+              "userId" : 0
             }
           ]
         }

@@ -41,13 +41,16 @@
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfnr"
     }
   ],
   "PostConf": [
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr"
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfnr"
     }
   ],
 "Tests": [
@@ -146,6 +149,82 @@
                   "Timeout": "20s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_too_many_hops",
+      "Description": "Настраиваем cfnr двум абонентам друг на друга. На все занятия не отвечаем. При звонке на одного из юзеров ожидаем получение 483 ответа",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*27*%%0.Number%%#",
+              "userId" : 2
+            },
+            {
+              "code": "*27*%%2.Number%%#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAS0_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS2_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfnr/uas_recv_cancel.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_483_REQ_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfnr/uac_recv_483_req_181.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#27#",
+              "userId" : 2
+            },
+            {
+              "code": "#27#",
+              "userId" : 0
             }
           ]
         }
