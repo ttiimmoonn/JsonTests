@@ -43,6 +43,8 @@
 
 <recv response="200"/>
 
+<pause milliseconds="1000"/>
+
 <recv request="NOTIFY">
     <action>
         <assign assign_to="dummy" value="" />
