@@ -2,8 +2,8 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uac_recv_487">
 
-<User variables="check_state,dummy" />
-<Reference variables="check_state,dummy" />
+<User variables="check_state,dummy,start_seconds,start_milliseconds,stop_seconds,stop_milliseconds" />
+<Reference variables="check_state,dummy,start_seconds,start_milliseconds,stop_seconds,stop_milliseconds" />
 
 <nop hide="true">
     <action>
@@ -40,6 +40,7 @@
 
 <recv response="200" rtd="subscribe" next="exit">
     <action>
+        <gettimeofday assign_to="stop_seconds,stop_microseconds"/>
         <!--<ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,subscribe_remote_tag" />-->
     </action>
 </recv>
@@ -227,6 +228,12 @@
 ]]>
 </send>
 
+<nop>
+    <action>
+        <gettimeofday assign_to="start_seconds,start_microseconds"/>
+    </action>
+</nop>
+
 <!--
 <label id="send_auth_to_unsubscribe"/>
 
@@ -263,6 +270,13 @@
 -->
 <label id="exit"/>
 
+<nop>
+    <action>
+        <log message="[$start_microseconds],[$stop_microseconds]"/>
+    </action>
+</nop>
+
 <ResponseTimeRepartition value="10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 300, 400, 500, 600, 700"/>
 <CallLengthRepartition value="10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 300, 400, 500, 600, 700"/>
 </scenario>
+
