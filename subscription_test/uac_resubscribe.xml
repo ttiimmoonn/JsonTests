@@ -96,7 +96,6 @@
 </send>
 
 
-
 <recv response="401" auth="true" optional="true" next="auth_re_sub">
     <action>
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
@@ -114,6 +113,7 @@
     </action>
 </recv>
 
+<pause milliseconds="1000"/>
 
 <recv request="NOTIFY">
     <action>
