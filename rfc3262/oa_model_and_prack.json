@@ -1,5 +1,6 @@
 {
   "TestName": "rfc3262_oa_model",
+  "Auto" : true,
   "Users": [
     {
       "UserId" : 0,
