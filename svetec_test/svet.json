@@ -2,6 +2,15 @@
   "TestName": "svet_test",
   "Users": [
   ],
+  "Trunks": [
+    {
+      "TrunkId" : 1,
+      "TrunkName" : "svetec",
+      "Port" : 5087,
+      "SipDomain" : "pv.ssw3",
+      "SipGroup" : "svetec_gr"
+    }
+  ],
   "UserVar": [
     {
     }
@@ -23,7 +32,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5087,
+              "TrunkId" : 1,
               "Name": "SVET_TEST_RECV_302",
               "Commands": [
                 {
@@ -46,12 +55,12 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5087,
+              "TrunkId" : 1,
               "Name": "SVET_TEST_UAC_SIPT",
               "Commands": [
                 {
                   "SourceFile": "svetec_test/uac_sipt.xml",
-                  "Options": "-m 1 -set CDPN 3108 -set CDPNDOM pv.ssw3 -set CGPN 89133936770 -set CGPNDOM pv.ssw3",
+                  "Options": "-m 1 -set CDPN 655 -set CDPNDOM pv.ssw3 -set CGPN 201 -set CGPNDOM pv.ssw3",
                   "SippType": "uac",
                   "Timeout": "20s"
                 }

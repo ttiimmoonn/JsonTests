@@ -77,6 +77,14 @@
     </action>
 </recv>
 
+<recv response="181" optional="true" next="prack_181">
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+
 
 <recv response="200" auth="true">
         <action>
@@ -196,6 +204,23 @@
 ]]>
 </send>
 <recv response="200" crlf="true" next="call_continue"></recv>
+
+<label id="prack_181"/>
+<send>
+<![CDATA[
+    PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] PRACK
+    RAck: [$last_rseq] [$last_cseq] INVITE
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+<recv response="200" crlf="true" next="call_continue"></recv>
+
 
 <label id="end"/>
 

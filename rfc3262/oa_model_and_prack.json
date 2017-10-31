@@ -229,7 +229,7 @@
       ]
     },
     {
-      "Name": "send_181_183_180_overkill_test",
+      "Name": "send_181_183_180_overkill",
       "Description": "Проверка последовательной обработки 181 183 180",
       "TestProcedure": [
         {
