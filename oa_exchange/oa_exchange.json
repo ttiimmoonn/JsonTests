@@ -26,8 +26,8 @@
   ],
   "UserVar": [
     {
-      "%%TestNumber%%" : "108",
-      "%%TestDomain%%" : "pv.ssw2"
+      "%%TestNumber%%" : "109",
+      "%%TestDomain%%" : "pv.ssw3"
     }
   ],
   "PreConf": [
@@ -169,31 +169,6 @@
       ]
     },
     {
-      "Name": "send_answ_in_183",
-      "Description": "send_answ_in_183",
-      "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
-        {
-          "StartUA": [
-            {
-              "Type": "Trunk",
-              "Port" : 5030,
-              "Name": "UAS_OA_EX",
-              "Commands": [
-                {
-                  "SourceFile": "oa_exchange/uas_remote_kpv_183.xml",
-                  "Options": "-m 1",
-                  "NeedAuth": true,
-                  "SippType": "uas",
-                  "Timeout": "200s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "Name": "send_answer_sdp_in_181",
       "Description": "send_answer_sdp_in_181",
       "TestProcedure": [
@@ -207,6 +182,31 @@
               "Commands": [
                 {
                   "SourceFile": "oa_exchange/uas_send_a_sdp_in_181.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": true,
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_183_sdp_and_180_sdp",
+      "Description": "send_183_sdp_and_180_sdp",
+      "TestProcedure": [
+        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_OA_EX",
+              "Commands": [
+                {
+                  "SourceFile": "oa_exchange/uas_rel_answer.xml",
                   "Options": "-m 1",
                   "NeedAuth": true,
                   "SippType": "uas",
