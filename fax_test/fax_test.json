@@ -62,7 +62,8 @@
       "command3" : "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile ivr_fax2email_no_t38",
       "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_fucks --json %%FAX_IVR_SCRIPT%%",
       "command5" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CONTEXT%%",
-      "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks"
+      "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks",
+      "command7" : "/sleep 5"
     }
   ],
   "PostConf": [
