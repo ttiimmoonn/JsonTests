@@ -77,6 +77,44 @@
       ]
     },
     {
+      "Name": "send_a_sdp_in_181_response",
+      "Description": "Проверка обработки asdp в 181",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_ASDP_IN_181",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_asdp_in_181.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Name": "send_a_sdp_in_183_response",
       "Description": "Проверка обработки asdp в 183",
       "TestProcedure": [
@@ -85,7 +123,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS_SEND_ASDP_IN_180",
+              "Name": "UAS_SEND_ASDP_IN_183",
               "Commands": [
                 {
                   "SourceFile": "rfc3262/uas_send_asdp_in_183.xml",
@@ -165,6 +203,44 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3262/uas_send_183_after_180.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_181_183_180_overkill_test",
+      "Description": "Проверка последовательной обработки 181 183 180",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_181_183_180",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_181_183_180.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
