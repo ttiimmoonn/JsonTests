@@ -284,7 +284,7 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -393,7 +393,7 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -576,7 +576,7 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
