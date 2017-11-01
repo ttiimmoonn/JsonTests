@@ -4,8 +4,8 @@
 <scenario name = "transfer_before_answer">
 
 <Global variables="REFERNUM,REFERDOM" />
-<User variables="refer_num,refer_dom,test_sipfrag,recv_not_100,recv_not_200" />
-<Reference variables="test_sipfrag,recv_not_100,recv_not_200"/>
+<User variables="refer_num,refer_dom,recv_not_100,recv_not_200" />
+<Reference variables="recv_not_100,recv_not_200"/>
 
 <recv request="INVITE">
 <action>
@@ -200,9 +200,7 @@
 
 <recv request="NOTIFY" optional="true" next="send_200_notify_100">
     <action>
-        <assign assign_to="test_sipfrag" value="" />
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
-        <assign assign_to="recv_not_100" value="1"/>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
     </action>
 </recv>
 
@@ -210,9 +208,7 @@
 
 <recv request="NOTIFY" optional="true" next="send_200_notify_200">
     <action>
-        <assign assign_to="test_sipfrag" value="" />
-        <ereg regexp=".*SIP/2.0 200 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
-        <assign assign_to="recv_not_200" value="1"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="recv_not_200" />
     </action>
 </recv>
 
@@ -241,9 +237,7 @@
 
 <recv request="NOTIFY">
     <action>
-        <assign assign_to="test_sipfrag" value="" />
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
-        <assign assign_to="recv_not_100" value="1"/>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
     </action>
 </recv>
 
@@ -263,8 +257,7 @@
 
 <recv request="NOTIFY">
     <action>
-        <assign assign_to="test_sipfrag" value="" />
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="recv_not_200" />
     </action>
 </recv>
 
