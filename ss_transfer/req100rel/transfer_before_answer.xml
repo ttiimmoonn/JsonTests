@@ -4,8 +4,8 @@
 <scenario name = "transfer_before_answer">
 
 <Global variables="REFERNUM,REFERDOM" />
-<User variables="refer_num,refer_dom,test_sipfrag,recv_test" />
-<Reference variables="test_sipfrag,recv_test" />
+<User variables="refer_num,refer_dom,test_sipfrag,recv_not_100,recv_not_200" />
+<Reference variables="test_sipfrag,recv_not_100,recv_not_200"/>
 
 <recv request="INVITE">
 <action>
@@ -217,21 +217,30 @@
 
 <recv response="202" crlf="true"></recv>
 
-<recv request="NOTIFY" optional="true" next="send_200_notify">
+<recv request="NOTIFY" optional="true" next="send_200_notify_100">
     <action>
         <assign assign_to="test_sipfrag" value="" />
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
-        <assign assign_to="recv_test" value="1"/>
+        <assign assign_to="recv_not_100" value="1"/>
     </action>
 </recv>
 
+<label id="not_100_continue"/>
 
-<label id="return_to_recv_487"/>
+<recv request="NOTIFY" optional="true" next="send_200_notify_200">
+    <action>
+        <assign assign_to="test_sipfrag" value="" />
+        <ereg regexp=".*SIP/2.0 200 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
+        <assign assign_to="recv_not_200" value="1"/>
+    </action>
+</recv>
+
+<label id="not_200_continue"/>
 
 
 <recv response="487"></recv>
 
-<send next="recv_notify_200" test="recv_test">
+<send>
 <![CDATA[
     ACK sip:[$refer_num]@[$remote_ip]:[$remote_port] SIP/2.0
     [last_via:]
@@ -245,12 +254,15 @@
 ]]>
 </send>
 
+<nop next="send_bye" test="recv_not_200"/>
+<nop next="recv_notify_200" test="recv_not_100"/>
+
 
 <recv request="NOTIFY">
     <action>
         <assign assign_to="test_sipfrag" value="" />
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
-        <assign assign_to="recv_test" value="1"/>
+        <assign assign_to="recv_not_100" value="1"/>
     </action>
 </recv>
 
@@ -287,6 +299,7 @@
 ]]>
 </send>
 
+<label id="send_bye"/>
 
 <send>
 <![CDATA[
@@ -301,7 +314,6 @@
 </send>
 
 <recv response="200" next="end"></recv>
-
 
 <label id="inv_auth"/>
 
@@ -342,9 +354,23 @@
   ]]>
 </send>
 
-<label id="send_200_notify"/>
+<label id="send_200_notify_100"/>
 
-<send next="return_to_recv_487">
+<send next="not_100_continue">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<label id="send_200_notify_200"/>
+
+<send next="not_200_continue">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
