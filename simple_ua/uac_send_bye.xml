@@ -78,14 +78,14 @@
 
 <label id="call_continue" />
 
-<recv response="100" optional="true">
+<recv response="100" optional="true" next="call_continue">
     <action>
         <ereg regexp="Remote-Party-ID:" check_it_inverse="true" search_in="msg" assign_to="dummy"/>
     </action>
 </recv>
-<recv response="183" optional="true"></recv>
-<recv response="181" optional="true"></recv>
-<recv response="180" optional="true">
+<recv response="183" optional="true" next="call_continue"></recv>
+<recv response="181" optional="true" next="call_continue"></recv>
+<recv response="180" optional="true" next="call_continue">
     <action>
         <ereg regexp="Remote-Party-ID:" check_it="true" search_in="msg" assign_to="dummy"/>
         <ereg regexp="s?\"?([^\"]+)\"?\s<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,alerting_name,alerting_number"/>
