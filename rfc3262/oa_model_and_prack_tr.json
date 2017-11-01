@@ -1,18 +1,6 @@
 {
   "TestName": "rfc3262_oa_model",
-  "AutoTest" : true,
   "Users": [
-    {
-      "UserId" : 0,
-      "Number": "157",
-      "Login": "157",
-      "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11001,
-      "SipGroup": "sip.ab",
-      "QParam" : 0.5
-    },
     {
       "UserId" : 1,
       "Number": "158",
@@ -25,16 +13,33 @@
       "QParam" : 1
     }
   ],
+  "Trunks" : [
+    {
+      "TrunkId" : 1,
+      "TrunkName" : "rfc3261_oa_trunk",
+      "Port" : 5094,
+      "SipDomain" : "pv.ssw3",
+      "SipGroup" : "test.trunks"
+    }
+   ],
   "UserVar": [
     {
+      "%%to_trunk_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19yZmMzMjYyX3RydW5rIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0icmZjMzI2MV9vYV90cnVuayIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
+      "%%ctx_name%%" : "to_rfc3262_trunk"
     }
   ],
   "PreConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+      "command3" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%ctx_name%%"
     }
   ],
   "PostConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+      "command2" : "/domain/%%DEV_DOM%%/iface /user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default.routing",
+      "command3": "/domain/%%DEV_DOM%%/routing/delete %%ctx_name%%"
     }
   ],
   "Tests": [
@@ -45,8 +50,8 @@
         {
           "StartUA": [
             {
-              "Type": "User",
-              "UserId" : 1,
+              "Type": "Trunk",
+              "TrunkId" : 1,
               "Name": "UAS_SEND_ASDP_IN_180",
               "Commands": [
                 {
@@ -60,7 +65,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -83,8 +88,8 @@
         {
           "StartUA": [
             {
-              "Type": "User",
-              "UserId" : 1,
+              "Type": "Trunk",
+              "TrunkId" : 1,
               "Name": "UAS_SEND_ASDP_IN_181",
               "Commands": [
                 {
@@ -98,7 +103,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -121,8 +126,8 @@
         {
           "StartUA": [
             {
-              "Type": "User",
-              "UserId" : 1,
+              "Type": "Trunk",
+              "TrunkId" : 1,
               "Name": "UAS_SEND_ASDP_IN_183",
               "Commands": [
                 {
@@ -136,7 +141,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -159,8 +164,8 @@
         {
           "StartUA": [
             {
-              "Type": "User",
-              "UserId" : 1,
+              "Type": "Trunk",
+              "TrunkId" : 1,
               "Name": "UAS_SEND_180_AFTER_183",
               "Commands": [
                 {
@@ -174,7 +179,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -197,8 +202,8 @@
         {
           "StartUA": [
             {
-              "Type": "User",
-              "UserId" : 1,
+              "Type": "Trunk",
+              "TrunkId" : 1,
               "Name": "UAS_SEND_183_AFTER_180",
               "Commands": [
                 {
@@ -212,7 +217,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -229,14 +234,14 @@
       ]
     },
     {
-      "Name": "send_181_183_180_overkill",
+      "Name": "send_181_183_180_overkill_test",
       "Description": "Проверка последовательной обработки 181 183 180",
       "TestProcedure": [
         {
           "StartUA": [
             {
-              "Type": "User",
-              "UserId" : 1,
+              "Type": "Trunk",
+              "TrunkId" : 1,
               "Name": "UAS_SEND_181_183_180",
               "Commands": [
                 {
@@ -250,49 +255,11 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "20s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "send_invite_wout_sdp",
-      "Description": "Проверка обработки invite без osdp",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "Name": "UAS_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 0,
-              "Name": "UAC_SEND_INVITE_WOUT_SDP",
-              "Commands": [
-                {
-                  "SourceFile": "rfc3262/uac_send_invite_wout_offer.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
