@@ -250,9 +250,23 @@
 ]]>
 </send>
 
-<nop next="send_bye" test="recv_not_200"/>
-<nop next="recv_notify_200" test="recv_not_100"/>
+<nop next="send_bye" test="recv_not_200">
+    <action>
+        <warning message="Go to recv_not_200"/>
+    </action>
+</nop>
+<nop next="recv_notify_200" test="recv_not_100">
+    <action>
+        <warning message="Go to recv_not_100"/>
+    </action>
+</nop>
 
+
+<nop>
+    <action>
+        <warning message="Wait recv_not_100"/>
+    </action>
+</nop>
 
 <recv request="NOTIFY">
     <action>
@@ -273,6 +287,12 @@
 </send>
 
 <label id="recv_notify_200"/>
+
+<nop>
+    <action>
+        <warning message="Wait recv_not_200"/>
+    </action>
+</nop>
 
 <recv request="NOTIFY">
     <action>
