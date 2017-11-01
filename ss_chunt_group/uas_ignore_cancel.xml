@@ -103,7 +103,14 @@ https://tools.ietf.org/html/rfc5407#page-11
 <recv request="CANCEL"></recv>
 <recv request="CANCEL"></recv>
 <recv request="CANCEL"></recv>
-<recv request="CANCEL"></recv>
+<recv request="CANCEL">
+  <action>
+    <ereg regexp=".*" search_in="hdr" header="From:" assign_to="can_from" />
+    <ereg regexp=".*" search_in="hdr" header="To:" assign_to="can_to" />
+    <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="can_via" />
+    <ereg regexp=".*" search_in="hdr" header="CSeq:" assign_to="can_cseq" />
+  </action>
+</recv>
 
 
 <send retrans="500">
@@ -119,19 +126,20 @@ https://tools.ietf.org/html/rfc5407#page-11
 ]]>
 </send>
 
+<recv request="ACK"></recv>
+
 <send>
 <![CDATA[
     SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
+    Via:[$can_via]
+    From:[$can_from]
+    To:[$can_to]
     [last_Call-ID:]
-    [last_CSeq:]
+    CSeq:[$can_cseq]
     Content-Length: 0
 ]]>
 </send>
 
-<recv request="ACK"></recv>
 
 <recv request="BYE"></recv>
 
