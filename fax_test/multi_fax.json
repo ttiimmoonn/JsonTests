@@ -29,7 +29,8 @@
       "command3" : "/domain/%%DEV_DOM%%/alias/set-for-iface %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile no_t_38_for_multifax",
       "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_multi_fax --json %%FAX_SCRIPT%%",
       "command5" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CTX%%",
-      "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context to_ivr_multi_fucks"
+      "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context to_ivr_multi_fucks",
+      "command7" : "/sleep 5"
     }
   ],
   "PostConf": [
