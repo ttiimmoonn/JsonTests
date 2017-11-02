@@ -29,7 +29,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
-    Require: 100rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -62,11 +61,10 @@
 <recv response="180">
     <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq"/>
-        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq"/>
     </action>
 </recv>
 
-
+<!--
 <send>
 <![CDATA[
     PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -87,7 +85,7 @@
     Content-Length: 0
 ]]>
 </send>
-
+-->
 <recv response="200"></recv>
 <pause milliseconds="5000"/>
 <send>
@@ -165,7 +163,6 @@
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
     [authentication]
-    Require: 100rel
     Content-Type: application/sdp
     Content-Length: [len]
     

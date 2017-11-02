@@ -20,7 +20,7 @@
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:[local_ip]:[local_port]>
     Record-Route: <sip:test1.domain.ru;lr>
     Record-Route: <sip:test2.domain.com;lr>
     From: testuser <sip:testuser@record.route.test.ru>;tag=[$local_tag]
@@ -29,7 +29,6 @@
     CSeq: [cseq] INVITE
     Contact: <sip:testuser@record.route.test.ru;transport=udp>
     Max-Forwards: 70
-    Require: 100rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -62,11 +61,11 @@
 <recv response="180">
     <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
-        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq"/>
+        <!-- <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq"/> -->
     </action>
 </recv>
 
-
+<!--
 <send>
 <![CDATA[
     PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -121,7 +120,7 @@
 
 <recv response="200"></recv>
 
-
+-->
 
 <recv response="200" auth="true">
         <action>
@@ -144,7 +143,7 @@
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:[local_ip]:[local_port]>
     Record-Route: <sip:test1.domain.ru;lr>
     Record-Route: <sip:test2.domain.com;lr>
     [last_from:]
@@ -165,6 +164,7 @@
 
 <pause milliseconds="5000" crlf="true"/>
 
+<!--
 
 <send retrans="500">
 <![CDATA[
@@ -201,7 +201,7 @@
     <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,1,0" />
 </action>
 </nop>
-
+-->
 <pause milliseconds="5000" crlf="true"/>
 
 <send retrans="500">
@@ -210,7 +210,7 @@
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:[local_ip]:[local_port]>
     Record-Route: <sip:test1.domain.ru;lr>
     Record-Route: <sip:test2.domain.com;lr>
     [last_from:]
@@ -245,7 +245,7 @@
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     Via: SIP/2.0/[transport] test1.domain.ru:[local_port];branch=z9hG4bK-12385-1-19
     Via: SIP/2.0/[transport] test2.domain.com:[local_port];branch=z9hG4bK-12385-1-20
-    Record-Route: <sip:[local_ip]:[local_port];lr>
+    Record-Route: <sip:[local_ip]:[local_port]>
     Record-Route: <sip:test1.domain.ru;lr>
     Record-Route: <sip:test2.domain.com;lr>
     [last_from:]

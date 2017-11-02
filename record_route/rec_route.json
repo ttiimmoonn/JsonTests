@@ -1,33 +1,20 @@
 {
   "TestName": "record_route_test",
   "Users": [
-    {
-      "UserId" : 1,
-      "Number": "157",
-      "Login": "157",
-      "Password": "123",
-      "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
-    },
-    {
-      "UserId" : 2,
-      "Number": "158",
-      "Login": "158",
-      "Password": "123",
-      "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
-    }
   ],
+  "Trunks" : [
+    {
+      "TrunkId" : 1,
+      "TrunkName" : "test_trunk",
+      "Port" : 5030,
+      "SipDomain" : "pv.ssw4",
+      "SipGroup" : "tr_gr"
+    }
+   ],
   "UserVar": [
     {
-      "%%TestNumber%%" : "109",
-      "%%TestDomain%%" : "pv.ssw2"
+      "%%TestNumber%%" : "656",
+      "%%TestDomain%%" : "192.168.118.249"
     }
   ],
   "PreConf": [
@@ -48,7 +35,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5088,
+              "TrunkId" : 1,
               "Name": "UAC_REC_ROUTE",
               "Commands": [
                 {
@@ -72,7 +59,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5088,
+              "TrunkId" : 1,
               "Name": "UAC_REC_ROUTE",
               "Commands": [
                 {
@@ -96,7 +83,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5088,
+              "TrunkId" : 1,
               "Name": "UAS_REC_ROUTE",
               "Commands": [
                 {
