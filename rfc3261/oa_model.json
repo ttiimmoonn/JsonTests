@@ -151,6 +151,44 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "send_diff_sdp_in_183",
+      "Description": "Отправляем разные sdp в 183 и 200. Спекой такое поведение запрещается. Но нужно быть готовым ко всему, зима близко...",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_DIFF_SDP_IN_183",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_send_diff_sdp.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
