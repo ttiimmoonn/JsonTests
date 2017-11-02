@@ -250,31 +250,13 @@
 ]]>
 </send>
 
-<nop next="send_bye" test="recv_not_200">
-    <action>
-        <warning message="Go to recv_not_200"/>
-    </action>
-</nop>
-<nop next="recv_notify_200" test="recv_not_100">
-    <action>
-        <warning message="Go to recv_not_100"/>
-    </action>
-</nop>
-
-
-<nop>
-    <action>
-        <warning message="Wait recv_not_100"/>
-    </action>
-</nop>
-
-<recv request="NOTIFY">
+<recv request="NOTIFY" condexec="recv_not_100" condexec_inverse="true" >
     <action>
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
     </action>
 </recv>
 
-<send>
+<send condexec="send_200_not_100" condexec_inverse="true">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -286,21 +268,13 @@
 ]]>
 </send>
 
-<label id="recv_notify_200"/>
-
-<nop>
-    <action>
-        <warning message="Wait recv_not_200"/>
-    </action>
-</nop>
-
-<recv request="NOTIFY">
+<recv request="NOTIFY" condexec="recv_not_200" condexec_inverse="true">
     <action>
         <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="recv_not_200" />
     </action>
 </recv>
 
-<send>
+<send condexec="send_200_not_200" condexec_inverse="true">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -369,6 +343,12 @@
 
 <label id="send_200_notify_100"/>
 
+<nop>
+    <action>
+        <assignstr assign_to="send_200_not_100" value="true"/>
+    </action>
+</nop>
+
 <send next="not_100_continue">
 <![CDATA[
     SIP/2.0 200 OK
@@ -383,6 +363,12 @@
 
 <label id="send_200_notify_200"/>
 
+<nop>
+    <action>
+        <assignstr assign_to="send_200_not_200" value="true"/>
+    </action>
+</nop>
+
 <send next="not_200_continue">
 <![CDATA[
     SIP/2.0 200 OK
@@ -394,6 +380,34 @@
     Content-Length: 0
 ]]>
 </send>
+
+<label id="_unexp.main"/>
+
+<recv request="NOTIFY">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="recv_not_100" />
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="recv_not_200" />
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<nop>
+  <action>
+    <jump variable="_unexp.retaddr" />
+  </action>
+</nop>
+
 
 <label id="end"/>
 </scenario>
