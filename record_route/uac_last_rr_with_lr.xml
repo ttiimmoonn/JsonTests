@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAC Record-Route Test (wout lr)">
+<scenario name = "UAC Record-Route Test (with lr)">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="dummy" />
@@ -16,13 +16,13 @@
 Via: SIP/2.0/UDP t1.ru:5030;branch=z9hG4bK-12385-1-19
 Via: SIP/2.0/UDP t2.domain.com:5030;branch=z9hG4bK-12385-1-20
 "/>
-        <assignstr assign_to="rr_in_response" value="Record-Route: <sip:[local_ip]:[local_port]>
+        <assignstr assign_to="rr_in_response" value="Record-Route: <sip:[local_ip]:[local_port];lr>
 Record-Route: <sip:t1.ru;lr>
 Record-Route: <sip:t2.ru;lr>
 "/>
-        <assignstr assign_to="route_in_request" value="Route: <sip:t1.ru;lr>
+        <assignstr assign_to="route_in_request" value="Route: <sip:[local_ip]:[local_port];lr>
+Route: <sip:t1.ru;lr>
 Route: <sip:t2.ru;lr>
-Route: <sip:[service]@[local_ip]:[local_port]>
 "/>
     </action>
 </nop>
@@ -183,7 +183,7 @@ Route: <sip:[service]@[local_ip]:[local_port]>
 <recv request="BYE">
     <action>
         <assignstr assign_to="recv_route" value=""/>
-        <ereg regexp="BYE\ssip:([0-9]+\.){3}[0-9]+:[0-9]+\sSIP\/2\.0" check_it="true" search_in="msg" assign_to="dummy" />
+        <ereg regexp="BYE\ssip:\w+\@([0-9]+\.){3}[0-9]+:[0-9]+\sSIP\/2\.0" check_it="true" search_in="msg" assign_to="dummy" />
         <ereg regexp="((Route:[^\n]+)\n)+" check_it="true" search_in="msg" assign_to="recv_route,dummy" />
     </action>
 </recv>
