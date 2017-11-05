@@ -120,6 +120,9 @@
  </action>
 </nop>
 
+
+<pause milliseconds="2500"/>
+
 <send retrans="500">
 <![CDATA[
     SIP/2.0 200 OK
