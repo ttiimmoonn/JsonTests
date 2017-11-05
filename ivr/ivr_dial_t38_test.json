@@ -1,0 +1,112 @@
+{
+  "TestName" : "ivr_dial_t38_test",
+  "AutoTest" : true,
+  "Users" : [
+      {
+        "UserId" : 0,
+        "Number": "156",
+        "Login": "156",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires" : 90,
+        "Port" : 20000,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 1,
+        "Number": "157",
+        "Login": "157",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires" : 90,
+        "Port" : 20002,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 2,
+        "Number": "158",
+        "Login": "158",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires" : 90,
+        "Port" : 20004,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 3,
+        "Number": "159",
+        "Login": "159",
+        "Password": "123",
+        "SipDomain": "pv.ssw3",
+        "Expires" : 90,
+        "Port" : 20006,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      }
+  ],
+  "UserVar": [
+    {
+      "%%IVR_DIAL_TEST%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"play_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"play_2\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"dial_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2}}},\"dial_3\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":1,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":180,\"cy\":425},{\"cx\":90,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":3}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":270,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}}}}},\"name\":\"ivr_dial_t38_test\",\"description\":\"\",\"version\":\"3.9.0.237\"}",
+      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfZGlhbF90MzhfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9kaWFsX3QzOF90ZXN0Ii8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
+    }
+  ],
+  "PreConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_dial_t38_test_ctx",
+      "command2": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_dial_t38_test --json %%IVR_DIAL_TEST%%"
+    }
+  ],
+  "PostConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_dial_t38_test",
+      "command2": "domain/%%DEV_DOM%%/ivr/script/delete ivr_dial_t38_test"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "ivr_dial_block_busy_branch_test",
+      "Description": "Звоним с А на Б через IVR. А - скриптом переключается в ответное состояние. Б -  в предответном. Шлём re-invite t38 с А. Ожидается, что после ответа абонента Б вызов будет пересогласован на t38.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_re_invite_t38.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
