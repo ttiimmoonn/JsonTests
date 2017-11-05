@@ -28,7 +28,9 @@
       "%%cdpn_with_hash%%" : "2000#",
       "%%cdpn_with_hash_code%%" : "2000%23",
       "%%cgpn_with_hash%%" : "1000#",
-      "%%cgpn_with_hash_code%%" : "1000%23"
+      "%%cgpn_with_hash_code%%" : "1000%23",
+      "%%tr_cdpn%%" : "8913",
+      "%%tr_cgpn%%" : "8912"
     }
 ],
 
@@ -214,6 +216,44 @@
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%cdpn_with_hash%% -set CDPNDOM %%Tr.1.SipDomain%% -set CGPN %%cgpn_with_hash%% -set CGPNDOM %%Tr.2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "15s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_t38_in_update",
+      "Description": "Отправка t38 в UPDATE в предответке",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId" : 2,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_send_asdp_in_180.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId" : 1,
+              "WriteStat": true,
+              "Name": "UAC_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_update_to_t38.xml",
+                  "Options": "-m 1 -set CDPN %%tr_cdpn%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPN %%tr_cgpn%% -set CGPNDOM %%Tr.1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "15s"
