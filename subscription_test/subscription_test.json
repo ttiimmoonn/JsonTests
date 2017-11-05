@@ -120,6 +120,9 @@
       "Name": "test_notifications_after_resubscription",
       "Description" : "Проверка нотификаций после переподписки.",
       "TestProcedure": [
+	{
+	  "Sleep" : 20
+	},
         {
           "StartUA": [
             {
