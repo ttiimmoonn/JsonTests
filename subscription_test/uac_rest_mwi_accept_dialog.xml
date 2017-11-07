@@ -45,60 +45,45 @@
 
 <recv response="200">
     <action>
-        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,remote_tag" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
-
-
-<pause milliseconds="1000"/>
-
-<recv request="NOTIFY">
-    <action>
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>trying</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-    </action>
-</recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
-
-
-<recv request="NOTIFY">
-    <action>
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-    </action>
-</recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
 
 <send>
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "Subscription Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$remote_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: message-summary
+    Accept: application/dialog-info+xml
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv response="401" auth="true" next="auth_init_message_sum">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+ </recv>
+
+<label id="continue"/>
+
+
+<pause milliseconds="5000"/>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
     [last_call-id:]
     [authentication]
     CSeq: [cseq] SUBSCRIBE
@@ -122,6 +107,68 @@
 <label id="sub_continue_2"/>
 
 
+<recv response="200">
+    <action>
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<pause milliseconds="1000"/>
+
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check_state" value="" />
+        <ereg regexp=".*(<state>trying</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
+    </action>
+</recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check_state" value="" />
+        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
+    </action>
+</recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
 
 <recv request="NOTIFY">
     <action>
@@ -185,7 +232,7 @@
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "Subscription Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$remote_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     [authentication]
     CSeq: [cseq] SUBSCRIBE
@@ -215,6 +262,60 @@
         <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
+
+
+<label id="auth_init_message_sum"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Subscription Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: message-summary
+    Accept: application/dialog-info+xml
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="403">
+    <action>
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+ </recv>
+
+<send next="continue">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
 
 <label id="auth_init_sub"/>
 
@@ -265,7 +366,7 @@
 </send>
 
 
-<send>
+<send next="sub_continue_2">
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
@@ -281,43 +382,6 @@
     Content-Length: 0
 ]]>
 </send>
-
-
-<recv request="NOTIFY" optional="true">
-    <action>
-        <assignstr assign_to="recv_not" value="true"/>
-        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
-        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
-        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
-
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-    </action>
-</recv>
-<recv response="200"></recv>
-<recv request="NOTIFY" condexec="recv_not" condexec_inverse="true">
-    <action>
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-    </action>
-</recv>
-
-<send next="sub_continue_2">
-<![CDATA[
-    SIP/2.0 200 OK
-    Via:[$not_via]
-    From:[$not_from]
-    To:[$not_to]
-    [last_Call-ID:]
-    CSeq: [$not_cseq] NOTIFY
-    Content-Length: 0
-]]>
-</send>
-
-
 
 <label id="auth_unsub"/>
 

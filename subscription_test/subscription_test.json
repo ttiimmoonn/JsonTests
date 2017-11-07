@@ -117,12 +117,72 @@
       ]
     },
     {
-      "Name": "test_notifications_after_resubscription",
-      "Description" : "Проверка нотификаций после переподписки.",
+      "Name": "test_dialog_notifications_after_restrict_mwi",
+      "Description" : "Проверка dialog нотификаций, после запрета подписки mwi.",
       "TestProcedure": [
-	{
-	  "Sleep" : 20
-	},
+        {
+          "Sleep" : 20
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "BackGround" : true,
+              "Name": "SUBSCRIBE_TO_USER",
+              "Commands": [
+                 {
+                  "SourceFile": "subscription_test/uac_rest_mwi_accept_dialog.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set EXPIRES 90",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 10
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                 {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_notification_state_after_resubscription",
+      "Description" : "Проверка нотификаций после переподписки. Проверяем, что адаптер повторяет последний стейт в случае переподписки",
+      "TestProcedure": [
         {
           "StartUA": [
             {
@@ -143,7 +203,7 @@
           ]
         },
         {
-          "Sleep" : 10
+          "Sleep" : 5
         },
         {
           "StartUA": [
