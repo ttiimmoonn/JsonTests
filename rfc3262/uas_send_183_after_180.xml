@@ -2,6 +2,9 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAS send asdp in 180">
 
+<User variables="chk_sdp,dummy"/>
+<Reference variables="chk_sdp,dummy" />
+
 <recv request="INVITE">
 <action>
     <ereg regexp="(\w)*@" search_in="hdr" header="To:" assign_to="number" />
@@ -51,7 +54,12 @@
 </send>
 
 
-<recv request="PRACK"></recv>
+<recv request="PRACK">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="a=rtpmap:8 PCMA" search_in="msg" check_it_inverse="true" assign_to="sdp_chk" />
+    </action>
+</recv>
 
 <send>
 <![CDATA[
@@ -100,7 +108,12 @@
 </send>
 
 
-<recv request="PRACK"></recv>
+<recv request="PRACK">
+    <action>
+        <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="a=rtpmap:0 PCMU" search_in="msg" check_it="true" assign_to="sdp_chk" />
+    </action>
+</recv>
 
 <send>
 <![CDATA[
