@@ -121,9 +121,6 @@
       "Description" : "Проверка dialog нотификаций, после запрета подписки mwi.",
       "TestProcedure": [
         {
-          "Sleep" : 20
-        },
-        {
           "StartUA": [
             {
               "Type": "User",
