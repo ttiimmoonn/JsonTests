@@ -63,7 +63,7 @@
 
 <recv response="200">
     <action>
-        <ereg regexp="expires=([0-9]+)" search_in="hdr" header="Contact:" assign_to="dummy,server_exp" check_it="true"/>
+        <ereg regexp="expires=([0-9]+)" search_in="hdr" header="Contact:" assign_to="dummy,server_exp"/>
     </action>
 </recv>
 
