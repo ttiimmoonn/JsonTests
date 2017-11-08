@@ -111,7 +111,7 @@
 <recv request="PRACK">
     <action>
         <assign assign_to="sdp_chk" value="" />
-        <ereg regexp="a=rtpmap:0 PCMU" search_in="msg" check_it="true" assign_to="sdp_chk" />
+        <ereg regexp="a=rtpmap\:0 PCMU" search_in="msg" check_it="true" assign_to="sdp_chk" />
     </action>
 </recv>
 
@@ -133,7 +133,7 @@
  </action>
 </nop>
 
-<pause milliseconds="25000"/>
+<pause milliseconds="2500"/>
 
 <send>
 <![CDATA[
@@ -163,7 +163,7 @@
 <recv request="PRACK">
     <action>
         <assign assign_to="sdp_chk" value="" />
-        <ereg regexp="a=rtpmap:8 PCMA" search_in="msg" check_it="true" assign_to="sdp_chk" />
+        <ereg regexp="a=rtpmap\:8 PCMA" search_in="msg" check_it="true" assign_to="sdp_chk" />
     </action>
 </recv>
 
