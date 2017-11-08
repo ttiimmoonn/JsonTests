@@ -177,7 +177,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sipdomain %%Tr.1.SipDomain%%",
-              "command2": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 180",
+              "command2": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 32",
               "command3": "/domain/pv.ssw3/trunk/sip/info sip.tr %%Tr.1.TrunkName%%"
             }
           ]

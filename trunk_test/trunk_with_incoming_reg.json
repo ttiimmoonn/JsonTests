@@ -442,7 +442,7 @@
             "Trunks": {
               "1": {
                 "script": "register_test/succ_reg_recv_423.xml",
-                "expires" : 90
+                "expires" : 2
               }
             }
           }

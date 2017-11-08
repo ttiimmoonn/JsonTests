@@ -147,11 +147,10 @@
               "Type": "Trunk",
               "TrunkId" : 2,
               "WriteStat": true,
-              "Name": "UDP_UAC_NO_ANSW_TO_INVITE",
+              "Name": "UDP_UAC_RECV_403",
               "Commands": [
                 {
-                  "NoTimeOutError" : true,
-                  "SourceFile": "sip_transport/uac_no_answ_to_invite.xml",
+                  "SourceFile": "trunk_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN 2000 -set CDPNDOM %%Tr.1.SipDomain%% -set CGPN 1000 -set CGPNDOM %%Tr.2.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -392,11 +391,10 @@
               "Type": "Trunk",
               "TrunkId" : 2,
               "WriteStat": true,
-              "Name": "TCP_UAC_NO_ANSW_TO_INVITE",
+              "Name": "TCP_RECV_403",
               "Commands": [
                 {
-                  "NoTimeOutError" : true,
-                  "SourceFile": "sip_transport/uac_no_answ_to_invite.xml",
+                  "SourceFile": "trunk_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN 2000 -set CDPNDOM %%Tr.1.SipDomain%% -set CGPN 1000 -set CGPNDOM %%Tr.2.SipDomain%% -aa -t tn -max_socket 25",
                   "SippType": "uac",
                   "NeedAuth": true,

@@ -9,7 +9,7 @@
 <recv request="REGISTER">
   <action>
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
-    <ereg regexp="Expires:\s?(180)" search_in="msg" check_it="true" assign_to="dummy,chk_expires"/>
+    <ereg regexp="Expires:\s?(32)" search_in="msg" check_it="true" assign_to="dummy,chk_expires"/>
   </action>
 </recv>
 
