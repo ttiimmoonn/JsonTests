@@ -39,8 +39,8 @@
   ],
   "Tests": [
     {
-      "Name": "record-route-without-lr-test",
-      "Description": "Проверка обработки record-route хедера без lr.",
+      "Name": "record-route-without-lr-uac-test",
+      "Description": "Проверка обработки record-route хедера без lr (UAC mode).",
       "TestProcedure": [
         {
           "StartUA": [
@@ -78,8 +78,8 @@
       ]
     },
     {
-      "Name": "record-route-with-lr-test",
-      "Description": "Проверка обработки record-route хедера c lr.",
+      "Name": "record-route-with-lr-uac-test",
+      "Description": "Проверка обработки record-route хедера c lr. (UAC mode)",
       "TestProcedure": [
         {
           "StartUA": [
@@ -105,6 +105,84 @@
               "Commands": [
                 {
                   "SourceFile": "record_route/uac_last_rr_with_lr.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-without-lr-uas-test",
+      "Description": "Проверка обработки record-route хедера без lr. (UAS mode)",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uas_last_rr_wout_lr.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_SEND_RR_WITH_LR",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-with-lr-uas-test",
+      "Description": "Проверка обработки record-route хедера c lr. (UAS mode)",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uas_last_rr_with_lr.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_SEND_RR_WITH_LR",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

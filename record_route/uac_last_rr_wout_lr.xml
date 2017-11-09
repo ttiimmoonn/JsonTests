@@ -13,15 +13,15 @@
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
         <assignstr assign_to="send_via" value="Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-Via: SIP/2.0/UDP t1.ru:5030;branch=z9hG4bK-12385-1-19
-Via: SIP/2.0/UDP t2.domain.com:5030;branch=z9hG4bK-12385-1-20
+Via: SIP/2.0/UDP proxy2.eltex.ru:5030;branch=z9hG4bK-12385-1-19
+Via: SIP/2.0/UDP proxy1.eltex.ru:5030;branch=z9hG4bK-12385-1-20
 "/>
         <assignstr assign_to="rr_in_response" value="Record-Route: <sip:[local_ip]:[local_port]>
-Record-Route: <sip:t1.ru;lr>
-Record-Route: <sip:t2.ru;lr>
+Record-Route: <sip:proxy2.eltex.ru;lr>
+Record-Route: <sip:proxy1.eltex.ru;lr>
 "/>
-        <assignstr assign_to="route_in_request" value="Route: <sip:t1.ru;lr>
-Route: <sip:t2.ru;lr>
+        <assignstr assign_to="route_in_request" value="Route: <sip:proxy2.eltex.ru;lr>
+Route: <sip:proxy1.eltex.ru;lr>
 Route: <sip:[service]@[local_ip]:[local_port]>
 "/>
     </action>
@@ -237,8 +237,8 @@ Route: <sip:[service]@[local_ip]:[local_port]>
 <nop>
     <action>
         <assignstr assign_to="send_via" value="Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-Via: SIP/2.0/UDP t1.ru:5030;branch=z9hG4bK-12385-1-19
-Via: SIP/2.0/UDP t2.domain.com:5030;branch=z9hG4bK-12385-1-20
+Via: SIP/2.0/UDP proxy2.eltex.ru:5030;branch=z9hG4bK-12385-1-19
+Via: SIP/2.0/UDP proxy1.eltex.ru:5030;branch=z9hG4bK-12385-1-20
 "/>
     </action>
 </nop>
