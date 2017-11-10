@@ -303,6 +303,82 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "send_180_wout_sdp_after_183_with_sdp",
+      "Description": "Проверка обработки 180 сообщения без sdp, после обработки 183 с sdp",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_180_WOUT_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_180_wout_sdp_after_183.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_183_wout_sdp_after_180_with_sdp",
+      "Description": "Проверка обработки 183 сообщения без sdp, после обработки 180 с sdp",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_183_WOUT_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_183_wout_sdp_after_180.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
