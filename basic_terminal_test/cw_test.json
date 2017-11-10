@@ -329,6 +329,71 @@
           "Sleep" : 4
         }
       ]
+    },
+    {
+      "Name": "cw_flash_invalid_digit_test",
+      "Description": "Делаем два вызова на юзера, ставим вызов на hold, нажимаем 3, ничего не должно произойти. Снимаем с hold, снова ставим и нажимаем 0 - второй вызов будет отклонён.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "UAC_CW_INV_DIG_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/cw_uac_send_invalid_digit.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DIGIT 0 -set INV_DIGIT 3",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "BackGround" : true,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_487",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uac_recv_487.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 4
+        }
+      ]
     }
   ]
 }
