@@ -17,7 +17,7 @@
     {
       "TrunkId" : 1,
       "TrunkName" : "rfc3261_oa_trunk",
-      "Port" : 5094,
+      "Port" : 5070,
       "SipDomain" : "pv.ssw3",
       "SipGroup" : "test.trunks"
     }
@@ -26,7 +26,7 @@
     {
       "%%to_trunk_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19yZmMzMjYyX3RydW5rIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0icmZjMzI2MV9vYV90cnVuayIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
       "%%ctx_name%%" : "to_rfc3262_trunk",
-      "%%manual_user%%" : "sip.ab 109@pv.ssw3"
+      "%%manual_user%%" : "sip.ab 113@pv.ssw3"
     }
   ],
   "PreConf": [
@@ -40,9 +40,9 @@
   "PostConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2" : "/domain/%%DEV_DOM%%/iface /user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default.routing",
+      "command2" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
       "command3" : "/domain/%%DEV_DOM%%/routing/delete %%ctx_name%%",
-      "command4" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context default.routing"
+      "command4" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context default_routing"
     }
   ],
   "Tests": [
