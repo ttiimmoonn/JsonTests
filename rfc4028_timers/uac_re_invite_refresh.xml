@@ -141,26 +141,6 @@
 
 <recv request="ACK"></recv> 
 
-<pause milliseconds="40000" crlf="true"/>
-
-<recv request="OPTIONS">
-</recv>
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Supported: timer
-    Allow: INVITE, ACK, CANCEL, BYE
-    Content-Length: 0
-]]>
-</send>
-
-
-
 <recv request="INVITE">
     <action>
         <assign assign_to="dummy" value="" />

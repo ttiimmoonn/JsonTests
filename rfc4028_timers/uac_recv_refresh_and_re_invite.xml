@@ -135,10 +135,6 @@
 
 <recv request="ACK"> </recv>
 
-<!-- 
-Поскольку INVITE отослали без allow header, то ждём OPTIONS
-в ответе говорим, что мы не поддерживаем UPDATE.
- -->
 <!--Ищём Session-Expires в INVITE -->
 
 <recv request="INVITE">

@@ -71,6 +71,7 @@
     [last_Call-ID:]
     [last_CSeq:]
     Require: timer
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Session-Expires: [$se];refresher=uac
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Content-Type: application/sdp
@@ -93,27 +94,6 @@
 -->
 
 <pause milliseconds="40000"/>
-
-<!--
-	Поскольку не перевали Allow header
-	Принимаем OPTIONS и говорим, что поддерживаем UPDATE
--->
-
-<recv request="OPTIONS"></recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Supported: timer
-    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
-    Content-Length: 0
-]]>
-</send>
 
 <!--
 	Принимаем UPDATE и ищём Session-Expires:
