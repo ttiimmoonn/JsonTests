@@ -6,14 +6,14 @@
         "%%TEMP_PATH%%" : "/tmp/sipp_test/temp",
         "%%LOG_PATH%%" : "/tmp/sipp_test/log",
         "%%IP%%" : "192.168.118.249",
-        "%%SERV_IP%%" : "192.168.118.241",
-        "%%EXTER_IP%%" : "192.168.118.243",
+        "%%SERV_IP%%" : "192.168.118.253",
+        "%%EXTER_IP%%" : "192.168.118.251",
         "%%EXTER_PORT%%" : "5061",
         "%%DEV_USER%%" : "admin",
         "%%DEV_PASS%%" : "password",
-        "%%DEV_DOM%%" : "pv.ssw3",
+        "%%DEV_DOM%%" : "test.domain",
         "%%SSW_DEF_ROUTE%%" : "default_routing",
-        "%%SSW_IPSET%%" : "pv.ssw3.ip"
+        "%%SSW_IPSET%%" : "test.domain"
     }
 ]
 }
