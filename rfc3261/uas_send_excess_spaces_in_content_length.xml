@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAS send asdp in 181 183 180">
+<scenario name = "UAS send excess spaces in 181 183 180">
 
 <User variables="chk_sdp,dummy"/>
 <Reference variables="chk_sdp,dummy" />
