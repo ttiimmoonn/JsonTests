@@ -10,7 +10,7 @@
 <recv request="INVITE">
 <action>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
-    <ereg regexp="sip:([^;@]+)" search_in="msg" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp="sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
@@ -185,7 +185,7 @@
 
 <send crlf="true">
 <![CDATA[
-    ACK sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
+    ACK sip:[$refer_num]@[$remote_ip]:[$remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
