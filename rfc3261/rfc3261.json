@@ -200,6 +200,46 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "excess_spaces_in_content_length",
+      "Description": "Проверка обработки 1xx ответов в случае наличия лишних пробелов в content-length. Bug #90084",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_EXCESS_SPACES_IN_CL",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_send_excess_spaces_in_content_length.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
