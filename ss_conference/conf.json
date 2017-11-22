@@ -1,0 +1,170 @@
+{
+  "TestName": "ss_conference",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10105,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10106,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "pv.ssw3",
+      "Expires" : 90,
+      "Port" : 10107,
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+      "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
+      "command6": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+      "command7": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
+    }
+  ],
+  "PostConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+      "command1": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
+      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+      "command7": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "create_conf_refer_to_focus",
+      "Description": "Тест конференции refer2focus",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS1_REFER_TO_FOCUS",
+              "Commands": [
+                {
+                  "SourceFile": "ss_conference/conf_refer_to_focus.xml",
+                  "Options": "-m 1 -set CALL2_NUMBER %%1.Number%% -set CALL2_DOMAIN %%1.SipDomain%% -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 4000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "create_conf_refer_to_user",
+      "Description": "Тест конференции refer2user",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS1_REFER_TO_USER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_conference/conf_refer_to_user.xml",
+                  "Options": "-m 1 -set CALL2_NUMBER %%1.Number%% -set CALL2_DOMAIN %%1.SipDomain%% -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 4000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
