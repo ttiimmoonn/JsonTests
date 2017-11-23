@@ -6,7 +6,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 3600,
       "Port" : 11106,
       "SipGroup": "sip.ab",

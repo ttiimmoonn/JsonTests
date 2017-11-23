@@ -7,7 +7,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "SipGroup": "sip.ab",
       "Port" : 10116,
@@ -19,7 +19,7 @@
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "Port" : 10117,
       "QParam" : 1
