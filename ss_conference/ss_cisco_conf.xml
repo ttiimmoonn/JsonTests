@@ -225,7 +225,7 @@
 <!-- Cisco not set call_2 to hold state --> 
 
 
-<!-- Create conf by offer --> 
+<!-- Create conf --> 
 
 <send retrans="500">
 <![CDATA[
