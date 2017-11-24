@@ -165,6 +165,57 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "create_conf_like_cisco",
+      "Description": "Тест сбора cisco конференции",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS1_CREATE_CONF_LIKE_CISCO",
+              "Commands": [
+                {
+                  "SourceFile": "ss_conference/ss_cisco_conf.xml",
+                  "Options": "-m 2 -set CALL2_NUMBER %%1.Number%% -set CALL2_DOMAIN %%1.SipDomain%% -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 4000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
