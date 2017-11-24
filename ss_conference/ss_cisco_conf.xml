@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<scenario name = "uas_create_conf_like_cisco">
+<Global variables="CALL2_NUMBER,CALL2_DOMAIN"/>
+<User variables="conf_num,conf_dom,test_sipfrag_100,test_sipfrag_200,custom_test,call2_number,call2_sipdomain" />
+<Reference variables="test_sipfrag_100,test_sipfrag_200,custom_test" />
+
+
+<recv request="REFER" optional="true" next="handle_unhold_refer">
+    <action>
+        <ereg regexp="holdretrievereq" search_in="msg" check_it="true" assign_to="dummy" />
+    </action>
+</recv>
+
+<recv request="INVITE">
+<action>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag_call_1" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" check_it="true" assign_to="inv_cseq" />
+    <ereg regexp=".*" search_in="hdr" header="From:" check_it="true" assign_to="inv_from" />
+    <ereg regexp=".*" search_in="hdr" header="To:" check_it="true" assign_to="inv_to" />
+    <ereg regexp=".*" search_in="hdr" header="Via:" check_it="true" assign_to="inv_via" />
+    <ereg regexp="\s(.*)" search_in="hdr" header="Call-ID:" check_it="true" assign_to="dummy,my_call_id" />
+    <assignstr assign_to="local_tag_call_1" value="[call_number][pid]call1"/>
+    <assignstr assign_to="local_tag_call_2" value="[call_number][pid]call2"/>
+    <assignstr assign_to="local_tag_conf" value="[call_number][pid]conf"/>
+    <assignstr assign_to="conf_num" value="*71#"/>
+    <assignstr assign_to="conf_dom" value="[$local_domain]"/>
+    <assignstr assign_to="call2_number" value="[$CALL2_NUMBER]"/>
+    <assignstr assign_to="call2_sipdomain" value="[$CALL2_DOMAIN]"/>
+    <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="node_ip" />
+</action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag_call_1]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    Via:[$inv_via]
+    From:[$inv_from]
+    To:[$inv_to];tag=[$local_tag_call_1]
+    [last_call-id]
+    CSeq: [$inv_cseq] INVITE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 10000 10000 IN IP[local_ip_type] [local_ip]
+    s=Cisco Conf Test
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
+]]>
+</send>
+
+<recv request="ACK" crlf="true"/>
+
+<nop hide="true">
+   <action>
+        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,-1,0" />
+     </action>
+</nop>
+
+
+<pause milliseconds="5000" crlf="true" />
+
+
+<nop hide="true">
+    <action>
+        <setdest host="[$node_ip]" port="[remote_port]" protocol="UDP" />
+        <exec rtp_stream="pause" />
+    </action>
+</nop>
+
+<!-- Hold call_1 --> 
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag_call_1]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag_call_1]
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 10000 10001 IN IP[local_ip_type] [local_ip]
+    s=Cisco Conf Test
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=sendonly
+]]>
+</send>
+
+<recv response="100" optional="true"/>
+<recv response="200">
+        <action>
+            <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        </action>
+</recv>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="1000"/>
+
+
+<!-- Make call_2 -->
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$call2_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag_call_2]
+    To: <sip:[$call2_number]@[$call2_sipdomain]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 20000 20000 IN IP[local_ip_type] [local_ip]
+    s=Cisco Conf Test
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv response="401" auth="true" next="inv_auth_call_2" optional="true">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+</recv>
+<label id="recv_100_call_2"/>
+<recv response="100" optional="true"></recv>
+<recv response="180" optional="true"></recv>
+<recv response="183" optional="true"></recv>
+<recv response="200">
+        <action>
+            <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,remote_tag_call_2" />
+            <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        </action>
+</recv>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$call2_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true">
+<action>
+        <exec rtp_stream="resume" />
+</action>
+</nop>
+
+<pause milliseconds="1000"/>
+
+<nop hide="true">
+<action>
+        <exec rtp_stream="pause" />
+</action>
+</nop>
+
+<!-- Cisco not set call_2 to hold state --> 
+
+
+<!-- Create conf by offer --> 
+
+<send retrans="500">
+<![CDATA[
+    REFER sip:[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag_conf]
+    To: <sip:[$conf_dom]>
+    [last_call-id]
+    CSeq: [cseq] REFER
+    Accept: application/x-cisco-remotecc-response+xml
+    Expires: 60
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Referred-By: "[$local_number]" <sip:[$local_number]@[$local_domain]>
+    Refer-To: cid:2b4f156a@[$local_domain]
+    Content-Id: <2b4f156a@[$local_domain]>
+    Max-Forwards: 70
+    Content-Type: application/x-cisco-remotecc-request+xml
+    Content-Disposition: session;handling=required
+    Content-Length: [len]
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <x-cisco-remotecc-request>
+      <softkeyeventmsg>
+        <softkeyevent>Conference</softkeyevent>
+        <dialogid>
+          <callid>[$my_call_id]</callid>
+          <localtag>[$local_tag_call_1]</localtag>
+          <remotetag>[$remote_tag_call_1]</remotetag>
+        </dialogid>
+        <linenumber>0</linenumber>
+        <participantnum>0</participantnum>
+        <consultdialogid>
+          <callid>[$my_call_id]</callid>
+          <localtag>[$local_tag_call_1]</localtag>
+          <remotetag>[$remote_tag_call_1]</remotetag>
+        </consultdialogid>
+        <state>false</state>
+        <joindialogid>
+          <callid></callid>
+          <localtag></localtag>
+          <remotetag></remotetag>
+        </joindialogid>
+        <eventdata>
+          <invocationtype>explicit</invocationtype>
+        </eventdata>
+        <userdata></userdata>
+        <softkeyid>0</softkeyid>
+        <applicationid>0</applicationid>
+      </softkeyeventmsg>
+    </x-cisco-remotecc-request>
+]]>
+</send>
+
+
+<recv response="401" auth="true" next="refer_auth" optional="true">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+</recv>
+
+
+<label id="recv_202_to_refer"/>
+
+
+<recv response="202"></recv>
+
+<recv request="NOTIFY|BYE" regexp_match="true"/>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="NOTIFY|BYE" regexp_match="true"/>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<!-- ToDo How to chk REFER ??? Now Refer handl in oocsn --> 
+<recv request="NOTIFY">
+    <action>
+        <ereg regexp="terminated;reason=noresource" search_in="hdr" header="Subscription-State:" check_it="true" assign_to="dummy" />
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send retrans="500">
+<![CDATA[
+    INVITE sip:[$remote_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag_call_1]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag_call_1]
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 10000 10001 IN IP[local_ip_type] [local_ip]
+    s=Cisco Conf Test
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 0
+    a=rtpmap:0 PCMU/8000
+    a=sendrecv
+]]>
+</send>
+<recv response="100" optional="true"/>
+
+<recv response="200">
+        <action>
+            <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        </action>
+</recv>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$remote_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+
+<nop hide="true">
+    <action>
+        <exec rtp_stream="resume" />
+    </action>
+</nop>
+
+<pause milliseconds="7000"/>
+
+<!-- Terminate conf call -->
+
+<send>
+<![CDATA[
+    BYE sip:[$remote_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag_call_1]
+    To: <sip:[$remote_number]@[$conf_dom]>;tag=[$remote_tag_call_1]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="end"/>
+
+
+<label id="refer_auth"/>
+
+
+
+<send next="recv_202_to_refer" crlf="true">
+<![CDATA[
+    REFER sip:[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag_conf]
+    To: <sip:[$conf_dom]>
+    [last_call-id]
+    [authentication]
+    CSeq: [cseq] REFER
+    Accept: application/x-cisco-remotecc-response+xml
+    Expires: 60
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Referred-By: "[$local_number]" <sip:[$local_number]@[$local_domain]>
+    Refer-To: cid:2b4f156a@[$local_domain]
+    Content-Id: <2b4f156a@[$local_domain]>
+    Max-Forwards: 70
+    Content-Type: application/x-cisco-remotecc-request+xml
+    Content-Disposition: session;handling=required
+    Content-Length: [len]
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <x-cisco-remotecc-request>
+      <softkeyeventmsg>
+        <softkeyevent>Conference</softkeyevent>
+        <dialogid>
+          <callid>[$my_call_id]</callid>
+          <localtag>[$local_tag_call_1]</localtag>
+          <remotetag>[$remote_tag_call_1]</remotetag>
+        </dialogid>
+        <linenumber>0</linenumber>
+        <participantnum>0</participantnum>
+        <consultdialogid>
+          <callid>[$my_call_id]</callid>
+          <localtag>[$local_tag_call_2]</localtag>
+          <remotetag>[$remote_tag_call_2]</remotetag>
+        </consultdialogid>
+        <state>false</state>
+        <joindialogid>
+          <callid></callid>
+          <localtag></localtag>
+          <remotetag></remotetag>
+        </joindialogid>
+        <eventdata>
+          <invocationtype>explicit</invocationtype>
+        </eventdata>
+        <userdata></userdata>
+        <softkeyid>0</softkeyid>
+        <applicationid>0</applicationid>
+      </softkeyeventmsg>
+    </x-cisco-remotecc-request>
+]]>
+</send>
+
+<label id="inv_auth_call_2"/>
+
+
+<send>
+<![CDATA[
+    ACK sip:[$call2_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<send next="recv_100_call_2" crlf="true">
+<![CDATA[
+    INVITE sip:[$call2_number]@[$node_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag_call_2]
+    To: <sip:[$call2_number]@[$call2_sipdomain]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    [authentication]
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 30000 30000 IN IP[local_ip_type] [local_ip]
+    s=Cisco Conf Test
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+  ]]>
+</send>
+
+<label id="handle_unhold_refer"/>
+
+<send next="end">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+<label id="end"/>
+</scenario>
