@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 
 <scenario name = "uas_create_conf_like_cisco">
-<Global variables="CALL2_NUMBER,CALL2_DOMAIN"/>
+<Global variables="CALL2_NUMBER,CALL2_DOMAIN,REFER_RECV"/>
 <User variables="conf_num,conf_dom,test_sipfrag_100,test_sipfrag_200,custom_test,call2_number,call2_sipdomain" />
 <Reference variables="test_sipfrag_100,test_sipfrag_200,custom_test" />
 
@@ -10,6 +10,7 @@
 <recv request="REFER" optional="true" next="handle_unhold_refer">
     <action>
         <ereg regexp="holdretrievereq" search_in="msg" check_it="true" assign_to="dummy" />
+        <assignstr assign_to="REFER_RECV" value="true"/>
     </action>
 </recv>
 
@@ -324,7 +325,7 @@
 </send>
 
 
-<!-- ToDo How to chk REFER ??? Now Refer handl in oocsn --> 
+<!-- ToDo How to chk REFER ??? Now Refer is handle in oocsn --> 
 <recv request="NOTIFY">
     <action>
         <ereg regexp="terminated;reason=noresource" search_in="hdr" header="Subscription-State:" check_it="true" assign_to="dummy" />
