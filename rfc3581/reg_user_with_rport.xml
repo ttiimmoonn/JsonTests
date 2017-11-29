@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "user_registr">
+
+<Global variables="DOMAIN,PORT,EXPIRES,NUMBER,USER_Q,USER_IP,FAKE_IP,FAKE_PORT" />
+<User variables="user_dom,user_port,user_exp,user_number,user_q,server_exp,dummy" />
+<Reference variables="server_exp,dummy,USER_IP"/>
+
+
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="user_port" value="[$PORT]"/>
+        <assignstr assign_to="user_dom" value="[$DOMAIN]"/>
+        <assignstr assign_to="user_exp" value="[$EXPIRES]"/>
+        <assignstr assign_to="user_number" value="[$NUMBER]"/>
+        <assignstr assign_to="user_q" value="[$USER_Q]"/>
+        <assignstr assign_to="fake_ip" value="[$FAKE_IP]"/>
+        <assignstr assign_to="fake_port" value="[$FAKE_PORT]"/>
+    </action>
+    </nop>
+
+
+
+<send retrans="500">
+<![CDATA[
+    REGISTER sip:[remote_ip] SIP/2.0
+    Via: SIP/2.0/[transport] [$fake_ip]:[$fake_port];rport;branch=[branch]
+    From: <sip:[$user_number]@[$user_dom]>;tag=[call_number]
+    To: <sip:[$user_number]@[$user_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] REGISTER
+    Contact: <sip:[$user_number]@[$fake_ip]:[$fake_port];transport=[transport]>;q=[$user_q]
+    Content-Length: 0
+    Expires: [$user_exp]
+    Max-Forwards: 70
+]]>
+</send>
+
+<recv response="401" auth="true"></recv>
+
+<send retrans="500">
+<![CDATA[
+    REGISTER sip:[remote_ip] SIP/2.0
+    Via: SIP/2.0/[transport] [$fake_ip]:[$fake_port];rport;branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] REGISTER
+    Contact: <sip:[$user_number]@[$fake_ip]:[$fake_port];transport=[transport]>;q=[$user_q]
+    [authentication]
+    Content-Length: 0
+    Expires: [$user_exp]
+    Max-Forwards: 70
+]]>
+</send>
+
+<recv response="200"/>
+
+
+</scenario>

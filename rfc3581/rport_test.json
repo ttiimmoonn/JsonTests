@@ -2,41 +2,40 @@
   "TestName": "rport_test",
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5,
+      "RegMode": "Manual"
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
-
-
   "UserVar": [
     {}
   ],
@@ -48,17 +47,28 @@
     {
     }
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "call_with_rport",
-      "Description": "Подставляем в Via левый порт и пустой rport. Ответы должны будут приходить на порт из rport (значение порта подставляет сервер).",
+      "Description": "Подставляем в Via: левый port:ip, а также rport. Ответы должны будут приходить на порт из rport и ip из received (значение порта подставляет сервер).",
       "TestProcedure": [
-      {
+        {
+          "ManualReg": {
+            "Users": {
+              "0": {
+                "script": "rfc3581/reg_user_with_rport.xml",
+                "expires": 90,
+                "additional_options": "-set FAKE_IP 1.1.1.1 -set FAKE_PORT 1000"
+              }
+            }
+          }
+        },
+        {
           "StartUA": [
             {
-              "Type" : "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -71,14 +81,57 @@
               ]
             },
             {
-              "Type" : "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_RPORT",
               "Commands": [
                 {
                   "SourceFile": "rfc3581/uac_rport.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set FAKE_PORT 1000",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set FAKE_PORT 1000 -set FAKE_IP 1.1.1.1",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "DropManualReg": {
+            "Users": [
+              "0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "Name": "call_without_rport",
+      "Description": "Подставляем в Via левый порт. Ответы не должны приходить",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Users": {
+              "0": {
+                "script": "rfc3581/reg_no_answer.xml",
+                "expires": 90,
+                "additional_options": "-set FAKE_IP 1.1.1.1 -set FAKE_PORT 1000"
+              }
+            }
+          }
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_RPORT",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3581/uac_no_answer.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set FAKE_PORT 1000 -set FAKE_IP 1.1.1.1",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -90,25 +143,65 @@
       ]
     },
     {
-      "Name": "call_without_rport",
-      "Description": "Подставляем в Via левый порт. Ответы не должны приходить",
+      "Name": "call_without_rport_nat_traversal_enabled",
+      "Description": "Подставляем в Via левый ip:порт и включаем nat_traversal. Лёха сказал, что реги и звонки будут ходить) Bug: #90868",
       "TestProcedure": [
-      {
+        {
+          "SendSSHCommand": [
+            {
+              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal true"
+            }
+          ]
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "0": {
+                "script": "rfc3581/reg_user_without_rport.xml",
+                "expires": 90,
+                "additional_options": "-set FAKE_IP 1.1.1.1 -set FAKE_PORT 1000"
+              }
+            }
+          }
+        },
+        {
           "StartUA": [
             {
-              "Type" : "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "Name": "UAC_SEND_RPORT",
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "rfc3581/uac_no_answer.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set FAKE_PORT 1000",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_WOUT_RPORT",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3581/uac_wout_rport.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set FAKE_PORT 1000 -set FAKE_IP 1.1.1.1",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal false"
             }
           ]
         }
