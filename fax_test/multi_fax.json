@@ -10,6 +10,7 @@
       "SipDomain": "pv.ssw3",
       "Expires" : 3600,
       "Port" : 11109,
+      "RtpPort" : 20018,
       "SipGroup": "sip.ab",
       "QParam" : 0.5
     }
