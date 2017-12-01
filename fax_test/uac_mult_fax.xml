@@ -108,6 +108,7 @@
 <!--
     Передаём факс
 -->
+<pause milliseconds="4000"/>
 <nop>
 <action>
      <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
@@ -179,6 +180,7 @@
 <!--
     Передаём факс
 -->
+<pause milliseconds="4000"/>
 <nop>
 <action>
      <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
