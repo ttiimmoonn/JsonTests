@@ -161,6 +161,24 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "test_reg_retransmissions",
+      "Description": "Регистрируем пользователя. Делаем перерегистрацию при этом игнорируя 401 ответ. После отправки второго REGISTER обрабатываем 401.",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Users": {
+              "3": {
+                "script": "register_test/succ_reg_with_retrans.xml",
+                "expires" : 90,
+                "need_drop" : true,
+                "additional_options": " -nr"
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }
