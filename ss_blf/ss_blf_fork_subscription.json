@@ -85,7 +85,7 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_fork_test blf_fork_test blf %%3.Number%% %%0.Number%% %%4.Number%% %%5.Number%% %%6.Number%%",
+      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_fork_test blf blf_fork_test %%3.Number%% %%0.Number%% %%4.Number%% %%5.Number%% %%6.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
       "command3" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10",
       "command4" : "/domain/%%DEV_DOM%%/lists/info blf_fork_test",

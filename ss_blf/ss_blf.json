@@ -41,7 +41,7 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_test blf_test blf %%0.Number%% %%1.Number%% %%2.Number%%",
+      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_test blf blf_test %%0.Number%% %%1.Number%% %%2.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
       "command3" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
       "command4" : "/domain/%%DEV_DOM%%/lists/info blf_test"

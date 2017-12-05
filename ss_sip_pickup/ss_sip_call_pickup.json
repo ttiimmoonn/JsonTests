@@ -42,7 +42,7 @@
   "PreConf": [
     {
       "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} pickup",
-      "command2" : "/domain/%%DEV_DOM%%/lists/declare blf_for_sip_call_pick_up blf_for_sip_call_pick_up blf %%0.Number%% %%1.Number%% %%2.Number%%",
+      "command2" : "/domain/%%DEV_DOM%%/lists/declare blf_for_sip_call_pick_up blf blf_for_sip_call_pick_up %%0.Number%% %%1.Number%% %%2.Number%%",
       "command3" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
       "command4" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10"
     }

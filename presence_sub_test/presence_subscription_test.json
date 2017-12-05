@@ -42,7 +42,7 @@
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/lists/declare simple_presence_test simple_presence_test presence %%0.Number%% %%1.Number%% %%2.Number%%",
+      "command1": "/domain/%%DEV_DOM%%/lists/declare simple_presence_test presence simple_presence_test %%0.Number%% %%1.Number%% %%2.Number%%",
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
       "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 2"
     }

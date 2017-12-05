@@ -74,7 +74,7 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare presence_restrict presence_restrict presence %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
+      "command1" : "/domain/%%DEV_DOM%%/lists/declare presence_restrict presence presence_restrict %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% presence",
       "command3" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% presence max_subscribe = 10",
       "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
@@ -578,8 +578,8 @@
         {
           "SendSSHCommand": [
             {
-              "command1" : "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_1 presence_neighbor_list_1 presence %%0.Number%% %%4.Number%%",
-              "command2" : "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_2 presence_neighbor_list_2 presence %%2.Number%% %%5.Number%%",
+              "command1" : "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_1 presence presence_neighbor_list_1 %%0.Number%% %%4.Number%%",
+              "command2" : "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_2 presence presence_neighbor_list_2 %%2.Number%% %%5.Number%%",
               "command3" : "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_neighbor_list_1 priority low %%0.Number%%",
               "command4" : "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_neighbor_list_2 priority high %%2.Number%%",
               "command5" : "/domain/%%DEV_DOM%%/lists/info presence_restrict",

@@ -85,7 +85,7 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_restriction blf_restriction blf %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
+      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_restriction blf blf_restriction %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
       "command3" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10",
       "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
@@ -668,8 +668,8 @@
         {
           "SendSSHCommand": [
             {
-              "command1" : "/domain/%%DEV_DOM%%/lists/declare neighbor_list_1 neighbor_list_1 blf %%0.Number%% %%4.Number%%",
-              "command2" : "/domain/%%DEV_DOM%%/lists/declare neighbor_list_2 neighbor_list_2 blf %%2.Number%% %%5.Number%%",
+              "command1" : "/domain/%%DEV_DOM%%/lists/declare neighbor_list_1 blf neighbor_list_1 %%0.Number%% %%4.Number%%",
+              "command2" : "/domain/%%DEV_DOM%%/lists/declare neighbor_list_2 blf neighbor_list_2 %%2.Number%% %%5.Number%%",
               "command3" : "/domain/%%DEV_DOM%%/lists/numbers-set-property neighbor_list_1 priority low %%0.Number%%",
               "command4" : "/domain/%%DEV_DOM%%/lists/numbers-set-property neighbor_list_2 priority high %%2.Number%%",
               "command5" : "/domain/%%DEV_DOM%%/lists/info blf_restriction",
