@@ -126,8 +126,6 @@
    ]]>
 </sendCmd>
 
-<pause/>
-
 <send retrans="500">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0

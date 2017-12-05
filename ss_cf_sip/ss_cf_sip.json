@@ -54,8 +54,8 @@
   ],
 "Tests": [
     {
-      "Name": "Moved Temporarily test",
-      "Description": "Moved Temporarily test",
+      "Name": "succ_cf_sip_redirect",
+      "Description": "Звоним на юзера с cf_sip, который делает переадресацию посредством 302 ответа на существующий номер",
       "TestProcedure": [
         {
           "StartUA": [
@@ -95,6 +95,58 @@
               "Commands": [
                 {
                   "SourceFile": "ss_cf_sip/uac_recv_181.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "fail_cf_sip_redirect",
+      "Description": "Звоним на юзера с cf_sip, который делает переадресацию посредством 302 ответа на несуществующий номер",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_302",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
+                  "Options": "-m 1 -set FORW_USER 0987654321 -set FORW_DOMAIN test.domain",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
+                  "Options": "-m 1 -set FORW_USER alisa -set FORW_DOMAIN alisa.com",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAC_RECV_404",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cf_sip/uac_recv_404.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "ss_cf_sip/uac_recv_404.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

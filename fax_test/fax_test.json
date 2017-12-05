@@ -11,6 +11,7 @@
       "Expires" : 3600,
       "Port" : 11106,
       "SipGroup": "sip.ab",
+      "RtpPort" : "20010",
       "QParam" : 0.5
     },
     {
@@ -22,6 +23,7 @@
       "Expires" : 3600,
       "Port" : 11107,
       "SipGroup": "sip.ab",
+      "RtpPort" : "20012",
       "QParam" : 1
     },
     {
@@ -32,6 +34,7 @@
       "SipDomain": "%%DEV_DOM%%",
       "Expires" : 3600,
       "Port" : 11108,
+      "RtpPort" : "20014",
       "SipGroup": "sip.ab",
       "QParam" : 1
     },
@@ -43,6 +46,7 @@
       "SipDomain": "%%DEV_DOM%%",
       "Expires" : 3600,
       "Port" : 11109,
+      "RtpPort" : "20016",
       "SipGroup": "sip.ab",
       "QParam" : 1
     }

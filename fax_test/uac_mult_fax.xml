@@ -32,7 +32,7 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 8
+    m=audio [media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
@@ -95,7 +95,7 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 0
+    m=audio [media_port] RTP/AVP 0
     a=rtpmap:0 PCMU/8000
     a=ecan:fb on -
     a=silenceSupp:off - - - -
@@ -108,6 +108,7 @@
 <!--
     Передаём факс
 -->
+<pause milliseconds="4000"/>
 <nop>
 <action>
      <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
@@ -138,7 +139,7 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 8
+    m=audio [media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
@@ -166,7 +167,7 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 0
+    m=audio [media_port] RTP/AVP 0
     a=rtpmap:0 PCMU/8000
     a=ecan:fb on -
     a=silenceSupp:off - - - -
@@ -179,6 +180,7 @@
 <!--
     Передаём факс
 -->
+<pause milliseconds="4000"/>
 <nop>
 <action>
      <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
@@ -209,7 +211,7 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 8
+    m=audio [media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
@@ -270,7 +272,7 @@
     s=A conversation
     c=IN IP[local_ip_type] [local_ip]
     t=0 0
-    m=audio [auto_media_port] RTP/AVP 8
+    m=audio [media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
