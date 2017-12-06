@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_cfnr_chk_dname",
+  "TestName": "dname_tests",
   "AutoTest": true,
   "Users": [
     {
