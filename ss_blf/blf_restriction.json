@@ -7,7 +7,7 @@
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "test.pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "SipGroup": "sip.ab",
       "Port" : 10105,
@@ -18,7 +18,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "test.pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "SipGroup": "sip.ab",
       "Port" : 10106,
@@ -30,7 +30,7 @@
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "test.pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "Port" : 10107,
       "QParam" : 1
@@ -41,7 +41,7 @@
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "test.pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "Port" : 10108,
       "QParam" : 1
@@ -52,7 +52,7 @@
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "test.pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "Port" : 10109,
       "QParam" : 1
@@ -63,7 +63,7 @@
       "Login": "161",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "test.pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "Port" : 10110,
       "QParam" : 1
@@ -74,7 +74,7 @@
       "Login": "162",
       "Password": "123",
       "SipGroup": "sip.ab",
-      "SipDomain": "test.pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "Port" : 10111,
       "QParam" : 1
