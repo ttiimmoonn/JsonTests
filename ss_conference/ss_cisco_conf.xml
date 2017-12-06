@@ -2,11 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 
 <scenario name = "uas_create_conf_like_cisco">
-<<<<<<< HEAD
-<Global variables="CALL2_NUMBER,CALL2_DOMAIN,REFER_RECV"/>
-=======
 <Global variables="CALL2_NUMBER,CALL2_DOMAIN"/>
->>>>>>> ecss.3.9.0
 <User variables="conf_num,conf_dom,test_sipfrag_100,test_sipfrag_200,custom_test,call2_number,call2_sipdomain" />
 <Reference variables="test_sipfrag_100,test_sipfrag_200,custom_test" />
 
