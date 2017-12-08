@@ -11,7 +11,8 @@
       "SipGroup": "sip.ab",
       "Port": 10105,
       "QParam": 0.5,
-      "RegMode": "Manual"
+      "RegMode": "Manual",
+      "BindPort": 10105
     },
     {
       "UserId": 1,
@@ -204,6 +205,13 @@
               "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal false"
             }
           ]
+        },
+        {
+          "DropManualReg": {
+            "Users": [
+              "0"
+            ]
+          }
         }
       ]
     }
