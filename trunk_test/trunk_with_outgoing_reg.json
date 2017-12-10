@@ -294,6 +294,15 @@
           ]
         },
         {
+          "SendSSHCommand": [
+            {
+                "command1": "/domain/pv.ssw3/trunk/sip/info sip.tr %%Tr.1.TrunkName%%",
+                "command2": "/domain/pv.ssw3/iface/info * sip.tr %%Tr.1.TrunkName%%",
+                "command3": "/domain/pv.ssw3/iface/info * sip.tr %%Tr.1.TrunkName%%"
+            }
+          ]
+        },
+        {
           "StartUA": [
             {
               "Type": "User",
@@ -302,7 +311,7 @@
               "Name": "UAC_TEST",
               "Commands": [
                 {
-                  "SourceFile": "options_control_test/uac_recv_502.xml",
+                  "SourceFile": "trunk_test/uac_recv_480.xml",
                   "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
