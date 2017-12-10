@@ -1,5 +1,6 @@
 {
   "TestName": "rport_test",
+  "AutoTest" : true,
   "Users": [
     {
       "UserId": 0,
