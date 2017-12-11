@@ -38,22 +38,36 @@
   ],
   "Tests": [
     {
-      "Name": "retrans_prack_after_480",
-      "Description": "Перепосылаем PRACK после отбоя вызова",
+      "Name": "prack_and_cancel_race_test",
+      "Description": "Проверка корректности обработки гонок CANCEL и промежуточного ответа с req100rel",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId" : 0,
-              "Name": "UAC_RETRANS_PRACK",
+              "Name": "UAS_RACE_CANCEL_AND_180_REQ100REL",
               "Commands": [
                 {
-                  "SourceFile": "rfc3262/uac_prack_retrans.xml",
-                  "Options": "-m 50 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SourceFile": "rfc3262/uas_prack_and_cancel_race.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_SEND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_cancel.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "120s"
+                  "Timeout": "100s"
                 }
               ]
             }
