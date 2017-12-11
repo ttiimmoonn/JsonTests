@@ -109,42 +109,6 @@
       ]
     },
     {
-      "Name": "call_without_rport",
-      "Description": "Подставляем в Via левый порт. Ответы не должны приходить",
-      "TestProcedure": [
-        {
-          "ManualReg": {
-            "Users": {
-              "0": {
-                "script": "rfc3581/reg_no_answer.xml",
-                "expires": 90,
-                "additional_options": "-set FAKE_IP 1.1.1.1 -set FAKE_PORT 1000"
-              }
-            }
-          }
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": 0,
-              "WriteStat": true,
-              "Name": "UAC_SEND_RPORT",
-              "Commands": [
-                {
-                  "SourceFile": "rfc3581/uac_no_answer.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set FAKE_PORT 1000 -set FAKE_IP 1.1.1.1",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "60s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "Name": "call_without_rport_nat_traversal_enabled",
       "Description": "Подставляем в Via левый ip:порт и включаем nat_traversal. Лёха сказал, что реги и звонки будут ходить) Bug: #90868",
       "TestProcedure": [
@@ -213,6 +177,42 @@
               "0"
             ]
           }
+        }
+      ]
+    },
+    {
+      "Name": "call_without_rport",
+      "Description": "Подставляем в Via левый порт. Ответы не должны приходить",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Users": {
+              "0": {
+                "script": "rfc3581/reg_no_answer.xml",
+                "expires": 90,
+                "additional_options": "-set FAKE_IP 1.1.1.1 -set FAKE_PORT 1000"
+              }
+            }
+          }
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_RPORT",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3581/uac_no_answer.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set FAKE_PORT 1000 -set FAKE_IP 1.1.1.1",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
