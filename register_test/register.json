@@ -163,8 +163,8 @@
       ]
     },
     {
-      "Name": "test_reg_retransmissions",
-      "Description": "Регистрируем пользователя. Делаем перерегистрацию при этом игнорируя 401 ответ. После отправки второго REGISTER обрабатываем 401.",
+      "Name": "test_reg_and_invite_retransmissions",
+      "Description": "Регистрируем пользователя. Делаем перерегистрацию при этом игнорируя 401 ответ. После отправки второго REGISTER обрабатываем 401. Тоже самое делаем с INVITE",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -172,10 +172,48 @@
               "3": {
                 "script": "register_test/succ_reg_with_retrans.xml",
                 "expires" : 90,
-                "need_drop" : true,
                 "additional_options": " -nr"
               }
             }
+          }
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "register_test/uac_invite_retarans.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -nr",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "DropManualReg": {
+            "Users": [
+              "3"
+            ]
           }
         }
       ]

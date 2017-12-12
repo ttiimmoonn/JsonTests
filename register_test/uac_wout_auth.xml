@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "Trusted IP тест (wout auth)">
+<scenario name = "Register тест UAC (wout auth)">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
     
@@ -19,7 +19,7 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Trusted IP тест (wout auth)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Register тест UAC (wout auth)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
@@ -74,7 +74,7 @@
 <![CDATA[
     BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Trusted IP тест (wout auth)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Register тест UAC (wout auth)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
