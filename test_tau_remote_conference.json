@@ -1,0 +1,203 @@
+{
+	"TestName": "test_tau_remote_conference",
+	"Auto" : false,
+	"Users" : [
+		{
+			"UserId": 0,
+			"Number": "400",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5061,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+		},
+		{
+			"UserId": 1,
+			"Number": "400",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5062,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+		},
+		{
+			"UserId": 2,
+			"Number": "400",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5060,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+		}
+	],
+	"UserVar" : [
+		{
+			"%%PROXY_MODE%%" : "home",
+			"%%PROXY_PORT%%" : "5060",
+			"%%DIALPLAN%%" : "20X@192.168.1.10:5061|30X@192.168.1.10:5062",
+			"%%VOICE_PORT%%" : "1",
+			"%%NUMBER%%" : "401",
+			"%%OPEN_CALL_LIMIT%%" : "1",
+			"%%CALL_RATE%%" : "1",
+			"%%CONFERENCE_SERVER%%" : "conf@%%IP%%:5060"
+		}
+	],
+	"PreConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "configure",
+			"command3" : "sip profile 1",
+			"command4" : "dialplan rule %%DIALPLAN%%",
+			"command5" : "proxy mode %%PROXY_MODE%%",
+			"command6" : "proxy address 1 %%IP%%:%%PROXY_PORT%%",
+			"command7" : "exit",
+			"command8" : "voice port %%VOICE_PORT%%",
+			"command9" : "username %%NUMBER%%",
+			"command10" : "profile sip 1",
+			"command11" : "exit",
+			"command12" : "exit",
+			"command13" : "shell",
+			"command14" : "sed -i \"s/conference_type: [0-9]/conference_type: 1/\" /etc/config/cfg.yaml",
+			"command15" : "sed -i \"s/conference_serv_name: .\\+/conference_serv_name: %%CONFERENCE_SERVER%%/\" /etc/config/cfg.yaml",
+			"command16" : "sed -i \"s/calltransfer: [0-9]/calltransfer: 1/\" /etc/config/cfg.yaml",
+			"command17" : "reloadcfg",
+			"command18" : "exit"
+		}
+	],
+	"PostConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "shell",
+			"command3" : "sed -i \"s/conference_type: [0-9]/conference_type: 0/\" /etc/config/cfg.yaml",
+			"command4" : "sed -i \"s/conference_serv_name: .\\+/conference_serv_name: conf/\" /etc/config/cfg.yaml",
+			"command5" : "reloadcfg",
+			"command6" : "exit"
+		}
+	],
+	"Tests" : [
+		{
+			"Name": "Test_remote_to_focus_conference",
+			"Description": "Позвонить на 200, flash, позвонить на 300, flash+3, услышать разговор",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "ims_conf1",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/ims_conf1.xml",
+									"Options": "-mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						},
+						{
+							"Type": "User",
+							"UserId": 1,
+							"WriteStat" : true,
+							"Name": "ims_conf2",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/ims_conf2.xml",
+									"Options": "-mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						},
+						{
+							"Type": "User",
+							"UserId": 2,
+							"WriteStat" : true,
+							"Name": "conf_server",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/ims_conf3.xml",
+									"Options": "-mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -key PLAY %%SRC_PATH%%/audio/mus_275s.pcap",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_remote_to_user_conference",
+			"Description" : "Позвонить на 200, flash, позвонить на 300, flash+3",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/conference_type: [0-9]/conference_type: 2/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uas1",
+							"Commands": [
+								{
+									"SourceFile": "scr/temp/uas_conf2.xml",
+									"Options": "-mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						},
+						{
+							"Type": "User",
+							"UserId": 1,
+							"WriteStat" : true,
+							"Name": "uas2",
+							"Commands": [
+								{
+									"SourceFile": "scr/temp/uas_conf2.xml",
+									"Options": "-mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						},
+						{
+							"Type": "User",
+							"UserId": 2,
+							"WriteStat" : true,
+							"Name": "conf_server",
+							"Commands": [
+								{
+									"SourceFile": "scr/uas_wo_1xx.xml",
+									"Options": "-mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -rtp_echo",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,61 @@
+{
+	"TestName": "test_tau_opt",
+	"Auto" : false,
+	"Users" : [
+		{
+			"UserId": 0,
+			"Number": "401",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5060,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+		}
+	],
+	"UserVar": [
+		{
+			"%%CSV_FILE%%" : "%%SRC_PATH%%/conf/700000-71.csv",
+			"%%OPEN_CALL_LIMIT%%" : "100000",
+			"%%CALL_RATE%%" : "36"
+		}
+	],
+	"PreConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "shell",
+			"command3" : "sed -i \"s/inbound_proxy: [0-9]/inbound_proxy: 0/\" /etc/config/cfg.yaml",
+			"command4" : "reloadcfg",
+			"command5" : "exit"
+		}
+	],
+	"Tests" : [
+		{
+			"Name" : "Load_test_opt",
+			"Description": "Запрос OPTIONS вне диалога (нагрузочный тест)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "test_opt",
+							"Commands": [
+								{
+									"SourceFile": "scr/request/opt.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -nd",
+									"SippType": "uac",
+									"Timeout" : "60s",
+									"NoTimeOutError" : true
+								} 
+							]
+						} 
+					]
+				}
+			]
+		}
+	]
+}

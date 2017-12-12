@@ -1,0 +1,1476 @@
+{
+	"TestName": "test_tau_uas",
+	"Auto" : false,
+	"Users": [
+		{
+			"UserId": 0,
+			"Number": "400",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 50090,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"  
+	    },
+	    {
+	    	"UserId": 1,
+			"Number": "500",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5060,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"  	
+	    },
+	    {
+	        "UserId": 2,
+			"Number": "600",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5070,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"	
+	    },
+	    {
+	    	"UserId": 3,
+			"Number": "700",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5067,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+	    }
+	],
+	"UserVar": [
+		{
+			"%%PROXY_MODE%%" : "home",
+			"%%PROXY_PORT%%" : "5060",
+			"%%REG_PORT%%" : "50090",
+			"%%EXPIRES%%" : "1000",
+			"%%SIP_PROFILE%%" : "1",
+			"%%VOICE_PORT%%" : "1",
+			"%%NUMBER%%" : "401",
+			"%%DIALPLAN%%" : "40x@192.168.1.2|9xx@192.168.1.10"
+		}
+	],
+	"PreConf": [
+		{
+			"command1" : "enable",
+			"command2" : "configure",
+			"command3" : "sip profile %%SIP_PROFILE%%",
+			"command4" : "proxy mode %%PROXY_MODE%%",
+			"command5" : "proxy address 1 %%IP%%:%%PROXY_PORT%%",
+			"command6" : "regristrar address 1 %%IP%%:%%REG_PORT%%",
+			"command7" : "expires %%EXPIRES%%",
+			"command8" : "dialplan rule %%DIALPLAN%%",
+			"command9" : "regristrar enable 1",
+			"command10" : "exit",
+			"command11" : "voice port %%VOICE_PORT%%",
+			"command12" : "username %%NUMBER%%",
+			"command13" : "profile sip %%SIP_PROFILE%%",
+			"command14" : "exit",
+			"command15" : "exit"
+ 		}
+	],
+	"PostConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "configure",
+			"command3" : "sip profile %%SIP_PROFILE%%",
+			"command4" : "no expires",
+			"command5" : "exit",
+			"command6" : "exit"
+		}
+	],
+	"Tests": [
+		{
+			"Name": "Registration_w/o_expires_in_answer_1.2.2",
+			"Description": "Настроен профиль с одним портом и регистрацией на SIPP на порт 50090, в мониторинге убедиться, что exp равен настроенному",
+			"TestProcedure": [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "regans",
+							"Commands": [
+								{
+									"SourceFile": "scr/registr/regans.xml",
+									"Options": "-mi %%IP%% -rtp_echo -m 1 -nd -set expected_expires %%EXPIRES%%",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/registration: [0-9]\\+/registration: 0/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/outbound: [0-9]/outbound: 0/\" /etc/config/cfg.yaml",
+							"command5" : "reloadcfg",
+							"command6" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g723_30_63a_1.2.5",
+			"Description" : "Кодек G723.1 6.3kbps, annexA, ptime=30ms",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g723",
+							"command5" : "codec ptime g723 30",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g723_30_63a",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g723_30_63a.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g723",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g723_60_1.2.5",
+			"Description" : "Кодек G723.1 default (6.3, annexA), ptime=60ms",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g723",
+							"command5" : "codec ptime g723 60",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g723_60",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g723_60.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g723",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g723_90_53_1.2.5",
+			"Description" : "Кодек G723.1 5.3kbps, ptime=90ms",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g723",
+							"command5" : "codec ptime g723 90",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g723_90_53",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g723_90_53.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g723",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g726dyn_1.2.5",
+			"Description" : "Кодек G726 динамический РТ=102",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g726_32",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g726dyn",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g726dyn.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g726st_1.2.5",
+			"Description" : "Кодек G726 динамический РТ=2 (старое значение)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g726_32",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g726st",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g726st.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g729_10a_1.2.5",
+			"Description" : "Кодек G729А, ptime=10ms",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g729a",
+							"command5" : "codec ptime g729 10",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g729_10a",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g729_10a.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g729",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g729_10b_1.2.5",
+			"Description" : "Кодек G729В, ptime=10ms",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g729b",
+							"command5" : "codec ptime g729 10",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]
+				},
+				{
+				    "StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g729_10b",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g729_10b.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]					
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g729",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g729_80_1.2.5",
+			"Description" : "Кодек G729B, ptime=80ms,нет строки annex",
+			"TestProcedure" : [
+				{
+				    "SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g729b",
+							"command5" : "codec ptime g729 80",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]					
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g729_80",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g729_80.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g729",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_g729a_cisco_1.2.5",
+			"Description" : "Кодек G729А, CISCO вариант, в строке G729A",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g729a",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]			
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_g729a_cisco",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_g729a_cisco.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]	
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_pcma20_1.2.5",
+			"Description" : "Кодек G711А, ptime=20ms",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u",
+							"command5" : "codec ptime g711 20",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]			
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_pcma20",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_pcma20.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]	
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g711",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]	
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_pcmu30_1.2.5",
+			"Description" : "Кодек G711U, ptime=30ms",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u",
+							"command5" : "codec ptime g711 30",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_pcmu30",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/Codecs/uas_pcmu30.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]	
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "no codec ptime g711",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]	
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_rfc2833_pt96_729_1_1.2.5",
+			"Description" : "[AUDIO] RFC2833. Передача DTMF в 96 РТ на фоне 729 кодека. В ответе 101РТ (сигналы не слышно)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/rfc3264_pt_common: [0-9]/rfc3264_pt_common: 1/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/payload: [0-9]\\+/payload: 96/\" /etc/config/cfg.yaml",
+							"command5" : "reloadcfg",
+							"command6" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_rfc2833_pt96_1_729",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_rfc2833_pt96_729.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd -key PLAY %%SRC_PATH%%/audio/mus_rfc2833_dtmf_10s.pcap",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				}
+			]
+		},
+		{
+			"Name" : "Test_codec_rfc2833_pt96_729_2_1.2.5",
+			"Description" : "[AUDIO] RFC2833. Передача DTMF в 96 РТ на фоне 729 кодека. В ответе 101РТ (сигналы слышно)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/rfc3264_pt_common: [0-9]/rfc3264_pt_common: 0/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/payload: [0-9]\\+/payload: 96/\" /etc/config/cfg.yaml",
+							"command5" : "reloadcfg",
+							"command6" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_rfc2833_pt96_(2)_729",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_rfc2833_pt96_729.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd -key PLAY %%SRC_PATH%%/audio/mus_rfc2833_dtmf_10s.pcap",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				}
+			]
+		},
+		{
+			"Name" : "Test_broadworks_cw_1.2.6",
+			"Description" : "Услуга CW, реализация broadworks, 2 INFO для выдачи и снятия сигнала",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/flashtransfer: [0-9]/flashtransfer: 2/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/hfmime: [a-z]\\+/hfmime: broadsoft/\" /etc/config/cfg.yaml",
+							"command5" : "sed -i \"s/dtmftransfer: [0-9]/dtmftransfer: 2/\" /etc/config/cfg.yaml",
+							"command6" : "sed -i \"s/calltransfer: [0-9]/calltransfer: 0/\" /etc/config/cfg.yaml",
+							"command7" : "sed -i \"s/callwaiting: [0-9]$/callwaiting: 1/\" /etc/config/cfg.yaml", 
+							"command8" : "reloadcfg",
+							"command9" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_broadworks_cw",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_broadworks_cw.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				}
+			]
+		},
+		{
+			"Name" : "Test_huawei_cw_1.2.6",
+			"Description" : "Услуга CW, реализация huawei, INFO для выдачи сигнала",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/hfmime: [a-z]\\+/hfmime: sscc/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_huawei_cw",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_huawei_cw.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				}
+			]
+		},
+		{
+			"Name" : "Test_huawei_cw_switch_busy_1.2.6",
+			"Description" : "Услуга CW, реализация huawei, INFO для выдачи сигнала, переключение между абонентами, первое переключение некорректное flash + 5, выдача busy, второе корректное",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_huawei_cw_switch_busy",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_huawei_cw_switch_busy.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				}
+			]
+		},
+		{
+			"Name" : "Test_huawei_cw_switch_1.2.6",
+			"Description" : "Услуга CW, реализация huawei, INFO для выдачи сигнала, переключение между абонентами flash + 2",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_huawei_cw_switch",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_huawei_cw_switch.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				}
+			]
+		},
+		{
+			"Name" : "Test_huawei_ct_1.2.6",
+			"Description" : "Услуга СТ, реализация huawei, INFO для выдачи DT, ringback, ожидание набора 6 цифр (7 INFO – полный набор по истечении 16 секунд)",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_huawei_ct.xml",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_huawei_ct.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				},
+				{
+				    "SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/flashtransfer: [0-9]/flashtransfer: 1/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/hfmime: [a-z]\\+/hfmime: hookf/\" /etc/config/cfg.yaml",
+							"command5" : "sed -i \"s/dtmftransfer: [0-9]/dtmftransfer: 1/\" /etc/config/cfg.yaml",
+							"command6" : "reloadcfg",
+							"command7" : "exit"
+						}
+					]				
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_183_(1)_1.2.10",
+			"Description" : "Базовый вызов, ответ 183 без и с SDP, опция КПВ по 183 вкл",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/ringback_sdp: [0-9]/ringback_sdp: 1/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183_sdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183_sdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "another_uas_183",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]		
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/ringback_sdp: [0-9]/ringback_sdp: 0/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]	
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_1xx_1.2.10",
+			"Description" : "Базовый вызов, ответы 100, 180-183 без SDP",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_1xx",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_1xx.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_1xx_sdp_1.2.10",
+			"Description" : "Базовый вызов, ответы 100, 180-183 c SDP",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_1xx_sdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_1xx_sdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_180_sdp_183_nosdp_1.2.10",
+			"Description" : "Базовый вызов, ответ 180 с SDP, далее 183 без SDP",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_180_sdp_183_nosdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_180_sdp_183_nosdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_1xx variations_1.2.10",
+			"Description" : "Базовый вызов, ответ 183 без и с SDP, далее 180 без и с SDP",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183_nosdp_180_nosdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183_nosdp_180_nosdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183_nosdp_180_sdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183_nosdp_180_sdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183_sdp_180_sdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183_sdp_180_sdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183_sdp_180_nosdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183_sdp_180_nosdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_183_(2)_1.2.10",
+			"Description" : "Базовый вызов, ответ 183 без и с SDP",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_183_sdp",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_183_sdp.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_w/o_1xx_1.2.10",
+			"Descripton" : "Базовый вызов без предварительных ответов",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_wo_1xx",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_wo_1xx.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "QOPauth_SIP_MTU_1.2.14",
+			"Description" : "Авторизация. Ответ 401 с QOP=AUTH аутентификацией без проверки хэша",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "codec list g711a g711u g723 g726_32 g729a",
+							"command5" : "dtmfmode rfc2833",
+							"command6" : "exit",
+							"command7" : "exit"
+						}
+					]	
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/rfc3264_pt_common: [0-9]/rfc3264_pt_common: 1/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/modemtransfer: [0-9]/modemtransfer: 5/\" /etc/config/cfg.yaml",
+							"command5" : "reloadcfg",
+							"command6" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_401_qop",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_401_qop.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/rfc3264_pt_common: [0-9]/rfc3264_pt_common: 0/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/modemtransfer: [0-9]/modemtransfer: 0/\" /etc/config/cfg.yaml",
+							"command5" : "reloadcfg",
+							"command6" : "exit"
+						}
+					]	
+				}
+			]
+		},
+		{
+			"Name" : "Test_hold_1.6.4",
+			"Description" : "Услуга hold (2 re-INVITE от UAS c SO – адрес 0.0.0.0 и SR)",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_ss_hold_0000",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_ss_hold_0000.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_portcont",
+			"Description" : "Смена UDP-порта для приема сигнализации в contact (передача BYE)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/outbound: [0-9]/outbound: 0/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_portcont_part1",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_portcont_part1.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						},
+						{
+							"Type" : "User",
+							"UserId" : 2,
+							"WriteStat" : true,
+							"Name" : "uas_portcont_part2",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_portcont_part2.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_outb",
+			"Description" : "Смена UDP-порта для приема сигнализации в contact - режим outbound (нет перехода на другой порт)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/outbound: [0-9]/outbound: 1/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_outb",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_outb.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "test_uas_portcont_cancel",
+			"Description" : "Смена UDP-порта для приема сигнализации в contact. Отбой до ответа CANCEL",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/outbound: [0-9]/outbound: 0/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]	
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_portcont_cancel",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_portcont_cancel.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_rec_route",
+			"Description" : "Record_route в ответах, в contact domain, второй маршрут - IP",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_rec_route",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_rec_route.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_rec_route2",
+			"Description" : "Record_route в ответах, в contact domain, второй маршрут - домен",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_rec_route2",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_rec_route2.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uas_rec_route_5067",
+			"Description" : "Record_route в ответах, в маршруте другой порт - 5067",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_rec_route_5067",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_rec_route_5067.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						},
+						{
+							"Type" : "User",
+							"UserId" : 3,
+							"WriteStat" : true,
+							"Name" : "uas_rec_route_5067_2",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_rec_route_5067_2.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd -p 5067",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_update_prack",
+			"Description" : "запрос UPDATE c SDP после ответа (тест с PRACK)",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 1,
+							"WriteStat" : true,
+							"Name" : "uas_update_prack",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/uas_update_prack.xml",
+									"Options" : "-mi %%IP%% -rtp_echo -m 1 -nd",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

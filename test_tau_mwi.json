@@ -1,0 +1,203 @@
+{
+	"TestName" : "test_tau_mwi",
+	"Auto" : false,
+	"Users" : [
+		{
+			"UserId": 0,
+			"Number": "400",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5060,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+		}
+	],
+	"UserVar" : [
+		{
+			"%%PROXY_MODE%%" : "home",
+			"%%PROXY_PORT%%" : "5060",
+			"%%CSV_FILE%%" : "%%SRC_PATH%%/conf/700301.csv",
+			"%%REG_PORT%%" : "5060",
+			"%%SIP_PROFILE%%" : "1",
+			"%%VOICE_PORT%%" : "2",
+			"%%NUMBER%%" : "401",
+			"%%SUBSCRIBE_EXPIRES%%" : "1200",
+			"%%OPEN_CALL_LIMIT%%" : "1",
+			"%%CALL_RATE%%" : "1"
+		}
+	],
+	"PreConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "configure",
+			"command3" : "sip profile %%SIP_PROFILE%%",
+			"command4" : "proxy mode %%PROXY_MODE%%",
+			"command5" : "proxy address 1 %%IP%%:%%PROXY_PORT%%",
+			"command6" : "regristrar address 1 %%IP%%:%%REG_PORT%%",
+			"command7" : "regristrar interval 10",
+			"command8" : "expires 0",
+			"command9" : "exit",
+			"command10" : "voice port %%VOICE_PORT%%",
+			"command11" : "username %%NUMBER%%",
+			"command12" : "authname %%NUMBER%%",
+			"command13" : "profile sip %%SIP_PROFILE%%",
+			"command14" : "exit",
+			"command15" : "exit",
+			"command16" : "shell",
+			"command17" : "sed -i \"s/mwi_dialtone: [0-9]/mwi_dialtone: 1/\" /etc/config/cfg.yaml",
+			"command18" : "reloadcfg",
+			"command19" : "exit"
+		}
+	],
+	"PostConf" : [
+		{
+		    "command1" : "enable",
+		    "command2" : "configure",
+		    "command3" : "sip profile %%SIP_PROFILE%%",
+		    "command4" : "no regristrar enable 1",
+		    "command5" : "exit",
+		    "command6" : "exit",
+		    "command7" : "shell",
+		    "command8" : "sed -i \"s/mwi_dialtone: [0-9]/mwi_dialtone: 0/\" /etc/config/cfg.yaml",
+		    "command9" : "reloadcfg",
+		    "command10" : "exit"			
+		}
+	],
+	"Tests" : [
+		{
+			"Name": "Test_registration_with_subscribe",
+			"Description": "Регистрация на uas с подпиской на mwi",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "regristrar enable 1",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 0,
+							"WriteStat" : true,
+							"Name" : "reg_with_subscribe",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/mwi/regans_w_subscr2.xml",
+									"Options" : "-m 1 -set SUBSCRIBE_EXPIRES %%SUBSCRIBE_EXPIRES%%",
+									"SippType" : "uas",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_mwi_yes",
+			"Description" : "Оповещение о голововом сообщении. Messages-Waiting: yes",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 0,
+							"WriteStat" : true,
+							"Name" : "notify_mwi_yes",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/mwi/notify_mwi_yes.xml",
+									"Options" : "-inf %%CSV_FILE%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType" : "uac",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_fax_yes",
+			"Description" : "Оповещение о факсовом сообщении. Messages-Waiting: yes",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 0,
+							"WriteStat" : true,
+							"Name" : "notify_fax_yes",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/mwi/notify_mwi_yes_fax.xml",
+									"Options" : "-inf %%CSV_FILE%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType" : "uac",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_mwi_no",
+			"Description" : "Оповещение о голововом сообщении. Messages-Waiting: no",
+			"TestProcedure" : [
+				{
+					"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 0,
+							"WriteStat" : true,
+							"Name" : "notify_mwi_no",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/mwi/notify_mwi_no.xml",
+									"Options" : "-inf %%CSV_FILE%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType" : "uac",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+		    "Name" : "Test_notify_mwi_bugev",
+		    "Description" : "notify_mwi_bugev",
+		    "TestProcedure" : [
+		    	{
+		    		"StartUA" : [
+						{
+							"Type" : "User",
+							"UserId" : 0,
+							"WriteStat" : true,
+							"Name" : "notify_mwi_bugev",
+							"Commands" : [
+								{
+									"SourceFile" : "scr/mwi/notify_mwi_bugev.xml",
+									"Options" : "-inf %%CSV_FILE%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1",
+									"SippType" : "uac",
+									"Timeout" : "40s"
+								}
+							]
+						}
+					]
+		    	}
+		    ]	
+		}
+	]
+}

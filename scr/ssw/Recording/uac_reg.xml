@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "user_registr">
+
+<send retrans="500">
+<![CDATA[
+	REGISTER sip:[remote_ip] SIP/2.0
+	Via: SIP/2.0/[transport] [local_ip]:[local_port];rport;branch=[branch]
+	From: <sip:[service]@[remote_ip]>;tag=[call_number]
+	To: <sip:[service]@[remote_ip]>
+	Call-ID: [call_id]
+	CSeq: [cseq] REGISTER
+	Contact: <sip:[service]@[local_ip]:[local_port]>
+	Content-Length: 0
+    Expires: 500
+	Max-Forwards: 70
+]]>
+</send>
+	
+<recv response="401" auth="true" > </recv>
+
+<send retrans="500">
+<![CDATA[
+	REGISTER sip:[remote_ip] SIP/2.0
+	Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+	[last_from:]
+	[last_to:]
+	[last_call-id:]
+	CSeq: [cseq] REGISTER
+	Contact: <sip:[service]@[local_ip]:[local_port]>
+	[authentication]
+	Content-Length: 0
+    Expires: 500
+    Max-Forwards: 70
+]]>
+</send>
+	<recv response="200"> </recv>
+</scenario>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<scenario name="uas">
+
+<Global variables="expected_expires"/>
+<User variables=""/>
+<Reference variables="" />
+
+	<recv request="REGISTER" crlf="true" >
+	<action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="Expires:" assign_to="recv_expires"/>
+    </action>
+    </recv>
+	<send>
+		<![CDATA[
+SIP/2.0 200 OK
+[last_Via:]
+[last_From:]
+[last_To:];tag=[call_number]
+[last_Call-ID:]
+[last_CSeq:]
+[last_Contact]
+Content-Length: 0
+
+]]>
+	</send>
+
+    <nop hide="true" condexec="expected_expires">
+    <action>
+        <strcmp assign_to="result" variable="recv_expires" variable2="expected_expires"/>
+    </action>
+    </nop>
+
+    <nop hide="true" condexec="result">
+    <action>
+        <warning message="Wrong expires parameter. Require Expires: [$expected_expires]; Received Expires: [$recv_expires]; compare_result: [$result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+    </nop>
+
+	<label id="1" />
+	<ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200" />
+	<CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000" />
+</scenario>

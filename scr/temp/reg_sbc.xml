@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<scenario name="uac">
+	<send retrans="500">
+		<![CDATA[
+REGISTER sip:[remote_ip] SIP/2.0
+Via: SIP/2.0/[transport] 192.168.0.195:[local_port];branch=[branch][pid]
+From: "Bachar" <sip:[field0]@[remote_ip]>;tag=[call_number]
+To: "Bachar" <sip:[field0]@[remote_ip]>
+Call-ID: [call_id]
+CSeq: 1 REGISTER
+Contact: <sip:[field0]@192.168.0.195:[local_port]>
+Max-Forwards: 70
+User-Agent: C610A IP/42.075.00.000.000
+Expires: 180
+Allow: INVITE, ACK, CANCEL, BYE, OPTIONS, INFO, REFER, SUBSCRIBE, NOTIFY
+Content-Length: 0
+
+]]>
+	</send>
+	<recv response="407" crlf="true" />
+	<send>
+		<![CDATA[
+ACK sip:[remote_ip]:[remote_port] SIP/2.0
+[last_Via:]
+From: sipp <sip:[field0]@[field1]>;tag=[call_number]
+To: sut <sip:[field0]@[field1]>[peer_tag_param]
+Call-ID: [call_id]
+CSeq: 1 ACK
+Contact: sip:[field0]@[local_ip]:[local_port]
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+	</send>
+	<pause milliseconds="1000" />
+	<label id="1" />
+	<ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200" />
+	<CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000" />
+</scenario>

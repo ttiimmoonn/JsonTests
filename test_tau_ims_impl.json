@@ -1,0 +1,585 @@
+{
+	"TestName": "test_tau_ims_impl",
+	"Auto" : true,
+	"Isolate" : true,
+	"Users" : [
+		{
+			"UserId": 0,
+			"Number": "400",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5060,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+		}
+	],
+	"UserVar": [
+		{
+			"%%PROXY_MODE%%" : "home",
+			"%%PROXY_PORT%%" : "5060",
+			"%%REG_PORT%%" : "5060",
+			"%%EXPIRES%%" : "0",
+			"%%SIP_PROFILE%%" : "1",
+			"%%VOICE_PORT%%" : "1",
+			"%%NUMBER%%" : "401",
+			"%%CSV_FILE%%" : "%%SRC_PATH%%/conf/700301.csv",
+			"%%OPEN_CALL_LIMIT%%" : "1",
+			"%%CALL_RATE%%" : "1"
+		}
+	],
+	"PreConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "shell",
+			"command3" : "sed -i \"s/ims_notify_on: [0-9]/ims_notify_on: 1/\" /etc/config/cfg.yaml",
+			"command4" : "reloadcfg",
+			"command5" : "exit",
+			"command6" : "configure",
+			"command7" : "sip profile %%SIP_PROFILE%%",
+			"command8" : "proxy mode %%PROXY_MODE%%",
+			"command9" : "proxy address 1 %%IP%%:%%PROXY_PORT%%",
+			"command10" : "regristrar address 1 %%IP%%:%%REG_PORT%%",
+			"command11" : "expires %%EXPIRES%%",
+			"command12" : "exit",
+			"command13" : "voice port %%VOICE_PORT%%",
+			"command14" : "username %%NUMBER%%",
+			"command15" : "authname %%NUMBER%%",
+			"command16" : "profile sip %%SIP_PROFILE%%",
+			"command17" : "exit",
+			"command18" : "exit"
+		}
+	],
+	"PostConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "shell",
+			"command3" : "sed -i \"s/ims_notify_on: [0-9]/ims_notify_on: 0/\" /etc/config/cfg.yaml",
+			"command4" : "sed -i \"s/registration: [0-9]\\+/registration: 0/\" /etc/config/cfg.yaml",
+			"command5" : "reloadcfg",
+			"command6" : "exit"
+		}
+	],
+	"Tests" : [
+		{
+			"Name" : "Test_registration_without_subscribe",
+			"Description" : "Неявная регистрация IMS",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "configure",
+							"command3" : "sip profile %%SIP_PROFILE%%",
+							"command4" : "regristrar enable 1",
+							"command5" : "exit",
+							"command6" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "implisit_registration",
+							"Commands": [
+								{
+									"SourceFile": "scr/registr/regans.xml",
+									"Options": "-mi %%IP%% -rtp_echo -m 1 -nd -set expected_expires %%EXPIRES%%",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_cw_wo",
+			"Description" : "Выключение услуги CW (отсутствие услуги)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_cw_wo",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_cw_wo.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%%  -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_cw_false",
+			"Description" : "Выключение услуги CW (присутствие услуги - false)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_cw_false",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_cw_false.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%%  -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_hold_wo",
+			"Description" : "Выключение услуги Hold (отсутствие услуги)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_wo",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_wo.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_hold_false",
+			"Description" : "Выключение услуги Hold (присутствие услуги - false)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_false",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_false.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Tes_notify_ims_3way_wo",
+			"Description" : "Выключение услуги 3way (отсутствие услуги)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_3way_wo",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_3way_wo.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_3way_false",
+			"Description" : "Выключение услуги 3way (присутствие услуги - false)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_3way_false",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_3way_false.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_ct_wo",
+			"Description" : "Выключение услуги CT (отсутствие услуги)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_ct_wo",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_ct_wo.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%%  -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_ct_false",
+			"Description" : "Выключение услуги CT (присутствие услуги - false)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_ct_false",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_ct_false.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+		    "Name" : "Test_notify_ims_hotline_true",
+		    "Description" : "Установка услуги Hotline",
+		    "TestProcedure" : [
+		    	{
+		    		"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hotline_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hotline_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%%  -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+		    	}
+		    ]	
+		},
+		{
+			"Name" : "Test_notify_ims_hold_3way_cw_ct_true",
+			"Description" : "Установка услуг 3way, CW, Hold, CT",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_ns_hotline_true",
+			"Description" : "Установка услуги Hotline, нестандартное значение (hot-line)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/xcap_hotline_name: [a-zA-Z-]\\+/xcap_hotline_name: hot-line/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_ns_hotline_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_ns_hotline_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/xcap_hotline_name: [a-zA-Z-]\\+/xcap_hotline_name: hot-line-service/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_notify_ims_ns_hold_3way_cw_ct_true",
+			"Description" : "Установка услуг 3way, CW, Hold, CT, нестандартное значение (three-conf-ss, communication-waiting, hold-ss, ct-ss)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/xcap_conference_name: .\\+/xcap_conference_name: three-conf-ss/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/xcap_cw_name: .\\+/xcap_cw_name: communication-waiting/\" /etc/config/cfg.yaml",
+							"command5" : "sed -i \"s/xcap_callhold_name: .\\+/xcap_callhold_name: hold-ss/\" /etc/config/cfg.yaml",
+							"command6" : "sed -i \"s/xcap_calltransfer_name: .\\+/xcap_calltransfer_name: ct-ss/\" /etc/config/cfg.yaml",
+							"command7" : "reloadcfg",
+							"command8" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "notify_ims_ns_hold_3way_cw_ct_true",
+							"Commands": [
+								{
+									"SourceFile": "scr/ims/notify_ims_ns_hold_3way_cw_ct_true.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m %%OPEN_CALL_LIMIT%% -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						}
+					]
+				},
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/xcap_conference_name: .\\+/xcap_conference_name: three-party-conference/\" /etc/config/cfg.yaml",
+							"command4" : "sed -i \"s/xcap_cw_name: .\\+/xcap_cw_name: call-waiting/\" /etc/config/cfg.yaml",
+							"command5" : "sed -i \"s/xcap_callhold_name: .\\+/xcap_callhold_name: call-hold/\" /etc/config/cfg.yaml",
+							"command6" : "sed -i \"s/xcap_calltransfer_name: .\\+/xcap_calltransfer_name: explicit-call-transfer/\" /etc/config/cfg.yaml",
+							"command7" : "reloadcfg",
+							"command8" : "exit"
+						}
+					]
+				}
+			]
+		}
+	]
+}

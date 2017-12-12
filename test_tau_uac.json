@@ -1,0 +1,507 @@
+{
+	"TestName" : "test_tau_uac",
+	"Auto" : false,
+	"Users" : [
+		{
+			"UserId": 0,
+			"Number": "400",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5060,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"  
+		},
+		{
+			"UserId": 1,
+			"Number": "500",
+			"Login": "admin",
+			"Password": "1234",
+			"SipDomain": "pv.ssw3",
+			"Expires": 90,
+			"Port": 5067,
+			"SipGroup": "sip.ab",
+			"QParam": 0.5,
+			"Mode" : "Manual"
+		}
+	],
+	"UserVar": [
+		{
+			"%%DIALPLAN%%" : "40x@192.168.1.2:5060|9xx@192.168.1.10:5060",
+			"%%VOICE_PORT%%" : "1",
+			"%%NUMBER%%" : "401",
+			"%%CSV_FILE%%" : "%%SRC_PATH%%/conf/290404.csv",
+			"%%OPEN_CALL_LIMIT%%" : "1",
+			"%%CALL_RATE%%" : "1"
+		}
+	],
+	"PreConf": [
+		{
+			"command1" : "enable",
+			"command2" : "shell",
+			"command3" : "sed -i \"s/calltransfer: [0-9]/calltransfer: 1/\" /etc/config/cfg.yaml",
+			"command4" : "sed -i \"s/use_alert_info: [0-9]/use_alert_info: 1/\" /etc/config/cfg.yaml",
+			"command5" : "sed -i \"s/inbound_proxy: [0-9]/inbound_proxy: 0/\" /etc/config/cfg.yaml",
+			"command6" : "reloadcfg",
+			"command7" : "exit",
+			"command8" : "configure",
+			"command9" : "sip profile 1",
+			"command10" : "dialplan rule %%DIALPLAN%%",
+			"command11" : "exit",
+			"command12" : "voice port %%VOICE_PORT%%",
+			"command13" : "username %%NUMBER%%",
+			"command14" : "profile sip 1",
+			"command15" : "exit",
+ 			"command16" : "exit"
+		}
+	],
+	"PostConf" : [
+		{
+			"command1" : "enable",
+			"command2" : "shell",
+			"command3" : "sed -i \"s/use_alert_info: [0-9]/use_alert_info: 0/\" /etc/config/cfg.yaml",
+			"command4" : "reloadcfg",
+			"command5" : "exit"
+		}
+	],
+	"Tests" : [
+		{
+			"Name" : "Test_Alert_info_Bellcore_dr5",
+			"Description" : "Передача Alert-Info: <http://127.0.0.1/Bellcore-dr5> (Требуется ручная настройка!!!)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_alert_info",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_alert_info.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_Alert_info_Maximum",
+			"Description" : "Передача Alert-Info: <http://127.0.0.1/Maximum> Требуется ручная настройка!!!",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_alert_info2",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_alert_info2.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_Alert_info_Tishina",
+			"Description" : "Передача Alert-Info: <http://127.0.0.1/Tishina> Требуется ручная настройка!!!",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_alert_info3",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_alert_info3.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_Alert_info_gudelka(1)",
+			"Description" : "Передача Alert-Info: <http://127.0.0.1/gudelka> Требуется ручная настройка!!!",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_alert_info4",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_alert_info4.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_Alert_info_Bellcore_dr3",
+			"Description" : "Передача Alert-Info: <http://[remote_ip]/Bellcore-dr3> Требуется ручная настройка!!!",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_alert_info5",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_alert_info5.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_Alert_info_gudelka(2)",
+			"Description" : "Передача Alert-Info: <http://124.3.3.4/gudelka> Требуется ручная настройка!!!",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_alert_info6",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_alert_info6.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_Alert_info_dudelka",
+			"Description" : "Передача Alert-Info: <http://127.0.0.1/dudelka> Требуется ручная настройка!!!",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_alert_info7",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_alert_info7.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uac_inact",
+			"Description" : "Передача в offer одной активной и одной reject медиа (порт 0)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/reduce_sdp_media_count: [0-9]/reduce_sdp_media_count: 1/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_inact",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_inact.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uac_inact2",
+			"Description" : "Передача в offer одной активной и одной неактивной медиа (порт не равен 0)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_inact2",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_inact2.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uac_red",
+			"Description" : "Передача в offer двух медий, ожидание re-INVITE с одной медией",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_red",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_red.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uac_inact_off",
+			"Description" : "Ответ одной неактивной медией в answer на 1 активную, 1 неактивную (в offer одна медиа неактивная, порт 0)",
+			"TestProcedure" : [
+				{
+					"SendSSHCommand" : [
+						{
+							"command1" : "enable",
+							"command2" : "shell",
+							"command3" : "sed -i \"s/reduce_sdp_media_count: [0-9]/reduce_sdp_media_count: 0/\" /etc/config/cfg.yaml",
+							"command4" : "reloadcfg",
+							"command5" : "exit"
+						}
+					]
+				},
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_inact_off",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_inact.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uac_inact2_off",
+			"Description" : "Ответ одной неактивной медией в answer на 1 активную, 1 неактивную (в offer одна медиа неактивная, порт не равен 0)",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_inact2_off",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_inact2.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_uac_red_off",
+			"Description" : "Уменьшение количества медиа описаний в ответе",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_red_off",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_red.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_delay_offer",
+			"Description" : "Delay offer – базовый вызов",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_delayoffer",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_delayoffer.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_delay_offer_reINVITE",
+			"Description" : "Delay offer – базовый вызов, re-INVITE делает UAC",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_delayoffer_wreinvite_uac",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_delayoffer_wreinvite_uac.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_routing",
+			"Description" : "Record_route в INVITE прием BYE, смена маршрута на другой порт - 5067",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_rec_route_5067",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_rec_route_5067.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								},
+								{
+									"SourceFile": "scr/uac_rec_route_5067_2.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uas",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		},
+		{
+			"Name" : "Test_PLC",
+			"Description" : "[AUDIO] Тест PLC, в RTP трафике много потерянных пакетов, PCMU",
+			"TestProcedure" : [
+				{
+					"StartUA": [
+						{
+							"Type": "User",
+							"UserId": 0,
+							"WriteStat" : true,
+							"Name": "uac_plc",
+							"Commands": [
+								{
+									"SourceFile": "scr/uac_plc.xml",
+									"Options": "-inf %%CSV_FILE%% -mi %%IP%% -rtp_echo -l %%OPEN_CALL_LIMIT%% -r %%CALL_RATE%% -m 1 -nd",
+									"SippType": "uac",
+									"Timeout": "40s"
+								} 
+							]
+						} 
+					]
+				}
+			]
+		}
+	]
+}

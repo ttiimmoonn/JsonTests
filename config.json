@@ -1,0 +1,17 @@
+{
+    "SystemVars" : [
+        {
+            "%%SIPP_PATH%%" : "/home/max/project/SIPp/sipp",
+            "%%SRC_PATH%%" : "/home/max/project/tau_tests",
+            "%%TEMP_PATH%%" : "/home/max/project/temp",
+            "%%LOG_PATH%%" : "/home/max/project/tau_tests/log",
+            "%%IP%%" : "192.168.1.10",
+            "%%SERV_IP%%" : "192.168.1.2",
+            "%%EXTER_IP%%" : "192.168.1.2",
+            "%%EXTER_PORT%%" : "5060",
+            "%%DEV_USER%%" : "admin",
+            "%%DEV_PASS%%" : "root",
+            "%%DEV_DOM%%" : "pv.ssw3"
+        }
+    ]
+}

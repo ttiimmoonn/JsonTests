@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<scenario name="req-noreq">
+	<send retrans="500">
+		<![CDATA[
+INVITE sip:[service]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+From: sipp <sip:sipp@[local_ip]:[local_port]>;tag=[call_number]
+To: sut <sip:[service]@[remote_ip]:[remote_port]>
+Call-ID: [call_id]
+CSeq: 1 INVITE
+Contact: sip:sipp@[local_ip]:[local_port]
+Require: 100rel 
+Max-Forwards: 70
+Subject: Performance Test
+Content-Type: application/sdp
+Content-Length: [len]
+
+v=0
+o=user1 53655765 2353687637 IN IP[local_ip_type] [local_ip]
+s=-
+c=IN IP[media_ip_type] [media_ip]
+t=0 0
+m=audio [media_port] RTP/AVP 0 8
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000]]>
+	</send>
+	<recv response="420" crlf="true">
+		<action>
+			<ereg regexp=".*" search_in="hdr" header="branch=" assign_to="1" />
+			<ereg regexp="To:.*" search_in="hdr" header="tag=" assign_to="2" />
+			<ereg regexp="To:.*" search_in="hdr" header="&lt;sip:*@" assign_to="3" />
+		</action>
+	</recv>
+	<send>
+		<![CDATA[
+ACK sip:[service]@[remote_ip]:[remote_port] SIP/2.0
+Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$1] 
+From: sipp <sip:sipp@[local_ip]:[local_port]>;tag=[call_number]
+To: sut <sip:[service]@[remote_ip]:[remote_port]>[peer_tag_param]
+Call-ID: [call_id]
+CSeq: 1 ACK
+Contact: sip:sipp@[local_ip]:[local_port]
+Max-Forwards: 70
+Subject: Performance Test
+Content-Length: 0]]>
+	</send>
+	<sendCmd dest="2">
+		<![CDATA[
+Call-ID: [call_id]
+var1: [$2]
+var2: [$2]
+var3: [$3]
+]]>
+	</sendCmd>
+	<label id="1" />
+	<ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200" />
+	<CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000" />
+</scenario>

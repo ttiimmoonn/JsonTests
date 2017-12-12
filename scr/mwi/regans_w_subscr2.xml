@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<scenario name="uas">
+
+<Global variables="SUBSCRIBE_EXPIRES"/>
+<User variables=""/>
+<Reference variables=""/>
+
+	<recv request="REGISTER" crlf="true" />
+	<send>
+		<![CDATA[
+SIP/2.0 200 OK
+[last_Via:]
+[last_From:]
+[last_To:];tag=[call_number]
+[last_Call-ID:]
+[last_CSeq:]
+[last_Contact]
+Content-Length: 0
+
+]]>
+	</send>
+
+	<recv request="SUBSCRIBE" crlf="true" />
+	<send>
+		<![CDATA[
+SIP/2.0 202 work
+[last_Via:]
+[last_From:]
+[last_To:];tag=[call_number]
+[last_Call-ID:]
+[last_CSeq:]
+Event: ua-profile
+[last_Contact]
+Expires: [$SUBSCRIBE_EXPIRES]
+Content-Length: 0
+
+]]>
+	</send>
+
+	<ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200" />
+	<CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000" />
+</scenario>
