@@ -58,7 +58,7 @@
   ],
   "PostConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/trunk/sip/remove sip.tr %%Tr.1.TrunkName%% --force",
+      "command1": "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
       "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
       "command3": "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_trunk%%",
       "command4": "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_user%%"
