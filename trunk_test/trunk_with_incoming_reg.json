@@ -6,7 +6,7 @@
       "TrunkId": 1,
       "TrunkName": "test_trunk_inc_reg",
       "Port": 10110,
-      "SipGroup": "sip.tr",
+      "SipGroup": "%%Tr.1.SipGroup%%",
       "SipDomain": "%%DEV_DOM%%",
       "RtpPort": 20003,
       "Login": "inc_trunk_username",
@@ -81,7 +81,7 @@
         {
           "SendSSHCommand": [
             {
-              "command3": "/domain/pv.ssw3/trunk/sip/info sip.tr %%Tr.1.TrunkName%%"
+              "command3": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
             }
           ]
         },
