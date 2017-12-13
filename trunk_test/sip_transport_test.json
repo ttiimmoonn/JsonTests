@@ -1,5 +1,7 @@
 {
-  "TestName": "sip_transport_test",
+  "TestName": "trunk_sip_transport_test",
+  "AutoTest" : true,
+  "Isolate" : true,
   "Trunks" : [
     {
       "TrunkId" : 1,

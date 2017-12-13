@@ -1,6 +1,6 @@
 
 {
-  "TestName": "common_trunk_test",
+  "TestName": "trunk_common_test",
   "Trunks" : [
     {
       "TrunkId" : 1,
