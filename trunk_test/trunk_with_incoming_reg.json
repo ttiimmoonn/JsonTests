@@ -6,8 +6,8 @@
       "TrunkId": 1,
       "TrunkName": "test_trunk_inc_reg",
       "Port": 10110,
-      "SipGroup": "sip.tr",
-      "SipDomain": "pv.ssw3",
+      "SipGroup": "%%Tr.1.SipGroup%%",
+      "SipDomain": "%%DEV_DOM%%",
       "RtpPort": 20003,
       "Login": "inc_trunk_username",
       "Password": "inc_trunk_password",
@@ -22,7 +22,7 @@
       "Number": "156",
       "Login": "156",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
       "SipGroup": "sip.ab",
       "Port": 10105,
@@ -33,7 +33,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
       "SipGroup": "sip.ab",
       "Port": 10106,
@@ -81,7 +81,7 @@
         {
           "SendSSHCommand": [
             {
-              "command3": "/domain/pv.ssw3/trunk/sip/info sip.tr %%Tr.1.TrunkName%%"
+              "command3": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
             }
           ]
         },
