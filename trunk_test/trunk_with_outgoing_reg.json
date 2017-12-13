@@ -157,7 +157,7 @@
               "Name": "UAC_TEST",
               "Commands": [
                 {
-                  "SourceFile": "trunk_test/uac_recv_502.xml",
+                  "SourceFile": "trunk_test/uac_recv_480.xml",
                   "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
