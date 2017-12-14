@@ -13,7 +13,8 @@
         "%%DEV_PASS%%" : "password",
         "%%DEV_DOM%%" : "test.domain",
         "%%SSW_DEF_ROUTE%%" : "default_routing",
-        "%%SSW_IPSET%%" : "test.domain"
+        "%%SSW_IPSET%%" : "test.domain",
+	"%%DEV_CONFIG_PORT%%" : 8023
     }
 ]
 }
