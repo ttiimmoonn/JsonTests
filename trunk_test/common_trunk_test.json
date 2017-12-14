@@ -1,6 +1,7 @@
 
 {
   "TestName": "trunk_common_test",
+  "AutoTest" : true,
   "Trunks" : [
     {
       "TrunkId" : 1,
