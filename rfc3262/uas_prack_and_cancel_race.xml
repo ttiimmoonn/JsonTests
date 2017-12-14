@@ -81,20 +81,8 @@
 </send>
 
 
-<recv request="PRACK">
-    <action>
-        <assign assign_to="sdp_chk" value="" />
-        <ereg regexp="a=rtpmap:0 PCMU" search_in="msg" check_it="true" assign_to="sdp_chk" />
-    </action>
-</recv>
-
-
-<recv request="PRACK">
-    <action>
-        <assign assign_to="sdp_chk" value="" />
-        <ereg regexp="a=rtpmap:0 PCMU" search_in="msg" check_it="true" assign_to="sdp_chk" />
-    </action>
-</recv>
+<recv request="PRACK"/>
+<recv request="PRACK"/>
 
 <send>
 <![CDATA[
@@ -104,6 +92,20 @@
     To:[$inv_to];tag=[$local_tag]
     Call-ID:[$inv_call_id]
     CSeq: [$inv_cseq] CANCEL
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="PRACK"/>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_via:]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    [last_cseq:]
     Content-Length: 0
 ]]>
 </send>

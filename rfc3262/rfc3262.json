@@ -1,5 +1,6 @@
 {
   "TestName": "rfc3262",
+  "AutoTest" : true,
   "Users": [
     {
       "UserId" : 0,
