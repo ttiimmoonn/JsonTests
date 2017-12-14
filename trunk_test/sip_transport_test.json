@@ -7,16 +7,16 @@
       "TrunkId" : 1,
       "TrunkName" : "sip_tr_trunk_1",
       "Port" : 5094,
-      "SipDomain" : "pv.ssw3",
+      "SipDomain" : "%%DEV_DOM%%",
       "SipGroup" : "sip_transport"
     },
     {
       "TrunkId" : 2,
       "TrunkName" : "sip_tr_trunk_2",
       "Port" : 5095,
-      "SipDomain" : "pv.ssw3",
+      "SipDomain" : "%%DEV_DOM%%",
       "SipGroup" : "sip_transport",
-      "RemotePort" : 5062
+      "RemotePort" : "%%EXTER_PORT_2%%"
     }
    ],
 
