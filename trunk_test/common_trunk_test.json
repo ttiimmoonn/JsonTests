@@ -257,7 +257,7 @@
                   "Options": "-m 1 -set CDPN %%tr_cdpn%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPN %%tr_cgpn%% -set CGPNDOM %%Tr.1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "15s"
+                  "Timeout": "20s"
                 }
               ]
             }
