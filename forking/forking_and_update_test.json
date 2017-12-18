@@ -126,10 +126,10 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -199,10 +199,10 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -272,10 +272,10 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

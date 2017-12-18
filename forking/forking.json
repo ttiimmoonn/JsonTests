@@ -138,7 +138,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",

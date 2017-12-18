@@ -112,7 +112,7 @@
 ]]>
 </send>
 
-<recv response="200"></recv>
+<recv response="491"></recv>
 
 <recv request="CANCEL"/>
 

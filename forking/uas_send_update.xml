@@ -116,7 +116,7 @@
 ]]>
 </send>
 
-<recv response="200"></recv>
+<recv response="491"></recv>
 
 
 <pause milliseconds="2000"/>
@@ -137,20 +137,48 @@
 
 <recv request="ACK"></recv>
 
-
-<recv request="BYE"></recv>
-
-<send>
+<send retrans="500">
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
+    UPDATE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] UPDATE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=update_test 10000 10001 IN IP[local_ip_type] [local_ip]
+    s=update_test
+    t=0 0
+    c=IN IP[local_ip_type] [local_ip]
+    m=audio [auto_media_port] RTP/AVP 18
+    a=rtpmap:18 G729/8000
 ]]>
 </send>
+
+<recv response="200"></recv>
+
+
+<send retrans="500">
+<![CDATA[
+    BYE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] BYE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Length: [len]
+]]>
+</send>
+
+<recv response="200"></recv>
+
 
 <pause milliseconds="2000"/>
 </scenario>
