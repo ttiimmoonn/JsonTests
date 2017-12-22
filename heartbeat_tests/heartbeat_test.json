@@ -1,5 +1,6 @@
 {
 	"TestName" : "heartbeat_test",
+  "AutoTest" : true,
 	"Users" : [
 	    {
 	      "UserId" : 0,
