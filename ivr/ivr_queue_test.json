@@ -1,0 +1,1262 @@
+{
+  "TestName" : "ivr_queue_test",
+  "AutoTest" : true,
+  "Users" : [
+      {
+        "UserId" : 0,
+        "Number": "110",
+        "Login": "110",
+        "Password": "123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20000,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 1,
+        "Number": "111",
+        "Login": "111",
+        "Password": "123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20002,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 2,
+        "Number": "112",
+        "Login": "112",
+        "Password": "123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20004,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 3,
+        "Number": "113",
+        "Login": "113",
+        "Password": "123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20006,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 4,
+        "Number": "114",
+        "Login": "114",
+        "Password": "123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20007,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      }
+  ],
+  "UserVar": [
+    {
+      "%%QUEUE_NAME%%" : "ivr_test_queue",
+      "%%AGENT_PASS%%" : "1111",
+      "%%IVR_CALLBACK_ON_FAILURE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_5\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":true,\"callback_on_overload\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_block_test\",\"description\":\"\",\"version\":\"3.10.0.94\"}",
+      "%%IVR_CALLBACK_ON_OVERLOAD%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_5\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"ivr_test_queue\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":true,\"limit_reached\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_limit_reached.wav\"}],\"need_confirmation\":false,\"you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_you_can_hang_up.wav\"}],\"allow_waiting\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_block_test\",\"description\":\"\",\"version\":\"3.10.0.96\"}",
+      "%%IVR_CALLBACK_ON_REQ%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_3\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":true,\"limit_reached\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_limit_reached.wav\"}],\"need_confirmation\":true,\"confirm_callback_digit\":\"1\",\"decline_callback_digit\":\"2\",\"prompt\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_do_you_want_us_to_call_you_back.wav\"},{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_do_you_want_decline_callback.wav\"}],\"now_you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_now_you_can_hang_up.wav\"}],\"you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_you_can_hang_up.wav\"}],\"allow_waiting\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_block_test\",\"description\":\"\",\"version\":\"3.10.0.96\"}",
+      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfcXVldWVfYmxvY2tfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX3F1ZXVlX2Jsb2NrX3Rlc3QiLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg=="
+    }
+  ],
+  "PreConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_block_test",
+      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_queue_block_test",
+      "command3": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
+      "command4": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
+      "command5": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
+      "command6": "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
+      "command7": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
+      "command8": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
+      "command9": "sleep 10"
+    }
+  ],
+  "PostConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/delete ivr_queue_block_test",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
+      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
+      "command3": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
+      "command4": "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
+      "command5": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
+      "command6": "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
+      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
+      "command8": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "ivr_queue_callback_on_failure_test",
+      "Description": "Клиент звонит в очередь, где все агенты заняты. Кладёт трубку. После освобождаем одного из агентов. Принимаем cb-вызов на агенте, принимаем cb-вызов на юзере.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_FAILURE%%"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    },
+    {
+      "Name": "ivr_queue_callback_on_overload_max_call_in_queue",
+      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Один из вызовов получает отбой. Далее освобождаем одного из агентов, тот обслуживает вызов из очереди. Далее ждём cb вызов на абонента, который был отбит.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "BackGround" : true,
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 1},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 2 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    },
+    {
+      "Name": "ivr_queue_callback_on_overload_max_predicted_time",
+      "Description": "Устанавливаем максимальное предсказанное время ожидания 1 сек. Делаем два звонка в очередь, где все агенты заняты. Один из вызовов получает отбой. Далее освобождаем одного из агентов, тот обслуживает вызов из очереди. Далее ждём cb вызов на абонента, который был отбит.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\max_predicted_time 1"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "BackGround" : true,
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 1},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 2 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\max_predicted_time"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    },
+    {
+      "Name": "ivr_queue_callback_agent_no_answer",
+      "Description": "Клиент звонит в очередь, где все агенты заняты. Кладёт трубку. После освобождаем одного агента и отбиваем cb, далее повторяем данную процедуру для всех агентов кроме последнего, на последнем агенте принимаем cb",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_FAILURE%%"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#163",
+              "userId" : 1
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#163",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    },
+    {
+      "Name": "ivr_queue_callback_client_no_answer",
+      "Description": "Клиент звонит в очередь, где все агенты заняты. Кладёт трубку. Далее освобождаем агента. Принимаем cb на агенте и отбиваем cb на стороне клиента. Ждём пять минут, система должна сделать повторный cb.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_FAILURE%%"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 290},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    },
+    {
+      "Name": "ivr_queue_accept_cb_on_request",
+      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Второму вызову предлагают перезвонить позже, соглашаемся послав опредлённую dtmf. Далее ожидаем cb.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_REQ%%",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "BackGround" : true,
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 1},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\" -set DIGITS 1 -d 6000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 2 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    },
+    {
+      "Name": "ivr_queue_reject_cb_on_request",
+      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Второму вызову предлагают перезвонить позже, кладём трубку. Callback не должен прийти.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_REQ%%",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "BackGround" : true,
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 1},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "ivr/uas_wout_call.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "NoTimeOutError" : true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    },
+    {
+      "Name": "ivr_queue_reject_cb_on_request_send_dtmf",
+      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Второму вызову предлагают перезвонить позже, отказываемся отправив dtmf. Callback не должен прийти.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_REQ%%",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId" : 0
+           },
+           {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId" : 1
+           },
+           {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId" : 2
+           }
+        ]},
+        {"ServiceFeature" : [
+           {
+              "code": "#162",
+              "userId" : 0
+           },
+           {
+              "code": "#162",
+              "userId" : 1
+           },
+           {
+              "code": "#162",
+              "userId" : 2
+           }
+        ]},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "BackGround" : true,
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 1},
+        {
+          "StartUA": [
+          {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE BLOCK TEST\" -set DIGITS 2 -d 6000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#163",
+              "userId" : 0
+           }
+        ]},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "ivr/uas_wout_call.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "NoTimeOutError" : true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
+            }
+          ]
+        },
+        {"ServiceFeature" : [
+           {
+              "code": "#160",
+              "userId" : 0
+           },
+           {
+              "code": "#160",
+              "userId" : 1
+           },
+           {
+              "code": "#160",
+              "userId" : 2
+           }
+        ]}
+      ]
+    }
+  ]
+}
