@@ -13,7 +13,7 @@
         "%%DEV_PASS%%" : "password",
         "%%DEV_DOM%%" : "pv.ssw3",
         "%%SSW_DEF_ROUTE%%" : "default_routing",
-        "%%SSW_IPSET%%" : "pv.ssw3.ip",
+        "%%SSW_IPSET%%" : "geo.ip",
         "%%DEV_CONFIG_PORT%%" : 8023
     }
 ]
