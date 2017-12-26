@@ -79,7 +79,11 @@
       "command6": "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
       "command7": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
       "command8": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
-      "command9": "sleep 10"
+      "command9": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cc_agent",
+      "command10": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cc_agent",
+      "command11": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
+      "command13": "sleep 10"
     }
   ],
   "PostConf": [
@@ -92,7 +96,11 @@
       "command5": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
       "command6": "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
       "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent"
+      "command8": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent",
+      "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
+      "command10": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
+      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent"
     }
   ],
 "Tests": [
@@ -135,13 +143,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_QCLIENT_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
@@ -166,7 +175,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_0_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -181,7 +190,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_QCLIENT_RECV_BYE_FROM_AGENT",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -257,13 +266,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 4,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT1_RECV_BYE_FROM_AGENT",
               "BackGround" : true,
               "Commands": [
                 {
@@ -284,7 +294,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT2_RECV_BYE_FROM_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -309,7 +319,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_0_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -324,7 +334,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_QCLIENT2_RECV_BYE_FROM_AGENT",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -401,13 +411,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 4,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT1_RECV_BYE_FROM_AGENT",
               "BackGround" : true,
               "Commands": [
                 {
@@ -428,7 +439,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT2_RECV_BYE_FROM_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -453,7 +464,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_0_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -468,7 +479,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_QCLIENT2_RECV_BYE_FROM_AGENT",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -544,13 +555,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_QCLIENT_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
@@ -575,7 +587,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_486",
+              "Name": "UAS_AGENT_0_SEND_BUSY",
               "Commands": [
                 {
                   "SourceFile": "ivr/uas_send_486.xml",
@@ -604,7 +616,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAS_SEND_486",
+              "Name": "UAS_AGENT_1_SEND_BUSY",
               "Commands": [
                 {
                   "SourceFile": "ivr/uas_send_486.xml",
@@ -633,7 +645,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_2_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -648,7 +660,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_QCLIENT_RECV_BYE_FROM_AGENT",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -723,13 +735,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_QCLIENT_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
@@ -754,7 +767,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_AGENT_0_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -769,7 +782,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS_SEND_486",
+              "Name": "UAS_QCLIENT_SEND_BUSY",
               "Commands": [
                 {
                   "SourceFile": "ivr/uas_send_486.xml",
@@ -789,7 +802,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_0_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -804,7 +817,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_QCLIENT_RECV_BYE_FROM_AGENT",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -880,13 +893,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 4,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT1_RECV_BYE_FROM_AGENT",
               "BackGround" : true,
               "Commands": [
                 {
@@ -907,7 +921,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT2_RECV_BYE_FROM_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
@@ -932,7 +946,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_0_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -947,7 +961,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_QCLIENT2_RECV_BYE_FROM_AGENT",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -1024,13 +1038,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 4,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT1_RECV_BYE_FROM_AGENT",
               "BackGround" : true,
               "Commands": [
                 {
@@ -1051,7 +1066,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_SEND_BYE",
+              "Name": "UAC_QCLIENT2_RECV_BYE_FROM_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
@@ -1076,7 +1091,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_0_SEND_BYE_AND_CHK_NO_CALL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -1090,8 +1105,8 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "NoTimeOutError" : true,
-                  "Timeout": "40s"
+                  "ReqExCode" : 255,
+                  "Timeout": "20s"
                 }
               ]
             }
@@ -1161,13 +1176,14 @@
               "userId" : 2
            }
         ]},
+        {"Sleep" : 5},
         {
           "StartUA": [
           {
               "Type": "User",
               "UserId" : 4,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT1_RECV_BYE_FROM_AGENT",
               "BackGround" : true,
               "Commands": [
                 {
@@ -1188,7 +1204,7 @@
               "Type": "User",
               "UserId" : 3,
               "WriteStat" : true,
-              "Name": "UAC_RECV_BYE",
+              "Name": "UAC_QCLIENT2_RECV_BYE_FROM_QUEUE",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
@@ -1213,7 +1229,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_AGENT_0_SEND_BYE_AND_CHK_NO_CALL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
@@ -1227,8 +1243,8 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "NoTimeOutError" : true,
-                  "Timeout": "40s"
+                  "ReqExCode" : 255,
+                  "Timeout": "20s"
                 }
               ]
             }

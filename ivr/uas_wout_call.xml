@@ -2,7 +2,11 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAS send 486">
 
-<recv request="INVITE"/>
+<recv request="INVITE">
+	<action>
+		<exec int_cmd="stop_now"/>
+	</action>
+</recv>
 
 </scenario>
 
