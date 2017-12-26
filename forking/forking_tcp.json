@@ -83,7 +83,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat": true,
-              "Name": "UAS1_RECV_CANEL",
+              "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "forking/uas_recv_cancel.xml",
