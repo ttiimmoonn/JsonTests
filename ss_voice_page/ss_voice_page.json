@@ -77,7 +77,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_voice_page/uas_chk_auto_answer.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -193,7 +193,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_voice_page/uas_chk_auto_answer.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
