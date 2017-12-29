@@ -141,11 +141,11 @@
 ]]>
 </send>
 
-<recv request="ACK" next="exit"></recv>
+<recv request="ACK"></recv>
 
 <recv request="BYE"></recv>
 
-<send>
+<send next="exit">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
