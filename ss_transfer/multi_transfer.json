@@ -1,5 +1,6 @@
 {
   "TestName": "multi_transfer_test",
+  "RepeatCounter" : 2,
   "AutoTest" : true,
   "Users": [
     {
