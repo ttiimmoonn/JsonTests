@@ -1,5 +1,6 @@
 {
   "TestName": "multi_transfer_test",
+  "RepeatCounter" : 2,
   "AutoTest" : true,
   "Users": [
     {
@@ -7,7 +8,7 @@
       "Number": "157",
       "Login": "157",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 3600,
       "SipGroup": "sip.ab",
       "Port" : 11000,
@@ -18,7 +19,7 @@
       "Number": "158",
       "Login": "158",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 3600,
       "SipGroup": "sip.ab",
       "Port" : 11001,
@@ -29,7 +30,7 @@
       "Number": "159",
       "Login": "159",
       "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 3600,
       "SipGroup": "sip.ab",
       "Port" : 11002,
