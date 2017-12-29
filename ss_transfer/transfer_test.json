@@ -1,6 +1,7 @@
 {
   "TestName": "transfer_test",
   "AutoTest" : true,
+  "RepeatCounter" : 2,
   "Users": [
     {
       "UserId" : 0,
