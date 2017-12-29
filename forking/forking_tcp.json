@@ -1,6 +1,7 @@
 {
   "TestName": "forking_tcp",
   "AutoTest" : true,
+  "RepeatCounter" : 2,
   "Users": [
     {
       "UserId" : 0,
