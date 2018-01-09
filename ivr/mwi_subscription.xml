@@ -139,20 +139,6 @@
 
 <label id="send_auth_to_subscribe"/>
 
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
-
 <send next="recv_200_to_subscribe">
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -171,20 +157,6 @@
 </send>
 
 <label id="send_auth_to_unsubscribe"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
 
 <send next="recv_200_to_unsubscribe">
 <![CDATA[

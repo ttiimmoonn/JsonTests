@@ -106,20 +106,29 @@
     </action>
 </nop>
 
+<pause milliseconds="5000"/>
 
-<recv request="BYE"></recv>
+<nop hide="true">
+   <action>
+          <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
+     </action>
+</nop>
 
-<send next="end" crlf="true">
+<pause milliseconds="60000"/>
+
+<send>
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
+    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
     [last_Call-ID:]
-    [last_CSeq:]
+    CSeq: [cseq] BYE
     Content-Length: 0
 ]]>
 </send>
+
+<recv response="200" next="end"/>
 
 <!--Отправка INVITE c аутентификацией -->
 <label id="auth_invite"/>
