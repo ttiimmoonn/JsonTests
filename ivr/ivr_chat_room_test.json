@@ -1,0 +1,133 @@
+{
+  "TestName" : "ivr_chat_room_test",
+  "AutoTest" : true,
+  "Users" : [
+      {
+        "UserId" : 0,
+        "Number": "5000",
+        "Login": "5000",
+        "Password": "test123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20000,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 1,
+        "Number": "5001",
+        "Login": "5001",
+        "Password": "test123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20002,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      },
+      {
+        "UserId" : 2,
+        "Number": "5002",
+        "Login": "5002",
+        "Password": "test123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20004,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
+      }
+  ],
+  "UserVar": [
+    {
+      "%%CTX_TO_CHATROOM%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfY2hhdF9yb29tX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9ImVudGVyX251bWJlcl9vZl9jb25mZXJlbmNlX3Jvb20iLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
+      "%%ROOM_NUMBER%%" : "500"
+    }
+  ],
+  "PreConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_CHATROOM%%",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_chat_room_test",
+      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ivr_chat_room_test",
+      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ivr_chat_room_test"
+    }
+  ],
+  "PostConf": [
+    {
+
+      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
+      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing",
+      "command3": "/domain/%%DEV_DOM%%/routing/delete ivr_dial_block_test"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "ivr_simple_chat_room_test",
+      "Description": "Собираем chat_room из 3 юзеров. Двое отбиваются сами, третий отбивается конференцией по single_subscriber_conference_timeout",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/timers/core/set single_subscriber_conference_timeout 60"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC1_CHAT_ROOM_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf_and_send_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR_CHAT_ROOM_TEST\" -d 3000 -set DIGITS %%ROOM_NUMBER%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC2_CHAT_ROOM_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf_and_send_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR_CHAT_ROOM_TEST\" -d 3000 -set DIGITS %%ROOM_NUMBER%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC2_CHAT_ROOM_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_dtmf.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR_CHAT_ROOM_TEST\" -d 3000 -set DIGITS %%ROOM_NUMBER%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "180s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/timers/core/clean single_subscriber_conference_timeout"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
