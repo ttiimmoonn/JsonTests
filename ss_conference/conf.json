@@ -4,10 +4,10 @@
   "Users": [
     {
       "UserId" : 0,
-      "Number": "156",
-      "Login": "156",
-      "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "Number": "5000",
+      "Login": "5000",
+      "Password": "test123",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "SipGroup": "sip.ab",
       "Port" : 10105,
@@ -15,10 +15,10 @@
     },
     {
       "UserId" : 1,
-      "Number": "157",
-      "Login": "157",
-      "Password": "123",
-      "SipDomain": "pv.ssw3",
+      "Number": "5001",
+      "Login": "5001",
+      "Password": "test123",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "SipGroup": "sip.ab",
       "Port" : 10106,
@@ -26,13 +26,35 @@
     },
     {
       "UserId" : 2,
-      "Number": "158",
-      "Login": "158",
-      "Password": "123",
+      "Number": "5002",
+      "Login": "5002",
+      "Password": "test123",
       "SipGroup": "sip.ab",
-      "SipDomain": "pv.ssw3",
+      "SipDomain": "%%DEV_DOM%%",
       "Expires" : 90,
       "Port" : 10107,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 3,
+      "Number": "5003",
+      "Login": "5003",
+      "Password": "test123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 10108,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 4,
+      "Number": "5004",
+      "Login": "5004",
+      "Password": "test123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 10109,
       "QParam" : 1
     }
   ],
@@ -48,7 +70,11 @@
       "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
       "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
       "command6": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
+      "command7": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+      "command8": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% conference",
+      "command9": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% conference",
+      "command10": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% conference",
+      "command11": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% conference"
     }
   ],
   "PostConf": [
@@ -60,7 +86,11 @@
       "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
       "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
       "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip"
+      "command7": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+      "command8": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% conference",
+      "command9": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% conference",
+      "command10": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% conference",
+      "command11": "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% conference"
     }
   ],
 "Tests": [
@@ -215,6 +245,95 @@
             }
           ]
         }
+      ]
+    },
+    {
+      "Name": "chat_room_and_conference_conflict_test",
+      "Ref" : "#92405",
+      "Description": "Собираем конференцию с номера A. Далее собираем chat-room с номером команты равном номеру А. Никаких отбоев быть не должно, конференции живут независимо.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "BackGround" : true,
+              "Name": "UAS1_REFER_TO_FOCUS",
+              "Commands": [
+                {
+                  "SourceFile": "ss_conference/conf_refer_to_focus.xml",
+                  "Options": "-m 1 -set CALL2_NUMBER %%1.Number%% -set CALL2_DOMAIN %%1.SipDomain%% -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "BackGround" : true,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 4000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "BackGround" : true,
+              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 10},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "Name": "UAC1_CHATROOM_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 8000 -set CDPN *72*%%0.Number%%# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "Name": "UAC2_CHATROOM_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 8000 -set CDPN *72*%%0.Number%%# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "70s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep" : 10}
       ]
     }
   ]
