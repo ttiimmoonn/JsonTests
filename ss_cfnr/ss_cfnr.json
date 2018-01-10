@@ -386,7 +386,7 @@
             {
               "Type": "User",
               "UserId": 7,
-              "Name": "UAC_RECV_181",
+              "Name": "SIMPLE_UAC_WOUT_181",
               "Commands": [
                 {
                   "SourceFile": "ss_cfnr/uac_wout_181.xml",
