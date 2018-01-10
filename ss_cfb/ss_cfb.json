@@ -229,6 +229,60 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "cfb_to_call_initiator",
+      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*22*%%1.Number%%#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS0_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfb/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfb/uac_recv_486.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#22#",
+              "userId" : 0
+            }
+          ]
+        }
+      ]
     }
   ]
 }
