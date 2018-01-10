@@ -229,6 +229,60 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "cfos_to_call_initiator",
+      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*24*%%1.Number%%#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS0_SEND_480",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfos/uas_send_480.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_480",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfos/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#24#",
+              "userId" : 0
+            }
+          ]
+        }
+      ]
     }
   ]
 }
