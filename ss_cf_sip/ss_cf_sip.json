@@ -209,6 +209,44 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "cf_sip_to_call_initiator",
+      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS0_SEND_302",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cf_sip/uas_send_302.xml",
+                  "Options": "-m 1 -set FORW_USER %%1.Number%% -set FORW_DOMAIN %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_RECV_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cf_sip/uac_recv_486.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
