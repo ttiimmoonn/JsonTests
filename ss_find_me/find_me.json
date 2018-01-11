@@ -1075,10 +1075,10 @@
             {
               "Type": "User",
               "UserId" : 10,
-              "Name": "UAS1_GROUP_1_FIND_ME",
+              "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "ss_find_me/uas.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
