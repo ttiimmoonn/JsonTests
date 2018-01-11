@@ -11,7 +11,7 @@
         "%%EXTER_PORT%%" : "5061",
         "%%DEV_USER%%" : "admin",
         "%%DEV_PASS%%" : "password",
-        "%%DEV_DOM%%" : "test.domain",
+        "%%DEV_DOM%%" : "pv.ssw1",
         "%%SSW_DEF_ROUTE%%" : "default_routing",
         "%%SSW_IPSET%%" : "test.domain",
         "%%DEV_CONFIG_PORT%%" : 8023
