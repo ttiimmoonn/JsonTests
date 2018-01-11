@@ -141,7 +141,7 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "Name": "UAS_SEND_422_RESPONSE",
+              "Name": "UAC_CHK_SESSION_EXP",
               "WriteStat" : true,
               "Commands": [
                 {
@@ -169,7 +169,7 @@
               "Name": "UAS_SEND_422_RESPONSE",
               "Commands": [
                 {
-                  "SourceFile": "rfc4028_timers/uas.xml",
+                  "SourceFile": "rfc4028_timers/uas_send_422.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "200s"
