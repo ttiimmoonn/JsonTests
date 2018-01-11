@@ -322,7 +322,7 @@
             {
               "Type": "User",
               "UserId": 7,
-              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Name": "UAC_WOUT_181",
               "Commands": [
                 {
                   "SourceFile": "ss_cfu/uac_wout_181.xml",
