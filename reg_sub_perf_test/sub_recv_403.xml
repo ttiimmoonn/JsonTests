@@ -32,18 +32,6 @@
 </send>
 
 
-<recv response="403"></recv>
+<recv response="403"/>
 
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    [last_via:]
-    From: <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: <sip:[$cdpn]@[$cdpn_dom]>
-    [last_Call-ID:]
-    CSeq: [cseq] SUBSCRIBE
-    Content-Length: 0
-    Max-Forwards: 70
-]]>
-</send>
 </scenario>
