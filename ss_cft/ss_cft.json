@@ -196,6 +196,61 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "cft_to_call_initiator",
+      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "Ref" : "90211",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%1.Number%%#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_WOUT_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cft/uac_wout_181.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#28#",
+              "userId": 0
+            }
+          ]
+        }
+      ]
     }
   ]
 }
