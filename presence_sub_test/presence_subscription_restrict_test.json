@@ -490,12 +490,16 @@
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
                   "NeedAuth": true,
+                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "StartCseq": 1,
                   "Timeout": "60s"
                 },
                 {
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%2.Number%%",
+                  "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 },
@@ -522,6 +526,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 },
@@ -529,6 +535,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%3.Number%%",
+                  "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 }
@@ -548,6 +556,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%2.Number%%",
+                  "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 },
@@ -555,6 +565,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%3.Number%%",
+                  "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 }
@@ -600,6 +612,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 },
@@ -614,6 +628,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 }
@@ -633,6 +649,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%5.Number%%",
+                  "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 },
@@ -647,6 +665,8 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
+                  "CidStr" : "subfrom%%0.Number%%to%%5.Number%%",
+                  "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
                 }
