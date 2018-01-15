@@ -220,6 +220,57 @@
           }
         }
       ]
+    },
+    {
+      "Name": "send_481_on_precense_notify_test",
+      "Description": "Проверка отсутствия нотификаций после отправки 481 ответа на NOTIFY",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAC_SEND_481_ON_NOTIFY",
+              "Commands": [
+                {
+                  "SourceFile": "presence_sub_test/presence_sub_send_481_to_notify.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_PUBLISH",
+              "Commands": [
+                {
+                  "SourceFile": "presence_sub_test/uac_send_publish.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 7
+        }
+      ]
     }
   ]
 }

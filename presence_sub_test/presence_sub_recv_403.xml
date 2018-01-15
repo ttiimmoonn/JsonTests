@@ -32,12 +32,7 @@
 </send>
 
 
-<recv response="401" auth="true" optional="true" next="sub_auth">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" optional="true" next="sub_auth"/>
 
 <label id="sub_continue"/>
 
