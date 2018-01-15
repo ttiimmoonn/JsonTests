@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "UAC SEND PUBLISH">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+    <nop hide="true">
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    </action>
+    </nop>
+
+<send>
+<![CDATA[
+    PUBLISH sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "UAC SEND PUBLISH" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] PUBLISH
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/pidf+xml
+    Expires: 600
+    Event: presence
+    Content-Length: [len]
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
+    [$cdpn]@[$cdpn_dom]">
+    <tuple id="sg89ae">
+    <status><basic>open</basic></status>
+    <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
+    </tuple>
+    <dm:person id="sg89aep">
+    <rpid:activities><rpid:busy/></rpid:activities>
+    </dm:person>
+    </presence>
+]]>
+</send>
+
+
+<recv response="401" optional="true" auth="true" next="auth_publish_1">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="publish_continue_1"/>
+<recv response="200">
+</recv>
+
+<pause milliseconds="7000"/>
+
+<send>
+<![CDATA[
+    PUBLISH sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "UAC SEND PUBLISH" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] PUBLISH
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/pidf+xml
+    Expires: 600
+    Event: presence
+    Content-Length: [len]
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
+    [$cdpn]@[$cdpn_dom]">
+    <tuple id="sg89ae">
+    <status><basic>open</basic></status>
+    <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
+    </tuple>
+    </presence>
+]]>
+</send>
+
+<recv response="401" optional="true" auth="true" next="auth_publish_2">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+<label id="publish_continue_2"/>
+<recv response="200" next="end">
+</recv>
+
+<label id="auth_publish_1"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<send next="publish_continue_1">
+<![CDATA[
+    PUBLISH sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "UAC SEND PUBLISH" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] PUBLISH
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/pidf+xml
+    Expires: 600
+    [authentication]
+    Event: presence
+    Content-Length: [len]
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
+    [$cdpn]@[$cdpn_dom]">
+    <tuple id="sg89ae">
+    <status><basic>open</basic></status>
+    <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
+    </tuple>
+    <dm:person id="sg89aep">
+    <rpid:activities><rpid:busy/></rpid:activities>
+    </dm:person>
+    </presence>
+]]>
+</send>
+
+<label id="auth_publish_2"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<send next="publish_continue_2">
+<![CDATA[
+    PUBLISH sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "UAC SEND PUBLISH" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] PUBLISH
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/pidf+xml
+    Expires: 600
+    [authentication]
+    Event: presence
+    Content-Length: [len]
+    
+    <?xml version="1.0" encoding="UTF-8"?>
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
+    [$cdpn]@[$cdpn_dom]">
+    <tuple id="sg89ae">
+    <status><basic>open</basic></status>
+    <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
+    </tuple>
+    </presence>
+]]>
+</send>
+
+<label id="end"/>
+</scenario>
