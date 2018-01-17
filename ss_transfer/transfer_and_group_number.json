@@ -79,7 +79,12 @@
       "command9" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cgg chunt",
       "command10": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CGG_GROUP_NUMBER_DNAME%%",
       "command11": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%CGG_GROUP_USER_DNAME%%",
-      "command12": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%USER_DNAME%%"
+      "command12": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%USER_DNAME%%",
+      "command13": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+      "command14": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+      "command15": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+      "command16": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+      "command17": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none"
     }
   ],
   "PostConf": [
@@ -91,7 +96,12 @@
       "command5" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cgg chunt",
       "command6" : "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
       "command7" : "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command8" : "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
+      "command8" : "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+      "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+      "command12": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+      "command13": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force"
     }
   ],
   "Tests": [
