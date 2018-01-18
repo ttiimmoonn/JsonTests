@@ -1,0 +1,378 @@
+{
+  "TestName": "transfer_rci_test_rpi_hdr",
+  "AutoTest" : true,
+  "RepeatCounter" : 2,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 10106,
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 10107,
+      "QParam" : 1
+    },
+    {
+      "UserId" : 2,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 3600,
+      "SipGroup": "sip.ab",
+      "Port" : 10108,
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%CONNECTED_NAME%%":"\"RCI transfer test\""
+    }
+  ],
+  "PreConf": [
+    {
+      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
+      "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
+      "command4" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
+      "command5": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
+      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
+      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
+      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
+      "command3" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
+      "command4" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+      "command5": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "change_caller_id_through_update_request(attended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer трансфером. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "change_caller_id_through_update_request(semi_attended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer трансфером. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/transfer_before_answer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_early_st.xml",
+                  "Options": "-m 1 -d 5000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "change_caller_id_through_update_request(unattended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer трансфером. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/unattended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 5000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "change_caller_id_through_re_invite_request(attended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_re_invite.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "change_caller_id_through_re_invite_request(semi-attended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi-attended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/transfer_before_answer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_re_invite.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "change_caller_id_through_re_invite_request(unattended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/unattended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_re_invite.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

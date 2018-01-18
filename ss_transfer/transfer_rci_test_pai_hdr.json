@@ -1,5 +1,5 @@
 {
-  "TestName": "transfer_rci_test",
+  "TestName": "transfer_rci_test_pai_hdr",
   "AutoTest" : true,
   "RepeatCounter" : 2,
   "Users": [
@@ -51,9 +51,9 @@
       "command5": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
       "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
       "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
-      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
-      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi"
+      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication pai",
+      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication pai",
+      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication pai"
     }
   ],
   "PostConf": [
@@ -95,7 +95,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
-                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -108,7 +108,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_PAI true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -146,7 +146,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_recv_update_on_early_st.xml",
-                  "Options": "-m 1 -d 5000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "Options": "-m 1 -d 5000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -159,7 +159,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_PAI true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -197,7 +197,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
-                  "Options": "-m 1 -d 5000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "Options": "-m 1 -d 5000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -210,7 +210,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_PAI true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -248,7 +248,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_recv_re_invite.xml",
-                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -261,7 +261,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_PAI true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -299,7 +299,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_recv_re_invite.xml",
-                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -312,7 +312,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_PAI true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -350,7 +350,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_recv_re_invite.xml",
-                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -363,7 +363,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_PAI true1",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"

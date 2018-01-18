@@ -1,0 +1,618 @@
+{
+  "TestName": "ss_transfer_chk_dname",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 1
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 1
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%SIP_DNAME%%": "SipDNAME_CTR",
+      "%%ALIAS_DNAME%%": "AliasDNAME_CTR",
+      "%%ROUTE_DNAME%%": "RouteDNAME_CTR",
+      "%%CTR_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19jdHJfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQ1RSIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+
+      "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+      "command6": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+
+      "command7": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+      "command8": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+
+      "command9": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
+      "command10": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
+
+      "command11": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
+      "command12": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip",
+
+      "command13": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ctr",
+      "command14": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ctr",
+
+      "command15": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
+      "command16": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold",
+
+      "command17": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
+      "command18": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
+      "command19": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
+
+      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+      "command8": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
+
+      "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
+      "command10": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
+
+      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
+      "command12": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip",
+
+      "command13": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+      "command14": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold",
+
+      "command15": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ctr",
+      "command16": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ctr",
+
+      "command17": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%1.SipDomain%% displayName",
+      "command18": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+
+      "command19": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command20": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command21": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "cft_set_dname_only_sip",
+      "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с SIP",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%SIP_DNAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME %%SIP_DNAME%% -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cft_set_dname_on_sip_and_alias",
+      "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%ALIAS_DNAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME %%SIP_DNAME%% -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ctr_wout_dname",
+      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем \"\"",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME \"\" -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME \"\" -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cft_set_only_alias_dname",
+      "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%ALIAS_DNAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME \"\" -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cft_set_dname_on_sip_and_routing",
+      "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%ROUTE_DNAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME %%SIP_DNAME%% -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cft_set_dname_on_sip_and_alias_and_routing",
+      "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%",
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%ROUTE_DNAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME %%SIP_DNAME%% -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cft_set_dname_only_routing",
+      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%ROUTE_DNAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME \"\" -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cft_set_dname_on_alias_and_routing",
+      "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%",
+              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%ROUTE_DNAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME \"\" -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_RPI true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

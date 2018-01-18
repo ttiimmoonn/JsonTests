@@ -2,17 +2,9 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAS recv UPDATE">
 
-<Global variables="CHK_CONNECTED_NUMBER,CHK_CONNECTED_NAME" />
-<User variables="connected_name,connected_number,dummy" />
-<Reference variables="connected_name,connected_number,dummy" />
-
-<nop hide="true">
-    <action>
-        <assignstr assign_to="connected_name" value="[$CHK_CONNECTED_NAME]"/>
-        <assignstr assign_to="connected_number" value="[$CHK_CONNECTED_NUMBER]"/>
-    </action>
-</nop>
-
+<Global variables="CHK_CONNECTED_NUMBER,CHK_CONNECTED_NAME,CHK_RPI,CHK_PAI" />
+<User variables="rpi_connected_name,rpi_connected_number,pai_connected_name,pai_connected_number,dummy,connected_name,connected_number" />
+<Reference variables="rpi_connected_name,rpi_connected_number,pai_connected_name,pai_connected_number,dummy,connected_name,connected_number" />
 
 <recv request="INVITE">
 <action>
@@ -81,7 +73,8 @@
 
 <recv request="UPDATE">
     <action>
-        <ereg regexp="\s?\"?([^\"]+)\"?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,connected_name,connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="P-Asserted-Identity:" assign_to="dummy,dummy,pai_connected_name,pai_connected_number"/>
     </action>
 </recv>
 
@@ -111,6 +104,20 @@
     Content-Length: 0
 ]]>
 </send>
+
+<nop hide="true" condexec="CHK_RPI">
+    <action>
+        <assignstr assign_to="connected_name" value="[$rpi_connected_name]"/>
+        <assignstr assign_to="connected_number" value="[$rpi_connected_number]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_PAI">
+    <action>
+        <assignstr assign_to="connected_name" value="[$pai_connected_name]"/>
+        <assignstr assign_to="connected_number" value="[$pai_connected_number]"/>
+    </action>
+</nop>
 
 <nop hide="true" condexec="CHK_CONNECTED_NUMBER">
     <action>
