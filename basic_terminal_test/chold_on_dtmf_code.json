@@ -47,7 +47,10 @@
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
       "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none"
     }
   ],
   "PostConf": [
@@ -56,7 +59,10 @@
       "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
       "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
+      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
     }
   ],
   "Tests": [
