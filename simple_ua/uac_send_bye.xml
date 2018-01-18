@@ -88,7 +88,7 @@
 <recv response="180" optional="true" next="call_continue">
     <action>
         <ereg regexp="Remote-Party-ID:" check_it="true" search_in="msg" assign_to="dummy"/>
-        <ereg regexp="s?\"?([^\"]+)\"?\s<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,alerting_name,alerting_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,alerting_name,alerting_number"/>
     </action>
 </recv>
 <recv response="200" auth="true">
@@ -96,7 +96,7 @@
          <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
-        <ereg regexp="s?\"?([^\"]+)\"?\s<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,connected_name,connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,connected_name,connected_number"/>
     </action>
  </recv>
 <nop hide="true">
