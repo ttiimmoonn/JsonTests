@@ -55,7 +55,7 @@
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
       "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing",
-      "command3": "/domain/%%DEV_DOM%%/routing/delete ivr_dial_block_test"
+      "command3": "/domain/%%DEV_DOM%%/routing/delete ivr_chat_room_test"
     }
   ],
   "Tests": [

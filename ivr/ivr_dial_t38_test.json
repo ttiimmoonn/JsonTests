@@ -63,7 +63,7 @@
   "PostConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_dial_t38_test",
+      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_dial_t38_test_ctx",
       "command2": "domain/%%DEV_DOM%%/ivr/script/delete ivr_dial_t38_test"
     }
   ],
