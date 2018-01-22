@@ -33,6 +33,7 @@
     [last_To:];tag=[$local_tag]
     [last_Call-ID:]
     [last_CSeq:]
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Content-Length: 0
 ]]>
 </send>
