@@ -84,7 +84,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%%",
+                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%1.Number%% -set CHK_ALERTING_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
