@@ -2,8 +2,8 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAS recv BYE">
 
-<Global variables="CHK_DNAME,CHK_CGPN,CHK_CDPN,DIVER_NUMBER,DIVER_REASON" />
-<User variables="chk_dname,chk_cgpn,dummy,dname,diver_num,diver_reason" />
+<Global variables="CHK_DNAME,CHK_CGPN,CHK_CDPN,DIVER_NUMBER,DIVER_REASON,DIVER_NAME" />
+<User variables="chk_dname,chk_cgpn,dummy,dname,diver_num,diver_reason,diver_name" />
 <Reference variables="dummy,dname"/>
 
 
@@ -29,7 +29,7 @@
 <action>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
-    <ereg regexp="<sip:([^;@]+).*?;reason=(.*)$" search_in="hdr" header="Diversion:" assign_to="dummy,diver_num,diver_reason"/>
+    <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+).*?;reason=(.*)$" search_in="hdr" header="Diversion:" assign_to="dummy,dummy,diver_name,diver_num,diver_reason"/>
     <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
@@ -177,6 +177,20 @@
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
+
+<nop hide="true" condexec="DIVER_NAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="DIVER_NAME" variable2="diver_name"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check diversion name failed. Require Diversion Name: [$DIVER_NAME]; Current Diversion Name: [$diver_name]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
 
 
 </scenario>
