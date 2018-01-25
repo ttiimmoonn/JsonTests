@@ -213,13 +213,6 @@
       "Description": "Тест сбора cisco конференции",
       "TestProcedure": [
         {
-          "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none"
-            }
-          ]
-        },
-        {
           "StartUA": [
             {
               "Type": "User",
@@ -261,13 +254,6 @@
                   "Timeout": "30s"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
             }
           ]
         }
