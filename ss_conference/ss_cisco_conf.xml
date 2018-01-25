@@ -56,6 +56,7 @@
     [last_To:];tag=[$local_tag_call_1]
     [last_Call-ID:]
     [last_CSeq:]
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Content-Length: 0
 ]]>
 </send>
@@ -71,6 +72,7 @@
     To:[$inv_to];tag=[$local_tag_call_1]
     [last_call-id]
     CSeq: [$inv_cseq] INVITE
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
@@ -116,6 +118,7 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -162,6 +165,7 @@
     To: <sip:[$call2_number]@[$call2_sipdomain]>
     [last_call-id]
     CSeq: [cseq] INVITE
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
@@ -296,7 +300,7 @@
 
 <recv response="202"></recv>
 
-<recv request="NOTIFY|BYE" regexp_match="true"/>
+<recv request="NOTIFY|BYE|UPDATE" regexp_match="true"/>
 
 <send>
 <![CDATA[
@@ -310,7 +314,7 @@
 ]]>
 </send>
 
-<recv request="NOTIFY|BYE" regexp_match="true"/>
+<recv request="NOTIFY|BYE|UPDATE" regexp_match="true"/>
 
 <send>
 <![CDATA[
@@ -324,6 +328,19 @@
 ]]>
 </send>
 
+<recv request="NOTIFY|BYE|UPDATE" regexp_match="true"/>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
 
 <!-- ToDo How to chk REFER ??? Now Refer is handle in oocsn --> 
 
@@ -355,6 +372,7 @@
     CSeq: [cseq] INVITE
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Content-Type: application/sdp
     Content-Length: [len]
 
@@ -497,6 +515,7 @@
     [authentication]
     Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Max-Forwards: 70
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Content-Type: application/sdp
     Content-Length: [len]
 

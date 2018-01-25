@@ -80,7 +80,9 @@
       "command10": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% conference",
       "command11": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% conference",
       "command12": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_CHATROOM%%",
-      "command13": "/domain/%%DEV_DOM%%/ivr/script/.import --id chat_room_and_conf_conflict_test --json %%CHAT_ROOM_SCRIPT%%"
+      "command13": "/domain/%%DEV_DOM%%/ivr/script/.import --id chat_room_and_conf_conflict_test --json %%CHAT_ROOM_SCRIPT%%",
+      "command14": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication rpi",
+      "command15": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication rpi"
     }
   ],
   "PostConf": [
@@ -98,7 +100,9 @@
       "command10": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% conference",
       "command11": "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% conference",
       "command12": "/domain/%%DEV_DOM%%/routing/delete chat_room_and_conf_conflict_test",
-      "command13": "domain/%%DEV_DOM%%/ivr/script/delete chat_room_and_conf_conflict_test"
+      "command13": "domain/%%DEV_DOM%%/ivr/script/delete chat_room_and_conf_conflict_test",
+      "command14": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
+      "command15": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none"
     }
   ],
 "Tests": [
@@ -128,8 +132,8 @@
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 4000",
+                  "SourceFile": "ss_conference/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 4000 -set CONFNUM *C71%23",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -141,8 +145,8 @@
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "ss_conference/uac_recv_update.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CONFNUM *C71%23",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -179,8 +183,8 @@
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 4000",
+                  "SourceFile": "ss_conference/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 4000 -set CONFNUM *71%23",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -192,8 +196,8 @@
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "ss_conference/uac_recv_update.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CONFNUM *71%23",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -208,6 +212,13 @@
       "Name": "create_conf_like_cisco",
       "Description": "Тест сбора cisco конференции",
       "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none"
+            }
+          ]
+        },
         {
           "StartUA": [
             {
@@ -230,8 +241,8 @@
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 4000",
+                  "SourceFile": "ss_conference/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 4000 -set CONFNUM *C71%23",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -243,13 +254,20 @@
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "ss_conference/uac_recv_update.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CONFNUM *C71%23",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
             }
           ]
         }
@@ -288,12 +306,11 @@
             {
               "Type": "User",
               "UserId" : 1,
-              "BackGround" : true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 4000",
+                  "SourceFile": "ss_conference/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 4000 -set CONFNUM *C71%23",
                   "SippType": "uas",
                   "Timeout": "30s"
                 }
@@ -302,12 +319,11 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "BackGround" : true,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "ss_conference/uac_recv_update.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CONFNUM *C71%23",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
