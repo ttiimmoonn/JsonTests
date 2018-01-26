@@ -64,7 +64,7 @@
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_From: "UAC recv 486"]
+    [last_From:]
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
@@ -79,7 +79,7 @@
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_From: "UAC recv 486"]
+    [last_From:]
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
