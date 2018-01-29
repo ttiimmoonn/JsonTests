@@ -271,6 +271,54 @@
           "Sleep" : 7
         }
       ]
+    },
+    {
+      "Name": "test_retrans_401_on_publish",
+      "Description": "Проверяем повтор 401 ответа в случае перепосылок PUBLISH",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAC_SUB_PRECENSE",
+              "Commands": [
+                {
+                  "SourceFile": "presence_sub_test/presence_sub_recv_notify.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_RETRANS_PUBLISH",
+              "Commands": [
+                {
+                  "SourceFile": "presence_sub_test/uac_retrans_publish.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
