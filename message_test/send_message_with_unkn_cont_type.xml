@@ -49,7 +49,7 @@
 
 <label id="msg_continue" />
 
-<recv response="415" auth="true" next="end"></recv>
+<recv response="415" next="end"></recv>
 
 
 <!--Отправка MESSAGE c аутентификацией -->

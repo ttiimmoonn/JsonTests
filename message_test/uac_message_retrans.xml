@@ -3,7 +3,8 @@
 <scenario name = "Simple UAC send MESSAGE">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME" />
-    <nop hide="true">
+    
+<nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
@@ -11,19 +12,20 @@
         <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
-    </nop>
+</nop>
 
-    <nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
-        <action>
-            <assignstr assign_to="display_name" value="\"Simple UAC send message\" " />
-        </action>
-    </nop>
+<nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="display_name" value="\"Simple UAC send message\" " />
+    </action>
+</nop>
 
-    <nop hide="true" condexec="WOUT_DNAME">
-        <action>
-            <assignstr assign_to="display_name" value="" />
-        </action>
-    </nop>
+<nop hide="true" condexec="WOUT_DNAME">
+    <action>
+        <assignstr assign_to="display_name" value="" />
+    </action>
+</nop>
+
 
 <send>
 <![CDATA[
@@ -41,19 +43,27 @@
 ]]>
 </send>
 
-<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
-<recv response="401" optional="true" auth="true" next="auth_message"/>
+<recv response="401"/>
 
-<label id="msg_continue" />
+<send>
+<![CDATA[
+    MESSAGE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    [last_via:]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id:]
+    [last_cseq:]
+    Max-Forwards: 70
+    Content-Type: text/plain
+    Content-Length: [len]
 
-<recv response="200" next="end"></recv>
+    Test 123 ТЕСТ !?
+]]>
+</send>
 
+<recv response="401" auth="true"/>
 
-<!--Отправка MESSAGE c аутентификацией -->
-<label id="auth_message"/>
-
-<!-- Уходим в label call_continue -->
-<send next="msg_continue" crlf="true">
+<send>
 <![CDATA[
 
     MESSAGE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -71,6 +81,9 @@
 ]]>
 </send>
 
-<label id="end"/>
+
+<recv response="200"></recv>
+
 <pause milliseconds="2000"/>
+
 </scenario>
