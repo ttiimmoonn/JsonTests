@@ -309,7 +309,7 @@
               "Commands": [
                 {
                   "SourceFile": "presence_sub_test/uac_retrans_publish.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -nr",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
