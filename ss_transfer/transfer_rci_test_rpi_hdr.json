@@ -39,7 +39,8 @@
   ],
   "UserVar": [
     {
-      "%%CONNECTED_NAME%%":"\"RCI transfer test\""
+      "%%CONNECTED_NAME%%":"\"RCI transfer test\"",
+      "%%TRANSFEE_NAME%%" : "TransfeeUser"
     }
   ],
   "PreConf": [
@@ -53,7 +54,8 @@
       "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
       "command8": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
       "command9": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
-      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi"
+      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+      "command11": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%"
     }
   ],
   "PostConf": [
@@ -64,7 +66,8 @@
       "command4" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
       "command5": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
       "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+      "command8": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
     }
   ],
   "Tests": [
@@ -108,7 +111,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -159,7 +162,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -210,7 +213,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -261,7 +264,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -312,7 +315,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -363,7 +366,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -414,7 +417,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
