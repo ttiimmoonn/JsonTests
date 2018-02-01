@@ -427,6 +427,57 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "send_busy_from_transfer_target_side",
+      "Description": "Проверка того, что отложенный address_update не будет отправлен на сторону С если она пошлёт 486 после 180",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/unattended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486_after_180.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%% -set RECV_BYE true",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAC recv UPDATE (transfer rci test)">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,CHK_CONNECTED_NUMBER,CHK_CONNECTED_NAME,DNAME,CHK_RPI,CHK_PAI" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CHK_CONNECTED_NUMBER,CHK_CONNECTED_NAME,DNAME,CHK_RPI,CHK_PAI,RECV_BYE" />
 <User variables="rpi_connected_name,rpi_connected_number,pai_connected_name,pai_connected_number,dummy,connected_name,connected_number" />
 <Reference variables="rpi_connected_name,rpi_connected_number,pai_connected_name,pai_connected_number,dummy,connected_name,connected_number" />
 
@@ -114,7 +114,7 @@
 </send>
 
 
-<recv request="ACK"/>
+<recv request="ACK" test="RECV_BYE" next="recv_bye"/>
 
 <pause milliseconds="5000" crlf="true"/>
 
@@ -171,6 +171,22 @@
     t=0 0
     m=audio [auto_media_port] RTP/AVP 8
     a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<label id="recv_bye"/>
+
+<recv request="BYE"/>
+
+<send next="end">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
 ]]>
 </send>
 
