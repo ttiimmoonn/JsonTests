@@ -130,6 +130,8 @@
  </action>
 </nop>
 
+<pause/>
+
 <recv request="BYE"></recv>
 
 <send next="end" crlf="true">
