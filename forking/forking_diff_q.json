@@ -111,7 +111,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -124,7 +124,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -138,7 +138,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -150,7 +150,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -212,7 +212,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -225,7 +225,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -239,7 +239,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -251,7 +251,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -313,7 +313,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -326,7 +326,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -340,7 +340,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -352,7 +352,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -414,7 +414,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -427,7 +427,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -441,7 +441,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -453,7 +453,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -515,7 +515,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -528,7 +528,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -542,7 +542,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -554,7 +554,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -644,7 +644,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -656,7 +656,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -719,7 +719,7 @@
               "Commands": [
                 {
                   "SourceFile": "forking/uas_420.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -733,7 +733,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -747,7 +747,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -759,7 +759,7 @@
             {
               "Difference": "%%FIND_ME_TIMER%%",
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -792,7 +792,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -806,7 +806,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
