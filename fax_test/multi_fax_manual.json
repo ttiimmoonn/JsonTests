@@ -16,7 +16,7 @@
   "UserVar": [
     {
       "%%FAX_NUMBER%%": "445",
-      "%%USER_DOM%%": "pv.ssw3"
+      "%%USER_DOM%%": "%%DEV_DOM%%"
     }
   ],
   "PreConf": [

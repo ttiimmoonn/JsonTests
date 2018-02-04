@@ -173,25 +173,6 @@
 
 <send retrans="500">
 <![CDATA[
-    SIP/2.0 488 Not Acceptable Here
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Type: application/sdp
-    Content-Length: 0 
-]]>
-</send>
-
-<recv request="ACK"> </recv>
-
-
-
-<recv request="INVITE"> </recv>
-
-<send retrans="500">
-<![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
     [last_From:]
@@ -257,24 +238,6 @@
 </send>
 
 <recv request="ACK"/>
-
-<recv request="INVITE"> </recv>
-
-<send retrans="500">
-<![CDATA[
-    SIP/2.0 488 Not Acceptable Here
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Type: application/sdp
-    Content-Length: 0 
-]]>
-</send>
-
-<recv request="ACK"> </recv>
-
 
 
 <recv request="INVITE"> </recv>
@@ -346,25 +309,6 @@
 </send>
 
 <recv request="ACK"/>
-
-<recv request="INVITE"> </recv>
-
-<send retrans="500">
-<![CDATA[
-    SIP/2.0 488 Not Acceptable Here
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Type: application/sdp
-    Content-Length: 0 
-]]>
-</send>
-
-<recv request="ACK"> </recv>
-
-
 
 <recv request="INVITE"> </recv>
 

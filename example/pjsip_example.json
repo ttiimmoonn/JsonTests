@@ -1,0 +1,81 @@
+{
+  "TestName": "test_example",
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10110,
+      "QParam" : 0.5,
+      "RegMode" : "pjsip"
+    },
+    {
+      "UserId" : 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10116,
+      "QParam" : 0.5,
+      "RegMode" : "pjsip"
+    },
+    {
+      "UserId" : 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 10117,
+      "QParam" : 1,
+      "RegMode" : "pjsip"
+    }
+  ],
+
+
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    {
+    }
+  ],
+  "PostConf": [
+    {
+    }
+  ],
+"Tests": [
+    {
+      "Name": "test_example",
+      "Description": "Тест",
+      "TestProcedure": [
+      {
+        "MakeCall" : {
+          "CallId" : 1,
+          "Number" : "102",
+          "ExpFinalResponse" : "200",
+        },
+        "Hold" : {
+          "CallId" : 1
+        },
+        "UnHold" : {
+          "CallId" : 1
+        },
+        "HangUp": {
+          "CallId" : 1
+        }
+      },
+      {
+        "Sleep" : 150
+      }
+      ]
+    }
+  ]
+}
