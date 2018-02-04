@@ -95,7 +95,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -aa -d 2000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -134,7 +134,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -t tn -max_socket 25",
+                  "Options": "-m 1 -d 2000 -aa -t tn -max_socket 25",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -202,7 +202,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -234,7 +234,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -266,7 +266,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -298,7 +298,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -330,7 +330,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -t tn -max_socket 25",
+                  "Options": "-m 1 -d 2000 -aa -t tn -max_socket 25",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -362,7 +362,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa -t tn -max_socket 25",
+                  "Options": "-m 1 -d 2000 -aa -t tn -max_socket 25",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -410,7 +410,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -449,7 +449,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -517,7 +517,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -549,7 +549,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -581,7 +581,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -613,7 +613,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "15s"
                 }
@@ -645,7 +645,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -677,7 +677,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -aa",
+                  "Options": "-m 1 -d 2000 -aa",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }

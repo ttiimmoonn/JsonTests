@@ -95,8 +95,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -156,8 +156,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -217,8 +217,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME \"\" -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -278,8 +278,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -339,8 +339,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -402,8 +402,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -465,8 +465,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -528,8 +528,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%1.Number%% -set DIVER_NUMBER %%2.Number%% -set DIVER_REASON \"time-of-day\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"

@@ -85,7 +85,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -157,7 +157,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -229,7 +229,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -301,7 +301,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -523,7 +523,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -598,7 +598,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -727,7 +727,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -802,7 +802,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -932,7 +932,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -1007,7 +1007,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -1088,7 +1088,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -1234,7 +1234,7 @@
             {
               "Type": "User",
               "UserId" : 2,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -1333,7 +1333,7 @@
             {
               "Type": "User",
               "UserId" : 3,
-              "Name": "UAS_SEND_BYE",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",

@@ -101,8 +101,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -161,8 +161,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME \"%%ALIAS_DNAME_FOR_B%%\"",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME \"%%ALIAS_DNAME_FOR_B%%\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -221,8 +221,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -280,8 +280,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -347,8 +347,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -416,8 +416,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -485,8 +485,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -554,8 +554,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -629,8 +629,8 @@
                   "Timeout": "10s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%% -set CHK_DNAME Callback -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
