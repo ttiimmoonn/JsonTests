@@ -148,7 +148,7 @@
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             },
@@ -162,7 +162,7 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             },
@@ -176,7 +176,7 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "40s"
                 }
               ]
             }
@@ -202,7 +202,7 @@
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             },
@@ -216,7 +216,7 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }

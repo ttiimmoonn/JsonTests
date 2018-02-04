@@ -72,7 +72,7 @@
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -126,7 +126,7 @@
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -180,7 +180,7 @@
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -234,7 +234,7 @@
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -288,7 +288,7 @@
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             },
