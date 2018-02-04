@@ -56,7 +56,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_call_record/uas_send_bye_a_sdp_wout_attr.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"

@@ -98,7 +98,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%SIP_DNAME%% -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -152,7 +152,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%% -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -206,7 +206,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME \"\"",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME \"\" -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -260,7 +260,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ALIAS_DNAME%% -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -322,7 +322,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%% -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -386,7 +386,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%% -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -450,7 +450,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%% -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -514,7 +514,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%%",
+                  "Options": "-m 1 -set CHK_CGPN %%1.Number%% -set CHK_DNAME %%ROUTE_DNAME%% -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -583,7 +583,7 @@
               "Commands": [
                  {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -set CHK_CGPN Anonymous -set CHK_DNAME Anonymous",
+                  "Options": "-m 1 -set CHK_CGPN Anonymous -set CHK_DNAME Anonymous -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
