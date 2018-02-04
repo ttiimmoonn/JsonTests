@@ -79,11 +79,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat": true,
-<<<<<<< HEAD
-              "Name": "UAS1_RECV_CANEL",
-=======
               "Name": "UAS0_FORK_TEST",
->>>>>>> 4bcd5c3... add protect pause to forking test
               "Commands": [
                 {
                   "SourceFile": "forking/uas_recv_cancel.xml",
