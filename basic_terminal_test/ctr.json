@@ -87,8 +87,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 15000",
-                  "Options": "-m 1 -aa",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa -d 15000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -142,8 +142,8 @@
               "Name": "UAS_DELAYED_ANSWER",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/uas_delayed_answer.xml -d 20000",
-                  "Options": "-m 1 -aa",
+                  "SourceFile": "basic_terminal_test/uas_delayed_answer.xml",
+                  "Options": "-m 1 -aa -d 20000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -197,8 +197,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 15000",
-                  "Options": "-m 1 -aa",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa -d 15000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "100s"
