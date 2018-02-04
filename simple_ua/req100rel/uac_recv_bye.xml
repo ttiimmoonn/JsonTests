@@ -111,6 +111,7 @@
 ]]>
 </send>
 
+<pause/>
 
 <recv request="BYE"></recv>
 
