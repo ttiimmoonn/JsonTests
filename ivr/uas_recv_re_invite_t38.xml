@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "uas_update">
+<scenario name = "uas_recv_reinvite_t38">
 <User variables="chk_sdp,dummy"/>
 <Reference variables="chk_sdp,dummy" />
 
@@ -133,7 +133,7 @@
 ]]>
 </send>
 
-<recv response="200" next="end" crlf="true"></recv>
+<recv response="200" crlf="true"></recv>
 
 <pause milliseconds="2000"/>
 </scenario>

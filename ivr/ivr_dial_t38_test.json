@@ -69,7 +69,7 @@
   ],
 "Tests": [
     {
-      "Name": "ivr_dial_block_busy_branch_test",
+      "Name": "ivr_dial_t38_test",
       "Description": "Звоним с А на Б через IVR. А - скриптом переключается в ответное состояние. Б -  в предответном. Шлём re-invite t38 с А. Ожидается, что после ответа абонента Б вызов будет пересогласован на t38.",
       "TestProcedure": [
         {
@@ -96,7 +96,7 @@
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "SourceFile": "ivr/uas_recv_re_invite_t38.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
