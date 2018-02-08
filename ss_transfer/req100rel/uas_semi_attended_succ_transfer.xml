@@ -381,33 +381,5 @@
 ]]>
 </send>
 
-<label id="_unexp.main"/>
-
-<recv request="NOTIFY">
-    <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="recv_not_100" />
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="recv_not_200" />
-    </action>
-</recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
-
-<nop>
-  <action>
-    <jump variable="_unexp.retaddr" />
-  </action>
-</nop>
-
-
 <label id="end"/>
 </scenario>

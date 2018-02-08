@@ -48,28 +48,20 @@
     {
       "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
       "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
-
       "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
       "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-
       "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
       "command6": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
-
       "command7": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
       "command8": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-
       "command9": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
       "command10": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
-
       "command11": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
       "command12": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip",
-
       "command13": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ctr",
       "command14": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ctr",
-
       "command15": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
       "command16": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold",
-
       "command17": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
       "command18": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
       "command19": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi"
@@ -79,31 +71,22 @@
     {
       "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
       "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
-
       "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
       "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-
       "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
       "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
-
       "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
       "command8": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
-
       "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
       "command10": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
-
       "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
       "command12": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip",
-
       "command13": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
       "command14": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold",
-
       "command15": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ctr",
       "command16": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ctr",
-
       "command17": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%1.SipDomain%% displayName",
       "command18": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-
       "command19": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
       "command20": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
       "command21": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
@@ -122,7 +105,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -180,7 +163,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -238,7 +221,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -296,7 +279,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -362,7 +345,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -430,7 +413,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -498,7 +481,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -566,7 +549,7 @@
               "Name": "UAS_ATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,

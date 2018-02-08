@@ -1,40 +1,40 @@
 {
-  "TestName": "transfer_test",
-  "AutoTest" : true,
-  "RepeatCounter" : 2,
+  "TestName": "ss_unattended_transfer_test",
+  "AutoTest": true,
+  "RepeatCounter": 2,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 10107,
-      "QParam" : 1
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 10108,
-      "QParam" : 1
+      "Port": 10108,
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -42,10 +42,10 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
-      "command4" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
+      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
       "command5": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
       "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
       "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
@@ -56,10 +56,10 @@
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
-      "command3" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
-      "command4" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
       "command5": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
       "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
       "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
@@ -67,18 +67,120 @@
   ],
   "Tests": [
     {
-      "Name": "simple unattended transfer test",
-      "Description": "simple unattended transfer test",
+      "Name": "simple_unattended_transfer_from_outgoing_call",
+      "Description": "Тестируем несопровождаемый трансфер исходящего вызова. A звонит на Б, А делает трансфер на С.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "Name": "UAS1_UN_TRANS",
+              "UserId": 0,
+              "Name": "UAS0_RECV_CALL",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/unattended_transfer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%0.Number%% -set SECOND_CDPN %%1.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "simple_unattended_transfer_from_outgoing_call.(req100rel)",
+      "Description": "Тестируем несопровождаемый трансфер исходящего вызова. A звонит на Б, А делает трансфер на С. Все UA требуют поддержку 100rel",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS0_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/req100rel/uac_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%0.Number%% -set SECOND_CDPN %%1.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "simple_unattended_transfer_from_incoming_call",
+      "Description": "Тестируем несопровождаемый трансфер входящего вызова. A звонит на Б, Б делает трансфер на С.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -88,11 +190,11 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "Name": "SIMPLE_UAS_SEND_BYE",
+              "UserId": 1,
+              "Name": "UAS_RECV_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 3000",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 3000",
                   "SippType": "uas",
                   "Timeout": "30s"
@@ -101,8 +203,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_RECV_BYE",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -118,18 +220,18 @@
       ]
     },
     {
-      "Name": "simple unattended transfer test req100rel",
-      "Description": "simple unattended transfer test req100rel",
+      "Name": "simple_unattended_transfer_from_incoming_call.(req100rel)",
+      "Description": "Тестируем несопровождаемый трансфер входящего вызова. A звонит на Б, Б делает трансфер на С. Все UA требуют поддержку 100rel",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "Name": "UAS1_UN_TRANS",
+              "UserId": 0,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/req100rel/unattended_transfer.xml",
+                  "SourceFile": "ss_transfer/req100rel/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -139,11 +241,11 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "Name": "SIMPLE_UAS_SEND_BYE",
+              "UserId": 1,
+              "Name": "UAS_RECV_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 3000",
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
                   "Options": "-m 1 -d 3000",
                   "SippType": "uas",
                   "Timeout": "30s"
@@ -152,8 +254,161 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_RECV_BYE",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "fail_unattended_transfer_from_outgoing_call.(call rejected)",
+      "Description": "Проверка получения NOTIFY 487 в случае если transfer target присылает alerting, а следом busy. Трансфер делается для исходящего вызова",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS0_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_REJECT_CALL_AFTER_180",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486_after_180.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_unattended_fail_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%0.Number%% -set SECOND_CDPN %%1.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "fail_unattended_transfer_from_outgoing_call.(user busy)",
+      "Description": "Проверка получения NOTIFY 487 в случае если transfer target присылает busy. Трансфер делается для исходящего вызова",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS0_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_REJECT_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_unattended_fail_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%0.Number%% -set SECOND_CDPN %%1.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "fail_unattended_transfer_from_incoming_call.(call rejected)",
+      "Description": "Проверка получения NOTIFY 487 в случае если transfer target присылает alerting, а следом busy. Трансфер делается для входящего вызова",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_fail_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_CALL_REJECT_AFTER_180",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486_after_180.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -169,18 +424,69 @@
       ]
     },
     {
-      "Name": "fail unattended transfer test",
-      "Description": "fail unattended transfer test",
+      "Name": "fail_unattended_transfer_from_incoming_call.(user busy)",
+      "Description": "Проверка получения NOTIFY 487 в случае если transfer target присылает busy. Трансфер делается для входящего вызова",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "Name": "UAS1_UN_TRANS_FAIL_TEST",
+              "UserId": 0,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/unattended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_fail_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_CALL_REJECT_AFTER_180",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486_after_180.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "transfer_to_non_exist_number",
+      "Description": "Попытка сделать трансфер на несуществующий номер. В этом случае ожидается NOTIFY 487",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_fail_transfer.xml",
                   "Options": "-m 1 -set REFERNUM test.fail -set REFERDOM fail.test",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -190,8 +496,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_RECV_BYE",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -207,116 +513,13 @@
       ]
     },
     {
-      "Name": "simple attended transfer",
-      "Description": "simple attended transfer",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "Name": "UAS1_AT_TRANS",
-              "Commands": [
-                {
-                  "SourceFile": "ss_transfer/attended_transfer.xml",
-                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "60s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "Name": "SIMPLE_UAS_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -d 3000",
-                  "SippType": "uas",
-                  "Timeout": "60s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "60s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "simple attended transfer req100rel",
-      "Description": "simple attended transfer req100rel",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 0,
-              "Name": "UAS1_AT_TRANS",
-              "Commands": [
-                {
-                  "SourceFile": "ss_transfer/req100rel/attended_transfer.xml",
-                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "Name": "SIMPLE_UAS_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -d 3000",
-                  "SippType": "uas",
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "Failure unattended transfer",
+      "Name": "unattended_transfer_refer_failure_test",
       "Description": "Проверка получения 403 на REFER при отключённом ctr",
       "TestProcedure": [
         {
-         "SendSSHCommand": [
+          "SendSSHCommand": [
             {
-              "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr"
+              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr"
             }
           ]
         },
@@ -324,11 +527,11 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "Name": "UAS1_UN_TRANS_FAIL",
+              "UserId": 0,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/unattended_transfer_failure.xml",
+                  "SourceFile": "ss_transfer/unattended_transfer_refer_failure.xml",
                   "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -338,8 +541,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_RECV_BYE",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
@@ -353,186 +556,9 @@
           ]
         },
         {
-         "SendSSHCommand": [
+          "SendSSHCommand": [
             {
-              "command1" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "Failure attended transfer",
-      "Description": "Проверка получения 403 на REFER при отключённом ctr",
-      "TestProcedure": [
-        {
-         "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
-              "command2" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} ml",
-              "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ml line_count = 2"
-            }
-          ]
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 0,
-              "Name": "UAS1_AT_TRANS_FAIL",
-              "Commands": [
-                {
-                  "SourceFile": "ss_transfer/attended_transfer_failure.xml",
-                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "Name": "SIMPLE_UAS_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 3000",
-                  "SippType": "uas",
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-         "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
-              "command2" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ml",
-              "command3" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} ml line_count = 2"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "transfer_before_answer_test",
-      "Description": "Проверка трансфера до ответа",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "Name": "UAS1_UN_TRANS_BEFORE_ANSWER",
-              "Commands": [
-                {
-                  "SourceFile": "ss_transfer/transfer_before_answer.xml",
-                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "Name": "SIMPLE_UAS_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "ss_transfer/uas_deff_answer.xml",
-                  "Options": "-m 1 -d 5000",
-                  "SippType": "uas",
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
-              "Name": "SIMPLE_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "transfer_before_answer_test_req100rel",
-      "Description": "Проверка трансфера до ответа c req100rel",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "Name": "UAS1_UN_TRANS_BEFORE_ANSWER_REQ_100REL",
-              "Commands": [
-                {
-                  "SourceFile": "ss_transfer/req100rel/transfer_before_answer.xml",
-                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "Name": "SIMPLE_UAS_SEND_BYE_REQ_100REL",
-              "Commands": [
-                {
-                  "SourceFile": "ss_transfer/uas_deff_answer.xml",
-                  "Options": "-m 1 -d 5000",
-                  "SippType": "uas",
-                  "Timeout": "30s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
-              "Name": "SIMPLE_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "30s"
-                }
-              ]
+              "command1": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr"
             }
           ]
         }
@@ -540,17 +566,17 @@
     },
     {
       "Name": "release_from_transfee_after_unattended_transfer",
-      "Description": "Проверка отбоя в случае если transfee положил трубку до ответа transfer target. (unattended transfer)",
+      "Description": "Проверка отбоя в случае если transfee положил трубку до ответа transfer target.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "Name": "UAS1_UN_TRANS",
+              "UserId": 0,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/unattended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_fail_transfer_recv_bye.xml",
                   "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -560,7 +586,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -573,12 +599,12 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "Name": "SIMPLE_UAC_SEND_BYE",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 15000",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 10000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"

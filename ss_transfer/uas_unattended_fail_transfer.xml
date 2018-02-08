@@ -7,6 +7,8 @@
 <User variables="refer_num,refer_dom,test_sipfrag" />
 <Reference variables="test_sipfrag" />
 
+<!-- Recv call -->
+
 <recv request="INVITE">
 <action>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
@@ -91,6 +93,8 @@
      </action>
 </nop>
 
+<!-- Set call on hold -->
+
 <send retrans="500">
 <![CDATA[
     INVITE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
@@ -134,6 +138,8 @@
 ]]>
 </send>
 
+<!-- Try to make transfer -->
+
 <send retrans="500">
 <![CDATA[
     REFER sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
@@ -150,17 +156,15 @@
 ]]>
 </send>
 
-
-
-
 <recv response="202" crlf="true"></recv>
 
-<recv request="NOTIFY">
+<recv request="NOTIFY" regexp_match="true">
     <action>
-        <assign assign_to="test_sipfrag" value="" />
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="test_sipfrag" />
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="test_sipfrag_100"/>
+        <ereg regexp=".*SIP/2.0 487 Request Terminated.*" search_in="msg" assign_to="test_sipfrag_487"/>
     </action>
 </recv>
+
 
 <send>
 <![CDATA[
@@ -174,17 +178,14 @@
 ]]>
 </send>
 
-<recv request="NOTIFY">
+<recv request="NOTIFY" regexp_match="true">
     <action>
-        <assign assign_to="test_sipfrag" value="" />
-        <ereg regexp=".*SIP/2.0 ([0-9]+).*" search_in="msg" check_it="true" assign_to="dummy,test_sipfrag" />
-        <todouble assign_to="test_sipfrag" variable="test_sipfrag" />
-        <test assign_to="success_transfer" variable="test_sipfrag" compare="equal" value="200" />
-        <log message="[$test_sipfrag]"/>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg"  assign_to="test_sipfrag_100"/>
+        <ereg regexp=".*SIP/2.0 487 Request Terminated.*" search_in="msg" assign_to="test_sipfrag_487"/>
     </action>
 </recv>
 
-<send next="send_bye" test="success_transfer" crlf="true">
+<send>
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -222,8 +223,7 @@
 
 <recv response="100" optional="true"></recv>
 <recv response="200">
-        <action>.
-            <exec rtp_stream="resume" />
+        <action>
             <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
         </action>
 </recv>
@@ -240,29 +240,26 @@
 ]]>
 </send>
 
-<nop hide="true">
-   <action>
-        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
-     </action>
-</nop>
-
 <pause milliseconds="2000"/>
-
-<label id="send_bye"/>
 
 <send>
 <![CDATA[
     BYE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
-    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_from:]
+    [last_to:]
     [last_call-id:]
     CSeq: [cseq] BYE
     Content-Length: 0
 ]]>
 </send>
 
-<recv response="200"></recv>
+<recv response="200">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="var" variable="test_sipfrag_100" check_it="true" assign_to="custom_test_var"/>
+        <ereg regexp=".*SIP/2.0 487 Request Terminated.*" search_in="var" variable="test_sipfrag_487" check_it="true" assign_to="custom_test_var"/>
+    </action>
+</recv>
 
 <pause milliseconds="2000"/>
 </scenario>

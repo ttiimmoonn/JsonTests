@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAC Attended transfer">
+<scenario name = "UAC Semi-Attended transfer">
 
 <Global variables="FIRST_CDPN,SECOND_CDPN,CGPNDOM,CDPNDOM" />
     
@@ -21,11 +21,10 @@
 <![CDATA[
     INVITE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC Attended transfer first call" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    From: "UAC Semi-Attended transfer first call" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
     To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Require: 100rel
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
@@ -56,12 +55,7 @@
 <label id="first_call_continue" />
 
 <recv response="100" optional="true"></recv>
-<recv response="180" optional="true" next="first_call_180_prack">
-    <action>
-        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
-</recv>
+<recv response="180" optional="true"></recv>
 <recv response="200" auth="true">
     <action>
         <!--Забрали CSeq -->
@@ -145,10 +139,9 @@
 <![CDATA[
     INVITE sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC Attended transfer second call" <sip:[service]@[$cgpn_dom]>;tag=[$second_call_local_tag]
+    From: "UAC Semi-Attended transfer second call" <sip:[service]@[$cgpn_dom]>;tag=[$second_call_local_tag]
     To: "[$second_cdpn]" <sip:[$second_cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
-    Require: 100rel
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
@@ -181,22 +174,13 @@
 
 
 <recv response="100" optional="true"></recv>
-<recv response="180" optional="true" next="second_call_180_prack">
+<recv response="180">
     <action>
-        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
-</recv>
-
-<recv response="200" auth="true">
-    <action>
-        <!--Забрали CSeq -->
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
         <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,second_call_remote_tag" />
         <ereg regexp="\s(.*)" search_in="hdr" header="Call-ID:" check_it="true" assign_to="dummy,refer_call_id" />
     </action>
- </recv>
+</recv>
 
 <nop hide="true">
     <action>
@@ -204,35 +188,19 @@
     </action>
 </nop>
 
-<send crlf="true">
-<![CDATA[
-    ACK sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Content-Length: 0
-]]>
-</send>
 
-<!-- Speach in second call -->
-<pause milliseconds="3000"/>
-
-
-<!-- Tranfser first call to second call -->
 <send retrans="500">
 <![CDATA[
-    REFER sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    REFER sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
+    From: "UAC Semi-Attended transfer first call" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>;tag=[$first_call_remote_tag]
     [last_call-id]
     CSeq: [cseq] REFER
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Event: refer
-    Refer-To: <sip:[$first_cdpn]@[$cdpn_dom]?Replaces=[$refer_call_id]%3Bto-tag%3D[$first_call_remote_tag]%3Bfrom-tag%3D[$first_call_local_tag]>
+    Refer-To: <sip:[$second_cdpn]@[$cdpn_dom]?Replaces=[$refer_call_id]%3Bto-tag%3D[$second_call_remote_tag]%3Bfrom-tag%3D[$second_call_local_tag]>
     Content-Length: 0
 ]]>
 </send>
@@ -240,17 +208,46 @@
 
 <recv response="202" crlf="true"></recv>
 
-
-<recv request="NOTIFY|BYE" regexp_match="true">
+<recv request="NOTIFY" optional="true" next="send_200_notify_100">
     <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="test_sipfrag_100"/>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="test_sipfrag_200"/>
-        <ereg regexp="BYE" search_in="hdr" header="CSeq:" assign_to="recv_bye" />
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
     </action>
 </recv>
 
+<label id="not_100_continue"/>
+
+<recv request="NOTIFY" optional="true" next="send_200_notify_200">
+    <action>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="recv_not_200" />
+    </action>
+</recv>
+
+<label id="not_200_continue"/>
+
+
+<recv response="487"></recv>
 
 <send>
+<![CDATA[
+    ACK sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    [last_via:]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="NOTIFY" condexec="recv_not_100" condexec_inverse="true" >
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
+    </action>
+</recv>
+
+<send condexec="send_200_not_100" condexec_inverse="true">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -262,15 +259,13 @@
 ]]>
 </send>
 
-<recv request="NOTIFY|BYE" regexp_match="true">
+<recv request="NOTIFY" condexec="recv_not_200" condexec_inverse="true">
     <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg"  assign_to="test_sipfrag_100"/>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg"  assign_to="test_sipfrag_200"/>
-        <ereg regexp="BYE" search_in="hdr" header="CSeq:" assign_to="recv_bye" />
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="recv_not_200" />
     </action>
 </recv>
 
-<send>
+<send condexec="send_200_not_200" condexec_inverse="true">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -282,32 +277,14 @@
 ]]>
 </send>
 
-<recv request="NOTIFY|BYE" regexp_match="true">
-    <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="test_sipfrag_100"/>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="test_sipfrag_200"/>
-        <ereg regexp="BYE" search_in="hdr" header="CSeq:" assign_to="recv_bye" />
-    </action>
-</recv>
+<label id="send_bye"/>
 
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
-
-<send>
-<![CDATA[
-    BYE sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    BYE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC Attended transfer second call" <sip:[service]@[$cgpn_dom]>;tag=[$second_call_local_tag]
-    To: "[$second_cdpn]" <sip:[$second_cdpn]@[$cdpn_dom]>;tag=[$second_call_remote_tag]
+    From: "UAC Semi-Attended transfer first call" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>;tag=[$first_call_remote_tag]
     [last_call-id:]
     CSeq: [cseq] BYE
     Content-Length: 0
@@ -315,11 +292,6 @@
 </send>
 
 <recv response="200" next="end">
-    <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="var" variable="test_sipfrag_100" check_it="true" assign_to="custom_test_var"/>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="var" variable="test_sipfrag_200" check_it="true" assign_to="custom_test_var"/>
-        <ereg regexp="BYE" search_in="var" variable="recv_bye" check_it="true" assign_to="custom_test_var"/>
-    </action>
 </recv>
 
 
@@ -344,10 +316,9 @@
 <![CDATA[
     INVITE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC Attended transfer first call" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    From: "UAC Semi-Attended transfer first call" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
     To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>
     [last_call-id]
-    Require: 100rel
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
@@ -386,10 +357,9 @@
 <![CDATA[
     INVITE sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC Attended transfer second call" <sip:[service]@[$cgpn_dom]>;tag=[$second_call_local_tag]
+    From: "UAC Semi-Attended transfer second call" <sip:[service]@[$cgpn_dom]>;tag=[$second_call_local_tag]
     To: "[$second_cdpn]" <sip:[$second_cdpn]@[$cdpn_dom]>
     [last_call-id]
-    Require: 100rel
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
@@ -407,40 +377,45 @@
 ]]>
 </send>
 
+<label id="send_200_notify_100"/>
 
-<label id="first_call_180_prack"/>
+<nop>
+    <action>
+        <assignstr assign_to="send_200_not_100" value="true"/>
+    </action>
+</nop>
 
-<send>
+<send next="not_100_continue">
 <![CDATA[
-    PRACK sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [cseq] PRACK
-    RAck: [$last_rseq] [$last_cseq] INVITE
-    Max-Forwards: 70
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" crlf="true" next="first_call_continue"></recv>
 
-<label id="second_call_180_prack"/>
+<label id="send_200_notify_200"/>
 
-<send>
+<nop>
+    <action>
+        <assignstr assign_to="send_200_not_200" value="true"/>
+    </action>
+</nop>
+
+<send next="not_200_continue">
 <![CDATA[
-    PRACK sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [cseq] PRACK
-    RAck: [$last_rseq] [$last_cseq] INVITE
-    Max-Forwards: 70
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" crlf="true" next="second_call_continue"></recv>
 
 
 <label id="end"/>
