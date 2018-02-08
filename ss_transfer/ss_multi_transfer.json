@@ -212,7 +212,7 @@
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -373,7 +373,7 @@
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -454,7 +454,7 @@
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -535,7 +535,7 @@
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

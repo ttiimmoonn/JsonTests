@@ -246,7 +246,7 @@
               "Name": "UAS1_RECV_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
                   "Options": "-m 1 -d 3000",
                   "SippType": "uas",
                   "Timeout": "30s"
@@ -259,7 +259,7 @@
               "Name": "UAS2_RECV_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
