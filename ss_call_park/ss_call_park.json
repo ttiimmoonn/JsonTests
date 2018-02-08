@@ -38,8 +38,8 @@
   ],
   "UserVar": [
     {
-      "%%UnParkUserName%%" : "\"Unpark User\"",
-      "%%ParkUserName%%" : "\"Park User\""
+      "%%UnParkUserName%%": "\"Unpark User\"",
+      "%%ParkUserName%%": "\"Park User\""
     }
   ],
   "PreConf": [
@@ -113,7 +113,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN *58*1# -set CDPNDOM %%2.SipDomain%% -d 10000 -set DISPLAY_NAME %%UnParkUserName%% -set CHK_CONNECTED_NAME %%ParkUserName%% -set CHK_CONNECTED_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -set CDPN *58*1# -set CDPNDOM %%2.SipDomain%% -d 10000 -set DISPLAY_NAME %%UnParkUserName%% -set CHK_CONNECTED_NAME %%ParkUserName%% -set CHK_CONNECTED_NUMBER %%0.Number%% -d 3000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -140,7 +140,7 @@
                   "SourceFile": "ss_call_park/attended_transfer.xml",
                   "Options": "-m 1 -set REFERNUM *57*1# -set REFERDOM %%1.SipDomain%%",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
