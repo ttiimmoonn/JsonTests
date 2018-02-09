@@ -56,7 +56,9 @@
       "command10": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
       "command11": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
       "command12": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
-      "command13": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%"
+      "command13": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
+      "command14": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} cc_agent",
+      "command15": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} cc_agent"
     }
   ],
   "PostConf": [
@@ -70,7 +72,9 @@
       "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
       "command8": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
       "command9": "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
-      "command10": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%"
+      "command10": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
+      "command11": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} cc_agent"
     }
   ],
   "Tests": [
