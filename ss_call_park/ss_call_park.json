@@ -113,7 +113,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN *58*1# -set CDPNDOM %%2.SipDomain%% -d 10000 -set DISPLAY_NAME %%UnParkUserName%% -set CHK_CONNECTED_NAME %%ParkUserName%% -set CHK_CONNECTED_NUMBER %%0.Number%% -d 3000",
+                  "Options": "-m 1 -set CDPN *58*1# -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%UnParkUserName%% -set CHK_CONNECTED_NAME %%ParkUserName%% -set CHK_CONNECTED_NUMBER %%0.Number%% -d 3000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -171,7 +171,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN *58*1# -set CDPNDOM %%2.SipDomain%% -d 10000 -set DISPLAY_NAME %%UnParkUserName%% -set CHK_CONNECTED_NAME %%ParkUserName%% -set CHK_CONNECTED_NUMBER %%0.Number%%",
+                  "Options": "-m 1 -set CDPN *58*1# -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%UnParkUserName%% -set CHK_CONNECTED_NAME %%ParkUserName%% -set CHK_CONNECTED_NUMBER %%0.Number%% -d 3000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"

@@ -198,7 +198,7 @@
     </action>
 </nop>
 
-<pause milliseconds="10000" crlf="true"/>
+<pause milliseconds="11000" crlf="true"/>
 
 <send>
 <![CDATA[
