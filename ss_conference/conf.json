@@ -81,8 +81,8 @@
       "command11": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% conference",
       "command12": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_CHATROOM%%",
       "command13": "/domain/%%DEV_DOM%%/ivr/script/.import --id chat_room_and_conf_conflict_test --json %%CHAT_ROOM_SCRIPT%%",
-      "command14": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication rpi",
-      "command15": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication rpi"
+      "command14": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication rpi",
+      "command15": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication rpi"
     }
   ],
   "PostConf": [
@@ -101,8 +101,8 @@
       "command11": "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% conference",
       "command12": "/domain/%%DEV_DOM%%/routing/delete chat_room_and_conf_conflict_test",
       "command13": "domain/%%DEV_DOM%%/ivr/script/delete chat_room_and_conf_conflict_test",
-      "command14": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
-      "command15": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none"
+      "command14": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+      "command15": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force"
     }
   ],
 "Tests": [
