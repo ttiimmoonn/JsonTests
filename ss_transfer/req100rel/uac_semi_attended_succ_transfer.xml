@@ -191,7 +191,11 @@
 
 <label id="make_transfer"/>
 
-
+<nop hide="true">
+    <action>
+        <assignstr assign_to="transfer_state" value="Init"/>
+    </action>
+</nop>
 
 <send retrans="500">
 <![CDATA[
@@ -245,13 +249,19 @@
 ]]>
 </send>
 
+<nop hide="true" test="transfer_state" next="wait_trying" test_var_value="Init"/>
+<nop hide="true" test="transfer_state" next="wait_complite" test_var_value="Trying"/>
+<nop hide="true" test="transfer_state" next="send_release" test_var_value="Complite"/>
+
+<label id="wait_trying"/>
+
 <recv request="NOTIFY" condexec="recv_not_100" condexec_inverse="true" >
     <action>
         <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
     </action>
 </recv>
 
-<send condexec="send_200_not_100" condexec_inverse="true">
+<send>
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -262,6 +272,8 @@
     Content-Length: 0
 ]]>
 </send>
+
+<label id="wait_complite"/>
 
 <recv request="NOTIFY" condexec="recv_not_200" condexec_inverse="true">
     <action>
@@ -269,7 +281,7 @@
     </action>
 </recv>
 
-<send condexec="send_200_not_200" condexec_inverse="true">
+<send>
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -281,7 +293,7 @@
 ]]>
 </send>
 
-<label id="send_bye"/>
+<label id="send_release"/>
 
 <send>
 <![CDATA[
@@ -295,10 +307,7 @@
 ]]>
 </send>
 
-<recv response="200" next="end">
-</recv>
-
-
+<recv response="200" next="end"/>
 
 <!--Отправка INVITE c аутентификацией -->
 <label id="auth_first_call"/>
@@ -385,9 +394,9 @@
 
 <label id="send_200_notify_100"/>
 
-<nop>
+<nop hide="true">
     <action>
-        <assignstr assign_to="send_200_not_100" value="true"/>
+        <assignstr assign_to="transfer_state" value="Trying"/>
     </action>
 </nop>
 
@@ -405,9 +414,9 @@
 
 <label id="send_200_notify_200"/>
 
-<nop>
+<nop hide="true">
     <action>
-        <assignstr assign_to="send_200_not_200" value="true"/>
+        <assignstr assign_to="transfer_state" value="Complite"/>
     </action>
 </nop>
 
