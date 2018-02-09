@@ -123,6 +123,7 @@
 
 
 
+
 <recv request="NOTIFY">
     <action>
         <assign assign_to="dummy" value="" />
@@ -285,25 +286,34 @@
 
 <recv request="NOTIFY" optional="true">
     <action>
-        <assignstr assign_to="recv_not" value="true"/>
+        <assignstr assign_to="recv_notify_100_trying" value="true"/>
         <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
         <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
         <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check_state" value="" />
+        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
+    </action>
+</recv>
 
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-    </action>
-</recv>
 <recv response="200"></recv>
-<recv request="NOTIFY" condexec="recv_not" condexec_inverse="true">
+
+<nop next="send_200_on_notify" test="recv_notify_100_trying"/>
+
+<recv request="NOTIFY">
     <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
         <assign assign_to="dummy" value="" />
         <assign assign_to="check_state" value="" />
         <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
     </action>
 </recv>
+
+<label id="send_200_on_notify"/>
 
 <send next="sub_continue_2">
 <![CDATA[
@@ -316,8 +326,6 @@
     Content-Length: 0
 ]]>
 </send>
-
-
 
 <label id="auth_unsub"/>
 
