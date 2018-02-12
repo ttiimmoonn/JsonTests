@@ -8,7 +8,7 @@
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
       "Port" : 10105,
       "QParam" : 0.5
@@ -19,7 +19,7 @@
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires" : 3600,
       "SipGroup": "sip.ab",
       "Port" : 10106,
       "QParam" : 0.5
@@ -31,7 +31,7 @@
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires" : 3600,
       "Port" : 10107,
       "QParam" : 1
     },
@@ -42,7 +42,7 @@
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires" : 3600,
       "Port" : 10108,
       "QParam" : 1
     },
@@ -53,7 +53,7 @@
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires" : 3600,
       "Port" : 10109,
       "QParam" : 1
     },
@@ -64,7 +64,7 @@
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires" : 3600,
       "Port" : 10110,
       "QParam" : 1
     }
