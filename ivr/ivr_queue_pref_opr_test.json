@@ -71,7 +71,7 @@
   ],
   "UserVar": [
     {
-      "%%QUEUE_NAME%%": "ivr_common_test",
+      "%%QUEUE_NAME%%": "ivr_pref_oper_test_queue",
       "%%AGENT_PASS%%": "1111",
       "%%IVR_TO_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_2\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"return_to_queue\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}}},\"name\":\"ivr_pref_oper_test\",\"description\":\"\",\"version\":\"3.10.0.118\"}",
       "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfcHJlZl9vcGVyX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9wcmVmX29wZXJfdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
@@ -124,7 +124,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0" : "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice strict"
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice strict"
             }
           ]
         },
@@ -197,7 +197,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "BackGround" : true,
+              "BackGround": true,
               "WriteStat": true,
               "Name": "UAC_QCLIENT_RECV_BYE",
               "Commands": [
@@ -213,15 +213,15 @@
             {
               "Type": "User",
               "UserId": 1,
-              "BackGround" : true,
+              "BackGround": true,
               "WriteStat": true,
               "Name": "UAS_AGENT_1_WOUT_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_wout_call.xml",
+                  "SourceFile": "ivr/uas_wout_call.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "ReqExCode" : 255,
+                  "ReqExCode": 255,
                   "NeedAuth": true,
                   "Timeout": "5s"
                 }
@@ -230,15 +230,15 @@
             {
               "Type": "User",
               "UserId": 2,
-              "BackGround" : true,
+              "BackGround": true,
               "WriteStat": true,
               "Name": "UAS_AGENT_2_WOUT_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_wout_call.xml",
+                  "SourceFile": "ivr/uas_wout_call.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "ReqExCode" : 255,
+                  "ReqExCode": 255,
                   "NeedAuth": true,
                   "Timeout": "5s"
                 }
@@ -295,7 +295,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0" : "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice none"
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice none"
             }
           ]
         }
@@ -308,7 +308,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0" : "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice non_strict"
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice non_strict"
             }
           ]
         },
@@ -381,10 +381,10 @@
               "Name": "UAS_AGENT_0_WOUT_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_wout_call.xml",
+                  "SourceFile": "ivr/uas_wout_call.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "ReqExCode" : 255,
+                  "ReqExCode": 255,
                   "NeedAuth": true,
                   "Timeout": "5s"
                 }
@@ -408,7 +408,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "BackGround" : true,
+              "BackGround": true,
               "WriteStat": true,
               "Name": "UAC_QCLIENT_RECV_BYE",
               "Commands": [
@@ -443,10 +443,10 @@
               "Name": "UAS_AGENT_0_WOUT_CALL",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_wout_call.xml",
+                  "SourceFile": "ivr/uas_wout_call.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "ReqExCode" : 255,
+                  "ReqExCode": 255,
                   "NeedAuth": true,
                   "Timeout": "5s"
                 }
@@ -470,7 +470,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "BackGround" : true,
+              "BackGround": true,
               "WriteStat": true,
               "Name": "UAC_QCLIENT_RECV_BYE",
               "Commands": [
@@ -504,7 +504,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0" : "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice none"
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice none"
             }
           ]
         }
