@@ -1,5 +1,5 @@
 {
-  "TestName" : "ivr_queue_test",
+  "TestName" : "ivr_queue_callback_test",
   "AutoTest" : true,
   "Users" : [
       {
