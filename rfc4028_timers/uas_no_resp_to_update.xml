@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas_no_response_to_update_request">
+
+<User variables="dummy,options,local_tag,local_number,se,min_se"/>
+<Reference variables="dummy,options,min_se"/>
+
+<recv request="INVITE">
+	<action>
+		<assignstr assign_to="dummy" value=""/>
+        <assignstr assign_to="se" value=""/>
+        <assignstr assign_to="options" value=""/>
+        <assignstr assign_to="min_se" value=""/>
+		<!--Проверяем, что нам передали Session-Expires: 90-->
+		<ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+		<!--Проверяем, что нам передали Min-SE: 90-->
+		<ereg regexp="Min-SE:\s?(90)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
+		<assignstr assign_to="local_tag" value="[call_number][pid]"/>
+	</action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Require: timer
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
+    Session-Expires: [$se];refresher=uac
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Content-Type: application/sdp
+    Content-Length:[len]
+
+    v=0
+    o=tester 100000 10000 IN IP[local_ip_type] [local_ip]
+    s=B conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+<recv request="ACK" crlf="true"></recv>
+
+<!-- 
+	Делаем паузу на SE/2 - 2. 
+	2 сек - защита от гонок
+-->
+
+<pause milliseconds="43000"/>
+
+<!--
+	Принимаем UPDATE и ищём Session-Expires:
+-->
+
+<recv request="UPDATE">
+	<action>
+
+		<assignstr assign_to="dummy" value="" />
+        <assignstr assign_to="se" value="" />
+        <assignstr assign_to="options" value="" />
+        <assignstr assign_to="min_se" value=""/>
+		<!--Проверяем, что нам передали Session-Expires: 90-->
+		<ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+		<!--Проверяем, что нам передали Min-SE: 90-->
+		<ereg regexp="Min-SE:\s?(90)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
+	</action>
+</recv>
+
+<!--
+    Делаем паузу
+-->
+
+<pause milliseconds="30000"/>
+
+<!--
+	Принимаем BYE
+-->
+
+<recv request="BYE"></recv>
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<!--
+	На всякий случай ждём перепосылок BYE
+-->
+<pause milliseconds="2000" />
+
+</scenario>

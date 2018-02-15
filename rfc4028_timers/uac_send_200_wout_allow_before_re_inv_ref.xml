@@ -98,7 +98,6 @@
     [last_Call-ID:]
     [last_CSeq:]
     Supported: timer
-    Allow: INVITE, ACK, CANCEL, BYE
     Content-Length: 0
 ]]>
 </send>
