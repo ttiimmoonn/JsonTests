@@ -790,7 +790,7 @@
               "UserId": 1,
               "WriteStat": true,
               "Name": "UAC_SEND_200_ON_OPTIONS_WOUT_ALLOW",
-              "Commands"-: [
+              "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_send_200_wout_allow_before_re_inv_ref.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
