@@ -97,11 +97,12 @@
       "command12": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
       "command13": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
       "command14": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_skill_test --json %%IVR_TO_QUEUE%%",
-      "command15": "sleep 10",
+      "command15": "sleep 5",
       "command16": "/domain/%%DEV_DOM%%/cc/agent/set %%0.Number%% skills [%%SKILL1%%:10,%%SKILL2%%:1,%%SKILL3%%:1]",
       "command17": "/domain/%%DEV_DOM%%/cc/agent/set %%1.Number%% skills [%%SKILL2%%:10,%%SKILL1%%:1,%%SKILL3%%:1]",
       "command18": "/domain/%%DEV_DOM%%/cc/agent/set %%2.Number%% skills [%%SKILL3%%:10,%%SKILL2%%:1,%%SKILL1%%:1]",
-      "command19": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set skill_based_distribution true"
+      "command19": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set skill_based_distribution true",
+      "command20": "sleep 2"
     }
   ],
   "PostConf": [
@@ -143,6 +144,9 @@
               "userId": 2
             }
           ]
+        },
+        {
+          "Sleep" : 2
         },
         {
           "StartUA": [
