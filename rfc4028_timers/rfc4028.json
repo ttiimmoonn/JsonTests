@@ -755,6 +755,13 @@
               ]
             }
           ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true"            }
+          ]
         }
       ]
     },
