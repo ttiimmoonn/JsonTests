@@ -34,6 +34,17 @@
       "Expires" : 90,
       "Port" : 10107,
       "QParam" : 1
+    },
+    {
+      "UserId" : 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 10108,
+      "QParam" : 1
     }
   ],
   "UserVar": [
