@@ -52,10 +52,10 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_test blf blf_test %%0.Number%% %%1.Number%% %%2.Number%%",
+      "command1" : "/domain/%%DEV_DOM%%/lists/declare declare blf_m_test blf %%0.Number%% %%1.Number%% %%2.Number%%",
       "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
       "command3" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
-      "command4" : "/domain/%%DEV_DOM%%/lists/info blf_test",
+      "command4" : "/domain/%%DEV_DOM%%/lists/info blf_m_test",
       "command5" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ml",
       "command6" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count=2",
       "command7" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
@@ -64,7 +64,7 @@
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/remove blf_test ",
+      "command1" : "/domain/%%DEV_DOM%%/lists/remove blf_m_test ",
       "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
       "command3" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
       "command4" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ml",
