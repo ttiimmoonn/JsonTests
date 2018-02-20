@@ -15,11 +15,7 @@
 
 
 <!-- if first call is received then goto handle_call_2 label -->
-<nop test="call_1_received" next="handle_call_2">
-    <action>
-        <warning message="test"/>
-    </action>
-</nop>
+<nop test="call_1_received" next="handle_call_2"/>
 
 <recv request="INVITE">
 <action>
