@@ -52,7 +52,7 @@
   ],
 "Tests": [
     {
-      "Name": "simple_rfc_test",
+      "Name": "simple_dnd_test",
       "Description": "Звоним на абонента с dnd и получаем busy",
       "TestProcedure": [
         {
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "Name": "check_white_list",
+      "Name": "check_dnd_white_list",
       "Description": "Звоним с абонента из белого листа, проверяем, что дозвонились. Потом делаем удаление номера из белого списка и повторяем вызов и в этот раз должны получить 486",
       "TestProcedure": [
         {
