@@ -81,7 +81,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION recipient",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -144,7 +144,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION initiator",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
