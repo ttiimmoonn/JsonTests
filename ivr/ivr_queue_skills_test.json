@@ -146,7 +146,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep" : 5
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/realtime/info %%QUEUE_NAME%%"
+            }
+          ]
         },
         {
           "StartUA": [
@@ -255,6 +262,16 @@
             {
               "code": "#160",
               "userId": 2
+            }
+          ]
+        },
+        {
+            "Sleep" : 2
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/realtime/info %%QUEUE_NAME%%"
             }
           ]
         }
