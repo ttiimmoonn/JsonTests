@@ -60,19 +60,19 @@
   ],
   "UserVar": [
     {
-      "%%QUEUE_NAME%%": "ivr_test_queue",
+      "%%QUEUE_NAME%%": "ivr_callback_queue",
       "%%AGENT_PASS%%": "1111",
-      "%%IVR_CALLBACK_ON_FAILURE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_5\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":true,\"callback_on_overload\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_block_test\",\"description\":\"\",\"version\":\"3.10.0.94\"}",
-      "%%IVR_CALLBACK_ON_OVERLOAD%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_5\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"ivr_test_queue\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":true,\"limit_reached\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_limit_reached.wav\"}],\"need_confirmation\":false,\"you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_you_can_hang_up.wav\"}],\"allow_waiting\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_block_test\",\"description\":\"\",\"version\":\"3.10.0.96\"}",
-      "%%IVR_CALLBACK_ON_REQ%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_3\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":true,\"limit_reached\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_limit_reached.wav\"}],\"need_confirmation\":true,\"confirm_callback_digit\":\"1\",\"decline_callback_digit\":\"2\",\"prompt\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_do_you_want_us_to_call_you_back.wav\"},{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_do_you_want_decline_callback.wav\"}],\"now_you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_now_you_can_hang_up.wav\"}],\"you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_you_can_hang_up.wav\"}],\"allow_waiting\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_block_test\",\"description\":\"\",\"version\":\"3.10.0.96\"}",
-      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfcXVldWVfYmxvY2tfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX3F1ZXVlX2Jsb2NrX3Rlc3QiLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg=="
+      "%%IVR_CALLBACK_ON_FAILURE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_5\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":true,\"callback_on_overload\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_callback_test\",\"description\":\"\",\"version\":\"3.10.0.94\"}",
+      "%%IVR_CALLBACK_ON_OVERLOAD%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_5\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":true,\"limit_reached\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_limit_reached.wav\"}],\"need_confirmation\":false,\"you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_you_can_hang_up.wav\"}],\"allow_waiting\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_callback_test\",\"description\":\"\",\"version\":\"3.10.0.96\"}",
+      "%%IVR_CALLBACK_ON_REQ%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_3\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"release\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":true,\"limit_reached\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_limit_reached.wav\"}],\"need_confirmation\":true,\"confirm_callback_digit\":\"1\",\"decline_callback_digit\":\"2\",\"prompt\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_do_you_want_us_to_call_you_back.wav\"},{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_do_you_want_decline_callback.wav\"}],\"now_you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_now_you_can_hang_up.wav\"}],\"you_can_hang_up\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_you_can_hang_up.wav\"}],\"allow_waiting\":false,\"notify_callback\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_notify_callback.wav\"}],\"play_ringback_to_operator\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_queue_callback_test\",\"description\":\"\",\"version\":\"3.10.0.96\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfcXVldWVfY2FsbGJhY2tfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX3F1ZXVlX2NhbGxiYWNrX3Rlc3QiLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg=="
     }
   ],
   "PreConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_block_test",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_queue_block_test",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_callback_test",
+      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_queue_callback_test",
       "command3": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
       "command4": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
       "command5": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
@@ -88,7 +88,7 @@
   ],
   "PostConf": [
     {
-      "command0": "/domain/%%DEV_DOM%%/routing/delete ivr_queue_block_test",
+      "command0": "/domain/%%DEV_DOM%%/routing/delete ivr_queue_callback_test",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
       "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
       "command3": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
@@ -111,7 +111,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_FAILURE%%"
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
             }
           ]
         },
@@ -214,7 +214,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test"
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
             }
           ]
         },
@@ -243,7 +243,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
               "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
             }
           ]
@@ -370,7 +370,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
               "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
             }
           ]
@@ -400,7 +400,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
               "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\max_predicted_time 1"
             }
           ]
@@ -527,7 +527,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
               "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\max_predicted_time"
             }
           ]
@@ -557,7 +557,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_FAILURE%%"
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
             }
           ]
         },
@@ -722,7 +722,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test"
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
             }
           ]
         },
@@ -751,7 +751,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_FAILURE%%"
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
             }
           ]
         },
@@ -891,7 +891,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test"
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
             }
           ]
         },
@@ -920,7 +920,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_REQ%%",
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
               "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
             }
           ]
@@ -1047,7 +1047,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
               "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
             }
           ]
@@ -1077,7 +1077,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_REQ%%",
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
               "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
             }
           ]
@@ -1197,7 +1197,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
               "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
             }
           ]
@@ -1227,7 +1227,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_block_test --json %%IVR_CALLBACK_ON_REQ%%",
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
               "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
             }
           ]
@@ -1347,7 +1347,7 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_block_test",
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
               "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
             }
           ]
