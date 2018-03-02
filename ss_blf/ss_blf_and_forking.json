@@ -60,15 +60,13 @@
   ],
   "UserVar": [
     {
-      "%%FIND_ME_TIMER%%": "3600"
     }
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%",
-      "command2" : "/domain/%%DEV_DOM%%/lists/declare blf_and_forking_test blf blf_and_forking_test %%0.Number%% %%4.Number%%",
-      "command3" : "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% blf",
-      "command4" : "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% blf max_subscribe = 10"
+      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_and_forking_test blf blf_and_forking_test %%0.Number%% %%4.Number%%",
+      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% blf",
+      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% blf max_subscribe = 10"
     }
   ],
   "PostConf": [
