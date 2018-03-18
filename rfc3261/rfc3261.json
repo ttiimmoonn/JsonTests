@@ -268,7 +268,7 @@
     },
     {
       "Name": "test_retry_after_hdr_handling",
-      "Description": "Проверка обработки заголовка Retry-After. Проверяется, что адаптер повторит запрос.",
+      "Description": "Проверка обработки заголовка Retry-After. Проверяется, что адаптер повторит запрос после получения 500 ответа на re-invite.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -295,6 +295,45 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uac_send_500_on_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },    {
+      "Name": "test_recv_500_response_on_second_re_invite",
+      "Description": "Адаптер должен послать 500 ответ на второй re-invite, если он получен до завершения oa взаимодействия по первому.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_TWO_RE_INV",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_send_two_re_invite.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
