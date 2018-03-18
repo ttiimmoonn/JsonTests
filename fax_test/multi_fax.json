@@ -1,6 +1,7 @@
 {
   "TestName": "multi_fax_test",
   "AutoTest" : true,
+  "RepeatCounter" : 2,
   "Users": [
     {
       "UserId" : 1,

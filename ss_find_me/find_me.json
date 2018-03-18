@@ -1058,6 +1058,58 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "find_me_to_call_initiator",
+      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%] 2 true custom %%TimeTemplate%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 10,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_WOUT_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_find_me/uac_no_181.xml",
+                  "Options": "-m 1 -set CDPN %%10.Number%% -set CDPNDOM %%10.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

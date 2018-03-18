@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "Simple UAC send MESSAGE">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME" />
+    
+<nop hide="true">
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="display_name" value="\"Simple UAC send message\" " />
+    </action>
+</nop>
+
+<nop hide="true" condexec="WOUT_DNAME">
+    <action>
+        <assignstr assign_to="display_name" value="" />
+    </action>
+</nop>
+
+
+<send>
+<![CDATA[
+    MESSAGE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] MESSAGE
+    Max-Forwards: 70
+    Content-Type: text/plain
+    Content-Length: [len]
+
+    Test 123 ТЕСТ !?
+]]>
+</send>
+
+<recv response="401"/>
+
+<send>
+<![CDATA[
+    MESSAGE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    [last_via:]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id:]
+    [last_cseq:]
+    Max-Forwards: 70
+    Content-Type: text/plain
+    Content-Length: [len]
+
+    Test 123 ТЕСТ !?
+]]>
+</send>
+
+<recv response="401" auth="true"/>
+
+<send>
+<![CDATA[
+
+    MESSAGE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] MESSAGE
+    Max-Forwards: 70
+    [authentication]
+    Content-Type: text/plain
+    Content-Length: [len]
+
+    Test 123 ТЕСТ !?
+]]>
+</send>
+
+
+<recv response="200"></recv>
+
+<pause milliseconds="2000"/>
+
+</scenario>

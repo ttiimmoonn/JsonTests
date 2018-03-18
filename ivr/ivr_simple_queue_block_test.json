@@ -1,62 +1,73 @@
 {
-  "TestName" : "ivr_simple_queue_block_test",
-  "AutoTest" : true,
-  "Users" : [
-      {
-        "UserId" : 0,
-        "Number": "156",
-        "Login": "156",
-        "Password": "123",
-        "SipDomain": "%%DEV_DOM%%",
-        "Expires" : 90,
-        "Port" : 20000,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 1,
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "%%DEV_DOM%%",
-        "Expires" : 90,
-        "Port" : 20002,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 2,
-        "Number": "158",
-        "Login": "158",
-        "Password": "123",
-        "SipDomain": "%%DEV_DOM%%",
-        "Expires" : 90,
-        "Port" : 20004,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 3,
-        "Number": "159",
-        "Login": "159",
-        "Password": "123",
-        "SipDomain": "%%DEV_DOM%%",
-        "Expires" : 90,
-        "Port" : 20006,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
+  "TestName": "ivr_simple_queue_block_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20004,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20006,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 4,
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20007,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
   ],
   "UserVar": [
     {
-      "%%IVR_RANDOM_QUEUE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simple_queue_test\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60,\"distribution_mode\":\"random\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_SERIAL_QUEUE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simple_queue_test\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"serial\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_MULTICALL_QUEUE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simple_queue_test\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"multicall\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_CYCLED_QUEUE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simple_queue_test\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"cycled\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_PROGRESSIVE_QUEUE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simple_queue_test\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 1, \"distribution_mode\":\"progressive\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_FULL_BRANCH%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simple_queue_test\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"}],\"queue_length\":1,\"wait_timeout\":60,\"distribution_mode\":\"random\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Error\":\"undefined\",\"Ok\":\"undefined\",\"Full\":\"dial_31\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":1,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}},\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2}}},\"dial_31\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_ERROR_BRANCH%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simple_queue_test\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"}],\"queue_length\":2,\"wait_timeout\":1,\"distribution_mode\":\"random\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Ok\":\"undefined\",\"Error\":\"dial_31\",\"Full\":\"undefined\"},\"links\":{\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}},\"dial_31\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfc2ltcGxlX3F1ZXVlX2Jsb2NrX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9zaW1wbGVfcXVldWVfYmxvY2tfdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
+      "%%IVR_RANDOM_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"randomQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60,\"distribution_mode\":\"random\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_SERIAL_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"serialQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"serial\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_MULTICALL_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"mcallQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"multicall\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_CYCLED_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"cycledQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"cycled\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_PROGRESSIVE_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"progressiveQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 1, \"distribution_mode\":\"progressive\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_FULL_BRANCH%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"fullBrQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"}],\"queue_length\":1,\"wait_timeout\":60,\"distribution_mode\":\"random\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Error\":\"undefined\",\"Ok\":\"undefined\",\"Full\":\"dial_31\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":1,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}},\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2}}},\"dial_31\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_ERROR_BRANCH%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"errBrQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"}],\"queue_length\":2,\"wait_timeout\":1,\"distribution_mode\":\"random\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Ok\":\"undefined\",\"Error\":\"dial_31\",\"Full\":\"undefined\"},\"links\":{\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}},\"dial_31\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfc2ltcGxlX3F1ZXVlX2Jsb2NrX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9zaW1wbGVfcXVldWVfYmxvY2tfdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
     }
   ],
   "PreConf": [
@@ -64,7 +75,9 @@
       "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
       "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_simple_queue_block_test",
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ml",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count=3"
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count=3",
+      "command4": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} pickup",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} pickup pickup_groups = [room_for_queue/1]"
     }
   ],
   "PostConf": [
@@ -72,10 +85,12 @@
       "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
       "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_simple_queue_block_test",
       "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ml",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml"
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} pickup",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} pickup"
     }
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "ivr_simple_queue_test_random",
       "Description": "Тестируем рандомное распределение в simple queue",
@@ -91,8 +106,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -106,8 +121,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -121,8 +136,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -136,8 +151,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -175,8 +190,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA1",
               "Commands": [
                 {
@@ -190,8 +205,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA2",
               "Commands": [
                 {
@@ -205,13 +220,13 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA3",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -220,8 +235,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -238,14 +253,14 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 3000,
-              "Mode" : "between_ua",
+              "Difference": 3000,
+              "Mode": "between_ua",
               "UA": "1,2,3",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             }
@@ -275,8 +290,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA1",
               "Commands": [
                 {
@@ -290,8 +305,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA2",
               "Commands": [
                 {
@@ -305,13 +320,13 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA3",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -320,8 +335,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -338,14 +353,14 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 0,
-              "Mode" : "between_ua",
+              "Difference": 0,
+              "Mode": "between_ua",
               "UA": "1,2,3",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             }
@@ -375,8 +390,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA1",
               "Commands": [
                 {
@@ -397,8 +412,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA2",
               "Commands": [
                 {
@@ -419,8 +434,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA3",
               "Commands": [
                 {
@@ -432,7 +447,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -441,8 +456,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -459,14 +474,14 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 3000,
-              "Mode" : "between_ua",
+              "Difference": 3000,
+              "Mode": "between_ua",
               "UA": "1,2,3",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             }
@@ -496,8 +511,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA1",
               "Commands": [
                 {
@@ -511,8 +526,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL_UA2",
               "Commands": [
                 {
@@ -526,8 +541,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA3",
               "Commands": [
                 {
@@ -541,8 +556,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -559,14 +574,14 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 1000,
-              "Mode" : "between_ua",
+              "Difference": 1000,
+              "Mode": "between_ua",
               "UA": "1,2,3",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             }
@@ -596,8 +611,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA1",
               "Commands": [
                 {
@@ -611,13 +626,13 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA2",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -626,8 +641,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -665,8 +680,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA1",
               "Commands": [
                 {
@@ -680,13 +695,13 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_UA2",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1",
+                  "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -695,8 +710,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -705,6 +720,157 @@
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_simple_queue_block_test"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_simple_queue_test_and_pickup",
+      "Description": "Проверка возможности перехвата вызова пришедшего из sipmple queue",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_simple_queue_block_test --json %%IVR_MULTICALL_QUEUE%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CANCEL_UA1",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_recv_cancel.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CANCEL_UA2",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_recv_cancel.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CANCEL_UA3",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_recv_cancel.xml",
+                  "Options": "-m 3",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 3 -r 1 -l 1 -rp 1000 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SIMPLE QUEUE BLOCK AND PICKUP\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "100s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 10
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *08# -set CDPNDOM %%0.SipDomain%% -d 2000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 10
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *07*%%1.Number%%# -set CDPNDOM %%0.SipDomain%% -d 2000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 10
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *07*1# -set CDPNDOM %%0.SipDomain%% -d 2000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
                 }
               ]
             }

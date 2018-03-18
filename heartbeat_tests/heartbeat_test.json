@@ -1,0 +1,86 @@
+{
+	"TestName" : "heartbeat_test",
+  "AutoTest" : true,
+	"Users" : [
+	    {
+	      "UserId" : 0,
+	      "Number": "156",
+	      "Login": "156",
+	      "Password": "123",
+	      "SipDomain": "%%DEV_DOM%%",
+	      "Expires" : 90,
+	      "Port" : 20000,
+	      "SipGroup": "sip.ab",
+	      "QParam" : 0.5
+	    },
+	    {
+	      "UserId" : 1,
+	      "Number": "157",
+	      "Login": "157",
+	      "Password": "123",
+	      "SipDomain": "%%DEV_DOM%%",
+	      "Expires" : 90,
+	      "Port" : 20002,
+	      "SipGroup": "sip.ab",
+	      "QParam" : 0.5
+	    }
+	],
+  "PreConf": [
+    {
+    }
+  ],
+  "PostConf": [
+    {
+    }
+  ],
+"Tests": [
+    {
+      "Name": "no_487_response_after_cancel",
+      "Description": "В случае если после отправки CANCEL не был получен 487 ответ, срабатывал hb на адаптере. ",
+      "Ref" : "#91701",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+                "command2": "/domain/%%DEV_DOM%%/iface/info * %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%%",
+                "command3": "/domain/%%DEV_DOM%%/iface/info * %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%%"
+            }
+          ]
+        },
+       {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_NO_487",
+              "Commands": [
+                {
+                  "SourceFile": "heartbeat_tests/uas_no_487_after_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_cancel.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

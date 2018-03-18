@@ -1,0 +1,514 @@
+{
+  "TestName": "ivr_queue_prefered_operator_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "110",
+      "Login": "110",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "111",
+      "Login": "111",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "112",
+      "Login": "112",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20004,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 3,
+      "Number": "113",
+      "Login": "113",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20006,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 4,
+      "Number": "114",
+      "Login": "114",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20007,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 5,
+      "Number": "115",
+      "Login": "115",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20008,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+      "%%QUEUE_NAME%%": "ivr_pref_oper_test",
+      "%%AGENT_PASS%%": "1111",
+      "%%IVR_TO_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_2\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"return_to_queue\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}}},\"name\":\"ivr_pref_oper_test\",\"description\":\"\",\"version\":\"3.10.0.118\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfcHJlZl9vcGVyX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9wcmVmX29wZXJfdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
+    }
+  ],
+  "PreConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_pref_oper_test",
+      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_pref_oper_test",
+      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% routing.context ivr_pref_oper_test",
+      "command4": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
+      "command5": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
+      "command6": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
+      "command7": "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
+      "command8": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
+      "command9": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
+      "command10": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cc_agent",
+      "command11": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
+      "command13": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
+      "command14": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_pref_oper_test --json %%IVR_TO_QUEUE%%",
+      "command15": "sleep 10"
+    }
+  ],
+  "PostConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/delete ivr_pref_oper_test",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
+      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
+      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% routing.context default_routing",
+      "command4": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
+      "command5": "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
+      "command6": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
+      "command7": "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
+      "command8": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
+      "command9": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent",
+      "command10": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
+      "command11": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
+      "command13": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent",
+      "command14": "domain/%%DEV_DOM%%/ivr/script/delete ivr_pref_oper_test"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "ivr_queue_prefered_operator_test(strict_mode)",
+      "Description": "Проверка strict режима опции remember_choice. Устанавливаем strict режим для опции remember_choice. Делаем доступным только одного агента. Делаем вызов через очередь, вызов распределится на единственного доступного агента. Устанавливаем активному агенту auxwork, логиним остальных агентов. Делаем вызов через очередь, вызов не должен распределиться. Выводим агента из auxwork, вызов распределяется на него.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice strict"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_0_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%3.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#162",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 3,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%3.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_1_WOUT_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_wout_call.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "ReqExCode": 255,
+                  "NeedAuth": true,
+                  "Timeout": "5s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_2_WOUT_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_wout_call.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "ReqExCode": 255,
+                  "NeedAuth": true,
+                  "Timeout": "5s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 5
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#163",
+              "userId": 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_0_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice none"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_queue_prefered_operator_test(non_strict_mode)",
+      "Description": "Проверка non_strict режима опции remember_choice. Устанавливаем non_strict режим для опции remember_choice. Делаем доступным только одного агента. Делаем вызов через очередь, вызов распределится на единственного доступного агента. Устанавливаем активному агенту auxwork, логиним ещё одного агента. Делаем вызов через очередь, вызов должен распределиться на доступного агента",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice non_strict"
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_0_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%4.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#162",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_0_WOUT_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_wout_call.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "ReqExCode": 255,
+                  "NeedAuth": true,
+                  "Timeout": "5s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_1_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%4.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#163",
+              "userId": 0
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_0_WOUT_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_wout_call.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "ReqExCode": 255,
+                  "NeedAuth": true,
+                  "Timeout": "5s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_1_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%4.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\" -d 5000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set remember_choice none"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -41,13 +41,30 @@
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% redial"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% voice_page",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% voice_page priority = 0_flash_override",
+
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% redial",
+
+      "command4": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+
+      "command6": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+      "command8" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
     }
   ],
   "PostConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% redial",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% redial"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% voice_page",
+      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% voice_page",
+
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% redial",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% redial",
+
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+      "command7": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip"
     }
   ],
 "Tests": [
@@ -72,7 +89,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 2",
+                  "Options": "-m 2 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -86,7 +103,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 2",
+                  "Options": "-m 2 -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -153,6 +170,68 @@
                   "Timeout": "10s"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "redial_to_voice_page_test",
+      "Description": "Проверка услуги redial в случае если последние номер - это feature-code voice_page.",
+      "Ref" : "Bug #93123",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*77#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SIMPLE_VP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_voice_page/uas_chk_auto_answer.xml",
+                  "Options": "-m 2 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_AUTOANSWER_VP_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *80*%%1.Number%%# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#77#",
+              "userId" : 0
             }
           ]
         }

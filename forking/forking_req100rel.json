@@ -79,11 +79,23 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat": true,
-              "Name": "UAS0_REQ100REL_RECV_CANEL",
+              "Name": "UAS0_FORK_REQ100REL",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
+                  "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -93,8 +105,20 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat": true,
-              "Name": "UAS1_REQ100REL_RECV_CANEL",
+              "Name": "UAS1_FORK_REQ100REL",
               "Commands": [
+                {
+                  "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
@@ -107,10 +131,22 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat": true,
-              "Name": "UAS2_REQ100REL_SEND_BYE",
+              "Name": "UAS2_FORK_REQ100REL",
               "Commands": [
                 {
-                  "SourceFile": "forking/req100rel/uas_send_bye.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -123,11 +159,11 @@
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
+                  "Options": "-m 3 -r 1 -l 1 -d 3000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "60s"
                 }
               ]
             }
@@ -138,7 +174,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -150,7 +186,8 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "Calls" : "1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -180,7 +217,7 @@
               "Type": "User",
               "UserId" : 0,
               "WriteStat": true,
-              "Name": "UAS0_REQ100REL_RECV_CANEL",
+              "Name": "UAS0_FORK_REQ100REL",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
@@ -194,7 +231,7 @@
               "Type": "User",
               "UserId" : 1,
               "WriteStat": true,
-              "Name": "UAS1_REQ100REL_RECV_CANEL",
+              "Name": "UAS1_FORK_REQ100REL",
               "Commands": [
                 {
                   "SourceFile": "forking/req100rel/uas_recv_cancel.xml",
@@ -208,7 +245,7 @@
               "Type": "User",
               "UserId" : 2,
               "WriteStat": true,
-              "Name": "UAS2_REQ100REL_SEND_BYE",
+              "Name": "UAS2_FORK_REQ100REL",
               "Commands": [
                 {
                   "SourceFile": "forking/uas_repeat_asdp.xml",
@@ -239,7 +276,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1,2",
+              "UA": "user:0,user:1,user:2",
               "Msg" : [
                 {
                   "MsgType": "request",
@@ -251,7 +288,7 @@
             {
               "Difference" : 0,
               "Mode" : "between_ua",
-              "UA": "0,1",
+              "UA": "user:0,user:1",
               "Msg" : [
                 {
                   "MsgType": "request",

@@ -42,16 +42,10 @@
 </send>
 
 
-<recv response="401" optional="true" auth="true" next="auth_publish_1">
-    <action>
-        <!--Забрали CSeq -->
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
-        <!--Забрали branch -->
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
-    </action>
- </recv>
+<recv response="401" optional="true" auth="true" next="auth_publish_1"/>
 
 <label id="publish_continue_1"/>
+
 <recv response="200">
 </recv>
 
@@ -83,31 +77,12 @@
 ]]>
 </send>
 
-<recv response="401" optional="true" auth="true" next="auth_publish_2">
-    <action>
-        <!--Забрали CSeq -->
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
-        <!--Забрали branch -->
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
-    </action>
- </recv>
+<recv response="401" optional="true" auth="true" next="auth_publish_2"/>
 <label id="publish_continue_2"/>
 <recv response="200" next="end">
 </recv>
 
 <label id="auth_publish_1"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Content-Length: 0
-]]>
-</send>
 
 <send next="publish_continue_1">
 <![CDATA[
@@ -140,18 +115,6 @@
 </send>
 
 <label id="auth_publish_2"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Content-Length: 0
-]]>
-</send>
 
 <send next="publish_continue_2">
 <![CDATA[

@@ -33,12 +33,7 @@
 </send>
 
 
-<recv response="401" auth="true" next="auth_init_sub">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" next="auth_init_sub"/>
 
 <label id="sub_continue_1"/>
 
@@ -111,15 +106,11 @@
 </send>
 
 
-<recv response="401" auth="true" optional="true" next="auth_re_sub">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" optional="true" next="auth_re_sub"/>
 
 
 <label id="sub_continue_2"/>
+
 
 
 
@@ -199,38 +190,15 @@
 
 
 
-<recv response="401" auth="true" optional="true" next="auth_unsub">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" optional="true" next="auth_unsub"/>
 
 
 <label id="sub_continue_3"/>
 
 
-<recv response="200" next="exit">
-    <action>
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
-</recv>
+<recv response="200" next="exit"/>
 
 <label id="auth_init_sub"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
 
 <send next="sub_continue_1">
 <![CDATA[
@@ -253,20 +221,6 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
-
-<send>
-<![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
@@ -285,25 +239,34 @@
 
 <recv request="NOTIFY" optional="true">
     <action>
-        <assignstr assign_to="recv_not" value="true"/>
+        <assignstr assign_to="recv_notify_100_trying" value="true"/>
         <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
         <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
         <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check_state" value="" />
+        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
+    </action>
+</recv>
 
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-    </action>
-</recv>
 <recv response="200"></recv>
-<recv request="NOTIFY" condexec="recv_not" condexec_inverse="true">
+
+<nop next="send_200_on_notify" test="recv_notify_100_trying"/>
+
+<recv request="NOTIFY">
     <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
         <assign assign_to="dummy" value="" />
         <assign assign_to="check_state" value="" />
         <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
     </action>
 </recv>
+
+<label id="send_200_on_notify"/>
 
 <send next="sub_continue_2">
 <![CDATA[
@@ -317,24 +280,7 @@
 ]]>
 </send>
 
-
-
 <label id="auth_unsub"/>
-
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
 
 <send next="sub_continue_3">
 <![CDATA[

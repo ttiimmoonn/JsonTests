@@ -33,40 +33,16 @@
 </send>
 
 
-<recv response="401" auth="true" optional="true" next="1">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" optional="true" next="sub_auth"/>
 
-<label id="2"/>
+<label id="sub_continue"/>
 
 
-<recv response="200" next="exit">
-    <action>
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
-</recv>
+<recv response="200" next="exit"/>
 
+<label id="sub_auth"/>
 
-<label id="1"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
-
-<send next="2">
+<send next="sub_continue">
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]

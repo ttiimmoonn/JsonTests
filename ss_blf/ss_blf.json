@@ -34,6 +34,17 @@
       "Expires" : 90,
       "Port" : 10107,
       "QParam" : 1
+    },
+    {
+      "UserId" : 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 10108,
+      "QParam" : 1
     }
   ],
   "UserVar": [
@@ -70,7 +81,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION recipient",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -133,7 +144,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_blf/blf.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION initiator",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"

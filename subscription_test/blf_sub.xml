@@ -32,12 +32,7 @@
 </send>
 
 
-<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe"/>
 
 <label id="recv_200_to_subscribe"/>
 
@@ -185,12 +180,7 @@
 ]]>
 </send>
 
-<recv response="401" auth="true" optional="true" next="send_auth_to_unsubscribe">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" optional="true" next="send_auth_to_unsubscribe"/>
 
 <label id="recv_200_to_unsubscribe"/>
 
@@ -198,20 +188,6 @@
 
 
 <label id="send_auth_to_subscribe"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
 
 <send next="recv_200_to_subscribe">
 <![CDATA[
@@ -232,19 +208,6 @@
 
 
 <label id="send_auth_to_unsubscribe"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
 
 
 <send next="recv_200_to_unsubscribe">

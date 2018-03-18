@@ -9,6 +9,7 @@
 <recv request="REGISTER">
   <action>
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="\s+([0-9]+)" search_in="hdr" header="Expires:" check_it="true" assign_to="dummy,exp" />
   </action>
 </recv>
 
@@ -64,7 +65,7 @@
       [last_To:];tag=[pid]SIPpTag01[call_number]
       [last_Call-ID:]
       [last_CSeq:]
-      Contact: <sip:[local_ip]:[local_port];transport=[transport]>;expires=90
+      Contact: <sip:[local_ip]:[local_port];transport=[transport]>;expires=[$exp]
       Content-Length: 0
 ]]>
 </send>

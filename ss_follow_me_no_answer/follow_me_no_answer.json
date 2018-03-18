@@ -314,6 +314,76 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "follow_me_no_response_to_call_initiator",
+      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*%%FollowMeFCode%%*%%UserPin%%#",
+              "userId" : 1
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "*%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
+              "userId" : 2
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_follow_me_no_answer/uas_delay_answer.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_NO_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_follow_me_no_answer/uac_no_181.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
+              "userId" : 2
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#%%FollowMeFCode%%#",
+              "userId" : 1
+            }
+          ]
+        }
+      ]
     }
   ]
 }

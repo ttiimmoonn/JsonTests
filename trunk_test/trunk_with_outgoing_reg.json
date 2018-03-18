@@ -171,6 +171,13 @@
               ]
             }
           ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command2": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 0"
+            }
+          ]
         }
       ]
     },

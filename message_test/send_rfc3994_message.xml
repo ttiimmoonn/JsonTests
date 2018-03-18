@@ -44,34 +44,15 @@
 </send>
 
 <!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
-<recv response="401" optional="true" auth="true" next="auth_message">
-    <action>
-        <!--Забрали CSeq -->
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
-        <!--Забрали branch -->
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
-    </action>
- </recv>
+<recv response="401" optional="true" auth="true" next="auth_message"/>
 
 <label id="msg_continue" />
 
-<recv response="415" auth="true" next="end"></recv>
+<recv response="415" next="end"></recv>
 
 
 <!--Отправка MESSAGE c аутентификацией -->
 <label id="auth_message"/>
-
-<send>
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Content-Length: 0
-]]>
-</send>
 
 <!-- Уходим в label call_continue -->
 <send next="msg_continue" crlf="true">

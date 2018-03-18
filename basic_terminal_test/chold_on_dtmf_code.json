@@ -47,7 +47,10 @@
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
       "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none"
     }
   ],
   "PostConf": [
@@ -56,7 +59,10 @@
       "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
       "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
       "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
+      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
     }
   ],
   "Tests": [
@@ -87,8 +93,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 15000",
-                  "Options": "-m 1 -aa",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa -d 15000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -133,8 +139,8 @@
                   "Timeout": "30s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
-                  "Options": "-m 1 -set CHK_DNAME Callback -set CHK_CGPN %%2.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1  -d 1000 -set CHK_DNAME Callback -set CHK_CGPN %%2.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -186,8 +192,8 @@
                   "Timeout": "30s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 1000",
-                  "Options": "-m 1 -set CHK_DNAME \"Callback: %%ALIAS_B_DNAME%%\" -set CHK_CGPN %%2.Number%%",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 1000 -set CHK_DNAME \"Callback: %%ALIAS_B_DNAME%%\" -set CHK_CGPN %%2.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -253,8 +259,8 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml -d 5000",
-                  "Options": "-m 1 -aa",
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -aa -d 5000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "30s"

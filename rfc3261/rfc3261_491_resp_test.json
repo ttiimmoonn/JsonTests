@@ -2,6 +2,7 @@
   "TestName": "rfc3261_491_response_test",
   "AutoTest" : true,
   "Isolate" : true,
+  "RepeatCounter" : 2,
   "Users": [
     {
       "UserId" : 0,

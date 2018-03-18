@@ -370,7 +370,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -392,7 +392,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -414,7 +414,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -436,7 +436,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -480,7 +480,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -502,7 +502,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -524,7 +524,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -546,7 +546,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -568,7 +568,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -590,7 +590,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -612,7 +612,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -634,7 +634,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -656,7 +656,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -678,7 +678,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -700,7 +700,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -722,7 +722,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -744,7 +744,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -766,7 +766,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -788,7 +788,7 @@
                 },
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"
@@ -803,7 +803,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": " -m 1",
+                  "Options": " -m 1 -d 2000",
                   "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "3000000s"

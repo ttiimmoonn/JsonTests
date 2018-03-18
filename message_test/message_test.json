@@ -178,6 +178,44 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "test_retrans_401_on_subscribe",
+      "Description": "Проверяем повтор 401 ответа в случае перепосылок MESSAGE",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_MSG",
+              "Commands": [
+                {
+                  "SourceFile": "message_test/recv_message.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "45s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "UAC_MSG_RETRANS",
+              "Commands": [
+                {
+                  "SourceFile": "message_test/uac_message_retrans.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -nr",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

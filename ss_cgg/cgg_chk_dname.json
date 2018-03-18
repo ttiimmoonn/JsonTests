@@ -61,20 +61,20 @@
   "UserVar": [
     {
       "%%CggGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]",
-      "%%CggUser%%": "%%0.Number%%",
       "%%CggSipDomain%%": "%%0.SipDomain%%",
       "%%CggSipGroup%%" : "%%0.SipGroup%%",
       "%%SIP_DNAME%%" : "SipDNAME_CGG",
       "%%ALIAS_DNAME%%" : "AliasDNAME_CGG",
       "%%ROUTE_DNAME%%" : "RouteDNAME_CGG",
+      "%%CCG_USER_NAME%%" : "CggUser",
       "%%CGG_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjZ2dfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQ0dHIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
     }
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg",
+      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cgg",
       "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cgg numbers = %%CggGroup%%",
       "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
       "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
       "command6": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
@@ -82,9 +82,9 @@
   ],
   "PostConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%CggUser%% cgg",
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cgg",
       "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cgg",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cgg",
       "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
       "command5": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
       "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
@@ -107,7 +107,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -149,7 +149,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -181,7 +181,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -223,7 +223,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -255,7 +255,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -297,7 +297,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -329,7 +329,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ALIAS_DNAME%% -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -371,7 +371,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -411,7 +411,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -453,7 +453,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -495,7 +495,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -537,7 +537,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -579,7 +579,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -621,7 +621,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -663,7 +663,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%%",
+                  "Options": "-m 1 -set CHK_DNAME %%ROUTE_DNAME%% -set CHK_CGPN %%4.Number%% -set DIVER_NAME \"\" -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -705,7 +705,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -720,6 +720,87 @@
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
               "command2": "/domain/%%DEV_DOM%%/routing/delete cgg_test_ctx",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cgg_chk_dname_in_diversion_hdr",
+      "Description": "Устанавливаем dname для номера, на котором активирован cgg. Проверяем заполнение имени абонента в заголовке Diversion",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%CCG_USER_NAME%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS1_CGG_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME \"\" -set CHK_CGPN %%4.Number%% -set DIVER_NAME %%CCG_USER_NAME%% -set DIVER_NUMBER %%0.Number%% -set DIVER_REASON \"unconditional\"",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS2_CGG_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 3,
+              "WriteStat" : true,
+              "Name": "UAS3_CGG_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 4,
+              "WriteStat" : true,
+              "Name": "UAC_WOUT100REL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%CggSipDomain%% -set WOUT_DNAME TRUE",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
             }
           ]
         }

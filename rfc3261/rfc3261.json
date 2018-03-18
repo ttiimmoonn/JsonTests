@@ -175,7 +175,7 @@
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uas_send_osdp_t38.xml",
-                  "Options": "-m 1 -nr",
+                  "Options": "-m 1 -nr -d 2000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -231,6 +231,71 @@
                 {
                   "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "unknown_ruri_test",
+      "Description": "Отправляем в RURI неразрешённый домен, вызов должен отбиться 404 ответом",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_404",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_recv_404.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DOMAIN unknowndomain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_retry_after_hdr_handling",
+      "Description": "Проверка обработки заголовка Retry-After. Проверяется, что адаптер повторит запрос.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_OSDP_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_send_osdp_t38.xml",
+                  "Options": "-m 1 -nr -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_500_ON_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_send_500_on_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"

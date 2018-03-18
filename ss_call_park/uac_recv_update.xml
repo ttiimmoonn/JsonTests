@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "UAC recv UPDATE (transfer rci test)">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CHK_CONNECTED_NUMBER,CHK_CONNECTED_NAME,DNAME" />
+<User variables="rpi_connected_name,rpi_connected_number,dummy" />
+<Reference variables="rpi_connected_name,rpi_connected_number,dummy" />
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="rpi_connected_number" value=""/>
+        <assignstr assign_to="rpi_connected_name" value=""/>
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "[$DNAME]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+
+<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
+<recv response="401" optional="true" auth="true" next="auth_invite">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="call_continue" />
+
+<recv response="100" optional="true"></recv>
+<recv response="180" optional="true"></recv>
+<recv response="200" auth="true">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,remote_tag" />
+    </action>
+ </recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+
+<!-- Данный UPDATE является лишним и появляется из-за кривой процедуры трансфера -->
+<recv request="UPDATE">
+    <action>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true" next="check_call_park_dname" test="rpi_connected_name" test_var_value="" test_inverse="true"/>
+
+
+<recv request="UPDATE">
+    <action>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+    </action>
+</recv>
+
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<label id="check_call_park_dname"/>
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="compare_result" variable="rpi_connected_name" value="Call Park"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Connected name check failed. Require Connected Name: Call Park; Current Connected Name: [$rpi_connected_name]; compare_result: [$compare_result]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="compare_result" variable="rpi_connected_number" value="*57*1%23"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Connected number check failed. Require Connected Number: *57*1%23; Current Connected Number: [$rpi_connected_number]; compare_result: [$compare_result]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<recv request="UPDATE">
+    <action>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+    </action>
+</recv>
+
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true" condexec="CHK_CONNECTED_NAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="rpi_connected_name" variable2="CHK_CONNECTED_NAME"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Connected name check failed. Require Connected Name: Call Park; Current Connected Name: [$rpi_connected_name]; compare_result: [$compare_result]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_CONNECTED_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="rpi_connected_number" variable2="CHK_CONNECTED_NUMBER"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Connected number check failed. Require Connected Number: *57#; Current Connected Number: [$rpi_connected_number]; compare_result: [$compare_result]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<pause milliseconds="11000" crlf="true"/>
+
+<send>
+<![CDATA[
+    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "[service]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$remote_tag]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="end" crlf="true"></recv>
+
+<!--Отправка INVITE c аутентификацией -->
+<label id="auth_invite"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Уходим в label call_continue -->
+<send next="call_continue" crlf="true">
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "[$DNAME]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
+    [authentication]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+
+<label id="end"/>
+
+</scenario>

@@ -176,6 +176,8 @@
 
 <recv request="ACK"></recv> 
 
+<pause milliseconds="5000"/>
+
 <send>
 <![CDATA[
     BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0

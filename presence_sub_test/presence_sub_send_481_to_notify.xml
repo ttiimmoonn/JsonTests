@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "PRESENCE SUB тест SEND 481 to NOTIFY">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,check,dummy" />
+<Reference variables="dummy"/>
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "PRESENCE SUB тест RECV NOTIFY" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: presence
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe"/>
+
+<label id="recv_200_to_subscribe"/>
+
+<recv response="200"></recv>
+
+<pause milliseconds="1000"/>
+
+<recv request="NOTIFY">
+    <action>
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip"/>
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check" value="" />
+        <ereg regexp="presence" search_in="body" check_it="true" assign_to="check"/>
+        <assign assign_to="check" value="" />
+        <ereg regexp="<rpid:activities><rpid:busy/></rpid:activities>" search_in="body" check_it="true" assign_to="check"/>
+        <assign assign_to="check" value="" />
+        <ereg regexp="<status><basic>open</basic></status>" search_in="body" check_it="true" assign_to="check"/>
+    </action>
+</recv>
+
+<nop hide="true">
+    <action>
+        <log message="new_ip: [$new_ip]"/>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    SIP/2.0 481 Transaction Does Not Exist
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="NOTIFY" next="stop_now" timeout="5000" ontimeout="exit"/>
+
+<label id="send_auth_to_subscribe"/>
+
+<send next="recv_200_to_subscribe">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "PRESENCE SUB тест RECV NOTIFY" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: presence
+    Accept: application/dialog-info+xml
+    Expires: 3600
+    Content-Length: 0
+]]>
+</send>
+
+<label id="stop_now"/>
+
+<nop>
+    <action>
+         <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<label id="exit"/>
+
+<pause milliseconds="2000"/>
+
+</scenario>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "UAC Unattended transfer">
+
+<Global variables="FIRST_CDPN,SECOND_CDPN,CGPNDOM,CDPNDOM" />
+<User variables="dummy" />
+<Reference variables="dummy" />
+    
+<nop hide="true">
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="first_cdpn" value="[$FIRST_CDPN]"/>
+        <assignstr assign_to="second_cdpn" value="[$SECOND_CDPN]"/>
+        <assignstr assign_to="first_call_local_tag" value="[call_number][pid]first"/>
+    </action>
+</nop>
+
+<!-- Start first call -->
+
+<send>
+<![CDATA[
+    INVITE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "UAC Unattended transfer" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 100000 100000 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv response="100" optional="true"></recv>
+
+<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
+<recv response="401" optional="true" auth="true" next="auth_first_call">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="first_call_continue" />
+
+<recv response="100" optional="true"></recv>
+<recv response="180" optional="true"></recv>
+<recv response="200" auth="true">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,first_call_remote_tag" />
+    </action>
+ </recv>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Speach in first call -->
+
+<pause milliseconds="3000"/>
+
+<!-- Set first call on hold -->
+
+<send>
+<![CDATA[
+    INVITE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 100000 100001 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+    a=sendonly
+]]>
+</send>
+
+<recv response="100" optional="true"></recv>
+<recv response="200">
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Transfer call -->
+
+<send retrans="500">
+<![CDATA[
+    REFER sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] REFER
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Event: refer
+    Refer-To: <sip:[$second_cdpn]@[$cdpn_dom]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv response="202" crlf="true"></recv>
+
+
+<recv request="NOTIFY" regexp_match="true">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="test_sipfrag_100"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="test_sipfrag_200"/>
+    </action>
+</recv>
+
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="NOTIFY" regexp_match="true">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg"  assign_to="test_sipfrag_100"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg"  assign_to="test_sipfrag_200"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    BYE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "UAC Unattended transfer" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>;tag=[$first_call_remote_tag]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="end">
+    <action>
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="var" variable="test_sipfrag_100" check_it="true" assign_to="custom_test_var"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="var" variable="test_sipfrag_200" check_it="true" assign_to="custom_test_var"/>
+    </action>
+</recv>
+
+
+
+<!--Отправка INVITE c аутентификацией -->
+<label id="auth_first_call"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Уходим в label call_continue -->
+<send next="first_call_continue" crlf="true">
+<![CDATA[
+    INVITE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "UAC Unattended transfer" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    [authentication]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 100000 100000 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<label id="end"/>
+
+</scenario>

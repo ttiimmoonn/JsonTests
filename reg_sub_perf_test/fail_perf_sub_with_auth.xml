@@ -28,12 +28,7 @@
 </send>
 
 
-<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe">
-    <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
+<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe"/>
 
 <label id="recv_200_to_subscribe"/>
 
@@ -46,34 +41,7 @@
     </action>
 </recv>
 
-<send>
-<![CDATA[
-    ACK sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[field0]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
 <label id="send_auth_to_subscribe"/>
-
-<send>
-<![CDATA[
-    ACK sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[field0]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
 
 <send next="recv_200_to_subscribe" start_rtd="subscribe">
 <![CDATA[
