@@ -390,7 +390,7 @@
       ]
     },
     {
-      "Name": "send_call_to_after_reg_expired_time",
+      "Name": "send_call_after_reg_expired",
       "Description": "Пытаемся прозвонить в транк, регистрация которого истекла",
       "TestProcedure": [
         {
