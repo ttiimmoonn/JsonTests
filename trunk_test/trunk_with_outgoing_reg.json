@@ -394,8 +394,8 @@
       ]
     },
     {
-      "Name": "registration_expire_test",
-      "Description": "Проверка перехода транка в неактивное состояние в случае истечения Expires.",
+      "Name": "registration_expired_test",
+      "Description": "Проверка перевода транка в неактивное состояние в случае истечения Expires.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -445,6 +445,126 @@
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_non_200_response_on_re_registration",
+      "Description": "Проверка перевода транка в неактивное состояние при получении не 200 ответа на перерегистрацию.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 32"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_SEND_500_ON_REG",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_send_500_on_reg.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
                 }
               ]
             }
