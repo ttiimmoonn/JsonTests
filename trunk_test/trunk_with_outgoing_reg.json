@@ -248,7 +248,6 @@
     },
     {
       "Name": "options_control_test",
-      "Ref" : "#92359",
       "Description": "Проверка options_control для транка c out reg",
       "TestProcedure": [
         {
@@ -395,6 +394,7 @@
     },
     {
       "Name": "registration_expired_test",
+      "Ref" : "#92359",
       "Description": "Проверка перевода транка в неактивное состояние в случае истечения Expires.",
       "TestProcedure": [
         {
@@ -525,6 +525,7 @@
     },
     {
       "Name": "send_non_200_response_on_re_registration",
+      "Ref" : "#92359",
       "Description": "Проверка перевода транка в неактивное состояние при получении не 200 ответа на перерегистрацию.",
       "TestProcedure": [
         {
