@@ -292,7 +292,7 @@
               "Type": "Trunk",
               "TrunkId": 1,
               "WriteStat": true,
-              "Name": "UAS_IGNORE_OPRIONS",
+              "Name": "UAS_IGNORE_OPTIONS",
               "Commands": [
                 {
                   "SourceFile": "options_control_test/uas_ignore_options.xml",
