@@ -80,7 +80,7 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Wrong registration domain"/>
+        <warning message="Wrong registration domain [$local_domain], need: [$REG_DOMAIN]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
