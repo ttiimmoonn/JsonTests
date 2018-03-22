@@ -6,7 +6,7 @@
 <User variables="user_dom,user_port,user_exp,user_number,user_q,user_ip,server_exp,dummy" />
 <Reference variables="server_exp,dummy"/>
 
-    <nop hide="true">
+<nop hide="true">
     <action>
         <assignstr assign_to="user_port" value="[$PORT]"/>
         <assignstr assign_to="user_dom" value="[$DOMAIN]"/>
@@ -14,19 +14,19 @@
         <assignstr assign_to="user_number" value="[$NUMBER]"/>
         <assignstr assign_to="user_q" value="[$USER_Q]"/>
     </action>
-    </nop>
+</nop>
 
-    <nop hide="true" condexec="USER_IP" condexec_inverse="true">
+<nop hide="true" condexec="USER_IP" condexec_inverse="true">
         <action>
             <assignstr assign_to="user_ip" value="[local_ip]" />
         </action>
-    </nop>
+</nop>
 
-    <nop hide="true" condexec="USER_IP">
+<nop hide="true" condexec="USER_IP">
         <action>
             <assignstr assign_to="user_ip" value="[$USER_IP]" />
         </action>
-    </nop>
+</nop>
 
 <send retrans="500">
 <![CDATA[
