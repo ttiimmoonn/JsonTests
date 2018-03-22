@@ -73,7 +73,7 @@
           "ManualReg": {
             "Trunks": {
               "1": {
-                "script": "register_test/success_registration_with_auth.xml"
+                "script": "trunk_test/success_registration_with_auth.xml"
               }
             }
           }
@@ -143,7 +143,7 @@
           "ManualReg": {
             "Trunks": {
               "1": {
-                "script": "register_test/success_registration_with_auth.xml",
+                "script": "trunk_test/success_registration_with_auth.xml",
                 "contact_port" : 10112,
                 "contact_ip" : "1.1.1.1",
                 "expires" : 90
@@ -219,7 +219,7 @@
           "ManualReg": {
             "Trunks": {
               "1": {
-                "script": "register_test/success_registration_with_auth.xml",
+                "script": "trunk_test/success_registration_with_auth.xml",
                 "expires" : 3600
               }
             }
@@ -354,7 +354,7 @@
           "ManualReg": {
             "Trunks": {
               "1": {
-                "script": "register_test/success_registration_with_auth.xml",
+                "script": "trunk_test/success_registration_with_auth.xml",
                 "expires" : 3600,
                 "need_drop" : true
               }
@@ -397,7 +397,7 @@
           "ManualReg": {
             "Trunks": {
               "1": {
-                "script": "register_test/success_registration_with_auth.xml",
+                "script": "trunk_test/success_registration_with_auth.xml",
                 "expires" : 90
               }
             }
@@ -442,7 +442,7 @@
           "ManualReg": {
             "Trunks": {
               "1": {
-                "script": "register_test/succ_reg_recv_423.xml",
+                "script": "trunk_test/succ_reg_recv_423.xml",
                 "expires" : 2
               }
             }
@@ -461,6 +461,85 @@
               "1"
             ]
           }
+        }
+      ]
+    },
+    {
+      "Name": "send_call_after_re_register",
+      "Description": "Проверка прохождения вызова после перерегистрации транка",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Trunks": {
+              "1": {
+                "script": "trunk_test/success_registration_with_auth.xml",
+                "expires" : 90
+              }
+            }
+          }
+        },
+        {
+          "Sleep" : 60
+        },
+        {
+          "ManualReg": {
+            "Trunks": {
+              "1": {
+                "script": "trunk_test/success_registration_with_auth.xml",
+                "expires" : 90
+              }
+            }
+          }
+        },
+        {
+          "Sleep" : 60
+        },
+        {
+          "ManualReg": {
+            "Trunks": {
+              "1": {
+                "script": "trunk_test/success_registration_with_auth.xml",
+                "expires" : 90
+              }
+            }
+          }
+        },
+        {
+          "Sleep" : 40
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
