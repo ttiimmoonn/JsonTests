@@ -215,7 +215,7 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Connected number check failed. Require Comnected Number: [$CHK_CONNECTED_NUMBER]; Current Comnected Number: [$connected_number]; compare_result: [$compare_result]"/>
+        <warning message="Connected number check failed. Require Connected Number: [$CHK_CONNECTED_NUMBER]; Current Connected Number: [$connected_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
@@ -228,7 +228,7 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Connected name check failed. Require Connected DName: [$CHK_CONNECTED_NAME]; Current Comnected DName: [$connected_name]; compare_result: [$compare_result]"/>
+        <warning message="Connected name check failed. Require Connected DName: [$CHK_CONNECTED_NAME]; Current Connected DName: [$connected_name]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
