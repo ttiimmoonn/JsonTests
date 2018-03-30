@@ -1,0 +1,496 @@
+{
+  "TestName": "transfer_rci_test_rpi_hdr",
+  "AutoTest": true,
+  "RepeatCounter": 2,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10107,
+      "QParam": 1
+    },
+    {
+      "UserId": 2,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10108,
+      "QParam": 1
+    },
+    {
+      "UserId": 3,
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10109,
+      "QParam": 1
+    },
+    {
+      "UserId": 4,
+      "Number": "161",
+      "Login": "161",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10110,
+      "QParam": 1
+    },
+    {
+      "UserId": 5,
+      "Number": "162",
+      "Login": "162",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10111,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%CONNECTED_NAME%%": "\"RCI transfer test\"",
+      "%%TRANSFEE_NAME%%": "TransfeeUser",
+      "%%TR_NAME1%%" : "tr_name1",
+      "%%TR_NAME2%%" : "tr_name2",
+      "%%TR_NAME3%%" : "tr_name3",
+      "%%TR_NAME4%%" : "tr_name4",
+      "%%TR_NAME5%%" : "tr_name5"
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%5.Number%%} chold ctr clip cnip",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} clip",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} cnip",
+      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
+      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
+      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
+      "command11": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+      "command12": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} chold",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} ctr",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%5.Number%%} chold ctr clip cnip",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+      "command9": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "test_rpi_for_several_unattended_transfer",
+      "Description": "Проверка отправки нескольких address update в случае каскадного несопровождаемого трансфера.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
+              "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
+              "command3": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
+              "command4": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
+              "command5": "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
+              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+              "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+              "command8": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+              "command9": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
+              "command10": "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
+              "command11": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS2_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%3.Number%% -set REFERDOM %%3.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS3_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%4.Number%% -set REFERDOM %%4.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAS4_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%5.Number%% -set REFERDOM %%5.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 5,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_RECV_SEVERAL_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_several_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set NUM1 %%1.Number%% -set NUM2 %%2.Number%% -set NUM3 %%3.Number%% -set NUM4 %%4.Number%% -set NUM5 %%5.Number%% -set NAME1 %%TR_NAME1%% -set NAME2 %%TR_NAME2%% -set NAME3 %%TR_NAME3%% -set NAME4 %%TR_NAME4%% -set NAME5 %%TR_NAME5%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+              "command2": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+              "command3": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+              "command4": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+              "command5": "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
+              "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+              "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+              "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+              "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
+              "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
+              "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_rpi_for_several_attended_transfer",
+      "Description": "Проверка отправки нескольких address update в случае каскадного сопровождаемого трансфера.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
+              "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
+              "command3": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
+              "command4": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
+              "command5": "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
+              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+              "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+              "command8": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+              "command9": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
+              "command10": "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
+              "command11": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS2_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%3.Number%% -set REFERDOM %%3.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS3_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%4.Number%% -set REFERDOM %%4.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAS4_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%5.Number%% -set REFERDOM %%5.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 5,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_RECV_SEVERAL_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_several_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set NUM1 %%1.Number%% -set NUM2 %%2.Number%% -set NUM3 %%3.Number%% -set NUM4 %%4.Number%% -set NUM5 %%5.Number%% -set NAME1 %%TR_NAME1%% -set NAME2 %%TR_NAME2%% -set NAME3 %%TR_NAME3%% -set NAME4 %%TR_NAME4%% -set NAME5 %%TR_NAME5%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+              "command2": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+              "command3": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+              "command4": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+              "command5": "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
+              "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+              "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+              "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+              "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
+              "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
+              "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_rpi_for_several_semi_attended_transfer",
+      "Description": "Проверка отправки нескольких address update в случае каскадного полусопровождаемого трансфера.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
+              "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
+              "command3": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
+              "command4": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
+              "command5": "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
+              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+              "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+              "command8": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+              "command9": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
+              "command10": "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
+              "command11": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%2.Number%% -set REFERDOM %%2.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS2_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%3.Number%% -set REFERDOM %%3.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS3_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%4.Number%% -set REFERDOM %%4.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAS4_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%5.Number%% -set REFERDOM %%5.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 5,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -set CHK_CONNECTED_NUMBER %%0.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_RECV_SEVERAL_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_several_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set NUM1 %%1.Number%% -set NUM2 %%2.Number%% -set NUM3 %%3.Number%% -set NUM4 %%4.Number%% -set NUM5 %%5.Number%% -set NAME1 %%TR_NAME1%% -set NAME2 %%TR_NAME2%% -set NAME3 %%TR_NAME3%% -set NAME4 %%TR_NAME4%% -set NAME5 %%TR_NAME5%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+              "command2": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+              "command3": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+              "command4": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+              "command5": "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
+              "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+              "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+              "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+              "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
+              "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
+              "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
