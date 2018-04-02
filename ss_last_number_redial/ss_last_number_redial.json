@@ -236,6 +236,82 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "redial_test_several_attempts",
+      "Description": "Активируем услугу redial. Делаем обычный вызов с абонента, у которого активирован redial. После чего делаем несколько попыток позвонить, используя фича-код redial (*).",
+      "Ref" : "Bug #97236",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*77#",
+              "userId" : 0
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS1_SIMPLE_REDIAL_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 4 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SIMPLE_REDIAL_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "10s"
+                },
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN * -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "10s"
+                },
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN * -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "10s"
+                },
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN * -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#77#",
+              "userId" : 0
+            }
+          ]
+        }
+      ]
     }
   ]
 }
