@@ -1,5 +1,5 @@
 {
-  "TestName": "transfer_rci_test_rpi_hdr",
+  "TestName": "multi_transfer_rci_test_rpi_hdr",
   "AutoTest": true,
   "RepeatCounter": 2,
   "Users": [
