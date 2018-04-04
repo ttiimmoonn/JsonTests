@@ -1,0 +1,109 @@
+{
+  "TestName": "cdr_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10110,
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "SipGroup": "sip.ab",
+      "Port" : 10116,
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 10117,
+      "QParam" : 1
+    }
+  ],
+
+
+  "UserVar": [
+    {
+      "%%CDR_GROUP%%" : "cdr_test_gr"
+    }
+  ],
+  "PreConf": [
+    {
+      "command1" : "/domain/%%DEV_DOM%%/cdr/add_cdr_group %%CDR_GROUP%% mode count 1 prefix test",
+      "command2" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% cdr_group %%CDR_GROUP%%"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1" : "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% cdr_group",
+      "command2" : "/domain/%%DEV_DOM%%/cdr/remove_cdr_group %%CDR_GROUP%%"
+    }
+  ],
+"Tests": [
+    {
+      "Name": "simple_cdr_test",
+      "Description": "Заводим cdr группу. Привязываем её к абонету. Делаем вызов с этого абонента. Забираем cdr файл и проверяем поля KOD_A,KOD_B",
+      "TestProcedure": [
+      {
+          "StartUA": [
+            {
+              "Type" : "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -rtp_echo -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type" : "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "example/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CompareCDR" : {
+            "CDRGroup" : "%%CDR_GROUP%%",
+            "CDRParams" : {
+              "KOD_A" : "%%1.Number%%",
+              "KOD_B" : "%%0.Number%%"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
