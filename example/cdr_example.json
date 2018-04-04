@@ -1,5 +1,5 @@
 {
-  "TestName": "test_example",
+  "TestName": "cdr_example",
   "Users": [
     {
       "UserId" : 0,
@@ -38,32 +38,38 @@
 
 
   "UserVar": [
-    {}
+    {
+      "%%CDR_GROUP%%" : "example_gr"
+    }
   ],
   "PreConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/cdr/add_cdr_group %%CDR_GROUP%% mode count 1 prefix test",
+      "command2" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% cdr_group %%CDR_GROUP%%"
     }
   ],
   "PostConf": [
     {
+      "command1" : "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% cdr_group",
+      "command2" : "/domain/%%DEV_DOM%%/cdr/remove_cdr_group %%CDR_GROUP%%"
     }
   ],
 "Tests": [
     {
-      "Name": "test_example",
-      "Description": "Тест",
+      "Name": "cdr_example",
+      "Description": "Пример проверки CDR",
       "TestProcedure": [
       {
           "StartUA": [
             {
               "Type" : "User",
-              "UserId" : 1,
+              "UserId" : 0,
               "WriteStat" : true,
               "Name": "UAS_TEST",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -d 10000",
+                  "Options": "-m 1 -rtp_echo -d 1000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -72,13 +78,13 @@
             },
             {
               "Type" : "User",
-              "UserId" : 0,
+              "UserId" : 1,
               "WriteStat" : true,
               "Name": "UAC_TEST",
               "Commands": [
                 {
-                  "SourceFile": "example/uac_gstreamer.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set MP 9004 -mi 192.168.118.249",
+                  "SourceFile": "example/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -86,6 +92,15 @@
               ]
             }
           ]
+        },
+        {
+          "CompareCDR" : {
+            "CDRGroup" : "%%CDR_GROUP%%",
+            "CDRParams" : {
+              "KOD_A" : "%%1.Number%%",
+              "KOD_B" : "%%0.Number%%"
+            }
+          }
         }
       ]
     }
