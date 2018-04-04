@@ -1,5 +1,5 @@
 {
-  "TestName": "ss_transfer_chk_dname",
+  "TestName": "ss_unattended_transfer_chk_dname",
   "AutoTest": true,
   "Users": [
     {
@@ -41,7 +41,7 @@
       "%%SIP_DNAME%%": "SipDNAME_CTR",
       "%%ALIAS_DNAME%%": "AliasDNAME_CTR",
       "%%ROUTE_DNAME%%": "RouteDNAME_CTR",
-      "%%CTR_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19jdHJfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQ1RSIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
+      "%%CTR_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc191bmF0X2N0cl9jaGtfZG5hbWUiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQ1RSIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
     }
   ],
   "PreConf": [
@@ -102,10 +102,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -160,10 +160,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -218,10 +218,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -276,10 +276,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -333,7 +333,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_unat_ctr_chk_dname"
             }
           ]
         },
@@ -342,10 +342,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -385,7 +385,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_unat_ctr_chk_dname",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
             }
           ]
@@ -401,7 +401,7 @@
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_unat_ctr_chk_dname"
             }
           ]
         },
@@ -410,10 +410,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -454,7 +454,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_unat_ctr_chk_dname",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
             }
           ]
@@ -469,7 +469,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_unat_ctr_chk_dname"
             }
           ]
         },
@@ -478,10 +478,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -521,7 +521,7 @@
         {
           "SendSSHCommand": [
             {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_unat_ctr_chk_dname",
               "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
             }
           ]
@@ -537,7 +537,7 @@
             {
               "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%",
               "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTR_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_ctr_test_ctx"
+              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_unat_ctr_chk_dname"
             }
           ]
         },
@@ -546,10 +546,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_ATT_TRANSFER",
+              "Name": "UAS_UNATT_TRANSFER",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
                   "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -590,7 +590,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_ctr_test_ctx",
+              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_unat_ctr_chk_dname",
               "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
             }
           ]
