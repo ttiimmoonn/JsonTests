@@ -4,9 +4,9 @@
   "Users": [
     {
       "UserId": 0,
-      "Number": "5000",
-      "Login": "5000",
-      "Password": "test123",
+      "Number": "150",
+      "Login": "150",
+      "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
       "Port": 20000,
@@ -15,9 +15,9 @@
     },
     {
       "UserId": 1,
-      "Number": "5001",
-      "Login": "5001",
-      "Password": "test123",
+      "Number": "151",
+      "Login": "151",
+      "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
       "Port": 20002,
@@ -26,9 +26,9 @@
     },
     {
       "UserId": 2,
-      "Number": "5002",
-      "Login": "5002",
-      "Password": "test123",
+      "Number": "152",
+      "Login": "152",
+      "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
       "Port": 20004,
@@ -76,7 +76,7 @@
               "Type": "User",
               "UserId": 0,
               "WriteStat": true,
-              "Name": "UAC1_CHAT_ROOM_SEND_BYE",
+              "Name": "UAC0_CHAT_ROOM_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf_and_send_bye.xml",
@@ -91,7 +91,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAC2_CHAT_ROOM_SEND_BYE",
+              "Name": "UAC1_CHAT_ROOM_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf_and_send_bye.xml",
@@ -113,7 +113,7 @@
                   "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR_CHAT_ROOM_TEST\" -d 3000 -set DIGITS %%ROOM_NUMBER%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "180s"
+                  "Timeout": "200s"
                 }
               ]
             }
