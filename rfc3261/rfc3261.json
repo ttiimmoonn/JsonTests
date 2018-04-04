@@ -1,44 +1,43 @@
 {
   "TestName": "rfc3261",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} clip"
+      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} clip"
     }
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} clip",
-      "command2" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} clip",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} clip"
     }
   ],
   "Tests": [
@@ -50,8 +49,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RETRANS_200_OK",
               "Commands": [
                 {
@@ -65,7 +64,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -89,8 +88,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_IGNORE_CANCEL_SEND_200_OK_SIDE_B",
               "Commands": [
                 {
@@ -104,8 +103,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_CANCEL",
               "Commands": [
                 {
@@ -129,8 +128,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -144,8 +143,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_IGNORE_CANCEL_SIDE_A",
               "Commands": [
                 {
@@ -169,8 +168,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_OSDP_T38_RE_INVITE",
               "Commands": [
                 {
@@ -184,8 +183,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_CANCEL_ON_RE_INVITE",
               "Commands": [
                 {
@@ -209,8 +208,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_EXCESS_SPACES_IN_CL",
               "Commands": [
                 {
@@ -224,8 +223,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -249,8 +248,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_404",
               "Commands": [
                 {
@@ -274,8 +273,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_OSDP_T38_RE_INVITE",
               "Commands": [
                 {
@@ -289,8 +288,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_500_ON_RE_INVITE",
               "Commands": [
                 {
@@ -305,7 +304,8 @@
           ]
         }
       ]
-    },    {
+    },
+    {
       "Name": "test_recv_500_response_on_second_re_invite",
       "Description": "Адаптер должен послать 500 ответ на второй re-invite, если он получен до завершения oa взаимодействия по первому.",
       "TestProcedure": [
@@ -313,8 +313,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -328,12 +328,53 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_TWO_RE_INV",
               "Commands": [
                 {
                   "SourceFile": "rfc3261/uac_send_two_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_bye_race_condition",
+      "Description": "Проверка обработки встречных BYE.",
+      "Ref" : "#97380",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_RACE_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_bye_race_condition.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

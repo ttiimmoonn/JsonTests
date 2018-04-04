@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<!-- 
+    3.2.1.  UA Receives BYE (Established State) While in the Mortal State
+
+   State  Alice                  Bob  State
+          |                        |
+          |       INVITE F1        |
+          |----------------------->|
+     Pre  |    180 Ringing F2      |  Pre
+          |<-----------------------|
+     Ear  |                        |  Ear
+          |       200 OK F3        |
+          |<-----------------------|
+    Mora  |         ACK F4         |  Mora
+          |----------------------->|
+     Est  |   Both Way RTP Media   |  Est
+          |<======================>|
+          |                        |
+          | BYE F5         BYE F6  |
+          |---------     ----------|
+    Mort  |          \ /           |  Mort
+          |           X            |
+          |          / \           |
+          |<--------     --------->|  *race*
+          |                        |
+          | 200 F8         200 F7  |
+          |---------     ----------|
+          |          \ /           |
+          |           X            |
+          |          / \           |
+          |<--------     --------->|
+          | ^                    ^ |
+          | | Timer K            | |
+          | V                    | |
+    Morg  |              Timer J | |
+          |                      V |
+          |                        |  Morg
+          |                        |
+
+
+-->
+
+<scenario name = "BYE race condition">
+
+<recv request="INVITE">
+<action>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+</action>
+</recv>
+
+<Reference variables="dummy" />
+
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[call_number][local_port]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=unrelible_answer 10000 10000 IN IP[local_ip_type] [local_ip]
+    s=unrelible_answer
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<pause milliseconds="2000"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[call_number][local_port]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=unrelible_answer 10000 10000 IN IP[local_ip_type] [local_ip]
+    s=unrelible_answer
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+
+<recv request="ACK"></recv>
+
+<recv request="BYE">
+    <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="bye_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="bye_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="bye_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="bye_cseq" />
+    </action>
+</recv>
+
+
+<send>
+<![CDATA[
+    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$local_number]@[$local_domain]>;tag=[call_number][local_port]
+    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
+    [last_call-id]
+    CSeq: [cseq] BYE
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200"></recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    Via:[$bye_via]
+    From:[$bye_from]
+    To:[$bye_to]
+    [last_Call-ID:]
+    CSeq: [$bye_cseq] BYE
+    Content-Length: 0
+]]>
+</send>
+
+</scenario>
