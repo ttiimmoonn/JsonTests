@@ -336,6 +336,57 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "attended_transfer_refer_and_re_invite_races.",
+      "Description": "Абонент А звонит абоненту Б, ставит данный вызов на удержание. Далее абонент А звонит на С и делает попытку поставить на удержание. Одновременно с эти отсылается REFER в диалог A-Б. Ожидается, что на re-invite будет отправлен 487, а следом отправлен BYE реквест.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS0_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_att_transfer_refer_and_re_invite_race.xml",
+                  "Options": "-m 1 -aa -set FIRST_CDPN %%0.Number%% -set SECOND_CDPN %%1.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
