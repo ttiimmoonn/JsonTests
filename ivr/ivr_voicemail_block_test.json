@@ -104,7 +104,7 @@
               "Commands": [
                 {
                   "SourceFile": "ivr/uac_send_dtmf.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -d 10000 -set DIGITS #",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -d 15000 -set DIGITS #",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
