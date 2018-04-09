@@ -226,8 +226,6 @@
 
 <recv response="202" crlf="true"></recv>
 
-<pause milliseconds="10"/>
-
 <send>
 <![CDATA[
     INVITE sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -253,12 +251,20 @@
 </send>
 
 <recv response="100" optional="true" crlf="true"></recv>
-
-<recv response="487">
+<recv response="200" optional="true" crlf="true" next="re_invite_succ_complite">
     <action>
+        <warning message="recv 200 on re-invite. need 487"/>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<recv response="487" regexp_match="true">
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
     </action>
 </recv>
+
 
 <send crlf="true">
 <![CDATA[
@@ -271,6 +277,8 @@
     Content-Length: 0
 ]]>
 </send>
+
+<label id="transfer_continue"/>
 
 <recv request="NOTIFY|BYE" regexp_match="true">
     <action>
@@ -313,10 +321,10 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    BYE sip:[$first_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC Attended transfer second call" <sip:[service]@[$cgpn_dom]>;tag=[$second_call_local_tag]
-    To: "[$second_cdpn]" <sip:[$second_cdpn]@[$cdpn_dom]>;tag=[$second_call_remote_tag]
+    From: "UAC Attended transfer second call" <sip:[service]@[$cgpn_dom]>;tag=[$first_call_local_tag]
+    To: "[$first_cdpn]" <sip:[$first_cdpn]@[$cdpn_dom]>;tag=[$first_call_remote_tag]
     [last_call-id:]
     CSeq: [cseq] BYE
     Content-Length: 0
@@ -413,6 +421,20 @@
 ]]>
 </send>
 
+
+<label id="re_invite_succ_complite"/>
+
+<send crlf="true" next="transfer_continue">
+<![CDATA[
+    ACK sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
 
 <label id="end"/>
 
