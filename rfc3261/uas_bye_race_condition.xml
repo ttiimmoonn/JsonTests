@@ -1,46 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<!-- 
-    3.2.1.  UA Receives BYE (Established State) While in the Mortal State
-
-   State  Alice                  Bob  State
-          |                        |
-          |       INVITE F1        |
-          |----------------------->|
-     Pre  |    180 Ringing F2      |  Pre
-          |<-----------------------|
-     Ear  |                        |  Ear
-          |       200 OK F3        |
-          |<-----------------------|
-    Mora  |         ACK F4         |  Mora
-          |----------------------->|
-     Est  |   Both Way RTP Media   |  Est
-          |<======================>|
-          |                        |
-          | BYE F5         BYE F6  |
-          |---------     ----------|
-    Mort  |          \ /           |  Mort
-          |           X            |
-          |          / \           |
-          |<--------     --------->|  *race*
-          |                        |
-          | 200 F8         200 F7  |
-          |---------     ----------|
-          |          \ /           |
-          |           X            |
-          |          / \           |
-          |<--------     --------->|
-          | ^                    ^ |
-          | | Timer K            | |
-          | V                    | |
-    Morg  |              Timer J | |
-          |                      V |
-          |                        |  Morg
-          |                        |
-
-
--->
-
 <scenario name = "BYE race condition">
 
 <recv request="INVITE">
