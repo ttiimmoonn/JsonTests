@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Register тест UAC (with auth)">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,USER_DOM" />
     
 <nop hide="true">
     <action>
@@ -13,17 +13,27 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="USER_DOM" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="user_dom" value="[local_ip]" />
+    </action>
+</nop>
 
+<nop hide="true" condexec="USER_DOM">
+    <action>
+        <assignstr assign_to="user_dom" value="[$USER_DOM]" />
+    </action>
+</nop>
 
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];rport;branch=[branch]
     From: "Register тест UAC (with auth)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[service]@[$user_dom]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -65,12 +75,12 @@
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];rport;branch=[branch]
     From: "Register тест UAC (with auth)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[service]@[$user_dom]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Content-Type: application/sdp

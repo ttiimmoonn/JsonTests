@@ -32,12 +32,24 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal true"
+      "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal true",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip clip",
+      "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
     }
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal false"
+      "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal false",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip clip",
+      "command7": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip clip"
     }
   ],
   "Tests": [
@@ -51,7 +63,7 @@
               "0": {
                 "script": "register_test/success_registration_with_auth.xml",
                 "expires": 90,
-                "additional_options": "-set USER_IP %%DEV_DOM%% -set PORT 22"
+                "additional_options": "-set USER_IP bug.sip.domain -set PORT 22"
               }
             }
           }
@@ -62,11 +74,11 @@
               "Type" : "User",
               "UserId" : 0,
               "WriteStat" : true,
-              "Name": "UAS_TEST",
+              "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
-                  "Options": "-m 1 -d 4000",
+                  "SourceFile": "register_test/uas_send_custom_contact.xml",
+                  "Options": "-m 2 -set USER_DOM bug.sip.domain -set USER_PORT 22",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -77,11 +89,11 @@
               "Type" : "User",
               "UserId" : 1,
               "WriteStat" : true,
-              "Name": "UAC_TEST",
+              "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 3000",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 2 -l 1 -r 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -89,6 +101,46 @@
               ]
             }
           ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type" : "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 2 -d 4000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type" : "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "register_test/uac_with_auth.xml",
+                  "Options": "-m 2 -r 1 -l 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set USER_DOM bug.sip.domain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "DropManualReg": {
+            "Users" : [
+            "0"]
+          }
         }
       ]
     }
