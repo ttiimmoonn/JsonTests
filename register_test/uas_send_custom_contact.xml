@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas_custom_contact">
+
+<Global variables="USER_DOM,USER_PORT"/>
+
+<nop hide="true" condexec="USER_DOM" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="user_dom" value="[local_ip]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="USER_DOM">
+    <action>
+        <assignstr assign_to="user_dom" value="[$USER_DOM]" />
+    </action>
+</nop>
+
+
+<nop hide="true" condexec="USER_PORT" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="user_port" value="[local_port]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="USER_PORT">
+    <action>
+        <assignstr assign_to="user_port" value="[$USER_PORT]" />
+    </action>
+</nop>
+
+<recv request="INVITE">
+<action>
+    <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+</action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$number]@[$user_dom]:[$user_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=core_timer 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=B conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK"></recv>
+ 
+<recv request="BYE"></recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+</scenario>
