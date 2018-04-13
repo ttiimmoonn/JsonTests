@@ -1,0 +1,460 @@
+{
+  "TestName": "ivr_queue_common_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "110",
+      "Login": "110",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "111",
+      "Login": "111",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "112",
+      "Login": "112",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20004,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 3,
+      "Number": "113",
+      "Login": "113",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20006,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+      "%%QUEUE_NAME%%": "ivr_queue_com_test",
+      "%%AGENT_PASS%%": "1111",
+      "%%IVR_TO_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"queue-cc_4\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_4\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"return_to_queue\",\"transfer_timeout\":\"300\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":360,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}}}}},\"name\":\"ivr_queue_com_test\",\"description\":\"\",\"version\":\"3.11.0.56\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfcXVldWVfY29tX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9xdWV1ZV9jb21fdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
+    }
+  ],
+  "PreConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_com_test",
+      "command4": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
+      "command5": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
+      "command6": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
+      "command7": "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
+      "command8": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
+      "command9": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
+      "command10": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cc_agent",
+      "command11": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
+      "command13": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
+      "command14": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_com_test --json %%IVR_TO_QUEUE%%",
+      "command15": "sleep 10"
+    }
+  ],
+  "PostConf": [
+    {
+      "command0": "/domain/%%DEV_DOM%%/routing/delete ivr_queue_com_test",
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
+      "command4": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
+      "command5": "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
+      "command6": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
+      "command7": "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
+      "command8": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
+      "command9": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent",
+      "command10": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
+      "command11": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
+      "command13": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent",
+      "command14": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_com_test"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "queue_max_wait_timer_test_for_wait_state",
+      "Description": "Проверка, что таймер max_wait_time срабатывает, если вызов находится в очереди.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#162",
+              "userId": 0
+            },
+            {
+              "code": "#162",
+              "userId": 1
+            },
+            {
+              "code": "#162",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_wait_time 3"
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%3.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Difference" : 3000,
+              "Mode" : "inner_ua",
+              "CompareMode" : "perUa",
+              "Calls" : "1",
+              "UA": "user:3",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : null
+                },
+                {
+                  "MsgType": "request",
+                  "Method" : "BYE",
+                  "Code" : null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_wait_time"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "queue_max_wait_timer_test_for_distributing_state",
+      "Description": "Проверка отложенного срабатывания таймера max_wait_time в случае если вызов находится в состоянии распределения.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#162",
+              "userId": 0
+            },
+            {
+              "code": "#162",
+              "userId": 1
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_wait_time 3",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_distribution_duration 10"
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_0_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%3.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Difference" : 10000,
+              "Mode" : "inner_ua",
+              "CompareMode" : "perUa",
+              "Calls" : "1",
+              "UA": "user:3",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : null
+                },
+                {
+                  "MsgType": "request",
+                  "Method" : "BYE",
+                  "Code" : null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_wait_time",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_distribution_duration"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "queue_max_wait_timer_test_for_confirmed_state",
+      "Description": "Проверка, что таймер max_wait_time не отработает если агент ответил на вызов",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#162",
+              "userId": 0
+            },
+            {
+              "code": "#162",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_wait_time 3",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_distribution_duration 10"
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_AGENT_0_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uas_delayed_answer.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAC_QCLIENT_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%3.SipDomain%% -set DISPLAY_NAME \"IVR QUEUE PREFERED OPERATOR TEST\" -d 12000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Difference" : 12000,
+              "Mode" : "inner_ua",
+              "CompareMode" : "perUa",
+              "Calls" : "1",
+              "UA": "user:3",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : null
+                },
+                {
+                  "MsgType": "request",
+                  "Method" : "BYE",
+                  "Code" : null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_wait_time",
+              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_distribution_duration"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
