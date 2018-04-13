@@ -1437,6 +1437,29 @@
           ]
         },
         {
+          "CheckDifference": [
+            {
+              "Difference" : 5000,
+              "Mode" : "inner_ua",
+              "CompareMode" : "perUa",
+              "Calls" : "1",
+              "UA": "user:3",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "INVITE",
+                  "Code" : null
+                },
+                {
+                  "MsgType": "request",
+                  "Method" : "BYE",
+                  "Code" : null
+                }
+              ]
+            }
+          ]
+        },
+        {
           "Sleep": 1
         },
         {
@@ -1580,6 +1603,29 @@
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Difference" : 0,
+              "Mode" : "between_ua",
+              "CompareMode" : "perUa",
+              "Calls" : "1",
+              "UA": "user:0,user:3",
+              "Msg" : [
+                {
+                  "MsgType": "request",
+                  "Method" : "CANCEL",
+                  "Code" : null
+                },
+                {
+                  "MsgType": "request",
+                  "Method" : "BYE",
+                  "Code" : null
                 }
               ]
             }
