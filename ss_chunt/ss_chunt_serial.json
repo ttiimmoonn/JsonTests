@@ -235,7 +235,7 @@
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_busy.xml",
+                  "SourceFile": "ss_chunt/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -249,7 +249,7 @@
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_busy.xml",
+                  "SourceFile": "ss_chunt/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -310,7 +310,7 @@
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_busy.xml",
+                  "SourceFile": "ss_chunt/req100rel/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -324,7 +324,7 @@
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_busy.xml",
+                  "SourceFile": "ss_chunt/req100rel/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -537,7 +537,7 @@
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_busy.xml",
+                  "SourceFile": "ss_chunt/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -551,7 +551,7 @@
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_busy.xml",
+                  "SourceFile": "ss_chunt/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -613,7 +613,7 @@
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_busy.xml",
+                  "SourceFile": "ss_chunt/req100rel/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -627,7 +627,7 @@
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_busy.xml",
+                  "SourceFile": "ss_chunt/req100rel/uas_send_486.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
