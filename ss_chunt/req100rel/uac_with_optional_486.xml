@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAC chunt group delay тест">
+<scenario name = "UAC req100rel chunt group тест">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<nop hide="true">
+    <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
-</nop>
+    </nop>
 
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC chunt group delay тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC req100rel chunt group тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
+    Require: 100rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -34,8 +35,8 @@
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
-<recv response="100" optional="true"></recv>
 
+<recv response="100" optional="true"></recv>
 <!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
 <recv response="401" optional="true" auth="true" next="auth_invite">
     <action>
@@ -46,16 +47,46 @@
     </action>
  </recv>
 
-<label id="call_continue" />
 
+<label id="call_continue"/>
 <recv response="100" optional="true"></recv>
-<recv response="183" optional="true"></recv>
-<recv response="180" optional="true"></recv>
-<!-- Если пришло занято, то уходим в label 4 -->
-<recv response="486" optional="true" next="ack_for_486">
+
+<recv response="486" optional="true" next="ack_for_486" >
     <action>
-         <!--Забрали CSeq -->
-                <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+</recv>
+
+
+<recv response="180" crlf="true">
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] PRACK
+    RAck: [$last_rseq] [$last_cseq] INVITE
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+<recv response="200" optional="true" crlf="true"></recv>
+
+<recv response="486" optional="true" next="ack_for_486" >
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
         <!--Забрали branch -->
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
     </action>
@@ -63,9 +94,8 @@
 
 <recv response="200" auth="true">
         <action>
-         <!--Забрали CSeq -->
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+            <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+            <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
         </action>
  </recv>
 
@@ -76,12 +106,13 @@
     </action>
 </nop>
 
+
 <send crlf="true">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    [last_from:]
-    [last_to:]
+    [last_From:]
+    [last_To:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
     Content-Length: 0
@@ -94,7 +125,7 @@
 <![CDATA[
     BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC chunt group delay тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC req100rel chunt group тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
@@ -103,7 +134,9 @@
 ]]>
 </send>
 
-<recv response="200" next="end" crlf="true"></recv>
+<recv response="200" next="end" crlf="true" ></recv>
+
+
 
 <!--Отправка INVITE c аутентификацией -->
 <label id="auth_invite"/>
@@ -120,18 +153,19 @@
 ]]>
 </send>
 
-<!-- Уходим в label 3 -->
+<!-- Уходим в label call_continue -->
 <send next="call_continue" crlf="true">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC chunt group delay тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC req100rel chunt group тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
-    [last_call-id]
+    Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
+    Require: 100rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -144,9 +178,8 @@
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
-
-<!-- Отправка ACK на 486 -->
 <label id="ack_for_486"/>
+
 <send>
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -158,7 +191,6 @@
     Content-Length: 0
 ]]>
 </send>
-
 
 
 <label id="end"/>
