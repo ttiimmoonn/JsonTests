@@ -92,7 +92,7 @@
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -106,7 +106,7 @@
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -120,7 +120,7 @@
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_answer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -134,8 +134,8 @@
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -160,7 +160,7 @@
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -174,7 +174,7 @@
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -188,7 +188,7 @@
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_answer.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -202,8 +202,8 @@
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -263,7 +263,7 @@
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_answer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -277,8 +277,8 @@
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -338,7 +338,7 @@
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_answer.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -352,8 +352,8 @@
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -385,7 +385,7 @@
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_answer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -399,7 +399,7 @@
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_answer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -413,7 +413,7 @@
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_answer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -427,7 +427,7 @@
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uac.xml",
+                  "SourceFile": "ss_chunt/uac_with_optional_486.xml",
                   "Options": "-m 4 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -461,7 +461,7 @@
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_answer.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -475,7 +475,7 @@
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_answer.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -489,7 +489,7 @@
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_answer.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -503,7 +503,7 @@
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uac.xml",
+                  "SourceFile": "ss_chunt/req100rel/uac_with_optional_486.xml",
                   "Options": "-m 4 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -565,7 +565,7 @@
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_answer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -579,8 +579,8 @@
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -641,7 +641,7 @@
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_answer.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -655,8 +655,8 @@
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -689,7 +689,7 @@
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 2",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -703,7 +703,7 @@
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 2",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -717,13 +717,13 @@
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
                 },
                 {
-                  "SourceFile": "ss_chunt_serial/uas_answer.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -737,8 +737,8 @@
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -771,7 +771,7 @@
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 2",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -785,7 +785,7 @@
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 2",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -799,13 +799,13 @@
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
                 },
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uas_answer.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -819,8 +819,8 @@
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_chunt_serial/100rel/uac.xml",
-                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%%",
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
