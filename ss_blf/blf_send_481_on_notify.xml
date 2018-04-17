@@ -14,7 +14,6 @@
     </action>
 </nop>
 
-
 <send>
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -31,7 +30,6 @@
 ]]>
 </send>
 
-
 <recv response="401" auth="true" optional="true" next="auth_subscribe"/>
 
 <label id="recv_200_on_subscribe"/>
@@ -40,16 +38,29 @@
 
 <pause milliseconds="1000"/>
 
-<recv request="NOTIFY">
+<label id="wait_notify" />
+
+<recv request="NOTIFY" next="handle_notify">
     <action>
         <assign assign_to="dummy" value="" />
         <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>trying</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
+        <ereg regexp="<state>([a-z]+)</state>" search_in="msg" check_it="true" assign_to="dummy,blf_state"/>
     </action>
 </recv>
 
-<send>
+<label id="wait_notify_with_timeout" />
+
+<!-- Waiting notifications to dead subscription -->
+
+<recv request="NOTIFY" timeout="5000" ontimeout="exit">
+    <action>
+        <warning message="Call changed state to: [$blf_state]" />
+        <warning message="Ecss-10 send notify to non-existent subscription. Call to A. Petrov (2211) and ask him: wtf!?"/>
+        <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</recv>
+
+<send next="exit">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -61,16 +72,71 @@
 ]]>
 </send>
 
-<recv request="NOTIFY">
-    <action>
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>early</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
-    </action>
-</recv>
+<label id="handle_notify" />
 
-<!-- Засылаем 481 на NOTIFY 
+<!-- Exit if fail flag is setted -->
+<nop next="exit" test="sub_fail" test_var_value="true"/>
+
+<nop hide="true" test="blf_state" test_var_value="trying" next="send_200" condexec="blf_state" condexec_var_value="trying">
+    <action>
+        <warning message="Call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_state" value="early"/>
+    </action>
+</nop>
+
+<!-- if early notification was recieved first -->
+
+<nop hide="true" condexec="next_state" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="next_state" value="early"/>
+    </action>
+</nop>
+
+<!-- Comparing current state and next state -->
+
+<nop hide="true" condexec="next_state">
+    <action>
+        <strcmp assign_to="state_compare" variable="blf_state" variable2="next_state"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="state_compare">
+    <action>
+        <warning message="Recv message with unexpected state: [$blf_state]. Expected state: [$next_state]"/>
+        <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</nop>
+
+<nop hide="true" test="blf_state" test_var_value="early" next="send_481" condexec="blf_state" condexec_var_value="early">
+    <action>
+        <warning message="Call changed state to: [$blf_state]" />
+    </action>
+</nop>
+
+<nop hide="true" next="exit">
+    <action>
+        <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</nop>
+
+
+<label id="send_200"/>
+
+<send next="wait_notify">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<label id="send_481"/>
+
+<!-- Отправка 481 на NOTIFY с early
 
 Послушный ссв должен сделать вот так:
 
@@ -83,7 +149,7 @@ If a NOTIFY request receives a 481 response, the notifier MUST remove
 
 -->
 
-<send>
+<send next="wait_notify_with_timeout">
 <![CDATA[
     SIP/2.0 481 Transaction does not exist
     [last_Via:]
@@ -94,17 +160,6 @@ If a NOTIFY request receives a 481 response, the notifier MUST remove
     Content-Length: 0
 ]]>
 </send>
-
-
-<!-- Ждём нотификацию 10 сек. Если её не прислали, то значит всё нормально. А вот если прислали, то выходим с ошибкой -->
-
-<recv request="NOTIFY" timeout="5000" ontimeout="exit">
-    <action>
-        <warning message="Ecss-10 send notify to non-existent subscription. Call to A. Petrov (2211) and ask him: wtf!?"/>
-        <exec int_cmd="stop_now"/>
-    </action>
-</recv>
-
 
 <label id="auth_subscribe"/>
 
@@ -127,5 +182,13 @@ If a NOTIFY request receives a 481 response, the notifier MUST remove
 
 
 <label id="exit"/>
+<!-- Checking failed flag before exit -->
 <pause milliseconds="2000"/>
+
+<nop hide="true" condexec="sub_fail">
+    <action>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
 </scenario>

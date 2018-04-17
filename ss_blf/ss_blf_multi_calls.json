@@ -159,8 +159,8 @@
       ]
     },
     {
-      "Name": "wait_confirmed_state_from_second_call_test",
-      "Description": "Проверка отправки confirmed state для второго вызова после завершения первого.",
+      "Name": "wait_confirmed_state_from_second_call_test(incoming call)",
+      "Description": "Проверка отправки confirmed state для второго вызова после завершения первого в случае входящих вызовов",
       "TestProcedure": [
         {
           "StartUA": [
@@ -243,8 +243,8 @@
       ]
     },
     {
-      "Name": "wait_confirmed_state_from_second_call_test",
-      "Description": "Проверка отправки confirmed state для второго вызова после завершения первого.",
+      "Name": "wait_confirmed_state_from_second_call_test(outgoing call)",
+      "Description": "Проверка отправки confirmed state для второго вызова после завершения первого в случае исходящих вызовов",
       "TestProcedure": [
         {
           "StartUA": [
