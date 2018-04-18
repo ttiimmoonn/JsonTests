@@ -145,7 +145,7 @@
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
-                  "SourceFile": "rfc-4028-control/uac_change_refresher.xml",
+                  "SourceFile": "rfc4028_timers/uac_change_refresher.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
