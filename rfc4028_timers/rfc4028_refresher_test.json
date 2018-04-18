@@ -44,7 +44,7 @@
   "Tests": [
     {
       "Name": "rfc4028_uac_as_refresher",
-      "Description": "Проверка корректности обработки refresher парамтера. UAC отправляет INVITE с заголовком Session-Expires и устанавливает парамтер refresher в uac. Ожидается, что SSW будет ожидать refresh запросы от UAC и не слать свои.",
+      "Description": "Проверка корректности обработки refresher параметра. UAC отправляет INVITE с заголовком Session-Expires и устанавливает параметр refresher в uac. Ожидается, что SSW будет ждать refresh запросы от UAC и не слать свои.",
       "TestProcedure": [
         {
           "StartUA": [
