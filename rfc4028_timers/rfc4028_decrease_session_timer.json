@@ -1,0 +1,86 @@
+{
+  "TestName": "rfc4028_decrease_session_timer",
+  "Isolate" : true,
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+      "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+      "command3": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 3600"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "rfc4028_decrease_session_timer_to_min",
+      "Description": "Устанавливаем rfc4028_use_se в 3600, rfc4028_min_se в 90. Принимаем INVITE от SSW и проверяем, что Session-Expires = 3600. Далее в 200 ответе на INVITE устанавливаем Session-Expires равный Min-SE. Ожидается, что SSW обновит сессию через Min-SE/2",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "WriteStat": true,
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_decrease_se_to_min.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_CHK_SESSION_EXP",
+              "WriteStat": true,
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
