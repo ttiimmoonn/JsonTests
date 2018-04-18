@@ -176,20 +176,21 @@
 ]]>
 </send>
 
-<recv request="BYE"/>
-
-<send  next="end">
+<send>
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
+    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "rfc4028 timer test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>;tag=[$remote_tag]
+    Call-ID: [call_id]
+    CSeq: [cseq] BYE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Length: [len]
 ]]>
 </send>
 
+<recv response="200" next="end"/>
 
 
 <!--Отправка INVITE c аутентификацией -->

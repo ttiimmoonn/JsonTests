@@ -1,0 +1,172 @@
+{
+  "TestName": "rfc4028_re_invite_tests",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+      "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+      "command3": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "rfc4028_refresh_session_by_re_invite",
+      "Description": "Проверка обновления сессий посредством re-INVITE реквеста. Контроль включен на обеих сторонах. Ожидается, что адаптер будет слать re-INVITE запросы в обе сессии.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_RE_INV_REFRESH",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_wait_re_invite_refresh.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_RE_INV_REFRESH",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_wait_re_invite_refresh.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rfc4028_no_response_to_re_invite_refresh_from_uas",
+      "Description": "Проверка отбоя вызова при неответе на re-INVITE реквест со стороны UAS",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_NO_RESPONSE_TO_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_no_resp_to_re_invite.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rfc4028_recv_481_resp_on_refresh_request",
+      "Description": "Проверка отбоя вызова при получении 481 ответа на refresh реквест",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_SEND_481_TO_REFRESH",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_send_481_on_re_invite.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
