@@ -6,7 +6,7 @@
 
     UAC для тестирования обработки 491 на re-invite по rfc4028.
 
---->
+-->
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="dummy,options" />
