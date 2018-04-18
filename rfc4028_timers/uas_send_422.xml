@@ -105,7 +105,7 @@
 <recv request="ACK" crlf="true"></recv>
 
 <!--
-	Принимаем новый INVITE и проверяем, чтобы ссв
+	Принимаем новый INVITE и проверяем, чтобы SSW
 	установил Session-Expires: 120
 -->
 

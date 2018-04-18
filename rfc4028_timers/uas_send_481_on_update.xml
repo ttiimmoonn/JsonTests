@@ -131,9 +131,10 @@
 -->
 
 <recv request="BYE"></recv>
+
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
+    SIP/2.0 481 Transaction Does Not Exist
     [last_Via:]
     [last_From:]
     [last_To:]

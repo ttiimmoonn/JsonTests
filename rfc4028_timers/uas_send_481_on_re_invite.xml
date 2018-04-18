@@ -8,8 +8,8 @@
 
 <recv request="INVITE">
     <action>
-        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
         <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
         <ereg regexp="Min-SE:\s?(90)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
         <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
     </action>
@@ -82,12 +82,12 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
+    Allow: INVITE, ACK, CANCEL, BYE
     Content-Length: 0
 ]]>
 </send>
 
-<recv request="UPDATE">
+<recv request="INVITE">
     <action>
         <assignstr assign_to="dummy" value=""/>
         <assignstr assign_to="se" value=""/>
@@ -101,55 +101,24 @@
 
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
+    SIP/2.0 481 Transaction Does Not Exist
     [last_Via:]
     [last_From:]
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Require: timer
-    Session-Expires: [$se];refresher=uac
     Content-Length: 0
 ]]>
 </send>
 
-<pause milliseconds="40000"/>
 
-<recv request="UPDATE">
-    <action>
-        <assignstr assign_to="dummy" value=""/>
-        <assignstr assign_to="se" value=""/>
-        <assignstr assign_to="options" value=""/>
-        <assignstr assign_to="min_se" value=""/>
-        <ereg regexp="Min-SE:\s?(90)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
-        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
-    </action>
-</recv>
-
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Require: timer
-    Session-Expires: [$se];refresher=uac
-    Content-Length: 0
-]]>
-</send>
-
-<!--
-    Принимаем BYE
--->
+<recv request="ACK"/>
 
 <recv request="BYE"></recv>
 
 <send>
 <![CDATA[
-    SIP/2.0 200 OK
+    SIP/2.0 481 Transaction Does Not Exist
     [last_Via:]
     [last_From:]
     [last_To:]
