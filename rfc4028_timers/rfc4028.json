@@ -817,6 +817,59 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "rfc4028_change_refresher",
+      "Description": "Проверка корректности смены refresher",
+      "Ref": "94706",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_CHANGE_REFRESHER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_change_refresher.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_CHANGE_REFRESHER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_change_refresher.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
