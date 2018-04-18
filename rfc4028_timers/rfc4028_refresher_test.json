@@ -1,5 +1,5 @@
 {
-  "TestName": "rfc4028_test_refresher_parameter",
+  "TestName": "rfc4028_refresher_param_test",
   "AutoTest": true,
   "Users": [
     {
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "Name": "rfc4028_change_refresher_from_uas",
+      "Name": "rfc4028_uas_change_refresher",
       "Description": "Проверка корректности обработки изменения параметра refresher со стороны UAS. SSW посылает INVITE c Session-Expires, refresher=uac, UAS подтверждает использование таймера. Далее UAS высылает UPDATE реквест, c Session-Expires, refresher=uac. Ожидается, что SSW переключит режим обновления сессии и будет ожидать refresh запросы от UAS.",
       "Ref": "94706",
       "TestProcedure": [
@@ -119,7 +119,45 @@
       ]
     },
     {
-      "Name": "rfc4028_change_refresher_from_uac",
+      "Name": "rfc4028_uas_change_refresher_and_dont_send_refresh_request",
+      "Description": "Проверка срабатывания таймера сессии, в случае если refresh запрос не был получен после смены refresher со стороны UAS. SSW посылает INVITE c Session-Expires, refresher=uac, UAS подтверждает использование таймера. Далее UAS высылает UPDATE реквест, c Session-Expires, refresher=uac. После этого UAS не высылает запросы на обновление сессии. Ожидается, что SSW завершит вызов по истечению таймера сессии.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_CHANGE_REFRESHER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_change_refresher_no_ref_req.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rfc4028_uac_change_refresher",
       "Description": "Проверка корректности обработки изменения параметра refresher со стороны UAC. UAC посылает INVITE c Session-Expires, refresher=uac, SSW подтверждает использование таймера. Далее UAС высылает UPDATE реквест, c Session-Expires, refresher=uas. Ожидается, что SSW переключит режим обновления сессии и начнёт высылать refresh запросы в сторону UAС.",
       "Ref": "94706",
       "TestProcedure": [
@@ -146,6 +184,44 @@
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_change_refresher.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "rfc4028_uac_change_refresher_and_dont_send_refresh_request",
+      "Description": "Проверка срабатывания таймера сессии, в случае если refresh запрос не был получен после смены refresher со стороны UAC. UAC посылает INVITE c Session-Expires, SSW подтверждает использование таймера. Далее UAС высылает UPDATE реквест, c Session-Expires, refresher=uaс. После чего UAC не отправляет запросы на обновление сессии. Ожидается, что SSW завершит вызов по истечению таймера сессии.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_change_refresher_no_ref_req.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
