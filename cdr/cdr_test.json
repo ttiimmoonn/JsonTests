@@ -1,6 +1,5 @@
 {
   "TestName": "cdr_test",
-  "AutoTest": true,
   "Users": [
     {
       "UserId" : 0,
@@ -23,17 +22,6 @@
       "SipGroup": "sip.ab",
       "Port" : 10116,
       "QParam" : 0.5
-    },
-    {
-      "UserId" : 2,
-      "Number": "158",
-      "Login": "158",
-      "Password": "123",
-      "SipGroup": "sip.ab",
-      "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10117,
-      "QParam" : 1
     }
   ],
 
