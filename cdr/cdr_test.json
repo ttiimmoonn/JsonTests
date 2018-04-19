@@ -45,7 +45,7 @@
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/cdr/add_cdr_group %%CDR_GROUP%% mode count 1 prefix test",
+      "command1" : "/domain/%%DEV_DOM%%/cdr/add_cdr_group %%CDR_GROUP%% mode count 10 prefix test",
       "command2" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% cdr_group %%CDR_GROUP%%"
     }
   ],
