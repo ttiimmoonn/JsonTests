@@ -1,0 +1,629 @@
+{
+  "TestName": "ss_attended_transfer_in_cc_test",
+  "AutoTest": true,
+  "RepeatCounter": 2,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10107,
+      "QParam": 1
+    },
+    {
+      "UserId": 2,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10108,
+      "QParam": 1
+    },
+    {
+      "UserId": 3,
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10109,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%AGENT_PASS%%": "1111",
+      "%%QUEUE_NAME%%": "semi_att_tr_queue",
+      "%%IVR_TO_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"queue-cc_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"queue-cc_2\":{\"name\":\"queue\",\"params\":{\"description\":\"\",\"transfer_scenario\":\"return_to_queue\",\"transfer_timeout\":\"60\",\"queue_id\":\"%%QUEUE_NAME%%\",\"position_notification_mode\":\"absolute\",\"time_prediction_mode\":\"fair\",\"notification_scenario\":[{\"item\":\"enqueued\"},{\"item\":\"position\"}],\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"callback_on_failure\":false,\"callback_on_overload\":false,\"mode\":\"permanent\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":540,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}}},\"name\":\"ivr_queue_semi_att_tr_test\",\"description\":\"\",\"version\":\"3.10.0.118\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfcXVldWVfc2VtaV9hdHRfdHJfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX3F1ZXVlX3NlbWlfYXR0X3RyX3Rlc3QiLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg=="
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
+      "command5": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+      "command8": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
+      "command9": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
+      "command10": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
+      "command11": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} cc_agent",
+      "command13": "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
+      "command14": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+      "command15": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_semi_att_tr_test",
+      "command16": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_semi_att_tr_test --json %%IVR_TO_QUEUE%%"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+      "command5": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+      "command8": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
+      "command9": "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
+      "command10": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
+      "command11": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} cc_agent",
+      "command12": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} cc_agent",
+      "command13": "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
+      "command14": "/domain/%%DEV_DOM%%/routing/delete ivr_queue_semi_att_tr_test",
+      "command15": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
+      "command16": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_semi_att_tr_test"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "cc_semi_attended_transfer_from_outgoing_call",
+      "Description": "Тестируем полусопровождаемый трансфер исходящего вызова. A звонит на Б, А звонит на С, А делает \"трансфер до ответа\" Б на C. A,Б,C являются агентами КЦ",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS0_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%0.Number%% -set SECOND_CDPN %%1.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cc_semi_attended_transfer_from_outgoing_call.(req100rel)",
+      "Description": "Тестируем полусопровождаемый трансфер исходящего вызова. A звонит на Б, А звонит на С, А делает \"трансфер до ответа\" Б на C. A,Б,C являются агентами КЦ. Все UA требуют поддержку 100rel.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS0_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS1_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
+                  "Options": "-m 1 -d 7000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/req100rel/uac_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%0.Number%% -set SECOND_CDPN %%1.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cc_semi_attended_transfer_from_direct_incoming_call",
+      "Description": "Тестируем полусопровождаемый трансфер прямого входящего вызова. A звонит на Б, Б звонит на С, Б делает \"трансфер до ответа\" A на С. A,Б,C являются агентами КЦ.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_MAKE_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cc_semi_attended_transfer_from_direct_incoming_call.(req100rel)",
+      "Description": "Тестируем полусопровождаемый трансфер прямого входящего вызова. A звонит на Б, Б звонит на С, Б делает \"трансфер до ответа\" A на С. A,Б,C являются агентами КЦ. Все UA требуют поддержку 100rel",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_MAKE_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/req100rel/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cc_semi_attended_transfer_from_queue_incoming_call",
+      "Description": "Тестируем полусопровождаемый трансфер входящего вызова из очереди. A звонит на очередь, очередь распределяет на Б, Б звонит на С, Б делает \"трансфер до ответа\" A на С. Б,C являются агентами КЦ.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#162",
+              "userId": 1
+            },
+            {
+              "code": "#162",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_MAKE_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "cc_semi_attended_transfer_from_queue_incoming_call.(req100rel)",
+      "Description": "Тестируем полусопровождаемый трансфер входящего вызова из очереди. A звонит на очередь, очередь распределяет на Б, Б звонит на С, Б делает \"трансфер до ответа\" A на С. Б,C являются агентами КЦ. Все UA требуют поддержку 100rel",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
+              "userId": 0
+            },
+            {
+              "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
+              "userId": 1
+            },
+            {
+              "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#162",
+              "userId": 1
+            },
+            {
+              "code": "#162",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_MAKE_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/req100rel/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_send_bye.xml",
+                  "Options": "-m 1 -d 3000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#160",
+              "userId": 0
+            },
+            {
+              "code": "#160",
+              "userId": 1
+            },
+            {
+              "code": "#160",
+              "userId": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
