@@ -38,7 +38,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] SUBSCRIBE
@@ -60,13 +60,15 @@
     </action>
 </recv>
 
+
 <!-- Pause for skip NOTIFY with dummy body -->
 
 <pause milliseconds="1000"/>
 
+
 <!-- Recv blf notification -->
 
-<label id="wait_notify_for_first_call"/>
+<label id="wait_notify"/>
 
 <recv request="NOTIFY">
     <action>
@@ -77,7 +79,7 @@
     </action>
 </recv>
 
-<send next="handle_notify_for_first_call">
+<send next="handle_notify">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -89,28 +91,7 @@
 ]]>
 </send>
 
-<label id="wait_notify_for_second_call"/>
-
-<recv request="NOTIFY">
-    <action>
-        <assign assign_to="blf_state" value="" />
-        <assign assign_to="blf_direction" value="" />
-        <ereg regexp="<state>([a-z]+)</state>" search_in="msg" check_it="true" assign_to="dummy,blf_state"/>
-        <ereg regexp="direction=\"([^\"]+)\"" search_in="msg" check_it="true" assign_to="dummy,blf_direction"/>
-    </action>
-</recv>
-
-<send next="handle_notify_for_second_call">
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
+<!-- Stop subscription -->
 
 <label id="unsub"/>
 
@@ -118,7 +99,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     [last_call-id:]
     CSeq: [cseq] SUBSCRIBE
@@ -134,7 +115,10 @@
 
 <label id="recv_200_to_unsubscribe"/>
 
+<!-- Recv 200 and go to exit -->
+
 <recv response="200" next="exit"/>
+
 
 <label id="send_auth_to_subscribe"/>
 
@@ -142,7 +126,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     [authentication]
@@ -161,7 +145,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     Call-ID: [call_id]
     [authentication]
@@ -174,75 +158,8 @@
 ]]>
 </send>
 
-<label id="handle_notify_for_second_call"/>
 
-<!-- Exit if fail flag is setted -->
-<nop next="unsub" test="sub_fail" test_var_value="true"/>
-
-<nop hide="true" condexec="CHK_DIRECTION">
-    <action>
-        <strcmp assign_to="compare_result_sc" variable="blf_direction" variable2="CHK_DIRECTION"/>
-    </action>
-</nop>
-
-<nop hide="true" condexec="compare_result_sc">
-    <action>
-        <warning message="Wrong direction in blf body. Current direction [$blf_direction]. Require direction [$CHK_DIRECTION]. State [$blf_state]"/>
-        <assignstr assign_to="sub_fail" value="true"/>
-    </action>
-</nop>
-
-<!-- Setting next state to confirmed -->
-
-<nop hide="true" condexec="next_state_sc" condexec_inverse="true">
-    <action>
-        <assignstr assign_to="next_state_sc" value="confirmed"/>
-    </action>
-</nop>
-
-<!-- Comparing current state and next state -->
-
-<nop hide="true" condexec="next_state_sc">
-    <action>
-        <strcmp assign_to="state_compare_sc" variable="blf_state" variable2="next_state_sc"/>
-    </action>
-</nop>
-
-<nop hide="true" condexec="state_compare_sc">
-    <action>
-        <warning message="Recv message with unexpected state: [$blf_state]. Expected state: [$next_state_sc]"/>
-        <assignstr assign_to="sub_fail" value="true"/>
-    </action>
-</nop>
-
-<!-- Handling notification with state confirmed -->
-
-<nop hide="true" test="blf_state" test_var_value="confirmed" next="wait_notify_for_second_call" condexec="blf_state" condexec_var_value="confirmed">
-    <action>
-        <warning message="Second call changed state to: [$blf_state]" />
-        <assignstr assign_to="next_state_sc" value="terminated"/>
-    </action>
-</nop>
-
-<!-- Handling notification with state terminated -->
-
-<nop hide="true" test="blf_state" test_var_value="terminated" next="unsub">
-    <action>
-        <warning message="Second call changed state to: [$blf_state]" />
-    </action>
-</nop>
-
-<!-- Setting failed flag -->
-
-<nop hide="true" next="unsub">
-    <action>
-        <assignstr assign_to="sub_fail" value="true"/>
-    </action>
-</nop>
-
-
-<label id="handle_notify_for_first_call"/>
-
+<label id="handle_notify"/>
 <!-- Exit if fail flag is setted -->
 <nop next="unsub" test="sub_fail" test_var_value="true"/>
 
@@ -250,11 +167,11 @@
 
 <nop hide="true" condexec="CHK_DIRECTION">
     <action>
-        <strcmp assign_to="compare_result_fc" variable="blf_direction" variable2="CHK_DIRECTION"/>
+        <strcmp assign_to="compare_result" variable="blf_direction" variable2="CHK_DIRECTION"/>
     </action>
 </nop>
 
-<nop hide="true" condexec="compare_result_fc">
+<nop hide="true" condexec="compare_result">
     <action>
         <warning message="Wrong direction in blf body. Current direction [$blf_direction]. Require direction [$CHK_DIRECTION]. State [$blf_state]"/>
         <assignstr assign_to="sub_fail" value="true"/>
@@ -263,60 +180,60 @@
 
 <!-- Set first state to trying -->
 
-<nop hide="true" condexec="next_state_fc" condexec_inverse="true">
+<nop hide="true" condexec="next_state" condexec_inverse="true">
     <action>
-        <assignstr assign_to="next_state_fc" value="trying"/>
+        <assignstr assign_to="next_state" value="trying"/>
     </action>
 </nop>
 
 <!-- Comparing current state and next state -->
 
-<nop hide="true" condexec="next_state_fc">
+<nop hide="true">
     <action>
-        <strcmp assign_to="state_compare_fc" variable="blf_state" variable2="next_state_fc"/>
+        <strcmp assign_to="state_compare" variable="blf_state" variable2="next_state"/>
     </action>
 </nop>
 
-<nop hide="true" condexec="state_compare_fc">
+<nop hide="true" condexec="state_compare">
     <action>
-        <warning message="Recv message with unexpected state: [$blf_state]. Expected state: [$next_state_fc]"/>
+        <warning message="Recv message with unexpected state: [$blf_state]. Expected state: [$next_state]"/>
         <assignstr assign_to="sub_fail" value="true"/>
     </action>
 </nop>
 
 <!-- Handling NOTIFY with state trying -->
 
-<nop hide="true" test="blf_state" test_var_value="trying" next="wait_notify_for_first_call" condexec="blf_state" condexec_var_value="trying">
+<nop hide="true" test="blf_state" test_var_value="trying" next="wait_notify" condexec="blf_state" condexec_var_value="trying">
     <action>
-        <warning message="First call changed state to: [$blf_state]" />
-        <assignstr assign_to="next_state_fc" value="early"/>
+        <warning message="Call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_state" value="early"/>
     </action>
 </nop>
 
 
 <!-- Handling notification with state early -->
 
-<nop hide="true" test="blf_state" test_var_value="early" next="wait_notify_for_first_call" condexec="blf_state" condexec_var_value="early">
+<nop hide="true" test="blf_state" test_var_value="early" next="wait_notify" condexec="blf_state" condexec_var_value="early">
     <action>
-        <warning message="First call changed state to: [$blf_state]" />
-        <assignstr assign_to="next_state_fc" value="confirmed"/>
+        <warning message="Call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_state" value="confirmed"/>
     </action>
 </nop>
 
 <!-- Handling notification with state confirmed -->
 
-<nop hide="true" test="blf_state" test_var_value="confirmed" next="wait_notify_for_first_call" condexec="blf_state" condexec_var_value="confirmed">
+<nop hide="true" test="blf_state" test_var_value="confirmed" next="wait_notify" condexec="blf_state" condexec_var_value="confirmed">
     <action>
-        <warning message="First call changed state to: [$blf_state]" />
-        <assignstr assign_to="next_state_fc" value="terminated"/>
+        <warning message="Call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_state" value="terminated"/>
     </action>
 </nop>
 
 <!-- Handling notification with state terminated -->
 
-<nop hide="true" test="blf_state" test_var_value="terminated" next="wait_notify_for_second_call">
+<nop hide="true" test="blf_state" test_var_value="terminated" next="unsub">
     <action>
-        <warning message="First call changed state to: [$blf_state]" />
+        <warning message="Call changed state to: [$blf_state]" />
     </action>
 </nop>
 
@@ -333,6 +250,7 @@
 <label id="exit"/>
 
 <!-- Checking failed flag before exit -->
+
 <pause milliseconds="2000"/>
 
 <nop hide="true" condexec="sub_fail">

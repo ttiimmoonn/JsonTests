@@ -67,8 +67,8 @@
   ],
 "Tests": [
     {
-      "Name": "simple_blf_test",
-      "Description": "Тестирование всех нотификаций при входящем вызове",
+      "Name": "test_blf_notifications_for_incoming_call",
+      "Description": "Тестирование всех blf нотификаций для входящего вызова.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -80,7 +80,7 @@
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION recipient",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "Name": "simple_blf_test",
-      "Description": "Тестирование всех нотификаций при исходящем вызове",
+      "Name": "test_blf_notifications_for_outgoing_call",
+      "Description": "Тестирование всех blf нотификаций для исходяего вызова.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -143,7 +143,7 @@
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION initiator",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -181,6 +181,384 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]  
+        }
+      ]
+    },
+    {
+      "Name": "test_blf_notifications_for_autoanswer_call(recipient side)",
+      "Description": "Тестирование blf нотификаций, в случае если UA не присылает 180 ответ. Подписка осуществляется на UAS",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "SS_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/blf_for_autoanswer_call.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set CHK_DIRECTION recipient",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS_WOUT_180",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/uas_wout_180.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAC_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]  
+        }
+      ]
+    },
+    {
+      "Name": "test_blf_notifications_for_autoanswer_call(initiator side)",
+      "Description": "Тестирование blf нотификаций, в случае если UA не присылает 180 ответ. Подписка осуществляется на UAC",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "SS_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/blf_for_autoanswer_call.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION initiator",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS_WOUT_180",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/uas_wout_180.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAC_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]  
+        }
+      ]
+    },
+    {
+      "Name": "test_blf_notifications_for_canceled_call(recipient side)",
+      "Description": "Тестирование blf нотификаций, в случае если UAC отменил вызов посредством CANCEL. Подписка осуществляется на UAS",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "SS_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/blf_for_canceled_call.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set CHK_DIRECTION recipient",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_cancel.xml -d 1000",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]  
+        }
+      ]
+    },
+    {
+      "Name": "test_blf_notifications_for_canceled_call(initiator side)",
+      "Description": "Тестирование blf нотификаций, в случае если UAC отменил вызов посредством CANCEL. Подписка осуществляется на UAC",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "SS_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/blf_for_canceled_call.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION initiator",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_cancel.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -d 1000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]  
+        }
+      ]
+    },
+    {
+      "Name": "test_blf_notifications_for_busy_call(recipient side)",
+      "Description": "Тестирование blf нотификаций, в случае если UAS послал busy. Подписка осуществляется на UAS",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "SS_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/blf_for_busy_call.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set CHK_DIRECTION recipient",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/uas_send_486.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAC_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/uac_recv_486.xml -d 1000",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]  
+        }
+      ]
+    },
+    {
+      "Name": "test_blf_notifications_for_busy_call(initiator side)",
+      "Description": "Тестирование blf нотификаций, в случае если UAS послал busy. Подписка осуществляется на UAC",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "BackGround" : true,
+              "Name": "SS_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/blf_for_busy_call.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION initiator",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/uas_send_486.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "SIMPLE_UAC_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/uac_recv_486.xml -d 1000",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

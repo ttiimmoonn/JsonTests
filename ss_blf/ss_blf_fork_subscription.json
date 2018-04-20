@@ -117,7 +117,7 @@
               "Name": "UAC_SUBSCRIBE",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -133,7 +133,7 @@
               "Name": "UAC_SUBSCRIBE",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -149,7 +149,7 @@
               "Name": "UAC_SUBSCRIBE",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -245,7 +245,7 @@
               "Name": "UAC_SUBSCRIBE_CONTACT_2",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -312,7 +312,7 @@
               "Name": "UAC_SUBSCRIBE_CONTACT_0",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -328,7 +328,7 @@
               "Name": "UAC_SUBSCRIBE_CONTACT_1",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -344,7 +344,7 @@
               "Name": "UAC_SUBSCRIBE_CONTACT_2",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%6.Number%% -set CDPNDOM %%6.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,

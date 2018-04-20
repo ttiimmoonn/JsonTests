@@ -98,7 +98,7 @@
               "Name": "BLF_SUBSCRIBE",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set CHK_DIRECTION recipient",
                   "SippType": "uac",
                   "NeedAuth": true,

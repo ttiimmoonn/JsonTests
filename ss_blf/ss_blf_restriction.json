@@ -1,5 +1,5 @@
 {
-  "TestName": "blf_restriction",
+  "TestName": "ss_blf_restriction",
   "AutoTest": true,
   "Users": [
     {
@@ -241,7 +241,7 @@
               "Name": "SUCC_SUBSCRIBE_NORMAL_TO_LOW",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -312,7 +312,7 @@
               "Name": "SUCC_SUBSCRIBE_NORMAL_TO_NORMAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -375,7 +375,7 @@
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_LOW",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -438,7 +438,7 @@
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_NORMAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -509,7 +509,7 @@
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_HIGH",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/blf.xml",
+                  "SourceFile": "ss_blf/blf_check_all_states.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa",
                   "SippType": "uac",
                   "NeedAuth": true,

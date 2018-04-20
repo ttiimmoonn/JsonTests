@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "Simple BLF UAC">
+<scenario name = "Blf wout early state">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN,CHK_DIRECTION,EXPIRES" />
 <User variables="cdpn_dom,cgpn_dom,cdpn,blf_state,blf_direction,dummy,exp" />
@@ -38,7 +38,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] SUBSCRIBE
@@ -60,9 +60,11 @@
     </action>
 </recv>
 
+
 <!-- Pause for skip NOTIFY with dummy body -->
 
 <pause milliseconds="1000"/>
+
 
 <!-- Recv blf notification -->
 
@@ -89,13 +91,15 @@
 ]]>
 </send>
 
+<!-- Stop subscription -->
+
 <label id="unsub"/>
 
 <send>
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     [last_call-id:]
     CSeq: [cseq] SUBSCRIBE
@@ -111,7 +115,10 @@
 
 <label id="recv_200_to_unsubscribe"/>
 
+<!-- Recv 200 and go to exit -->
+
 <recv response="200" next="exit"/>
+
 
 <label id="send_auth_to_subscribe"/>
 
@@ -119,7 +126,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     [authentication]
@@ -138,7 +145,7 @@
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "BLF тест" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
     Call-ID: [call_id]
     [authentication]
@@ -171,26 +178,17 @@
     </action>
 </nop>
 
-<!-- Handling NOTIFY with state trying -->
-
-<nop hide="true" test="blf_state" test_var_value="trying" next="wait_notify" condexec="blf_state" condexec_var_value="trying">
-    <action>
-        <warning message="Call changed state to: [$blf_state]" />
-        <assignstr assign_to="next_state" value="early"/>
-    </action>
-</nop>
-
-<!-- if early notification was recieved first -->
+<!-- Set first state to trying -->
 
 <nop hide="true" condexec="next_state" condexec_inverse="true">
     <action>
-        <assignstr assign_to="next_state" value="early"/>
+        <assignstr assign_to="next_state" value="trying"/>
     </action>
 </nop>
 
 <!-- Comparing current state and next state -->
 
-<nop hide="true" condexec="next_state">
+<nop hide="true">
     <action>
         <strcmp assign_to="state_compare" variable="blf_state" variable2="next_state"/>
     </action>
@@ -203,9 +201,9 @@
     </action>
 </nop>
 
-<!-- Handling notification with state early -->
+<!-- Handling NOTIFY with state trying -->
 
-<nop hide="true" test="blf_state" test_var_value="early" next="wait_notify" condexec="blf_state" condexec_var_value="early">
+<nop hide="true" test="blf_state" test_var_value="trying" next="wait_notify" condexec="blf_state" condexec_var_value="trying">
     <action>
         <warning message="Call changed state to: [$blf_state]" />
         <assignstr assign_to="next_state" value="confirmed"/>
@@ -242,6 +240,7 @@
 <label id="exit"/>
 
 <!-- Checking failed flag before exit -->
+
 <pause milliseconds="2000"/>
 
 <nop hide="true" condexec="sub_fail">

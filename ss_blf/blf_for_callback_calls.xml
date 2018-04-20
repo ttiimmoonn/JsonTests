@@ -241,20 +241,11 @@
     </action>
 </nop>
 
-<!-- Handling NOTIFY with state trying -->
-
-<nop hide="true" test="blf_state" test_var_value="trying" next="wait_notify" condexec="blf_state" condexec_var_value="trying">
-    <action>
-        <warning message="Call changed state to: [$blf_state]" />
-        <assignstr assign_to="next_state" value="early"/>
-    </action>
-</nop>
-
-<!-- if early notification was recieved first -->
+<!-- Set first state to trying -->
 
 <nop hide="true" condexec="next_state" condexec_inverse="true">
     <action>
-        <assignstr assign_to="next_state" value="early"/>
+        <assignstr assign_to="next_state" value="trying"/>
     </action>
 </nop>
 
@@ -270,6 +261,15 @@
     <action>
         <warning message="Recv message with unexpected state: [$blf_state]. Expected state: [$next_state]"/>
         <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</nop>
+
+<!-- Handling NOTIFY with state trying -->
+
+<nop hide="true" test="blf_state" test_var_value="trying" next="wait_notify" condexec="blf_state" condexec_var_value="trying">
+    <action>
+        <warning message="Call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_state" value="early"/>
     </action>
 </nop>
 
