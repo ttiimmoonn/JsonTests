@@ -1274,6 +1274,67 @@
       ]
     },
     {
+      "Name": "ivr_condition_with_not_exists_variable_test",
+      "Description": "Проверка обработки условия с несуществующей переменной в блоке condition. Устанавливаем на нулевой выход блока condition условие с несуществующей переменной: %CGPN% = %TEST1% || %CDPN% = %TEST2%. Делаем вызов на скрипт. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CGPN%%" : "100",
+            "%%CDPN%%" : "100",
+            "%%CONDITION%%" : "(%CGPN% = %TEST1%) || (%CDPN% = %TEST2%)"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "Name": "ivr_accept_several_conditions_test",
       "Description": "Проверка случая, когда несколько условий блока condition вернули истину. Через блок SET устанавливаем переменным CGPN,CDPN значение 100. Далее устанавливаем на нулевой выход блока condition условие: %CGPN% = %CDPN%, а на первый выход: %CDPN% = 100. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition, так как выбирается первый выход, который вернул истину",
       "TestProcedure": [
