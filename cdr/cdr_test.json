@@ -1,6 +1,5 @@
 {
   "TestName": "cdr_test",
-  "AutoTest": true,
   "Users": [
     {
       "UserId" : 0,
