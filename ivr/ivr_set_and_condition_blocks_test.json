@@ -23,36 +23,101 @@
         "Port" : 20002,
         "SipGroup": "sip.ab",
         "QParam" : 0.5
+      },
+      {
+        "UserId" : 2,
+        "Number": "158",
+        "Login": "158",
+        "Password": "123",
+        "SipDomain": "%%DEV_DOM%%",
+        "Expires" : 90,
+        "Port" : 20004,
+        "SipGroup": "sip.ab",
+        "QParam" : 0.5
       }
   ],
   "UserVar": [
     {
-      "%%IVR_SET_AND_CONDITION_ACCEPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"set_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":4},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":670},{\"cx\":810,\"cy\":725},{\"cx\":810,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":5}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":670},{\"cx\":720,\"cy\":725},{\"cx\":630,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":5}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=123\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"No\":\"undefined\",\"Yes\":\"condition_27\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST\"},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Yes\":\"dial_25\",\"No\":\"undefined\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"set_28\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_set_and_condition_blocks_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_SET_AND_CONDITION_REJECT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"set_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":4},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":450,\"cy\":670},{\"cx\":450,\"cy\":725},{\"cx\":450,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":5}},\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":670},{\"cx\":360,\"cy\":725},{\"cx\":270,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":5}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=1234\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"No\":\"condition_27\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST1\"},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"No\":\"dial_25\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"set_28\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_set_and_condition_blocks_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfc2V0X2FuZF9jb25kaXRpb25fYmxvY2tzX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9zZXRfYW5kX2NvbmRpdGlvbl9ibG9ja3NfdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
+      "%%IVR_SET_AND_CONDITION_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"set_8\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"condition_5\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"conditions\":[{\"code\":\"0\",\"condition\":\"%%CONDITION%%\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"0\":\"dial_6\",\"False\":\"dial_7\"},\"links\":{\"0\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"False\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2}}},\"dial_6\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%0.Number%%\",\"noanswer_timeout\":55},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"dial_7\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":55},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":900,\"cy\":575},{\"cx\":990,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}},\"set_8\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"CDPN\",\"value\":\"%%CDPN%%\"},{\"key\":\"CGPN\",\"value\":\"%%CGPN%%\"}]},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"next\":\"condition_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"test_set_and_condition\",\"description\":\"\",\"version\":\"3.11.0.60\"}",
+      "%%IVR_ACCEPT_SEVERAL_CONDITIONS%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"set_8\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"condition_5\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"conditions\":[{\"code\":\"0\",\"condition\":\"%%CONDITION%%\"},{\"code\":\"1\",\"condition\":\"%%ADD_CONDITION%%\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"0\":\"dial_6\",\"1\":\"dial_9\",\"False\":\"dial_7\"},\"links\":{\"0\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2},\"1\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"False\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2}}},\"dial_6\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%0.Number%%\",\"noanswer_timeout\":55},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":425},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":2}}}},\"dial_7\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":55},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}},\"set_8\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"CDPN\",\"value\":\"%%CDPN%%\"},{\"key\":\"CGPN\",\"value\":\"%%CGPN%%\"}]},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"next\":\"condition_5\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"dial_9\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":55},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}}},\"name\":\"test_set_and_condition\",\"description\":\"\",\"version\":\"3.11.0.60\"}",
+      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0ZXN0X3NldF9hbmRfY29uZGl0aW9uIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InRvX2l2ciI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDEiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxpdnIgc2NyaXB0PSJ0ZXN0X3NldF9hbmRfY29uZGl0aW9uIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
   ],
   "PreConf": [
     {
       "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_set_and_condition_blocks_test"
+      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context test_set_and_condition"
     }
   ],
   "PostConf": [
     {
-      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_set_and_condition_blocks_test"
+      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing",
+      "command1": "/domain/%%DEV_DOM%%/routing/delete test_set_and_condition"
     }
   ],
 "Tests": [
     {
-      "Name": "ivr_set_and_condition_blocks_test_accept",
-      "Description": "Проверка прохождения вызова по ветке yes блока condition",
+      "Name": "ivr_equal_operator_test",
+      "Description": "Проверка оператора equal в блоке condition. Устанавливаем переменным CDPN, CGPN одинаковое значение через блок SET. Далее устанавливаем на нулевой выход блока condition следующее условие: %CDPN% = %CGPN%%. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем CDPN и CGPN не равными друг другу. Ожидается, что вызов пройдёт по ветке false.",
       "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "100",
+            "%%CGPN%%" : "100",
+            "%%CONDITION%%" : "%CDPN%=%CGPN%"
+          }
+        },
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_set_and_condition_blocks_test --json %%IVR_SET_AND_CONDITION_ACCEPT%%"
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "100",
+            "%%CGPN%%" : "101"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
             }
           ]
         },
@@ -75,13 +140,13 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 2,
               "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST (ACCEPT)\"",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -93,20 +158,74 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_set_and_condition_blocks_test"
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
             }
           ]
         }
       ]
     },
     {
-      "Name": "ivr_set_and_condition_blocks_test_reject",
-      "Description": "Проверка прохождения вызова по ветке no блока condition",
+      "Name": "ivr_not_equal_operator_test",
+      "Description": "Проверка оператора not equal в блоке condition. Устанавливаем переменным CDPN, CGPN разные значения через блок SET. Далее устанавливаем на нулевой выход блока condition следующее условие: %CDPN% <> %CGPN%%. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем CDPN и CGPN одинаковые значения. Ожидается, что вызов пройдёт по ветке false.",
       "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "999",
+            "%%CGPN%%" : "100",
+            "%%CONDITION%%" : "%CDPN%<>%CGPN%"
+          }
+        },
         {
           "SendSSHCommand": [
             {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_set_and_condition_blocks_test --json %%IVR_SET_AND_CONDITION_REJECT%%"
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "100",
+            "%%CGPN%%" : "100"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
             }
           ]
         },
@@ -129,13 +248,13 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId" : 2,
               "WriteStat" : true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST (REJECT)\"",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -147,7 +266,1070 @@
         {
           "SendSSHCommand": [
             {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_set_and_condition_blocks_test"
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_greater_operator_test",
+      "Description": "Проверка оператора greater в блоке condition. Через блок SET устанавливаем переменным CDPN, CGPN такие значения, чтобы CDPN > CGPN. Далее устанавливаем на нулевой выход блока condition следующее условие: %CDPN% > %CGPN%%. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем CDPN и CGPN одинаковые значения. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "150",
+            "%%CGPN%%" : "149",
+            "%%CONDITION%%" : "%CDPN%>%CGPN%"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "150",
+            "%%CGPN%%" : "150"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_greater_or_equal_operator_test",
+      "Description": "Проверка оператора greater or equal в блоке condition. Через блок SET устанавливаем переменным CDPN, CGPN такие значения, чтобы CDPN > CGPN. Далее устанавливаем на нулевой выход блока condition следующее условие: %CDPN% >= %CGPN%%. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем CDPN и CGPN одинаковые значения. Ожидается, что вызов пройдёт по нулевому выходу блока condition. Далее устанавливаем CDPN, CGPN такие значения, чтобы CDPN < CGPN. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "180",
+            "%%CGPN%%" : "149",
+            "%%CONDITION%%" : "%CDPN%>=%CGPN%"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "130",
+            "%%CGPN%%" : "150"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_less_operator_test",
+      "Description": "Проверка оператора less в блоке condition. Через блок SET устанавливаем переменным CDPN, CGPN такие значения, чтобы CDPN < CGPN. Далее устанавливаем на нулевой выход блока condition следующее условие: %CDPN% < %CGPN%%. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем CDPN и CGPN одинаковые значения. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "147",
+            "%%CGPN%%" : "149",
+            "%%CONDITION%%" : "%CDPN%<%CGPN%"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "149",
+            "%%CGPN%%" : "149",
+            "%%CONDITION%%" : "%CDPN%<%CGPN%"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_less_or_equal_operator_test",
+      "Description": "Проверка оператора less or equal в блоке condition. Через блок SET устанавливаем переменным CDPN, CGPN такие значения, чтобы CDPN < CGPN. Далее устанавливаем на нулевой выход блока condition следующее условие: %CDPN% <= %CGPN%%. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем CDPN и CGPN одинаковые значения. Ожидается, что вызов пройдёт по нулевому выходу блока condition. Далее устанавливаем CDPN, CGPN такие значения, чтобы CDPN > CGPN. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "147",
+            "%%CGPN%%" : "149",
+            "%%CONDITION%%" : "%CDPN%<=%CGPN%"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "149",
+            "%%CGPN%%" : "149"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "150",
+            "%%CGPN%%" : "149"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_or_operator_test",
+      "Description": "Проверка оператора OR в блоке condition. Через блок SET устанавливаем переменным CDPN, CGPN значение 100. Далее устанавливаем на нулевой выход блока condition следующее условие: (%CDPN% = %CGPN%)||(%CDPN% = 100). Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем переменной CGPN знчение 101. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем переменной CDPN значение 102. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "100",
+            "%%CGPN%%" : "100",
+            "%%CONDITION%%" : "(%CDPN% = %CGPN%)||(%CDPN% = 100)"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CGPN%%" : "101"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "102"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_and_operator_test",
+      "Description": "Проверка оператора AND в блоке condition. Через блок SET устанавливаем переменным CDPN, CGPN значение 100. Далее устанавливаем на нулевой выход блока condition следующее условие: (%CDPN% = %CGPN%)&&(%CDPN% = 100). Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем переменной CGPN знчение 101. Ожидается, что вызов пройдёт по ветке false. Далее устанавливаем переменной CDPN значение 102. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "100",
+            "%%CGPN%%" : "100",
+            "%%CONDITION%%" : "(%CDPN% = %CGPN%)&&(%CDPN% = 100)"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CGPN%%" : "101"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "102"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_not_operator_test",
+      "Description": "Проверка оператора NOT в блоке condition. Через блок SET устанавливаем переменным CDPN, CGPN разные значения. Далее устанавливаем на нулевой выход блока condition следующее условие: not(%CDPN% = %CGPN%). Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем переменным CDPN, CGPN одинаковые значения. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "100",
+            "%%CGPN%%" : "101",
+            "%%CONDITION%%" : "not(%CDPN% = %CGPN%)"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CDPN%%" : "200",
+            "%%CGPN%%" : "200"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_in_operator_test",
+      "Description": "Проверка оператора IN в блоке condition. Через блок SET устанавливаем переменной CGPN значение 100. Далее устанавливаем на нулевой выход блока condition следующее условие: %CGPN% in (100,101,102). Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition. Далее устанавливаем переменной CDPN значение 103. Ожидается, что вызов пройдёт по ветке false.",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CGPN%%" : "100",
+            "%%CDPN%%" : "100",
+            "%%CONDITION%%" : "%CGPN% in (100,101,102)"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SetVar" : {
+            "%%CGPN%%" : "103"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_SET_AND_CONDITION_SCRIPT%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_accept_several_condtions_test",
+      "Description": "Проверка случая, когда несколько условий блока condition вернули истину. Через блок SET устанавливаем переменным CGPN,CDPN значение 100. Далее устанавливаем на нулевой выход блока condition условие: %CGPN% = %CDPN%, а на первый выход: %CDPN% = 100. Делаем вызов на скрипт. Ожидается, что вызов пойдёт по нулевому выходу блока condition, так как выбирается первый выход, который вернул истину",
+      "TestProcedure": [
+        {
+          "SetVar" : {
+            "%%CGPN%%" : "100",
+            "%%CDPN%%" : "100",
+            "%%CONDITION%%" : "%CDPN% = %CGPN%",
+            "%%ADD_CONDITION%%" : "%CDPN% = 100"
+          }
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id test_set_and_condition --json %%IVR_ACCEPT_SEVERAL_CONDITIONS%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "WriteStat" : true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR SET AND CONDITION BLOCKS TEST\"",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete test_set_and_condition"
             }
           ]
         }
