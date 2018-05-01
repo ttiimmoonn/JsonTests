@@ -2,16 +2,25 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "simple uas recv CANCEL (with req100rel)">
 
-<User variables="dummy"/>
+<User variables="dummy,100rel"/>
 <Reference variables="dummy"/>
 
 <recv request="INVITE">
-<action>
-    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
-    <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
-    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
-</action>
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
+        <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <ereg regexp="100rel" search_in="hdr" header="Supported:" check_it="true" assign_to="100rel"/>
+    </action>
 </recv>
+
+<!-- checking that 100rel is supported -->
+<nop condexec="100rel" condexec_inverse="true">
+    <action>
+        <warning message="Recieved INVITE not contain Supported header with 100rel"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 
 <send>
 <![CDATA[

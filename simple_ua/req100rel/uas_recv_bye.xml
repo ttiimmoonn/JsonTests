@@ -3,7 +3,7 @@
 <scenario name = "Simple UAS recv BYE req100rel">
 
 <Global variables="CHK_DNAME,CHK_CGPN" />
-<User variables="chk_dname,chk_cgpn,dummy,dname" />
+<User variables="chk_dname,chk_cgpn,dummy,dname,100rel" />
 <Reference variables="dummy,dname"/>
 
 
@@ -27,10 +27,19 @@
 	<ereg regexp=".*" search_in="hdr" header="Call-ID:" assign_to="inv_call_id" />
 	<ereg regexp=".*" search_in="hdr" header="Via:" assign_to="inv_via" />
 	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
+    <ereg regexp="100rel" search_in="hdr" header="Supported:" check_it="true" assign_to="100rel" />
 	<ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
 	<assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
+
+<!-- checking that 100rel is supported -->
+<nop condexec="100rel" condexec_inverse="true">
+    <action>
+        <warning message="Recieved INVITE not contain Supported header with 100rel"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 
 <send>
 <![CDATA[
