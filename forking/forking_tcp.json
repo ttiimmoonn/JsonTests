@@ -87,19 +87,19 @@
               "Name": "UAS0_FORK_TCP",
               "Commands": [
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_send_bye.xml",
                   "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -113,19 +113,19 @@
               "Name": "UAS1_FORK_TCP",
               "Commands": [
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_send_bye.xml",
                   "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -139,19 +139,19 @@
               "Name": "UAS2_FORK_TCP",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_send_bye.xml",
                   "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -225,7 +225,7 @@
               "Name": "UAS1_RECV_CANEL",
               "Commands": [
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "20s"
@@ -239,7 +239,7 @@
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "SourceFile": "forking/uas_chk_absence_100rel_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
                   "Timeout": "20s"
