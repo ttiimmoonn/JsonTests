@@ -208,8 +208,10 @@
 <recv request="ACK"> </recv>
 
 
+<pause milliseconds="2000"/>
+
 <!--
-    Принимаем переход на g711
+    Запрашивает переход на g711
 -->
 <send retrans="500">
 <![CDATA[
