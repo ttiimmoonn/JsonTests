@@ -81,7 +81,7 @@
   ],
   "Tests": [
     {
-      "Name": "test_semi_attended_transfer_to_fork_user",
+      "Name": "test_succ_semi_attended_transfer_to_fork_user",
       "Description": "Проверка успешного полусопровождаемого трансфера на юзера с forking.",
       "TestProcedure": [
         {
@@ -168,7 +168,7 @@
       ]
     },
     {
-      "Name": "test_unattended_transfer_to_fork_user",
+      "Name": "test_succ_unattended_transfer_to_fork_user",
       "Description": "Проверка успешного несопровождаемого трансфера на юзера с forking.",
       "TestProcedure": [
         {
@@ -255,7 +255,7 @@
       ]
     },
     {
-      "Name": "test_attended_transfer_to_fork_user",
+      "Name": "test_succ_attended_transfer_to_fork_user",
       "Description": "Проверка успешного несопровождаемого трансфера на юзера с forking.",
       "TestProcedure": [
         {
@@ -330,6 +330,180 @@
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_succ_unattended_transfer_to_fork_user(one_contact_send_busy)",
+      "Description": "Проверка успешного несопровождаемого трансфера на юзера с forking в случае, когда один из контактов прислал 486.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_FORK_CONTACT0",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_FORK_CONTACT1",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_FORK_CONTACT2",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_fail_unattended_transfer_to_fork_user(all_contact_send_busy)",
+      "Description": "Проверка неуспешного несопровождаемого трансфера на юзера с forking в случае, когда все контакты прислали 486.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_FORK_CONTACT0",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_FORK_CONTACT1",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_FORK_CONTACT2",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS_MAKE_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_fail_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
