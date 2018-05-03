@@ -138,7 +138,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "Name": "UAS_MAKE_UNATT_TRANSFER",
+              "Name": "UAS_MAKE_SEMI_ATT_TRANSFER",
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
@@ -256,7 +256,7 @@
     },
     {
       "Name": "test_succ_attended_transfer_to_fork_user",
-      "Description": "Проверка успешного несопровождаемого трансфера на юзера с forking.",
+      "Description": "Проверка успешного сопровождаемого трансфера на юзера с forking.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -312,7 +312,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "Name": "UAS_MAKE_UNATT_TRANSFER",
+              "Name": "UAS_MAKE_ATT_TRANSFER",
               "Commands": [
                 {
                   "SourceFile": "ss_transfer/uas_attended_transfer.xml",
