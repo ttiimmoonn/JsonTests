@@ -3,97 +3,96 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 0.5
+      "Port": 10109,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10110,
-      "QParam" : 0.5
+      "Port": 10110,
+      "QParam": 0.5
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare sub_test blf sub_test %%0.Number%% %%1.Number%%",
-      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
-      "command4" : "/domain/%%DEV_DOM%%/lists/info sub_test",
-      "command5" : "/domain/%%DEV_DOM%%/lists/declare pr_sub_test presence pr_sub_test %%0.Number%% %%1.Number%%",
-      "command6" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
-      "command7" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 10",
-      "command8" : "/domain/%%DEV_DOM%%/lists/info pr_sub_test",
-      "command9" : "sleep 1"
+      "command1": "/domain/%%DEV_DOM%%/lists/declare sub_test blf sub_test %%0.Number%% %%1.Number%%",
+      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
+      "command4": "/domain/%%DEV_DOM%%/lists/info sub_test",
+      "command5": "/domain/%%DEV_DOM%%/lists/declare pr_sub_test presence pr_sub_test %%0.Number%% %%1.Number%%",
+      "command6": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
+      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 10",
+      "command8": "/domain/%%DEV_DOM%%/lists/info pr_sub_test",
+      "command9": "sleep 1"
     }
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/lists/remove sub_test ",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
-      "command4" : "/domain/%%DEV_DOM%%/lists/remove pr_sub_test ",
-      "command5" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
-      "command6" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
+      "command1": "/domain/%%DEV_DOM%%/lists/remove sub_test ",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
+      "command3": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
+      "command4": "/domain/%%DEV_DOM%%/lists/remove pr_sub_test ",
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
+      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
     }
   ],
   "Tests": [
     {
       "Name": "no_notify_after_subscription_expired",
-      "Description" : "Проверка отсутствия нотификаций после истечения подписки.",
+      "Description": "Проверка отсутствия нотификаций после истечения подписки.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SUBSCRIBE_TO_USER",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/subscription_expired.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set EXPIRES 90 -d 90000",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set EXPIRES 30 -d 30000",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "120s"
+                  "Timeout": "60s"
                 }
               ]
             }
           ]
         },
         {
-          "Sleep" : 10
+          "Sleep": 10
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -107,10 +106,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
@@ -125,17 +124,17 @@
     },
     {
       "Name": "test_dialog_notifications_after_restrict_mwi",
-      "Description" : "Проверка dialog нотификаций, после запрета подписки mwi.",
+      "Description": "Проверка dialog нотификаций, после запрета подписки mwi.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "BackGround" : true,
+              "UserId": 1,
+              "BackGround": true,
               "Name": "SUBSCRIBE_TO_USER",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/uac_rest_mwi_accept_dialog.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
@@ -147,13 +146,13 @@
           ]
         },
         {
-          "Sleep" : 10
+          "Sleep": 10
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -167,10 +166,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAC_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
@@ -185,17 +184,17 @@
     },
     {
       "Name": "test_dialog_notifications_state_after_resubscription",
-      "Description" : "Проверка dialog нотификаций после переподписки. Проверяем, что адаптер повторяет последний стейт в случае переподписки",
+      "Description": "Проверка dialog нотификаций после переподписки. Проверяем, что адаптер повторяет последний стейт в случае переподписки",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "BackGround" : true,
+              "UserId": 1,
+              "BackGround": true,
               "Name": "DIALOG_SUB",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/uac_resubscribe.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
@@ -207,13 +206,13 @@
           ]
         },
         {
-          "Sleep" : 5
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -227,10 +226,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAC_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
@@ -240,22 +239,25 @@
               ]
             }
           ]
+        },
+        {
+          "Sleep": 2
         }
       ]
     },
     {
       "Name": "test_presence_notifications_state_after_resubscription",
-      "Description" : "Проверка presence нотификаций после переподписки. Проверяем, что адаптер повторяет последний стейт в случае переподписки",
+      "Description": "Проверка presence нотификаций после переподписки. Проверяем, что адаптер повторяет последний стейт в случае переподписки",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "BackGround" : true,
+              "UserId": 1,
+              "BackGround": true,
               "Name": "PRESENCE_SUB",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/uac_pr_resub.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
@@ -267,13 +269,13 @@
           ]
         },
         {
-          "Sleep" : 5
+          "Sleep": 5
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
@@ -286,23 +288,26 @@
               ]
             }
           ]
+        },
+        {
+          "Sleep": 5
         }
       ]
     },
     {
       "Name": "test_notifications_diff_call_id",
-      "Ref" : "#90674",
-      "Description" : "Создаём две подписки на одного и того же юзера c разными call-id. Проверяем, что нотификации идут в обе подписки.",
+      "Ref": "#90674",
+      "Description": "Создаём две подписки на одного и того же юзера c разными call-id. Проверяем, что нотификации идут в обе подписки.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "BackGround" : true,
+              "UserId": 1,
+              "BackGround": true,
               "Name": "SUBSCRIBE_TO_USER",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/blf_sub.xml",
                   "Options": "-m 2 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
@@ -314,13 +319,13 @@
           ]
         },
         {
-          "Sleep" : 5
+          "Sleep": 5
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -334,10 +339,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAC_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
@@ -352,30 +357,30 @@
     },
     {
       "Name": "test_retrans_401_on_subscribe",
-      "Description" : "Проверяем повтор 401 ответа в случае перепосылок SUBSCRIBE",
+      "Description": "Проверяем повтор 401 ответа в случае перепосылок SUBSCRIBE",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RETRANS_SUB",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/uac_sub_retrans.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -nr -set EXPIRES 90",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "CidStr" : "subfrom%%1.Number%%to%%0.Number%%",
+                  "CidStr": "subfrom%%1.Number%%to%%0.Number%%",
                   "StartCseq": 1,
                   "Timeout": "20s"
-                 },
-                 {
+                },
+                {
                   "SourceFile": "subscription_test/uac_sub_retrans.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -nr -set EXPIRES 0",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "CidStr" : "subfrom%%1.Number%%to%%0.Number%%",
+                  "CidStr": "subfrom%%1.Number%%to%%0.Number%%",
                   "StartCseq": 10,
                   "Timeout": "20s"
                 }
