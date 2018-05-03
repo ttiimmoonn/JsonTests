@@ -78,6 +78,8 @@
 ]]>
 </send>
 
+<!-- Send resub -->
+
 <send>
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -95,15 +97,18 @@
 
 <recv response="401" auth="true" optional="true" next="send_auth_to_resubscribe"/>
 
-<label id="recv_200_to_resubscribe"/>
-<recv response="200">
-    <action>
-        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,subscribe_remote_tag" />
-    </action>
-</recv>
 
-<recv request="NOTIFY">
+<label id="sub_continue"/>
+
+
+
+<recv request="NOTIFY" optional="true">
     <action>
+        <assignstr assign_to="recv_notify" value="true"/>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip"/>
         <assign assign_to="dummy" value="" />
         <assign assign_to="check" value="" />
@@ -115,9 +120,36 @@
     </action>
 </recv>
 
+
+<recv response="200" next="send_200_on_notify" test="recv_notify">
+    <action>
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,subscribe_remote_tag" />
+    </action>
+</recv>
+
+<recv request="NOTIFY">
+    <action>
+        <assignstr assign_to="recv_notify" value="true"/>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip"/>
+        <assign assign_to="dummy" value="" />
+        <assign assign_to="check" value="" />
+        <ereg regexp="presence" search_in="body" check_it="true" assign_to="check"/>
+        <assign assign_to="check" value="" />
+        <ereg regexp="<rpid:activities><rpid:busy/></rpid:activities>" search_in="body" check_it="true" assign_to="check"/>
+        <assign assign_to="check" value="" />
+        <ereg regexp="<status><basic>open</basic></status>" search_in="body" check_it="true" assign_to="check"/>
+    </action>
+</recv>
+
+<label id="send_200_on_notify"/>
+
 <nop hide="true">
     <action>
-        <log message="new_ip: [$new_ip]"/>
+        <log message="new_ip:[$new_ip]"/>
         <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
     </action>
 </nop>
@@ -125,14 +157,16 @@
 <send>
 <![CDATA[
     SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
+    Via:[$not_via]
+    From:[$not_from]
+    To:[$not_to]
     [last_Call-ID:]
-    [last_CSeq:]
+    CSeq: [$not_cseq] NOTIFY
     Content-Length: 0
 ]]>
 </send>
+
+
 
 <recv request="NOTIFY">
     <action>
@@ -236,7 +270,8 @@
 </send>
 
 <label id="send_auth_to_resubscribe"/>
-<send next="recv_200_to_resubscribe">
+
+<send next="sub_continue">
 <![CDATA[
     SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
@@ -252,7 +287,6 @@
     Content-Length: 0
 ]]>
 </send>
-
 
 <label id="exit"/>
 <pause milliseconds="2000"/>
