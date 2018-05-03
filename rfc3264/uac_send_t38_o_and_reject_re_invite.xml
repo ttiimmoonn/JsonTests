@@ -93,8 +93,19 @@
     </action>
 </recv>
 
-<pause milliseconds="200"/>
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
 
+<pause milliseconds="500">
 
 <send retrans="500">
 <![CDATA[
@@ -119,8 +130,19 @@
     </action>
 </recv>
 
-<pause milliseconds="200"/>
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
 
+<pause milliseconds="500">
 
 <send retrans="500">
 <![CDATA[
