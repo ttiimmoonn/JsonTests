@@ -136,7 +136,7 @@
 <send>
 <![CDATA[
     ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
     [last_call-id:]
@@ -185,7 +185,7 @@
 <send>
 <![CDATA[
     ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
     [last_call-id:]
@@ -332,7 +332,7 @@
 <send>
 <![CDATA[
     ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
     [last_call-id:]
@@ -382,7 +382,7 @@
 <send>
 <![CDATA[
     ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
     [last_call-id:]
