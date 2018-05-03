@@ -69,25 +69,43 @@
      </action>
 </nop>
 
-<recv request="ACK"></recv>
+<recv request="UPDATE" optional="true">
+    <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="update_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="update_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="update_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="update_cseq" />
+        <assignstr assign_to="update_recv" value="true"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="P-Asserted-Identity:" assign_to="dummy,dummy,pai_connected_name,pai_connected_number"/>
+    </action>
+</recv>
+
+<recv request="ACK" next="send_200_on_update" test="update_recv"></recv>
 
 
 <recv request="UPDATE">
     <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="update_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="update_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="update_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="update_cseq" />
         <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
         <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="P-Asserted-Identity:" assign_to="dummy,dummy,pai_connected_name,pai_connected_number"/>
     </action>
 </recv>
 
 
+<label id="send_200_on_update"/>
+
 <send>
 <![CDATA[
     SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
+    Via:[$update_via]
+    From:[$update_from]
+    To:[$update_to]
     [last_Call-ID:]
-    [last_CSeq:]
+    CSeq: [$update_cseq] UPDATE
     Content-Length: 0
 ]]>
 </send>
