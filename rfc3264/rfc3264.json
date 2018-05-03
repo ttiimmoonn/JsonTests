@@ -41,8 +41,8 @@
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deativate %%0.Number%% ml",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deativate %%1.Number%% ml",
+      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ml",
+      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ml",
       "command3" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml",
       "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ml"
     }
