@@ -251,73 +251,38 @@
 </send>
 
 <recv response="100" optional="true" crlf="true"></recv>
-<recv response="200" optional="true" crlf="true" next="re_invite_succ_complite">
+
+<label id="transfer_continue"/>
+
+<recv response="200" optional="true" next="200_processing">
     <action>
+        <assignstr assign_to="re_invite_complite" value="true"/>
         <warning message="recv 200 on re-invite. need 487"/>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
 
-<recv response="487" regexp_match="true">
+<recv response="487" optional="true" next="487_processing">
     <action>
+        <assignstr assign_to="re_invite_complite" value="true"/>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
     </action>
 </recv>
 
-
-<send crlf="true">
-<![CDATA[
-    ACK sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Content-Length: 0
-]]>
-</send>
-
-<label id="transfer_continue"/>
-
-<recv request="NOTIFY|BYE" regexp_match="true">
+<recv request="NOTIFY" optional="true" next="notify_processing">
     <action>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="test_sipfrag_200"/>
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="recv_not_200"/>
+    </action>
+</recv>
+
+<recv request="BYE" next="bye_processing">
+    <action>
         <ereg regexp="BYE" search_in="hdr" header="CSeq:" assign_to="recv_bye" />
     </action>
 </recv>
 
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
-
-<recv request="NOTIFY|BYE" regexp_match="true">
-    <action>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg"  assign_to="test_sipfrag_200"/>
-        <ereg regexp="BYE" search_in="hdr" header="CSeq:" assign_to="recv_bye" />
-    </action>
-</recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
+<label id="transfer_complite"/>
 
 <send>
 <![CDATA[
@@ -331,12 +296,7 @@
 ]]>
 </send>
 
-<recv response="200" next="end">
-    <action>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="var" variable="test_sipfrag_200" check_it="true" assign_to="custom_test_var"/>
-        <ereg regexp="BYE" search_in="var" variable="recv_bye" check_it="true" assign_to="custom_test_var"/>
-    </action>
-</recv>
+<recv response="200" next="end"/>
 
 
 
@@ -421,10 +381,51 @@
 ]]>
 </send>
 
+<label id="bye_processing"/>
 
-<label id="re_invite_succ_complite"/>
+<send next="handle_transfer_result">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
 
-<send crlf="true" next="transfer_continue">
+<label id="notify_processing"/>
+
+<send next="handle_transfer_result">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<label id="487_processing"/>
+
+<send crlf="true" next="handle_transfer_result">
+<![CDATA[
+    ACK sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<label id="200_processing"/>
+
+<send crlf="true" next="handle_transfer_result">
 <![CDATA[
     ACK sip:[$second_cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
@@ -435,6 +436,13 @@
     Content-Length: 0
 ]]>
 </send>
+
+<label id="handle_transfer_result"/> 
+
+<nop test="re_invite_complite" test_inverse="true" next="transfer_continue"/>
+<nop test="recv_not_200" test_inverse="true" next="transfer_continue"/>
+<nop test="recv_bye" test_inverse="true" next="transfer_continue"/>
+<nop next="transfer_complite"/>
 
 <label id="end"/>
 
