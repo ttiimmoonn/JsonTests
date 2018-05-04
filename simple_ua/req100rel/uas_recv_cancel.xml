@@ -66,6 +66,8 @@
 
 <recv request="CANCEL"></recv>
 
+<pause distribution="uniform" min="10" max="50"/>
+
 <send>
 <![CDATA[
     SIP/2.0 200 OK
@@ -77,6 +79,8 @@
     Content-Length: 0
 ]]>
 </send>
+
+<pause distribution="uniform" min="100" max="500"/>
 
 <send>
 <![CDATA[
