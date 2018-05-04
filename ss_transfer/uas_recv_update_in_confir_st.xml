@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "UAS recv UPDATE">
+
+<Global variables="CHK_CONNECTED_NUMBER,CHK_CONNECTED_NAME,CHK_RPI,CHK_PAI" />
+<User variables="rpi_connected_name,rpi_connected_number,pai_connected_name,pai_connected_number,dummy,connected_name,connected_number" />
+<Reference variables="rpi_connected_name,rpi_connected_number,pai_connected_name,pai_connected_number,dummy,connected_name,connected_number" />
+
+<recv request="INVITE">
+<action>
+    <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+</action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="2500"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
+    Contact: <sip:[$number]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<nop hide="true">
+   <action>
+          <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
+     </action>
+</nop>
+
+<recv request="UPDATE" optional="true">
+    <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="update_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="update_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="update_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="update_cseq" />
+        <assignstr assign_to="update_recv" value="true"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="P-Asserted-Identity:" assign_to="dummy,dummy,pai_connected_name,pai_connected_number"/>
+    </action>
+</recv>
+
+<recv request="ACK" next="send_200_on_update" test="update_recv"></recv>
+
+
+<recv request="UPDATE">
+    <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="update_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="update_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="update_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="update_cseq" />
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="P-Asserted-Identity:" assign_to="dummy,dummy,pai_connected_name,pai_connected_number"/>
+    </action>
+</recv>
+
+
+<label id="send_200_on_update"/>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    Via:[$update_via]
+    From:[$update_from]
+    To:[$update_to]
+    [last_Call-ID:]
+    CSeq: [$update_cseq] UPDATE
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="BYE"></recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true" condexec="CHK_RPI">
+    <action>
+        <assignstr assign_to="connected_name" value="[$rpi_connected_name]"/>
+        <assignstr assign_to="connected_number" value="[$rpi_connected_number]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_PAI">
+    <action>
+        <assignstr assign_to="connected_name" value="[$pai_connected_name]"/>
+        <assignstr assign_to="connected_number" value="[$pai_connected_number]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_CONNECTED_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_CONNECTED_NUMBER" variable2="connected_number"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Connected number check failed. Require Connected Number: [$CHK_CONNECTED_NUMBER]; Current Connected Number: [$connected_number]; compare_result: [$compare_result]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
+<nop hide="true" condexec="CHK_CONNECTED_NAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_CONNECTED_NAME" variable2="connected_name"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Connected name check failed. Require Connected Name: [$CHK_CONNECTED_NAME]; Current Connected Name: [$connected_name]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+</scenario>
