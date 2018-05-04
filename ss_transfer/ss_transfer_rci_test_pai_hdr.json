@@ -94,7 +94,7 @@
               "Name": "UAS_RECV_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "SourceFile": "ss_transfer/uas_recv_update_in_confir_st.xml",
                   "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
@@ -145,7 +145,7 @@
               "Name": "UAS_RECV_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "SourceFile": "ss_transfer/uas_recv_update_in_confir_st.xml",
                   "Options": "-m 1 -d 1000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
@@ -196,7 +196,7 @@
               "Name": "UAS_RECV_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_recv_update_on_early_st.xml",
+                  "SourceFile": "ss_transfer/uas_recv_update_in_early_st.xml",
                   "Options": "-m 1 -d 1000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
@@ -247,7 +247,7 @@
               "Name": "UAS_RECV_UPDATE",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "SourceFile": "ss_transfer/uas_recv_update_in_confir_st.xml",
                   "Options": "-m 1 -d 5000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_PAI true",
                   "SippType": "uas",
                   "Timeout": "30s"
