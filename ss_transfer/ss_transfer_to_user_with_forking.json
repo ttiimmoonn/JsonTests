@@ -1,5 +1,5 @@
 {
-  "TestName": "transfer_to_fork_user",
+  "TestName": "ss_transfer_to_fork_user",
   "AutoTest": true,
   "Users": [
     {
