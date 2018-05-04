@@ -179,12 +179,6 @@
 
 <pause milliseconds="1000"/>
 
-<nop hide="true">
-    <action>
-        <assignstr assign_to="transfer_state" value="Init"/>
-    </action>
-</nop>
-
 <send retrans="500">
 <![CDATA[
     REFER sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
@@ -204,82 +198,21 @@
 
 <recv response="202" crlf="true"></recv>
 
-<recv request="NOTIFY" optional="true" next="send_200_notify_100">
+<label id="transfer_continue"/>
+
+<recv response="487" optional="true" next="send_ack_on_487">
     <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <assignstr assign_to="recv_487" value="true"/>
     </action>
 </recv>
 
-<label id="not_100_continue"/>
-
-<recv request="NOTIFY" optional="true" next="send_200_notify_200">
+<recv request="NOTIFY" next="send_200_on_notify">
     <action>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="recv_not_200" />
+        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" assign_to="recv_not_200" />
+        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" assign_to="recv_not_100" />
     </action>
 </recv>
-
-<label id="not_200_continue"/>
-
-
-<recv response="487"></recv>
-
-<send>
-<![CDATA[
-    ACK sip:[$refer_num]@[$remote_ip]:[$remote_port] SIP/2.0
-    [last_via:]
-    [last_from:]
-    [last_to:]
-    [last_call-id]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
-    Content-Length: 0
-]]>
-</send>
-
-<nop hide="true" test="transfer_state" next="wait_trying" test_var_value="Init"/>
-<nop hide="true" test="transfer_state" next="wait_complite" test_var_value="Trying"/>
-<nop hide="true" test="transfer_state" next="send_release" test_var_value="Complite"/>
-
-<label id="wait_trying"/>
-
-<recv request="NOTIFY" condexec="recv_not_100" condexec_inverse="true" >
-    <action>
-        <ereg regexp=".*SIP/2.0 100 Trying.*" search_in="msg" check_it="true" assign_to="recv_not_100" />
-    </action>
-</recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
-
-<label id="wait_complite"/>
-
-<recv request="NOTIFY" condexec="recv_not_200" condexec_inverse="true">
-    <action>
-        <ereg regexp=".*SIP/2.0 200 OK.*" search_in="msg" check_it="true" assign_to="recv_not_200" />
-    </action>
-</recv>
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Content-Length: 0
-]]>
-</send>
 
 <label id="send_release"/>
 
@@ -336,15 +269,9 @@
   ]]>
 </send>
 
-<label id="send_200_notify_100"/>
+<label id="send_200_on_notify"/>
 
-<nop hide="true">
-    <action>
-        <assignstr assign_to="transfer_state" value="Trying"/>
-    </action>
-</nop>
-
-<send next="not_100_continue">
+<send next="handle_transfer_result">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -356,25 +283,28 @@
 ]]>
 </send>
 
-<label id="send_200_notify_200"/>
+<label id="send_ack_on_487"/>
 
-<nop hide="true">
-    <action>
-        <assignstr assign_to="transfer_state" value="Complite"/>
-    </action>
-</nop>
-
-<send next="not_200_continue">
+<send next="handle_transfer_result">
 <![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
+    ACK sip:[$refer_num]@[$remote_ip]:[$remote_port] SIP/2.0
+    [last_via:]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
+    Max-Forwards: 70
     Content-Length: 0
 ]]>
 </send>
+
+<label id="handle_transfer_result"/>
+
+<nop hide="true" test="recv_487" test_inverse="true" next="transfer_continue"/>
+<nop hide="true" test="recv_not_100" test_inverse="true" next="transfer_continue"/>
+<nop hide="true" test="recv_not_200" test_inverse="true" next="transfer_continue"/>
+<nop hide="true" next="send_release"/>
 
 <label id="end"/>
 </scenario>

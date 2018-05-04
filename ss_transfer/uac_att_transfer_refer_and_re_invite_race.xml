@@ -439,10 +439,10 @@
 
 <label id="handle_transfer_result"/> 
 
-<nop test="re_invite_complite" test_inverse="true" next="transfer_continue"/>
-<nop test="recv_not_200" test_inverse="true" next="transfer_continue"/>
-<nop test="recv_bye" test_inverse="true" next="transfer_continue"/>
-<nop next="transfer_complite"/>
+<nop hide="true" test="re_invite_complite" test_inverse="true" next="transfer_continue"/>
+<nop hide="true" test="recv_not_200" test_inverse="true" next="transfer_continue"/>
+<nop hide="true" test="recv_bye" test_inverse="true" next="transfer_continue"/>
+<nop hide="true" next="transfer_complite"/>
 
 <label id="end"/>
 
