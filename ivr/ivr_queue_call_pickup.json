@@ -49,9 +49,9 @@
   ],
   "UserVar": [
     {
-      "%%AGENT0_NAME%%" : "Агент0",
-      "%%AGENT1_NAME%%" : "Агент1",
-      "%%CLIENT_DNAME%%" : "Клиент",
+      "%%AGENT0_NAME%%" : "Agent0",
+      "%%AGENT1_NAME%%" : "Agent1",
+      "%%CLIENT_DNAME%%" : "Client",
       "%%QUEUE_NAME%%": "ivr_queue_pickup",
       "%%AGENT_PASS%%": "1111"
     }
@@ -221,8 +221,8 @@
               "Name": "UAC_MAKE_DIRECT_CALL",
               "Commands": [
                 {
-                  "SourceFile": "ivr/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CLIENT_DNAME%% -aa",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%CLIENT_DNAME%% -aa -set CHK_ALERTING_NAME %%AGENT0_NAME%% -set CHK_CONNECTED_NAME %%AGENT1_NAME%% -set CHK_ALERTING_NUMBER %%0.Number%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
