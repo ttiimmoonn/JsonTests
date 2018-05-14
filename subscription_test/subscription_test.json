@@ -357,7 +357,7 @@
     },
     {
       "Name": "test_retrans_401_on_subscribe",
-      "Description": "Проверяем повтор 401 ответа в случае перепосылок SUBSCRIBE без авторизации",
+      "Description": "Проверяем повтор 401 ответа в случае перепосылок SUBSCRIBE",
       "TestProcedure": [
         {
           "StartUA": [
@@ -367,7 +367,7 @@
               "Name": "UAC_RETRANS_SUB",
               "Commands": [
                 {
-                  "SourceFile": "subscription_test/uac_sub_check_401_retrans.xml",
+                  "SourceFile": "subscription_test/uac_sub_retrans.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -nr -set EXPIRES 90",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -376,42 +376,7 @@
                   "Timeout": "20s"
                 },
                 {
-                  "SourceFile": "subscription_test/uac_sub_check_401_retrans.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -nr -set EXPIRES 0",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "CidStr": "subfrom%%1.Number%%to%%0.Number%%",
-                  "StartCseq": 10,
-                  "Timeout": "20s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "test_retrans_200_on_subscribe",
-      "Description": "Проверяем повтор 200 ответа в случае перепосылок SUBSCRIBE с авторизацией",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": 1,
-              "Name": "UAC_RETRANS_SUB",
-              "Commands": [
-                {
-                  "SourceFile": "subscription_test/uac_sub_check_200_retrans.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -nr -set EXPIRES 90",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "CidStr": "subfrom%%1.Number%%to%%0.Number%%",
-                  "StartCseq": 1,
-                  "Timeout": "20s"
-                },
-                {
-                  "SourceFile": "subscription_test/uac_sub_check_200_retrans.xml",
+                  "SourceFile": "subscription_test/uac_sub_retrans.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa -nr -set EXPIRES 0",
                   "SippType": "uac",
                   "NeedAuth": true,
