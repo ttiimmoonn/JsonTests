@@ -274,7 +274,7 @@
     },
     {
       "Name": "test_retrans_401_on_publish",
-      "Description": "Проверяем повтор 401 ответа в случае перепосылок PUBLISH",
+      "Description": "Проверяем повтор 401 ответа в случае перепосылок PUBLISH без авторизации",
       "TestProcedure": [
         {
           "StartUA": [
@@ -305,10 +305,58 @@
               "Type": "User",
               "UserId": 0,
               "WriteStat": true,
-              "Name": "UAC_RETRANS_PUBLISH",
+              "Name": "UAC_PUB_401_RETRANS",
               "Commands": [
                 {
-                  "SourceFile": "presence_sub_test/uac_retrans_publish.xml",
+                  "SourceFile": "presence_sub_test/uac_pub_retrans_401.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -nr",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_retrans_200_on_publish",
+      "Description": "Проверяем повтор 200 ответа в случае перепосылок PUBLISH с авторизации",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAC_SUB_PRECENSE",
+              "Commands": [
+                {
+                  "SourceFile": "presence_sub_test/presence_sub_recv_notify.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_PUB_200_RETRANS",
+              "Commands": [
+                {
+                  "SourceFile": "presence_sub_test/uac_pub_retrans_200.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -nr",
                   "SippType": "uac",
                   "NeedAuth": true,
