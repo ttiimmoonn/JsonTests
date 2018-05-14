@@ -364,7 +364,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAC_RETRANS_SUB",
+              "Name": "UAC_SUB_401_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "subscription_test/uac_sub_check_401_retrans.xml",
@@ -399,7 +399,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAC_RETRANS_SUB",
+              "Name": "UAC_SUB_200_RETRANS",
               "Commands": [
                 {
                   "SourceFile": "subscription_test/uac_sub_check_200_retrans.xml",
