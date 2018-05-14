@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "subscription_test">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,EXPIRES" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,expires,dummy,check_state" />
+<Reference variables="dummy,check_state"/>
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="subfrom[service]to[$CDPN]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="expires" value="[$EXPIRES]"/>
+    </action>
+</nop>
+
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Subscription Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+
+<recv response="401" auth="true"/>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Subscription Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    [authentication]
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200"/>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    [last_via:]
+    From: "Subscription Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id:]
+    [last_cseq:]
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    [authentication]
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200"/>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    [last_via:]
+    From: "Subscription Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id:]
+    [last_cseq:]
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    [authentication]
+    Expires: [$expires]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="2000"/>
+
+</scenario>
