@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "new_script">
+<scenario name = "Simple UAC send CANCEL">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-    <nop hide="true">
+<nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="inv_branch" value="z9hG4bK-o-[call_number][pid]"/>
+        <assignstr assign_to="inv_cseq" value="[cseq]"/>
     </action>
-    </nop>
-
-
+</nop>
 
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "SimpleUa send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
-    CSeq: [cseq] INVITE
+    CSeq: [$inv_cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
+    Require: 100rel
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
     Content-Type: application/sdp
     Content-Length: [len]
@@ -36,10 +37,11 @@
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
+
 <recv response="100" optional="true"></recv>
 
 <!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
-<recv response="401" optional="true" auth="true" next="2">
+<recv response="401" optional="true" auth="true" next="auth_invite">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -48,9 +50,18 @@
     </action>
  </recv>
 
-<label id="3" />
+<label id="call_continue" />
 
-<recv response="180">
+<recv response="100" >
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+</recv>
+
+<recv response="180" ontimeout="cancel_call" timeout="5000">
     <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
@@ -73,22 +84,24 @@
 
 <recv response="200"/>
 
+<label id="cancel_call"/>
+
 <pause/>
 
 <send crlf="true">
 <![CDATA[
     CANCEL sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    From: "SimpleUa send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$inv_branch]
+    From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id:]
-    CSeq: [cseq] CANCEL
+    CSeq: [$last_cseq] CANCEL
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" crlf="true"></recv>
+<recv response="200"></recv>
 
-<recv response="487" crlf="true">
+<recv response="487">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -97,7 +110,7 @@
     </action>
 </recv>
 
-<send next="5">
+<send next="compare_params">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
@@ -110,10 +123,8 @@
 ]]>
 </send>
 
-
-
 <!--Отправка INVITE c аутентификацией -->
-<label id="2"/>
+<label id="auth_invite"/>
 
 <send>
 <![CDATA[
@@ -128,17 +139,24 @@
 ]]>
 </send>
 
+<nop hide="true">
+    <action>
+        <assignstr assign_to="inv_cseq" value="[cseq]"/>
+    </action>
+</nop>
+
 <!-- Уходим в label 3 -->
-<send next="3" crlf="true">
+<send next="call_continue" crlf="true">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "SimpleUa send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$inv_branch]
+    From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
-    CSeq: [cseq] INVITE
+    CSeq: [$inv_cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
+    Require: 100rel
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -154,6 +172,31 @@
 </send>
 
 
-<label id="5"/>
+<label id="compare_params"/>
+
+<pause milliseconds="2000"/>
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="br_result" variable="last_branch" variable2="inv_branch" />
+        <strcmp assign_to="cseq_result" variable="last_cseq" variable2="inv_cseq" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="br_result">
+    <action>
+        <warning message="Compare error."/>
+        <warning message="INVITE branch: [$inv_branch], 487 branch: [$last_branch]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="cseq_result">
+    <action>
+        <warning message="Compare error."/>
+        <warning message="INVITE CSeq: [$inv_cseq], 487 CSeq: [$last_cseq]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 
 </scenario>

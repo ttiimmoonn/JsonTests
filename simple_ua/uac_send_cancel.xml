@@ -9,6 +9,7 @@
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
         <assignstr assign_to="inv_branch" value="z9hG4bK-o-[call_number][pid]"/>
+        <assignstr assign_to="inv_cseq" value="[cseq]"/>
     </action>
 </nop>
 
@@ -19,7 +20,7 @@
     From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
-    CSeq: [cseq] INVITE
+    CSeq: [$inv_cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
@@ -79,13 +80,13 @@
     From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id:]
-    CSeq: [cseq] CANCEL
+    CSeq: [$last_cseq] CANCEL
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" crlf="true"></recv>
+<recv response="200"></recv>
 
-<recv response="487" crlf="true">
+<recv response="487">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -94,7 +95,7 @@
     </action>
 </recv>
 
-<send next="branch_compare">
+<send next="compare_params">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
@@ -123,6 +124,12 @@
 ]]>
 </send>
 
+<nop hide="true">
+    <action>
+        <assignstr assign_to="inv_cseq" value="[cseq]"/>
+    </action>
+</nop>
+
 <!-- Уходим в label 3 -->
 <send next="call_continue" crlf="true">
 <![CDATA[
@@ -131,7 +138,7 @@
     From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
-    CSeq: [cseq] INVITE
+    CSeq: [$inv_cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
@@ -149,13 +156,18 @@
 </send>
 
 
-<label id="branch_compare"/>
+<label id="compare_params"/>
+
+<pause milliseconds="2000"/>
+
 <nop hide="true">
     <action>
-        <strcmp assign_to="result" variable="last_branch" variable2="inv_branch" />
+        <strcmp assign_to="br_result" variable="last_branch" variable2="inv_branch" />
+        <strcmp assign_to="cseq_result" variable="last_cseq" variable2="inv_cseq" />
     </action>
 </nop>
-<nop hide="true" condexec="result">
+
+<nop hide="true" condexec="br_result">
     <action>
         <warning message="Compare error."/>
         <warning message="INVITE branch: [$inv_branch], 487 branch: [$last_branch]."/>
@@ -163,5 +175,12 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="cseq_result">
+    <action>
+        <warning message="Compare error."/>
+        <warning message="INVITE CSeq: [$inv_cseq], 487 CSeq: [$last_cseq]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
 
 </scenario>
