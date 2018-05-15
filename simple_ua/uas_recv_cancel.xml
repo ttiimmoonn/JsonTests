@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "simple uas recv CANCEL">
-
+<User variables="dummy"/>
+<Reference variables="dummy"/>
 
 <recv request="INVITE">
-<action>
-    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
-    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
-</action>
+    <action>
+        <ereg regexp="INVITE (sip:[^@]+@[^ ]+) SIP\/2\.0" check_it="true" search_in="msg" assign_to="dummy,inv_ruri"/>
+        <ereg regexp="([0-9]+)\s+INVITE" check_it="true" search_in="hdr" header="CSeq:" assign_to="dummy,inv_cseq" />
+        <ereg regexp="branch=([^;$]+)" check_it="true" search_in="hdr" header="Via:" assign_to="inv_branch" />
+        <ereg regexp=".*" search_in="hdr" check_it="true" header="From:" assign_to="inv_from" />
+        <ereg regexp=".*" search_in="hdr" check_it="true" header="To:" assign_to="inv_to" />
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    </action>
 </recv>
 
 <send>
@@ -34,7 +39,15 @@
 ]]>
 </send>
 
-<recv request="CANCEL"></recv>
+<recv request="CANCEL">
+    <action>
+        <ereg regexp="CANCEL (sip:[^@]+@[^ ]+) SIP\/2\.0" check_it="true" search_in="msg" assign_to="dummy,cancel_ruri"/>
+        <ereg regexp="([0-9]+)\s+CANCEL" check_it="true" search_in="hdr" header="CSeq:" assign_to="dummy,cancel_cseq" />
+        <ereg regexp="branch=([^;$]+)" check_it="true" search_in="hdr" header="Via:" assign_to="cancel_branch" />
+        <ereg regexp=".*"  check_it="true" search_in="hdr" header="From:" assign_to="cancel_from" />
+        <ereg regexp=".*" check_it="true" search_in="hdr" header="To:" assign_to="cancel_to" />
+    </action>
+</recv>
 
 <pause distribution="uniform" min="10" max="50"/>
 
@@ -65,5 +78,42 @@
 </send>
 
 <recv request="ACK"></recv>
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="cseq_result" variable="inv_cseq" variable2="cancel_cseq" />
+        <strcmp assign_to="branch_result" variable="inv_branch" variable2="cancel_branch" />
+        <strcmp assign_to="to_result" variable="inv_to" variable2="cancel_to" />
+        <strcmp assign_to="from_result" variable="inv_from" variable2="cancel_from" />
+        <strcmp assign_to="ruri_result" variable="inv_ruri" variable2="cancel_ruri" />
+    </action>
+</nop>
+
+<nop hide="true" next="script_fail" test="cseq_result"/>
+<nop hide="true" next="script_fail" test="branch_result"/>
+<nop hide="true" next="script_fail" test="to_result"/>
+<nop hide="true" next="script_fail" test="from_result"/>
+<nop hide="true" next="script_fail" test="ruri_result"/>
+<nop hide="true" next="script_succ"/>
+
+<label id="script_fail"/>
+<nop hide="true">
+    <action>
+        <warning message="Compare error. Message params"/>
+        <warning message="INVITE RURI:[$inv_ruri]"/>
+        <warning message="INVITE CSEQ:[$inv_cseq]"/>
+        <warning message="INVITE BRANCH:[$inv_branch]"/>
+        <warning message="INVITE FROM:[$inv_from]"/>
+        <warning message="INVITE TO:[$inv_to]"/>
+        <warning message="CANCEL RURI:[$inv_ruri]"/>
+        <warning message="CANCEL CSEQ:[$inv_cseq]"/>
+        <warning message="CANCEL BRANCH:[$inv_branch]"/>
+        <warning message="CANCEL FROM:[$inv_from]"/>
+        <warning message="CANCEL TO:[$inv_to]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<label id="script_succ"/>
 
 </scenario>

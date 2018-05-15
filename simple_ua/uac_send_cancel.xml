@@ -3,15 +3,14 @@
 <scenario name = "Simple UAC send CANCEL">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-    <nop hide="true">
+<nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="inv_branch" value="z9hG4bK-o-[call_number][pid]"/>
     </action>
-    </nop>
-
-
+</nop>
 
 <send>
 <![CDATA[
@@ -36,13 +35,11 @@
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
+
 <recv response="100" optional="true"></recv>
 
-
-
-
 <!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
-<recv response="401" optional="true" auth="true" next="2">
+<recv response="401" optional="true" auth="true" next="auth_invite">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -51,7 +48,7 @@
     </action>
  </recv>
 
-<label id="3" />
+<label id="call_continue" />
 
 <recv response="100" >
     <action>
@@ -97,7 +94,7 @@
     </action>
 </recv>
 
-<send next="5">
+<send next="branch_compare">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
@@ -110,10 +107,8 @@
 ]]>
 </send>
 
-
-
 <!--Отправка INVITE c аутентификацией -->
-<label id="2"/>
+<label id="auth_invite"/>
 
 <send>
 <![CDATA[
@@ -129,10 +124,10 @@
 </send>
 
 <!-- Уходим в label 3 -->
-<send next="3" crlf="true">
+<send next="call_continue" crlf="true">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$inv_branch]
     From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
@@ -154,6 +149,19 @@
 </send>
 
 
-<label id="5"/>
+<label id="branch_compare"/>
+<nop hide="true">
+    <action>
+        <strcmp assign_to="result" variable="last_branch" variable2="inv_branch" />
+    </action>
+</nop>
+<nop hide="true" condexec="result">
+    <action>
+        <warning message="Compare error."/>
+        <warning message="INVITE branch: [$inv_branch], 487 branch: [$last_branch]."/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
 
 </scenario>
