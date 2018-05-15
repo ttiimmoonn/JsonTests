@@ -387,8 +387,8 @@
       ]
     },
     {
-      "Name": "terminated_call_by_cancel",
-      "Description": "Проверка отбоя вызова посредством запроса CANCEL",
+      "Name": "termination_call_by_cancel_test(wout100rel)",
+      "Description": "Проверка отбоя вызова посредством запроса CANCEL. UA не требуют 100rel",
       "TestProcedure": [
         {
           "StartUA": [
@@ -417,6 +417,48 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_cancel.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "termination_call_by_cancel_test(with100rel)",
+      "Description": "Проверка отбоя вызова посредством запроса CANCEL. UA требуют 100rel",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "RtCheck" : "full",
+              "WriteStat" : true,
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
+                  "Options": "-m 1 -nr -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "RtCheck" : "full",
+              "WriteStat" : true,
+              "Name": "UAC_SEND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_cancel.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
                   "SippType": "uac",
                   "NeedAuth": true,
