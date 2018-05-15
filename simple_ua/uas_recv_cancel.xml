@@ -79,6 +79,8 @@
 
 <recv request="ACK"></recv>
 
+<pause milliseconds="2000"/>
+
 <nop hide="true">
     <action>
         <strcmp assign_to="cseq_result" variable="inv_cseq" variable2="cancel_cseq" />
