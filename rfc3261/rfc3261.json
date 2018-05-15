@@ -279,7 +279,7 @@
               "Name": "UAS_SEND_OSDP_T38_RE_INVITE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
+                  "SourceFile": "rfc3261/uas_send_osdp_t38.xml",
                   "Options": "-m 1 -nr -d 10000",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -294,7 +294,7 @@
               "Name": "UAC_SEND_500_ON_RE_INVITE",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_send_cancel.xml",
+                  "SourceFile": "rfc3261/uac_send_500_on_re_invite.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
