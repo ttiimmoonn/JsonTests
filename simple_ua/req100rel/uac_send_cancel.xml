@@ -99,7 +99,19 @@
     Content-Length: 0
 ]]>
 </send>
-<recv response="200"></recv>
+
+
+<recv response="487" optional="true">
+    <action>
+        <assignstr assign_to="recv_487" value="true"/>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+</recv>
+
+<recv response="200" next="send_ack_on_487" test="recv_487"/>
 
 <recv response="487">
     <action>
@@ -109,6 +121,8 @@
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
     </action>
 </recv>
+
+<label id="send_ack_on_487"/>
 
 <send next="compare_params">
 <![CDATA[
