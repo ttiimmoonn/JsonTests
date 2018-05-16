@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "Simple UAC send CANCEL">
+<scenario name = "UAC send CANCEL after 100">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <nop hide="true">
