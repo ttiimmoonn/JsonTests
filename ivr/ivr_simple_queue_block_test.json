@@ -60,6 +60,7 @@
   ],
   "UserVar": [
     {
+      "%%IVR_FOR_FAST_RELEASE%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"simpleQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"ABCD\"}],\"queue_length\":10,\"wait_timeout\":60,\"distribution_mode\":\"multicall\",\"max_distribution_attempts\":2,\"max_distribution_duration\":50,\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":900,\"cy\":275},{\"cx\":990,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":2}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.11.0.67\"}",
       "%%IVR_RANDOM_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"randomQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60,\"distribution_mode\":\"random\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
       "%%IVR_SERIAL_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"serialQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"serial\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
       "%%IVR_MULTICALL_QUEUE%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"queue_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"queue_30\":{\"name\":\"queue\",\"params\":{\"position_notification_mode\":\"absolute\",\"description\":\"test\",\"queue_id\":\"mcallQueue\",\"queue_description\":\"simple_queue_test\",\"agents\":[{\"type\":\"alias\",\"agent\":\"%%1.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%2.Number%%\"},{\"type\":\"alias\",\"agent\":\"%%3.Number%%\"}],\"queue_length\":10,\"wait_timeout\":60, \"window_duration\": 3, \"distribution_mode\":\"multicall\",\"fone\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_music.wav\"}],\"inqueue\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_enqueued.wav\"}],\"predicted_time\":[{\"location\":\"system\",\"group\":\"queue\",\"file\":\"ai_queue_predicted_time.wav\"}],\"mode\":\"light\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Full\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"undefined\"},\"links\":{\"Full\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":900,\"cy\":425},{\"cx\":990,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":3}}}}},\"name\":\"ivr_simple_queue_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
@@ -871,6 +872,45 @@
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_simple_queue_block_test"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_fast_release_from_a_side",
+      "Description": "Проверка отбоя вызова посредством отправки CANCEL. Звоним на скрипт с очередью, как только получаем 100 Trying, сразу же отбиваем вызов.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_simple_queue_block_test --json %%IVR_FOR_FAST_RELEASE%%"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_CANCEL_AFTER_100",
+              "Commands": [
+                {
+                  "SourceFile": "ivr/uac_send_cancel_after_100.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -d 50",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
                 }
               ]
             }
