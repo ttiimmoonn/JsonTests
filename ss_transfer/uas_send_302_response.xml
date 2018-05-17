@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas send dtmf in rfc ALARM тест">
+<Global variables="FORW_USER,FORW_DOMAIN"/>
+<User variables="forw_user,forw_domain"/>
+ 
+
+<recv request="INVITE">
+<action>
+    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    <assignstr assign_to="forw_user" value="[$FORW_USER]"/>
+    <assignstr assign_to="forw_domain" value="[$FORW_DOMAIN]"/>
+</action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 302 Moved Temporarily
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$forw_user]@[$forw_domain]>
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="ACK"></recv>
+</scenario>

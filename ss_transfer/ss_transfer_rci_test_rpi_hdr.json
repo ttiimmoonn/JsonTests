@@ -35,45 +35,65 @@
       "SipGroup": "sip.ab",
       "Port": 10108,
       "QParam": 1
+    },
+    {
+      "UserId": 3,
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
       "%%CONNECTED_NAME%%": "\"RCI transfer test\"",
-      "%%TRANSFEE_NAME%%": "TransfeeUser"
+      "%%TRANSFEE_NAME%%": "TransfeeUser",
+      "%%REDIRECTION_DNAME%%": "\"RCI transfer (redirection test)\""
     }
   ],
   "PreConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%3.Number%%} chold ctr clip cnip",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} clip",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} cnip",
       "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
-      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
-      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
-      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
-      "command11": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%"
+      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
+      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
+      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
+      "command11": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+      "command12": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%",
+      "command13": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName %%REDIRECTION_DNAME%%",
+      "command14": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cf_sip",
+      "command15": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cf_sip"
     }
   ],
   "PostConf": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
-      "command5": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
-      "command8": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} chold",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} ctr",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip cnip",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+      "command9": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+      "command10": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cf_sip",
+      "command12": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cf_sip"
     }
   ],
   "Tests": [
     {
       "Name": "change_caller_id_through_update_request(attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer трансфером. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -124,7 +144,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request(semi_attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer трансфером без PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer без PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -174,8 +194,8 @@
       ]
     },
     {
-      "Name": "change_caller_id_through_update_request_on_early_state(semi_attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer трансфером с PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Name": "change_caller_id_through_update_request_in_early_state(semi_attended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer с PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -226,7 +246,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request(unattended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer трансфером. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -277,7 +297,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -328,7 +348,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(semi-attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi-attended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi-attended_transfer. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -379,7 +399,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(unattended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -469,6 +489,70 @@
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%CONNECTED_NAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "change_caller_id_if_transfer_target_use_redirection(unattended_transfer)",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer на абонента, использующего переадресацию. Ожидается, что в сторону transfee пойдёт address_update с номером и Dname юзера, на которого была совершена переадресация",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_UNATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_unattended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_recv_update_in_confir_st.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CONNECTED_NUMBER %%2.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%% -set CHK_RPI true",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_SEND_302",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_send_302_response.xml",
+                  "Options": "-m 1 -set FORW_USER %%3.Number%% -set FORW_DOMAIN %%3.SipDomain%%",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%3.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%REDIRECTION_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
