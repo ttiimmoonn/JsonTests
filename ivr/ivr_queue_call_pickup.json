@@ -232,14 +232,6 @@
           ]
         },
         {"Sleep" : 5},
-        {"SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/cc/agent/info %%1.Number%%",
-              "command1": "/domain/%%DEV_DOM%%/cc/agent/realtime/conversations %%1.Number%%",
-              "command2": "/domain/%%DEV_DOM%%/alias/info %%1.Number%%"
-            }
-          ]
-        },
         {
           "StartUA": [
             {
@@ -249,8 +241,8 @@
               "Name": "UAC_PICKUP_DIRECT_CALL",
               "Commands": [
                 {
-                  "SourceFile": "ivr/uac_recv_update.xml",
-                  "Options": "-m 1 -set CDPN *08# -set CDPNDOM %%0.SipDomain%% -set CHK_CONNECTED_NUMBER %%3.Number%% -set CHK_CONNECTED_NAME %%CLIENT_DNAME%% -set CHK_RPI true",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN *08# -set CDPNDOM %%0.SipDomain%% -set CHK_CONNECTED_NUMBER %%3.Number%% -set CHK_CONNECTED_NAME %%CLIENT_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
