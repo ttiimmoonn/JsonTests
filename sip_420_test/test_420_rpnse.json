@@ -114,7 +114,7 @@
               "Name": "UAC_UNSUP_420_SEND_CANCEL",
               "Commands": [
                 {
-                  "SourceFile": "sip_420_test/uac_send_cancel.xml",
+                  "SourceFile": "simple_ua/uac_send_cancel.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
