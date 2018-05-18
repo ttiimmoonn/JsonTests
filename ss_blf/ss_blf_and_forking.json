@@ -120,7 +120,7 @@
               "Name": "UAS0_FORK",
               "Commands": [
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "30s"
@@ -134,7 +134,7 @@
               "Name": "UAS1_FORK",
               "Commands": [
                 {
-                  "SourceFile": "forking/uas_recv_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "30s"
