@@ -76,7 +76,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts",
-              "command2": "/domain/pv.ssw2/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
+              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
             }
           ]
         },
@@ -144,7 +144,7 @@
           "SendSSHCommand": [
             {
               "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode --force",
-              "command2": "/domain/pv.ssw2/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel --force"
+              "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel --force"
             }
           ]
         }
