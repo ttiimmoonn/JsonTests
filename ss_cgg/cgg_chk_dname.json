@@ -125,7 +125,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -139,7 +139,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -199,7 +199,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -213,7 +213,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -273,7 +273,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -287,7 +287,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -347,7 +347,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -361,7 +361,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -429,7 +429,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -443,7 +443,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -513,7 +513,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -527,7 +527,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -597,7 +597,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -611,7 +611,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -681,7 +681,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -695,7 +695,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -764,7 +764,7 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -778,7 +778,7 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
