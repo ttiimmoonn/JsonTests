@@ -79,8 +79,8 @@
   ],
   "Tests": [
     {
-      "Name": "cgg_test_wout_100_rel",
-      "Description": "cgg_test_wout_100_rel",
+      "Name": "simple_cgg_test",
+      "Description": "Проверка сервиса cgg. На групповой номер из 3 абонентов совершается 3 вызова, абоненты по очереди отвечают на данные вызовы.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -91,19 +91,19 @@
               "Name": "UAS1_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_bye.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "Timeout": "40s"
-                },
-                {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -117,19 +117,19 @@
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/uas_bye.xml",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 1000",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -143,20 +143,20 @@
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/uas_cancel.xml",
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/uas_bye.xml",
-                  "Options": "-m 1",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 1000",
                   "SippType": "uas",
                   "Timeout": "40s"
                 }
@@ -169,8 +169,8 @@
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uac.xml",
-                  "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%% -d 3000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -182,8 +182,8 @@
       ]
     },
     {
-      "Name": "cgg_test_with_100_rel",
-      "Description": "cgg_test_with_100_rel",
+      "Name": "simple_cgg_test_with_100rel",
+      "Description": "Проверка сервиса cgg. На групповой номер из 3 абонентов совершается 3 вызова, абоненты по очереди отвечают на данные вызовы. Все UA требуют 100rel",
       "TestProcedure": [
         {
           "StartUA": [
@@ -194,19 +194,19 @@
               "Name": "UAS1_CGG_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_bye_100rel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -220,19 +220,19 @@
               "Name": "UAS2_CGG_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_bye_100rel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -246,19 +246,19 @@
               "Name": "UAS3_CGG_WITH100REL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_cancel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
                 },
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_bye_100rel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -272,7 +272,7 @@
               "Name": "UAC_WITH_100rel",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uac_100rel.xml",
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
                   "Options": "-m 3 -r 1 -rp 2000 -l 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -286,7 +286,7 @@
     },
     {
       "Name": "cgg_race_of_200ok_and_cancel",
-      "Description": "Проверка того, что адаптер отбивает вызов через BYE, если абонент Б дал 200 OK",
+      "Description": "Проверка того, что адаптер отбивает вызов через BYE, если абонент Б дал 200 OK.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -297,7 +297,7 @@
               "Name": "UAS1_RACE_OF_200_AND_CANCEL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_ignore_cancel.xml",
+                  "SourceFile": "ss_cgg/uas_race_of_cancel_and_200.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -311,7 +311,7 @@
               "Name": "UAS2_RACE_OF_200_AND_CANCEL",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_ignore_cancel.xml",
+                  "SourceFile": "ss_cgg/uas_race_of_cancel_and_200.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -325,7 +325,7 @@
               "Name": "UAS3_RACE_OF_200_AND_CANCEL_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uas_bye.xml",
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -339,7 +339,7 @@
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/uac.xml",
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -364,7 +364,7 @@
               "Name": "UAS1_RACE_OF_200_AND_CANCEL_REQ100REl",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_ignore_cancel.xml",
+                  "SourceFile": "ss_cgg/req100rel/uas_race_of_cancel_and_200.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -378,7 +378,7 @@
               "Name": "UAS2_RACE_OF_200_AND_CANCEL_REQ100REl",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_ignore_cancel.xml",
+                  "SourceFile": "ss_cgg/req100rel/uas_race_of_cancel_and_200.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -392,7 +392,7 @@
               "Name": "UAS3_RACE_OF_200_AND_CANCEL_REQ100REl_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uas_bye_100rel.xml",
+                  "SourceFile": "simple_ua/req100rel/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "40s"
@@ -406,7 +406,7 @@
               "Name": "UAC_SEND_BYE_REQ100REl",
               "Commands": [
                 {
-                  "SourceFile": "ss_cgg/req100rel/uac_100rel.xml",
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%CggUser%% -set CDPNDOM %%CggSipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
