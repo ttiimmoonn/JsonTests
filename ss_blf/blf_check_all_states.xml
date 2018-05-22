@@ -2,8 +2,8 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple BLF UAC">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,CHK_DIRECTION,EXPIRES" />
-<User variables="cdpn_dom,cgpn_dom,cdpn,blf_state,blf_direction,dummy,exp" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CHK_DIRECTION,EXPIRES,CALL_COUNT" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,blf_state,blf_direction,dummy,exp,now_call" />
 <Reference variables="dummy" />
 
 <!-- Setting expires value -->
@@ -20,6 +20,19 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="CALL_COUNT" condexec_inverse="true">
+    <action>
+        <assign assign_to="CALL_COUNT" value="1"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CALL_COUNT">
+    <action>
+        <todouble assign_to="CALL_COUNT" variable="CALL_COUNT" />
+    </action>
+</nop>
+
+
 <!-- Setting common params -->
 
 <nop hide="true">
@@ -29,6 +42,7 @@
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
         <assignstr assign_to="exp" value="3600"/>
+        <assign assign_to="now_call" value="0"/>
     </action>
 </nop>
 
@@ -205,6 +219,7 @@
 
 <nop hide="true" test="blf_state" test_var_value="trying" next="wait_notify" condexec="blf_state" condexec_var_value="trying">
     <action>
+        <add assign_to="now_call" value="1" />
         <warning message="Call changed state to: [$blf_state]" />
         <assignstr assign_to="next_state" value="early"/>
     </action>
@@ -231,11 +246,30 @@
 
 <!-- Handling notification with state terminated -->
 
-<nop hide="true" test="blf_state" test_var_value="terminated" next="unsub">
+<nop hide="true" test="blf_state" test_var_value="terminated" next="handle_terminated">
     <action>
         <warning message="Call changed state to: [$blf_state]" />
     </action>
 </nop>
+
+
+<label id="handle_terminated"/>
+
+<nop hide="true">
+    <action>
+        <test assign_to="c_result" compare="equal" variable="now_call" variable2="CALL_COUNT" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="c_result" condexec_inverse="true" test="c_result" test_inverse="true" next="wait_notify">
+    <action>
+        <warning message="Start handling next call. Now call counter: [$now_call]. Req call counter: [$CALL_COUNT]. Compare result: [$c_result]"/>
+        <assignstr assign_to="next_state" value="trying"/>
+    </action>
+</nop>
+
+<nop hide="true" next="unsub"/>
+
 
 <!-- Setting failed flag -->
 
