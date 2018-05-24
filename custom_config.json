@@ -13,7 +13,7 @@
         "%%DEV_PASS%%" : "password",
         "%%DEV_DOM%%" : "pv.ssw1",
         "%%SSW_DEF_ROUTE%%" : "default_routing",
-        "%%SSW_IPSET%%" : "test.domain",
+        "%%SSW_IPSET%%" : "local",
         "%%DEV_CONFIG_PORT%%" : 8023
     }
 ]
