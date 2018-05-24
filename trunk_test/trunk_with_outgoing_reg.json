@@ -213,6 +213,13 @@
           ]
         },
         {
+          "SendSSHCommand": [
+            {
+              "command2": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+            }
+          ]
+        },
+        {
           "StartUA": [
             {
               "Type": "Trunk",

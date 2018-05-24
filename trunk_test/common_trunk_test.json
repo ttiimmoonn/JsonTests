@@ -1,52 +1,49 @@
-
 {
   "TestName": "trunk_common_test",
-  "AutoTest" : true,
-  "Trunks" : [
+  "AutoTest": true,
+  "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "sip_common_test1",
-      "Port" : 5094,
-      "SipDomain" : "%%DEV_DOM%%",
-      "SipGroup" : "sip_transport"
+      "TrunkId": 1,
+      "TrunkName": "sip_common_test1",
+      "Port": 5094,
+      "SipDomain": "%%DEV_DOM%%",
+      "SipGroup": "sip_transport"
     },
     {
-      "TrunkId" : 2,
-      "TrunkName" : "sip_common_test2",
-      "Port" : 5095,
-      "SipDomain" : "%%DEV_DOM%%",
-      "SipGroup" : "sip_transport"
+      "TrunkId": 2,
+      "TrunkName": "sip_common_test2",
+      "Port": 5095,
+      "SipDomain": "%%DEV_DOM%%",
+      "SipGroup": "sip_transport"
     }
-   ],
-
-"UserVar": [
+  ],
+  "UserVar": [
     {
-      "%%to_trunk2_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfZm9yX2NvbW1vbl90cnVua190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ic2lwX2NvbW1vbl90ZXN0MiIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
-      "%%trunk1_ctx_name%%" : "ctx_for_common_trunk_test",
-      "%%ref_num%%" : "2001",
-      "%%cdpn_num%%" : "2000",
-      "%%cgpn_num%%" : "1000",
-      "%%cdpn_with_hash%%" : "2000#",
-      "%%cdpn_with_hash_code%%" : "2000%23",
-      "%%cgpn_with_hash%%" : "1000#",
-      "%%cgpn_with_hash_code%%" : "1000%23",
-      "%%tr_cdpn%%" : "8913",
-      "%%tr_cgpn%%" : "8912"
+      "%%to_trunk2_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfZm9yX2NvbW1vbl90cnVua190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ic2lwX2NvbW1vbl90ZXN0MiIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
+      "%%trunk1_ctx_name%%": "ctx_for_common_trunk_test",
+      "%%ref_num%%": "2001",
+      "%%cdpn_num%%": "2000",
+      "%%cgpn_num%%": "1000",
+      "%%cdpn_with_hash%%": "2000#",
+      "%%cdpn_with_hash_code%%": "2000%23",
+      "%%cgpn_with_hash%%": "1000#",
+      "%%cgpn_with_hash_code%%": "1000%23",
+      "%%tr_cdpn%%": "8913",
+      "%%tr_cgpn%%": "8912"
     }
-],
-
+  ],
   "PreConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk2_ctx%%",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk1_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
-      "command3" : "/domain/%%DEV_DOM%%/trunk/sip/declare default.routing %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%"
+      "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk2_ctx%%",
+      "command2": "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk1_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+      "command3": "/domain/%%DEV_DOM%%/trunk/sip/declare default.routing %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%"
     }
   ],
   "PostConf": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
-      "command3" : "/domain/%%DEV_DOM%%/routing/delete %%trunk1_ctx_name%%"
+      "command1": "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+      "command2": "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
+      "command3": "/domain/%%DEV_DOM%%/routing/delete %%trunk1_ctx_name%%"
     }
   ],
   "Tests": [
@@ -62,13 +59,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -81,7 +78,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UAC_INVITE_WOUT_REFERRED_BY_HDR",
               "Commands": [
@@ -100,7 +97,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -113,7 +110,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UAC_INVITE_WITH_REFERRED_BY_HDR",
               "Commands": [
@@ -149,13 +146,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -168,7 +165,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UAC_CDPN_WITH_HASH",
               "Commands": [
@@ -191,13 +188,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -210,7 +207,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UAC_CDPN_WITH_HASH",
               "Commands": [
@@ -235,7 +232,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -248,12 +245,160 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UAC_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "trunk_test/uac_update_to_t38.xml",
+                  "Options": "-m 1 -set CDPN %%tr_cdpn%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPN %%tr_cgpn%% -set CGPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_trunk_blocking_for_incoming_call",
+      "Description": "Проверка отбоя входящих вызовов в случае блокировки входящего транка. Устанавливаем на входящий транк блокировку. Делаем вызов на данный транк. Ожидается, что вызов будет отбит 480 ответом. Далее снимаем блокировку и делаем вызов. Ожидается, что вызов пройдет.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/block %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_480",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN %%tr_cdpn%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPN %%tr_cgpn%% -set CGPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/unblock %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%tr_cdpn%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPN %%tr_cgpn%% -set CGPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_trunk_blocking_for_outgoing_call",
+      "Description": "Проверка отбоя вызовов в случае блокировки исходящего транка. Устанавливаем на исходящий транк блокировку. Делаем вызов, который будет смаршрутизирован на данный транк. Ожидается, что вызов будет отбит 480 ответом. Далее снимаем блокировку и делаем вызов. Ожидается, что вызов пройдет.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/block %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force"
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_480",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN %%tr_cdpn%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPN %%tr_cgpn%% -set CGPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/trunk/sip/unblock %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force"
+            }
+          ]
+        },
+        {
+          "Sleep" : 2
+        },        
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%tr_cdpn%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPN %%tr_cgpn%% -set CGPNDOM %%Tr.1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

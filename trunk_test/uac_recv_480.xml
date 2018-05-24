@@ -3,8 +3,8 @@
 <scenario name = "uac_recv_480">
 
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<User variables="cdpn_dom,cgpn_dom,cdpn" />
+<Global variables="CDPNDOM,CGPNDOM,CGPN,CDPN" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,cgpn" />
 
     <nop hide="true">
     <action>
@@ -15,15 +15,28 @@
     </action>
     </nop>
 
+    <nop hide="true" condexec="CGPN" condexec_inverse="true">
+        <action>
+            <assignstr assign_to="cgpn" value="[$cgpn]" />
+        </action>
+    </nop>
+
+    <nop hide="true" condexec="CGPN">
+        <action>
+            <assignstr assign_to="cgpn" value="[$CGPN]" />
+        </action>
+    </nop>
+
+
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Trunk Test 480" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Trunk Test 480" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -91,11 +104,11 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Trunk Test 480" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Trunk Test 480" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Content-Type: application/sdp
