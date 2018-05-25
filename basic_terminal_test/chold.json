@@ -1,5 +1,5 @@
 {
-  "TestName": "basic_term_chold_on_dtmf_code",
+  "TestName": "basic_term_chold",
   "AutoTest" : true,
   "Users": [
     {
@@ -67,7 +67,7 @@
   ],
   "Tests": [
     {
-      "Name": "chold_send_sequense_in_rfc",
+      "Name": "test_chold_by_*#_dtmf_sequence",
       "Description": "Тестирование активации chold при отправке последовательности *# посредством передачи dtmf по rfc2833",
       "TestProcedure": [
         {
@@ -79,7 +79,7 @@
               "Name": "UAC_SEND_CHOLD_SEQ_IN_RFC",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_rfc.xml",
+                  "SourceFile": "basic_terminal_test/uac_send_hold_seq_by_rfc.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHOLD_DIGITS *# -set CDPN_DIGITS %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -121,7 +121,7 @@
     },
     {
       "Name": "chold_callback_wout_alias_dname_on_b_side",
-      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. (проверка Dname)",
+      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. Также проверяется, что DNAME = \"Callback\"",
       "TestProcedure": [
         {
           "StartUA": [
@@ -132,7 +132,7 @@
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
+                  "SourceFile": "basic_terminal_test/uac_send_hold_seq_by_sip_info_and_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -167,7 +167,7 @@
     },
     {
       "Name": "chold_callback_with_alias_dname_on_b_side",
-      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. (проверка Dname)",
+      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. Также проверяется, что DNAME = \"Callback: <ИМЯ АБОНЕНТА Б>\"",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -185,7 +185,7 @@
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
+                  "SourceFile": "basic_terminal_test/uac_send_hold_seq_by_sip_info_and_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -238,7 +238,7 @@
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
+                  "SourceFile": "basic_terminal_test/uac_send_hold_seq_by_sip_info_and_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -284,7 +284,7 @@
               "Name": "UAC_DROP_CALL_ON_HOLD",
               "Commands": [
                 {
-                  "SourceFile": "basic_terminal_test/chold_uac_send_dtmf_in_sip_info.xml",
+                  "SourceFile": "basic_terminal_test/uac_send_hold_seq_by_sip_info_and_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -310,6 +310,45 @@
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_collect_timeout_timer",
+      "Description": "Проверка срабатывания collect_timeout таймера. А звонит на Б, A ставит Б на hold и ждёт timeout. Ожидается, что после срабатывания таймера в обе стороны пойдёт релиз.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 2,
+              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -aa -d 10000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "WriteStat" : true,
+              "Name": "UAC_WAIT_RELEASE_BY_TIMEOUT",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uac_send_hold_by_info_and_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "120s"
                 }
               ]
             }
