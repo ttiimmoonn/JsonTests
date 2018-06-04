@@ -1,0 +1,133 @@
+{
+  "TestName": "rfc4028_update_tests",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10107,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+      "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control false",
+      "command3": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% rfc-4028-control true",
+      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+      "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90",
+      "command6": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ctr chold clip cnip",
+      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ctr",
+      "command8": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold",
+      "command9": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+      "command10": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+      "command11": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+      "command12": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+      "command13": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control --force",
+      "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control --force",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+      "command7": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip chold ctr",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "rfc4028_change_refresher_through_address_update",
+      "Description": "Проверка смены refresher через address_update. A звонит на B, при этом устанавливает параметр refresher в uac. B делает трансфер на C, в сторону А идёт UPDATE c refresher=uac. Ожидается, что адаптер переключит режим обновления сесии и начнёт высылать UPDATE в сторону А согласно таймеру.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_MAKE_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_make_unatended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAC_RECV_ADDR_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_wait_address_update.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            {
+              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
