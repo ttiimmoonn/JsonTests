@@ -64,7 +64,7 @@
         <!--Забрали IP -->
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
         <!-- Проверяем, что нам прислали Session Expires -->
-        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uas)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
     </action>
  </recv>
 
@@ -94,7 +94,7 @@
         <assign assign_to="se" value="" />
         <assign assign_to="options" value="" />
         <!-- Ищем Session Expires в UPDATE -->
-        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uas)" search_in="msg" check_it="true" assign_to="dummy,se,refresher"/>
     </action>
 </recv>
 
@@ -108,26 +108,16 @@
     [last_CSeq:]
     Require: timer
     Allow: INVITE, ACK, CANCEL, BYE, UPDATE
-    Session-Expires: [$se];refresher=uac
+    Session-Expires: [$se];[$refresher]
     Content-Length: 0
 ]]>
 </send>
 
-<pause milliseconds="40000" crlf="true"/>
+<pause milliseconds="80000"/>
 
+<recv request="BYE"></recv>
 
-<recv request="UPDATE">
-    <action>
-        <!-- Зачищаем переменные -->
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="se" value="" />
-        <assign assign_to="options" value="" />
-        <!-- Ищем Session Expires в UPDATE -->
-        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
-    </action>
-</recv>
-
-<send>
+<send next="end">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -135,59 +125,10 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Require: timer
-    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
-    Session-Expires: [$se];refresher=uac
     Content-Length: 0
 ]]>
 </send>
 
-<pause milliseconds="40000" crlf="true"/>
-
-
-<recv request="UPDATE">
-    <action>
-        <!-- Зачищаем переменные -->
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="se" value="" />
-        <assign assign_to="options" value="" />
-        <!-- Ищем Session Expires в UPDATE -->
-        <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
-    </action>
-</recv>
-
-
-<send>
-<![CDATA[
-    SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
-    [last_Call-ID:]
-    [last_CSeq:]
-    Require: timer
-    Allow: INVITE, ACK, CANCEL, BYE, UPDATE
-    Session-Expires: [$se];refresher=uac
-    Content-Length: 0
-]]>
-</send>
-
-<pause milliseconds="5000"/>
-
-<send>
-<![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "[service]" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
-    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
-    [last_call-id:]
-    CSeq: [cseq] BYE
-    Max-Forwards: 70
-    Content-Length: 0
-]]>
-</send>
-
-<recv response="200" next="end" crlf="true"></recv>
 
 <!--Отправка INVITE c аутентификацией -->
 <label id="auth_invite"/>
