@@ -72,8 +72,8 @@
   ],
   "Tests": [
     {
-      "Name": "rfc4028_change_refresher_through_address_update",
-      "Description": "Проверка смены refresher через address_update. A звонит на B, при этом устанавливает параметр refresher в uac. B делает трансфер на C, в сторону А идёт UPDATE c refresher=uac. Ожидается, что адаптер переключит режим обновления сесии и начнёт высылать UPDATE в сторону А согласно таймеру.",
+      "Name": "rfc4028_save_refresher_in_address_update",
+      "Description": "Проверка сохранения refresher параметра в address_update. A звонит на B, при этом устанавливает параметр refresher в uac. B делает трансфер на C, в сторону А идёт UPDATE c refresher=uas. После получения address_update абонент А высылает UPDATE реквесты согласно таймеру. Ожидается, что адаптер не переключит режим обновления сесии и не будет высылать UPDATE в сторону А.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -107,10 +107,10 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAC_RECV_ADDR_UPDATE",
+              "Name": "UAC_RECV_ADDR_UPDATE_AND_REF",
               "Commands": [
                 {
-                  "SourceFile": "rfc4028_timers/uac_wait_address_update.xml",
+                  "SourceFile": "rfc4028_timers/uac_wait_address_update_and_refresh.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
@@ -119,11 +119,55 @@
               ]
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "Name": "rfc4028_session_expire_after_adress_update",
+      "Description": "Проверка корректности работы таймера сессии после address_update. A звонит на B, при этом устанавливает параметр refresher в uac. B делает трансфер на C, в сторону А идёт UPDATE c refresher=uas. После получения address_update абонент А не высылает обновление сессии. Ожидается, что ssw отобьёт вызов по истечению таймера",
+      "TestProcedure": [
         {
-          "SendSSHCommand": [
+          "StartUA": [
             {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false"
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_MAKE_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uas_make_unatended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%0.Number%% -set REFERDOM %%0.SipDomain%%",
+                  "SippType": "uas",
+                  "Timeout": "200s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAC_RECV_ADDR_UPDATE_WOUT_REF",
+              "Commands": [
+                {
+                  "SourceFile": "rfc4028_timers/uac_wait_address_update_wout_refresh.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "200s"
+                }
+              ]
             }
           ]
         }
