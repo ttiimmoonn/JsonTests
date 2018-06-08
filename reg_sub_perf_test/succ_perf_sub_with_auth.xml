@@ -2,6 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uac_recv_487">
 
+<Global variables="ONLY_SUB"/>
 <User variables="check_state,dummy,start_seconds,start_milliseconds,stop_seconds,stop_milliseconds" />
 <Reference variables="check_state,dummy,start_seconds,start_milliseconds,stop_seconds,stop_milliseconds" />
 
@@ -11,7 +12,7 @@
     </action>
 </nop>
 
-<send>
+<send retrans="500">
 <![CDATA[
     SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
@@ -27,55 +28,287 @@
 ]]>
 </send>
 
+<recv response="401" auth="true" next="send_auth_to_subscribe"></recv>
 
-<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe">
+<label id="sub_continue"/>
+
+<pause/>
+
+<send retrans="500">
+<![CDATA[
+    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
+    To: <sip:[field1]@[field2]>;tag=[$remote_tag]
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[field0]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: [field4]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="401" auth="true" next="send_auth_to_resubscribe"></recv>
+
+<label id="sub_continue2"/>
+
+<pause/>
+
+
+<send retrans="500">
+<![CDATA[
+    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
+    To: <sip:[field1]@[field2]>;tag=[$remote_tag]
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[field0]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="401" auth="true" next="send_auth_to_unsubscribe"></recv>
+
+<label id="sub_continue3"/>
+
+<nop hide="true" next="exit"/>
+
+
+<label id="send_auth_to_subscribe"/>
+
+<send start_rtd="subscribe" retrans="500">
+<![CDATA[
+    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
+    To: <sip:[field1]@[field2]>
+    Call-ID: [call_id]
+    [field3]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[field0]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: [field4]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe"/>
+
+<recv request="NOTIFY" optional="true">
     <action>
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
-        <ereg regexp="([0-9]+)" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-    </action>
- </recv>
-
-<label id="recv_200_to_subscribe"/>
-
-
-<recv response="200" rtd="subscribe" next="exit">
-    <action>
-        <gettimeofday assign_to="stop_seconds,stop_microseconds"/>
-        <!--<ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,subscribe_remote_tag" />-->
+        <assignstr assign_to="sub_not" value="true"/>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
     </action>
 </recv>
 
-
-<!--
+<recv response="200" rtd="subscribe" next="send_200_to_sub_notify" test="sub_not">
+    <action>
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+    </action>
+</recv>
 
 <recv request="NOTIFY">
     <action>
-        <assign assign_to="dummy" value="" />
-        <assign assign_to="check_state" value="" />
-        <ereg regexp=".*(<state>trying</state>).*" search_in="msg" check_it="true" assign_to="dummy,check_state"/>
-        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip" />
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
     </action>
 </recv>
 
-<nop hide="true">
-    <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
-    </action>
-</nop>
+<label id="send_200_to_sub_notify"></label>
 
-<send>
+<send next="sub_continue" test="ONLY_SUB" test_inverse="true">
 <![CDATA[
     SIP/2.0 200 OK
-    [last_Via:]
-    [last_From:]
-    [last_To:]
+    Via:[$not_via]
+    From:[$not_from]
+    To:[$not_to]
     [last_Call-ID:]
-    [last_CSeq:]
+    CSeq: [$not_cseq] NOTIFY
+    Content-Length: 0
+]]>
+</send>
+
+<nop hide="true" next="exit"/>
+
+<pause milliseconds="1000" next="sub_continue"/>
+
+
+<label id="send_auth_to_resubscribe"/>
+
+<send start_rtd="resubscribe" retrans="500">
+<![CDATA[
+    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
+    To: <sip:[field1]@[field2]>;tag=[$remote_tag]
+    Call-ID: [call_id]
+    [field3]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[field0]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: [field4]
     Content-Length: 0
 ]]>
 </send>
 
 
+<recv request="NOTIFY" optional="true">
+    <action>
+        <assignstr assign_to="resub_not" value="true"/>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+    </action>
+</recv>
+
+<recv response="200" rtd="resubscribe" next="send_200_to_resub_notify" test="resub_not">
+    <action>
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+    </action>
+</recv>
+
+<recv request="NOTIFY">
+    <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+    </action>
+</recv>
+
+<label id="send_200_to_resub_notify"></label>
+
+<send next="sub_continue2">
+<![CDATA[
+    SIP/2.0 200 OK
+    Via:[$not_via]
+    From:[$not_from]
+    To:[$not_to]
+    [last_Call-ID:]
+    CSeq: [$not_cseq] NOTIFY
+    Content-Length: 0
+]]>
+</send>
+
+
+
+<label id="send_auth_to_unsubscribe"/>
+
+<send start_rtd="unsubscribe" retrans="500">
+<![CDATA[
+    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
+    To: <sip:[field1]@[field2]>;tag=[$remote_tag]
+    Call-ID: [call_id]
+    [field3]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[field0]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="NOTIFY" optional="true">
+    <action>
+        <assignstr assign_to="unsub_not" value="true"/>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+    </action>
+</recv>
+
+<recv response="200" rtd="unsubscribe" next="send_200_to_unsub_notify" test="unsub_not">
+    <action>
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+    </action>
+</recv>
+
+<recv request="NOTIFY">
+    <action>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+    </action>
+</recv>
+
+<label id="send_200_to_unsub_notify"></label>
+
+<send next="sub_continue3">
+<![CDATA[
+    SIP/2.0 200 OK
+    Via:[$not_via]
+    From:[$not_from]
+    To:[$not_to]
+    [last_Call-ID:]
+    CSeq: [$not_cseq] NOTIFY
+    Content-Length: 0
+]]>
+</send>
+
+<label id="exit"/>
+
+<ResponseTimeRepartition value="0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1550, 1600, 1650, 1700, 1750, 1800, 1850, 1900, 1950, 2000, 2500, 3000, 3500, 4000, 5000, 6000"/>
+<CallLengthRepartition value="10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 300, 400, 500, 600, 700"/>
+</scenario>
+
+
+
+<!--
+<label id="send_auth_to_unsubscribe"/>
+
+<send>
+<![CDATA[
+    ACK sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Contact: <sip:[field0]@[local_ip]:[local_port]>
+    Content-Length: 0
+]]>
+</send>
+
+
+<send next="recv_200_to_unsubscribe">
+<![CDATA[
+    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
+    To: <sip:[field1]@[field2]>;tag=[$subscribe_remote_tag]
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[field0]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+-->
+
+
+<!--
 <recv request="NOTIFY">
     <action>
         <assign assign_to="dummy" value="" />
@@ -194,75 +427,3 @@
 
 <recv response="200" next="exit"></recv>
 -->
-
-<label id="send_auth_to_subscribe"/>
-
-<send next="recv_200_to_subscribe" start_rtd="subscribe">
-<![CDATA[
-    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
-    To: <sip:[field1]@[field2]>
-    Call-ID: [call_id]
-    [field3]
-    CSeq: [cseq] SUBSCRIBE
-    Contact: <sip:[field0]@[local_ip]:[local_port]>
-    Event: dialog
-    Accept: application/dialog-info+xml
-    Expires: [field4]
-    Content-Length: 0
-]]>
-</send>
-
-<nop>
-    <action>
-        <gettimeofday assign_to="start_seconds,start_microseconds"/>
-    </action>
-</nop>
-
-<!--
-<label id="send_auth_to_unsubscribe"/>
-
-<send>
-<![CDATA[
-    ACK sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[field0]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-</send>
-
-
-<send next="recv_200_to_unsubscribe">
-<![CDATA[
-    SUBSCRIBE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Sub perf test" <sip:[field0]@[field2]>;tag=[$local_tag]
-    To: <sip:[field1]@[field2]>;tag=[$subscribe_remote_tag]
-    Call-ID: [call_id]
-    [authentication]
-    CSeq: [cseq] SUBSCRIBE
-    Contact: <sip:[field0]@[local_ip]:[local_port]>
-    Event: dialog
-    Accept: application/dialog-info+xml
-    Expires: 0
-    Content-Length: 0
-]]>
-</send>
--->
-<label id="exit"/>
-
-<nop>
-    <action>
-        <log message="[$start_microseconds],[$stop_microseconds]"/>
-    </action>
-</nop>
-
-<ResponseTimeRepartition value="10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 300, 400, 500, 600, 700"/>
-<CallLengthRepartition value="10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 300, 400, 500, 600, 700"/>
-</scenario>
-
