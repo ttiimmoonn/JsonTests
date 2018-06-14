@@ -1,0 +1,199 @@
+{
+  "TestName": "ss_transfer_check_4028_hdrs_in_address_update",
+  "AutoTest": true,
+  "RepeatCounter": 2,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10107,
+      "QParam": 1
+    },
+    {
+      "UserId": 2,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10108,
+      "QParam": 1
+    },
+    {
+      "UserId": 3,
+      "Number": "160",
+      "Login": "160",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 3600,
+      "SipGroup": "sip.ab",
+      "Port": 10109,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%CONNECTED_NAME%%": "\"RCI transfer test\"",
+      "%%TRANSFEE_NAME%%": "TransfeeUser",
+      "%%REDIRECTION_DNAME%%": "\"RCI transfer (redirection test)\""
+    }
+  ],
+  "PreConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%3.Number%%} chold ctr clip cnip",
+      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} chold",
+      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} ctr",
+      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} clip",
+      "command5": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} cnip",
+      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
+      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
+      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
+      "command11": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+      "command12": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%",
+      "command13": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName %%REDIRECTION_DNAME%%",
+      "command14": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cf_sip",
+      "command15": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cf_sip",
+      "command16": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+      "command17": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
+    }
+  ],
+  "PostConf": [
+    {
+      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} chold",
+      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} ctr",
+      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} clip",
+      "command4": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} cnip",
+      "command5": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip cnip",
+      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+      "command9": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+      "command10": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cf_sip",
+      "command12": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cf_sip"
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "check_rfc4028_headers_in_address_update_st_early",
+      "Description": "Проверка отсутствия заголовков Session-Expires и Min-SE в UPDATE, который отправляется в состоянии вызова early",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_SEMI_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_semi_attended_succ_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_CHK_HDRS_IN_EARLY_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_check_4028_hdrs_in_update_state_early.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "check_rfc4028_headers_in_address_update_st_confirmed",
+      "Description": "Проверка корректности заполнения заголовков Session-Expires и Min-SE в UPDATE, который отправляется в состоянии вызова confirmed. На ссв устанавливаем rfc4028_use_se в 90, принимаем INVITE и отвечаем на него 422 с Min-SE: 100. Далее делаем трансфер этого вызова, при получении UPDATE проверяем, что Session-Expires установлен в 100.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_ATT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_attended_transfer.xml",
+                  "Options": "-m 1 -set REFERNUM %%1.Number%% -set REFERDOM %%1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_CHK_HDRS_IN_CONFIRM_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uas_check_4028_hdrs_in_update_st_confirmed.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_RECV_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_transfer/uac_recv_update.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DNAME %%CONNECTED_NAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_RPI true -set CHK_CONNECTED_NAME %%TRANSFEE_NAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
