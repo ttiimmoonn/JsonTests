@@ -168,9 +168,6 @@
     <status><basic>open</basic></status>
     <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
     </tuple>
-    <dm:person id="sg89aep">
-    <rpid:activities><rpid:busy/></rpid:activities>
-    </dm:person>
     </presence>
 ]]>
 </send>
@@ -200,9 +197,6 @@
     <status><basic>open</basic></status>
     <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
     </tuple>
-    <dm:person id="sg89aep">
-    <rpid:activities><rpid:busy/></rpid:activities>
-    </dm:person>
     </presence>
 ]]>
 </send>
