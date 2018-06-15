@@ -80,7 +80,7 @@
       ]
     },
     {
-      "Name": "rfc4028_send_initial_invite_with_small_session_expiress",
+      "Name": "rfc4028_send_initial_invite_with_small_session_expires",
       "Description": "Посылаем INVITE c Session-Expires: 60. Ожидается, что SSW ответит 422 ответом",
       "TestProcedure": [
         {
@@ -118,7 +118,7 @@
       ]
     },
     {
-      "Name": "rfc4028_send_re_invite_with_small_session_expiress",
+      "Name": "rfc4028_send_re_invite_with_small_session_expires",
       "Description": "Посылаем INVITE c Session-Expires: 60, получаем 422 от SSW. Далее присылаем re-invite c sendonly и снова ставим Session-Expires: 60. Ожидается, что SSW ответит 422 ответом",
       "TestProcedure": [
         {
