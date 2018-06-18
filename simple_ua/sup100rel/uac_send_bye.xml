@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "Simple UAC send BYE req100rel">
+<scenario name = "Simple UAC send BYE sup100rel">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME" />
-    <nop hide="true">
+<nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
@@ -11,19 +11,19 @@
         <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
-    </nop>
+</nop>
 
-    <nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
-        <action>
-            <assignstr assign_to="display_name" value="\"Simple UAC send bye req100rel\" " />
-        </action>
-    </nop>
+<nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="display_name" value="\"Simple UAC recv bye sup100rel\" " />
+    </action>
+</nop>
 
-    <nop hide="true" condexec="WOUT_DNAME">
-        <action>
-            <assignstr assign_to="display_name" value="" />
-        </action>
-    </nop>
+<nop hide="true" condexec="WOUT_DNAME">
+    <action>
+        <assignstr assign_to="display_name" value="" />
+    </action>
+</nop>
 
 <send>
 <![CDATA[
@@ -34,7 +34,7 @@
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Contact: <sip:[service]@[local_ip]:[local_port]>
-    Require: 100rel
+    Supported: 100rel
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -52,13 +52,13 @@
 
 <!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
 <recv response="401" auth="true" next="auth_invite" optional="true">
-	<action>
+    <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
         <!--Забрали branch -->
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
  
-	</action>
+    </action>
 </recv>
 
 <label id="call_continue" />
@@ -66,12 +66,16 @@
 <recv response="100" optional="true"></recv>
 <recv response="180" optional="true" next="prack_180">
     <action>
+        <assignstr assign_to="req100rel" value="" />
+        <ereg regexp="100rel" search_in="hdr" header="Require:" assign_to="req100rel" />
         <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
 <recv response="183" optional="true" next="prack_183">
     <action>
+        <assignstr assign_to="req100rel" value="" />
+        <ereg regexp="100rel" search_in="hdr" header="Require:" assign_to="req100rel" />
         <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
@@ -79,12 +83,12 @@
 
 <recv response="181" optional="true" next="prack_181">
     <action>
+        <assignstr assign_to="req100rel" value="" />
+        <ereg regexp="100rel" search_in="hdr" header="Require:" assign_to="req100rel" />
         <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
-
-
 
 <recv response="200" auth="true">
         <action>
@@ -158,7 +162,7 @@
     Contact: <sip:[service]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
-    Require: 100rel
+    Supported: 100rel
     Content-Type: application/sdp
     Content-Length: [len]
     
@@ -173,6 +177,13 @@
 </send>
 
 <label id="prack_180"/>
+
+<nop test="req100rel" test_var_value="100rel" test_inverse="true" next="call_continue">
+    <action>
+        <warning message="[$req100rel]"/>
+    </action>
+</nop>
+
 <send>
 <![CDATA[
     PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -186,10 +197,13 @@
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" crlf="true" next="call_continue"></recv>
 
+<recv response="200" crlf="true" next="call_continue"/>
 
 <label id="prack_183"/>
+
+<nop test="req100rel" test_var_value="100rel" test_inverse="true" next="call_continue"/>
+
 <send>
 <![CDATA[
     PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -203,9 +217,13 @@
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" crlf="true" next="call_continue"></recv>
+
+<recv response="200" crlf="true" next="call_continue"/>
 
 <label id="prack_181"/>
+
+<nop test="req100rel" test_var_value="100rel" test_inverse="true" next="call_continue"/>
+
 <send>
 <![CDATA[
     PRACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -219,8 +237,7 @@
     Content-Length: 0
 ]]>
 </send>
-<recv response="200" crlf="true" next="call_continue"></recv>
-
+<recv response="200" crlf="true" next="call_continue"/>
 
 <label id="end"/>
 

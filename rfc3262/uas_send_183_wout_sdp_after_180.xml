@@ -80,9 +80,6 @@
 </nop>
 
 
-<pause milliseconds="2500"/>
-
-
 <send>
 <![CDATA[
     SIP/2.0 183 Session Progress
@@ -118,8 +115,6 @@
 ]]>
 </send>
 
-
-<pause milliseconds="2500"/>
 
 <send retrans="500">
 <![CDATA[
