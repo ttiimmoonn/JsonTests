@@ -1,0 +1,422 @@
+{
+  "TestName": "rfc3262_oa_model_req100rel",
+  "AutoTest" : true,
+  "Users": [
+    {
+      "UserId" : 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 11001,
+      "SipGroup": "sip.ab",
+      "QParam" : 0.5
+    },
+    {
+      "UserId" : 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires" : 90,
+      "Port" : 11002,
+      "SipGroup": "sip.ab",
+      "QParam" : 1
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreConf": [
+    {
+    }
+  ],
+  "PostConf": [
+    {
+    }
+  ],
+  "Tests": [
+    {
+      "Name": "send_a_sdp_in_180_response",
+      "Description": "Проверка обработки asdp в 180. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_ASDP_IN_180",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_asdp_in_180.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_a_sdp_in_181_response",
+      "Description": "Проверка обработки asdp в 181. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_ASDP_IN_181",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_asdp_in_181.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_a_sdp_in_183_response",
+      "Description": "Проверка обработки asdp в 183. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_ASDP_IN_183",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_asdp_in_183.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_o_sdp_in_180",
+      "Description": "Проверка обработки o_sdp в 180 ответе. А звонит на Б, Б отправляет a_sdp в 183 ответе, а следом o_sdp в 180. Ожидается, что на новый o_sdp будет отправлен a_sdp в PRACK. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_OSDP_IN_180",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_o_sdp_in_180.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_o_sdp_in_183",
+      "Description": "Проверка обработки o_sdp в 183 ответе. А звонит на Б, Б отправляет a_sdp в 180 ответе, а следом o_sdp в 183. Ожидается, что на новый o_sdp будет отправлен a_sdp в PRACK. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_OSDP_IN_183",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_o_sdp_in_183.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_o_sdp_in_183_and_180",
+      "Description": "Проверка обработки o_sdp в 183, а следом и в 180 ответах. А звонит на Б, Б отправляет a_sdp в 181 ответе, а следом новые o_sdp в 180 и 183 ответах. Ожидается, что на каждый новый o_sdp будет отправлен a_sdp в PRACK. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_OSDP_IN_183_180",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_o_sdp_in_183_and_180.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_invite_wout_sdp",
+      "Description": "Проверка обработки invite без osdp. А отправляет INVITE без SDP, ожидается, что o_sdp будет отправлен в 200 ответе. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_INVITE_WOUT_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uac_send_invite_wout_offer.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_180_wout_sdp_after_183_with_sdp",
+      "Description": "Проверка обработки 180 сообщения без sdp, после обработки 183 с sdp. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_180_WOUT_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_180_wout_sdp_after_183.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_183_wout_sdp_after_180_with_sdp",
+      "Description": "Проверка обработки 183 сообщения без sdp, после обработки 180 с sdp. Сторона А требует подтверждения промежуточных ответов.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAS_SEND_183_WOUT_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_send_183_wout_sdp_after_180.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/req100rel/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_1xx_order",
+      "Description": "Отправляем в определённом порядке ответы 1хх со стороны Б и прореряем данный порядок на стороне А.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId" : 0,
+              "Name": "UAS_SEND_1XX_IN_REQ_ORDER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uas_req_1xx_order.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "1000s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId" : 1,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3262/uac_req_1xx_order.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "1000s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

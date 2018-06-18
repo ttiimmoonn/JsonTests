@@ -23,8 +23,6 @@
 ]]>
 </send>
 
-
-
 <send>
 <![CDATA[
     SIP/2.0 183 Session Progress
@@ -52,7 +50,7 @@
 </action>
 </nop>
 
-<pause milliseconds="2000"/>
+<pause milliseconds="1000"/>
 
 <send>
 <![CDATA[
@@ -75,7 +73,7 @@
 ]]>
 </send>
 
-<pause milliseconds="2000"/>
+<pause milliseconds="1000"/>
 
 <send retrans="500">
 <![CDATA[
@@ -103,7 +101,6 @@
 <recv request="ACK"></recv>
 
 <recv request="BYE" retrans="500"></recv>
-
 
 <send>
 <![CDATA[

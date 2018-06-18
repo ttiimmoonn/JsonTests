@@ -23,8 +23,6 @@
 ]]>
 </send>
 
-
-
 <send>
 <![CDATA[
     SIP/2.0 180 Ringing
@@ -103,7 +101,6 @@
 <recv request="ACK"></recv>
 
 <recv request="BYE" retrans="500"></recv>
-
 
 <send>
 <![CDATA[
