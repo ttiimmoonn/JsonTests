@@ -3,125 +3,121 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "150",
       "Login": "150",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "151",
       "Login": "151",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "152",
       "Login": "152",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "153",
       "Login": "153",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10108,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "154",
       "Login": "154",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10109,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10109,
+      "QParam": 1
     },
     {
-      "UserId" : 5,
+      "UserId": 5,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10110,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10110,
+      "QParam": 1
     },
     {
-      "UserId" : 6,
+      "UserId": 6,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10111,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10111,
+      "QParam": 1
     },
     {
-      "UserId" : 7,
+      "UserId": 7,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10112,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10112,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%ALERTING_NAME%%" : "\"Called User\"",
-      "%%CONNECTED_NAME%%" : "\"Connected User\"",
-      "%%CALLING_NAME%%" : "\"Pickup test User\""
+      "%%ALERTING_NAME%%": "\"Called User\"",
+      "%%CONNECTED_NAME%%": "\"Connected User\"",
+      "%%CALLING_NAME%%": "\"Pickup test User\""
     }
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%6.Number%%} pickup",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [sip_room1/1, sip_room2/2, sip_room3/3]",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%2.Number%%} pickup pickup_groups = [sip_room1/1]",
-      "command4" : "/domain/%%DEV_DOM%%/ss/activate {%%3.Number%%-%%4.Number%%} pickup pickup_groups = [sip_room2/2]",
-      "command5" : "/domain/%%DEV_DOM%%/ss/activate {%%5.Number%%-%%6.Number%%} pickup pickup_groups = [sip_room3/3]",
-      "command6" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%7.Number%%} cnip clip",
-      "command7" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%7.Number%%} cnip",
-      "command8" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%7.Number%%} clip",
-      "command9":  "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALERTING_NAME%%",
-      "command10": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%CONNECTED_NAME%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%6.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [sip_room1/1, sip_room2/2, sip_room3/3]",
+    "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%2.Number%%} pickup pickup_groups = [sip_room1/1]",
+    "/domain/%%DEV_DOM%%/ss/activate {%%3.Number%%-%%4.Number%%} pickup pickup_groups = [sip_room2/2]",
+    "/domain/%%DEV_DOM%%/ss/activate {%%5.Number%%-%%6.Number%%} pickup pickup_groups = [sip_room3/3]",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%7.Number%%} cnip clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%7.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%7.Number%%} clip",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALERTING_NAME%%",
+    "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%CONNECTED_NAME%%"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%6.Number%%} pickup",
-      "command2" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%6.Number%%} pickup",
-      "command3" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%7.Number%%} clip",
-      "command4" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%7.Number%%} cnip",
-      "command5" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%7.Number%%} clip cnip",
-      "command6": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-      "command7": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%6.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%6.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%7.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%7.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%7.Number%%} clip cnip",
+    "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
   ],
   "Tests": [
     {
@@ -129,11 +125,11 @@
       "Description": "Перехват случайного вызова в любой из Pickup-групп, в которые входит абонент",
       "TestProcedure": [
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "BackGround" : true,
+              "UserId": 2,
+              "BackGround": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -147,8 +143,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
-              "BackGround" : true,
+              "UserId": 7,
+              "BackGround": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -163,13 +159,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -190,11 +186,11 @@
       "Description": "Перехват случайного вызова в определенной Pickup-группе, в которую входит абонент",
       "TestProcedure": [
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
-              "BackGround" : true,
+              "UserId": 4,
+              "BackGround": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -208,8 +204,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
-              "BackGround" : true,
+              "UserId": 7,
+              "BackGround": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -224,13 +220,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -251,11 +247,11 @@
       "Description": "Перехват определенного вызова в любой из Pickup-групп, в которые входит абонент",
       "TestProcedure": [
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 5,
-              "BackGround" : true,
+              "UserId": 5,
+              "BackGround": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -269,8 +265,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
-              "BackGround" : true,
+              "UserId": 7,
+              "BackGround": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -285,13 +281,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -312,11 +308,11 @@
       "Description": "Попытка перехватить вызов не из своей группы",
       "TestProcedure": [
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 5,
-              "BackGround" : true,
+              "UserId": 5,
+              "BackGround": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -330,8 +326,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
-              "BackGround" : true,
+              "UserId": 7,
+              "BackGround": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -346,13 +342,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_CALL_PICKUP",
               "Commands": [
                 {

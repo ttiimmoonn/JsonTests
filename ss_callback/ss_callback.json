@@ -1,50 +1,45 @@
 {
   "TestName": "ss_callback",
   "AutoTest": true,
-  "Isolate" : true,
+  "Isolate": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     }
   ],
   "UserVar": [
     {
-      "%%USER_PIN%%" : "1111"
+      "%%USER_PIN%%": "1111"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% callback",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% callback"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% callback",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% callback"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% callback",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% callback"
-
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% callback",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% callback"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_simple_callback_test",
       "Description": "Тестирование услуги callback",
@@ -53,11 +48,11 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_TEST_CALLBACK",
               "Commands": [
-                 {
+                {
                   "SourceFile": "ss_callback/uac_callback.xml",
                   "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
@@ -75,11 +70,11 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
@@ -98,20 +93,18 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/timers/core/set response_timeout 30"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/set response_timeout 30"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_NO_ANSW_CALLBACK",
               "Commands": [
-                 {
+                {
                   "SourceFile": "ss_callback/uac_callback.xml",
                   "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
@@ -136,11 +129,11 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
@@ -153,9 +146,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/timers/core/clean response_timeout"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/clean response_timeout"
           ]
         }
       ]
@@ -168,11 +159,11 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_BUSY_ON_CALLBACK",
               "Commands": [
-                 {
+                {
                   "SourceFile": "ss_callback/uac_callback.xml",
                   "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
@@ -197,11 +188,11 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
@@ -222,11 +213,11 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_RE_INVITE_ON_CALLBACK",
               "Commands": [
-                 {
+                {
                   "SourceFile": "ss_callback/uac_callback.xml",
                   "Options": "-m 1 -set CDPN *40# -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",

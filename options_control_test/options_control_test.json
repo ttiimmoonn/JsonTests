@@ -1,47 +1,42 @@
 {
   "TestName": "options_control_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 2"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 2"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% isActive true",
-      "command3": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% isActive true"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0",
+    "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% isActive true",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% isActive true"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_options_control_test",
       "Description": "Включаем OPTIONS-контроль на юзере. Отвечаем на первый OPTIONS. Не отвечаем на последующие OPTIONS. Пытаемся позвонить на данного юзера и получаем отбой. После включаем скрипт ответа на OPTIONS, после которого пытаемся позвонить, вызов должен пройти",
@@ -50,7 +45,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_OPTIONS",
               "Commands": [
                 {
@@ -65,13 +60,13 @@
           ]
         },
         {
-          "Sleep" : 3 
+          "Sleep": 3
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {
@@ -87,17 +82,17 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 15"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 15"
           ]
         },
-        {"Sleep" : 5},
+        {
+          "Sleep": 5
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_OPTIONS",
               "Commands": [
                 {
@@ -115,7 +110,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -129,7 +124,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {

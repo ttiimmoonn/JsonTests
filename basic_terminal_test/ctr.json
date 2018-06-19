@@ -1,62 +1,57 @@
 {
   "TestName": "basic_term_ctr_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
   ],
   "Tests": [
     {
@@ -67,8 +62,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_CT_AFTER_ANSER",
               "Commands": [
                 {
@@ -82,8 +77,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -97,8 +92,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -122,8 +117,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_CT_BEFORE_ANSER",
               "Commands": [
                 {
@@ -137,8 +132,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_DELAYED_ANSWER",
               "Commands": [
                 {
@@ -152,8 +147,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -177,8 +172,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_CT_FLASH_4",
               "Commands": [
                 {
@@ -192,8 +187,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -207,8 +202,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {

@@ -2,15 +2,15 @@
   "TestName": "multi_fax_test_manual",
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 3600,
-      "Port" : 11106,
+      "Expires": 3600,
+      "Port": 11106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     }
   ],
   "UserVar": [
@@ -19,12 +19,8 @@
       "%%USER_DOM%%": "pv.ssw3"
     }
   ],
-  "PreConf": [
-    {}
-  ],
-  "PostConf": [
-    {}
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "test_mult_fax",
@@ -34,7 +30,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_MULT_FAX",
               "Commands": [
                 {

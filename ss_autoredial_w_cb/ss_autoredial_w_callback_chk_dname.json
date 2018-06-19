@@ -3,62 +3,58 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 20105,
-      "QParam" : 0.5
+      "Port": 20105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 20106,
-      "QParam" : 0.5
+      "Port": 20106,
+      "QParam": 0.5
     }
   ],
   "UserVar": [
     {
-      "%%ALIAS_DNAME%%" : "AliasDNAME_AUTOREDIAL_W_CB",
-      "%%SIP_DNAME%%" : "SipDNAME_AUTOREDIAL_W_CB",
-      "%%ROUTE_DNAME%%" : "RouteDNAME_AUTOREDIAL_W_CB",
-      "%%ALIAS_DNAME_FOR_B%%" : "AutoRedialDNAME",
-      "%%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19hdXRvcmVkaWFsX3dfY2JfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQVVUT1JFRElBTF9XX0NCIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
+      "%%ALIAS_DNAME%%": "AliasDNAME_AUTOREDIAL_W_CB",
+      "%%SIP_DNAME%%": "SipDNAME_AUTOREDIAL_W_CB",
+      "%%ROUTE_DNAME%%": "RouteDNAME_AUTOREDIAL_W_CB",
+      "%%ALIAS_DNAME_FOR_B%%": "AutoRedialDNAME",
+      "%%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19hdXRvcmVkaWFsX3dfY2JfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQVVUT1JFRElBTF9XX0NCIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% auto_redial_with_callback",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% auto_redial_with_callback recall_count = 2, recall_timer = 5",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
-      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% auto_redial_with_callback",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% auto_redial_with_callback recall_count = 2, recall_timer = 5",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% auto_redial_with_callback",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% auto_redial_with_callback",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip cnip",
-      "command9": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command10": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% auto_redial_with_callback",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% auto_redial_with_callback",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
   ],
   "Tests": [
     {
@@ -69,8 +65,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -89,8 +85,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -119,18 +115,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME_FOR_B%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME_FOR_B%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -149,8 +143,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -173,10 +167,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
           ]
         }
       ]
@@ -189,8 +181,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -209,8 +201,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -239,17 +231,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -268,8 +258,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -292,9 +282,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
           ]
         }
       ]
@@ -305,18 +293,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -335,8 +321,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -359,10 +345,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -373,19 +357,17 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -404,8 +386,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -428,11 +410,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -443,18 +423,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -473,8 +451,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -497,10 +475,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -511,19 +487,17 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -542,8 +516,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -566,11 +540,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -581,24 +553,22 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME_FOR_B%%",
-              "command3": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
-              "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx",
-              "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
-              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-              "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-              "command8": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME_FOR_B%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%AUTOREDIAL_CONTEXT_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ss_autoredial_w_cb_test_ctx",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -617,8 +587,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -641,16 +611,14 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
-              "command3": "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
-              "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
-              "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
-              "command6": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-              "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
-              "command8": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete ss_autoredial_w_cb_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
           ]
         }
       ]

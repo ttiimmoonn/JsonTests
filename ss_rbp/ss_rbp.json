@@ -3,59 +3,55 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%USER_PIN%%" : "1111",
-      "%%BAD_PIN%%" : "1145#"
+      "%%USER_PIN%%": "1111",
+      "%%BAD_PIN%%": "1145#"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% rbp",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni intercity"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% rbp",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni intercity"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% rbp",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% rbp",
-      "command3": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% rbp",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% rbp",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_rpb_test",
       "Description": "Активируем rbp. Звоним на абонента с запрещённым ni, получаем отбой. Звоним на абонента с разрешённым ni, вызов проключается.",
@@ -64,7 +60,7 @@
           "ServiceFeature": [
             {
               "code": "*34*%%USER_PIN%%*02#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -72,7 +68,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_SIMPLE_RBP_TEST",
               "Commands": [
                 {
@@ -86,7 +82,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_RBP_TEST",
               "Commands": [
                 {
@@ -111,7 +107,7 @@
           "ServiceFeature": [
             {
               "code": "#34*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }
@@ -125,7 +121,7 @@
           "ServiceFeature": [
             {
               "code": "*34*%%USER_PIN%%*02#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -133,7 +129,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -147,7 +143,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -171,7 +167,7 @@
           "ServiceFeature": [
             {
               "code": "*34*%%USER_PIN%%*02#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -179,7 +175,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -193,7 +189,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -215,16 +211,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -238,7 +232,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_IMPLICIT_CALL_RBP_TEST_GOOD_PIN",
               "Commands": [
                 {
@@ -260,16 +254,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_IMPLICIT_CALL_RBP_TEST_BAD_PIN",
               "Commands": [
                 {

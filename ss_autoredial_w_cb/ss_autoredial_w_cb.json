@@ -3,71 +3,65 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% auto_redial_with_callback"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% auto_redial_with_callback"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% auto_redial_with_callback",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% auto_redial_with_callback"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% auto_redial_with_callback",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% auto_redial_with_callback"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_autoredial_w_cb_test",
       "Description": "Заказываем autoredial_w_cb. На стороне Б даём 2 раза busy, на третий раз отвечаем и ждём cb со стороны А",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -88,8 +82,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -118,17 +112,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -149,8 +141,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -179,17 +171,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -203,8 +193,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {

@@ -3,105 +3,101 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "150",
       "Login": "150",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "151",
       "Login": "151",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "152",
       "Login": "152",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "153",
       "Login": "153",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10108,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "154",
       "Login": "154",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10109,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
       "%%CTX_TO_CHATROOM%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjaGF0X3Jvb21fYW5kX2NvbmZfY29uZmxpY3RfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iY2hhdF9yb29tX2FuZF9jb25mX2NvbmZsaWN0X3Rlc3QiLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
-      "%%CHAT_ROOM_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"ivr_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_2\":{\"name\":\"ivr\",\"params\":{\"description\":\"Проигрывается приветствие. Выполняется детект 3-ех цифр. Переменная EXTENSION заполняется задетекченными цифрами. Выполняется переход во ветке extension.\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_enter_number_of_conference.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":true,\"direct_call_to_extension\":true,\"category\":\"access_type0\",\"max_digits\":len(%%0.Number%%),\"interdigit_timeout\":2},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Extension\":\"set_3\",\"No Match\":\"play_5\"},\"links\":{\"Extension\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":360,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2},\"No Match\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2}}},\"set_3\":{\"name\":\"set\",\"params\":{\"description\":\"Изменяем переменную EXTENSION.\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"*72*%EXTENSION%\"}]},\"pos\":{\"x\":2,\"y\":2},\"cases\":{\"next\":\"dial_4\"},\"links\":{\"next\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":450,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"dial_4\":{\"name\":\"dial\",\"params\":{\"description\":\"Вызов на конференцию с номером содержащимся в переменной EXTENSION.\",\"numbers\":\"EXTENSION\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}},\"play_5\":{\"name\":\"play\",\"params\":{\"description\":\"Недействительный номер конференции.\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_invalid_number_of_conference.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":0,\"y\":2},\"cases\":{\"next\":\"undefined\"},\"links\":{\"next\":{\"points\":[{\"cx\":90,\"cy\":370},{\"cx\":90,\"cy\":425},{\"cx\":90,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":3}}}}},\"name\":\"chat_room_and_conf_conflict_test\",\"description\":\"Скрипт ввода номера комнаты конференции. Номер комнаты конференции вводится в блоке ivr. Вход в комнату конфереции осуществляется блоком dial.\",\"version\":\"3.9.0.266\"}",
+      "%%CHAT_ROOM_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"ivr_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"ivr_2\":{\"name\":\"ivr\",\"params\":{\"description\":\"Проигрывается приветствие. Выполняется детект 3-ех цифр. Переменная EXTENSION заполняется задетекченными цифрами. Выполняется переход во ветке extension.\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_enter_number_of_conference.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":true,\"direct_call_to_extension\":true,\"category\":\"access_type0\",\"max_digits\":len(%%0.Number%%),\"interdigit_timeout\":2},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Extension\":\"set_3\",\"No Match\":\"play_5\"},\"links\":{\"Extension\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":360,\"cy\":275},{\"cx\":450,\"cy\":330}],\"text_pos\":0.2},\"No Match\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2}}},\"set_3\":{\"name\":\"set\",\"params\":{\"description\":\"Изменяем переменную EXTENSION.\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"*72*%EXTENSION%\"}]},\"pos\":{\"x\":2,\"y\":2},\"cases\":{\"next\":\"dial_4\"},\"links\":{\"next\":{\"points\":[{\"cx\":450,\"cy\":370},{\"cx\":450,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"dial_4\":{\"name\":\"dial\",\"params\":{\"description\":\"Вызов на конференцию с номером содержащимся в переменной EXTENSION.\",\"numbers\":\"EXTENSION\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}},\"play_5\":{\"name\":\"play\",\"params\":{\"description\":\"Недействительный номер конференции.\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_invalid_number_of_conference.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":0,\"y\":2},\"cases\":{\"next\":\"undefined\"},\"links\":{\"next\":{\"points\":[{\"cx\":90,\"cy\":370},{\"cx\":90,\"cy\":425},{\"cx\":90,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":3}}}}},\"name\":\"chat_room_and_conf_conflict_test\",\"description\":\"Скрипт ввода номера комнаты конференции. Номер комнаты конференции вводится в блоке ivr. Вход в комнату конфереции осуществляется блоком dial.\",\"version\":\"3.9.0.266\"}",
       "%%ROOM_NUMBER%%": "%%0.Number%%"
     }
   ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
-      "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
-      "command6": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% conference",
-      "command9": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% conference",
-      "command10": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% conference",
-      "command11": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% conference",
-      "command12": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_CHATROOM%%",
-      "command13": "/domain/%%DEV_DOM%%/ivr/script/.import --id chat_room_and_conf_conflict_test --json %%CHAT_ROOM_SCRIPT%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% conference",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_CHATROOM%%",
+    "/domain/%%DEV_DOM%%/ivr/script/.import --id chat_room_and_conf_conflict_test --json %%CHAT_ROOM_SCRIPT%%"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
-      "command1": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
-      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% conference",
-      "command9": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% conference",
-      "command10": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% conference",
-      "command11": "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% conference",
-      "command12": "/domain/%%DEV_DOM%%/routing/delete chat_room_and_conf_conflict_test",
-      "command13": "domain/%%DEV_DOM%%/ivr/script/delete chat_room_and_conf_conflict_test"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% conference",
+    "/domain/%%DEV_DOM%%/routing/delete chat_room_and_conf_conflict_test",
+    "domain/%%DEV_DOM%%/ivr/script/delete chat_room_and_conf_conflict_test"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "create_conf_refer_to_focus",
       "Description": "Тест конференции refer2focus",
@@ -110,7 +106,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS1_REFER_TO_FOCUS",
               "Commands": [
                 {
@@ -124,7 +120,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -137,7 +133,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -161,7 +157,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS1_REFER_TO_USER",
               "Commands": [
                 {
@@ -175,7 +171,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -188,7 +184,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -212,7 +208,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS1_CREATE_CONF_LIKE_CISCO",
               "Commands": [
                 {
@@ -226,7 +222,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -239,7 +235,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -257,23 +253,21 @@
     },
     {
       "Name": "chat_room_and_conference_conflict_test",
-      "Ref" : "#92405",
+      "Ref": "#92405",
       "Description": "Собираем конференцию с номера A. Далее собираем chat-room с номером команты равном номеру А. Никаких отбоев быть не должно, конференции живут независимо.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context chat_room_and_conf_conflict_test",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context chat_room_and_conf_conflict_test"
-            }
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context chat_room_and_conf_conflict_test",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context chat_room_and_conf_conflict_test"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "BackGround" : true,
+              "UserId": 0,
+              "BackGround": true,
               "Name": "UAS1_REFER_TO_FOCUS",
               "Commands": [
                 {
@@ -287,8 +281,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "BackGround" : true,
+              "UserId": 1,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -301,8 +295,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "BackGround" : true,
+              "UserId": 2,
+              "BackGround": true,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -316,12 +310,14 @@
             }
           ]
         },
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC1_CHATROOM_SEND_BYE",
               "Commands": [
                 {
@@ -335,7 +331,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC2_CHATROOM_SEND_BYE",
               "Commands": [
                 {
@@ -349,13 +345,13 @@
             }
           ]
         },
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
           ]
         }
       ]

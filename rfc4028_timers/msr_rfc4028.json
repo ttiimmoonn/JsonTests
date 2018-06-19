@@ -2,39 +2,33 @@
   "TestName": "msr_rfc4028_timer",
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "rfc4028_refresh_test",
@@ -44,7 +38,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_SEND_RE_INVITE",
               "Commands": [
                 {
@@ -57,7 +51,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_RE_INVITE",
               "Commands": [
                 {

@@ -1,74 +1,68 @@
 {
-  "TestName" : "ivr_next_block_test",
-  "AutoTest" : true,
-  "Users" : [
-      {
-        "UserId" : 0,
-        "Number": "156",
-        "Login": "156",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20000,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 1,
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20002,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
+  "TestName": "ivr_next_block_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
   ],
   "UserVar": [
     {
-      "%%IVR_NEXT_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"set_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"next_2\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"next_script\"},\"pos\":{\"x\":1,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":270,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}}}},\"set_3\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"next_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_DIAL_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"dial_25\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}}},\"name\":\"dial_script_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_SET_VAR_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=123\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"undefined\",\"Yes\":\"condition_27\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Yes\":\"dial_25\",\"No\":\"undefined\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}}},\"name\":\"condition_script_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_NEXT_LOOP_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"set_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"next_2\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"ivr_next_block_test\"},\"pos\":{\"x\":1,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":270,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}}}},\"set_3\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"next_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_loop_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_NEXT_LOOP_WITH_MEDIA_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_26\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"next_27\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"next_27\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"ivr_next_block_test\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_loop_next_block_with_media_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_NEXT_TO_EARLY%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"next_32\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"next_32\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"ivr_early_state_script\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_next_to_early\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%EARLY_STATE_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"info_33\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"info_33\":{\"name\":\"info\",\"params\":{\"description\":\"\",\"info\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"undefined\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_early_state_script\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfbmV4dF9ibG9ja190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDEiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfbmV4dF9ibG9ja190ZXN0Ii8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
+      "%%IVR_NEXT_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"set_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"next_2\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"next_script\"},\"pos\":{\"x\":1,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":270,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}}}},\"set_3\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"next_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_DIAL_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"dial_25\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}}},\"name\":\"dial_script_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_SET_VAR_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=123\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"undefined\",\"Yes\":\"condition_27\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Yes\":\"dial_25\",\"No\":\"undefined\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}}},\"name\":\"condition_script_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_NEXT_LOOP_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"set_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"next_2\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"ivr_next_block_test\"},\"pos\":{\"x\":1,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":270,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}}}},\"set_3\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"next_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_loop_next_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_NEXT_LOOP_WITH_MEDIA_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_26\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"next_27\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"next_27\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"ivr_next_block_test\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_loop_next_block_with_media_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_NEXT_TO_EARLY%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"next_32\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"next_32\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"ivr_early_state_script\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_next_to_early\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%EARLY_STATE_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"info_33\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"info_33\":{\"name\":\"info\",\"params\":{\"description\":\"\",\"info\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"undefined\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}}},\"name\":\"ivr_early_state_script\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfbmV4dF9ibG9ja190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDEiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfbmV4dF9ibG9ja190ZXN0Ii8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
     }
   ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_next_block_test",
-      "command2": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_next_block_test --json %%IVR_NEXT_SCRIPT%%"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_next_block_test",
+    "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_next_block_test --json %%IVR_NEXT_SCRIPT%%"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_next_block_test",
-      "command2": "domain/%%DEV_DOM%%/ivr/script/delete ivr_next_block_test"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete ivr_next_block_test",
+    "domain/%%DEV_DOM%%/ivr/script/delete ivr_next_block_test"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "ivr_simple_next_block_test",
       "Description": "Тестируем переход между скриптами",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_DIAL_SCRIPT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_DIAL_SCRIPT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -82,8 +76,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -99,9 +93,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete dial_script_next_block_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete dial_script_next_block_test"
           ]
         }
       ]
@@ -112,17 +104,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_SET_VAR_SCRIPT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_SET_VAR_SCRIPT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -136,8 +126,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -153,9 +143,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete condition_script_next_block_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete condition_script_next_block_test"
           ]
         }
       ]
@@ -166,17 +154,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_NEXT_LOOP_SCRIPT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_NEXT_LOOP_SCRIPT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_487",
               "Commands": [
                 {
@@ -192,9 +178,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_loop_next_block_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_loop_next_block_test"
           ]
         }
       ]
@@ -205,17 +189,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_NEXT_LOOP_WITH_MEDIA_SCRIPT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_NEXT_LOOP_WITH_MEDIA_SCRIPT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -231,9 +213,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_loop_next_block_with_media_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_loop_next_block_with_media_test"
           ]
         }
       ]
@@ -244,18 +224,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_early_state_script --json %%EARLY_STATE_SCRIPT%%",
-              "command1": "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_NEXT_TO_EARLY%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_early_state_script --json %%EARLY_STATE_SCRIPT%%",
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id next_script --json %%IVR_NEXT_TO_EARLY%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -271,10 +249,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_next_to_early",
-              "command1": "domain/%%DEV_DOM%%/ivr/script/delete ivr_early_state_script"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_next_to_early",
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_early_state_script"
           ]
         }
       ]

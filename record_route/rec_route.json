@@ -1,41 +1,36 @@
 {
   "TestName": "record_route_test",
-  "Users": [
-  ],
-  "Trunks" : [
+  "Users": [],
+  "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "test_trunk",
-      "Port" : 5030,
-      "SipDomain" : "pv.ssw4",
-      "SipGroup" : "tr_gr"
+      "TrunkId": 1,
+      "TrunkName": "test_trunk",
+      "Port": 5030,
+      "SipDomain": "pv.ssw4",
+      "SipGroup": "tr_gr"
     }
-   ],
+  ],
   "UserVar": [
     {
-      "%%TestNumber%%" : "656",
-      "%%TestDomain%%" : "192.168.118.249"
+      "%%TestNumber%%": "656",
+      "%%TestDomain%%": "192.168.118.249"
     }
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "rec_route_complex_test_uac",
       "Description": "rec_route_complex_test_uac",
       "TestProcedure": [
-        {"Print" : "System call to testUser. Please answer."},
+        {
+          "Print": "System call to testUser. Please answer."
+        },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAC_REC_ROUTE",
               "Commands": [
                 {
@@ -54,12 +49,14 @@
       "Name": "rec_route_cancel_test_uac",
       "Description": "rec_route_cancel_test_uac",
       "TestProcedure": [
-        {"Print" : "System call to testUser. Please don't answer."},
+        {
+          "Print": "System call to testUser. Please don't answer."
+        },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAC_REC_ROUTE",
               "Commands": [
                 {
@@ -78,12 +75,14 @@
       "Name": "rec_route_complex_test_uas",
       "Description": "rec_route_complex_test_uas",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_REC_ROUTE",
               "Commands": [
                 {

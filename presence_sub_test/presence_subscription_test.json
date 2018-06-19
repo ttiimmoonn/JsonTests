@@ -41,18 +41,14 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/lists/declare simple_presence_test simple_presence_test presence %%0.Number%% %%1.Number%% %%2.Number%%",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 2"
-    }
+    "/domain/%%DEV_DOM%%/lists/declare simple_presence_test simple_presence_test presence %%0.Number%% %%1.Number%% %%2.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 2"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/lists/remove simple_presence_test",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
-    }
+    "/domain/%%DEV_DOM%%/lists/remove simple_presence_test",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
   ],
   "Tests": [
     {

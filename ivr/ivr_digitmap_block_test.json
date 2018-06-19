@@ -1,94 +1,88 @@
 {
-  "TestName" : "ivr_test_digitmap_block",
-  "AutoTest" : true,
-  "Users" : [
-      {
-        "UserId" : 0,
-        "Number": "156",
-        "Login": "156",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20000,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 1,
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20002,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 2,
-        "Number": "158",
-        "Login": "158",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20004,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 3,
-        "Number": "159",
-        "Login": "159",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20006,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
+  "TestName": "ivr_test_digitmap_block",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20004,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20006,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
   ],
   "UserVar": [
     {
-      "%%ACCEPT_CDPN%%" : "A001",
-      "%%REJECT_CDPN%%" : "A002",
-      "%%IVR_DIGITMAP_CHK_CGPN%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"play_9\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"digitmap_8\":{\"name\":\"digitmap\",\"params\":{\"description\":\"\",\"variable\":\"CGPN\",\"digitmap\":[{\"mask\":\"891345x.\"},{\"mask\":\"%%0.Number%%\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Yes\":\"dial_11\",\"No\":\"dial_12\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"play_9\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"next\":\"digitmap_8\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"dial_11\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":900,\"cy\":575},{\"cx\":990,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":4}}}},\"dial_12\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}}},\"name\":\"ivr_test_digitmap_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_DIGITMAP_CHK_CDPN%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"play_9\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"digitmap_8\":{\"name\":\"digitmap\",\"params\":{\"description\":\"\",\"variable\":\"CDPN\",\"digitmap\":[{\"mask\":\"891345x.\"},{\"mask\":\"%%ACCEPT_CDPN%%\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Yes\":\"dial_11\",\"No\":\"dial_12\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"play_9\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"next\":\"digitmap_8\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"dial_11\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":900,\"cy\":575},{\"cx\":990,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":4}}}},\"dial_12\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}}},\"name\":\"ivr_test_digitmap_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_DIGITMAP_CHK_EXTEN%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"ivr_13\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"digitmap_8\":{\"name\":\"digitmap\",\"params\":{\"description\":\"\",\"variable\":\"EXTENSION\",\"digitmap\":[{\"mask\":\"%%2.Number%%\"},{\"mask\":\"891345x.\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Yes\":\"dial_11\",\"No\":\"dial_12\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"dial_11\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}},\"dial_12\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}},\"ivr_13\":{\"name\":\"ivr\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":true,\"direct_call_to_extension\":true,\"category\":\"access_type0\",\"max_digits\":len(%%2.Number%%),\"interdigit_timeout\":2},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No Match\":\"undefined\",\"Extension\":\"digitmap_8\"},\"links\":{\"No Match\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Extension\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_test_digitmap_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdGVzdF9kaWdpdG1hcF9ibG9jayIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDA/Ii8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX3Rlc3RfZGlnaXRtYXBfYmxvY2siLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg=="
+      "%%ACCEPT_CDPN%%": "A001",
+      "%%REJECT_CDPN%%": "A002",
+      "%%IVR_DIGITMAP_CHK_CGPN%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"play_9\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"digitmap_8\":{\"name\":\"digitmap\",\"params\":{\"description\":\"\",\"variable\":\"CGPN\",\"digitmap\":[{\"mask\":\"891345x.\"},{\"mask\":\"%%0.Number%%\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Yes\":\"dial_11\",\"No\":\"dial_12\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"play_9\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"next\":\"digitmap_8\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"dial_11\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":900,\"cy\":575},{\"cx\":990,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":4}}}},\"dial_12\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}}},\"name\":\"ivr_test_digitmap_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_DIGITMAP_CHK_CDPN%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":3,\"y\":0},\"cases\":{\"next\":\"play_9\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":70},{\"cx\":630,\"cy\":125},{\"cx\":630,\"cy\":180}],\"text_pos\":0.2}}},\"digitmap_8\":{\"name\":\"digitmap\",\"params\":{\"description\":\"\",\"variable\":\"CDPN\",\"digitmap\":[{\"mask\":\"891345x.\"},{\"mask\":\"%%ACCEPT_CDPN%%\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Yes\":\"dial_11\",\"No\":\"dial_12\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"play_9\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":3,\"y\":1},\"cases\":{\"next\":\"digitmap_8\"},\"links\":{\"next\":{\"points\":[{\"cx\":630,\"cy\":220},{\"cx\":630,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"dial_11\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":900,\"cy\":575},{\"cx\":990,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":4}}}},\"dial_12\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}}},\"name\":\"ivr_test_digitmap_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_DIGITMAP_CHK_EXTEN%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"ivr_13\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"digitmap_8\":{\"name\":\"digitmap\",\"params\":{\"description\":\"\",\"variable\":\"EXTENSION\",\"digitmap\":[{\"mask\":\"%%2.Number%%\"},{\"mask\":\"891345x.\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Yes\":\"dial_11\",\"No\":\"dial_12\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"dial_11\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}},\"dial_12\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":2,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":360,\"cy\":575},{\"cx\":270,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":4}},\"Error\":{\"points\":[{\"cx\":450,\"cy\":520},{\"cx\":450,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}}}},\"ivr_13\":{\"name\":\"ivr\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"ivr\":[],\"wait_time\":5,\"extension_dialing\":true,\"direct_call_to_extension\":true,\"category\":\"access_type0\",\"max_digits\":len(%%2.Number%%),\"interdigit_timeout\":2},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No Match\":\"undefined\",\"Extension\":\"digitmap_8\"},\"links\":{\"No Match\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Extension\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_test_digitmap_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdGVzdF9kaWdpdG1hcF9ibG9jayIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDA/Ii8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX3Rlc3RfZGlnaXRtYXBfYmxvY2siLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg=="
     }
-   ],
+  ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_test_digitmap_block",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ivr_test_digitmap_block"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_test_digitmap_block",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ivr_test_digitmap_block"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
-      "command2": "/domain/%%DEV_DOM%%/routing/delete ivr_test_digitmap_block"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete ivr_test_digitmap_block"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "ivr_test_digitmap_block_chk_cgpn",
       "Description": "Тест корретности проверки CGPN в digitmap",
-        "TestProcedure": [
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_CGPN%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_CGPN%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -102,8 +96,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -121,8 +115,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -136,8 +130,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -153,9 +147,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
           ]
         }
       ]
@@ -163,20 +155,18 @@
     {
       "Name": "ivr_test_digitmap_block_chk_cdpn",
       "Description": "Тест корретности проверки CDPN в digitmap",
-        "TestProcedure": [
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_CDPN%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_CDPN%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -190,8 +180,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -209,8 +199,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -224,8 +214,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -241,9 +231,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
           ]
         }
       ]
@@ -251,20 +239,18 @@
     {
       "Name": "ivr_test_digitmap_block_chk_extension",
       "Description": "Тест корретности проверки EXTENSION в digitmap",
-        "TestProcedure": [
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_EXTEN%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_digitmap_block --json %%IVR_DIGITMAP_CHK_EXTEN%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -278,8 +264,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -297,8 +283,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -312,8 +298,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -329,9 +315,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_digitmap_block"
           ]
         }
       ]

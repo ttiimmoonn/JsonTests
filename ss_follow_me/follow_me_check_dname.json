@@ -47,28 +47,24 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% follow_me number = %%2.Number%%",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALERTING_NAME%%",
-      "command8": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%CONNECTED_NAME%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% follow_me number = %%2.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALERTING_NAME%%",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%CONNECTED_NAME%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% follow_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command8": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% follow_me",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
   ],
   "Tests": [
     {
@@ -117,9 +113,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
@@ -158,9 +152,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
           ]
         }
       ]
@@ -211,9 +203,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
@@ -252,9 +242,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
           ]
         }
       ]
@@ -265,10 +253,8 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
           ]
         },
         {
@@ -307,10 +293,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -321,11 +305,9 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
           ]
         },
         {
@@ -364,11 +346,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -379,10 +359,8 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
           ]
         },
         {
@@ -421,10 +399,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -435,11 +411,9 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FOLLOW_ME_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context follow_me_ctx"
           ]
         },
         {
@@ -478,11 +452,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete follow_me_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
           ]
         }
       ]

@@ -1,57 +1,51 @@
 {
   "TestName": "diversion_header",
-  "Users" : [
-  ],
-  "Trunks" : [
+  "Users": [],
+  "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "diver_tr1",
-      "Port" : 5094,
-      "SipDomain" : "pv.ssw3",
-      "SipGroup" : "diver_gr"
+      "TrunkId": 1,
+      "TrunkName": "diver_tr1",
+      "Port": 5094,
+      "SipDomain": "pv.ssw3",
+      "SipGroup": "diver_gr"
     },
     {
-      "TrunkId" : 2,
-      "TrunkName" : "diver_tr2",
-      "Port" : 5095,
-      "SipDomain" : "pv.ssw3",
-      "SipGroup" : "diver_gr"
+      "TrunkId": 2,
+      "TrunkName": "diver_tr2",
+      "Port": 5095,
+      "SipDomain": "pv.ssw3",
+      "SipGroup": "diver_gr"
     }
-   ],
-
+  ],
   "UserVar": [
     {
-      "%%to_trunk_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJkaXZlcl90cnVua19jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxleHRlcm5hbD4NCiAgICAgICAgPHRydW5rIHZhbHVlPSJkaXZlcl90cjIiLz4NCiAgICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
-      "%%trunk_ctx_name%%" : "diver_trunk_ctx"
+      "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJkaXZlcl90cnVua19jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxleHRlcm5hbD4NCiAgICAgICAgPHRydW5rIHZhbHVlPSJkaXZlcl90cjIiLz4NCiAgICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
+      "%%trunk_ctx_name%%": "diver_trunk_ctx"
     }
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
-      "command3" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%",
-      "command4" : "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% original-cdpn-to false",
-      "command5" : "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% original-cdpn-to false",
-      "command6" : "/domain/%%DEV_DOM%%/routing/show %%trunk_ctx_name%%"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% original-cdpn-to false",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% original-cdpn-to false",
+    "/domain/%%DEV_DOM%%/routing/show %%trunk_ctx_name%%"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force"
-    }
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "diversion_header_test",
       "Description": "Проверка опции original-cdpn-to",
       "TestProcedure": [
-      {
+        {
           "StartUA": [
             {
-              "Type" : "Trunk",
-              "TrunkId" : 2,
-              "WriteStat" : true,
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "WriteStat": true,
               "Name": "UAS_TRUNK_1",
               "Commands": [
                 {
@@ -63,9 +57,9 @@
               ]
             },
             {
-              "Type" : "Trunk",
-              "TrunkId" : 1,
-              "WriteStat" : true,
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
               "Name": "UAC_TRUNK",
               "Commands": [
                 {

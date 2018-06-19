@@ -1,49 +1,41 @@
 {
   "TestName": "core_timers",
-  "Isolate" : true,
-  "AutoTest" : true,
+  "Isolate": true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
-
   "UserVar": [
-    {
-    }
+    {}
   ],
-
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout 5",
-      "command2" : "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 4"
-    }
+    "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout 5",
+    "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 4"
   ],
-
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
-      "command2" : "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
-    }
+    "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
+    "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
   ],
   "Tests": [
     {
@@ -54,8 +46,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "NeedAuth" : true,
+              "UserId": 1,
+              "NeedAuth": true,
               "Name": "UAS_CONF_TIMER",
               "Commands": [
                 {
@@ -69,8 +61,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "NeedAuth" : true,
+              "UserId": 2,
+              "NeedAuth": true,
               "Name": "UAC_CONF_TIMER",
               "Commands": [
                 {
@@ -94,8 +86,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "NeedAuth" : true,
+              "UserId": 1,
+              "NeedAuth": true,
               "Name": "UAS_NOANSWER_TIMER",
               "Commands": [
                 {
@@ -109,8 +101,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "NeedAuth" : true,
+              "UserId": 2,
+              "NeedAuth": true,
               "Name": "UAC_NOANSWER_TIMER",
               "Commands": [
                 {
@@ -132,18 +124,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout disabled",
-                "command2" : "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout disabled"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout disabled",
+            "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout disabled"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "NeedAuth" : true,
+              "UserId": 1,
+              "NeedAuth": true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -157,8 +147,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "NeedAuth" : true,
+              "UserId": 2,
+              "NeedAuth": true,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -174,10 +164,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
-              "command2" : "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
+            "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
           ]
         }
       ]

@@ -1,72 +1,66 @@
 {
-  "TestName" : "ivr_caller_info_block_test",
-  "AutoTest" : true,
-  "Users" : [
-      {
-        "UserId" : 0,
-        "Number": "156",
-        "Login": "156",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20000,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 1,
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20002,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
+  "TestName": "ivr_caller_info_block_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
   ],
   "UserVar": [
     {
-      "%%IVR_CALLER_INFO%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"caller-info_23\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"caller-info_23\":{\"name\":\"caller-info\",\"params\":{\"description\":\"\",\"caller_info\":[{\"mask_number\":\"748434x.\",\"display_name\":\"Тест IVR DName (Wrong)\"},{\"mask_number\":\"89712[0-9]{2,4}\",\"display_name\":\"Тест IVR DName (wrong)\"},{\"mask_number\":\"%%0.Number%%\",\"display_name\":\"Тест IVR DName\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"dial_24\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_24\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_caller_info_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfY2FsbGVyX2luZm9fYmxvY2tfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InRvX2l2ciI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8aXZyIHNjcmlwdD0iaXZyX2NhbGxlcl9pbmZvX2Jsb2NrX3Rlc3QiLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+CiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGxvY2FsLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KPC9jb250ZXh0Pg=="
+      "%%IVR_CALLER_INFO%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"caller-info_23\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"caller-info_23\":{\"name\":\"caller-info\",\"params\":{\"description\":\"\",\"caller_info\":[{\"mask_number\":\"748434x.\",\"display_name\":\"Тест IVR DName (Wrong)\"},{\"mask_number\":\"89712[0-9]{2,4}\",\"display_name\":\"Тест IVR DName (wrong)\"},{\"mask_number\":\"%%0.Number%%\",\"display_name\":\"Тест IVR DName\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"dial_24\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_24\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_caller_info_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfY2FsbGVyX2luZm9fYmxvY2tfdGVzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InRvX2l2ciI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8aXZyIHNjcmlwdD0iaXZyX2NhbGxlcl9pbmZvX2Jsb2NrX3Rlc3QiLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+CiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGxvY2FsLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KPC9jb250ZXh0Pg=="
     }
   ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_caller_info_block_test",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_caller_info_block_test",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_caller_info_block_test",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip clip"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete ivr_caller_info_block_test",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip clip"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "ivr_caller_info_block_test",
       "Description": "Тестируем подмену DName через блок caller_info",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_caller_info_block_test --json %%IVR_CALLER_INFO%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_caller_info_block_test --json %%IVR_CALLER_INFO%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -80,8 +74,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -97,9 +91,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_caller_info_block_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_caller_info_block_test"
           ]
         }
       ]

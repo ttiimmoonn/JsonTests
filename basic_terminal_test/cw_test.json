@@ -1,62 +1,57 @@
 {
   "TestName": "basic_term_cw_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cw",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cw"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cw",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cw"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cw",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cw"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cw",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cw"
   ],
   "Tests": [
     {
@@ -67,9 +62,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_CW_FLASH_0_TEST",
               "Commands": [
                 {
@@ -83,8 +78,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "BackGround" : true,
+              "UserId": 2,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -99,13 +94,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_487",
               "Commands": [
                 {
@@ -120,7 +115,7 @@
           ]
         },
         {
-          "Sleep" : 4
+          "Sleep": 4
         }
       ]
     },
@@ -132,9 +127,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_CW_FLASH_1_TEST",
               "Commands": [
                 {
@@ -148,8 +143,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "BackGround" : true,
+              "UserId": 2,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -164,13 +159,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -194,9 +189,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_CW_FLASH_2_TEST",
               "Commands": [
                 {
@@ -217,8 +212,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "BackGround" : true,
+              "UserId": 2,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -233,13 +228,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -254,7 +249,7 @@
           ]
         },
         {
-          "Sleep" : 4
+          "Sleep": 4
         }
       ]
     },
@@ -266,9 +261,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_RELEASE_CALL",
               "Commands": [
                 {
@@ -289,8 +284,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "BackGround" : true,
+              "UserId": 2,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -305,13 +300,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -326,7 +321,7 @@
           ]
         },
         {
-          "Sleep" : 4
+          "Sleep": 4
         }
       ]
     },
@@ -338,9 +333,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_CW_INV_DIG_TEST",
               "Commands": [
                 {
@@ -354,8 +349,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "BackGround" : true,
+              "UserId": 2,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -370,13 +365,13 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_487",
               "Commands": [
                 {
@@ -391,7 +386,7 @@
           ]
         },
         {
-          "Sleep" : 4
+          "Sleep": 4
         }
       ]
     }

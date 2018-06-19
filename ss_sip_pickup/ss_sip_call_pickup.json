@@ -3,80 +3,74 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} pickup",
-      "command2" : "/domain/%%DEV_DOM%%/lists/declare blf_for_sip_call_pick_up blf_for_sip_call_pick_up blf %%0.Number%% %%1.Number%% %%2.Number%%",
-      "command3" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
-      "command4" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/lists/declare blf_for_sip_call_pick_up blf_for_sip_call_pick_up blf %%0.Number%% %%1.Number%% %%2.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} pickup",
-      "command3" : "/domain/%%DEV_DOM%%/lists/remove blf_for_sip_call_pick_up",
-      "command4" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
-      "command5" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
-      "command6" : "/domain/%%DEV_DOM%%/lists/remove blf_for_sip_call_pick_up"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/lists/remove blf_for_sip_call_pick_up",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/lists/remove blf_for_sip_call_pick_up"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_dialog_call_pickup_test",
       "Description": "Тестирование dialog info call pickup",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
-                "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SIP_CALL_PICKUP_BG",
               "Commands": [
                 {
@@ -91,14 +85,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -112,8 +106,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -125,13 +119,11 @@
                 }
               ]
             }
-          ]  
+          ]
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
           ]
         }
       ]
@@ -142,19 +134,17 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
-                "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room2/2]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room2/2]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SIP_CALL_PICKUP_BG_RECV_403",
               "Commands": [
                 {
@@ -169,14 +159,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -190,8 +180,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_SEND_CANCEL",
               "Commands": [
                 {
@@ -203,13 +193,11 @@
                 }
               ]
             }
-          ]  
+          ]
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
           ]
         }
       ]
@@ -220,23 +208,21 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
-                "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]",
-                "command3" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
-                "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% conference",
-                "command5" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
-                "command6" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% conference"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% conference"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SIP_CALL_PICKUP_BG",
               "Commands": [
                 {
@@ -251,14 +237,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -272,8 +258,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -285,17 +271,15 @@
                 }
               ]
             }
-          ]  
+          ]
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
-              "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
-              "command3" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% conference",
-              "command4" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
-              "command5" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% conference"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% conference"
           ]
         }
       ]

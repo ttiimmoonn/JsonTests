@@ -2,169 +2,164 @@
   "TestName": "reg_restrict_manual_test",
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "100",
       "Login": "100",
       "Password": "123",
       "SipDomain": "tau1.208.test.domain1",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12000,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12000,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "101",
       "Login": "101",
       "Password": "123",
       "SipDomain": "tau1.209.test.faka.domain2",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12001,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12001,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "101",
       "Login": "101",
       "Password": "123",
       "SipDomain": "tau1.210.mazafaka.test.domain3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12002,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12002,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "800",
       "Login": "800",
       "Password": "dom1",
       "SipDomain": "domain1",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12004,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12004,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 5,
+      "UserId": 5,
       "Number": "800",
       "Login": "800",
       "Password": "dom2",
       "SipDomain": "domain2",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12005,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12005,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 7,
+      "UserId": 7,
       "Number": "800",
       "Login": "800",
       "Password": "dom3",
       "SipDomain": "domain3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12007,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12007,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 8,
+      "UserId": 8,
       "Number": "801",
       "Login": "801",
       "Password": "dom1",
       "SipDomain": "domain1",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12008,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12008,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 9,
+      "UserId": 9,
       "Number": "801",
       "Login": "801",
       "Password": "dom2",
       "SipDomain": "domain2",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12009,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12009,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 10,
+      "UserId": 10,
       "Number": "801",
       "Login": "801",
       "Password": "dom3",
       "SipDomain": "domain3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12010,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 12010,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 11,
+      "UserId": 11,
       "Number": "100",
       "Login": "100",
       "Password": "123",
       "SipDomain": "msk.eltex.ru",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12011,
-      "QParam" : 0.5,
+      "Port": 12011,
+      "QParam": 0.5,
       "Mode": "Manual"
     },
     {
-      "UserId" : 12,
+      "UserId": 12,
       "Number": "800",
       "Login": "800",
       "Password": "dom1",
       "SipDomain": "msk.eltex.ru",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 12012,
-      "QParam" : 0.5,
+      "Port": 12012,
+      "QParam": 0.5,
       "Mode": "Manual"
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/domain1/ss/enable %%12.Number%% cnip clip",
-      "command2" : "/domain/domain1/ss/activate %%12.Number%% cnip",
-      "command3" : "/domain/domain1/ss/activate %%12.Number%% clip"
-    }
+    "/domain/domain1/ss/enable %%12.Number%% cnip clip",
+    "/domain/domain1/ss/activate %%12.Number%% cnip",
+    "/domain/domain1/ss/activate %%12.Number%% clip"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/domain1/ss/deactivate %%12.Number%% cnip",
-      "command2" : "/domain/domain1/ss/deactivate %%12.Number%% clip",
-      "command3" : "/domain/domain1/ss/disable %%12.Number%% clip clip"
-    }
+    "/domain/domain1/ss/deactivate %%12.Number%% cnip",
+    "/domain/domain1/ss/deactivate %%12.Number%% clip",
+    "/domain/domain1/ss/disable %%12.Number%% clip clip"
   ],
   "Tests": [
     {
       "Name": "Проверка корректности детектирования ВАТС (одинаковые логины)",
-      "Description" : "В разных доменах есть одинаковые юзеры с разными паролями. В данном тесте делается попытка вызова юзера с одного домена в другом домене.",
+      "Description": "В разных доменах есть одинаковые юзеры с разными паролями. В данном тесте делается попытка вызова юзера с одного домена в другом домене.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC1_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM domain2",
                   "SippType": "uac",
@@ -175,10 +170,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 5,
+              "UserId": 5,
               "Name": "UAC2_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM domain3",
                   "SippType": "uac",
@@ -193,16 +188,16 @@
     },
     {
       "Name": "Проверка корректности детектирования ВАТС (матчинг ВАТС)",
-      "Description" : "Попытка позвонить на юзера с состовным CDPNDOMAIN",
+      "Description": "Попытка позвонить на юзера с состовным CDPNDOMAIN",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC1_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%8.Number%% -set CDPNDOM eltex.faka.%%8.SipDomain%%",
                   "SippType": "uac",
@@ -213,10 +208,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 8,
+              "UserId": 8,
               "Name": "UAS2_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
@@ -231,10 +226,10 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC1_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
@@ -245,10 +240,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS2_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
@@ -263,16 +258,16 @@
     },
     {
       "Name": "Проверка отбоя в случае детектирования нескольких PBX (пересечение pn)",
-      "Description" : "Задаём один и тот же public_name для нескольких доменов и пытаемся позвонить с данных public_name. Вызов пройти не должен",
+      "Description": "Задаём один и тот же public_name для нескольких доменов и пытаемся позвонить с данных public_name. Вызов пройти не должен",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC1_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "register_test/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%8.Number%% -set CDPNDOM %%8.SipDomain%%.duplicate.pn",
                   "SippType": "uac",
@@ -287,56 +282,56 @@
     },
     {
       "Name": "Проверка получения 404 ответа на REGISTER c запрешённым RURI",
-      "Description" : "Отправляем REGISTER с произвольным доменом в RURI, который не должен попадать в список allowed_ruri. Должны получить 404 ответ",
+      "Description": "Отправляем REGISTER с произвольным доменом в RURI, который не должен попадать в список allowed_ruri. Должны получить 404 ответ",
       "TestProcedure": [
         {
           "ManualReg": {
-          "Users":{
-          "11": {
-              "script": "register_test/send_reg_with_foreign_ruri.xml",
-              "additional_options" : "-set FOREIGN_DOM domain1.faka"
+            "Users": {
+              "11": {
+                "script": "register_test/send_reg_with_foreign_ruri.xml",
+                "additional_options": "-set FOREIGN_DOM domain1.faka"
+              }
             }
           }
-        }
         }
       ]
     },
     {
       "Name": "Проверка получения 403 ответа на REGISTER в случае отсутствия искомого интерфейса",
-      "Description" : "Отправляем REGISTER для юзера, которого не существует в домене.",
+      "Description": "Отправляем REGISTER для юзера, которого не существует в домене.",
       "TestProcedure": [
         {
           "ManualReg": {
-          "Users": {
-          "11": {
-              "script": "register_test/failed_registration_with_auth.xml"
+            "Users": {
+              "11": {
+                "script": "register_test/failed_registration_with_auth.xml"
+              }
             }
           }
         }
-      }
       ]
     },
     {
       "Name": "Проверка удачной регистрации, если запрос приходит с public_name",
-      "Description" : "В системе существует юзер 100@pbx, мы же пытаемся зарегать 100@public_name. В случае отсутствия конфликтов (дублированных интерфейсов), юзер должен зарегистрироваться",
+      "Description": "В системе существует юзер 100@pbx, мы же пытаемся зарегать 100@public_name. В случае отсутствия конфликтов (дублированных интерфейсов), юзер должен зарегистрироваться",
       "TestProcedure": [
         {
           "ManualReg": {
-          "Users" : {
-          "12": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "12": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
           }
-        }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 8,
+              "UserId": 8,
               "Name": "UAC1_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%12.Number%% -set CDPNDOM %%8.SipDomain%%",
                   "SippType": "uac",
@@ -347,10 +342,10 @@
             },
             {
               "Type": "User",
-              "UserId" : 12,
+              "UserId": 12,
               "Name": "UAS2_TEST_CALL",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 2000",
                   "SippType": "uas",
@@ -363,9 +358,9 @@
         },
         {
           "DropManualReg": {
-            "Users":  [
-            "12"
-          ]
+            "Users": [
+              "12"
+            ]
           }
         }
       ]

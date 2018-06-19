@@ -3,101 +3,94 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10108,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10109,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% zone_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} clip cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} cnip",
-      "command5" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% zone_page",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% zone_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% zone_page",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} cnip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% zone_page",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% zone_page",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} cnip"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_zone_page_test",
       "Description": "Активируем ZP на юзере. Делаем групповой вызов, проверяем, что выставлены header autoanswer и DisplayName. Дальше ждём отбой после проигрывания всех фраз.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
@@ -111,7 +104,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
@@ -125,7 +118,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
@@ -139,7 +132,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -161,16 +154,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
@@ -184,7 +175,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -198,7 +189,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
@@ -212,7 +203,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -228,16 +219,14 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = false, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = false, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
@@ -251,7 +240,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -265,7 +254,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
@@ -279,7 +268,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -301,16 +290,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
@@ -324,7 +311,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -338,7 +325,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
@@ -352,7 +339,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -370,7 +357,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
@@ -384,7 +371,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -398,7 +385,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
@@ -412,7 +399,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -428,16 +415,14 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = false, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = false, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
@@ -451,7 +436,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -465,7 +450,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
@@ -479,7 +464,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -501,16 +486,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = false"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = false"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
@@ -524,7 +507,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -538,7 +521,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
@@ -552,7 +535,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -574,16 +557,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=members"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=members"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -601,7 +582,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
@@ -615,7 +596,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -629,7 +610,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -651,16 +632,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=managers"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=managers"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -678,7 +657,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
@@ -692,7 +671,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
@@ -706,7 +685,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
@@ -720,7 +699,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {

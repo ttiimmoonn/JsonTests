@@ -3,51 +3,46 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-    "%%DISPLAY_NAME%%" : "Тест CLIR"
+      "%%DISPLAY_NAME%%": "Тест CLIR"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip"
   ],
-
-"Tests": [
+  "Tests": [
     {
       "Name": "Test_without_clir",
       "Description": "Делаем анонимный вызов без активированного clir. DNAME и номер пробрасываются на сторону Б",
@@ -56,7 +51,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -70,7 +65,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "ANONYMOUS_UAC",
               "Commands": [
                 {
@@ -92,17 +87,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = user_defined"
-            }
+            "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = user_defined"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -116,7 +109,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "ANONYMOUS_UAC",
               "Commands": [
                 {
@@ -132,10 +125,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
-              "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
           ]
         }
       ]
@@ -146,17 +137,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = user_defined"
-            }
+            "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = user_defined"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -170,7 +159,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -186,10 +175,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
-              "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
           ]
         }
       ]
@@ -200,17 +187,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = restrict_all"
-            }
+            "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = restrict_all"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -224,7 +209,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -240,10 +225,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
-              "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
           ]
         }
       ]

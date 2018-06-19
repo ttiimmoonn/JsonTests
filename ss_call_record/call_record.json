@@ -1,45 +1,40 @@
 {
   "TestName": "ss_call_record",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} call_recording",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} call_recording mode = always_on"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} call_recording",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} call_recording mode = always_on"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} call_recording",
-      "command2" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} call_recording"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} call_recording",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} call_recording"
   ],
   "Tests": [
     {
@@ -50,8 +45,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -65,8 +60,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {

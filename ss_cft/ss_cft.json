@@ -3,59 +3,55 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cft",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cft",
-      "command4": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cft",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cft",
+    "/domain/%%DEV_DOM%%/alias/set %%0.Number%% sip.ab %%2.Number%%@%%2.SipDomain%% timezone UTC+07:00"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cft",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cft",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cft",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cft"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cft",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cft",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cft",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cft"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_cft_test",
       "Description": "Звоним на абонента с cft и проверяем переадресацию",
@@ -64,7 +60,7 @@
           "ServiceFeature": [
             {
               "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%0.Number%%#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -72,7 +68,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -86,7 +82,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_181",
               "Commands": [
                 {
@@ -104,7 +100,7 @@
           "ServiceFeature": [
             {
               "code": "#28#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -112,7 +108,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -126,7 +122,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -150,11 +146,11 @@
           "ServiceFeature": [
             {
               "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%0.Number%%#",
-              "userId" : 2
+              "userId": 2
             },
             {
               "code": "*28*%%NowWeekDay%%*%%NowTime-120%%%%NowTime+120%%*%%0.Number%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -162,7 +158,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_483_REQ_181",
               "Commands": [
                 {
@@ -187,11 +183,11 @@
           "ServiceFeature": [
             {
               "code": "#28#",
-              "userId" : 2
+              "userId": 2
             },
             {
               "code": "#28#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }

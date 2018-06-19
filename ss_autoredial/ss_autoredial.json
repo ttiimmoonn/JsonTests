@@ -3,71 +3,65 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% auto_redial"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% auto_redial"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% auto_redial",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% auto_redial"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% auto_redial",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% auto_redial"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_autoredial_test (*37)",
       "Description": "Звоним на юзера с помощью autoredial. Первые два раза юзер даёт busy, потом отвечает на вызов.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -88,8 +82,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -105,24 +99,21 @@
         }
       ]
     },
-
     {
       "Name": "autoredial_busy_test (*37)",
       "Description": "Звоним на юзера с помощью autoredial. Делается 3 попытки, на которые UAS даёт busy.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_486",
               "Commands": [
                 {
@@ -136,8 +127,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -153,24 +144,21 @@
         }
       ]
     },
-
     {
       "Name": "drop_autoredial_if_recv_non_486_response (*37)",
       "Description": "Звоним на юзера, тот даёт 480 ответ и получаем отбой на стороне А",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_480",
               "Commands": [
                 {
@@ -184,8 +172,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {
@@ -201,24 +189,21 @@
         }
       ]
     },
-
     {
       "Name": "drop_autoredial_if_user_send_alerting (*37)",
       "Description": "Проверка того, что autoredial прекращается если сторона Б дала alerting и не ответила",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_480",
               "Commands": [
                 {
@@ -232,8 +217,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {
@@ -249,24 +234,21 @@
         }
       ]
     },
-
     {
       "Name": "simple_autoredial_test (*38)",
       "Description": "Звоним на юзера с помощью autoredial. Первые раз юзер даёт 480, второй раз даёт 180 и ждёт CANCEL, а в третий раз отвечает на вызов. (*38)",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -294,8 +276,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {
@@ -311,24 +293,21 @@
         }
       ]
     },
-
     {
       "Name": "autoredial_wait_timeout_test (*38)",
       "Description": "Звоним на юзера с помощью autoredial. На первую попытку даём 480. На все остальные попытки дозвона даём 180 и ждём CANCEL. (*38)",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -349,8 +328,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {
@@ -366,24 +345,21 @@
         }
       ]
     },
-
     {
       "Name": "autoredial_user_unavailable_test (*38)",
       "Description": "Звоним на юзера с помощью autoredial. Делается 3 попытки, на которые UAS даёт 480.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_480",
               "Commands": [
                 {
@@ -397,8 +373,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
@@ -414,24 +390,21 @@
         }
       ]
     },
-
     {
       "Name": "autoredial_noanswer_test (*38)",
       "Description": "Проверка отбоя если по истечению попыток юзер не дал ответ",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-            "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial no_answer_timeout = 4 , recall_count = 3, recall_timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_480",
               "Commands": [
                 {
@@ -445,8 +418,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {

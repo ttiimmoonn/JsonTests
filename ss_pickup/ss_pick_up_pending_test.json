@@ -2,56 +2,51 @@
   "TestName": "ss_pickup",
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "150",
       "Login": "150",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "152",
       "Login": "152",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10112,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10112,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} pickup",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} pickup pickup_groups = [test]",
-      "command3" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% site test_site"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} pickup pickup_groups = [test]",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% site test_site"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} pickup",
-      "command2" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} pickup",
-      "command3" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% site local"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% site local"
   ],
   "Tests": [
     {
@@ -59,10 +54,10 @@
       "Description": "Перехват случайного вызова в любой из Pickup-групп, в которые входит абонент",
       "TestProcedure": [
         {
-          "StartUA" : [
+          "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -76,7 +71,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_491_ON_REINVITE",
               "Commands": [
                 {

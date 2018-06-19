@@ -1,42 +1,35 @@
 {
   "TestName": "rfc3262",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "prack_and_cancel_race_test",
@@ -46,7 +39,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RACE_CANCEL_AND_180_REQ100REL",
               "Commands": [
                 {
@@ -60,7 +53,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_CANCEL",
               "Commands": [
                 {

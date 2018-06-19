@@ -43,12 +43,8 @@
   "UserVar": [
     {}
   ],
-  "PreConf": [
-    {}
-  ],
-  "PostConf": [
-    {}
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "register_foreign_contact",
@@ -124,7 +120,7 @@
             "Users": {
               "3": {
                 "script": "register_test/reg_contact_with_uuid.xml",
-                "need_drop" : true
+                "need_drop": true
               }
             }
           }
@@ -137,9 +133,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% qop-authentication true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% qop-authentication true"
           ]
         },
         {
@@ -147,17 +141,15 @@
             "Users": {
               "3": {
                 "script": "register_test/success_registration_chk_qop.xml",
-                "expires" : 90,
-                "need_drop" : true
+                "expires": 90,
+                "need_drop": true
               }
             }
           }
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% qop-authentication false"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% qop-authentication false"
           ]
         }
       ]
@@ -171,7 +163,7 @@
             "Users": {
               "3": {
                 "script": "register_test/succ_reg_with_retrans.xml",
-                "expires" : 90,
+                "expires": 90,
                 "additional_options": " -nr"
               }
             }

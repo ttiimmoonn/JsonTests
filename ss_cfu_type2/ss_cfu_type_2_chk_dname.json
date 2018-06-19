@@ -3,75 +3,71 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%ALIAS_DNAME%%" : "AliasDNAME_CFU_TYPE2",
-      "%%ROUTE_DNAME%%" : "RouteDNAME_CFU_TYPE2",
-      "%%CFU_TYPE2_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19jZnVfdHlwZTJfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQ0ZVX1RZUEUyIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
+      "%%ALIAS_DNAME%%": "AliasDNAME_CFU_TYPE2",
+      "%%ROUTE_DNAME%%": "RouteDNAME_CFU_TYPE2",
+      "%%CFU_TYPE2_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzc19jZnVfdHlwZTJfdGVzdF9jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPGFjdGlvbnM+DQogICAgICA8Y2FsbGluZyBkaXNwbGF5X25hbWU9IlJvdXRlRE5BTUVfQ0ZVX1RZUEUyIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu_type2",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfu_type2 number = %%0.Number%%",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
-      "command8": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
-      "command9": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
-      "command10": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfu_type2",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfu_type2 number = %%0.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfu_type2",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu_type2",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing",
-      "command10": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
-      "command11": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
-      "command12": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
-      "command13": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfu_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfu_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% clip"
   ],
   "Tests": [
     {
@@ -80,17 +76,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -103,8 +97,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -120,9 +114,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
           ]
         }
       ]
@@ -135,8 +127,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -149,8 +141,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -172,18 +164,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFU_TYPE2_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_cfu_type2_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFU_TYPE2_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_cfu_type2_test_ctx"
           ]
         },
-                {
+        {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -196,8 +186,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -213,10 +203,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete ss_cfu_type2_test_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete ss_cfu_type2_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -227,19 +215,17 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFU_TYPE2_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_cfu_type2_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CFU_TYPE2_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ss_cfu_type2_test_ctx"
           ]
         },
-                {
+        {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -252,8 +238,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -269,11 +255,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete ss_cfu_type2_test_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete ss_cfu_type2_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing"
           ]
         }
       ]

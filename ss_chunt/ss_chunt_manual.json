@@ -1,61 +1,61 @@
 {
   "TestName": "ss_chunt_manual_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10108,
+      "Expires": 90,
+      "Port": 10108,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 1
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -66,30 +66,28 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = manual, cyclic = true, max_shift_count = -1, search_strategy = random, queue_size = 3, window_size = 1, window_start_pos = 0, window_shift_timeout = 0, reset_window_start_pos_after_call = false, window_shift = 1, queue_strategy = wait, numbers = %%ChuntGroup%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = manual, cyclic = true, max_shift_count = -1, search_strategy = random, queue_size = 3, window_size = 1, window_start_pos = 0, window_shift_timeout = 0, reset_window_start_pos_after_call = false, window_shift = 1, queue_strategy = wait, numbers = %%ChuntGroup%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
   ],
   "Tests": [
     {
       "Name": "chunt_manual_with_random_search_strategy",
-      "Ref" : "#97978",
+      "Ref": "#97978",
       "Description": "Проверка chunt manual режима с рандомной стратегией распределения. Делаем N вызовов, где N = количеству номеров, которые подключены к группе. Все вызовы должны рандомно распределиться.",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -102,8 +100,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -116,8 +114,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -130,8 +128,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {

@@ -1,51 +1,46 @@
 {
   "TestName": "update_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10116,
-      "QParam" : 0.5
+      "Port": 10116,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10117,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10117,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-    "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-    "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-    "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
-    "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%%  %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
-      "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/alias/clean %%0.Number%%  %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
+    "/domain/%%DEV_DOM%%/media-profile/remove drop_729",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
   ],
   "Tests": [
     {
@@ -56,7 +51,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -69,7 +64,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SIMPLE_UPDATE_TEST",
               "Commands": [
                 {
@@ -93,7 +88,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE_IN_ERLY_STATE",
               "Commands": [
                 {
@@ -106,7 +101,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -130,7 +125,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE_IN_ANSWER_STATE",
               "Commands": [
                 {
@@ -144,7 +139,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -168,7 +163,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -182,7 +177,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -206,7 +201,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -220,7 +215,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -242,20 +237,18 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/media-profile/declare drop_729 drop_729 system",
-              "command2": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMA * true",
-              "command3": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMU * true",
-              "command4": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio G729 * false",
-              "command5": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile drop_729"
-            }
+            "/domain/%%DEV_DOM%%/media-profile/declare drop_729 drop_729 system",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMA * true",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMU * true",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio G729 * false",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile drop_729"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -269,7 +262,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -285,10 +278,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
-              "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
+            "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
           ]
         }
       ]

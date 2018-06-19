@@ -2,48 +2,44 @@
   "TestName": "rfc3262_oa_model",
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
-  "Trunks" : [
+  "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "rfc3261_oa_trunk",
-      "Port" : 5070,
-      "SipDomain" : "pv.ssw3",
-      "SipGroup" : "test.trunks"
+      "TrunkId": 1,
+      "TrunkName": "rfc3261_oa_trunk",
+      "Port": 5070,
+      "SipDomain": "pv.ssw3",
+      "SipGroup": "test.trunks"
     }
-   ],
+  ],
   "UserVar": [
     {
-      "%%to_trunk_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19yZmMzMjYyX3RydW5rIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0icmZjMzI2MV9vYV90cnVuayIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
-      "%%ctx_name%%" : "to_rfc3262_trunk",
-      "%%manual_user%%" : "sip.ab 113@pv.ssw3"
+      "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19yZmMzMjYyX3RydW5rIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0icmZjMzI2MV9vYV90cnVuayIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
+      "%%ctx_name%%": "to_rfc3262_trunk",
+      "%%manual_user%%": "sip.ab 113@pv.ssw3"
     }
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
-      "command3" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%ctx_name%%",
-      "command4" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context %%ctx_name%%"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%ctx_name%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context %%ctx_name%%"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
-      "command3" : "/domain/%%DEV_DOM%%/routing/delete %%ctx_name%%",
-      "command4" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context default_routing"
-    }
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_name%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context default_routing"
   ],
   "Tests": [
     {
@@ -54,7 +50,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_ASDP_IN_180",
               "Commands": [
                 {
@@ -68,7 +64,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -92,7 +88,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_ASDP_IN_181",
               "Commands": [
                 {
@@ -106,7 +102,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -130,7 +126,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_ASDP_IN_183",
               "Commands": [
                 {
@@ -144,7 +140,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -168,7 +164,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_180_AFTER_183",
               "Commands": [
                 {
@@ -182,7 +178,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -206,7 +202,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_183_AFTER_180",
               "Commands": [
                 {
@@ -220,7 +216,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -244,7 +240,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_181_183_180",
               "Commands": [
                 {
@@ -258,7 +254,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -282,7 +278,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_180_WOUT_SDP",
               "Commands": [
                 {
@@ -296,7 +292,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -320,7 +316,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_1XX_IN_REQ_ORDER",
               "Commands": [
                 {
@@ -334,7 +330,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {

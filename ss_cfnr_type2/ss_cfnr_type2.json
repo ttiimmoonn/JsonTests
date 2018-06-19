@@ -3,57 +3,53 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr_type2",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfnr_type2"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfnr_type2"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr_type2",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfnr_type2"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfnr_type2"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_cfnr_type2_test",
       "Description": "Звоним на абонента с cfnr_type2, не отвечаем и проверяем переадресацию, а также отсутствие 181 ответа",
@@ -62,7 +58,7 @@
           "ServiceFeature": [
             {
               "code": "*42*%%0.Number%%#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -70,7 +66,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -84,7 +80,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -98,7 +94,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -115,8 +111,8 @@
         {
           "ServiceFeature": [
             {
-             "code": "#42#",
-              "userId" : 2
+              "code": "#42#",
+              "userId": 2
             }
           ]
         },
@@ -124,7 +120,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -138,7 +134,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -160,17 +156,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr_type2 number = %%2.Number%%, timeout = 2",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfnr_type2 number = %%0.Number%%, timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr_type2 number = %%2.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfnr_type2 number = %%0.Number%%, timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -184,7 +178,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS2_RECV_CANCEL",
               "Commands": [
                 {
@@ -198,7 +192,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_483",
               "Commands": [
                 {
@@ -214,10 +208,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
-              "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2"
           ]
         }
       ]

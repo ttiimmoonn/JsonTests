@@ -1,42 +1,38 @@
 {
-	"TestName" : "tsmn_test",
-	"Users" : [
-	    {
-	      "UserId" : 0,
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 10100,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-	    {
-	      "UserId" : 1,
-	      "Number": "157",
-	      "Login": "157",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 10106,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    }
-	],
-  "PreConf": [
+  "TestName": "tsmn_test",
+  "Users": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count = 2",
-      "command3" : "/domain/%%DEV_DOM%%/trunk/services/activate sip.tr to_test_machine tsmn_request timeout = 2000, tsmn_trunk = tsmn_trunk"
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count = 2",
+    "/domain/%%DEV_DOM%%/trunk/services/activate sip.tr to_test_machine tsmn_request timeout = 2000, tsmn_trunk = tsmn_trunk"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/trunk/services/deactivate sip.tr to_test_machine tsmn_request"
-    }
+    "/domain/%%DEV_DOM%%/trunk/services/deactivate sip.tr to_test_machine tsmn_request"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "Moved Temporarily test",
       "Description": "Moved Temporarily test",
@@ -45,8 +41,8 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5075,
-              "WriteStat" : true,
+              "Port": 5075,
+              "WriteStat": true,
               "Name": "UAS_SEND_302",
               "Commands": [
                 {
@@ -59,8 +55,8 @@
             },
             {
               "Type": "Trunk",
-              "Port" : 5088,
-              "WriteStat" : true,
+              "Port": 5088,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -73,8 +69,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_RECV_181",
               "Commands": [
                 {

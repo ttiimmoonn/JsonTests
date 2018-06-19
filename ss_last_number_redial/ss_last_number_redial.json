@@ -3,54 +3,50 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% redial"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% redial"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% redial",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% redial"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% redial",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% redial"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_last_number_redial_test",
       "Description": "Активируем услугу last_number_redial. Звоним на один номер, делаем редиал. Звоним на второй номер, делаем редиал. После отключаем redial, звоним *# и получаем отбой.",
@@ -59,7 +55,7 @@
           "ServiceFeature": [
             {
               "code": "*77#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -67,7 +63,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_SIMPLE_REDIAL_TEST",
               "Commands": [
                 {
@@ -81,7 +77,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_SIMPLE_REDIAL_TEST",
               "Commands": [
                 {
@@ -95,7 +91,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SIMPLE_REDIAL_TEST",
               "Commands": [
                 {
@@ -134,7 +130,7 @@
           "ServiceFeature": [
             {
               "code": "#77#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -142,7 +138,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {

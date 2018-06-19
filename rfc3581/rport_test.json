@@ -1,6 +1,6 @@
 {
   "TestName": "rport_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -41,14 +41,8 @@
   "UserVar": [
     {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "call_with_rport",
@@ -114,9 +108,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal true"
           ]
         },
         {
@@ -166,9 +158,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal false"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% nat_traversal false"
           ]
         },
         {

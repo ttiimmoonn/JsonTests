@@ -1,50 +1,50 @@
 {
   "TestName": "forking_req100rel",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10107,
-      "QParam" : 1
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10108,
-      "QParam" : 1
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 1
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -53,14 +53,9 @@
     }
   ],
   "PreConf": [
-    {
-    "command1": "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
-    }
+    "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
   ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "forking_all-contact_req100rel_test",
@@ -68,16 +63,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "WriteStat": true,
               "Name": "UAS0_FORK_REQ100REL",
               "Commands": [
@@ -103,7 +96,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "UAS1_FORK_REQ100REL",
               "Commands": [
@@ -129,7 +122,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "WriteStat": true,
               "Name": "UAS2_FORK_REQ100REL",
               "Commands": [
@@ -155,7 +148,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -172,27 +165,27 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 0,
-              "Mode" : "between_ua",
+              "Difference": 0,
+              "Mode": "between_ua",
               "UA": "user:0,user:1,user:2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
-              "Difference" : 0,
-              "Mode" : "between_ua",
-              "Calls" : "1",
+              "Difference": 0,
+              "Mode": "between_ua",
+              "Calls": "1",
               "UA": "user:0,user:1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -206,16 +199,14 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "WriteStat": true,
               "Name": "UAS0_FORK_REQ100REL",
               "Commands": [
@@ -229,7 +220,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "UAS1_FORK_REQ100REL",
               "Commands": [
@@ -243,7 +234,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "WriteStat": true,
               "Name": "UAS2_FORK_REQ100REL",
               "Commands": [
@@ -257,7 +248,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -274,26 +265,26 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 0,
-              "Mode" : "between_ua",
+              "Difference": 0,
+              "Mode": "between_ua",
               "UA": "user:0,user:1,user:2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
-              "Difference" : 0,
-              "Mode" : "between_ua",
+              "Difference": 0,
+              "Mode": "between_ua",
               "UA": "user:0,user:1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }

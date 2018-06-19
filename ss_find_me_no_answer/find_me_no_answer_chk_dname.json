@@ -1,109 +1,105 @@
 {
   "TestName": "ss_find_me_no_answer_chk_dname",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10108,
+      "Expires": 90,
+      "Port": 10108,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 1
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%TimeTemplate%%" : "1234567 00:00-23:59",
-      "%%SIP_DNAME%%" : "SipDNAME_FIND_ME_NO_ANS",
-      "%%ALIAS_DNAME%%" : "AliasDNAME_FIND_ME_NO_ANS",
-      "%%ROUTE_DNAME%%" : "RouteDNAME_FIND_ME_NO_ANS",
-      "%%ALERTING_NAME%%" : "\"Called user\"",
-      "%%CONNECTED_NAME%%" : "\"Connected user\"",
-      "%%FIND_ME_NO_ANS_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmaW5kX21lX25vX3Jlc3BvbnNlX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0ZJTkRfTUVfTk9fQU5TIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
+      "%%TimeTemplate%%": "1234567 00:00-23:59",
+      "%%SIP_DNAME%%": "SipDNAME_FIND_ME_NO_ANS",
+      "%%ALIAS_DNAME%%": "AliasDNAME_FIND_ME_NO_ANS",
+      "%%ROUTE_DNAME%%": "RouteDNAME_FIND_ME_NO_ANS",
+      "%%ALERTING_NAME%%": "\"Called user\"",
+      "%%CONNECTED_NAME%%": "\"Connected user\"",
+      "%%FIND_ME_NO_ANS_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJmaW5kX21lX25vX3Jlc3BvbnNlX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX0ZJTkRfTUVfTk9fQU5TIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+DQo="
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% find_me_no_response",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% find_me_no_response send_call_diversion = true, timeout = 5",
-      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%4.Number%%}@%%0.SipDomain%% terminal_type smart",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%0.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-      "command9": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
-      "command10": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
-      "command11": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-      "command12": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-      "command13": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALERTING_NAME%%",
-      "command14" : "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CONNECTED_NAME%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% find_me_no_response",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% find_me_no_response send_call_diversion = true, timeout = 5",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%4.Number%%}@%%0.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/find-me-no-response/add-group %%0.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%ALERTING_NAME%%",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CONNECTED_NAME%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% find_me_no_response",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% find_me_no_response",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
-      "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
-      "command10": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
-      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command12": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command13": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
-      "command14": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% find_me_no_response",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% find_me_no_response",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
   ],
   "Tests": [
     {
@@ -114,8 +110,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -128,8 +124,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -142,8 +138,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -156,8 +152,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -170,8 +166,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -193,17 +189,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -216,8 +210,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -230,8 +224,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -244,8 +238,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -258,8 +252,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -275,9 +269,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
           ]
         }
       ]
@@ -290,8 +282,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -304,8 +296,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -318,8 +310,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -332,8 +324,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -346,8 +338,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -369,17 +361,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -392,8 +382,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -406,8 +396,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -420,8 +410,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -434,8 +424,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -451,9 +441,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName"
           ]
         }
       ]
@@ -464,18 +452,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -488,8 +474,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -502,8 +488,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -516,8 +502,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -530,8 +516,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -547,10 +533,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -561,19 +545,17 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -586,8 +568,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -600,8 +582,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -614,8 +596,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -628,8 +610,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -645,11 +627,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -660,18 +640,16 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -684,8 +662,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -698,8 +676,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -712,8 +690,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -726,8 +704,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -743,10 +721,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
           ]
         }
       ]
@@ -757,19 +733,17 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FIND_ME_NO_ANS_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context find_me_no_response_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_FIND_ME_NO_ANSW_RECV_CANVEL_WOUT100REL",
               "Commands": [
                 {
@@ -782,8 +756,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -796,8 +770,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -810,8 +784,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_FIND_ME_NO_ANSW_WOUT100REL",
               "Commands": [
                 {
@@ -824,8 +798,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -841,11 +815,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete find_me_no_response_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing"
           ]
         }
       ]

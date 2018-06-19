@@ -1,75 +1,69 @@
 {
   "TestName": "mlpp_manual_test",
-  "Users" : [
-  ],
-  "Trunks" : [
+  "Users": [],
+  "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "mlpp_trunk_1",
-      "Port" : 5094,
-      "SipDomain" : "pv.ssw4",
-      "SipGroup" : "mlpp_gr"
+      "TrunkId": 1,
+      "TrunkName": "mlpp_trunk_1",
+      "Port": 5094,
+      "SipDomain": "pv.ssw4",
+      "SipGroup": "mlpp_gr"
     },
     {
-      "TrunkId" : 2,
-      "TrunkName" : "mlpp_trunk_2",
-      "Port" : 5095,
-      "SipDomain" : "pv.ssw4",
-      "SipGroup" : "mlpp_gr"
+      "TrunkId": 2,
+      "TrunkName": "mlpp_trunk_2",
+      "Port": 5095,
+      "SipDomain": "pv.ssw4",
+      "SipGroup": "mlpp_gr"
     },
     {
-      "TrunkId" : 3,
-      "TrunkName" : "mlpp_trunk_3",
-      "Port" : 5096,
-      "SipDomain" : "pv.ssw4",
-      "SipGroup" : "mlpp_gr"
+      "TrunkId": 3,
+      "TrunkName": "mlpp_trunk_3",
+      "Port": 5096,
+      "SipDomain": "pv.ssw4",
+      "SipGroup": "mlpp_gr"
     },
     {
-      "TrunkId" : 4,
-      "TrunkName" : "mlpp_trunk_4",
-      "Port" : 5097,
-      "SipDomain" : "pv.ssw4",
-      "SipGroup" : "mlpp_gr"
+      "TrunkId": 4,
+      "TrunkName": "mlpp_trunk_4",
+      "Port": 5097,
+      "SipDomain": "pv.ssw4",
+      "SipGroup": "mlpp_gr"
     }
-   ],
-
+  ],
   "UserVar": [
     {
-      "%%to_trunk_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19tbHBwX3RydW5rcyIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJydWxlMSI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGV4dGVybmFsPg0KICAgICAgICA8dHJ1bmsgdmFsdWU9Im1scHBfdHJ1bmtfMSIgbWF4X2xvYWQ9IjIiLz4NCiAgICAgICAgPHRydW5rIHZhbHVlPSJtbHBwX3RydW5rXzIiIG1heF9sb2FkPSIyIi8+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ibWxwcF90cnVua18zIiBtYXhfbG9hZD0iMiIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
-      "%%trunk_ctx_name%%" : "to_mlpp_trunks"
+      "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19tbHBwX3RydW5rcyIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJydWxlMSI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGV4dGVybmFsPg0KICAgICAgICA8dHJ1bmsgdmFsdWU9Im1scHBfdHJ1bmtfMSIgbWF4X2xvYWQ9IjIiLz4NCiAgICAgICAgPHRydW5rIHZhbHVlPSJtbHBwX3RydW5rXzIiIG1heF9sb2FkPSIyIi8+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ibWxwcF90cnVua18zIiBtYXhfbG9hZD0iMiIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
+      "%%trunk_ctx_name%%": "to_mlpp_trunks"
     }
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
-      "command3" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%",
-      "command4" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.3.Port%% sip-proxy %%EXTER_PORT%%",
-      "command5" : "sleep 10",
-      "command6" : "/domain/%%DEV_DOM%%/routing/show %%trunk_ctx_name%%",
-      "command7" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk_ctx_name%% %%Tr.4.SipGroup%% %%Tr.4.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.4.Port%% sip-proxy %%EXTER_PORT%%"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%SSW_DEF_ROUTE%% %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.3.Port%% sip-proxy %%EXTER_PORT%%",
+    "sleep 10",
+    "/domain/%%DEV_DOM%%/routing/show %%trunk_ctx_name%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk_ctx_name%% %%Tr.4.SipGroup%% %%Tr.4.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.4.Port%% sip-proxy %%EXTER_PORT%%"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
-      "command3" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% --force",
-      "command4" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.4.SipGroup%% %%Tr.4.TrunkName%% --force",
-      "command5" : "/domain/%%DEV_DOM%%/routing/delete %%trunk_ctx_name%%"
-    }
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.4.SipGroup%% %%Tr.4.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/routing/delete %%trunk_ctx_name%%"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "test_example",
       "Description": "Тест",
       "TestProcedure": [
-      {
+        {
           "StartUA": [
             {
-              "Type" : "Trunk",
-              "TrunkId" : 1,
-              "WriteStat" : true,
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
               "Name": "UAS_TRUNK_1",
               "Commands": [
                 {
@@ -81,9 +75,9 @@
               ]
             },
             {
-              "Type" : "Trunk",
-              "TrunkId" : 2,
-              "WriteStat" : true,
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "WriteStat": true,
               "Name": "UAS_TRUNK_2",
               "Commands": [
                 {
@@ -95,9 +89,9 @@
               ]
             },
             {
-              "Type" : "Trunk",
-              "TrunkId" : 3,
-              "WriteStat" : true,
+              "Type": "Trunk",
+              "TrunkId": 3,
+              "WriteStat": true,
               "Name": "UAS_TRUNK_3",
               "Commands": [
                 {
@@ -109,9 +103,9 @@
               ]
             },
             {
-              "Type" : "Trunk",
-              "TrunkId" : 4,
-              "WriteStat" : true,
+              "Type": "Trunk",
+              "TrunkId": 4,
+              "WriteStat": true,
               "Name": "UAC_TRUNK",
               "Commands": [
                 {

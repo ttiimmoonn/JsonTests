@@ -1,47 +1,42 @@
 {
   "TestName": "rfc3261_491_response_test",
-  "AutoTest" : true,
-  "Isolate" : true,
-  "RepeatCounter" : 2,
+  "AutoTest": true,
+  "Isolate": true,
+  "RepeatCounter": 2,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1" :"/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]",
-      "command2" :"/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]"
   ],
   "PostConf": [
-    {
-      "command1" :"/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit clean --force",
-      "command2" :"/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit clean --force"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit clean --force",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit clean --force"
   ],
   "Tests": [
     {
@@ -52,7 +47,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_491",
               "Commands": [
                 {
@@ -80,7 +75,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_491",
               "Commands": [
                 {
@@ -118,7 +113,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_491_AND_SEND_RE_INVITE",
               "Commands": [
                 {
@@ -146,7 +141,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_491_AND_SEND_RE_INVITE",
               "Commands": [
                 {
@@ -184,8 +179,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_491",
               "Commands": [
                 {
@@ -199,8 +194,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_491",
               "Commands": [
                 {

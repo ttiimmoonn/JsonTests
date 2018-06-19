@@ -3,57 +3,53 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5,
+      "Port": 10106,
+      "QParam": 0.5,
       "RegMode": "Manual",
-      "BindPort" : 10106
+      "BindPort": 10106
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 0.5,
+      "Port": 10109,
+      "QParam": 0.5,
       "RegMode": "Manual",
-      "BindPort" : 10109
+      "BindPort": 10109
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10110,
-      "QParam" : 0.5,
+      "Port": 10110,
+      "QParam": 0.5,
       "RegMode": "Manual",
-      "BindPort" : 10110
+      "BindPort": 10110
     }
   ],
   "UserVar": [
     {}
   ],
-  "PreConf": [
-    {}
-  ],
+  "PreConf": [],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-      "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
-      "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
   ],
   "Tests": [
     {
@@ -62,29 +58,27 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users":{
-            "1": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -98,7 +92,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -114,16 +108,15 @@
         },
         {
           "DropManualReg": {
-            "Users" : [
-            "1",
-            "2"]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -134,29 +127,27 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:%%1.Port%%",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:%%1.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users":{
-            "1": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -170,7 +161,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -186,16 +177,15 @@
         },
         {
           "DropManualReg": {
-            "Users" :[
-            "1",
-            "2"]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -206,29 +196,27 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1:%%1.Port%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1:%%1.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -242,7 +230,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -258,16 +246,15 @@
         },
         {
           "DropManualReg": {
-            "Users" : [
-            "1",
-            "2"]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -278,29 +265,27 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -314,7 +299,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -330,17 +315,15 @@
         },
         {
           "DropManualReg": {
-            "Users" : [
-            "1",
-            "2"
-          ]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -351,27 +334,25 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 4.2.4.2:%%1.Port%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 4.2.4.2:%%1.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
+            "Users": {
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -387,9 +368,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -400,27 +379,25 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
+            "Users": {
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -436,9 +413,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -449,27 +424,25 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123-125",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes %%IP%%:123-125",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
+            "Users": {
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -485,9 +458,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -498,31 +469,29 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-%%1.Port%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%:%%2.Port%%-65535",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-%%1.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%:%%2.Port%%-65535",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_wout_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              }
             }
           }
-        }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -536,7 +505,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -552,17 +521,16 @@
         },
         {
           "DropManualReg": {
-            "Users" :[
-            "1",
-            "2"]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -573,31 +541,31 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-125",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/info %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% --complete"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%:123-125",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/info %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% --complete"
           ]
         },
-        {"Sleep" : 5},
+        {
+          "Sleep": 5
+        },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -611,7 +579,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -627,16 +595,15 @@
         },
         {
           "DropManualReg": {
-            "Users" : [
-            "1",
-            "2"]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -647,27 +614,25 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.2.1.2-4.0.3.1",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.2.1.2-4.0.3.1",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
+            "Users": {
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -683,9 +648,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -696,37 +659,35 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%:123-%%2.Port%%",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%:%%3.Port%%-65535",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command5": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%:123-%%2.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1-%%IP%%:%%3.Port%%-65535",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users":{
-            "1": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "3": {
-              "script": "register_test/success_registration_wout_auth.xml",
-              "need_drop": true
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "3": {
+                "script": "register_test/success_registration_wout_auth.xml",
+                "need_drop": true
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -740,7 +701,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -756,19 +717,17 @@
         },
         {
           "DropManualReg": {
-            "Users" : [
-            "1",
-            "2"
-          ]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
-                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -779,29 +738,27 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-3.4.1.3:112-%%1.Port%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1-3.4.1.3:112-%%1.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
             "Users": {
-            "1": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
           }
-        }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -815,7 +772,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -831,17 +788,15 @@
         },
         {
           "DropManualReg": {
-            "Users" :[
-            "1",
-            "2"
-          ]
+            "Users": [
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -852,27 +807,25 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24:%%1.Port%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24:%%1.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
             "Users": {
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -888,9 +841,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -901,37 +852,35 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%/24:%%1.Port%%",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%/32:112-%%2.Port%%",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no %%IP%%/0:%%3.Port%%-65535",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command5": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no %%IP%%/24:%%1.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no %%IP%%/32:112-%%2.Port%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no %%IP%%/0:%%3.Port%%-65535",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users" :{
-            "1": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "3": {
-              "script": "register_test/success_registration_wout_auth.xml",
-              "need_drop": true
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "3": {
+                "script": "register_test/success_registration_wout_auth.xml",
+                "need_drop": true
+              }
             }
           }
-        }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -945,7 +894,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -962,18 +911,16 @@
         {
           "DropManualReg": {
             "Users": [
-            "1",
-            "2"
-          ]
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
-                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -984,29 +931,27 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users":{
-            "1": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -1020,234 +965,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "Name": "UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "register_test/uac_with_auth.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "20s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "DropManualReg": {
-            "Users" : [
-            "1",
-            "2"
-          ]
-          }
-        },
-        {
-          "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "set_multirange_succ_ip_reg",
-      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит ip авторизацию.",
-      "TestProcedure": [
-        {
-          "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24,.%%IP%%, 2.2.2.2-4.4.4.4:133-422",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16, 2.6.2.7-4.4.4.4",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, 1.1.1.1-%%IP%%:123-%%3.Port%%, 4.6.7.3/32",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command5": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
-            }
-          ]
-        },
-        {
-          "ManualReg": {
-            "Users" :{
-            "1": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_wout_auth.xml"
-            },
-            "3": {
-              "script": "register_test/success_registration_wout_auth.xml",
-              "need_drop": true
-            }
-          }
-        }
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "Name": "UAS_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "Name": "UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "register_test/uac_wout_auth.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "20s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "DropManualReg": {
-            "Users" : [
-            "1",
-            "2"
-          ]
-          }
-        },
-        {
-          "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
-                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "set_multirange_fail_ip_reg",
-      "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_tranport. Результат: юзер не проходит авторизацию",
-      "TestProcedure": [
-        {
-          "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= yes 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= yes 1.1.1.1:1234, 1.1.1.1-2.2.2.2:123-%%3.Port%%, 4.6.7.3/32",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command5": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
-            }
-          ]
-        },
-        {
-          "ManualReg": {
-            "Users" : {
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
-            },
-            "2": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
-            },
-            "3": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
-            }
-          }
-        }
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 1,
-              "Name": "UAC_RECV_403",
-              "Commands": [
-                {
-                  "SourceFile": "register_test/uac_recv_403.xml",
-                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "20s"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
-                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "set_multirange_succ_digest_reg",
-      "Description": "Параметры: strict=no; digest=true;trusted-ip=foreign_tranport. Результат: юзер проходит digest аутентификацию",
-      "TestProcedure": [
-        {
-          "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, 1.1.1.1-2.2.2.2:123-%%3.Port%%, 4.6.7.3/32",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command5": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
-            }
-          ]
-        },
-        {
-          "ManualReg": {
-            "Users":{
-            "1": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "3": {
-              "script": "register_test/success_registration_with_auth.xml",
-              "need_drop": true
-            }
-          }
-        }
-        },
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId" : 2,
-              "Name": "UAS_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1",
-                  "SippType": "uas",
-                  "NeedAuth": true,
-                  "Timeout": "20s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -1264,18 +982,231 @@
         {
           "DropManualReg": {
             "Users": [
-            "1",
-            "2"
-          ]
+              "1",
+              "2"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
-                "command3": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "set_multirange_succ_ip_reg",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит ip авторизацию.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24,.%%IP%%, 2.2.2.2-4.4.4.4:133-422",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16, 2.6.2.7-4.4.4.4",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, 1.1.1.1-%%IP%%:123-%%3.Port%%, 4.6.7.3/32",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+          ]
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_wout_auth.xml"
+              },
+              "3": {
+                "script": "register_test/success_registration_wout_auth.xml",
+                "need_drop": true
+              }
             }
+          }
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "register_test/uac_wout_auth.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "DropManualReg": {
+            "Users": [
+              "1",
+              "2"
+            ]
+          }
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "set_multirange_fail_ip_reg",
+      "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_tranport. Результат: юзер не проходит авторизацию",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= yes 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= yes 1.1.1.1:1234, 1.1.1.1-2.2.2.2:123-%%3.Port%%, 4.6.7.3/32",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+          ]
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              },
+              "2": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              },
+              "3": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              }
+            }
+          }
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_RECV_403",
+              "Commands": [
+                {
+                  "SourceFile": "register_test/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "set_multirange_succ_digest_reg",
+      "Description": "Параметры: strict=no; digest=true;trusted-ip=foreign_tranport. Результат: юзер проходит digest аутентификацию",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= no 1.1.1.1/24, %%IP%%:123, 2.2.2.2-4.4.4.4:133-422",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, %%IP%%/16:111, 2.6.2.7-4.4.4.4",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip strict= no 1.1.1.1:1234, 1.1.1.1-2.2.2.2:123-%%3.Port%%, 4.6.7.3/32",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%3.Number%%@%%3.SipDomain%% digest true"
+          ]
+        },
+        {
+          "ManualReg": {
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "3": {
+                "script": "register_test/success_registration_with_auth.xml",
+                "need_drop": true
+              }
+            }
+          }
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "register_test/uac_with_auth.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "DropManualReg": {
+            "Users": [
+              "1",
+              "2"
+            ]
+          }
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -1286,35 +1217,33 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes",
-              "command3": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no",
-              "command4": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
-              "command5": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip strict= no",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
-            "Users":{
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml"
-            },
-            "2": {
-              "script": "register_test/success_registration_with_auth.xml"
-            },
-            "3": {
-              "script": "register_test/success_registration_with_auth.xml"
+            "Users": {
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml"
+              },
+              "2": {
+                "script": "register_test/success_registration_with_auth.xml"
+              },
+              "3": {
+                "script": "register_test/success_registration_with_auth.xml"
+              }
             }
-          }
           }
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -1332,7 +1261,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -1346,7 +1275,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -1362,18 +1291,17 @@
         },
         {
           "DropManualReg": {
-            "Users":[
-            "3",
-            "2",
-            "1"]
+            "Users": [
+              "3",
+              "2",
+              "1"
+            ]
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
-                "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% trusted-ip --force"
           ]
         }
       ]
@@ -1384,44 +1312,38 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip strict= yes 1.1.1.1",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% digest true"
           ]
         },
         {
           "ManualReg": {
             "Users": {
-            "1": {
-              "script": "register_test/failed_registration_with_auth.xml",
-              "need_drop": false
+              "1": {
+                "script": "register_test/failed_registration_with_auth.xml",
+                "need_drop": false
+              }
             }
-          }
           }
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         },
         {
           "ManualReg": {
-            "Users" :{
-            "1": {
-              "script": "register_test/success_registration_with_auth.xml",
-              "need_drop": true
+            "Users": {
+              "1": {
+                "script": "register_test/success_registration_with_auth.xml",
+                "need_drop": true
+              }
             }
-          }
           }
         },
         {
           "SendSSHCommand": [
-            {
-                "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% trusted-ip --force"
           ]
         }
       ]

@@ -1,58 +1,54 @@
 {
-	"TestName" : "ss_cf_sip",
-  "AutoTest" : true,
-	"Users" : [
-	    {
-	      "UserId" : 0,
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 10100,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-	    {
-	      "UserId" : 1,
-	      "Number": "157",
-	      "Login": "157",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 10106,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-      {
-        "UserId" : 2,
-        "Number": "158",
-        "Login": "158",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 10107,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
-	],
-  "PreConf": [
+  "TestName": "ss_cf_sip",
+  "AutoTest": true,
+  "Users": [
     {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cf_sip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cf_sip"
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 10107,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cf_sip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cf_sip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cf_sip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cf_sip"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "succ_cf_sip_redirect",
       "Description": "Звоним на юзера с cf_sip, который делает переадресацию посредством 302 ответа на существующий номер",
@@ -61,8 +57,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_302",
               "Commands": [
                 {
@@ -75,8 +71,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -89,8 +85,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_RECV_181",
               "Commands": [
                 {
@@ -114,8 +110,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_302",
               "Commands": [
                 {
@@ -134,8 +130,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_RECV_404",
               "Commands": [
                 {
@@ -166,8 +162,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_SEND_302",
               "Commands": [
                 {
@@ -180,8 +176,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_SEND_302",
               "Commands": [
                 {
@@ -194,7 +190,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_483_REQ_181",
               "Commands": [
                 {

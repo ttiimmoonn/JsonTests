@@ -1,42 +1,35 @@
 {
   "TestName": "rfc3262_oa_model",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "send_a_sdp_in_180_response",
@@ -46,7 +39,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_ASDP_IN_180",
               "Commands": [
                 {
@@ -60,7 +53,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -84,7 +77,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_ASDP_IN_181",
               "Commands": [
                 {
@@ -98,7 +91,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -122,7 +115,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_ASDP_IN_183",
               "Commands": [
                 {
@@ -136,7 +129,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -160,7 +153,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_180_AFTER_183",
               "Commands": [
                 {
@@ -174,7 +167,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -198,7 +191,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_183_AFTER_180",
               "Commands": [
                 {
@@ -212,7 +205,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -236,7 +229,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_181_183_180",
               "Commands": [
                 {
@@ -250,7 +243,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -274,7 +267,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -288,7 +281,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_INVITE_WOUT_SDP",
               "Commands": [
                 {
@@ -312,7 +305,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_180_WOUT_SDP",
               "Commands": [
                 {
@@ -326,7 +319,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -350,7 +343,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_183_WOUT_SDP",
               "Commands": [
                 {
@@ -364,7 +357,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -388,7 +381,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_SEND_1XX_IN_REQ_ORDER",
               "Commands": [
                 {
@@ -402,7 +395,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {

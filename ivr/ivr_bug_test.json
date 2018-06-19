@@ -1,59 +1,53 @@
 {
-	"TestName" : "ivr_bug_test",
-	"Users" : [
-	    {
-	      "UserId" : 0,
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 20000,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-	    {
-	      "UserId" : 1,
-	      "Number": "157",
-	      "Login": "157",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 20002,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-      {
-        "UserId" : 2,
-        "Number": "158",
-        "Login": "158",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20003,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
-	],
-  "PreConf": [
+  "TestName": "ivr_bug_test",
+  "Users": [
     {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20003,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
   ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "send_ABCD_dtmf",
       "Description": "Падал IVR при отправке ABCD dtmf в блоке ivr",
       "TestProcedure": [
-       {
+        {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_ABCD_DTMF",
               "Commands": [
                 {
@@ -75,18 +69,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
-              "command": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_302",
               "Commands": [
                 {
@@ -99,8 +90,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -113,8 +104,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_RECV_181",
               "Commands": [
                 {
@@ -130,10 +121,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
-              "command": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"
-            }
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"
           ]
         }
       ]

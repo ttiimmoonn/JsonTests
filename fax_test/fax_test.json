@@ -1,96 +1,94 @@
 {
   "TestName": "fax_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 3600,
-      "Port" : 11106,
+      "Expires": 3600,
+      "Port": 11106,
       "SipGroup": "sip.ab",
-      "RtpPort" : "20010",
-      "QParam" : 0.5
+      "RtpPort": "20010",
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 3600,
-      "Port" : 11107,
+      "Expires": 3600,
+      "Port": 11107,
       "SipGroup": "sip.ab",
-      "RtpPort" : "20012",
-      "QParam" : 1
+      "RtpPort": "20012",
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 3600,
-      "Port" : 11108,
-      "RtpPort" : "20014",
+      "Expires": 3600,
+      "Port": 11108,
+      "RtpPort": "20014",
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 3600,
-      "Port" : 11109,
-      "RtpPort" : "20016",
+      "Expires": 3600,
+      "Port": 11109,
+      "RtpPort": "20016",
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
       "%%FAX_NUMBER%%": "A001",
       "%%USER_DOM%%": "%%DEV_DOM%%",
-      "%%FAX_IVR_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"fax_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"fax_2\":{\"name\":\"fax\",\"params\":{\"description\":\"Тестовый факс\",\"email\":\"eltex_tester@mail.ru\",\"subject_message\":\"eltex_tester@mail.ru\",\"body_message\":\"eltex_tester@mail.ru\",\"sender_name\":\"Тестовый ФАКС\",\"fax_id\":\"FROM TEST\",\"pause\":4},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Ok\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Ok\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"to_ivr_fucks\",\"description\":\"\",\"version\":\"3.8.0.139\"}",
-      "%%FAX_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19pdnJfZnVja3MiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9fZnVja3MiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0idG9faXZyX2Z1Y2tzIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
+      "%%FAX_IVR_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"fax_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"fax_2\":{\"name\":\"fax\",\"params\":{\"description\":\"Тестовый факс\",\"email\":\"eltex_tester@mail.ru\",\"subject_message\":\"eltex_tester@mail.ru\",\"body_message\":\"eltex_tester@mail.ru\",\"sender_name\":\"Тестовый ФАКС\",\"fax_id\":\"FROM TEST\",\"pause\":4},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Ok\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Ok\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"to_ivr_fucks\",\"description\":\"\",\"version\":\"3.8.0.139\"}",
+      "%%FAX_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19pdnJfZnVja3MiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9fZnVja3MiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0idG9faXZyX2Z1Y2tzIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/media-profile/declare ivr_fax2email_no_t38 no_t38 system",
-      "command2" : "/domain/%%DEV_DOM%%/media-profile/codecs-add ivr_fax2email_no_t38 image T38 false",
-      "command3" : "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile ivr_fax2email_no_t38",
-      "command4" : "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_fucks --json %%FAX_IVR_SCRIPT%%",
-      "command5" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CONTEXT%%",
-      "command6" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks",
-      "command7" : "/sleep 5"
-    }
+    "/domain/%%DEV_DOM%%/media-profile/declare ivr_fax2email_no_t38 no_t38 system",
+    "/domain/%%DEV_DOM%%/media-profile/codecs-add ivr_fax2email_no_t38 image T38 false",
+    "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile ivr_fax2email_no_t38",
+    "/domain/%%DEV_DOM%%/ivr/script/.import --id to_ivr_fucks --json %%FAX_IVR_SCRIPT%%",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%FAX_ROUTE_CONTEXT%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context to_ivr_fucks",
+    "/sleep 5"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile media-profile",
-      "command2": "/domain/%%DEV_DOM%%/media-profile/remove ivr_fax2email_no_t38",
-      "command3": "/domain/%%DEV_DOM%%/ivr/script/delete --id to_ivr_fucks",
-      "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context default_routing",
-      "command5": "/domain/%%DEV_DOM%%/routing/delete to_ivr_fucks"
-    }
+    "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% media-profile media-profile",
+    "/domain/%%DEV_DOM%%/media-profile/remove ivr_fax2email_no_t38",
+    "/domain/%%DEV_DOM%%/ivr/script/delete --id to_ivr_fucks",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% {%%1.Number%%-%%4.Number%%}@%%1.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete to_ivr_fucks"
   ],
   "Tests": [
     {
       "Name": "test_fax2email_t38",
       "Description": "test_fax2email_t38",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_FAX_T38",
               "Commands": [
                 {
@@ -110,12 +108,14 @@
       "Name": "test_fax2email_g711",
       "Description": "test_fax2email_g711",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAC_FAX_G711",
               "Commands": [
                 {
@@ -135,12 +135,14 @@
       "Name": "test_fax2email_g711_like_SI3000",
       "Description": "test_fax2email_g711_like_SI3000",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_FAX_G711_SI300",
               "Commands": [
                 {
@@ -160,12 +162,14 @@
       "Name": "test_fax2email_g711_like_SI3000_send_bye",
       "Description": "test_fax2email_g711_like_SI3000 Bug: #69061",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_FAX_G711_SI300",
               "Commands": [
                 {
@@ -185,12 +189,14 @@
       "Name": "test_fax2email_g711_like_TAU",
       "Description": "test_fax2email_g711_like_TAU",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC_FAX_G711_TAU",
               "Commands": [
                 {
@@ -210,12 +216,14 @@
       "Name": "test_fax2email_g711_like_TAU_wout_rtpmap",
       "Description": "test_fax2email_g711_like_TAU_wout_rtpmap",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC_FAX_G711_TAU",
               "Commands": [
                 {
@@ -235,13 +243,15 @@
       "Name": "test_send_bye_on_t38_re_invite",
       "Description": "Если со стороны клиента сделать гонку BYE реквеста и RE-INVITE на T38, то MSR упадёт",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RACE_BYE_AND_RE_INV",
               "Commands": [
                 {
@@ -261,13 +271,15 @@
       "Name": "test_t38_send_re_invite",
       "Description": "Проверка, что факс будет принят если юзер отправил re-invite после передачи факса.",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_T38_SEND_RE_INVITE",
               "Commands": [
                 {
@@ -287,13 +299,15 @@
       "Name": "fax_pending_test",
       "Description": "Тестирование обработки встречных реквестов при переходе на t38",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_T38_SEND_RE_INVITE_PENDING",
               "Commands": [
                 {
@@ -313,13 +327,15 @@
       "Name": "fax_send_bye_after_sending_pps",
       "Description": "Тестирование частичного приёма факса. Отправка BYE после отправки сигнала PPS",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_T38_SEND_BYE_AFTER_PPS",
               "Commands": [
                 {
@@ -339,13 +355,15 @@
       "Name": "fax_abort_t38_after_sending_pps",
       "Description": "Тестирование частичного приёма факса. Остановка t38 трафика после отправки PPS",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_T38_STOP_T38_AFTER_PPS",
               "Commands": [
                 {
@@ -365,13 +383,15 @@
       "Name": "fax_send_multi_page",
       "Description": "Тестирование передачи двух страниц.",
       "TestProcedure": [
-        {"Sleep" : 10},
+        {
+          "Sleep": 10
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_T38_SEND_MULTI_PAGE",
               "Commands": [
                 {

@@ -1,67 +1,61 @@
 {
-  "TestName" : "ivr_set_and_condition_blocks_test",
-  "AutoTest" : true,
-  "Users" : [
-      {
-        "UserId" : 0,
-        "Number": "156",
-        "Login": "156",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20000,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 1,
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20002,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
+  "TestName": "ivr_set_and_condition_blocks_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
   ],
   "UserVar": [
     {
-      "%%IVR_SET_AND_CONDITION_ACCEPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"set_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":4},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":670},{\"cx\":810,\"cy\":725},{\"cx\":810,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":5}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":670},{\"cx\":720,\"cy\":725},{\"cx\":630,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":5}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=123\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"No\":\"undefined\",\"Yes\":\"condition_27\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST\"},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Yes\":\"dial_25\",\"No\":\"undefined\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"set_28\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_set_and_condition_blocks_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_SET_AND_CONDITION_REJECT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"set_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":4},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":450,\"cy\":670},{\"cx\":450,\"cy\":725},{\"cx\":450,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":5}},\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":670},{\"cx\":360,\"cy\":725},{\"cx\":270,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":5}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=1234\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"No\":\"condition_27\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST1\"},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"No\":\"dial_25\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"set_28\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_set_and_condition_blocks_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfc2V0X2FuZF9jb25kaXRpb25fYmxvY2tzX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9zZXRfYW5kX2NvbmRpdGlvbl9ibG9ja3NfdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
+      "%%IVR_SET_AND_CONDITION_ACCEPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"set_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":4},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":670},{\"cx\":810,\"cy\":725},{\"cx\":810,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":5}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":670},{\"cx\":720,\"cy\":725},{\"cx\":630,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":5}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=123\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"No\":\"undefined\",\"Yes\":\"condition_27\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST\"},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Yes\":\"dial_25\",\"No\":\"undefined\"},\"links\":{\"Yes\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2},\"No\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":720,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"set_28\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_set_and_condition_blocks_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_SET_AND_CONDITION_REJECT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"set_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":2,\"y\":4},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":450,\"cy\":670},{\"cx\":450,\"cy\":725},{\"cx\":450,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":5}},\"Busy/No answer\":{\"points\":[{\"cx\":450,\"cy\":670},{\"cx\":360,\"cy\":725},{\"cx\":270,\"cy\":780}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":5}}}},\"condition_26\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%EXTENSION%=1234\"},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"No\":\"condition_27\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}},\"condition_27\":{\"name\":\"condition\",\"params\":{\"description\":\"\",\"condition\":\"%TEST%=SET_TEST1\"},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"No\":\"dial_25\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"set_28\":{\"name\":\"set\",\"params\":{\"description\":\"\",\"variables\":[{\"key\":\"EXTENSION\",\"value\":\"123\"},{\"key\":\"TEST\",\"value\":\"SET_TEST\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"condition_26\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_set_and_condition_blocks_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfc2V0X2FuZF9jb25kaXRpb25fYmxvY2tzX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9zZXRfYW5kX2NvbmRpdGlvbl9ibG9ja3NfdGVzdCIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+"
     }
   ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_set_and_condition_blocks_test"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_set_and_condition_blocks_test"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/routing/delete ivr_set_and_condition_blocks_test"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete ivr_set_and_condition_blocks_test"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "ivr_set_and_condition_blocks_test_accept",
       "Description": "Проверка прохождения вызова по ветке yes блока condition",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_set_and_condition_blocks_test --json %%IVR_SET_AND_CONDITION_ACCEPT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_set_and_condition_blocks_test --json %%IVR_SET_AND_CONDITION_ACCEPT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -75,8 +69,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -92,9 +86,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_set_and_condition_blocks_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_set_and_condition_blocks_test"
           ]
         }
       ]
@@ -105,17 +97,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_set_and_condition_blocks_test --json %%IVR_SET_AND_CONDITION_REJECT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_set_and_condition_blocks_test --json %%IVR_SET_AND_CONDITION_REJECT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -129,8 +119,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -146,9 +136,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_set_and_condition_blocks_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_set_and_condition_blocks_test"
           ]
         }
       ]

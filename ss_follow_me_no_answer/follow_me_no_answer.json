@@ -1,50 +1,50 @@
 {
   "TestName": "follow_me_no_answer",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10108,
+      "Expires": 90,
+      "Port": 10108,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 1
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -55,16 +55,12 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
-      "command3": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response"
-    }
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response"
   ],
   "Tests": [
     {
@@ -75,7 +71,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -83,7 +79,7 @@
           "ServiceFeature": [
             {
               "code": "*%%CountCode%%*1#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -91,7 +87,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -99,7 +95,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_FM_WOUT100REL",
               "Commands": [
                 {
@@ -113,7 +109,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_FM_WOUT100REL",
               "Commands": [
                 {
@@ -127,7 +123,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_FM_WOUT100REL",
               "Commands": [
                 {
@@ -145,7 +141,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -153,7 +149,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -161,7 +157,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_FM_WOUT100REL_DISABLE",
               "Commands": [
                 {
@@ -175,7 +171,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_FM_WOUT100REL_DISABLE",
               "Commands": [
                 {
@@ -199,7 +195,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -207,7 +203,7 @@
           "ServiceFeature": [
             {
               "code": "*%%CountCode%%*1#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -215,7 +211,7 @@
           "ServiceFeature": [
             {
               "code": "*%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -223,7 +219,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_FM_WITH_100REL",
               "Commands": [
                 {
@@ -237,7 +233,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_FM_WITH_100REL",
               "Commands": [
                 {
@@ -251,7 +247,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_FM_WITH_100REL",
               "Commands": [
                 {
@@ -269,7 +265,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%*%%UserPin%%*%%1.Number%%#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -277,7 +273,7 @@
           "ServiceFeature": [
             {
               "code": "#%%FollowMeFCode%%#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -285,7 +281,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_FM_WITH_100REL_DISABLE",
               "Commands": [
                 {
@@ -299,7 +295,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_FM_WITH_100REL_DISABLE",
               "Commands": [
                 {

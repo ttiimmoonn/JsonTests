@@ -1,56 +1,49 @@
 {
-	"TestName" : "test_420_response",
-  "AutoTest" : true,
-	"Users" : [
-	    {
-	      "UserId" : 0,
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 10100,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-	    {
-	      "UserId" : 1,
-	      "Number": "157",
-	      "Login": "157",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires" : 90,
-	      "Port" : 10106,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    }
-	],
-  "PreConf": [
+  "TestName": "test_420_response",
+  "AutoTest": true,
+  "Users": [
     {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
   ],
+  "PreConf": [],
   "PostConf": [
-    {
-	  "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel false"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel false"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "unsupport_req100rel",
       "Description": "Проверка 420 ответа с unsupport_req100rel",
       "TestProcedure": [
-      	{
+        {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS1_UNSUP_420",
               "Commands": [
                 {
@@ -63,8 +56,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_UNSUP_420",
               "Commands": [
                 {
@@ -84,19 +77,17 @@
       "Name": "unsupport_req100rel_send_cancel",
       "Description": "Проверка 420 ответа с unsupport_req100rel при отмене вызова со стороны А. Bug #65347",
       "TestProcedure": [
-      	{
+        {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_UNSUP_420_RECV_CANCEL",
               "Commands": [
                 {
@@ -109,8 +100,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_UNSUP_420_SEND_CANCEL",
               "Commands": [
                 {

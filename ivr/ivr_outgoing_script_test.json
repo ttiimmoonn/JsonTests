@@ -1,64 +1,56 @@
 {
-	"TestName" : "ivr_outgoing_script_test",
-	"AutoTest" : true,
-	"Users" : [
-      {
-        "UserId" : 0,
-        "Number": "156",
-        "Login": "156",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20000,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 1,
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires" : 90,
-        "Port" : 20002,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
+  "TestName": "ivr_outgoing_script_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
   ],
   "UserVar": [
     {
-      "%%IVR_SIMPLE_OUTGOING_SCRIPT%%" : "{\"actions\":{\"outgoing-call_1\":{\"name\":\"outgoing-call\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"connect_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"connect_2\":{\"name\":\"connect\",\"params\":{\"description\":\"\",\"join_type\":\"termination\",\"greeting\":[{\"type\":\"file\",\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"variable_type\":\"\"}],\"fone\":[{\"name\":\"ai_remote_hold.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Busy/No answer\":\"undefined\",\"Ok\":\"connect_3\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":900,\"cy\":275},{\"cx\":990,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"connect_3\":{\"name\":\"connect\",\"params\":{\"description\":\"\",\"join_type\":\"origination\",\"greeting\":[{\"name\":\"ai_agent_auxwork.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}],\"fone\":[{\"name\":\"ai_agent_number_occupied.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\",\"Ok\":\"talk_5\"},\"links\":{\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"talk_5\":{\"name\":\"talk\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":2,\"y\":3},\"cases\":{},\"links\":{}}},\"name\":\"ivr_outgoing_script_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_OUTGOING_SCRIPT_WITH_NEXT%%" : "{\"actions\":{\"outgoing-call_1\":{\"name\":\"outgoing-call\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"connect_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"connect_2\":{\"name\":\"connect\",\"params\":{\"description\":\"\",\"join_type\":\"termination\",\"greeting\":[{\"type\":\"file\",\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"variable_type\":\"\"}],\"fone\":[{\"name\":\"ai_remote_hold.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"next_6\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":900,\"cy\":275},{\"cx\":990,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":2}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"next_6\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"outgoing_next_script\"},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}}},\"name\":\"ivr_outgoing_script_test_next\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%NEXT_SCRIPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"dial_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_30\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"outgoing_next_script\",\"description\":\"outgoing_next_script\",\"version\":\"3.9.0.117\"}"
-    }
-   ],
-  "PreConf": [
-    {
+      "%%IVR_SIMPLE_OUTGOING_SCRIPT%%": "{\"actions\":{\"outgoing-call_1\":{\"name\":\"outgoing-call\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"connect_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"connect_2\":{\"name\":\"connect\",\"params\":{\"description\":\"\",\"join_type\":\"termination\",\"greeting\":[{\"type\":\"file\",\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"variable_type\":\"\"}],\"fone\":[{\"name\":\"ai_remote_hold.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Busy/No answer\":\"undefined\",\"Ok\":\"connect_3\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":900,\"cy\":275},{\"cx\":990,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"connect_3\":{\"name\":\"connect\",\"params\":{\"description\":\"\",\"join_type\":\"origination\",\"greeting\":[{\"name\":\"ai_agent_auxwork.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}],\"fone\":[{\"name\":\"ai_agent_number_occupied.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}]},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\",\"Ok\":\"talk_5\"},\"links\":{\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}},\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Ok\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2}}},\"talk_5\":{\"name\":\"talk\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":2,\"y\":3},\"cases\":{},\"links\":{}}},\"name\":\"ivr_outgoing_script_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_OUTGOING_SCRIPT_WITH_NEXT%%": "{\"actions\":{\"outgoing-call_1\":{\"name\":\"outgoing-call\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"connect_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"connect_2\":{\"name\":\"connect\",\"params\":{\"description\":\"\",\"join_type\":\"termination\",\"greeting\":[{\"type\":\"file\",\"location\":\"system\",\"group\":\"\",\"name\":\"ai_activated.wav\",\"variable_type\":\"\"}],\"fone\":[{\"name\":\"ai_remote_hold.wav\",\"variable_type\":\"\",\"type\":\"file\",\"location\":\"system\",\"group\":\"\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\",\"Ok\":\"next_6\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":900,\"cy\":275},{\"cx\":990,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":2}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Ok\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2}}},\"next_6\":{\"name\":\"next\",\"params\":{\"description\":\"\",\"script\":\"outgoing_next_script\"},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Error\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}}}}},\"name\":\"ivr_outgoing_script_test_next\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%NEXT_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_29\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"play_29\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"dial_30\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_30\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"outgoing_next_script\",\"description\":\"outgoing_next_script\",\"version\":\"3.9.0.117\"}"
     }
   ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "ivr_outgoing_script_simple_test",
       "Description": "Тестируем соединение двух абонентов посредством outgoing script",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-              {
-                "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_outgoing_script_test --json %%IVR_SIMPLE_OUTGOING_SCRIPT%%"
-              }
-            ]
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_outgoing_script_test --json %%IVR_SIMPLE_OUTGOING_SCRIPT%%"
+          ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "BackGround" : true,
-              "WriteStat" : true,
+              "UserId": 0,
+              "BackGround": true,
+              "WriteStat": true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -72,9 +64,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "BackGround" : true,
-              "WriteStat" : true,
+              "UserId": 1,
+              "BackGround": true,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -90,20 +82,16 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/custom_cb/.do %%1.Number%% %%0.Number%% --id ivr_outgoing_script_test"
-            }
+            "/domain/%%DEV_DOM%%/custom_cb/.do %%1.Number%% %%0.Number%% --id ivr_outgoing_script_test"
           ]
         },
         {
-          "Sleep" : 10
+          "Sleep": 10
         },
         {
           "SendSSHCommand": [
-              {
-                "command0": "domain/%%DEV_DOM%%/ivr/script/delete --id ivr_outgoing_script_test"
-              }
-            ]
+            "domain/%%DEV_DOM%%/ivr/script/delete --id ivr_outgoing_script_test"
+          ]
         }
       ]
     },
@@ -113,19 +101,17 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-              {
-                "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_outgoing_script_test_next --json %%IVR_OUTGOING_SCRIPT_WITH_NEXT%%",
-                "command1": "/domain/%%DEV_DOM%%/ivr/script/.import --id outgoing_next_script --json %%NEXT_SCRIPT%%"
-              }
-            ]
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_outgoing_script_test_next --json %%IVR_OUTGOING_SCRIPT_WITH_NEXT%%",
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id outgoing_next_script --json %%NEXT_SCRIPT%%"
+          ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "BackGround" : true,
-              "WriteStat" : true,
+              "UserId": 0,
+              "BackGround": true,
+              "WriteStat": true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -139,9 +125,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "BackGround" : true,
-              "WriteStat" : true,
+              "UserId": 1,
+              "BackGround": true,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -157,21 +143,17 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/custom_cb/.do %%0.Number%% %%0.Number%% --id ivr_outgoing_script_test_next"
-            }
+            "/domain/%%DEV_DOM%%/custom_cb/.do %%0.Number%% %%0.Number%% --id ivr_outgoing_script_test_next"
           ]
         },
         {
-          "Sleep" : 10
+          "Sleep": 10
         },
         {
           "SendSSHCommand": [
-              {
-                "command0": "domain/%%DEV_DOM%%/ivr/script/delete --id ivr_outgoing_script_test_next",
-                "command1": "domain/%%DEV_DOM%%/ivr/script/delete --id outgoing_next_script"
-              }
-            ]
+            "domain/%%DEV_DOM%%/ivr/script/delete --id ivr_outgoing_script_test_next",
+            "domain/%%DEV_DOM%%/ivr/script/delete --id outgoing_next_script"
+          ]
         }
       ]
     }

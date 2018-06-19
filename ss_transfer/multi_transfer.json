@@ -1,63 +1,59 @@
 {
   "TestName": "multi_transfer_test",
-  "RepeatCounter" : 2,
-  "AutoTest" : true,
+  "RepeatCounter": 2,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 11000,
-      "QParam" : 0.5
+      "Port": 11000,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 11001,
-      "QParam" : 1
+      "Port": 11001,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 11002,
-      "QParam" : 1
+      "Port": 11002,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
-      "command4" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
-      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
-      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
-      "command3" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
-      "command4" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip"
   ],
   "Tests": [
     {
@@ -68,7 +64,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS1_UN_TRANS",
               "Commands": [
                 {
@@ -95,7 +91,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS2_UN_TRANS",
               "Commands": [
                 {
@@ -123,7 +119,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -147,7 +143,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS1_UN_TRANS_REQ100REL",
               "Commands": [
                 {
@@ -174,7 +170,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS2_UN_TRANS_REQ100REL",
               "Commands": [
                 {
@@ -202,7 +198,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -226,7 +222,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS1_AT_TRANS",
               "Commands": [
                 {
@@ -253,7 +249,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS2_AT_TRANS",
               "Commands": [
                 {
@@ -281,7 +277,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -305,8 +301,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_AT_TRANS_REQ100REL",
               "Commands": [
                 {
@@ -333,8 +329,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS2_AT_TRANS_REQ100REL",
               "Commands": [
                 {
@@ -362,8 +358,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -387,8 +383,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_TRANS_BEFORE_ANSWER",
               "Commands": [
                 {
@@ -415,8 +411,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_TRANS_BEFORE_ANSWER",
               "Commands": [
                 {
@@ -444,7 +440,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -468,8 +464,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS0_TRANS_BEFORE_ANSWER_REQ100REL",
               "Commands": [
                 {
@@ -496,8 +492,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_TRANS_BEFORE_ANSWER_REQ100REL",
               "Commands": [
                 {
@@ -525,7 +521,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
