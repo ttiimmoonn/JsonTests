@@ -44,7 +44,7 @@
   "Tests": [
     {
       "Name": "send_message_simple_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u0438 \u043f\u0440\u0438\u0451\u043c\u0430 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f.",
+      "Description": "Проверка отправки и приёма сообщения.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -82,7 +82,7 @@
     },
     {
       "Name": "send_message_to_unknown_user",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 404 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 MESSAGE, \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u0435\u0441\u043b\u0438 \u044e\u0437\u0435\u0440 \u043d\u0435 \u0438\u0437\u0432\u0435\u0441\u0442\u0435\u043d",
+      "Description": "Проверка получения 404 ответа на MESSAGE, в случае если юзер не известен",
       "TestProcedure": [
         {
           "StartUA": [
@@ -106,7 +106,7 @@
     },
     {
       "Name": "send_message_to_disabled_user",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 480 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 MESSAGE, \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u0435\u0441\u043b\u0438 \u044e\u0437\u0435\u0440 \u043d\u0435\u0430\u043a\u0442\u0438\u0432\u0435\u043d",
+      "Description": "Проверка получения 480 ответа на MESSAGE, в случае если юзер неактивен",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -140,7 +140,7 @@
     },
     {
       "Name": "send_message_with_unknown_content_type",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 415 \u043e\u0442\u0432\u0435\u0442\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 MESSAGE c \u043d\u0435\u043f\u043e\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u043c\u044b\u043c content-type.",
+      "Description": "Проверка получения 415 ответа в случае отправки MESSAGE c неподдерживаемым content-type.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -171,7 +171,7 @@
     },
     {
       "Name": "test_retrans_401_on_subscribe",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043f\u043e\u0432\u0442\u043e\u0440 401 \u043e\u0442\u0432\u0435\u0442\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0441\u044b\u043b\u043e\u043a MESSAGE",
+      "Description": "Проверяем повтор 401 ответа в случае перепосылок MESSAGE",
       "TestProcedure": [
         {
           "StartUA": [

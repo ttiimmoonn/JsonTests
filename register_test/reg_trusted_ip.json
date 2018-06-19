@@ -54,7 +54,7 @@
   "Tests": [
     {
       "Name": "set_only_ip_succ_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_ip. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -123,7 +123,7 @@
     },
     {
       "Name": "set_ip_and_port_succ_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -192,7 +192,7 @@
     },
     {
       "Name": "set_foreign_ip_succ_digest_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e.",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -261,7 +261,7 @@
     },
     {
       "Name": "set_foreign_port_succ_digest_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e.",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -330,7 +330,7 @@
     },
     {
       "Name": "set_foreign_ip_fail_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=yes; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043d\u0435 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip.",
+      "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_ip, trusted-port=local_port. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -375,7 +375,7 @@
     },
     {
       "Name": "set_foreign_port_fail_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043d\u0435 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip.",
+      "Description": "Параметры: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -420,7 +420,7 @@
     },
     {
       "Name": "set_foreign_port_range_fail_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043d\u0435 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip.",
+      "Description": "Параметры: strict=yes; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -465,7 +465,7 @@
     },
     {
       "Name": "set_port_range_succ_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -537,7 +537,7 @@
     },
     {
       "Name": "set_foreign_port_range_succ_digest_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e.",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip, trusted-port=foreign_port_range. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -610,7 +610,7 @@
     },
     {
       "Name": "set_foreign_ip_range_fail_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=yes; digest=true; trusted-ip=foreign_ip_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043d\u0435 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip.",
+      "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_ip_range. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -655,7 +655,7 @@
     },
     {
       "Name": "set_ip_range_succ_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -734,7 +734,7 @@
     },
     {
       "Name": "set_foreign_ip_range_succ_digest_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=foreign_ip_range, trusted-port=local_port_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e.",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=foreign_ip_range, trusted-port=local_port_range. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -803,7 +803,7 @@
     },
     {
       "Name": "set_foreign_ip_with_mask_fail_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=yes; digest=true; trusted-ip=foreign_network, trusted-port=local_port. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043d\u0435 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip.",
+      "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_network, trusted-port=local_port. Результат: юзер не проходит аутентификацию по ip.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -848,7 +848,7 @@
     },
     {
       "Name": "set_ip_range_with_mask_succ_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_network, trusted-port=local_port_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e ip",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_network, trusted-port=local_port_range. Результат: юзер проходит аутентификацию по ip",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -927,7 +927,7 @@
     },
     {
       "Name": "set_foreign_ip_range_with_mask_succ_digest_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=foreign_network. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e.",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=foreign_network. Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -996,7 +996,7 @@
     },
     {
       "Name": "set_multirange_succ_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 ip \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044e.",
+      "Description": "Параметры: strict=no; digest=true; trusted-ip=local_ip_range, trusted-port=local_port_range. Результат: юзер проходит ip авторизацию.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -1075,7 +1075,7 @@
     },
     {
       "Name": "set_multirange_fail_ip_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=yes; digest=true; trusted-ip=foreign_tranport. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043d\u0435 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044e",
+      "Description": "Параметры: strict=yes; digest=true; trusted-ip=foreign_tranport. Результат: юзер не проходит авторизацию",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -1134,7 +1134,7 @@
     },
     {
       "Name": "set_multirange_succ_digest_reg",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true;trusted-ip=foreign_tranport. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e",
+      "Description": "Параметры: strict=no; digest=true;trusted-ip=foreign_tranport. Результат: юзер проходит digest аутентификацию",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -1213,7 +1213,7 @@
     },
     {
       "Name": "no_trusted_ip_only_strict",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=yes/no; digest=true; \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest \u0430\u0443\u0442\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e.",
+      "Description": "Параметры: strict=yes/no; digest=true; Результат: юзер проходит digest аутентификацию.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -1308,7 +1308,7 @@
     },
     {
       "Name": "test_clean_trusted_ip",
-      "Description": "\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b: strict=no; digest=true trusted-ip=foreign_ip; \u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c trusted-ip \u0432 foreign_ip, \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f, \u0434\u0435\u043b\u0430\u0435\u043c clean trusted-ip, \u044e\u0437\u0435\u0440 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442 digest",
+      "Description": "Параметры: strict=no; digest=true trusted-ip=foreign_ip; Устанавливаем trusted-ip в foreign_ip, регистрация отбивается, делаем clean trusted-ip, юзер проходит digest",
       "TestProcedure": [
         {
           "SendSSHCommand": [

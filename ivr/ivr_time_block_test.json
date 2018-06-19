@@ -46,7 +46,7 @@
   "Tests": [
     {
       "Name": "ivr_time_block_acept_time_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 yes \u0431\u043b\u043e\u043a\u0430 Time.",
+      "Description": "Проверка похождения вызова по ветке yes блока Time.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -96,7 +96,7 @@
     },
     {
       "Name": "ivr_time_block_reject_time_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no \u0431\u043b\u043e\u043a\u0430 Time \u043f\u0440\u0438 \u043d\u0435\u0441\u043e\u043e\u0442\u0432\u0435\u0441\u0442\u0432\u0438\u0438 \u0432\u0440\u0435\u043c\u0435\u043d\u0438",
+      "Description": "Проверка похождения вызова по ветке no блока Time при несоотвествии времени",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -146,7 +146,7 @@
     },
     {
       "Name": "ivr_time_block_reject_week_day_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no \u0431\u043b\u043e\u043a\u0430 Time \u043f\u0440\u0438 \u043d\u0435\u0441\u043e\u043e\u0442\u0432\u0435\u0441\u0442\u0432\u0438\u0438 \u0434\u043d\u044f \u043d\u0435\u0434\u0435\u043b\u0438",
+      "Description": "Проверка похождения вызова по ветке no блока Time при несоотвествии дня недели",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -196,7 +196,7 @@
     },
     {
       "Name": "ivr_time_block_wrong_gmt_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no \u0431\u043b\u043e\u043a\u0430 Time \u043f\u0440\u0438 \u043d\u0435\u0441\u043e\u043e\u0442\u0432\u0435\u0441\u0442\u0432\u0438\u0438 GMT",
+      "Description": "Проверка похождения вызова по ветке no блока Time при несоотвествии GMT",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -246,7 +246,7 @@
     },
     {
       "Name": "ivr_time_block_gmt_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 yes \u0431\u043b\u043e\u043a\u0430 Time \u0432 \u0447\u0443\u0436\u043e\u043c GMT",
+      "Description": "Проверка похождения вызова по ветке yes блока Time в чужом GMT",
       "TestProcedure": [
         {
           "SendSSHCommand": [

@@ -312,7 +312,7 @@
   "Tests": [
     {
       "Name": "memory_leak_test",
-      "Description": "\u0422\u0435\u0441\u0442 \u0443\u0442\u0435\u0447\u0435\u043a",
+      "Description": "Тест утечек",
       "TestProcedure": [
         {
           "StartUA": [

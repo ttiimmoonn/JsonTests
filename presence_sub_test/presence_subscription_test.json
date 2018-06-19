@@ -53,7 +53,7 @@
   "Tests": [
     {
       "Name": "simple_presence_sub_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u0440\u0438 precense \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0435",
+      "Description": "Тестирование нотификации при precense подписке",
       "TestProcedure": [
         {
           "StartUA": [
@@ -101,7 +101,7 @@
     },
     {
       "Name": "subscribe_to_unknown_user",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u043d\u0430 \u043d\u0435\u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0435\u0433\u043e \u044e\u0437\u0435\u0440\u0430",
+      "Description": "Подписка на несуществующего юзера",
       "TestProcedure": [
         {
           "StartUA": [
@@ -127,7 +127,7 @@
     },
     {
       "Name": "subscribe_wout_presence_service",
-      "Description": "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 403 \u043e\u0442\u0432\u0435\u0442\u0430 \u043f\u0440\u0438 \u0434\u0435\u0430\u043a\u0442\u0438\u0432\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u043c \u0441\u0435\u0440\u0432\u0438\u0441\u0435 presence.",
+      "Description": "Получение 403 ответа при деактивированном сервисе presence.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -152,7 +152,7 @@
     },
     {
       "Name": "check_reg_unreg_notification",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u043f\u0440\u0438 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438/\u0440\u0430\u0437\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438 \u044e\u0437\u0435\u0440\u0430",
+      "Description": "Проверка получения нотификаций при регистрации/разрегистрации юзера",
       "TestProcedure": [
         {
           "StartUA": [
@@ -219,7 +219,7 @@
     },
     {
       "Name": "send_481_on_precense_notify_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044f \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u043f\u043e\u0441\u043b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 481 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 NOTIFY",
+      "Description": "Проверка отсутствия нотификаций после отправки 481 ответа на NOTIFY",
       "TestProcedure": [
         {
           "StartUA": [
@@ -270,7 +270,7 @@
     },
     {
       "Name": "test_retrans_401_on_publish",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043f\u043e\u0432\u0442\u043e\u0440 401 \u043e\u0442\u0432\u0435\u0442\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0441\u044b\u043b\u043e\u043a PUBLISH \u0431\u0435\u0437 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
+      "Description": "Проверяем повтор 401 ответа в случае перепосылок PUBLISH без авторизации",
       "TestProcedure": [
         {
           "StartUA": [
@@ -318,7 +318,7 @@
     },
     {
       "Name": "test_retrans_200_on_publish",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043f\u043e\u0432\u0442\u043e\u0440 200 \u043e\u0442\u0432\u0435\u0442\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0441\u044b\u043b\u043e\u043a PUBLISH \u0441 \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u0438",
+      "Description": "Проверяем повтор 200 ответа в случае перепосылок PUBLISH с авторизации",
       "TestProcedure": [
         {
           "StartUA": [

@@ -57,7 +57,7 @@
   "Tests": [
     {
       "Name": "ivr_simple_chat_room_test",
-      "Description": "\u0421\u043e\u0431\u0438\u0440\u0430\u0435\u043c chat_room \u0438\u0437 3 \u044e\u0437\u0435\u0440\u043e\u0432. \u0414\u0432\u043e\u0435 \u043e\u0442\u0431\u0438\u0432\u0430\u044e\u0442\u0441\u044f \u0441\u0430\u043c\u0438, \u0442\u0440\u0435\u0442\u0438\u0439 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u043a\u043e\u043d\u0444\u0435\u0440\u0435\u043d\u0446\u0438\u0435\u0439 \u043f\u043e single_subscriber_conference_timeout",
+      "Description": "Собираем chat_room из 3 юзеров. Двое отбиваются сами, третий отбивается конференцией по single_subscriber_conference_timeout",
       "TestProcedure": [
         {
           "SendSSHCommand": [

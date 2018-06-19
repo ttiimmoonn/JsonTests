@@ -37,7 +37,7 @@
   "Tests": [
     {
       "Name": "ivr_outgoing_script_simple_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435 \u0434\u0432\u0443\u0445 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 \u043f\u043e\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u043e\u043c outgoing script",
+      "Description": "Тестируем соединение двух абонентов посредством outgoing script",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -97,7 +97,7 @@
     },
     {
       "Name": "ivr_outgoing_script_next_block_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u0438 \u0432\u0445 \u0441\u043a\u0440\u0438\u043f\u0442\u0430.",
+      "Description": "Тестируем соединение абонента и вх скрипта.",
       "TestProcedure": [
         {
           "SendSSHCommand": [

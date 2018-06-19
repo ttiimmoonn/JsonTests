@@ -34,7 +34,7 @@
   "Tests": [
     {
       "Name": "ivr_dial_block_loop_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0437\u0430\u0446\u0438\u043a\u043b\u0438\u0432\u0430\u043d\u0438\u0439 \u043f\u043e\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u043e\u043c \u0431\u043b\u043e\u043a\u0430 dial",
+      "Description": "Тестируем детектирование зацикливаний посредством блока dial",
       "TestProcedure": [
         {
           "SendSSHCommand": [

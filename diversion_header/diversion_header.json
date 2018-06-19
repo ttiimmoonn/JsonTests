@@ -38,7 +38,7 @@
   "Tests": [
     {
       "Name": "diversion_header_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u043f\u0446\u0438\u0438 original-cdpn-to",
+      "Description": "Проверка опции original-cdpn-to",
       "TestProcedure": [
         {
           "StartUA": [

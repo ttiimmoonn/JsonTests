@@ -56,7 +56,7 @@
   "Tests": [
     {
       "Name": "test_example",
-      "Description": "\u0422\u0435\u0441\u0442",
+      "Description": "Тест",
       "TestProcedure": [
         {
           "StartUA": [

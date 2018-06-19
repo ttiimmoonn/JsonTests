@@ -18,7 +18,7 @@
   "Tests": [
     {
       "Name": "simple_svet_test",
-      "Description": "\u0421\u0432\u0435\u0442\u0435\u0446-\u042d\u043b\u0442\u0435\u043a\u0441. \u0422\u0435\u0441\u0442\u0438\u0440\u0432\u043e\u0430\u043d\u0438\u0435.",
+      "Description": "Светец-Элтекс. Тестирвоание.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -41,7 +41,7 @@
     },
     {
       "Name": "simple_svet_test",
-      "Description": "\u0421\u0432\u0435\u0442\u0435\u0446-\u042d\u043b\u0442\u0435\u043a\u0441. \u0422\u0435\u0441\u0442\u0438\u0440\u0432\u043e\u0430\u043d\u0438\u0435.",
+      "Description": "Светец-Элтекс. Тестирвоание.",
       "TestProcedure": [
         {
           "StartUA": [

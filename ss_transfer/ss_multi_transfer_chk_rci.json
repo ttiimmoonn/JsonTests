@@ -106,7 +106,7 @@
   "Tests": [
     {
       "Name": "test_rpi_for_several_unattended_transfer",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 address update \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043a\u0430\u0441\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u043d\u0435\u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430.",
+      "Description": "Проверка отправки нескольких address update в случае каскадного несопровождаемого трансфера.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -229,7 +229,7 @@
     },
     {
       "Name": "test_rpi_for_several_attended_transfer",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 address update \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043a\u0430\u0441\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430.",
+      "Description": "Проверка отправки нескольких address update в случае каскадного сопровождаемого трансфера.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -352,7 +352,7 @@
     },
     {
       "Name": "test_rpi_for_several_semi_attended_transfer",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 address update \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043a\u0430\u0441\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u043f\u043e\u043b\u0443\u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430.",
+      "Description": "Проверка отправки нескольких address update в случае каскадного полусопровождаемого трансфера.",
       "TestProcedure": [
         {
           "SendSSHCommand": [

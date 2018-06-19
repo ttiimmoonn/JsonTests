@@ -51,7 +51,7 @@
   "Tests": [
     {
       "Name": "cdr_example",
-      "Description": "\u041f\u0440\u0438\u043c\u0435\u0440 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 CDR",
+      "Description": "Пример проверки CDR",
       "TestProcedure": [
         {
           "StartUA": [

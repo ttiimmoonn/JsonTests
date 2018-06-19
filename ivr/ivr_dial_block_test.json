@@ -65,7 +65,7 @@
   "Tests": [
     {
       "Name": "ivr_dial_block_busy_branch_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u043f\u0435\u0440\u0435\u0445\u043e\u0434 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 busy \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 486 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 \u0432\u044b\u0437\u043e\u0432",
+      "Description": "Тестируем переход по ветке busy в случае получения 486 ответа на вызов",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -130,7 +130,7 @@
     },
     {
       "Name": "ivr_dial_block_no_answer_branch_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u043f\u0435\u0440\u0435\u0445\u043e\u0434 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no_answer \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043d\u0435\u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 \u0432\u044b\u0437\u043e\u0432",
+      "Description": "Тестируем переход по ветке no_answer в случае неответа на вызов",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -211,7 +211,7 @@
     },
     {
       "Name": "ivr_dial_block_error_branch_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u043f\u0435\u0440\u0435\u0445\u043e\u0434 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 error \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 480 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 \u0432\u044b\u0437\u043e\u0432",
+      "Description": "Тестируем переход по ветке error в случае получения 480 ответа на вызов",
       "TestProcedure": [
         {
           "SendSSHCommand": [

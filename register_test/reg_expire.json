@@ -47,7 +47,7 @@
   "Tests": [
     {
       "Name": "reg_expire_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430, \u0447\u0442\u043e \u043f\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044e expires \u0437\u0432\u043e\u043d\u043a\u0438 \u043f\u0435\u0440\u0435\u0441\u0442\u0430\u044e\u0442 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442\u044c.",
+      "Description": "Проверка, что по истечению expires звонки перестают проходить.",
       "TestProcedure": [
         {
           "Sleep": 100
@@ -74,7 +74,7 @@
     },
     {
       "Name": "test_register_expire_min",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u043f\u0446\u0438\u0438 register-expire-min.",
+      "Description": "Тестирование опции register-expire-min.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -101,7 +101,7 @@
     },
     {
       "Name": "test_register_expire_max",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u043f\u0446\u0438\u0438 register-expire-max.",
+      "Description": "Тестирование опции register-expire-max.",
       "TestProcedure": [
         {
           "SendSSHCommand": [

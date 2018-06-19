@@ -61,7 +61,7 @@
   "Tests": [
     {
       "Name": "simple voice_page_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 Alert-Info \u0445\u0435\u0434\u0435\u0440\u0430, \u0430 \u0442\u0430\u043a\u0436\u0435 \u043f\u043e\u0434\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u0432 displayName VoicePage",
+      "Description": "Проверка установки Alert-Info хедера, а также подстановки в displayName VoicePage",
       "TestProcedure": [
         {
           "StartUA": [
@@ -99,7 +99,7 @@
     },
     {
       "Name": "voice_page_accept_incoming_vp_false",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0437\u0430\u043f\u0440\u0435\u0442\u0430 VP \u0432\u044b\u0437\u043e\u0432\u043e\u0432. (accept_incoming_vp = false)",
+      "Description": "Проверка запрета VP вызовов. (accept_incoming_vp = false)",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -133,7 +133,7 @@
     },
     {
       "Name": "voice_page_dnd_test. (block_incoming_vp_by_dnd)",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 block_incoming_vp_by_dnd true/false. \u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c DND \u043d\u0430 \u044e\u0437\u0435\u0440\u0435, \u0441\u0442\u0430\u0432\u0438\u043c block_incoming_vp_by_dnd true, \u0434\u0435\u043b\u0430\u0435\u043c VP \u0432\u044b\u0437\u043e\u0432 - \u0432\u044b\u0437\u043e\u0432 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f. \u0414\u0430\u043b\u0435\u0435 \u0441\u0442\u0430\u0432\u0438\u043c block_incoming_vp_by_dnd=false - VP \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442.",
+      "Description": "Проверка block_incoming_vp_by_dnd true/false. Активируем DND на юзере, ставим block_incoming_vp_by_dnd true, делаем VP вызов - вызов отбивается. Далее ставим block_incoming_vp_by_dnd=false - VP вызов проходит.",
       "TestProcedure": [
         {
           "SendSSHCommand": [

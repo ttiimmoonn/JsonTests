@@ -46,7 +46,7 @@
   "Tests": [
     {
       "Name": "call_with_rport",
-      "Description": "\u041f\u043e\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u043c \u0432 Via: \u043b\u0435\u0432\u044b\u0439 port:ip, \u0430 \u0442\u0430\u043a\u0436\u0435 rport. \u041e\u0442\u0432\u0435\u0442\u044b \u0434\u043e\u043b\u0436\u043d\u044b \u0431\u0443\u0434\u0443\u0442 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442\u044c \u043d\u0430 \u043f\u043e\u0440\u0442 \u0438\u0437 rport \u0438 ip \u0438\u0437 received (\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u043f\u043e\u0440\u0442\u0430 \u043f\u043e\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u0442 \u0441\u0435\u0440\u0432\u0435\u0440).",
+      "Description": "Подставляем в Via: левый port:ip, а также rport. Ответы должны будут приходить на порт из rport и ip из received (значение порта подставляет сервер).",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -104,7 +104,7 @@
     },
     {
       "Name": "call_without_rport_nat_traversal_enabled",
-      "Description": "\u041f\u043e\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u043c \u0432 Via \u043b\u0435\u0432\u044b\u0439 ip:\u043f\u043e\u0440\u0442 \u0438 \u0432\u043a\u043b\u044e\u0447\u0430\u0435\u043c nat_traversal. \u041b\u0451\u0445\u0430 \u0441\u043a\u0430\u0437\u0430\u043b, \u0447\u0442\u043e \u0440\u0435\u0433\u0438 \u0438 \u0437\u0432\u043e\u043d\u043a\u0438 \u0431\u0443\u0434\u0443\u0442 \u0445\u043e\u0434\u0438\u0442\u044c) Bug: #90868",
+      "Description": "Подставляем в Via левый ip:порт и включаем nat_traversal. Лёха сказал, что реги и звонки будут ходить) Bug: #90868",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -175,7 +175,7 @@
     },
     {
       "Name": "call_without_rport",
-      "Description": "\u041f\u043e\u0434\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u043c \u0432 Via \u043b\u0435\u0432\u044b\u0439 \u043f\u043e\u0440\u0442. \u041e\u0442\u0432\u0435\u0442\u044b \u043d\u0435 \u0434\u043e\u043b\u0436\u043d\u044b \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442\u044c",
+      "Description": "Подставляем в Via левый порт. Ответы не должны приходить",
       "TestProcedure": [
         {
           "ManualReg": {

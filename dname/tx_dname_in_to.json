@@ -27,7 +27,7 @@
   ],
   "UserVar": [
     {
-      "%%ALERTING_NAME%%": "\"\u0412\u044b\u0437\u044b\u0432\u0430\u0435\u043c\u044b\u0439 \u0430\u0431\u043e\u043d\u0435\u043d\u0442 Test\""
+      "%%ALERTING_NAME%%": "\"Вызываемый абонент Test\""
     }
   ],
   "PreConf": [
@@ -53,7 +53,7 @@
   "Tests": [
     {
       "Name": "send_to_with_dname",
-      "Description": "\u041f\u0435\u0440\u0435\u0434\u0430\u0451\u043c display_name \u0432 \u043f\u043e\u043b\u0435 To: \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0411 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u0435\u0433\u043e \u043d\u0430\u043b\u0438\u0447\u0438\u0435 \u0432 RPI \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0410.",
+      "Description": "Передаём display_name в поле To: со стороны Б и проверяем его наличие в RPI на стороне А.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -92,7 +92,7 @@
     },
     {
       "Name": "send_to_wout_dname",
-      "Description": "\u041d\u0435 \u043f\u0435\u0440\u0435\u0434\u0430\u0451\u043c display_name \u0432 \u043f\u043e\u043b\u0435 To: \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0411 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432 RPI \u0432\u043c\u0435\u0441\u0442\u043e Dname \u043d\u043e\u043c\u0435\u0440.",
+      "Description": "Не передаём display_name в поле To: со стороны Б и проверяем, что в RPI вместо Dname номер.",
       "TestProcedure": [
         {
           "StartUA": [
