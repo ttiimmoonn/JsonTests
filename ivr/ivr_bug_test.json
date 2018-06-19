@@ -1,54 +1,48 @@
 {
-	"TestName" : "ivr_bug_test",
-	"Users" : [
-	    {
-	      "UserId": 0,
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires": 90,
-	      "Port": 20000,
-	      "SipGroup": "sip.ab",
-	      "QParam": 0.5
-	    },
-	    {
-	      "UserId": 1,
-	      "Number": "157",
-	      "Login": "157",
-	      "Password": "123",
-	      "SipDomain": "pv.ssw3",
-	      "Expires": 90,
-	      "Port": 20002,
-	      "SipGroup": "sip.ab",
-	      "QParam": 0.5
-	    },
-      {
-        "UserId": 2,
-        "Number": "158",
-        "Login": "158",
-        "Password": "123",
-        "SipDomain": "pv.ssw3",
-        "Expires": 90,
-        "Port": 20003,
-        "SipGroup": "sip.ab",
-        "QParam": 0.5
-      }
-	],
-  "PreConf": [
+  "TestName": "ivr_bug_test",
+  "Users": [
     {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "pv.ssw3",
+      "Expires": 90,
+      "Port": 20003,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
   ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "send_ABCD_dtmf",
       "Description": "Падал IVR при отправке ABCD dtmf в блоке ivr",
       "TestProcedure": [
-       {
+        {
           "StartUA": [
             {
               "Type": "User",
@@ -75,10 +69,8 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
-            }
+            "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
           ]
         },
         {
@@ -130,10 +122,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
-              "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"
           ]
         }
       ]

@@ -1,152 +1,145 @@
 {
   "TestName": "ss_zone_page",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
+      "Port": 10105,
       "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
+      "Port": 10106,
       "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10108,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10109,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% zone_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} clip cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} cnip",
-      "command5" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% zone_page",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate  {%%0.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\""
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% zone_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% zone_page",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} cnip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% zone_page",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% zone_page",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} cnip"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_zone_page_test",
       "Description": "Активируем ZP на юзере. Делаем групповой вызов, проверяем, что выставлены header autoanswer и DisplayName. Дальше ждём отбой после проигрывания всех фраз.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 7000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 7000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 7000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -161,65 +154,63 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -228,65 +219,63 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = false, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = false, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 7000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 7000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 7000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -301,65 +290,63 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uac_recv_bye_timeout_err.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -370,56 +357,56 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 7000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uac_recv_bye_timeout_err.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 7000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -428,65 +415,63 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = false, terminate_when_playback_ends = true"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = false, terminate_when_playback_ends = true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_send_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uac_recv_bye_timeout_err.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 7000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -501,65 +486,63 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = false"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = false"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SIMPLE_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 10000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 10000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1 -d 10000",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 11000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -574,23 +557,21 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=members"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=members"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -601,42 +582,42 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -651,23 +632,21 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=managers"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = Simple Test ZONEPAGE, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true, managers = [%%4.Number%%], initiation_policy=managers"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -678,56 +657,56 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_ZP_TEST",
               "Commands": [
                 {
                   "SourceFile": "ss_zone_page/uas_chk_auto_answer_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]

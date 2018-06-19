@@ -1,6 +1,6 @@
 {
   "TestName": "alarm_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 1,
@@ -48,24 +48,19 @@
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% alarm",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% alarm",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% alarm",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% alarm"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% alarm",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% alarm",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% alarm",
+    "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% alarm"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% alarm",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% alarm",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% alarm",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% alarm"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% alarm",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% alarm",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% alarm",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% alarm"
   ],
   "Tests": [
     {
@@ -106,9 +101,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
-            }
+            "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
           ]
         },
         {
@@ -173,9 +166,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
-            }
+            "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
           ]
         }
       ]
@@ -218,9 +209,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
-            }
+            "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
           ]
         },
         {
@@ -285,9 +274,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
-            }
+            "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
           ]
         }
       ]
@@ -330,9 +317,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
-            }
+            "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
           ]
         },
         {
@@ -397,9 +382,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
-            }
+            "/domain/%%DEV_DOM%%/ss/info {%%1.Number%%-%%4.Number%%}"
           ]
         }
       ]

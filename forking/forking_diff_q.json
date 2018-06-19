@@ -1,6 +1,6 @@
 {
   "TestName": "forking_with_diff_q",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -53,14 +53,9 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
-    }
+    "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
   ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "forking find-me-with-q previous-continue",
@@ -68,9 +63,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-continue"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-continue"
           ]
         },
         {
@@ -137,25 +130,25 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": 0,
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -169,9 +162,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop"
           ]
         },
         {
@@ -238,25 +229,25 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -270,9 +261,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-one-by-one previous-continue"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-one-by-one previous-continue"
           ]
         },
         {
@@ -339,25 +328,25 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": 0,
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -371,9 +360,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-one-by-one previous-stop"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-one-by-one previous-stop"
           ]
         },
         {
@@ -440,25 +427,25 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -472,9 +459,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         },
         {
@@ -541,25 +526,25 @@
           "CheckDifference": [
             {
               "Difference": 0,
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": 0,
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -573,9 +558,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop"
           ]
         },
         {
@@ -643,25 +626,25 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -675,10 +658,8 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode find-me-with-q previous-stop",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
           ]
         },
         {
@@ -746,25 +727,25 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }
@@ -778,9 +759,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode disable"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode disable"
           ]
         },
         {
@@ -817,9 +796,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         }
       ]

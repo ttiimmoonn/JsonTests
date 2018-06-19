@@ -1,7 +1,7 @@
 {
   "TestName": "test_message",
-  "AutoTest" : true,
-    "Users": [
+  "AutoTest": true,
+  "Users": [
     {
       "UserId": 1,
       "Number": "157",
@@ -39,14 +39,8 @@
   "UserVar": [
     {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "send_message_simple_test",
@@ -116,9 +110,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive false"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive false"
           ]
         },
         {
@@ -141,9 +133,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive true"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive true"
           ]
         }
       ]

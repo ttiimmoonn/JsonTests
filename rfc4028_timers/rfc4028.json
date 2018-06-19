@@ -1,26 +1,26 @@
 {
   "TestName": "rfc4028_timers",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
       "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
       "QParam": 0.5
     }
@@ -29,22 +29,18 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
-      "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
-      "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
-      "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true",
-      "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-      "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
-      "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force true",
-      "command3": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 3600",
-      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 3600"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force true",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 3600",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 3600"
   ],
   "Tests": [
     {
@@ -55,7 +51,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -68,14 +64,14 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_LIKE_REFRESHER_NO_REF_REQ",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_refresher_mode_no_ref_request.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "100s"
                 }
               ]
@@ -92,7 +88,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -105,14 +101,14 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_LIKE_REFRESHER",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_refresher_mode.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -129,9 +125,9 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
-              "WriteStat" : true,
+              "WriteStat": true,
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -143,15 +139,15 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_422_RESPONSE",
-              "WriteStat" : true,
+              "WriteStat": true,
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -168,7 +164,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_422_RESPONSE",
               "Commands": [
                 {
@@ -181,14 +177,14 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -205,7 +201,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_NO_RESPONSE_TO_REFRESH",
               "Commands": [
                 {
@@ -218,14 +214,14 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -240,10 +236,9 @@
       "TestProcedure": [
         {
           "StartUA": [
-
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_481_TO_REFRESH",
               "Commands": [
                 {
@@ -256,14 +251,14 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -280,7 +275,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -293,15 +288,15 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RFC4028_UPDATE_TEST",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_update_refresh.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -318,7 +313,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -331,15 +326,15 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RFC4028_RE_INV_TEST",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_re_invite_refresh.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -356,7 +351,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -369,15 +364,15 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RFC4028_RECV_422_TEST",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_recv_422.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -392,17 +387,15 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
-              "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
-            }
+            "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -415,15 +408,15 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RFC4028_RECV_422_TEST",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_send_small_se_in_re_invite.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -432,10 +425,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
-              "command2" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+            "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
           ]
         }
       ]
@@ -446,22 +437,20 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-control false",
-              "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-force false",
-              "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
-              "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
-              "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-              "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-control false",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%0.SipDomain%% rfc-4028-force false",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
+            "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+            "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -474,15 +463,15 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_SEND_BYE",
-              "WriteStat" : true,
+              "WriteStat": true,
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 50000",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "200s"
                 }
               ]
@@ -496,45 +485,43 @@
       "Description": "Включаем юзерам обновление сессии по rfc4028. Ловим re-invite от ссв и отправляем ему свой.",
       "TestProcedure": [
         {
-        "SendSSHCommand":[
-            {
-              "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
-              "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force true",
-              "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
-              "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true",
-              "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-              "command6": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
-            }
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true",
+            "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+            "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uas_send_491_on_re_inv.xml",
                   "Options": "-m 1 -nr",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "90s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_491",
               "Commands": [
                 {
                   "SourceFile": "rfc4028_timers/uac_send_491_on_re_inv.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "90s"
                 }
               ]
@@ -542,13 +529,11 @@
           ]
         },
         {
-        "SendSSHCommand":[
-            {
-                "command1" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
-                "command2" : "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
-                "command3" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
-                "command4" : "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true"
-            }
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-force false",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-force true"
           ]
         }
       ]

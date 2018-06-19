@@ -1,6 +1,6 @@
 {
   "TestName": "basic_term_chold_on_dtmf_code",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -37,26 +37,21 @@
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr"
   ],
   "Tests": [
     {
@@ -68,7 +63,7 @@
             {
               "Type": "User",
               "UserId": 0,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_SEND_CHOLD_SEQ_IN_RFC",
               "Commands": [
                 {
@@ -121,7 +116,7 @@
             {
               "Type": "User",
               "UserId": 0,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {
@@ -167,7 +162,7 @@
             {
               "Type": "User",
               "UserId": 0,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {

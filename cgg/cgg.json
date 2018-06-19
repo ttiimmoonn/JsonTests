@@ -1,6 +1,6 @@
 {
   "TestName": "ss_cgg_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -66,16 +66,12 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%CggUser%% cgg",
+    "/domain/%%DEV_DOM%%/ss/activate %%CggUser%% cgg numbers = %%CggGroup%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%CggUser%% cgg",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cgg"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%CggUser%% cgg",
+    "/domain/%%DEV_DOM%%/ss/disable %%CggUser%% cgg"
   ],
   "Tests": [
     {
@@ -87,7 +83,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CGG_WOUT100REL",
               "Commands": [
                 {
@@ -113,7 +109,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CGG_WOUT100REL",
               "Commands": [
                 {
@@ -139,7 +135,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CGG_WOUT100REL",
               "Commands": [
                 {
@@ -165,7 +161,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -190,7 +186,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CGG_WITH100REL",
               "Commands": [
                 {
@@ -216,7 +212,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CGG_WITH100REL",
               "Commands": [
                 {
@@ -242,7 +238,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CGG_WITH100REL",
               "Commands": [
                 {
@@ -268,7 +264,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH_100rel",
               "Commands": [
                 {
@@ -293,7 +289,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_RACE_OF_200_AND_CANCEL",
               "Commands": [
                 {
@@ -307,7 +303,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_RACE_OF_200_AND_CANCEL",
               "Commands": [
                 {
@@ -321,7 +317,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_RACE_OF_200_AND_CANCEL_SEND_BYE",
               "Commands": [
                 {
@@ -335,7 +331,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -360,7 +356,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_RACE_OF_200_AND_CANCEL_REQ100REl",
               "Commands": [
                 {
@@ -374,7 +370,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_RACE_OF_200_AND_CANCEL_REQ100REl",
               "Commands": [
                 {
@@ -388,7 +384,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_RACE_OF_200_AND_CANCEL_REQ100REl_SEND_BYE",
               "Commands": [
                 {
@@ -402,7 +398,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_SEND_BYE_REQ100REl",
               "Commands": [
                 {

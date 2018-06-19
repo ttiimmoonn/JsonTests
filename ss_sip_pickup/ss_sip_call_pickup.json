@@ -1,82 +1,76 @@
 {
   "TestName": "ss_sip_pickup",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
+      "Port": 10105,
       "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
+      "Port": 10106,
       "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} pickup"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} pickup"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} pickup"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} pickup"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_dialog_call_pickup_test",
       "Description": "Тестирование dialog info call pickup",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
-                "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SIP_CALL_PICKUP",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/dialog_info_call_pickup.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -84,47 +78,45 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_SIP_CALL_PICKUP",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             }
-          ]  
+          ]
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
           ]
         }
       ]
@@ -135,26 +127,24 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
-                "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room2/2]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room2/2]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SIP_CALL_PICKUP",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/dialog_info_call_pickup_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -162,47 +152,45 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_SEND_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/uac_send_cancel.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             }
-          ]  
+          ]
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup"
           ]
         }
       ]
@@ -213,30 +201,28 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
-                "command2" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]",
-                "command3" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
-                "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% conference",
-                "command5" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
-                "command6" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% conference"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% pickup pickup_groups = [room1/1]",
+            "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% conference"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SIP_CALL_PICKUP",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/dialog_info_call_pickup.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -aa",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
@@ -244,51 +230,49 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_sip_pickup/uas_recv_cancel.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_SIP_CALL_PICKUP",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "60s"
                 }
               ]
             }
-          ]  
+          ]
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
-              "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
-              "command3" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% conference",
-              "command4" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
-              "command5" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% conference"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} pickup",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
+            "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% conference"
           ]
         }
       ]

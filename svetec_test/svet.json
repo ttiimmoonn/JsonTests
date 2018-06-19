@@ -1,20 +1,12 @@
 {
   "TestName": "svet_test",
-  "Users": [
-  ],
+  "Users": [],
   "UserVar": [
-    {
-    }
+    {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "simple_svet_test",
       "Description": "Светец-Элтекс. Тестирвоание.",
@@ -23,7 +15,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5087,
+              "Port": 5087,
               "Name": "SVET_TEST_RECV_302",
               "Commands": [
                 {
@@ -46,7 +38,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "Port" : 5087,
+              "Port": 5087,
               "Name": "SVET_TEST_RECV_302",
               "Commands": [
                 {

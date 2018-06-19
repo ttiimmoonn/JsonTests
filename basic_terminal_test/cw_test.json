@@ -1,6 +1,6 @@
 {
   "TestName": "basic_term_cw_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -37,26 +37,21 @@
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cw",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cw"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cw",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cw"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cw",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cw"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cw",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cw"
   ],
   "Tests": [
     {
@@ -68,8 +63,8 @@
             {
               "Type": "User",
               "UserId": 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_CW_FLASH_0_TEST",
               "Commands": [
                 {
@@ -84,7 +79,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -99,7 +94,7 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
@@ -120,7 +115,7 @@
           ]
         },
         {
-          "Sleep" : 4
+          "Sleep": 4
         }
       ]
     },
@@ -133,8 +128,8 @@
             {
               "Type": "User",
               "UserId": 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_CW_FLASH_1_TEST",
               "Commands": [
                 {
@@ -149,7 +144,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -164,7 +159,7 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
@@ -195,8 +190,8 @@
             {
               "Type": "User",
               "UserId": 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_CW_FLASH_2_TEST",
               "Commands": [
                 {
@@ -218,7 +213,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -233,7 +228,7 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
@@ -254,7 +249,7 @@
           ]
         },
         {
-          "Sleep" : 4
+          "Sleep": 4
         }
       ]
     }

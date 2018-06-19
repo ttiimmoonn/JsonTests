@@ -1,6 +1,6 @@
 {
   "TestName": "ss_chunt_group_delay",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -66,16 +66,12 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = delay_group, window_shift_timeout = 3, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = delay_group, window_shift_timeout = 3, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
   ],
   "Tests": [
     {
@@ -87,7 +83,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -101,7 +97,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -115,7 +111,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -129,7 +125,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -149,13 +145,15 @@
       "Name": "chunt_basic_test_with_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -169,7 +167,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -183,7 +181,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -197,7 +195,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -217,13 +215,15 @@
       "Name": "chunt_queue_overload_test",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -237,7 +237,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -251,7 +251,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -265,7 +265,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -285,13 +285,15 @@
       "Name": "chunt_queue_overload_test_with_100rel",
       "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
       "TestProcedure": [
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -305,7 +307,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -319,7 +321,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -333,7 +335,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -353,13 +355,15 @@
       "Name": "chunt_break_on_486_wout_100rel",
       "Description": "Запускаем 1 вызовов. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку.",
       "TestProcedure": [
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -373,7 +377,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -387,7 +391,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -401,7 +405,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -421,13 +425,15 @@
       "Name": "chunt_break_on_486_with_100rel",
       "Description": "Запускаем 1 вызовов. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку.",
       "TestProcedure": [
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -441,7 +447,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -455,7 +461,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -469,7 +475,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {

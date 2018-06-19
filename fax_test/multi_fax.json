@@ -19,12 +19,8 @@
       "%%USER_DOM%%": "pv.ssw3"
     }
   ],
-  "PreConf": [
-    {}
-  ],
-  "PostConf": [
-    {}
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "test_mult_fax",

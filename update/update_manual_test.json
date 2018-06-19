@@ -2,60 +2,56 @@
   "TestName": "update_test",
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
+      "Port": 10106,
       "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%TestNumber%%" : "108",
-      "%%TestDomain%%" : "pv.ssw3"
+      "%%TestNumber%%": "108",
+      "%%TestDomain%%": "pv.ssw3"
     }
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "uac_update_test",
       "Description": "uac_update_test",
       "TestProcedure": [
-        {"Print" : "System call to testUser. Please answer."},
+        {
+          "Print": "System call to testUser. Please answer."
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "NeedAuth" : true,
+              "UserId": 1,
+              "NeedAuth": true,
               "Name": "UAC_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uac.xml",
                   "Options": "-m 1 -set CDPN %%TestNumber%% -set CDPNDOM %%TestDomain%%",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
@@ -69,12 +65,14 @@
       "Name": "uas_update_in_erly_state",
       "Description": "uas_update_in_erly_state",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -93,18 +91,20 @@
       "Name": "uas_update_in_answer_state",
       "Description": "uas_update_in_answer_state",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uas_update.xml",
                   "Options": "-m 1",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "200s"
                 }
@@ -118,18 +118,20 @@
       "Name": "uas_two_update",
       "Description": "uas_two_update",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uas_two_updates.xml",
                   "Options": "-m 1",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "200s"
                 }
@@ -143,18 +145,20 @@
       "Name": "uas_update_before_answer_recv",
       "Description": "uas_update_before_answer_recv",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
                   "SourceFile": "update/uas_update_before_answer_recv.xml",
                   "Options": "-m 1",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "SippType": "uas",
                   "Timeout": "200s"
                 }

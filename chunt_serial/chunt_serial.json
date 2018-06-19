@@ -1,6 +1,6 @@
 {
   "TestName": "ss_chunt_serial",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -66,29 +66,27 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
   ],
   "Tests": [
     {
       "Name": "chunt_basic_test_wout_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -102,7 +100,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -116,7 +114,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -130,7 +128,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -150,13 +148,15 @@
       "Name": "chunt_basic_test_with_100_rel",
       "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
       "TestProcedure": [
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -170,7 +170,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -184,7 +184,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -198,7 +198,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -220,18 +220,18 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 0, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 0, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -245,7 +245,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -259,7 +259,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -273,7 +273,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -295,18 +295,18 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 0, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 0, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -320,7 +320,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -334,7 +334,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -348,7 +348,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -370,18 +370,18 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -395,7 +395,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -409,7 +409,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -423,7 +423,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -445,19 +445,19 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -471,7 +471,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -485,7 +485,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -499,7 +499,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -521,19 +521,19 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -547,7 +547,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -561,7 +561,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -575,7 +575,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -597,19 +597,19 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = false, max_shift_count = 2, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -623,7 +623,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -637,7 +637,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -651,7 +651,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -673,19 +673,19 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = true, max_shift_count = 5, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = true, max_shift_count = 5, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -699,7 +699,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -713,7 +713,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -733,7 +733,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -755,19 +755,19 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = true, max_shift_count = 5, search_strategy = first, queue_strategy = drop"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% Chunt",
+            "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = serial, numbers = %%ChuntGroup%%,reset_window_start_pos_after_call=true, queue_size = 3, window_shift_timeout = 3, cyclic = true, max_shift_count = 5, search_strategy = first, queue_strategy = drop"
           ]
         },
-        {"Sleep": 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -781,7 +781,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -795,7 +795,7 @@
             {
               "Type": "User",
               "UserId": 3,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -815,7 +815,7 @@
             {
               "Type": "User",
               "UserId": 4,
-              "WriteStat" : true,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {

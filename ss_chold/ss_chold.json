@@ -1,56 +1,52 @@
 {
   "TestName": "ss_chold",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "test_chold_sendonly_in_media_lvl",
       "Description": "Активируем chold. Делаем вызов. Шлём re-invite с sendonly в медиа-секции, снимаем c hold.",
@@ -59,7 +55,7 @@
           "ServiceFeature": [
             {
               "code": "*94#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -67,28 +63,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_SEND_RE_INV_SENDONLY_MEDIA_LVL",
               "Commands": [
                 {
                   "SourceFile": "ss_chold/uas_send_re_inv_send_only_in_media_lvl.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -99,7 +95,7 @@
           "ServiceFeature": [
             {
               "code": "#94#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }
@@ -113,7 +109,7 @@
           "ServiceFeature": [
             {
               "code": "*94#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -121,28 +117,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_SEND_RE_INV_SENDONLY_SESION_LVL",
               "Commands": [
                 {
                   "SourceFile": "ss_chold/uas_send_re_inv_send_only_in_session_lvl.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
@@ -153,7 +149,7 @@
           "ServiceFeature": [
             {
               "code": "#94#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }
@@ -167,28 +163,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_403_ON_RE_INVITE",
               "Commands": [
                 {
                   "SourceFile": "ss_chold/uas_recv_403_on_re_invite.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]

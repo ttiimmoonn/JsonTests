@@ -40,28 +40,24 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ctr",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% park",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% park",
-      "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
-      "command6": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold",
-      "command7": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% park",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% park",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ctr",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% park",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% park",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% park",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% park",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} clip"
   ],
   "Tests": [
     {
@@ -87,7 +83,7 @@
             {
               "Type": "User",
               "UserId": 0,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -102,8 +98,8 @@
           ]
         },
         {
-	        "StartUA": [
-	            {
+          "StartUA": [
+            {
               "Type": "User",
               "UserId": 2,
               "Name": "SIMPLE_UAC_SEND_BYE",
@@ -117,8 +113,7 @@
                 }
               ]
             }
-
-         ]
+          ]
         }
       ]
     }

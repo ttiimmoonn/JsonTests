@@ -1,6 +1,6 @@
 {
   "TestName": "forking_tcp",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 0,
@@ -11,7 +11,7 @@
       "Expires": 90,
       "Port": 10106,
       "SipGroup": "sip.ab",
-      "SipTransport" : "TCP",
+      "SipTransport": "TCP",
       "QParam": 1
     },
     {
@@ -23,7 +23,7 @@
       "Expires": 90,
       "SipGroup": "sip.ab",
       "Port": 10107,
-      "SipTransport" : "TCP",
+      "SipTransport": "TCP",
       "QParam": 1
     },
     {
@@ -35,7 +35,7 @@
       "Expires": 90,
       "SipGroup": "sip.ab",
       "Port": 10108,
-      "SipTransport" : "TCP",
+      "SipTransport": "TCP",
       "QParam": 1
     },
     {
@@ -47,7 +47,7 @@
       "Expires": 90,
       "SipGroup": "sip.ab",
       "Port": 10109,
-      "SipTransport" : "TCP",
+      "SipTransport": "TCP",
       "QParam": 1
     }
   ],
@@ -57,14 +57,9 @@
     }
   ],
   "PreConf": [
-    {
-    "command1": "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
-    }
+    "/domain/%%DEV_DOM%%/timers/sip/set find_me %%FIND_ME_TIMER%%"
   ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "forking all-contact test",
@@ -72,9 +67,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         },
         {
@@ -141,25 +134,25 @@
           "CheckDifference": [
             {
               "Difference": 0,
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1,2",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 }
               ]
             },
             {
               "Difference": 0,
-              "Mode" : "between_ua",
+              "Mode": "between_ua",
               "UA": "0,1",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 }
               ]
             }

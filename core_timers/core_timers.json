@@ -1,7 +1,7 @@
 {
   "TestName": "core_timers",
-  "Isolate" : true,
-  "AutoTest" : true,
+  "Isolate": true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 1,
@@ -26,24 +26,16 @@
       "QParam": 1
     }
   ],
-
   "UserVar": [
-    {
-    }
+    {}
   ],
-
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout 5",
-      "command2" : "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 4"
-    }
+    "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout 5",
+    "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 4"
   ],
-
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
-      "command2" : "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
-    }
+    "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
+    "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
   ],
   "Tests": [
     {
@@ -55,7 +47,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "NeedAuth" : true,
+              "NeedAuth": true,
               "Name": "UAS_CONF_TIMER",
               "Commands": [
                 {
@@ -129,10 +121,8 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command1" : "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout disabled",
-                "command2" : "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout disabled"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/set conversation_timeout disabled",
+            "/domain/%%DEV_DOM%%/timers/core/set no_answer_timeout disabled"
           ]
         },
         {
@@ -169,10 +159,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
-              "command2" : "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/clean conversation_timeout",
+            "/domain/%%DEV_DOM%%/timers/core/clean no_answer_timeout"
           ]
         }
       ]

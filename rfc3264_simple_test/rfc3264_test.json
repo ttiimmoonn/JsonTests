@@ -1,44 +1,37 @@
 {
   "TestName": "rfc3264",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
-      "Port" : 11001,
-      "RtpPort" : 20000,
+      "Expires": 90,
+      "Port": 11001,
+      "RtpPort": 20000,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "pv.ssw2",
-      "Expires" : 90,
-      "Port" : 11002,
-      "RtpPort" : 20010,
+      "Expires": 90,
+      "Port": 11002,
+      "RtpPort": 20010,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "check_oa_exchange_with_simcap_rfc3407",
@@ -48,8 +41,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE_RFC3407_SDP",
               "Commands": [
                 {
@@ -63,7 +56,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_BYE_RFC3407_SDP",
               "Commands": [
                 {
@@ -87,8 +80,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_2_VIDEO_CODECS",
               "Commands": [
                 {
@@ -102,8 +95,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -127,8 +120,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_REPLACE_IMAGE_TO_AUDIO",
               "Commands": [
                 {
@@ -142,8 +135,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_T38_RE_INVITE",
               "Commands": [
                 {
@@ -167,8 +160,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_488_ON_T38_RE_INVITE",
               "Commands": [
                 {
@@ -182,8 +175,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_T38_RE_INVITE",
               "Commands": [
                 {
@@ -207,8 +200,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_T38_RE_INV",
               "Commands": [
                 {
@@ -222,8 +215,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
               "Commands": [
                 {
@@ -247,8 +240,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_T38_RE_INV",
               "Commands": [
                 {
@@ -262,8 +255,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
               "Commands": [
                 {
@@ -287,8 +280,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_RECV_T38_OFFER",
               "Commands": [
                 {
@@ -316,8 +309,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_T38_OFFER",
               "Commands": [
                 {
@@ -355,8 +348,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_RE_INVITE_WOUT_SDP",
               "Commands": [
                 {
@@ -370,8 +363,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_INITIAL_INVITE_WOUT_OFFER",
               "Commands": [
                 {

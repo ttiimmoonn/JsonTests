@@ -1,27 +1,27 @@
 {
   "TestName": "ss_acb",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
+      "Port": 10105,
       "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "pv.ssw3",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
+      "Port": 10106,
       "QParam": 0.5
     }
   ],
@@ -29,22 +29,17 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% acb",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% acb",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% acb",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% acb",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
-
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% acb",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% acb",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_acb_test",
       "Description": "Звоним от абонента с acb и получаем отбой",
@@ -53,7 +48,7 @@
           "ServiceFeature": [
             {
               "code": "*16#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -61,14 +56,14 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_TEST_ACB",
               "Commands": [
-                 {
+                {
                   "SourceFile": "ss_acb/uac_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "10s"
                 }
               ]
@@ -79,7 +74,7 @@
           "ServiceFeature": [
             {
               "code": "#16#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -87,28 +82,28 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "30s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
-                 {
+                {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
-                  "NeedAuth" : true,
+                  "NeedAuth": true,
                   "Timeout": "20s"
                 }
               ]

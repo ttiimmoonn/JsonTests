@@ -26,28 +26,26 @@
   ],
   "UserVar": [
     {
-      "%%TestNumber%%" : "108",
-      "%%TestDomain%%" : "pv.ssw3"
+      "%%TestNumber%%": "108",
+      "%%TestDomain%%": "pv.ssw3"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
   ],
   "Tests": [
     {
       "Name": "send_only_test",
       "Description": "send_only_test",
       "TestProcedure": [
-        {"Print" : "System call to testUser. Please answer."},
+        {
+          "Print": "System call to testUser. Please answer."
+        },
         {
           "StartUA": [
             {
@@ -72,7 +70,9 @@
       "Name": "oa_exchange_uac_mode",
       "Description": "oa_exchange_uac_mode",
       "TestProcedure": [
-        {"Print" : "System call to testUser. Please answer."},
+        {
+          "Print": "System call to testUser. Please answer."
+        },
         {
           "StartUA": [
             {
@@ -97,7 +97,9 @@
       "Name": "oa_exchange_uas_mode",
       "Description": "oa_exchange_uas_mode",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
@@ -122,7 +124,9 @@
       "Name": "oa_send_two_codecs_in_answer_180",
       "Description": "oa_send_two_codecs_in_answer_180",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
@@ -147,7 +151,9 @@
       "Name": "oa_send_two_codecs_in_answer_200",
       "Description": "oa_send_two_codecs_in_answer_200",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
@@ -172,7 +178,9 @@
       "Name": "send_answ_in_183",
       "Description": "send_answ_in_183",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {
@@ -197,7 +205,9 @@
       "Name": "send_answer_sdp_in_181",
       "Description": "send_answer_sdp_in_181",
       "TestProcedure": [
-        {"Print" : "System wait call. Please call to TestUser."},
+        {
+          "Print": "System wait call. Please call to TestUser."
+        },
         {
           "StartUA": [
             {

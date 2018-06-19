@@ -1,6 +1,6 @@
 {
   "TestName": "follow_me_no_answer",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
       "UserId": 1,
@@ -55,16 +55,12 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
-      "command3": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% follow_me_no_response",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ss\\mgm\\telephone enabled",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ss\\mgm\\telephone enabled"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response"
-    }
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% follow_me_no_response"
   ],
   "Tests": [
     {
