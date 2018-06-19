@@ -69,7 +69,7 @@
   "Tests": [
     {
       "Name": "change_caller_id_through_update_request(attended_transfer)",
-      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 attended_transfer \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u043e\u043c. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer трансфером. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -120,7 +120,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request(semi_attended_transfer)",
-      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 semi_attended_transfer \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u043e\u043c \u0431\u0435\u0437 PRACK. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer трансфером без PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -171,7 +171,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request_on_early_state(semi_attended_transfer)",
-      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 semi_attended_transfer \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u043e\u043c \u0441 PRACK. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer трансфером с PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -222,7 +222,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request(unattended_transfer)",
-      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 unattended_transfer \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u043e\u043c. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer трансфером. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -273,7 +273,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(attended_transfer)",
-      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 attended_transfer \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u043e\u043c. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 re-INVITE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -324,7 +324,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(semi-attended_transfer)",
-      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 semi-attended_transfer \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u043e\u043c. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 re-INVITE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi-attended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -375,7 +375,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(unattended_transfer)",
-      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 unattended_transfer \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u043e\u043c. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 re-INVITE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
+      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer трансфером. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
       "TestProcedure": [
         {
           "StartUA": [
@@ -426,7 +426,7 @@
     },
     {
       "Name": "send_busy_from_transfer_target_side",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0442\u043e\u0433\u043e, \u0447\u0442\u043e \u043e\u0442\u043b\u043e\u0436\u0435\u043d\u043d\u044b\u0439 address_update \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0421 \u0435\u0441\u043b\u0438 \u043e\u043d\u0430 \u043f\u043e\u0448\u043b\u0451\u0442 486 \u043f\u043e\u0441\u043b\u0435 180",
+      "Description": "Проверка того, что отложенный address_update не будет отправлен на сторону С если она пошлёт 486 после 180",
       "TestProcedure": [
         {
           "StartUA": [

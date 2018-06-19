@@ -53,7 +53,7 @@
   "Tests": [
     {
       "Name": "chk_outgoing_registration",
-      "Description": "\u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c REGISTER \u043e\u0442 ssw, \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u043c \u0430\u0432\u0442\u043e\u0440\u0438\u0437\u0430\u0446\u0438\u044e, \u043f\u0440\u043e\u0437\u0432\u0430\u043d\u0438\u043c\u0430\u0435\u043c \u0442\u0440\u0430\u043d\u043a",
+      "Description": "Принимаем REGISTER от ssw, производим авторизацию, прозванимаем транк",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -118,7 +118,7 @@
     },
     {
       "Name": "send_403_to_reg_request",
-      "Description": "\u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c REGISTER \u043e\u0442 ssw \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u043c 403 \u043e\u0442\u0432\u0435\u0442",
+      "Description": "Принимаем REGISTER от ssw и отправляем 403 ответ",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -173,7 +173,7 @@
     },
     {
       "Name": "send_423_to_reg_request",
-      "Description": "\u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c REGISTER \u043e\u0442 ssw \u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u043c 423 \u043e\u0442\u0432\u0435\u0442",
+      "Description": "Принимаем REGISTER от ssw и отправляем 423 ответ",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -243,7 +243,7 @@
     },
     {
       "Name": "options_control_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 options_control \u0434\u043b\u044f \u0442\u0440\u0430\u043d\u043a\u0430 c out reg",
+      "Description": "Проверка options_control для транка c out reg",
       "TestProcedure": [
         {
           "SendSSHCommand": [

@@ -66,7 +66,7 @@
   "Tests": [
     {
       "Name": "simple_dialog_call_pickup_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 dialog info call pickup",
+      "Description": "Тестирование dialog info call pickup",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -140,7 +140,7 @@
     },
     {
       "Name": "dialog_call_pickup_test_from_foreign_group",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u043d\u0438\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 403 \u043f\u0440\u0438 \u043f\u043e\u043f\u044b\u0442\u043a\u0435 \u043f\u0435\u0440\u0435\u0445\u0432\u0430\u0442\u0438\u0442\u044c \u0432\u044b\u0437\u043e\u0432 \u043d\u0435 \u0438\u0437 \u0441\u0432\u043e\u0435\u0439 \u0433\u0440\u0443\u043f\u043f\u044b",
+      "Description": "Тестироние получения 403 при попытке перехватить вызов не из своей группы",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -214,7 +214,7 @@
     },
     {
       "Name": "test_dialog_call_pickup_with_a_conference",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 dialog info call pickup c \u0430\u043a\u0442\u0438\u0432\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0439 conference Bug #72634",
+      "Description": "Тестирование dialog info call pickup c активированной conference Bug #72634",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -297,7 +297,7 @@
     {
       "Name": "pick_up_call_in_confirmed_state",
       "Ref": "#95606",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u0431\u043e\u044f \u043f\u0435\u0440\u0445\u0432\u0430\u0442\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435, \u0435\u0441\u043b\u0438 \u0432\u044b\u0437\u043e\u0432 \u0443\u0441\u043f\u0435\u043b \u043f\u0435\u0440\u0435\u0439\u0442\u0438 \u0432 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0435 confirmed",
+      "Description": "Проверка отбоя перхвата в случае, если вызов успел перейти в состояние confirmed",
       "TestProcedure": [
         {
           "SendSSHCommand": [

@@ -38,7 +38,7 @@
   "Tests": [
     {
       "Name": "flash+release",
-      "Description": "\u0432\u0441\u0442\u0440\u0435\u0447\u043d\u044b\u0435 flash+release \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0410 \u0438 release \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b B. Bug #70856",
+      "Description": "встречные flash+release со стороны А и release со стороны B. Bug #70856",
       "TestProcedure": [
         {
           "StartUA": [

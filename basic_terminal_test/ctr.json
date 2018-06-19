@@ -62,7 +62,7 @@
   "Tests": [
     {
       "Name": "ctr_send_bye_after_answer",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 CT \u043f\u043e \u043e\u0442\u0431\u043e\u044e \u043f\u043e\u0441\u043b\u0435 \u043e\u0442\u0432\u0435\u0442\u0430 \u0430\u0431\u043e\u043d\u0435\u0442\u0430 \u0421.",
+      "Description": "Тестирование CT по отбою после ответа абонета С.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -117,7 +117,7 @@
     },
     {
       "Name": "ctr_send_bye_before_answer",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 CT \u043f\u043e \u043e\u0442\u0431\u043e\u044e \u0434\u043e \u043e\u0442\u0432\u0435\u0442\u0430 \u0430\u0431\u043e\u043d\u0435\u0442\u0430 \u0421.",
+      "Description": "Тестирование CT по отбою до ответа абонета С.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -172,7 +172,7 @@
     },
     {
       "Name": "ctr_flush_plus_4",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 CT \u043f\u043e flash + 4",
+      "Description": "Тестирование CT по flash + 4",
       "TestProcedure": [
         {
           "StartUA": [

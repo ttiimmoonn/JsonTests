@@ -49,7 +49,7 @@
   "Tests": [
     {
       "Name": "test_chold_sendonly_in_media_lvl",
-      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c chold. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432. \u0428\u043b\u0451\u043c re-invite \u0441 sendonly \u0432 \u043c\u0435\u0434\u0438\u0430-\u0441\u0435\u043a\u0446\u0438\u0438, \u0441\u043d\u0438\u043c\u0430\u0435\u043c c hold.",
+      "Description": "Активируем chold. Делаем вызов. Шлём re-invite с sendonly в медиа-секции, снимаем c hold.",
       "TestProcedure": [
         {
           "ServiceFeature": [
@@ -103,7 +103,7 @@
     },
     {
       "Name": "test_chold_sendonly_in_session_lvl",
-      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c chold. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432. \u0428\u043b\u0451\u043c re-invite \u0441 sendonly \u043d\u0430 \u0443\u0440\u043e\u0432\u043d\u0435 \u0441\u0435\u0441\u0441\u0438\u0438, \u0441\u043d\u0438\u043c\u0430\u0435\u043c c hold.",
+      "Description": "Активируем chold. Делаем вызов. Шлём re-invite с sendonly на уровне сессии, снимаем c hold.",
       "TestProcedure": [
         {
           "ServiceFeature": [
@@ -157,7 +157,7 @@
     },
     {
       "Name": "test_chold_forbidden",
-      "Description": "\u041f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u0441\u0434\u0435\u043b\u0430\u0442\u044c \u043f\u043e\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0443 \u043d\u0430 chold \u0431\u0435\u0437 \u0430\u043a\u0442\u0438\u0432\u0430\u0446\u0438\u0438 \u0443\u0441\u043b\u0443\u0433\u0438",
+      "Description": "Пытаемся сделать постановку на chold без активации услуги",
       "TestProcedure": [
         {
           "StartUA": [

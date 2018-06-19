@@ -45,7 +45,7 @@
   "Tests": [
     {
       "Name": "ivr_block_only_no_match",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u0435 \u0432\u044b\u0437\u043e\u0432\u0430 \u0447\u0435\u0440\u0435\u0437 \u0431\u043b\u043e\u043a ivr \u0441 \u0435\u0434\u0438\u043d\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u043c \u0432\u044b\u0445\u043e\u0434\u043e\u043c no_match",
+      "Description": "Тестируем прохождение вызова через блок ivr с единственным выходом no_match",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -95,7 +95,7 @@
     },
     {
       "Name": "ivr_block_test_dtmf_detect",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0446\u0438\u0444\u0440 \u0432 \u0431\u043b\u043e\u043a\u0435 ivr",
+      "Description": "Тестируем детектирование цифр в блоке ivr",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -145,7 +145,7 @@
     },
     {
       "Name": "ivr_block_call_to_extension",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u0434\u043e\u043d\u0430\u0431\u043e\u0440 \u0432 \u0431\u043b\u043e\u043a\u0435 ivr",
+      "Description": "Тестируем донабор в блоке ivr",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -195,7 +195,7 @@
     },
     {
       "Name": "ivr_block_change_access_type",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0441\u043c\u0435\u043d\u044b access_type \u0432 \u0431\u043b\u043e\u043a\u0435 ivr",
+      "Description": "Проверка смены access_type в блоке ivr",
       "TestProcedure": [
         {
           "SendSSHCommand": [

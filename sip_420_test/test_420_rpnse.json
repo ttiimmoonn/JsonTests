@@ -32,7 +32,7 @@
   "Tests": [
     {
       "Name": "unsupport_req100rel",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 420 \u043e\u0442\u0432\u0435\u0442\u0430 \u0441 unsupport_req100rel",
+      "Description": "Проверка 420 ответа с unsupport_req100rel",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -75,7 +75,7 @@
     },
     {
       "Name": "unsupport_req100rel_send_cancel",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 420 \u043e\u0442\u0432\u0435\u0442\u0430 \u0441 unsupport_req100rel \u043f\u0440\u0438 \u043e\u0442\u043c\u0435\u043d\u0435 \u0432\u044b\u0437\u043e\u0432\u0430 \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0410. Bug #65347",
+      "Description": "Проверка 420 ответа с unsupport_req100rel при отмене вызова со стороны А. Bug #65347",
       "TestProcedure": [
         {
           "SendSSHCommand": [

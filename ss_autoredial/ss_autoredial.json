@@ -49,7 +49,7 @@
   "Tests": [
     {
       "Name": "simple_autoredial_test (*37)",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e autoredial. \u041f\u0435\u0440\u0432\u044b\u0435 \u0434\u0432\u0430 \u0440\u0430\u0437\u0430 \u044e\u0437\u0435\u0440 \u0434\u0430\u0451\u0442 busy, \u043f\u043e\u0442\u043e\u043c \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u0442 \u043d\u0430 \u0432\u044b\u0437\u043e\u0432.",
+      "Description": "Звоним на юзера с помощью autoredial. Первые два раза юзер даёт busy, потом отвечает на вызов.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -101,7 +101,7 @@
     },
     {
       "Name": "autoredial_busy_test (*37)",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e autoredial. \u0414\u0435\u043b\u0430\u0435\u0442\u0441\u044f 3 \u043f\u043e\u043f\u044b\u0442\u043a\u0438, \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u044b\u0435 UAS \u0434\u0430\u0451\u0442 busy.",
+      "Description": "Звоним на юзера с помощью autoredial. Делается 3 попытки, на которые UAS даёт busy.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -146,7 +146,7 @@
     },
     {
       "Name": "drop_autoredial_if_recv_non_486_response (*37)",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430, \u0442\u043e\u0442 \u0434\u0430\u0451\u0442 480 \u043e\u0442\u0432\u0435\u0442 \u0438 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c \u043e\u0442\u0431\u043e\u0439 \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0410",
+      "Description": "Звоним на юзера, тот даёт 480 ответ и получаем отбой на стороне А",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -191,7 +191,7 @@
     },
     {
       "Name": "drop_autoredial_if_user_send_alerting (*37)",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0442\u043e\u0433\u043e, \u0447\u0442\u043e autoredial \u043f\u0440\u0435\u043a\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044f \u0435\u0441\u043b\u0438 \u0441\u0442\u043e\u0440\u043e\u043d\u0430 \u0411 \u0434\u0430\u043b\u0430 alerting \u0438 \u043d\u0435 \u043e\u0442\u0432\u0435\u0442\u0438\u043b\u0430",
+      "Description": "Проверка того, что autoredial прекращается если сторона Б дала alerting и не ответила",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -236,7 +236,7 @@
     },
     {
       "Name": "simple_autoredial_test (*38)",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e autoredial. \u041f\u0435\u0440\u0432\u044b\u0435 \u0440\u0430\u0437 \u044e\u0437\u0435\u0440 \u0434\u0430\u0451\u0442 480, \u0432\u0442\u043e\u0440\u043e\u0439 \u0440\u0430\u0437 \u0434\u0430\u0451\u0442 180 \u0438 \u0436\u0434\u0451\u0442 CANCEL, \u0430 \u0432 \u0442\u0440\u0435\u0442\u0438\u0439 \u0440\u0430\u0437 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u0442 \u043d\u0430 \u0432\u044b\u0437\u043e\u0432. (*38)",
+      "Description": "Звоним на юзера с помощью autoredial. Первые раз юзер даёт 480, второй раз даёт 180 и ждёт CANCEL, а в третий раз отвечает на вызов. (*38)",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -295,7 +295,7 @@
     },
     {
       "Name": "autoredial_wait_timeout_test (*38)",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e autoredial. \u041d\u0430 \u043f\u0435\u0440\u0432\u0443\u044e \u043f\u043e\u043f\u044b\u0442\u043a\u0443 \u0434\u0430\u0451\u043c 480. \u041d\u0430 \u0432\u0441\u0435 \u043e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u0435 \u043f\u043e\u043f\u044b\u0442\u043a\u0438 \u0434\u043e\u0437\u0432\u043e\u043d\u0430 \u0434\u0430\u0451\u043c 180 \u0438 \u0436\u0434\u0451\u043c CANCEL. (*38)",
+      "Description": "Звоним на юзера с помощью autoredial. На первую попытку даём 480. На все остальные попытки дозвона даём 180 и ждём CANCEL. (*38)",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -347,7 +347,7 @@
     },
     {
       "Name": "autoredial_user_unavailable_test (*38)",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e autoredial. \u0414\u0435\u043b\u0430\u0435\u0442\u0441\u044f 3 \u043f\u043e\u043f\u044b\u0442\u043a\u0438, \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u044b\u0435 UAS \u0434\u0430\u0451\u0442 480.",
+      "Description": "Звоним на юзера с помощью autoredial. Делается 3 попытки, на которые UAS даёт 480.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -392,7 +392,7 @@
     },
     {
       "Name": "autoredial_noanswer_test (*38)",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u0431\u043e\u044f \u0435\u0441\u043b\u0438 \u043f\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044e \u043f\u043e\u043f\u044b\u0442\u043e\u043a \u044e\u0437\u0435\u0440 \u043d\u0435 \u0434\u0430\u043b \u043e\u0442\u0432\u0435\u0442",
+      "Description": "Проверка отбоя если по истечению попыток юзер не дал ответ",
       "TestProcedure": [
         {
           "SendSSHCommand": [

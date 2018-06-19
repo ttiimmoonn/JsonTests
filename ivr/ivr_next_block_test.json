@@ -50,7 +50,7 @@
   "Tests": [
     {
       "Name": "ivr_simple_next_block_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u043f\u0435\u0440\u0435\u0445\u043e\u0434 \u043c\u0435\u0436\u0434\u0443 \u0441\u043a\u0440\u0438\u043f\u0442\u0430\u043c\u0438",
+      "Description": "Тестируем переход между скриптами",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -100,7 +100,7 @@
     },
     {
       "Name": "ivr_var_save_next_block_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u0443\u0435\u043c \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435 \u043f\u0435\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445 \u043c\u0435\u0436\u0434\u0443 \u0441\u043a\u0440\u0438\u043f\u0442\u0430\u043c\u0438",
+      "Description": "Тестируем сохранение переменных между скриптами",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -150,7 +150,7 @@
     },
     {
       "Name": "ivr_loop_next_block_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f \u0437\u0430\u0446\u0438\u043a\u043b\u0438\u0432\u0430\u043d\u0438\u0439 \u0431\u043b\u043e\u043a\u043e\u043c NEXT",
+      "Description": "Тестирование детектирования зацикливаний блоком NEXT",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -185,7 +185,7 @@
     },
     {
       "Name": "ivr_loop_with_media_next_block_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044f \u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f loop \u043f\u0440\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u0431\u043b\u043e\u043a\u0430 play \u0432 \u0441\u043a\u0440\u0438\u043f\u0442\u0435",
+      "Description": "Тестирование отсутствия детектирования loop при использовании блока play в скрипте",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -220,7 +220,7 @@
     },
     {
       "Name": "ivr_wrong_state_next_block_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0442\u0431\u043e\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u0440\u0438 \u043f\u0435\u0440\u0435\u0445\u043e\u0434\u0435 \u0438\u0437 \u043e\u0442\u0432\u0435\u0442\u043d\u043e\u0433\u043e \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f \u0432 \u043f\u0440\u0435\u0434\u043e\u0442\u0432\u0435\u0442\u043d\u043e\u0435",
+      "Description": "Тестирование отбоя вызова при переходе из ответного состояния в предответное",
       "TestProcedure": [
         {
           "SendSSHCommand": [

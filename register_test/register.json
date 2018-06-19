@@ -48,7 +48,7 @@
   "Tests": [
     {
       "Name": "register_foreign_contact",
-      "Description": "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u0443\u0435\u043c \u043b\u0435\u0432\u044b\u0439 \u043a\u043e\u043d\u0442\u0430\u043a\u0442. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 \u0434\u0440\u0443\u0433\u043e\u0433\u043e IP:PORT - \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442.",
+      "Description": "Регистрируем левый контакт. Делаем вызов с другого IP:PORT - вызов проходит.",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -104,7 +104,7 @@
     },
     {
       "Name": "register_contact_with_uuid",
-      "Description": "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u0443\u0435\u043c \u043a\u043e\u043d\u0442\u0430\u043a\u0442 \u0441 uuid:313230-AABB-0000-0000-B40EDC015E9A",
+      "Description": "Регистрируем контакт с uuid:313230-AABB-0000-0000-B40EDC015E9A",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -129,7 +129,7 @@
     },
     {
       "Name": "test_qop_authentication",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u043f\u0446\u0438\u0438 qop-authentication.",
+      "Description": "Тестирование опции qop-authentication.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -156,7 +156,7 @@
     },
     {
       "Name": "test_reg_and_invite_retransmissions",
-      "Description": "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u0443\u0435\u043c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f. \u0414\u0435\u043b\u0430\u0435\u043c \u043f\u0435\u0440\u0435\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044e \u043f\u0440\u0438 \u044d\u0442\u043e\u043c \u0438\u0433\u043d\u043e\u0440\u0438\u0440\u0443\u044f 401 \u043e\u0442\u0432\u0435\u0442. \u041f\u043e\u0441\u043b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u0432\u0442\u043e\u0440\u043e\u0433\u043e REGISTER \u043e\u0431\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u0435\u043c 401. \u0422\u043e\u0436\u0435 \u0441\u0430\u043c\u043e\u0435 \u0434\u0435\u043b\u0430\u0435\u043c \u0441 INVITE",
+      "Description": "Регистрируем пользователя. Делаем перерегистрацию при этом игнорируя 401 ответ. После отправки второго REGISTER обрабатываем 401. Тоже самое делаем с INVITE",
       "TestProcedure": [
         {
           "ManualReg": {

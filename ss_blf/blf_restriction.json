@@ -127,7 +127,7 @@
   "Tests": [
     {
       "Name": "low_priority_test",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 low_to_high, low_to_normal, low_to_low. \u0412\u043e \u0432\u0441\u0435\u0445 \u0441\u043b\u0443\u0447\u0430\u044f\u0445 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c 603.",
+      "Description": "Подписка low_to_high, low_to_normal, low_to_low. Во всех случаях получаем 603.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -196,7 +196,7 @@
     },
     {
       "Name": "normal_to_high_subsciption_test",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 normal \u043d\u0430 high.",
+      "Description": "Подписка с normal на high.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -221,7 +221,7 @@
     },
     {
       "Name": "normal_to_low_subsciption_test",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 normal \u043d\u0430 low.",
+      "Description": "Подписка с normal на low.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -284,7 +284,7 @@
     },
     {
       "Name": "normal_to_normal_subsciption_test",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 normal \u043d\u0430 normal.",
+      "Description": "Подписка с normal на normal.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -353,7 +353,7 @@
     },
     {
       "Name": "high_to_low_subsciption_test",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 high \u043d\u0430 low.",
+      "Description": "Подписка с high на low.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -416,7 +416,7 @@
     },
     {
       "Name": "high_to_normal_subsciption_test",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 high \u043d\u0430 normal.",
+      "Description": "Подписка с high на normal.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -479,7 +479,7 @@
     },
     {
       "Name": "high_to_high_subsciption_test",
-      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 high \u043d\u0430 high.",
+      "Description": "Подписка с high на high.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -548,7 +548,7 @@
     },
     {
       "Name": "overload_max_subs_limit",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u044c \u0440\u0430\u0431\u043e\u0442\u044b max_subs_limit",
+      "Description": "Проверяем корректность работы max_subs_limit",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -661,7 +661,7 @@
     },
     {
       "Name": "neighbor_blf_list_test",
-      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u0441\u043e\u0441\u0435\u0434\u043d\u0438\u0435 \u0441\u043f\u0438\u0441\u043a\u0438 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043e\u043d\u0438 \u043d\u0435 \u043e\u043a\u0430\u0437\u044b\u0432\u0430\u044e\u0442 \u0432\u043b\u044f\u043d\u0438\u0435 \u0434\u0440\u0443\u0433 \u043d\u0430 \u0434\u0440\u0443\u0433\u0430",
+      "Description": "Создаём соседние списки и проверяем, что они не оказывают вляние друг на друга",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -758,7 +758,7 @@
     },
     {
       "Name": "no_blf_list_for_user",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 603 \u043e\u0448\u0438\u0431\u043a\u0438 \u043f\u0440\u0438 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0438 blf \u043b\u0438\u0441\u0442\u0430 \u0434\u043b\u044f \u044e\u0437\u0435\u0440\u0430",
+      "Description": "Проверка получения 603 ошибки при отсутствии blf листа для юзера",
       "TestProcedure": [
         {
           "StartUA": [

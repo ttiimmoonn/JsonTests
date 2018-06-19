@@ -59,7 +59,7 @@
   "Tests": [
     {
       "Name": "forking_all-contact_req100rel_test",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u043e\u0432 \u0441 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u043e\u0439 100rel, \u0434\u0430\u0451\u043c a_sdp \u0432 180 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0438, \u043f\u043e\u0441\u043b\u0435 \u0447\u0435\u0433\u043e \u0441 \u043e\u0434\u043d\u043e\u0433\u043e \u0438\u0437 ua \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c, \u043e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u043c CANCEL",
+      "Description": "Звоним на юзеров с поддержкой 100rel, даём a_sdp в 180 сообщении, после чего с одного из ua отвечаем, остальным CANCEL",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -195,7 +195,7 @@
     },
     {
       "Name": "forking_all-contact_repeat_asdp(180/200)",
-      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 2\u0445 \u044e\u0437\u0435\u0440\u043e\u0432 \u0441 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u043e\u0439 100rel \u0438 \u043d\u0430 \u043e\u0434\u043d\u043e\u0433\u043e \u0431\u0435\u0437, \u0441 \u044e\u0437\u0435\u0440\u0430 \u0431\u0435\u0437 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438 req100rel \u0434\u0430\u0451\u043c asdp \u0432 180 \u0438 200, \u043e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u043c CANCEL",
+      "Description": "Звоним на 2х юзеров с поддержкой 100rel и на одного без, с юзера без поддержки req100rel даём asdp в 180 и 200, остальным CANCEL",
       "TestProcedure": [
         {
           "SendSSHCommand": [

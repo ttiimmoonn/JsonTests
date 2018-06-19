@@ -43,7 +43,7 @@
   "Tests": [
     {
       "Name": "ivr_numbers_block_accept_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 yes \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u044f \u043d\u043e\u043c\u0435\u0440\u0430",
+      "Description": "Проверка прохождения вызова по ветке yes в случае совпадения номера",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -93,7 +93,7 @@
     },
     {
       "Name": "ivr_numbers_block_reject_test",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043d\u0435 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u044f \u043d\u043e\u043c\u0435\u0440\u0430",
+      "Description": "Проверка прохождения вызова по ветке no в случае не совпадения номера",
       "TestProcedure": [
         {
           "SendSSHCommand": [

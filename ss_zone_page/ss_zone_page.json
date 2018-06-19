@@ -79,7 +79,7 @@
   "Tests": [
     {
       "Name": "simple_zone_page_test",
-      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c ZP \u043d\u0430 \u044e\u0437\u0435\u0440\u0435. \u0414\u0435\u043b\u0430\u0435\u043c \u0433\u0440\u0443\u043f\u043f\u043e\u0432\u043e\u0439 \u0432\u044b\u0437\u043e\u0432, \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u044b header autoanswer \u0438 DisplayName. \u0414\u0430\u043b\u044c\u0448\u0435 \u0436\u0434\u0451\u043c \u043e\u0442\u0431\u043e\u0439 \u043f\u043e\u0441\u043b\u0435 \u043f\u0440\u043e\u0438\u0433\u0440\u044b\u0432\u0430\u043d\u0438\u044f \u0432\u0441\u0435\u0445 \u0444\u0440\u0430\u0437.",
+      "Description": "Активируем ZP на юзере. Делаем групповой вызов, проверяем, что выставлены header autoanswer и DisplayName. Дальше ждём отбой после проигрывания всех фраз.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -150,7 +150,7 @@
     },
     {
       "Name": "zone_page_terminate_when_initiator_disconnect",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u043f\u0446\u0438\u0438 terminate_when_initiator_disconnect. \u0421\u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u0442\u0430\u0432\u0438\u043c \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0432 true \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u0441\u0435\u043c \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0430\u043c \u0433\u0440\u0443\u043f\u043f\u044b \u0440\u0430\u0441\u0441\u044b\u043b\u0430\u0435\u0442\u0441\u044f \u0440\u0435\u043b\u0438\u0437. \u0414\u0430\u043b\u0435\u0435 \u0441\u0442\u0430\u0432\u0438\u043c false \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0438 \u043f\u043e\u043b\u0443\u0447\u0430\u044e\u0442 BYE \u043f\u043e\u0441\u043b\u0435 \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d\u0438\u044f \u043f\u0440\u043e\u0438\u0433\u0440\u044b\u0432\u0430\u043d\u0438\u044f",
+      "Description": "Тестирование опции terminate_when_initiator_disconnect. Сначала ставим значение в true и проверяем, что всем участникам группы рассылается релиз. Далее ставим false и проверяем, что участники получают BYE после завершения проигрывания",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -286,7 +286,7 @@
     },
     {
       "Name": "zone_page_terminate_when_last_listener_leave",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u043f\u0446\u0438\u0438 terminate_when_last_listener_leave. \u0421\u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u0442\u0430\u0432\u0438\u043c \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435 \u0432 true \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0438\u043d\u0438\u0446\u0438\u0430\u0442\u043e\u0440\u0443 \u0441\u0440\u0430\u0437\u0443 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 \u043e\u0442\u0431\u043e\u0439 \u0435\u0441\u043b\u0438 \u0432\u0441\u0435 \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0438 \u043e\u0442\u0431\u0438\u043b\u0438\u0441\u044c. \u0414\u0430\u043b\u0435\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u043c\u043e\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u043e\u0442\u0431\u043e\u044f \u0435\u0441\u043b\u0438 2 \u0447\u043b\u0435\u043d\u0430 \u0433\u0440\u0443\u043f\u043f\u044b \u0438\u0437 3 \u0432\u044b\u0448\u043b\u044e\u0442 BYE. \u041f\u043e\u0441\u043b\u0435 \u0441\u0442\u0430\u0432\u0438\u043c terminate_when_last_listener_leave \u0432 false, \u0434\u0435\u043b\u0430\u0435\u043c \u043e\u0442\u0431\u043e\u0439 \u0441\u043e \u0432\u0441\u0435\u0445 \u044e\u0437\u0435\u0440\u043e\u0432 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0438\u043d\u0438\u0446\u0438\u0430\u0442\u043e\u0440\u0443 \u043f\u0440\u0438\u0441\u044b\u043b\u0430\u044e\u0442 \u043e\u0442\u0431\u043e\u0439 \u043f\u043e\u0441\u043b\u0435 \u0442\u043e\u0433\u043e \u043a\u0430\u043a \u0437\u0430\u043a\u043e\u043d\u0447\u0438\u0442\u0441\u044f \u043f\u0440\u043e\u0438\u0433\u0440\u044b\u0432\u0430\u043d\u0438\u0435 \u0444\u0440\u0430\u0437.",
+      "Description": "Тестирование опции terminate_when_last_listener_leave. Сначала ставим значение в true и проверяем, что инициатору сразу приходит отбой если все участники отбились. Далее проверяем, что не будет моментального отбоя если 2 члена группы из 3 вышлют BYE. После ставим terminate_when_last_listener_leave в false, делаем отбой со всех юзеров и проверяем, что инициатору присылают отбой после того как закончится проигрывание фраз.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -482,7 +482,7 @@
     },
     {
       "Name": "zone_page_terminate_when_playback_ends_false",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0442\u043e\u0433\u043e, \u0447\u0442\u043e \u043f\u043e \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044e \u043f\u0440\u043e\u0438\u0433\u0440\u044b\u0432\u0430\u043d\u0438\u044f \u0444\u0440\u0430\u0437 \u0432\u044b\u0437\u043e\u0432 \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u0431\u0438\u0442",
+      "Description": "Проверка того, что по окончанию проигрывания фраз вызов не будет отбит",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -553,7 +553,7 @@
     },
     {
       "Name": "zone_page_test_initiation_policy_members",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u0430 initiation_policy=members",
+      "Description": "Проверка параметра initiation_policy=members",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -628,7 +628,7 @@
     },
     {
       "Name": "zone_page_test_initiation_policy_managers",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u0430 initiation_policy=managers",
+      "Description": "Проверка параметра initiation_policy=managers",
       "TestProcedure": [
         {
           "SendSSHCommand": [

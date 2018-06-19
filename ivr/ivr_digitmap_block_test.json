@@ -70,7 +70,7 @@
   "Tests": [
     {
       "Name": "ivr_test_digitmap_block_chk_cgpn",
-      "Description": "\u0422\u0435\u0441\u0442 \u043a\u043e\u0440\u0440\u0435\u0442\u043d\u043e\u0441\u0442\u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 CGPN \u0432 digitmap",
+      "Description": "Тест корретности проверки CGPN в digitmap",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -154,7 +154,7 @@
     },
     {
       "Name": "ivr_test_digitmap_block_chk_cdpn",
-      "Description": "\u0422\u0435\u0441\u0442 \u043a\u043e\u0440\u0440\u0435\u0442\u043d\u043e\u0441\u0442\u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 CDPN \u0432 digitmap",
+      "Description": "Тест корретности проверки CDPN в digitmap",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -238,7 +238,7 @@
     },
     {
       "Name": "ivr_test_digitmap_block_chk_extension",
-      "Description": "\u0422\u0435\u0441\u0442 \u043a\u043e\u0440\u0440\u0435\u0442\u043d\u043e\u0441\u0442\u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u043a\u0438 EXTENSION \u0432 digitmap",
+      "Description": "Тест корретности проверки EXTENSION в digitmap",
       "TestProcedure": [
         {
           "SendSSHCommand": [

@@ -55,7 +55,7 @@
     {
       "%%FAX_NUMBER%%": "A001",
       "%%USER_DOM%%": "%%DEV_DOM%%",
-      "%%FAX_IVR_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"fax_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"fax_2\":{\"name\":\"fax\",\"params\":{\"description\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0444\u0430\u043a\u0441\",\"email\":\"eltex_tester@mail.ru\",\"subject_message\":\"eltex_tester@mail.ru\",\"body_message\":\"eltex_tester@mail.ru\",\"sender_name\":\"\u0422\u0435\u0441\u0442\u043e\u0432\u044b\u0439 \u0424\u0410\u041a\u0421\",\"fax_id\":\"FROM TEST\",\"pause\":4},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Ok\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Ok\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"to_ivr_fucks\",\"description\":\"\",\"version\":\"3.8.0.139\"}",
+      "%%FAX_IVR_SCRIPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"fax_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"fax_2\":{\"name\":\"fax\",\"params\":{\"description\":\"Тестовый факс\",\"email\":\"eltex_tester@mail.ru\",\"subject_message\":\"eltex_tester@mail.ru\",\"body_message\":\"eltex_tester@mail.ru\",\"sender_name\":\"Тестовый ФАКС\",\"fax_id\":\"FROM TEST\",\"pause\":4},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Ok\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Ok\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"to_ivr_fucks\",\"description\":\"\",\"version\":\"3.8.0.139\"}",
       "%%FAX_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19pdnJfZnVja3MiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9fZnVja3MiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0idG9faXZyX2Z1Y2tzIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4="
     }
   ],
@@ -241,7 +241,7 @@
     },
     {
       "Name": "test_send_bye_on_t38_re_invite",
-      "Description": "\u0415\u0441\u043b\u0438 \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u043a\u043b\u0438\u0435\u043d\u0442\u0430 \u0441\u0434\u0435\u043b\u0430\u0442\u044c \u0433\u043e\u043d\u043a\u0443 BYE \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u0430 \u0438 RE-INVITE \u043d\u0430 T38, \u0442\u043e MSR \u0443\u043f\u0430\u0434\u0451\u0442",
+      "Description": "Если со стороны клиента сделать гонку BYE реквеста и RE-INVITE на T38, то MSR упадёт",
       "TestProcedure": [
         {
           "Sleep": 10
@@ -269,7 +269,7 @@
     },
     {
       "Name": "test_t38_send_re_invite",
-      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430, \u0447\u0442\u043e \u0444\u0430\u043a\u0441 \u0431\u0443\u0434\u0435\u0442 \u043f\u0440\u0438\u043d\u044f\u0442 \u0435\u0441\u043b\u0438 \u044e\u0437\u0435\u0440 \u043e\u0442\u043f\u0440\u0430\u0432\u0438\u043b re-invite \u043f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0444\u0430\u043a\u0441\u0430.",
+      "Description": "Проверка, что факс будет принят если юзер отправил re-invite после передачи факса.",
       "TestProcedure": [
         {
           "Sleep": 10
@@ -297,7 +297,7 @@
     },
     {
       "Name": "fax_pending_test",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 \u0432\u0441\u0442\u0440\u0435\u0447\u043d\u044b\u0445 \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u043e\u0432 \u043f\u0440\u0438 \u043f\u0435\u0440\u0435\u0445\u043e\u0434\u0435 \u043d\u0430 t38",
+      "Description": "Тестирование обработки встречных реквестов при переходе на t38",
       "TestProcedure": [
         {
           "Sleep": 10
@@ -325,7 +325,7 @@
     },
     {
       "Name": "fax_send_bye_after_sending_pps",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0447\u0430\u0441\u0442\u0438\u0447\u043d\u043e\u0433\u043e \u043f\u0440\u0438\u0451\u043c\u0430 \u0444\u0430\u043a\u0441\u0430. \u041e\u0442\u043f\u0440\u0430\u0432\u043a\u0430 BYE \u043f\u043e\u0441\u043b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u0441\u0438\u0433\u043d\u0430\u043b\u0430 PPS",
+      "Description": "Тестирование частичного приёма факса. Отправка BYE после отправки сигнала PPS",
       "TestProcedure": [
         {
           "Sleep": 10
@@ -353,7 +353,7 @@
     },
     {
       "Name": "fax_abort_t38_after_sending_pps",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0447\u0430\u0441\u0442\u0438\u0447\u043d\u043e\u0433\u043e \u043f\u0440\u0438\u0451\u043c\u0430 \u0444\u0430\u043a\u0441\u0430. \u041e\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0430 t38 \u0442\u0440\u0430\u0444\u0438\u043a\u0430 \u043f\u043e\u0441\u043b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 PPS",
+      "Description": "Тестирование частичного приёма факса. Остановка t38 трафика после отправки PPS",
       "TestProcedure": [
         {
           "Sleep": 10
@@ -381,7 +381,7 @@
     },
     {
       "Name": "fax_send_multi_page",
-      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 \u0434\u0432\u0443\u0445 \u0441\u0442\u0440\u0430\u043d\u0438\u0446.",
+      "Description": "Тестирование передачи двух страниц.",
       "TestProcedure": [
         {
           "Sleep": 10
