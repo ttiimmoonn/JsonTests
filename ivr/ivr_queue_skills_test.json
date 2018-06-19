@@ -81,53 +81,49 @@
     }
   ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_skill_test",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_queue_skill_test",
-      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% routing.context ivr_queue_skill_test",
-      "command4": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
-      "command5": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
-      "command6": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
-      "command7": "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
-      "command8": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
-      "command9": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
-      "command10": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cc_agent",
-      "command11": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cc_agent",
-      "command12": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
-      "command13": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
-      "command14": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_skill_test --json %%IVR_TO_QUEUE%%",
-      "command15": "sleep 5",
-      "command16": "/domain/%%DEV_DOM%%/cc/agent/set %%0.Number%% skills [%%SKILL1%%:10,%%SKILL2%%:1,%%SKILL3%%:1]",
-      "command17": "/domain/%%DEV_DOM%%/cc/agent/set %%1.Number%% skills [%%SKILL2%%:10,%%SKILL1%%:1,%%SKILL3%%:1]",
-      "command18": "/domain/%%DEV_DOM%%/cc/agent/set %%2.Number%% skills [%%SKILL3%%:10,%%SKILL2%%:1,%%SKILL1%%:1]",
-      "command19": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set skill_based_distribution true",
-      "command20": "sleep 2"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_skill_test",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_queue_skill_test",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% routing.context ivr_queue_skill_test",
+    "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
+    "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
+    "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
+    "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_skill_test --json %%IVR_TO_QUEUE%%",
+    "sleep 5",
+    "/domain/%%DEV_DOM%%/cc/agent/set %%0.Number%% skills [%%SKILL1%%:10,%%SKILL2%%:1,%%SKILL3%%:1]",
+    "/domain/%%DEV_DOM%%/cc/agent/set %%1.Number%% skills [%%SKILL2%%:10,%%SKILL1%%:1,%%SKILL3%%:1]",
+    "/domain/%%DEV_DOM%%/cc/agent/set %%2.Number%% skills [%%SKILL3%%:10,%%SKILL2%%:1,%%SKILL1%%:1]",
+    "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set skill_based_distribution true",
+    "sleep 2"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/delete ivr_queue_skill_test",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
-      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% routing.context default_routing",
-      "command4": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
-      "command5": "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
-      "command6": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
-      "command7": "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
-      "command8": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
-      "command9": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent",
-      "command10": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
-      "command11": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
-      "command12": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
-      "command13": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent",
-      "command14": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_skill_test"
-    }
+    "/domain/%%DEV_DOM%%/routing/delete ivr_queue_skill_test",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
+    "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
+    "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
+    "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent",
+    "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_skill_test"
   ],
   "Tests": [
     {
       "Name": "ivr_queue_skill_test",
-      "Description": "Проверка skill_based_distribution. Задаём агентам skills из списка [gas,medicine,fire] таким образом, чтобы один агент имел самый высокий skill в gas, другой в medicine, третий в fire. Далее звоним на скрипт, где вызовам устанавливаются требуемые skills из списка [gas,fire,medicine]. В результате вызов требующий skill fire будет распределён на агент у которого самый высокий fire, вызов gas на агента с gas и т.д.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 skill_based_distribution. \u0417\u0430\u0434\u0430\u0451\u043c \u0430\u0433\u0435\u043d\u0442\u0430\u043c skills \u0438\u0437 \u0441\u043f\u0438\u0441\u043a\u0430 [gas,medicine,fire] \u0442\u0430\u043a\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c, \u0447\u0442\u043e\u0431\u044b \u043e\u0434\u0438\u043d \u0430\u0433\u0435\u043d\u0442 \u0438\u043c\u0435\u043b \u0441\u0430\u043c\u044b\u0439 \u0432\u044b\u0441\u043e\u043a\u0438\u0439 skill \u0432 gas, \u0434\u0440\u0443\u0433\u043e\u0439 \u0432 medicine, \u0442\u0440\u0435\u0442\u0438\u0439 \u0432 fire. \u0414\u0430\u043b\u0435\u0435 \u0437\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u0441\u043a\u0440\u0438\u043f\u0442, \u0433\u0434\u0435 \u0432\u044b\u0437\u043e\u0432\u0430\u043c \u0443\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u044e\u0442\u0441\u044f \u0442\u0440\u0435\u0431\u0443\u0435\u043c\u044b\u0435 skills \u0438\u0437 \u0441\u043f\u0438\u0441\u043a\u0430 [gas,fire,medicine]. \u0412 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0435 \u0432\u044b\u0437\u043e\u0432 \u0442\u0440\u0435\u0431\u0443\u044e\u0449\u0438\u0439 skill fire \u0431\u0443\u0434\u0435\u0442 \u0440\u0430\u0441\u043f\u0440\u0435\u0434\u0435\u043b\u0451\u043d \u043d\u0430 \u0430\u0433\u0435\u043d\u0442 \u0443 \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u0441\u0430\u043c\u044b\u0439 \u0432\u044b\u0441\u043e\u043a\u0438\u0439 fire, \u0432\u044b\u0437\u043e\u0432 gas \u043d\u0430 \u0430\u0433\u0435\u043d\u0442\u0430 \u0441 gas \u0438 \u0442.\u0434.",
       "TestProcedure": [
         {
           "ServiceFeature": [
@@ -146,13 +142,11 @@
           ]
         },
         {
-          "Sleep" : 5
+          "Sleep": 5
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/cc/queue/realtime/info %%QUEUE_NAME%%"
-            }
+            "/domain/%%DEV_DOM%%/cc/queue/realtime/info %%QUEUE_NAME%%"
           ]
         },
         {
@@ -266,13 +260,11 @@
           ]
         },
         {
-            "Sleep" : 2
+          "Sleep": 2
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/cc/queue/realtime/info %%QUEUE_NAME%%"
-            }
+            "/domain/%%DEV_DOM%%/cc/queue/realtime/info %%QUEUE_NAME%%"
           ]
         }
       ]

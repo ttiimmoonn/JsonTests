@@ -95,38 +95,34 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfnr",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cfnr",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% cfnr",
-      "command5": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% cfnr",
-      "command6": "/domain/%%DEV_DOM%%/ss/enable %%5.Number%% cfnr",
-      "command7": "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% cfnr"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/enable %%5.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% cfnr"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr",
-      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% cfnr",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfnr",
-      "command9": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cfnr",
-      "command10": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr",
-      "command11": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% cfnr",
-      "command12": "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% cfnr",
-      "command13": "/domain/%%DEV_DOM%%/ss/disable %%5.Number%% cfnr",
-      "command14": "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% cfnr"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%5.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% cfnr"
   ],
   "Tests": [
     {
       "Name": "simple_cfnr_test",
-      "Description": "Звоним на абонента с cfnr, не отвечаем и проверяем переадресацию",
+      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u0441 cfnr, \u043d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044e",
       "TestProcedure": [
         {
           "ServiceFeature": [
@@ -226,18 +222,16 @@
     },
     {
       "Name": "test_too_many_hops",
-      "Description": "Настраиваем cfnr двум абонентам друг на друга. На все занятия не отвечаем. При звонке на одного из юзеров ожидаем получение 483 ответа",
+      "Description": "\u041d\u0430\u0441\u0442\u0440\u0430\u0438\u0432\u0430\u0435\u043c cfnr \u0434\u0432\u0443\u043c \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430\u043c \u0434\u0440\u0443\u0433 \u043d\u0430 \u0434\u0440\u0443\u0433\u0430. \u041d\u0430 \u0432\u0441\u0435 \u0437\u0430\u043d\u044f\u0442\u0438\u044f \u043d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c. \u041f\u0440\u0438 \u0437\u0432\u043e\u043d\u043a\u0435 \u043d\u0430 \u043e\u0434\u043d\u043e\u0433\u043e \u0438\u0437 \u044e\u0437\u0435\u0440\u043e\u0432 \u043e\u0436\u0438\u0434\u0430\u0435\u043c \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 483 \u043e\u0442\u0432\u0435\u0442\u0430",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr number = %%1.Number%%, timeout = 2",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cfnr number = %%2.Number%%, timeout = 2",
-              "command3": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfnr number = %%3.Number%%, timeout = 2",
-              "command4": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% cfnr number = %%4.Number%%, timeout = 2",
-              "command5": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% cfnr number = %%5.Number%%, timeout = 2",
-              "command6": "/domain/%%DEV_DOM%%/ss/activate %%5.Number%% cfnr number = %%6.Number%%, timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr number = %%1.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cfnr number = %%2.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfnr number = %%3.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% cfnr number = %%4.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% cfnr number = %%5.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%5.Number%% cfnr number = %%6.Number%%, timeout = 2"
           ]
         },
         {
@@ -344,27 +338,23 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
-              "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr",
-              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr",
-              "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr",
-              "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr",
-              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr"
           ]
         }
       ]
     },
     {
       "Name": "cfnr_to_call_initiator",
-      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "Description": "\u041d\u0430\u0441\u0442\u0440\u0430\u0438\u0432\u0430\u0435\u043c \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044e \u043d\u0430 \u0438\u043d\u0438\u0446\u0438\u0430\u0442\u043e\u0440\u0430 \u0432\u044b\u0437\u043e\u0432\u0430. \u0412 \u044d\u0442\u043e\u043c \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044f \u043d\u0435 \u0434\u043e\u043b\u0436\u043d\u0430 \u0441\u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr number = %%7.Number%%, timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr number = %%7.Number%%, timeout = 2"
           ]
         },
         {
@@ -401,9 +391,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr"
           ]
         }
       ]

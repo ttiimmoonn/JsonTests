@@ -43,32 +43,27 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% intervention",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% intervention",
-      "command3": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%INTER_DNAME1%%",
-      "command4": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%INTER_DNAME2%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% intervention",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% intervention",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%INTER_DNAME1%%",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%INTER_DNAME2%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% intervention",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% intervention",
-      "command3": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command3": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% intervention",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% intervention",
+    "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
   ],
   "Tests": [
     {
       "Name": "ss_intervention_address_update_test(b_side)",
-      "Description": "Проверка обновления имени и номера абонента при использовании ДВО intervention. Подключение производится к стороне Б",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f \u0438\u043c\u0435\u043d\u0438 \u0438 \u043d\u043e\u043c\u0435\u0440\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u043f\u0440\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u0414\u0412\u041e intervention. \u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0441\u044f \u043a \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -83,7 +78,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -98,19 +93,19 @@
           ]
         },
         {
-          "Sleep" : 3
+          "Sleep": 3
         },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
-              "Backgroud" : true,
+              "Backgroud": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN *09*%%1.Number%% -set CDPNDOM %%1.SipDomain%% -d 4000 -set CHK_CONNECTED_NAME %%INTER_DNAME1%% -set CHK_CONNECTED_NUMBER %%1.Number%%", 
+                  "Options": "-m 1 -set CDPN *09*%%1.Number%% -set CDPNDOM %%1.SipDomain%% -d 4000 -set CHK_CONNECTED_NAME %%INTER_DNAME1%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"
@@ -123,14 +118,14 @@
     },
     {
       "Name": "ss_intervention_address_update_test(a_side)",
-      "Description": "Проверка обновления имени и номера абонента при использовании ДВО intervention. Подключение производится к стороне А",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f \u0438\u043c\u0435\u043d\u0438 \u0438 \u043d\u043e\u043c\u0435\u0440\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u043f\u0440\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u0414\u0412\u041e intervention. \u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0441\u044f \u043a \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0410",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 1,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -145,7 +140,7 @@
             {
               "Type": "User",
               "UserId": 2,
-              "BackGround" : true,
+              "BackGround": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -160,19 +155,19 @@
           ]
         },
         {
-          "Sleep" : 3
+          "Sleep": 3
         },
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
-              "Backgroud" : true,
+              "Backgroud": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN *09*%%2.Number%% -set CDPNDOM %%2.SipDomain%% -d 4000 -set CHK_CONNECTED_NAME %%INTER_DNAME2%% -set CHK_CONNECTED_NUMBER %%2.Number%%", 
+                  "Options": "-m 1 -set CDPN *09*%%2.Number%% -set CDPNDOM %%2.SipDomain%% -d 4000 -set CHK_CONNECTED_NAME %%INTER_DNAME2%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "20s"

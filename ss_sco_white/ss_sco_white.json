@@ -1,68 +1,63 @@
-
 {
   "TestName": "ss_sco_white",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%USER_PIN%%" : "1111"
+      "%%USER_PIN%%": "1111"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% sco_white"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% sco_white"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% sco_white",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% sco_white"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% sco_white",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% sco_white"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_sco_white_test",
-      "Description": "Активируем sco_white *62*PIN*НОМЕР_ТЕЛЕФОНА#. Звоним на запрещённый номер - вызов отбивается. Звоним на разрешённый номер - вызов проключается. Удаляем номер из белого списка и проверяем, что дозвониться нельзя. Отключаем sco_white и проверяем, что можно звонить на любого юзера",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c sco_white *62*PIN*\u041d\u041e\u041c\u0415\u0420_\u0422\u0415\u041b\u0415\u0424\u041e\u041d\u0410#. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 - \u0432\u044b\u0437\u043e\u0432 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 - \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u043e\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f. \u0423\u0434\u0430\u043b\u044f\u0435\u043c \u043d\u043e\u043c\u0435\u0440 \u0438\u0437 \u0431\u0435\u043b\u043e\u0433\u043e \u0441\u043f\u0438\u0441\u043a\u0430 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0434\u043e\u0437\u0432\u043e\u043d\u0438\u0442\u044c\u0441\u044f \u043d\u0435\u043b\u044c\u0437\u044f. \u041e\u0442\u043a\u043b\u044e\u0447\u0430\u0435\u043c sco_white \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043c\u043e\u0436\u043d\u043e \u0437\u0432\u043e\u043d\u0438\u0442\u044c \u043d\u0430 \u043b\u044e\u0431\u043e\u0433\u043e \u044e\u0437\u0435\u0440\u0430",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -70,7 +65,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*%%1.Number%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -78,7 +73,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC0_RECV_403",
               "Commands": [
                 {
@@ -96,7 +91,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -110,7 +105,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -128,7 +123,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%*%%1.Number%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -136,7 +131,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC1_RECV_403",
               "Commands": [
                 {
@@ -154,7 +149,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -162,7 +157,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -176,7 +171,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -194,13 +189,13 @@
     },
     {
       "Name": "sco_white_test_feature_code_with_id",
-      "Description": "Активируем sco_white, используя фича-код *62*PIN*НОМЕР_В_СПИСКЕ*НОМЕР_ТЕЛЕФОНА#. Проверяем, что вызов устанавливается. После деактивируем sco_white фича-кодом #62*PIN*НОМЕР_В_СПИСКЕ# и проверяем, что вызов отбивается.",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c sco_white, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044f \u0444\u0438\u0447\u0430-\u043a\u043e\u0434 *62*PIN*\u041d\u041e\u041c\u0415\u0420_\u0412_\u0421\u041f\u0418\u0421\u041a\u0415*\u041d\u041e\u041c\u0415\u0420_\u0422\u0415\u041b\u0415\u0424\u041e\u041d\u0410#. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u044b\u0437\u043e\u0432 \u0443\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442\u0441\u044f. \u041f\u043e\u0441\u043b\u0435 \u0434\u0435\u0430\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c sco_white \u0444\u0438\u0447\u0430-\u043a\u043e\u0434\u043e\u043c #62*PIN*\u041d\u041e\u041c\u0415\u0420_\u0412_\u0421\u041f\u0418\u0421\u041a\u0415# \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u044b\u0437\u043e\u0432 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f.",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -208,7 +203,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*1*%%1.Number%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -216,7 +211,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -230,7 +225,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -248,7 +243,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%*1#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -256,7 +251,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -274,7 +269,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }
@@ -282,13 +277,13 @@
     },
     {
       "Name": "sco_white_drop_all_access_list",
-      "Description": "Активируем sco_white для двух номеров. Проверяем, что вызовы проходят. Очищаем access лист с помощью фича-кода  #62*PIN*0# и проверяем, что дозвониться нельзя",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c sco_white \u0434\u043b\u044f \u0434\u0432\u0443\u0445 \u043d\u043e\u043c\u0435\u0440\u043e\u0432. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u044b\u0437\u043e\u0432\u044b \u043f\u0440\u043e\u0445\u043e\u0434\u044f\u0442. \u041e\u0447\u0438\u0449\u0430\u0435\u043c access \u043b\u0438\u0441\u0442 \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u0444\u0438\u0447\u0430-\u043a\u043e\u0434\u0430  #62*PIN*0# \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0434\u043e\u0437\u0432\u043e\u043d\u0438\u0442\u044c\u0441\u044f \u043d\u0435\u043b\u044c\u0437\u044f",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -296,7 +291,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*1*%%1.Number%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -304,7 +299,7 @@
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%*%%2.Number%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -312,7 +307,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -326,7 +321,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -344,7 +339,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -358,7 +353,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -376,7 +371,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%*0#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -384,7 +379,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -402,7 +397,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_RECV_403",
               "Commands": [
                 {
@@ -420,7 +415,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }
@@ -428,13 +423,13 @@
     },
     {
       "Name": "sca_test_incoming_calls",
-      "Description": "Звоним на юзера с sco_white - соединение устанавливается",
+      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 sco_white - \u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435 \u0443\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442\u0441\u044f",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -442,7 +437,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -456,7 +451,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -474,7 +469,7 @@
           "ServiceFeature": [
             {
               "code": "#62*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }

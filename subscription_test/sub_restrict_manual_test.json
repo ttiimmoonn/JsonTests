@@ -2,67 +2,60 @@
   "TestName": "sub_restrict_manual_test",
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "100",
       "Login": "100",
       "Password": "pbx1123",
       "SipDomain": "pbx1",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 10106,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "101",
       "Login": "101",
       "Password": "pbx1123",
       "SipDomain": "pbx1.eltex.loc",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 10109,
+      "QParam": 0.5,
+      "OneTime": true
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "101",
       "Login": "101",
       "Password": "123",
       "SipDomain": "pbx2.eltex.loc",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10110,
-      "QParam" : 0.5,
-      "OneTime" : true
+      "Port": 10110,
+      "QParam": 0.5,
+      "OneTime": true
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
-      "Name": "Проверка корректности детектирования ВАТС (тест матчинга)",
-      "Description" : "Попытка подписаться при составном CDPNDOM",
+      "Name": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f \u0412\u0410\u0422\u0421 (\u0442\u0435\u0441\u0442 \u043c\u0430\u0442\u0447\u0438\u043d\u0433\u0430)",
+      "Description": "\u041f\u043e\u043f\u044b\u0442\u043a\u0430 \u043f\u043e\u0434\u043f\u0438\u0441\u0430\u0442\u044c\u0441\u044f \u043f\u0440\u0438 \u0441\u043e\u0441\u0442\u0430\u0432\u043d\u043e\u043c CDPNDOM",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAC1_TEST_SUB",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/sub_uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%.eltex.loc -set EXPIRES 90 -aa",
                   "SippType": "uac",
@@ -77,10 +70,10 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAC2_TEST_SUB",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/sub_uac.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%.eltex.loc -set EXPIRES 0 -aa",
                   "SippType": "uac",
@@ -94,17 +87,17 @@
       ]
     },
     {
-      "Name": "Проверка корректности детектирования ВАТС (foreign_vats)",
-      "Description" : "Пытаемся подписаться на юзера из соседней ВАТС",
+      "Name": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f \u0412\u0410\u0422\u0421 (foreign_vats)",
+      "Description": "\u041f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u0430\u0442\u044c\u0441\u044f \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0438\u0437 \u0441\u043e\u0441\u0435\u0434\u043d\u0435\u0439 \u0412\u0410\u0422\u0421",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC1_TEST_SUB",
               "Commands": [
-                 {
+                {
                   "SourceFile": "subscription_test/sub_recv_403.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set EXPIRES 90 -aa",
                   "SippType": "uac",

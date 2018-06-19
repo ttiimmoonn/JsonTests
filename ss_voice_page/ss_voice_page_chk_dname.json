@@ -1,73 +1,67 @@
-
 {
   "TestName": "ss_voice_page_chk_dname",
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%SIP_DNAME%%" : "SipDNAME_VOICE_PAGE",
-      "%%ALIAS_DNAME%%" : "AliasDNAME_VOICE_PAGE",
-      "%%ROUTE_DNAME%%" : "RouteDNAME_VOICE_PAGE",
-      "%%VOICE_PAGE_ROUTE_CONTEXT%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ2b2ljZV9wYWdlX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX1ZPSUNFX1BBR0UiLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4NCg=="
+      "%%SIP_DNAME%%": "SipDNAME_VOICE_PAGE",
+      "%%ALIAS_DNAME%%": "AliasDNAME_VOICE_PAGE",
+      "%%ROUTE_DNAME%%": "RouteDNAME_VOICE_PAGE",
+      "%%VOICE_PAGE_ROUTE_CONTEXT%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ2b2ljZV9wYWdlX3Rlc3RfY3R4IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0ZUROQU1FX1ZPSUNFX1BBR0UiLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4NCg=="
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% voice_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page priority = 0_flash_override",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% voice_page",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page priority = 0_flash_override",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% voice_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% voice_page",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% voice_page",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% voice_page",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
   ],
-
   "Tests": [
     {
       "Name": "voice_page_set_dname_only_sip",
-      "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с SIP + VoicePage",
+      "Description": "dName \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c dName \u0441 SIP + VoicePage",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -80,8 +74,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -99,21 +93,19 @@
     },
     {
       "Name": "voice_page_set_dname_on_sip_and_alias",
-      "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias + VoicePage",
+      "Description": "dName \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c dName \u0441 alias + VoicePage",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -126,8 +118,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -143,23 +135,21 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
           ]
         }
       ]
     },
     {
       "Name": "ml_wout_dname",
-      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем VoicePage",
+      "Description": "dName \u043d\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c VoicePage",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -172,8 +162,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -191,21 +181,19 @@
     },
     {
       "Name": "voice_page_set_only_alias_dname",
-      "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName с alias + VoicePage",
+      "Description": "dName \u043d\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c dName \u0441 alias + VoicePage",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -218,8 +206,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -235,31 +223,27 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
           ]
         }
       ]
     },
     {
       "Name": "voice_page_set_dname_on_sip_and_routing",
-      "Description": "dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "Description": "dName \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c dName \u0441 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -272,8 +256,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -289,46 +273,43 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]
     },
     {
       "Name": "voice_page_set_dname_on_sip_and_alias_and_routing",
-      "Description": "dName получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "Description": "dName \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c dName \u0441 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ROUTE_DNAME%%\" -set CHK_CGPN %%1.Number%%", "SippType": "uas",
+                  "Options": "-m 1 -set CHK_DNAME \"VoicePage %%ROUTE_DNAME%%\" -set CHK_CGPN %%1.Number%%",
+                  "SippType": "uas",
                   "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -344,33 +325,29 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]
     },
     {
       "Name": "voice_page_set_dname_only_routing",
-      "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "Description": "dName \u043d\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u043d\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c dName \u0441 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
           ]
         },
-                {
+        {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -383,8 +360,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -400,33 +377,29 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
-              "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]
     },
     {
       "Name": "voice_page_set_dname_on_alias_and_routing",
-      "Description": "dName не получен через SIP, на абоненте выставлен, на маршрутизации выставлен. На стороне Б ожидаем dName с маршрутизации",
+      "Description": "dName \u043d\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d \u0447\u0435\u0440\u0435\u0437 SIP, \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d, \u043d\u0430 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438 \u0432\u044b\u0441\u0442\u0430\u0432\u043b\u0435\u043d. \u041d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0411 \u043e\u0436\u0438\u0434\u0430\u0435\u043c dName \u0441 \u043c\u0430\u0440\u0448\u0440\u0443\u0442\u0438\u0437\u0430\u0446\u0438\u0438",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
-              "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_DNAME%%",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%VOICE_PAGE_ROUTE_CONTEXT%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context voice_page_test_ctx"
           ]
         },
-                {
+        {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS1_WOUT100REL",
               "Commands": [
                 {
@@ -439,8 +412,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -456,11 +429,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
-              "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/routing/delete voice_page_test_ctx",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing"
           ]
         }
       ]

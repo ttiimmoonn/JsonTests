@@ -1,127 +1,127 @@
 {
   "TestName": "ss_find_me_req100rel",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "150",
       "Login": "150",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 12106,
+      "Expires": 3600,
+      "Port": 12106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "151",
       "Login": "151",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 12107,
+      "Expires": 3600,
+      "Port": 12107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "152",
       "Login": "152",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 12108,
+      "Expires": 3600,
+      "Port": 12108,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "153",
       "Login": "153",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12109,
-      "QParam" : 1
+      "Port": 12109,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "154",
       "Login": "154",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12110,
-      "QParam" : 1
+      "Port": 12110,
+      "QParam": 1
     },
     {
-      "UserId" : 5,
+      "UserId": 5,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12111,
-      "QParam" : 1
+      "Port": 12111,
+      "QParam": 1
     },
     {
-      "UserId" : 6,
+      "UserId": 6,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12112,
-      "QParam" : 1
+      "Port": 12112,
+      "QParam": 1
     },
     {
-      "UserId" : 7,
+      "UserId": 7,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12113,
-      "QParam" : 1
+      "Port": 12113,
+      "QParam": 1
     },
     {
-      "UserId" : 8,
+      "UserId": 8,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12114,
-      "QParam" : 1
+      "Port": 12114,
+      "QParam": 1
     },
     {
-      "UserId" : 9,
+      "UserId": 9,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12115,
-      "QParam" : 1
+      "Port": 12115,
+      "QParam": 1
     },
     {
-      "UserId" : 10,
+      "UserId": 10,
       "Number": "149",
       "Login": "149",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 12116,
-      "QParam" : 1
+      "Port": 12116,
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -131,35 +131,29 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% find_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% find_me send_call_diversion = true",
-      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%10.Number%%}@%%0.SipDomain%% terminal_type smart"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%10.Number%% find_me",
+    "/domain/%%DEV_DOM%%/ss/activate %%10.Number%% find_me send_call_diversion = true",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%10.Number%%}@%%0.SipDomain%% terminal_type smart"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%10.Number%% find_me",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%10.Number%% find_me"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%10.Number%% find_me",
+    "/domain/%%DEV_DOM%%/ss/disable %%10.Number%% find_me"
   ],
   "Tests": [
     {
       "Name": "simple_ss_find_me_test",
-      "Description": "Создаём группу с одним абонентом и проверяем работоспособность услуги аналогично FollowMe",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u0433\u0440\u0443\u043f\u043f\u0443 \u0441 \u043e\u0434\u043d\u0438\u043c \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u043c \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u0440\u0430\u0431\u043e\u0442\u043e\u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0441\u0442\u044c \u0443\u0441\u043b\u0443\u0433\u0438 \u0430\u043d\u0430\u043b\u043e\u0433\u0438\u0447\u043d\u043e FollowMe",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%] 5 true custom %%TimeTemplate%%"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%] 5 true custom %%TimeTemplate%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -173,7 +167,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
@@ -189,16 +183,14 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/set %%10.Number%% send_call_diversion false"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/set %%10.Number%% send_call_diversion false"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -212,7 +204,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC2_FIND_ME",
               "Commands": [
                 {
@@ -228,32 +220,28 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/set %%10.Number%% send_call_diversion true"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/set %%10.Number%% send_call_diversion true"
           ]
         }
       ]
     },
     {
       "Name": "ss_find_me_group_test",
-      "Description": "Создаём несколько групп и начинаем их прозванивать. Ответ даём в последней группе",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0433\u0440\u0443\u043f\u043f \u0438 \u043d\u0430\u0447\u0438\u043d\u0430\u0435\u043c \u0438\u0445 \u043f\u0440\u043e\u0437\u0432\u0430\u043d\u0438\u0432\u0430\u0442\u044c. \u041e\u0442\u0432\u0435\u0442 \u0434\u0430\u0451\u043c \u0432 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0439 \u0433\u0440\u0443\u043f\u043f\u0435",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -267,7 +255,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -281,7 +269,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -295,7 +283,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -309,7 +297,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 5,
+              "UserId": 5,
               "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -323,7 +311,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 6,
+              "UserId": 6,
               "Name": "UAS3_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -337,7 +325,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
+              "UserId": 7,
               "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -351,7 +339,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 8,
+              "UserId": 8,
               "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -365,7 +353,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 9,
+              "UserId": 9,
               "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -379,7 +367,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
@@ -395,33 +383,29 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
           ]
         }
       ]
     },
     {
       "Name": "no_groups_found",
-      "Description": "Выставляем граппам плохой диапозон и ждём прямой вызов",
+      "Description": "\u0412\u044b\u0441\u0442\u0430\u0432\u043b\u044f\u0435\u043c \u0433\u0440\u0430\u043f\u043f\u0430\u043c \u043f\u043b\u043e\u0445\u043e\u0439 \u0434\u0438\u0430\u043f\u043e\u0437\u043e\u043d \u0438 \u0436\u0434\u0451\u043c \u043f\u0440\u044f\u043c\u043e\u0439 \u0432\u044b\u0437\u043e\u0432",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%BadTimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%BadTimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 10,
+              "UserId": 10,
               "Name": "UAS_FIND_ME",
               "Commands": [
                 {
@@ -435,7 +419,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_FIND_ME",
               "Commands": [
                 {
@@ -451,33 +435,29 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
           ]
         }
       ]
     },
     {
       "Name": "ss_find_me_486_test",
-      "Description": "Создаём группы. В одной отвечаем 486 со всех UA. Во второй со всех кроме отдного. В третьей отвечаем на вызов.",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u0433\u0440\u0443\u043f\u043f\u044b. \u0412 \u043e\u0434\u043d\u043e\u0439 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c 486 \u0441\u043e \u0432\u0441\u0435\u0445 UA. \u0412\u043e \u0432\u0442\u043e\u0440\u043e\u0439 \u0441\u043e \u0432\u0441\u0435\u0445 \u043a\u0440\u043e\u043c\u0435 \u043e\u0442\u0434\u043d\u043e\u0433\u043e. \u0412 \u0442\u0440\u0435\u0442\u044c\u0435\u0439 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u043d\u0430 \u0432\u044b\u0437\u043e\u0432.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -491,7 +471,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -505,7 +485,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -519,7 +499,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -533,7 +513,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 5,
+              "UserId": 5,
               "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -547,7 +527,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 6,
+              "UserId": 6,
               "Name": "UAS3_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -561,7 +541,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
+              "UserId": 7,
               "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -575,7 +555,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 8,
+              "UserId": 8,
               "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -589,7 +569,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 9,
+              "UserId": 9,
               "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -603,7 +583,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
@@ -619,33 +599,29 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
           ]
         }
       ]
     },
     {
       "Name": "find_break_bad_time_groups_test",
-      "Description": "Создаём 3 группы. В двух первых группах назначаем некорректный временной диапозон. Вызов принимаем в последней группе.",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c 3 \u0433\u0440\u0443\u043f\u043f\u044b. \u0412 \u0434\u0432\u0443\u0445 \u043f\u0435\u0440\u0432\u044b\u0445 \u0433\u0440\u0443\u043f\u043f\u0430\u0445 \u043d\u0430\u0437\u043d\u0430\u0447\u0430\u0435\u043c \u043d\u0435\u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0439 \u0432\u0440\u0435\u043c\u0435\u043d\u043d\u043e\u0439 \u0434\u0438\u0430\u043f\u043e\u0437\u043e\u043d. \u0412\u044b\u0437\u043e\u0432 \u043f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c \u0432 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0439 \u0433\u0440\u0443\u043f\u043f\u0435.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%BadTimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%BadTimeTemplate%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -659,7 +635,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -673,7 +649,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -687,7 +663,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
@@ -703,38 +679,34 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1"
           ]
         }
       ]
     },
     {
       "Name": "ss_find_me_loop_test",
-      "Description": "Создаём петлю посредством find_me. Запускаем вызов. Вызов должен отбиться по превышению max_hop",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u043f\u0435\u0442\u043b\u044e \u043f\u043e\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u043e\u043c find_me. \u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432. \u0412\u044b\u0437\u043e\u0432 \u0434\u043e\u043b\u0436\u0435\u043d \u043e\u0442\u0431\u0438\u0442\u044c\u0441\u044f \u043f\u043e \u043f\u0440\u0435\u0432\u044b\u0448\u0435\u043d\u0438\u044e max_hop",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
-              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
-              "command4": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%10.Number%%] 5 true custom %%TimeTemplate%%",
-              "command5": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
-              "command6": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% ml",
-              "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count = 3",
-              "command8": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% ml line_count = 3"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%10.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ml",
+            "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% ml",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ml line_count = 3",
+            "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% ml line_count = 3"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -748,7 +720,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -762,7 +734,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
@@ -778,42 +750,38 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
-              "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me",
-              "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ml",
-              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% ml",
-              "command7": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ml",
-              "command8": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% ml"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ml",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% ml",
+            "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% ml",
+            "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% ml"
           ]
         }
       ]
     },
     {
       "Name": "find_like_tree_test",
-      "Description": "Создаём цепочку из трех групп и запускаем вызов. В последнем звене отвечаем",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u0446\u0435\u043f\u043e\u0447\u043a\u0443 \u0438\u0437 \u0442\u0440\u0435\u0445 \u0433\u0440\u0443\u043f\u043f \u0438 \u0437\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432. \u0412 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u043c \u0437\u0432\u0435\u043d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
-              "command2": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
-              "command3": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
-              "command4": "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% find_me",
-              "command5": "/domain/%%DEV_DOM%%/ss/activate %%6.Number%% find_me send_call_diversion = true",
-              "command6": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
-              "command7": "/domain/%%DEV_DOM%%/ss/find-me/add-group %%6.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%10.Number%% [%%1.Number%%,%%2.Number%%,%%3.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% find_me send_call_diversion = true",
+            "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/activate %%6.Number%% find_me send_call_diversion = true",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%3.Number%% [%%4.Number%%,%%5.Number%%,%%6.Number%%] 5 true custom %%TimeTemplate%%",
+            "/domain/%%DEV_DOM%%/ss/find-me/add-group %%6.Number%% [%%7.Number%%,%%8.Number%%,%%9.Number%%] 5 true custom %%TimeTemplate%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -827,7 +795,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_GROUP_1_FIND_ME",
               "Commands": [
                 {
@@ -841,7 +809,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAS1_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -855,7 +823,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 5,
+              "UserId": 5,
               "Name": "UAS2_GROUP_2_FIND_ME",
               "Commands": [
                 {
@@ -869,7 +837,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
+              "UserId": 7,
               "Name": "UAS1_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -883,7 +851,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 8,
+              "UserId": 8,
               "Name": "UAS2_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -897,7 +865,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 9,
+              "UserId": 9,
               "Name": "UAS3_GROUP_3_FIND_ME",
               "Commands": [
                 {
@@ -911,7 +879,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC1_FIND_ME",
               "Commands": [
                 {
@@ -927,15 +895,13 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
-              "command2": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
-              "command3": "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%6.Number%% 1",
-              "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
-              "command5": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me",
-              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% find_me",
-              "command7": "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% find_me"
-            }
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%10.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%3.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/find-me/remove-group %%6.Number%% 1",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% find_me",
+            "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% find_me"
           ]
         }
       ]

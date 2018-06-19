@@ -29,26 +29,19 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-      "command2": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
-    }
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
   ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "rfc4028_force_refresh",
-      "Description": "Включаем юзерам обновление сессии по rfc4028 в режиме force. Со стороны UAС/UAS не отправяем Session-Expires. Ожидается, что SSW всё равно пошлёт refresh запросы в обе стороны",
+      "Description": "\u0412\u043a\u043b\u044e\u0447\u0430\u0435\u043c \u044e\u0437\u0435\u0440\u0430\u043c \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435 \u0441\u0435\u0441\u0441\u0438\u0438 \u043f\u043e rfc4028 \u0432 \u0440\u0435\u0436\u0438\u043c\u0435 force. \u0421\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b UA\u0421/UAS \u043d\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u044f\u0435\u043c Session-Expires. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e SSW \u0432\u0441\u0451 \u0440\u0430\u0432\u043d\u043e \u043f\u043e\u0448\u043b\u0451\u0442 refresh \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0432 \u043e\u0431\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control force",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control force",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control force"
           ]
         },
         {
@@ -87,10 +80,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true"
           ]
         }
       ]

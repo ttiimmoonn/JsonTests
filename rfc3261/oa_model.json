@@ -1,52 +1,45 @@
 {
   "TestName": "rfc3261_oa_model",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PreConf": [],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "send_a_sdp_in_183_180_200",
-      "Description": "Отправка a_sdp в 183, 180 и 200 сообщениях. А звонит на Б, Б отпраляет a_sdp в 183, потом дублирует a_sdp в 180 и 200 сообщениях.",
+      "Description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043a\u0430 a_sdp \u0432 183, 180 \u0438 200 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f\u0445. \u0410 \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 \u0411, \u0411 \u043e\u0442\u043f\u0440\u0430\u043b\u044f\u0435\u0442 a_sdp \u0432 183, \u043f\u043e\u0442\u043e\u043c \u0434\u0443\u0431\u043b\u0438\u0440\u0443\u0435\u0442 a_sdp \u0432 180 \u0438 200 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f\u0445.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_180_AFTER_183",
               "Commands": [
                 {
@@ -60,7 +53,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -78,13 +71,13 @@
     },
     {
       "Name": "send_a_sdp_in_180_183_200",
-      "Description": "Отправка a_sdp в 180, 183 и 200 сообщениях. А звонит на Б, Б отпраляет a_sdp в 180, потом дублирует a_sdp в 183 и 200 сообщениях.",
+      "Description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043a\u0430 a_sdp \u0432 180, 183 \u0438 200 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f\u0445. \u0410 \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 \u0411, \u0411 \u043e\u0442\u043f\u0440\u0430\u043b\u044f\u0435\u0442 a_sdp \u0432 180, \u043f\u043e\u0442\u043e\u043c \u0434\u0443\u0431\u043b\u0438\u0440\u0443\u0435\u0442 a_sdp \u0432 183 \u0438 200 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f\u0445.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_183_AFTER_180",
               "Commands": [
                 {
@@ -98,7 +91,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -116,13 +109,13 @@
     },
     {
       "Name": "send_invite_wout_o_sdp",
-      "Description": "Проверка обработки invite без osdp. А отправляет INVITE без SDP, ожидается, что o_sdp будет отправлен в 200 ответе.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 invite \u0431\u0435\u0437 osdp. \u0410 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 INVITE \u0431\u0435\u0437 SDP, \u043e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e o_sdp \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d \u0432 200 \u043e\u0442\u0432\u0435\u0442\u0435.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -136,7 +129,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_INVITE_WOUT_SDP",
               "Commands": [
                 {
@@ -154,13 +147,13 @@
     },
     {
       "Name": "send_diff_sdp_in_183",
-      "Description": "Отправляем разные sdp в 183 и 200. Спекой такое поведение запрещается. Ожидается, что будет использован последний a_sdp",
+      "Description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u043c \u0440\u0430\u0437\u043d\u044b\u0435 sdp \u0432 183 \u0438 200. \u0421\u043f\u0435\u043a\u043e\u0439 \u0442\u0430\u043a\u043e\u0435 \u043f\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u0435 \u0437\u0430\u043f\u0440\u0435\u0449\u0430\u0435\u0442\u0441\u044f. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0431\u0443\u0434\u0435\u0442 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 a_sdp",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SEND_DIFF_SDP_IN_183",
               "Commands": [
                 {
@@ -174,7 +167,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {

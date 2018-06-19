@@ -3,135 +3,127 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
+      "Expires": 3600,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 3600,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10108,
-      "QParam" : 1
+      "Expires": 3600,
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10109,
-      "QParam" : 1
+      "Expires": 3600,
+      "Port": 10109,
+      "QParam": 1
     },
     {
-      "UserId" : 5,
+      "UserId": 5,
       "Number": "161",
       "Login": "161",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10110,
-      "QParam" : 1
+      "Expires": 3600,
+      "Port": 10110,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare presence_restrict presence presence_restrict %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
-      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% presence",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% presence max_subscribe = 10",
-      "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
-      "command5" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 10",
-      "command6" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% presence",
-      "command7" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% presence max_subscribe = 10",
-      "command8" : "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% presence",
-      "command9" : "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% presence max_subscribe = 10",
-      "command10" : "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% presence",
-      "command11" : "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% presence max_subscribe = 10",
-      "command12" : "/domain/%%DEV_DOM%%/ss/enable %%5.Number%% presence",
-      "command13" : "/domain/%%DEV_DOM%%/ss/activate %%5.Number%% presence max_subscribe = 10",
-      "command14" : "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority high %%0.Number%%",
-      "command15" : "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority low %%2.Number%%",
-      "command16" : "/domain/%%DEV_DOM%%/lists/info presence_restrict"
-      }
+    "/domain/%%DEV_DOM%%/lists/declare presence_restrict presence presence_restrict %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% presence max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% presence max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% presence max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% presence max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/ss/enable %%5.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%5.Number%% presence max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority high %%0.Number%%",
+    "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority low %%2.Number%%",
+    "/domain/%%DEV_DOM%%/lists/info presence_restrict"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/lists/remove presence_restrict",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% presence",
-      "command3" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
-      "command4" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% presence",
-      "command5" : "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% presence",
-      "command6" : "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% presence",
-      "command7" : "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% presence",
-      "command8" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% presence",
-      "command9" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence",
-      "command10" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% presence",
-      "command11" : "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% presence",
-      "command12" : "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% presence",
-      "command13" : "/domain/%%DEV_DOM%%/ss/disable %%5.Number%% presence",
-      "command14" : "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_1",
-      "command15" : "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_2"
-    }
+    "/domain/%%DEV_DOM%%/lists/remove presence_restrict",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%5.Number%% presence",
+    "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_1",
+    "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_2"
   ],
-
-
-"Tests": [
+  "Tests": [
     {
       "Name": "low_priority_test",
-      "Description": "Подписка low_to_high, low_to_normal, low_to_low. Во всех случаях получаем 603.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 low_to_high, low_to_normal, low_to_low. \u0412\u043e \u0432\u0441\u0435\u0445 \u0441\u043b\u0443\u0447\u0430\u044f\u0445 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c 603.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority low %%3.Number%%",
-              "command2": "/domain/%%DEV_DOM%%/lists/info presence_restrict"
-            }
+            "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority low %%3.Number%%",
+            "/domain/%%DEV_DOM%%/lists/info presence_restrict"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "FAILED_SUBSCRIBE_LOW_TO_NORMAL",
               "Commands": [
                 {
@@ -149,8 +141,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "FAILED_SUBSCRIBE_LOW_TO_HIGH",
               "Commands": [
                 {
@@ -168,8 +160,8 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "FAILED_SUBSCRIBE_LOW_TO_LOW",
               "Commands": [
                 {
@@ -187,14 +179,14 @@
     },
     {
       "Name": "normal_to_high_subsciption_test",
-      "Description": "Подписка с normal на high.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 normal \u043d\u0430 high.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "FAILED_SUBSCRIBE_NORMAL_TO_HIGH",
               "Commands": [
                 {
@@ -212,15 +204,15 @@
     },
     {
       "Name": "normal_to_low_subsciption_test",
-      "Description": "Подписка с normal на low.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 normal \u043d\u0430 low.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SUCC_SUBSCRIBE_NORMAL_TO_LOW",
               "Commands": [
                 {
@@ -235,14 +227,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
@@ -254,29 +246,27 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     },
     {
       "Name": "normal_to_normal_subsciption_test",
-      "Description": "Подписка с normal на normal.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 normal \u043d\u0430 normal.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority normal %%3.Number%%",
-              "command2": "/domain/%%DEV_DOM%%/lists/info presence_restrict"
-            }
+            "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority normal %%3.Number%%",
+            "/domain/%%DEV_DOM%%/lists/info presence_restrict"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SUCC_SUBSCRIBE_NORMAL_TO_NORMAL",
               "Commands": [
                 {
@@ -291,14 +281,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
@@ -310,21 +300,21 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     },
     {
       "Name": "high_to_low_subsciption_test",
-      "Description": "Подписка с high на low.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 high \u043d\u0430 low.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_LOW",
               "Commands": [
                 {
@@ -339,14 +329,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
@@ -358,21 +348,21 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     },
     {
       "Name": "high_to_normal_subsciption_test",
-      "Description": "Подписка с high на normal.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 high \u043d\u0430 normal.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_NORMAL",
               "Commands": [
                 {
@@ -387,14 +377,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
@@ -406,29 +396,27 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     },
     {
       "Name": "high_to_high_subsciption_test",
-      "Description": "Подписка с high на normal.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u043a\u0430 \u0441 high \u043d\u0430 normal.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority high %%3.Number%%",
-              "command2": "/domain/%%DEV_DOM%%/lists/info presence_restrict"
-            }
+            "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_restrict priority high %%3.Number%%",
+            "/domain/%%DEV_DOM%%/lists/info presence_restrict"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SUCC_SUBSCRIBE_HIGH_TO_HIGH",
               "Commands": [
                 {
@@ -443,14 +431,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAC_SEND_PUBLISH",
               "Commands": [
                 {
@@ -462,27 +450,25 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     },
     {
       "Name": "overload_max_subs_limit",
-      "Description": "Проверяем корректность работы max_subs_limit",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u044c \u0440\u0430\u0431\u043e\u0442\u044b max_subs_limit",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% presence max_subscribe = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% presence max_subscribe = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SUBSCRIBE_LIMIT",
               "Commands": [
                 {
@@ -490,7 +476,7 @@
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%1.Number%%",
                   "StartCseq": 1,
                   "Timeout": "60s"
                 },
@@ -498,7 +484,7 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%2.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%2.Number%%",
                   "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -518,15 +504,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SUBSCRIBE_LIMIT",
               "Commands": [
                 {
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%1.Number%%",
                   "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -535,7 +521,7 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%3.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%3.Number%%",
                   "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -548,15 +534,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SUBSCRIBE_LIMIT",
               "Commands": [
                 {
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%2.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%2.Number%%",
                   "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -565,7 +551,7 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%3.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%3.Number%%",
                   "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -576,43 +562,39 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% presence max_subscribe = 10"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% presence max_subscribe = 10"
           ]
         }
       ]
     },
     {
       "Name": "neighbor_presence_list_test",
-      "Description": "Создаём соседние списки и проверяем, что они не оказывают вляние друг на друга",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u0441\u043e\u0441\u0435\u0434\u043d\u0438\u0435 \u0441\u043f\u0438\u0441\u043a\u0438 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043e\u043d\u0438 \u043d\u0435 \u043e\u043a\u0430\u0437\u044b\u0432\u0430\u044e\u0442 \u0432\u043b\u044f\u043d\u0438\u0435 \u0434\u0440\u0443\u0433 \u043d\u0430 \u0434\u0440\u0443\u0433\u0430",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_1 presence presence_neighbor_list_1 %%0.Number%% %%4.Number%%",
-              "command2" : "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_2 presence presence_neighbor_list_2 %%2.Number%% %%5.Number%%",
-              "command3" : "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_neighbor_list_1 priority low %%0.Number%%",
-              "command4" : "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_neighbor_list_2 priority high %%2.Number%%",
-              "command5" : "/domain/%%DEV_DOM%%/lists/info presence_restrict",
-              "command6" : "/domain/%%DEV_DOM%%/lists/info presence_neighbor_list_1",
-              "command7" : "/domain/%%DEV_DOM%%/lists/info presence_neighbor_list_2"
-            }
+            "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_1 presence presence_neighbor_list_1 %%0.Number%% %%4.Number%%",
+            "/domain/%%DEV_DOM%%/lists/declare presence_neighbor_list_2 presence presence_neighbor_list_2 %%2.Number%% %%5.Number%%",
+            "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_neighbor_list_1 priority low %%0.Number%%",
+            "/domain/%%DEV_DOM%%/lists/numbers-set-property presence_neighbor_list_2 priority high %%2.Number%%",
+            "/domain/%%DEV_DOM%%/lists/info presence_restrict",
+            "/domain/%%DEV_DOM%%/lists/info presence_neighbor_list_1",
+            "/domain/%%DEV_DOM%%/lists/info presence_neighbor_list_2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SUBSCRIPTION_NEIGHBOR_UAC_1",
               "Commands": [
                 {
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%1.Number%%",
                   "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -628,7 +610,7 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%1.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%1.Number%%",
                   "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -641,15 +623,15 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SUBSCRIPTION_NEIGHBOR_UAC_2",
               "Commands": [
                 {
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa -set EXPIRES 90",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%5.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%5.Number%%",
                   "StartCseq": 1,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -665,7 +647,7 @@
                   "SourceFile": "presence_sub_test/presence_sub_set_expires.xml",
                   "Options": "-m 1 -set CDPN %%5.Number%% -set CDPNDOM %%5.SipDomain%% -aa -set EXPIRES 0",
                   "SippType": "uac",
-                  "CidStr" : "subfrom%%0.Number%%to%%5.Number%%",
+                  "CidStr": "subfrom%%0.Number%%to%%5.Number%%",
                   "StartCseq": 10,
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -676,10 +658,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1" : "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_1",
-              "command2" : "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_2"
-            }
+            "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_1",
+            "/domain/%%DEV_DOM%%/lists/remove presence_neighbor_list_2"
           ]
         }
       ]

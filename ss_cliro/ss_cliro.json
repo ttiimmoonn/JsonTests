@@ -3,64 +3,59 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 1
+      "Port": 10105,
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 1
+      "Port": 10106,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-    "%%DISPLAY_NAME%%" : "Тест CLIRO"
+      "%%DISPLAY_NAME%%": "\u0422\u0435\u0441\u0442 CLIRO"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip cliro",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = restrict_all",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cliro"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip cnip cliro",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = restrict_all",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cliro"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cliro",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip cliro",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cliro",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip cliro",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir"
   ],
-
-"Tests": [
+  "Tests": [
     {
       "Name": "Simple_cliro_test",
-      "Description": "Делаем анонимный вызов на абонента с cliro. DNAME и номер пробрасываются на сторону Б",
+      "Description": "\u0414\u0435\u043b\u0430\u0435\u043c \u0430\u043d\u043e\u043d\u0438\u043c\u043d\u044b\u0439 \u0432\u044b\u0437\u043e\u0432 \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u0441 cliro. DNAME \u0438 \u043d\u043e\u043c\u0435\u0440 \u043f\u0440\u043e\u0431\u0440\u0430\u0441\u044b\u0432\u0430\u044e\u0442\u0441\u044f \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0411",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_BYE",
               "Commands": [
                 {
@@ -74,7 +69,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {

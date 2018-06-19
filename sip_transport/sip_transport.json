@@ -1,96 +1,90 @@
 {
   "TestName": "sip_transport_test",
-  "AutoTest" : true,
-  "Isolate" : true,
+  "AutoTest": true,
+  "Isolate": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 20000,
+      "Expires": 3600,
+      "Port": 20000,
       "SipGroup": "sip.ab",
       "SipTransport": "TCP",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 20003,
+      "Expires": 3600,
+      "Port": 20003,
       "SipGroup": "sip.ab",
       "SipTransport": "TCP",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 20005,
+      "Expires": 3600,
+      "Port": 20005,
       "SipTransport": "UDP",
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 20009,
+      "Expires": 3600,
+      "Port": 20009,
       "SipGroup": "sip.ab",
       "SipTransport": "UDP",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "161",
       "Login": "161",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 20010,
+      "Expires": 3600,
+      "Port": 20010,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
-  "PreConf": [
-    {}
-  ],
+  "PreConf": [],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
-    }
+    "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
   ],
   "Tests": [
     {
       "Name": "test_tcp_only_mode",
-      "Description": "Проверка режима tcp_only",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 tcp_only",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_only"
-            }
+            "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_only"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "TCP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -103,7 +97,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -129,7 +123,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "USER_WOUT_REQ_TRANSPORT",
               "Commands": [
                 {
@@ -142,7 +136,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -161,12 +155,12 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "WriteStat": true,
               "Name": "UAC_NO_ANSW_TO_INVITE",
               "Commands": [
                 {
-                  "NoTimeOutError" : true,
+                  "NoTimeOutError": true,
                   "SourceFile": "sip_transport/uac_no_answ_to_invite.xml",
                   "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
@@ -181,23 +175,21 @@
     },
     {
       "Name": "test_tcp_prefer_mode",
-      "Description": "Проверка режима tcp_prefer",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 tcp_prefer",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_prefer"
-            }
+            "/domain/%%DEV_DOM%%/sip/properties/set sip_transport tcp_prefer"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "TCP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -210,7 +202,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -229,7 +221,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -242,7 +234,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -261,7 +253,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "TCP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -274,7 +266,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -293,7 +285,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -306,7 +298,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -325,7 +317,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "USER_WOUT_REQ_TRANSPORT",
               "Commands": [
                 {
@@ -338,7 +330,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -357,7 +349,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "USER_WOUT_REQ_TRANSPORT",
               "Commands": [
                 {
@@ -370,7 +362,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -389,23 +381,21 @@
     },
     {
       "Name": "test_udp_only_mode",
-      "Description": "Проверка режима udp_only",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 udp_only",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_only"
-            }
+            "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_only"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -418,7 +408,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -444,7 +434,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "USER_WOUT_REQ_TRANSPORT",
               "Commands": [
                 {
@@ -457,7 +447,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -476,12 +466,12 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "UAC_NO_ANSW_TO_INVITE",
               "Commands": [
                 {
-                  "NoTimeOutError" : true,
+                  "NoTimeOutError": true,
                   "SourceFile": "sip_transport/uac_no_answ_to_invite.xml",
                   "Options": "-m 1 -set CDPN %%4.Number%% -set CDPNDOM %%4.SipDomain%% -aa",
                   "SippType": "uac",
@@ -496,23 +486,21 @@
     },
     {
       "Name": "test_udp_prefer_mode",
-      "Description": "Проверка режима udp_prefer",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 udp_prefer",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
-            }
+            "/domain/%%DEV_DOM%%/sip/properties/set sip_transport udp_prefer"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "TCP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -525,7 +513,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -544,7 +532,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -557,7 +545,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -576,7 +564,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "TCP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -589,7 +577,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -608,7 +596,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -621,7 +609,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -640,7 +628,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "USER_WOUT_REQ_TRANSPORT",
               "Commands": [
                 {
@@ -653,7 +641,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -672,7 +660,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "USER_WOUT_REQ_TRANSPORT",
               "Commands": [
                 {
@@ -685,7 +673,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [

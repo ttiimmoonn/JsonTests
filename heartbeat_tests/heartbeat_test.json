@@ -1,58 +1,50 @@
 {
-	"TestName" : "heartbeat_test",
-  "AutoTest" : true,
-	"Users" : [
-	    {
-	      "UserId" : 0,
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "%%DEV_DOM%%",
-	      "Expires" : 90,
-	      "Port" : 20000,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-	    {
-	      "UserId" : 1,
-	      "Number": "157",
-	      "Login": "157",
-	      "Password": "123",
-	      "SipDomain": "%%DEV_DOM%%",
-	      "Expires" : 90,
-	      "Port" : 20002,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    }
-	],
-  "PreConf": [
+  "TestName": "heartbeat_test",
+  "AutoTest": true,
+  "Users": [
     {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
   ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "no_487_response_after_cancel",
-      "Description": "В случае если после отправки CANCEL не был получен 487 ответ, срабатывал hb на адаптере. ",
-      "Ref" : "#91701",
+      "Description": "\u0412 \u0441\u043b\u0443\u0447\u0430\u0435 \u0435\u0441\u043b\u0438 \u043f\u043e\u0441\u043b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 CANCEL \u043d\u0435 \u0431\u044b\u043b \u043f\u043e\u043b\u0443\u0447\u0435\u043d 487 \u043e\u0442\u0432\u0435\u0442, \u0441\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u043b hb \u043d\u0430 \u0430\u0434\u0430\u043f\u0442\u0435\u0440\u0435. ",
+      "Ref": "#91701",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-                "command2": "/domain/%%DEV_DOM%%/iface/info * %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%%",
-                "command3": "/domain/%%DEV_DOM%%/iface/info * %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%%"
-            }
+            "/domain/%%DEV_DOM%%/iface/info * %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%%",
+            "/domain/%%DEV_DOM%%/iface/info * %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%%"
           ]
         },
-       {
+        {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_NO_487",
               "Commands": [
                 {
@@ -65,8 +57,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_CANCEL",
               "Commands": [
                 {

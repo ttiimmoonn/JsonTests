@@ -41,26 +41,22 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
-      "command5": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
   ],
   "Tests": [
     {

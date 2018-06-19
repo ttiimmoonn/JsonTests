@@ -1,59 +1,53 @@
 {
-	"TestName" : "ivr_bug_test",
-	"Users" : [
-	    {
-	      "UserId" : 0,
-	      "Number": "156",
-	      "Login": "156",
-	      "Password": "123",
-	      "SipDomain": "%%DEV_DOM%%",
-	      "Expires" : 90,
-	      "Port" : 20000,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-	    {
-	      "UserId" : 1,
-	      "Number": "157",
-	      "Login": "157",
-	      "Password": "123",
-	      "SipDomain": "%%DEV_DOM%%",
-	      "Expires" : 90,
-	      "Port" : 20002,
-	      "SipGroup": "sip.ab",
-	      "QParam" : 0.5
-	    },
-      {
-        "UserId" : 2,
-        "Number": "158",
-        "Login": "158",
-        "Password": "123",
-        "SipDomain": "%%DEV_DOM%%",
-        "Expires" : 90,
-        "Port" : 20003,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
-	],
-  "PreConf": [
+  "TestName": "ivr_bug_test",
+  "Users": [
     {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20003,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
   ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "send_ABCD_dtmf",
-      "Description": "Падал IVR при отправке ABCD dtmf в блоке ivr",
+      "Description": "\u041f\u0430\u0434\u0430\u043b IVR \u043f\u0440\u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0435 ABCD dtmf \u0432 \u0431\u043b\u043e\u043a\u0435 ivr",
       "TestProcedure": [
-       {
+        {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_ABCD_DTMF",
               "Commands": [
                 {
@@ -71,22 +65,19 @@
     },
     {
       "Name": "uac_redirect_call_to_ivr",
-      "Description": "Падал ivr при поступлении переадресованного вызова",
+      "Description": "\u041f\u0430\u0434\u0430\u043b ivr \u043f\u0440\u0438 \u043f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0438 \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u043e\u0432\u0430\u043d\u043d\u043e\u0433\u043e \u0432\u044b\u0437\u043e\u0432\u0430",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
-              "command": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_302",
               "Commands": [
                 {
@@ -99,8 +90,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -113,8 +104,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_RECV_181",
               "Commands": [
                 {
@@ -130,10 +121,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
-              "command": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"
-            }
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip"
           ]
         }
       ]

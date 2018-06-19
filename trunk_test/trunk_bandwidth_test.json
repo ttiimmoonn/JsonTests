@@ -21,35 +21,29 @@
     {
       "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfdHJ1bmtfYmFuZHdpZHRoX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxleHRlcm5hbD4NCiAgICAgICAgPHRydW5rIHZhbHVlPSJzaXBfdHJ1bmtfYmFuZHdpZHRoMiIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
       "%%trunk_ctx_name%%": "ctx_trunk_bandwidth_test",
-      "%%cdpn_num%%" : "900",
-      "%%cgpn_num%%" : "800"
+      "%%cdpn_num%%": "900",
+      "%%cgpn_num%%": "800"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
-      "command2": "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
-      "command3": "/domain/%%DEV_DOM%%/trunk/sip/declare default.routing %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare default.routing %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2": "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
-      "command3": "/domain/%%DEV_DOM%%/routing/delete %%trunk_ctx_name%%"
-    }
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/routing/delete %%trunk_ctx_name%%"
   ],
   "Tests": [
     {
       "Name": "test_bandwidth_in",
-      "Description": "Проверка ограничения входящих вызовов на транке. Устанавливаем параметр bandwidth\\in в 2, делаем 3 входящих вызова на данный транк. Ожидается, что два вызова будут обработаны, а третий будет отбит 480 ответом. Далее производим очистку лимитов и делаем 3 вызова. Ожидается, что все вызовы будут обработаны.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f \u0432\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0432\u044b\u0437\u043e\u0432\u043e\u0432 \u043d\u0430 \u0442\u0440\u0430\u043d\u043a\u0435. \u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 bandwidth\\in \u0432 2, \u0434\u0435\u043b\u0430\u0435\u043c 3 \u0432\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0432\u044b\u0437\u043e\u0432\u0430 \u043d\u0430 \u0434\u0430\u043d\u043d\u044b\u0439 \u0442\u0440\u0430\u043d\u043a. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0434\u0432\u0430 \u0432\u044b\u0437\u043e\u0432\u0430 \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b, \u0430 \u0442\u0440\u0435\u0442\u0438\u0439 \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u0431\u0438\u0442 480 \u043e\u0442\u0432\u0435\u0442\u043e\u043c. \u0414\u0430\u043b\u0435\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u043c \u043e\u0447\u0438\u0441\u0442\u043a\u0443 \u043b\u0438\u043c\u0438\u0442\u043e\u0432 \u0438 \u0434\u0435\u043b\u0430\u0435\u043c 3 \u0432\u044b\u0437\u043e\u0432\u0430. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0432\u0441\u0435 \u0432\u044b\u0437\u043e\u0432\u044b \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in 2",
-              "command2": "/domain/%%DEV_DOM%%/trunk/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out 0"
-            }
+            "/domain/%%DEV_DOM%%/trunk/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in 2",
+            "/domain/%%DEV_DOM%%/trunk/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out 0"
           ]
         },
         {
@@ -89,12 +83,10 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
-              "command2": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
-              "command3": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
-              "command4": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out"
-            }
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out"
           ]
         },
         {
@@ -133,13 +125,11 @@
     },
     {
       "Name": "test_bandwidth_out",
-      "Description": "Проверка ограничения исходящих вызовов с транка. Устанавливаем параметр bandwidth\\out в 2, пытаемся сделать 3 исходящих вызова с транка. Ожидается, что два вызова будут обработаны, а третий будет отбит 480 ответом. Далее производим очистку лимитов и делаем 3 вызова. Ожидается, что все вызовы будут обработаны.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f \u0438\u0441\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0432\u044b\u0437\u043e\u0432\u043e\u0432 \u0441 \u0442\u0440\u0430\u043d\u043a\u0430. \u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 bandwidth\\out \u0432 2, \u043f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u0441\u0434\u0435\u043b\u0430\u0442\u044c 3 \u0438\u0441\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0432\u044b\u0437\u043e\u0432\u0430 \u0441 \u0442\u0440\u0430\u043d\u043a\u0430. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0434\u0432\u0430 \u0432\u044b\u0437\u043e\u0432\u0430 \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b, \u0430 \u0442\u0440\u0435\u0442\u0438\u0439 \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u0431\u0438\u0442 480 \u043e\u0442\u0432\u0435\u0442\u043e\u043c. \u0414\u0430\u043b\u0435\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u043c \u043e\u0447\u0438\u0441\u0442\u043a\u0443 \u043b\u0438\u043c\u0438\u0442\u043e\u0432 \u0438 \u0434\u0435\u043b\u0430\u0435\u043c 3 \u0432\u044b\u0437\u043e\u0432\u0430. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0432\u0441\u0435 \u0432\u044b\u0437\u043e\u0432\u044b \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out 2"
-            }
+            "/domain/%%DEV_DOM%%/trunk/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out 2"
           ]
         },
         {
@@ -179,12 +169,10 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
-              "command2": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
-              "command3": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
-              "command4": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out"
-            }
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out"
           ]
         },
         {
@@ -223,13 +211,11 @@
     },
     {
       "Name": "test_bandwidth_total(incoming_call)",
-      "Description": "Проверка ограничения общего количесва вызовов. Устанавливаем параметр bandwidth\\total в 2, пытаемся сделать 3 входящих вызова на транк. Ожидается, что два вызова будут обработаны, а третий будет отбит 480 ответом. Далее производим очистку лимитов и делаем 3 вызова. Ожидается, что все вызовы будут обработаны.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f \u043e\u0431\u0449\u0435\u0433\u043e \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0432\u0430 \u0432\u044b\u0437\u043e\u0432\u043e\u0432. \u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 bandwidth\\total \u0432 2, \u043f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u0441\u0434\u0435\u043b\u0430\u0442\u044c 3 \u0432\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0432\u044b\u0437\u043e\u0432\u0430 \u043d\u0430 \u0442\u0440\u0430\u043d\u043a. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0434\u0432\u0430 \u0432\u044b\u0437\u043e\u0432\u0430 \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b, \u0430 \u0442\u0440\u0435\u0442\u0438\u0439 \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u0431\u0438\u0442 480 \u043e\u0442\u0432\u0435\u0442\u043e\u043c. \u0414\u0430\u043b\u0435\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u043c \u043e\u0447\u0438\u0441\u0442\u043a\u0443 \u043b\u0438\u043c\u0438\u0442\u043e\u0432 \u0438 \u0434\u0435\u043b\u0430\u0435\u043c 3 \u0432\u044b\u0437\u043e\u0432\u0430. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0432\u0441\u0435 \u0432\u044b\u0437\u043e\u0432\u044b \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\total 2"
-            }
+            "/domain/%%DEV_DOM%%/trunk/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\total 2"
           ]
         },
         {
@@ -269,15 +255,13 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\total",
-              "command1": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\total",
-              "command2": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
-              "command3": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
-              "command4": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
-              "command5": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out",
-              "command6": "/domain/%%DEV_DOM%%/trunk/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\total",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\total",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out",
+            "/domain/%%DEV_DOM%%/trunk/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
         {
@@ -316,13 +300,11 @@
     },
     {
       "Name": "test_bandwidth_total(outgoing_call)",
-      "Description": "Проверка ограничения общего количесва вызовов. Устанавливаем параметр bandwidth\\total в 2, пытаемся сделать 3 исходящих вызова с транка. Ожидается, что два вызова будут обработаны, а третий будет отбит 480 ответом. Далее производим очистку лимитов и делаем 3 вызова. Ожидается, что все вызовы будут обработаны.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f \u043e\u0431\u0449\u0435\u0433\u043e \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0432\u0430 \u0432\u044b\u0437\u043e\u0432\u043e\u0432. \u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 bandwidth\\total \u0432 2, \u043f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u0441\u0434\u0435\u043b\u0430\u0442\u044c 3 \u0438\u0441\u0445\u043e\u0434\u044f\u0449\u0438\u0445 \u0432\u044b\u0437\u043e\u0432\u0430 \u0441 \u0442\u0440\u0430\u043d\u043a\u0430. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0434\u0432\u0430 \u0432\u044b\u0437\u043e\u0432\u0430 \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b, \u0430 \u0442\u0440\u0435\u0442\u0438\u0439 \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u0431\u0438\u0442 480 \u043e\u0442\u0432\u0435\u0442\u043e\u043c. \u0414\u0430\u043b\u0435\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u043c \u043e\u0447\u0438\u0441\u0442\u043a\u0443 \u043b\u0438\u043c\u0438\u0442\u043e\u0432 \u0438 \u0434\u0435\u043b\u0430\u0435\u043c 3 \u0432\u044b\u0437\u043e\u0432\u0430. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0432\u0441\u0435 \u0432\u044b\u0437\u043e\u0432\u044b \u0431\u0443\u0434\u0443\u0442 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\total 2"
-            }
+            "/domain/%%DEV_DOM%%/trunk/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\total 2"
           ]
         },
         {
@@ -362,15 +344,13 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\total",
-              "command2": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\total",
-              "command3": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
-              "command4": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
-              "command5": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
-              "command6": "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out",
-              "command7": "/domain/%%DEV_DOM%%/trunk/info %%Tr.2.SipGroup%% %%Tr.2.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\total",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\total",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% bandwidth\\out",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\in",
+            "/domain/%%DEV_DOM%%/trunk/clean %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% bandwidth\\out",
+            "/domain/%%DEV_DOM%%/trunk/info %%Tr.2.SipGroup%% %%Tr.2.TrunkName%%"
           ]
         },
         {

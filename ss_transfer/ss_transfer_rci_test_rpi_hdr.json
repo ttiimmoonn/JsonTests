@@ -56,44 +56,40 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%3.Number%%} chold ctr clip cnip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} cnip",
-      "command6": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
-      "command7": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
-      "command8": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
-      "command9": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
-      "command10": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
-      "command11": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
-      "command12": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%",
-      "command13": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName %%REDIRECTION_DNAME%%",
-      "command14": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cf_sip",
-      "command15": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cf_sip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%3.Number%%} chold ctr clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%",
+    "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName %%REDIRECTION_DNAME%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cf_sip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip cnip",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
-      "command9": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command10": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
-      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cf_sip",
-      "command12": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cf_sip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip cnip",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cf_sip"
   ],
   "Tests": [
     {
       "Name": "change_caller_id_through_update_request(attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 attended_transfer. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
       "TestProcedure": [
         {
           "StartUA": [
@@ -144,7 +140,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request(semi_attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer без PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 semi_attended_transfer \u0431\u0435\u0437 PRACK. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
       "TestProcedure": [
         {
           "StartUA": [
@@ -195,7 +191,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request_in_early_state(semi_attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi_attended_transfer с PRACK. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 semi_attended_transfer \u0441 PRACK. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
       "TestProcedure": [
         {
           "StartUA": [
@@ -246,7 +242,7 @@
     },
     {
       "Name": "change_caller_id_through_update_request(unattended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer. Проверяем, что после трансфера приходит UPDATE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 unattended_transfer. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 UPDATE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
       "TestProcedure": [
         {
           "StartUA": [
@@ -297,7 +293,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с attended_transfer. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 attended_transfer. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 re-INVITE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
       "TestProcedure": [
         {
           "StartUA": [
@@ -348,7 +344,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(semi-attended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с semi-attended_transfer. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 semi-attended_transfer. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 re-INVITE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
       "TestProcedure": [
         {
           "StartUA": [
@@ -399,7 +395,7 @@
     },
     {
       "Name": "change_caller_id_through_re_invite_request(unattended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer. Проверяем, что после трансфера приходит re-INVITE c Remote-Party-ID на сторону абонентов A и С",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 unattended_transfer. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 re-INVITE c Remote-Party-ID \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u043e\u0432 A \u0438 \u0421",
       "TestProcedure": [
         {
           "StartUA": [
@@ -450,7 +446,7 @@
     },
     {
       "Name": "send_busy_from_transfer_target_side",
-      "Description": "Проверка того, что отложенный address_update не будет отправлен на сторону С если она пошлёт 486 после 180",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0442\u043e\u0433\u043e, \u0447\u0442\u043e \u043e\u0442\u043b\u043e\u0436\u0435\u043d\u043d\u044b\u0439 address_update \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0421 \u0435\u0441\u043b\u0438 \u043e\u043d\u0430 \u043f\u043e\u0448\u043b\u0451\u0442 486 \u043f\u043e\u0441\u043b\u0435 180",
       "TestProcedure": [
         {
           "StartUA": [
@@ -501,7 +497,7 @@
     },
     {
       "Name": "change_caller_id_if_transfer_target_use_redirection(unattended_transfer)",
-      "Description": "Устанавливаем remote-ctr-indication в rpi. Делаем вызов с unattended_transfer на абонента, использующего переадресацию. Ожидается, что в сторону transfee пойдёт address_update с номером и Dname юзера, на которого была совершена переадресация",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c remote-ctr-indication \u0432 rpi. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0441 unattended_transfer \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044e\u0449\u0435\u0433\u043e \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044e. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 transfee \u043f\u043e\u0439\u0434\u0451\u0442 address_update \u0441 \u043d\u043e\u043c\u0435\u0440\u043e\u043c \u0438 Dname \u044e\u0437\u0435\u0440\u0430, \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u0431\u044b\u043b\u0430 \u0441\u043e\u0432\u0435\u0440\u0448\u0435\u043d\u0430 \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044f",
       "TestProcedure": [
         {
           "StartUA": [

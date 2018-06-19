@@ -1,57 +1,52 @@
 {
   "TestName": "ss_call_record",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} call_recording",
-      "command2" : "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} call_recording mode = always_on"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%1.Number%%} call_recording",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%1.Number%%} call_recording mode = always_on"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} call_recording",
-      "command2" : "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} call_recording"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%1.Number%%} call_recording",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%1.Number%%} call_recording"
   ],
   "Tests": [
     {
       "Name": "send_a_sdp_wout_attr",
-      "Description": "Проверка записи разговора если в a_sdp не выслали описание кодеков",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0437\u0430\u043f\u0438\u0441\u0438 \u0440\u0430\u0437\u0433\u043e\u0432\u043e\u0440\u0430 \u0435\u0441\u043b\u0438 \u0432 a_sdp \u043d\u0435 \u0432\u044b\u0441\u043b\u0430\u043b\u0438 \u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043a\u043e\u0434\u0435\u043a\u043e\u0432",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -65,8 +60,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {

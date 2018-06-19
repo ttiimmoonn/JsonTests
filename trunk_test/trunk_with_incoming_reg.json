@@ -1,6 +1,6 @@
 {
   "TestName": "trunk_with_inc_regisration",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Trunks": [
     {
       "TrunkId": 1,
@@ -12,8 +12,8 @@
       "Login": "inc_trunk_username",
       "Password": "inc_trunk_password",
       "RegType": "out",
-      "RegMode" : "Manual",
-      "BindPort" : 10110
+      "RegMode": "Manual",
+      "BindPort": 10110
     }
   ],
   "Users": [
@@ -44,30 +44,26 @@
     {
       "%%ctx_to_trunk%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfaW5jX3JlZ190cnVua190ZXN0X2Zvcl91c2VyIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InRvX3RydW5rIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iRCUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxleHRlcm5hbD4NCiAgICAgIDx0cnVuayB2YWx1ZT0idGVzdF90cnVua19pbmNfcmVnIi8+DQogICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
       "%%ctx_from_trunk%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfaW5jX3JlZ190cnVua190ZXN0X2Zvcl90cnVuayIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+DQogICAgPGNvbmRpdGlvbnM+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGxvY2FsLz4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
-      "%%ctx_for_trunk%%" : "ctx_inc_reg_trunk_test_for_trunk",
-      "%%ctx_for_user%%" : "ctx_inc_reg_trunk_test_for_user"
+      "%%ctx_for_trunk%%": "ctx_inc_reg_trunk_test_for_trunk",
+      "%%ctx_for_user%%": "ctx_inc_reg_trunk_test_for_user"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_to_trunk%%",
-      "command2": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_from_trunk%%",
-      "command3": "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_for_trunk%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% dynamic %%Tr.1.Login%% %%Tr.1.Password%%",
-      "command4": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_to_trunk%%",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_from_trunk%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_for_trunk%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% dynamic %%Tr.1.Login%% %%Tr.1.Password%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command3": "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_trunk%%",
-      "command4": "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_user%%"
-    }
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_trunk%%",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_user%%"
   ],
   "Tests": [
     {
       "Name": "chk_incoming_registration",
-      "Description": "Регистируемся на ссв как транк и делаем вызов через данный транк.",
+      "Description": "\u0420\u0435\u0433\u0438\u0441\u0442\u0438\u0440\u0443\u0435\u043c\u0441\u044f \u043d\u0430 \u0441\u0441\u0432 \u043a\u0430\u043a \u0442\u0440\u0430\u043d\u043a \u0438 \u0434\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0447\u0435\u0440\u0435\u0437 \u0434\u0430\u043d\u043d\u044b\u0439 \u0442\u0440\u0430\u043d\u043a.",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -80,9 +76,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command3": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
         {
@@ -130,13 +124,11 @@
     },
     {
       "Name": "chk_nat_traversal_option",
-      "Description": "Регистируемся на ссв как транк и делаем вызов через данный транк.",
+      "Description": "\u0420\u0435\u0433\u0438\u0441\u0442\u0438\u0440\u0443\u0435\u043c\u0441\u044f \u043d\u0430 \u0441\u0441\u0432 \u043a\u0430\u043a \u0442\u0440\u0430\u043d\u043a \u0438 \u0434\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0447\u0435\u0440\u0435\u0437 \u0434\u0430\u043d\u043d\u044b\u0439 \u0442\u0440\u0430\u043d\u043a.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% nat_traversal true"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% nat_traversal true"
           ]
         },
         {
@@ -144,21 +136,21 @@
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "contact_port" : 10112,
-                "contact_ip" : "1.1.1.1",
-                "expires" : 90
+                "contact_port": 10112,
+                "contact_ip": "1.1.1.1",
+                "expires": 90
               }
             }
           }
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
-        {"Sleep": 1},
+        {
+          "Sleep": 1
+        },
         {
           "StartUA": [
             {
@@ -204,23 +196,23 @@
     },
     {
       "Name": "options_control_test",
-      "Description": "Проверяем options_control для транка с регистрацией",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c options_control \u0434\u043b\u044f \u0442\u0440\u0430\u043d\u043a\u0430 \u0441 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0435\u0439",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% options_control 32",
-              "command2": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% options_control 32",
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
-        {"Sleep":5},
+        {
+          "Sleep": 5
+        },
         {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "expires" : 3600
+                "expires": 3600
               }
             }
           }
@@ -265,9 +257,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
         {
@@ -291,9 +281,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
         {
@@ -339,33 +327,29 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% options_control 0"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% options_control 0"
           ]
         }
       ]
     },
     {
       "Name": "send_call_to_unregistered_trunk",
-      "Description": "Пытаемся прозвонить разрегистрированный транк",
+      "Description": "\u041f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u043f\u0440\u043e\u0437\u0432\u043e\u043d\u0438\u0442\u044c \u0440\u0430\u0437\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u044b\u0439 \u0442\u0440\u0430\u043d\u043a",
       "TestProcedure": [
         {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "expires" : 3600,
-                "need_drop" : true
+                "expires": 3600,
+                "need_drop": true
               }
             }
           }
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
         {
@@ -391,26 +375,24 @@
     },
     {
       "Name": "send_call_after_reg_expired",
-      "Description": "Пытаемся прозвонить в транк, регистрация которого истекла",
+      "Description": "\u041f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u043f\u0440\u043e\u0437\u0432\u043e\u043d\u0438\u0442\u044c \u0432 \u0442\u0440\u0430\u043d\u043a, \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u0438\u0441\u0442\u0435\u043a\u043b\u0430",
       "TestProcedure": [
         {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "expires" : 90
+                "expires": 90
               }
             }
           }
         },
         {
-          "Sleep" : 100
+          "Sleep": 100
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
         {
@@ -436,23 +418,21 @@
     },
     {
       "Name": "test_423_response",
-      "Description": "Проверка 423 ответа",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 423 \u043e\u0442\u0432\u0435\u0442\u0430",
       "TestProcedure": [
         {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "trunk_test/succ_reg_recv_423.xml",
-                "expires" : 2
+                "expires": 2
               }
             }
           }
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
         },
         {
@@ -466,46 +446,46 @@
     },
     {
       "Name": "send_call_after_re_register",
-      "Description": "Проверка прохождения вызова после перерегистрации транка",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u0440\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438 \u0442\u0440\u0430\u043d\u043a\u0430",
       "TestProcedure": [
         {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "expires" : 90
+                "expires": 90
               }
             }
           }
         },
         {
-          "Sleep" : 60
+          "Sleep": 60
         },
         {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "expires" : 90
+                "expires": 90
               }
             }
           }
         },
         {
-          "Sleep" : 60
+          "Sleep": 60
         },
         {
           "ManualReg": {
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "expires" : 90
+                "expires": 90
               }
             }
           }
         },
         {
-          "Sleep" : 40
+          "Sleep": 40
         },
         {
           "StartUA": [

@@ -1,6 +1,6 @@
 {
   "TestName": "rfc4028_decrease_session_timer",
-  "Isolate" : true,
+  "Isolate": true,
   "AutoTest": true,
   "Users": [
     {
@@ -30,22 +30,18 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
-      "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
-      "command3": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 3600"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 3600"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
   ],
   "Tests": [
     {
       "Name": "rfc4028_decrease_session_timer_to_min",
-      "Description": "Устанавливаем rfc4028_use_se в 3600, rfc4028_min_se в 90. Принимаем INVITE от SSW и проверяем, что Session-Expires = 3600. Далее в 200 ответе на INVITE устанавливаем Session-Expires равный Min-SE. Ожидается, что SSW обновит сессию через Min-SE/2",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c rfc4028_use_se \u0432 3600, rfc4028_min_se \u0432 90. \u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c INVITE \u043e\u0442 SSW \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e Session-Expires = 3600. \u0414\u0430\u043b\u0435\u0435 \u0432 200 \u043e\u0442\u0432\u0435\u0442\u0435 \u043d\u0430 INVITE \u0443\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c Session-Expires \u0440\u0430\u0432\u043d\u044b\u0439 Min-SE. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e SSW \u043e\u0431\u043d\u043e\u0432\u0438\u0442 \u0441\u0435\u0441\u0441\u0438\u044e \u0447\u0435\u0440\u0435\u0437 Min-SE/2",
       "TestProcedure": [
         {
           "StartUA": [

@@ -1,81 +1,77 @@
 {
   "TestName": "basic_term_chold",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%ALIAS_B_DNAME%%" : "CHOLD_DNAME_TEST"
+      "%%ALIAS_B_DNAME%%": "CHOLD_DNAME_TEST"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type smart",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
   ],
   "Tests": [
     {
       "Name": "test_chold_by_*#_dtmf_sequence",
-      "Description": "Тестирование активации chold при отправке последовательности *# посредством передачи dtmf по rfc2833",
+      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u0430\u043a\u0442\u0438\u0432\u0430\u0446\u0438\u0438 chold \u043f\u0440\u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 *# \u043f\u043e\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u043e\u043c \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0438 dtmf \u043f\u043e rfc2833",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_CHOLD_SEQ_IN_RFC",
               "Commands": [
                 {
@@ -89,7 +85,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -103,7 +99,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -121,14 +117,14 @@
     },
     {
       "Name": "chold_callback_wout_alias_dname_on_b_side",
-      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. Также проверяется, что DNAME = \"Callback\"",
+      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 callback'a \u043f\u0440\u0438 \u043e\u0442\u0431\u043e\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0430\u043a\u0442\u0438\u0432\u0438\u0440\u043e\u0432\u0430\u043b\u0430 chold. \u0422\u0430\u043a\u0436\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u0442\u0441\u044f, \u0447\u0442\u043e DNAME = \"Callback\"",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {
@@ -149,7 +145,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -167,21 +163,19 @@
     },
     {
       "Name": "chold_callback_with_alias_dname_on_b_side",
-      "Description": "Тестирование callback'a при отбое стороны, которая активировала chold. Также проверяется, что DNAME = \"Callback: <ИМЯ АБОНЕНТА Б>\"",
+      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 callback'a \u043f\u0440\u0438 \u043e\u0442\u0431\u043e\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0430\u043a\u0442\u0438\u0432\u0438\u0440\u043e\u0432\u0430\u043b\u0430 chold. \u0422\u0430\u043a\u0436\u0435 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u0442\u0441\u044f, \u0447\u0442\u043e DNAME = \"Callback: <\u0418\u041c\u042f \u0410\u0411\u041e\u041d\u0415\u041d\u0422\u0410 \u0411>\"",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_B_DNAME%%"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%ALIAS_B_DNAME%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {
@@ -202,7 +196,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -218,23 +212,21 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
           ]
         }
       ]
     },
     {
       "Name": "chold_cancel_callback",
-      "Description": "Тестирование отмены callback'a при отбое стороны, которая слушает MOH",
+      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0442\u043c\u0435\u043d\u044b callback'a \u043f\u0440\u0438 \u043e\u0442\u0431\u043e\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0441\u043b\u0443\u0448\u0430\u0435\u0442 MOH",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_SEND_CHOLD_SEQ_IN_SIP_INFO",
               "Commands": [
                 {
@@ -255,7 +247,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -273,14 +265,14 @@
     },
     {
       "Name": "chold_cancel_callback_after_timeout",
-      "Description": "Тестирование отмены callback по истечению таймаута.",
+      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0442\u043c\u0435\u043d\u044b callback \u043f\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044e \u0442\u0430\u0439\u043c\u0430\u0443\u0442\u0430.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_DROP_CALL_ON_HOLD",
               "Commands": [
                 {
@@ -301,7 +293,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -319,13 +311,13 @@
     },
     {
       "Name": "test_collect_timeout_timer",
-      "Description": "Проверка срабатывания collect_timeout таймера. А звонит на Б, A ставит Б на hold и ждёт timeout. Ожидается, что после срабатывания таймера в обе стороны пойдёт релиз.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0441\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u043d\u0438\u044f collect_timeout \u0442\u0430\u0439\u043c\u0435\u0440\u0430. \u0410 \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 \u0411, A \u0441\u0442\u0430\u0432\u0438\u0442 \u0411 \u043d\u0430 hold \u0438 \u0436\u0434\u0451\u0442 timeout. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u043f\u043e\u0441\u043b\u0435 \u0441\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u043d\u0438\u044f \u0442\u0430\u0439\u043c\u0435\u0440\u0430 \u0432 \u043e\u0431\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u043f\u043e\u0439\u0434\u0451\u0442 \u0440\u0435\u043b\u0438\u0437.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -339,8 +331,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_WAIT_RELEASE_BY_TIMEOUT",
               "Commands": [
                 {

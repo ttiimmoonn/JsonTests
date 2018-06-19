@@ -3,99 +3,95 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10108,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10109,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_test blf blf_test %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
-      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10",
-      "command4" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
-      "command5" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
-      "command6" : "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% blf",
-      "command7" : "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% blf max_subscribe = 10",
-      "command8" : "/domain/%%DEV_DOM%%/lists/info blf_test"
-    }
+    "/domain/%%DEV_DOM%%/lists/declare blf_test blf blf_test %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% blf max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/lists/info blf_test"
   ],
   "PostConf": [
-    {
-      "command0" : "/domain/%%DEV_DOM%%/lists/remove blf_test ",
-      "command1" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% blf",
-      "command2" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
-      "command4" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
-      "command5" : "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% blf",
-      "command6" : "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% blf"
-    }
+    "/domain/%%DEV_DOM%%/lists/remove blf_test ",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% blf"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "test_several_sub_to_one_user(terminate_by_unsub)",
-      "Description": "Проверка всех нотификация для входящего вызова в случае нескольких подписок на юзера, при терминировании соседних подписок через отписку. Подписываемся с трёх юзеров (A,Б,C) на юзера Д. Далее делаем на юзера Д три вызова. После первого вызова отписывается юзер А, после второго Б, после третьего С. Ожидается, что терминирование подписок не повлияет на отправку нотификаций в оставшиеся подписки.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0432\u0441\u0435\u0445 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0434\u043b\u044f \u0432\u0445\u043e\u0434\u044f\u0449\u0435\u0433\u043e \u0432\u044b\u0437\u043e\u0432\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 \u043f\u043e\u0434\u043f\u0438\u0441\u043e\u043a \u043d\u0430 \u044e\u0437\u0435\u0440\u0430, \u043f\u0440\u0438 \u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0438 \u0441\u043e\u0441\u0435\u0434\u043d\u0438\u0445 \u043f\u043e\u0434\u043f\u0438\u0441\u043e\u043a \u0447\u0435\u0440\u0435\u0437 \u043e\u0442\u043f\u0438\u0441\u043a\u0443. \u041f\u043e\u0434\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u043c\u0441\u044f \u0441 \u0442\u0440\u0451\u0445 \u044e\u0437\u0435\u0440\u043e\u0432 (A,\u0411,C) \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0414. \u0414\u0430\u043b\u0435\u0435 \u0434\u0435\u043b\u0430\u0435\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0414 \u0442\u0440\u0438 \u0432\u044b\u0437\u043e\u0432\u0430. \u041f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u0432\u044b\u0437\u043e\u0432\u0430 \u043e\u0442\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u044e\u0437\u0435\u0440 \u0410, \u043f\u043e\u0441\u043b\u0435 \u0432\u0442\u043e\u0440\u043e\u0433\u043e \u0411, \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0421. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u043e\u0434\u043f\u0438\u0441\u043e\u043a \u043d\u0435 \u043f\u043e\u0432\u043b\u0438\u044f\u0435\u0442 \u043d\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0443 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u0432 \u043e\u0441\u0442\u0430\u0432\u0448\u0438\u0435\u0441\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
@@ -109,9 +105,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
@@ -125,9 +121,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 2,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
@@ -142,21 +138,19 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
-            }
+            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_BLF_TEST",
               "Commands": [
                 {
@@ -170,8 +164,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_BLF_TEST",
               "Commands": [
                 {
@@ -183,31 +177,29 @@
                 }
               ]
             }
-          ]  
+          ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
-            }
+            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
           ]
         }
       ]
     },
     {
       "Name": "test_several_sub_to_one_user(terminate_by_481)",
-      "Description": "Проверка всех нотификация для входящего вызова в случае нескольких подписок на юзера, при терминировании соседней подписки через 481. Подписываемся с трёх юзеров (A,Б,C) на юзера Д. Далее делаем на юзера Д три вызова. На нотификацию по первому вызову юзер А отправляет 481 ответ, после второго вызова отписывается абонент Б, после третьего С. Ожидается, что терминирование подписок не повлияет на отправку нотификаций в оставшиеся подписки.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0432\u0441\u0435\u0445 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044f \u0434\u043b\u044f \u0432\u0445\u043e\u0434\u044f\u0449\u0435\u0433\u043e \u0432\u044b\u0437\u043e\u0432\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 \u043f\u043e\u0434\u043f\u0438\u0441\u043e\u043a \u043d\u0430 \u044e\u0437\u0435\u0440\u0430, \u043f\u0440\u0438 \u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0438 \u0441\u043e\u0441\u0435\u0434\u043d\u0435\u0439 \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438 \u0447\u0435\u0440\u0435\u0437 481. \u041f\u043e\u0434\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u043c\u0441\u044f \u0441 \u0442\u0440\u0451\u0445 \u044e\u0437\u0435\u0440\u043e\u0432 (A,\u0411,C) \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0414. \u0414\u0430\u043b\u0435\u0435 \u0434\u0435\u043b\u0430\u0435\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0414 \u0442\u0440\u0438 \u0432\u044b\u0437\u043e\u0432\u0430. \u041d\u0430 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u044e \u043f\u043e \u043f\u0435\u0440\u0432\u043e\u043c\u0443 \u0432\u044b\u0437\u043e\u0432\u0443 \u044e\u0437\u0435\u0440 \u0410 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 481 \u043e\u0442\u0432\u0435\u0442, \u043f\u043e\u0441\u043b\u0435 \u0432\u0442\u043e\u0440\u043e\u0433\u043e \u0432\u044b\u0437\u043e\u0432\u0430 \u043e\u0442\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u0430\u0431\u043e\u043d\u0435\u043d\u0442 \u0411, \u043f\u043e\u0441\u043b\u0435 \u0442\u0440\u0435\u0442\u044c\u0435\u0433\u043e \u0421. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0442\u0435\u0440\u043c\u0438\u043d\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043f\u043e\u0434\u043f\u0438\u0441\u043e\u043a \u043d\u0435 \u043f\u043e\u0432\u043b\u0438\u044f\u0435\u0442 \u043d\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0443 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u0432 \u043e\u0441\u0442\u0430\u0432\u0448\u0438\u0435\u0441\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
@@ -221,9 +213,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
@@ -237,9 +229,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 2,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
@@ -254,21 +246,19 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
-            }
+            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_BLF_TEST",
               "Commands": [
                 {
@@ -282,8 +272,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_BLF_TEST",
               "Commands": [
                 {
@@ -295,16 +285,14 @@
                 }
               ]
             }
-          ]  
+          ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
-            }
+            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
           ]
         }
       ]

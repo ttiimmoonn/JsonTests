@@ -2,54 +2,49 @@
   "TestName": "office",
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% chold"
   ],
   "Tests": [
     {
       "Name": "flash+release",
-      "Description": "встречные flash+release со стороны А и release со стороны B. Bug #70856",
+      "Description": "\u0432\u0441\u0442\u0440\u0435\u0447\u043d\u044b\u0435 flash+release \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0410 \u0438 release \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b B. Bug #70856",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_CHOLD",
               "Commands": [
                 {
@@ -63,8 +58,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC",
               "Commands": [
                 {

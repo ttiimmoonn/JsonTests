@@ -69,50 +69,44 @@
     }
   ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_callback_test",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_queue_callback_test",
-      "command3": "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
-      "command4": "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
-      "command5": "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
-      "command6": "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
-      "command7": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
-      "command8": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
-      "command9": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cc_agent",
-      "command10": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cc_agent",
-      "command11": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
-      "command12": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
-      "command13": "sleep 10"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context ivr_queue_callback_test",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context ivr_queue_callback_test",
+    "/domain/%%DEV_DOM%%/cc/agent/declare %%0.Number%% password = %%AGENT_PASS%%",
+    "/domain/%%DEV_DOM%%/cc/agent/declare %%1.Number%% password = %%AGENT_PASS%%",
+    "/domain/%%DEV_DOM%%/cc/agent/declare %%2.Number%% password = %%AGENT_PASS%%",
+    "/domain/%%DEV_DOM%%/cc/queue/declare %%QUEUE_NAME%% agents = [agent:%%0.Number%%,agent:%%1.Number%%,agent:%%2.Number%%]",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cc_agent",
+    "sleep 10"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/delete ivr_queue_callback_test",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
-      "command3": "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
-      "command4": "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
-      "command5": "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
-      "command6": "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent",
-      "command9": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
-      "command10": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
-      "command11": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
-      "command12": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent"
-    }
+    "/domain/%%DEV_DOM%%/routing/delete ivr_queue_callback_test",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/cc/agent/remove %%0.Number%%",
+    "/domain/%%DEV_DOM%%/cc/agent/remove %%1.Number%%",
+    "/domain/%%DEV_DOM%%/cc/agent/remove %%2.Number%%",
+    "/domain/%%DEV_DOM%%/cc/queue/remove %%QUEUE_NAME%%",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent"
   ],
   "Tests": [
     {
       "Name": "ivr_queue_callback_on_failure_test",
-      "Description": "Клиент звонит в очередь, где все агенты заняты. Кладёт трубку. После освобождаем одного из агентов. Принимаем cb-вызов на агенте, принимаем cb-вызов на юзере.",
+      "Description": "\u041a\u043b\u0438\u0435\u043d\u0442 \u0437\u0432\u043e\u043d\u0438\u0442 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u041a\u043b\u0430\u0434\u0451\u0442 \u0442\u0440\u0443\u0431\u043a\u0443. \u041f\u043e\u0441\u043b\u0435 \u043e\u0441\u0432\u043e\u0431\u043e\u0436\u0434\u0430\u0435\u043c \u043e\u0434\u043d\u043e\u0433\u043e \u0438\u0437 \u0430\u0433\u0435\u043d\u0442\u043e\u0432. \u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c cb-\u0432\u044b\u0437\u043e\u0432 \u043d\u0430 \u0430\u0433\u0435\u043d\u0442\u0435, \u043f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c cb-\u0432\u044b\u0437\u043e\u0432 \u043d\u0430 \u044e\u0437\u0435\u0440\u0435.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
           ]
         },
         {
@@ -213,9 +207,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
           ]
         },
         {
@@ -238,14 +230,12 @@
     },
     {
       "Name": "ivr_queue_callback_on_overload_max_call_in_queue",
-      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Один из вызовов получает отбой. Далее освобождаем одного из агентов, тот обслуживает вызов из очереди. Далее ждём cb вызов на абонента, который был отбит.",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u0434\u043b\u0438\u043d\u0443 \u043e\u0447\u0435\u0440\u0435\u0434\u0438 1. \u0414\u0435\u043b\u0430\u0435\u043c \u0434\u0432\u0430 \u0437\u0432\u043e\u043d\u043a\u0430 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u041e\u0434\u0438\u043d \u0438\u0437 \u0432\u044b\u0437\u043e\u0432\u043e\u0432 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u043e\u0442\u0431\u043e\u0439. \u0414\u0430\u043b\u0435\u0435 \u043e\u0441\u0432\u043e\u0431\u043e\u0436\u0434\u0430\u0435\u043c \u043e\u0434\u043d\u043e\u0433\u043e \u0438\u0437 \u0430\u0433\u0435\u043d\u0442\u043e\u0432, \u0442\u043e\u0442 \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u0442 \u0432\u044b\u0437\u043e\u0432 \u0438\u0437 \u043e\u0447\u0435\u0440\u0435\u0434\u0438. \u0414\u0430\u043b\u0435\u0435 \u0436\u0434\u0451\u043c cb \u0432\u044b\u0437\u043e\u0432 \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0431\u044b\u043b \u043e\u0442\u0431\u0438\u0442.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
           ]
         },
         {
@@ -369,10 +359,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
           ]
         },
         {
@@ -395,14 +383,12 @@
     },
     {
       "Name": "ivr_queue_callback_on_overload_max_predicted_time",
-      "Description": "Устанавливаем максимальное предсказанное время ожидания 1 сек. Делаем два звонка в очередь, где все агенты заняты. Один из вызовов получает отбой. Далее освобождаем одного из агентов, тот обслуживает вызов из очереди. Далее ждём cb вызов на абонента, который был отбит.",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u043c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0435\u0434\u0441\u043a\u0430\u0437\u0430\u043d\u043d\u043e\u0435 \u0432\u0440\u0435\u043c\u044f \u043e\u0436\u0438\u0434\u0430\u043d\u0438\u044f 1 \u0441\u0435\u043a. \u0414\u0435\u043b\u0430\u0435\u043c \u0434\u0432\u0430 \u0437\u0432\u043e\u043d\u043a\u0430 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u041e\u0434\u0438\u043d \u0438\u0437 \u0432\u044b\u0437\u043e\u0432\u043e\u0432 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u0442 \u043e\u0442\u0431\u043e\u0439. \u0414\u0430\u043b\u0435\u0435 \u043e\u0441\u0432\u043e\u0431\u043e\u0436\u0434\u0430\u0435\u043c \u043e\u0434\u043d\u043e\u0433\u043e \u0438\u0437 \u0430\u0433\u0435\u043d\u0442\u043e\u0432, \u0442\u043e\u0442 \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u0435\u0442 \u0432\u044b\u0437\u043e\u0432 \u0438\u0437 \u043e\u0447\u0435\u0440\u0435\u0434\u0438. \u0414\u0430\u043b\u0435\u0435 \u0436\u0434\u0451\u043c cb \u0432\u044b\u0437\u043e\u0432 \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0431\u044b\u043b \u043e\u0442\u0431\u0438\u0442.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\max_predicted_time 1"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_OVERLOAD%%",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\max_predicted_time 1"
           ]
         },
         {
@@ -526,10 +512,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\max_predicted_time"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\max_predicted_time"
           ]
         },
         {
@@ -552,13 +536,11 @@
     },
     {
       "Name": "ivr_queue_callback_agent_no_answer",
-      "Description": "Клиент звонит в очередь, где все агенты заняты. Кладёт трубку. После освобождаем одного агента и отбиваем cb, далее повторяем данную процедуру для всех агентов кроме последнего, на последнем агенте принимаем cb",
+      "Description": "\u041a\u043b\u0438\u0435\u043d\u0442 \u0437\u0432\u043e\u043d\u0438\u0442 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u041a\u043b\u0430\u0434\u0451\u0442 \u0442\u0440\u0443\u0431\u043a\u0443. \u041f\u043e\u0441\u043b\u0435 \u043e\u0441\u0432\u043e\u0431\u043e\u0436\u0434\u0430\u0435\u043c \u043e\u0434\u043d\u043e\u0433\u043e \u0430\u0433\u0435\u043d\u0442\u0430 \u0438 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u043c cb, \u0434\u0430\u043b\u0435\u0435 \u043f\u043e\u0432\u0442\u043e\u0440\u044f\u0435\u043c \u0434\u0430\u043d\u043d\u0443\u044e \u043f\u0440\u043e\u0446\u0435\u0434\u0443\u0440\u0443 \u0434\u043b\u044f \u0432\u0441\u0435\u0445 \u0430\u0433\u0435\u043d\u0442\u043e\u0432 \u043a\u0440\u043e\u043c\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0433\u043e, \u043d\u0430 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u043c \u0430\u0433\u0435\u043d\u0442\u0435 \u043f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c cb",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
           ]
         },
         {
@@ -721,9 +703,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
           ]
         },
         {
@@ -746,13 +726,11 @@
     },
     {
       "Name": "ivr_queue_callback_client_no_answer",
-      "Description": "Клиент звонит в очередь, где все агенты заняты. Кладёт трубку. Далее освобождаем агента. Принимаем cb на агенте и отбиваем cb на стороне клиента. Ждём пять минут, система должна сделать повторный cb.",
+      "Description": "\u041a\u043b\u0438\u0435\u043d\u0442 \u0437\u0432\u043e\u043d\u0438\u0442 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u041a\u043b\u0430\u0434\u0451\u0442 \u0442\u0440\u0443\u0431\u043a\u0443. \u0414\u0430\u043b\u0435\u0435 \u043e\u0441\u0432\u043e\u0431\u043e\u0436\u0434\u0430\u0435\u043c \u0430\u0433\u0435\u043d\u0442\u0430. \u041f\u0440\u0438\u043d\u0438\u043c\u0430\u0435\u043c cb \u043d\u0430 \u0430\u0433\u0435\u043d\u0442\u0435 \u0438 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u043c cb \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u043a\u043b\u0438\u0435\u043d\u0442\u0430. \u0416\u0434\u0451\u043c \u043f\u044f\u0442\u044c \u043c\u0438\u043d\u0443\u0442, \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u0434\u043e\u043b\u0436\u043d\u0430 \u0441\u0434\u0435\u043b\u0430\u0442\u044c \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u044b\u0439 cb.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%"
           ]
         },
         {
@@ -890,9 +868,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test"
           ]
         },
         {
@@ -915,14 +891,12 @@
     },
     {
       "Name": "ivr_queue_accept_cb_on_request",
-      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Второму вызову предлагают перезвонить позже, соглашаемся послав опредлённую dtmf. Далее ожидаем cb.",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u0434\u043b\u0438\u043d\u0443 \u043e\u0447\u0435\u0440\u0435\u0434\u0438 1. \u0414\u0435\u043b\u0430\u0435\u043c \u0434\u0432\u0430 \u0437\u0432\u043e\u043d\u043a\u0430 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u0412\u0442\u043e\u0440\u043e\u043c\u0443 \u0432\u044b\u0437\u043e\u0432\u0443 \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u044e\u0442 \u043f\u0435\u0440\u0435\u0437\u0432\u043e\u043d\u0438\u0442\u044c \u043f\u043e\u0437\u0436\u0435, \u0441\u043e\u0433\u043b\u0430\u0448\u0430\u0435\u043c\u0441\u044f \u043f\u043e\u0441\u043b\u0430\u0432 \u043e\u043f\u0440\u0435\u0434\u043b\u0451\u043d\u043d\u0443\u044e dtmf. \u0414\u0430\u043b\u0435\u0435 \u043e\u0436\u0438\u0434\u0430\u0435\u043c cb.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
           ]
         },
         {
@@ -1046,10 +1020,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
           ]
         },
         {
@@ -1072,14 +1044,12 @@
     },
     {
       "Name": "ivr_queue_reject_cb_on_request",
-      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Второму вызову предлагают перезвонить позже, кладём трубку. Callback не должен прийти.",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u0434\u043b\u0438\u043d\u0443 \u043e\u0447\u0435\u0440\u0435\u0434\u0438 1. \u0414\u0435\u043b\u0430\u0435\u043c \u0434\u0432\u0430 \u0437\u0432\u043e\u043d\u043a\u0430 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u0412\u0442\u043e\u0440\u043e\u043c\u0443 \u0432\u044b\u0437\u043e\u0432\u0443 \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u044e\u0442 \u043f\u0435\u0440\u0435\u0437\u0432\u043e\u043d\u0438\u0442\u044c \u043f\u043e\u0437\u0436\u0435, \u043a\u043b\u0430\u0434\u0451\u043c \u0442\u0440\u0443\u0431\u043a\u0443. Callback \u043d\u0435 \u0434\u043e\u043b\u0436\u0435\u043d \u043f\u0440\u0438\u0439\u0442\u0438.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
           ]
         },
         {
@@ -1196,10 +1166,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
           ]
         },
         {
@@ -1222,14 +1190,12 @@
     },
     {
       "Name": "ivr_queue_reject_cb_on_request_send_dtmf",
-      "Description": "Устанавливаем длину очереди 1. Делаем два звонка в очередь, где все агенты заняты. Второму вызову предлагают перезвонить позже, отказываемся отправив dtmf. Callback не должен прийти.",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u0434\u043b\u0438\u043d\u0443 \u043e\u0447\u0435\u0440\u0435\u0434\u0438 1. \u0414\u0435\u043b\u0430\u0435\u043c \u0434\u0432\u0430 \u0437\u0432\u043e\u043d\u043a\u0430 \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u0412\u0442\u043e\u0440\u043e\u043c\u0443 \u0432\u044b\u0437\u043e\u0432\u0443 \u043f\u0440\u0435\u0434\u043b\u0430\u0433\u0430\u044e\u0442 \u043f\u0435\u0440\u0435\u0437\u0432\u043e\u043d\u0438\u0442\u044c \u043f\u043e\u0437\u0436\u0435, \u043e\u0442\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u043c\u0441\u044f \u043e\u0442\u043f\u0440\u0430\u0432\u0438\u0432 dtmf. Callback \u043d\u0435 \u0434\u043e\u043b\u0436\u0435\u043d \u043f\u0440\u0438\u0439\u0442\u0438.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_REQ%%",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set rules\\queue_length 1"
           ]
         },
         {
@@ -1346,10 +1312,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean rules\\queue_length"
           ]
         },
         {
@@ -1372,14 +1336,12 @@
     },
     {
       "Name": "ivr_queue_callback_on_max_wait_time",
-      "Description": "Устанавливаем таймер max_wait_time в 5 сек. Звоним в очередь, где все агенты заняты. Ждём срабатывания таймера max_wait_time. После чего активируем одного из агентов и ждём cb в обе стороны.",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u0442\u0430\u0439\u043c\u0435\u0440 max_wait_time \u0432 5 \u0441\u0435\u043a. \u0417\u0432\u043e\u043d\u0438\u043c \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u0432\u0441\u0435 \u0430\u0433\u0435\u043d\u0442\u044b \u0437\u0430\u043d\u044f\u0442\u044b. \u0416\u0434\u0451\u043c \u0441\u0440\u0430\u0431\u0430\u0442\u044b\u0432\u0430\u043d\u0438\u044f \u0442\u0430\u0439\u043c\u0435\u0440\u0430 max_wait_time. \u041f\u043e\u0441\u043b\u0435 \u0447\u0435\u0433\u043e \u0430\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c \u043e\u0434\u043d\u043e\u0433\u043e \u0438\u0437 \u0430\u0433\u0435\u043d\u0442\u043e\u0432 \u0438 \u0436\u0434\u0451\u043c cb \u0432 \u043e\u0431\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_wait_time 5"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_wait_time 5"
           ]
         },
         {
@@ -1439,21 +1401,21 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 5000,
-              "Mode" : "inner_ua",
-              "CompareMode" : "perUa",
-              "Calls" : "1",
+              "Difference": 5000,
+              "Mode": "inner_ua",
+              "CompareMode": "perUa",
+              "Calls": "1",
               "UA": "user:3",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "INVITE",
-                  "Code" : null
+                  "Method": "INVITE",
+                  "Code": null
                 },
                 {
                   "MsgType": "request",
-                  "Method" : "BYE",
-                  "Code" : null
+                  "Method": "BYE",
+                  "Code": null
                 }
               ]
             }
@@ -1506,10 +1468,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_wait_time"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_wait_time"
           ]
         },
         {
@@ -1532,15 +1492,13 @@
     },
     {
       "Name": "ivr_queue_callback_on_max_wait_time_agent_no_answer",
-      "Description": "Устанавливаем таймер max_wait_time в 5 сек, max_distribution_duration в 10 сек. Звоним в очередь, где один агент свободен. Вызов распределяется на агента, агент не отвечает. Ждём отработку таймера max_distribution_duration, после чего ждём отбой, так как max_wait_time < max_distribution_duration. Далее ждём cb в обе стороны.",
+      "Description": "\u0423\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u043c \u0442\u0430\u0439\u043c\u0435\u0440 max_wait_time \u0432 5 \u0441\u0435\u043a, max_distribution_duration \u0432 10 \u0441\u0435\u043a. \u0417\u0432\u043e\u043d\u0438\u043c \u0432 \u043e\u0447\u0435\u0440\u0435\u0434\u044c, \u0433\u0434\u0435 \u043e\u0434\u0438\u043d \u0430\u0433\u0435\u043d\u0442 \u0441\u0432\u043e\u0431\u043e\u0434\u0435\u043d. \u0412\u044b\u0437\u043e\u0432 \u0440\u0430\u0441\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u0442\u0441\u044f \u043d\u0430 \u0430\u0433\u0435\u043d\u0442\u0430, \u0430\u0433\u0435\u043d\u0442 \u043d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u0442. \u0416\u0434\u0451\u043c \u043e\u0442\u0440\u0430\u0431\u043e\u0442\u043a\u0443 \u0442\u0430\u0439\u043c\u0435\u0440\u0430 max_distribution_duration, \u043f\u043e\u0441\u043b\u0435 \u0447\u0435\u0433\u043e \u0436\u0434\u0451\u043c \u043e\u0442\u0431\u043e\u0439, \u0442\u0430\u043a \u043a\u0430\u043a max_wait_time < max_distribution_duration. \u0414\u0430\u043b\u0435\u0435 \u0436\u0434\u0451\u043c cb \u0432 \u043e\u0431\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_wait_time 5",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_distribution_duration 10"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_queue_callback_test --json %%IVR_CALLBACK_ON_FAILURE%%",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_wait_time 5",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/set max_distribution_duration 10"
           ]
         },
         {
@@ -1611,21 +1569,21 @@
         {
           "CheckDifference": [
             {
-              "Difference" : 0,
-              "Mode" : "between_ua",
-              "CompareMode" : "perUa",
-              "Calls" : "1",
+              "Difference": 0,
+              "Mode": "between_ua",
+              "CompareMode": "perUa",
+              "Calls": "1",
               "UA": "user:0,user:3",
-              "Msg" : [
+              "Msg": [
                 {
                   "MsgType": "request",
-                  "Method" : "CANCEL",
-                  "Code" : null
+                  "Method": "CANCEL",
+                  "Code": null
                 },
                 {
                   "MsgType": "request",
-                  "Method" : "BYE",
-                  "Code" : null
+                  "Method": "BYE",
+                  "Code": null
                 }
               ]
             }
@@ -1667,11 +1625,9 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
-              "command1": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_wait_time",
-              "command2": "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_distribution_duration"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_queue_callback_test",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_wait_time",
+            "/domain/%%DEV_DOM%%/cc/queue/%%QUEUE_NAME%%/clean max_distribution_duration"
           ]
         },
         {

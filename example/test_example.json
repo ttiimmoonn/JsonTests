@@ -2,63 +2,55 @@
   "TestName": "test_example",
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10110,
-      "QParam" : 0.5
+      "Port": 10110,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10116,
-      "QParam" : 0.5
+      "Port": 10116,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10117,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10117,
+      "QParam": 1
     }
   ],
-
-
   "UserVar": [
     {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "test_example",
-      "Description": "Тест",
+      "Description": "\u0422\u0435\u0441\u0442",
       "TestProcedure": [
-      {
+        {
           "StartUA": [
             {
-              "Type" : "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_TEST",
               "Commands": [
                 {
@@ -71,9 +63,9 @@
               ]
             },
             {
-              "Type" : "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_TEST",
               "Commands": [
                 {

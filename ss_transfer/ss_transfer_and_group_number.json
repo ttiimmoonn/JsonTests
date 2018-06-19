@@ -67,53 +67,47 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% chold ctr clip cnip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% clip cnip",
-      "command7": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% clip",
-      "command8": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% cnip",
-      "command9": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cgg chunt",
-      "command10": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CGG_GROUP_NUMBER_DNAME%%",
-      "command11": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%CGG_GROUP_USER_DNAME%%",
-      "command12": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%USER_DNAME%%",
-      "command13": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
-      "command14": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
-      "command15": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
-      "command16": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
-      "command17": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% chold ctr clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cgg chunt",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CGG_GROUP_NUMBER_DNAME%%",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%CGG_GROUP_USER_DNAME%%",
+    "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName %%USER_DNAME%%",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% chold ctr clip cnip",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% chold ctr clip cnip",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% clip cnip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% clip cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cgg chunt",
-      "command6": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
-      "command7": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-      "command8": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-      "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
-      "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
-      "command12": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
-      "command13": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% chold ctr clip cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% chold ctr clip cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cgg chunt",
+    "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force"
   ],
   "Tests": [
     {
       "Name": "transfer_incoming_call_from_cgg",
-      "Description": "Проверка корректности номера при трансфере вызова, пришедшего из cgg группы.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u043d\u043e\u043c\u0435\u0440\u0430 \u043f\u0440\u0438 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0435 \u0432\u044b\u0437\u043e\u0432\u0430, \u043f\u0440\u0438\u0448\u0435\u0434\u0448\u0435\u0433\u043e \u0438\u0437 cgg \u0433\u0440\u0443\u043f\u043f\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cgg numbers = [%%2.Number%%,%%3.Number%%]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cgg numbers = [%%2.Number%%,%%3.Number%%]"
           ]
         },
         {
@@ -179,22 +173,18 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cgg"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cgg"
           ]
         }
       ]
     },
     {
       "Name": "transfer_incoming_call_from_chunt",
-      "Description": "Проверка корректности номера при трансфере вызова, пришедшего из chunt группы.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u043d\u043e\u043c\u0435\u0440\u0430 \u043f\u0440\u0438 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0435 \u0432\u044b\u0437\u043e\u0432\u0430, \u043f\u0440\u0438\u0448\u0435\u0434\u0448\u0435\u0433\u043e \u0438\u0437 chunt \u0433\u0440\u0443\u043f\u043f\u044b.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%%  chunt mode = manual, cyclic = false, max_shift_count = 2, queue_size = 1, queue_strategy = drop, reset_window_start_pos_after_call = false, search_strategy = first, window_start_pos = 0, window_shift=1, window_size = 1, window_shift_timeout = 2, numbers = [%%3.Number%%,%%2.Number%%]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%%  chunt mode = manual, cyclic = false, max_shift_count = 2, queue_size = 1, queue_strategy = drop, reset_window_start_pos_after_call = false, search_strategy = first, window_start_pos = 0, window_shift=1, window_size = 1, window_shift_timeout = 2, numbers = [%%3.Number%%,%%2.Number%%]"
           ]
         },
         {
@@ -260,9 +250,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chunt"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chunt"
           ]
         }
       ]

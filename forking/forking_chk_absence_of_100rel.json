@@ -1,90 +1,83 @@
 {
   "TestName": "forking_chk_absence_of_100rel",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10107,
-      "QParam" : 1
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10108,
-      "QParam" : 1
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 1
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% clip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% clip"
   ],
   "Tests": [
     {
       "Name": "check_absence_of_100rel_in_support_header_with_active_req100rel",
-      "Description": "Проверка отсутсвия 100rel в заголовке Supported в случае если на абоненте установлена опция req100rel.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u0441\u0443\u0442\u0441\u0432\u0438\u044f 100rel \u0432 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043a\u0435 Supported \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u0435\u0441\u043b\u0438 \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0435 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u0430 \u043e\u043f\u0446\u0438\u044f req100rel.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
@@ -98,7 +91,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
@@ -112,7 +105,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
@@ -126,7 +119,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -142,10 +135,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode --force",
-              "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel --force"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel --force"
           ]
         }
       ]
