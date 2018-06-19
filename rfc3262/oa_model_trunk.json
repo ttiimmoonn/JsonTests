@@ -2,59 +2,55 @@
   "TestName": "rfc3262_oa_model_trunk_test",
   "Users": [
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
-  "Trunks" : [
+  "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "rfc3261_oa_trunk",
-      "Port" : 5070,
-      "SipDomain" : "pv.ssw3",
-      "SipGroup" : "test.trunks"
+      "TrunkId": 1,
+      "TrunkName": "rfc3261_oa_trunk",
+      "Port": 5070,
+      "SipDomain": "pv.ssw3",
+      "SipGroup": "test.trunks"
     }
-   ],
+  ],
   "UserVar": [
     {
-      "%%to_trunk_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19yZmMzMjYyX3RydW5rIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0icmZjMzI2MV9vYV90cnVuayIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
-      "%%ctx_name%%" : "to_rfc3262_trunk",
-      "%%manual_user%%" : "sip.ab 113@pv.ssw3"
+      "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJ0b19yZmMzMjYyX3RydW5rIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0icmZjMzI2MV9vYV90cnVuayIvPg0KICAgICAgPC9leHRlcm5hbD4NCiAgICA8L3Jlc3VsdD4NCiAgPC9ydWxlPg0KPC9jb250ZXh0Pg==",
+      "%%ctx_name%%": "to_rfc3262_trunk",
+      "%%manual_user%%": "sip.ab 113@pv.ssw3"
     }
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
-      "command3" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%ctx_name%%",
-      "command4" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context %%ctx_name%%"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%ctx_name%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context %%ctx_name%%"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
-      "command3" : "/domain/%%DEV_DOM%%/routing/delete %%ctx_name%%",
-      "command4" : "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context default_routing"
-    }
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_name%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%manual_user%% routing.context default_routing"
   ],
   "Tests": [
     {
       "Name": "send_a_sdp_in_180_response",
-      "Description": "Проверка обработки asdp в 180",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 asdp \u0432 180",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_ASDP_IN_180",
               "Commands": [
                 {
@@ -68,7 +64,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -86,13 +82,13 @@
     },
     {
       "Name": "send_a_sdp_in_181_response",
-      "Description": "Проверка обработки asdp в 181",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 asdp \u0432 181",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_ASDP_IN_181",
               "Commands": [
                 {
@@ -106,7 +102,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -124,13 +120,13 @@
     },
     {
       "Name": "send_a_sdp_in_183_response",
-      "Description": "Проверка обработки asdp в 183",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 asdp \u0432 183",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_ASDP_IN_183",
               "Commands": [
                 {
@@ -144,7 +140,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -162,13 +158,13 @@
     },
     {
       "Name": "send_o_sdp_in_180",
-      "Description": "Проверка обработки o_sdp в 180 ответе. А звонит на Б, Б отправляет a_sdp в 183 ответе, а следом o_sdp в 180. Ожидается, что на новый o_sdp будет отправлен a_sdp в PRACK",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 o_sdp \u0432 180 \u043e\u0442\u0432\u0435\u0442\u0435. \u0410 \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 \u0411, \u0411 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 a_sdp \u0432 183 \u043e\u0442\u0432\u0435\u0442\u0435, \u0430 \u0441\u043b\u0435\u0434\u043e\u043c o_sdp \u0432 180. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u043d\u0430 \u043d\u043e\u0432\u044b\u0439 o_sdp \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d a_sdp \u0432 PRACK",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_OSDP_IN_180",
               "Commands": [
                 {
@@ -182,7 +178,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -200,13 +196,13 @@
     },
     {
       "Name": "send_o_sdp_in_183",
-      "Description": "Проверка обработки o_sdp в 183 ответе. А звонит на Б, Б отправляет a_sdp в 180 ответе, а следом o_sdp в 183. Ожидается, что на новый o_sdp будет отправлен a_sdp в PRACK",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 o_sdp \u0432 183 \u043e\u0442\u0432\u0435\u0442\u0435. \u0410 \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 \u0411, \u0411 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 a_sdp \u0432 180 \u043e\u0442\u0432\u0435\u0442\u0435, \u0430 \u0441\u043b\u0435\u0434\u043e\u043c o_sdp \u0432 183. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u043d\u0430 \u043d\u043e\u0432\u044b\u0439 o_sdp \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d a_sdp \u0432 PRACK",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_OSDP_IN_183",
               "Commands": [
                 {
@@ -220,7 +216,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -238,13 +234,13 @@
     },
     {
       "Name": "send_o_sdp_in_183_and_180",
-      "Description": "Проверка обработки o_sdp в 183, а следом и в 180 ответах. А звонит на Б, Б отправляет a_sdp в 181 ответе, а следом новые o_sdp в 180 и 183 ответах. Ожидается, что на каждый новый o_sdp будет отправлен a_sdp в PRACK",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 o_sdp \u0432 183, \u0430 \u0441\u043b\u0435\u0434\u043e\u043c \u0438 \u0432 180 \u043e\u0442\u0432\u0435\u0442\u0430\u0445. \u0410 \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 \u0411, \u0411 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u0442 a_sdp \u0432 181 \u043e\u0442\u0432\u0435\u0442\u0435, \u0430 \u0441\u043b\u0435\u0434\u043e\u043c \u043d\u043e\u0432\u044b\u0435 o_sdp \u0432 180 \u0438 183 \u043e\u0442\u0432\u0435\u0442\u0430\u0445. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u043d\u0430 \u043a\u0430\u0436\u0434\u044b\u0439 \u043d\u043e\u0432\u044b\u0439 o_sdp \u0431\u0443\u0434\u0435\u0442 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u0435\u043d a_sdp \u0432 PRACK",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_OSDP_IN_183_180",
               "Commands": [
                 {
@@ -258,7 +254,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -276,13 +272,13 @@
     },
     {
       "Name": "send_180_wout_sdp_after_183_with_sdp",
-      "Description": "Проверка обработки 180 сообщения без sdp, после обработки 183 с sdp",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 180 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f \u0431\u0435\u0437 sdp, \u043f\u043e\u0441\u043b\u0435 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 183 \u0441 sdp",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_180_WOUT_SDP",
               "Commands": [
                 {
@@ -296,7 +292,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
@@ -314,13 +310,13 @@
     },
     {
       "Name": "test_1xx_order",
-      "Description": "Отправляем в определённом порядке ответы 1хх со стороны Б и прореряем данный порядок на стороне А",
+      "Description": "\u041e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u043c \u0432 \u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0451\u043d\u043d\u043e\u043c \u043f\u043e\u0440\u044f\u0434\u043a\u0435 \u043e\u0442\u0432\u0435\u0442\u044b 1\u0445\u0445 \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u0411 \u0438 \u043f\u0440\u043e\u0440\u0435\u0440\u044f\u0435\u043c \u0434\u0430\u043d\u043d\u044b\u0439 \u043f\u043e\u0440\u044f\u0434\u043e\u043a \u043d\u0430 \u0441\u0442\u043e\u0440\u043e\u043d\u0435 \u0410",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UAS_SEND_1XX_IN_REQ_ORDER",
               "Commands": [
                 {
@@ -334,7 +330,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {

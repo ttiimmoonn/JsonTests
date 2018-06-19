@@ -3,68 +3,64 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
-      "%%USER_PIN%%" : "1111",
-      "%%BAD_PIN%%" : "1145#"
+      "%%USER_PIN%%": "1111",
+      "%%BAD_PIN%%": "1145#"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% rbp",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni intercity"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% rbp",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni intercity"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% rbp",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% rbp",
-      "command3": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% rbp",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% rbp",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_rpb_test",
-      "Description": "Активируем rbp. Звоним на абонента с запрещённым ni, получаем отбой. Звоним на абонента с разрешённым ni, вызов проключается.",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c rbp. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u0441 \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d\u043d\u044b\u043c ni, \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c \u043e\u0442\u0431\u043e\u0439. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u0441 \u0440\u0430\u0437\u0440\u0435\u0448\u0451\u043d\u043d\u044b\u043c ni, \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u043e\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f.",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*34*%%USER_PIN%%*02#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -72,7 +68,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_SIMPLE_RBP_TEST",
               "Commands": [
                 {
@@ -86,7 +82,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_RBP_TEST",
               "Commands": [
                 {
@@ -111,7 +107,7 @@
           "ServiceFeature": [
             {
               "code": "#34*%%USER_PIN%%#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         }
@@ -119,13 +115,13 @@
     },
     {
       "Name": "rbp_ignore_test_send_digit_in_feature_code",
-      "Description": "Активируем rbp. Звоним на юзера с запрещённым ni с помощью фича-кода *32*pin*number#",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c rbp. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d\u043d\u044b\u043c ni \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u0444\u0438\u0447\u0430-\u043a\u043e\u0434\u0430 *32*pin*number#",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*34*%%USER_PIN%%*02#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -133,7 +129,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -147,7 +143,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -165,13 +161,13 @@
     },
     {
       "Name": "rbp_ignore_test_send_digit_in_rfc",
-      "Description": "Активируем rbp. Звоним на юзера с запрещённым ni с помощью фича-кода *32*pin# и последующего набора номера",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c rbp. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d\u043d\u044b\u043c ni \u0441 \u043f\u043e\u043c\u043e\u0449\u044c\u044e \u0444\u0438\u0447\u0430-\u043a\u043e\u0434\u0430 *32*pin# \u0438 \u043f\u043e\u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0433\u043e \u043d\u0430\u0431\u043e\u0440\u0430 \u043d\u043e\u043c\u0435\u0440\u0430",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*34*%%USER_PIN%%*02#",
-              "userId" : 0
+              "userId": 0
             }
           ]
         },
@@ -179,7 +175,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -193,7 +189,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -211,20 +207,18 @@
     },
     {
       "Name": "rbp_implicit_call_test",
-      "Description": "Активируем rbp c implicit_call = true. Звоним на юзера с запрещённым ni, передаём корректный пин, вызов проключается",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c rbp c implicit_call = true. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d\u043d\u044b\u043c ni, \u043f\u0435\u0440\u0435\u0434\u0430\u0451\u043c \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0439 \u043f\u0438\u043d, \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u043e\u043a\u043b\u044e\u0447\u0430\u0435\u0442\u0441\u044f",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_INGNORE_RBP_TEST",
               "Commands": [
                 {
@@ -238,7 +232,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_IMPLICIT_CALL_RBP_TEST_GOOD_PIN",
               "Commands": [
                 {
@@ -256,20 +250,18 @@
     },
     {
       "Name": "rbp_implicit_call_test_bad_pin",
-      "Description": "Активируем rbp c implicit_call = true. Звоним на юзера с запрещённым ni, передаём некорректный пин, вызов отбивается",
+      "Description": "\u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c rbp c implicit_call = true. \u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d\u043d\u044b\u043c ni, \u043f\u0435\u0440\u0435\u0434\u0430\u0451\u043c \u043d\u0435\u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u044b\u0439 \u043f\u0438\u043d, \u0432\u044b\u0437\u043e\u0432 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% rbp  implicit_call = true , restricted_ni = [intercity]"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_IMPLICIT_CALL_RBP_TEST_BAD_PIN",
               "Commands": [
                 {

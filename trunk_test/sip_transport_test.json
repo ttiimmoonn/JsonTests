@@ -1,70 +1,62 @@
 {
   "TestName": "trunk_sip_transport_test",
-  "AutoTest" : true,
-  "Isolate" : true,
-  "Trunks" : [
+  "AutoTest": true,
+  "Isolate": true,
+  "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "sip_tr_trunk_1",
-      "Port" : 5094,
-      "SipDomain" : "%%DEV_DOM%%",
-      "SipGroup" : "sip_transport"
+      "TrunkId": 1,
+      "TrunkName": "sip_tr_trunk_1",
+      "Port": 5094,
+      "SipDomain": "%%DEV_DOM%%",
+      "SipGroup": "sip_transport"
     },
     {
-      "TrunkId" : 2,
-      "TrunkName" : "sip_tr_trunk_2",
-      "Port" : 5095,
-      "SipDomain" : "%%DEV_DOM%%",
-      "SipGroup" : "sip_transport",
-      "RemotePort" : "%%EXTER_PORT_2%%"
-    }
-   ],
-
-"UserVar": [
-    {
-      "%%to_trunk2_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzaXBfdHJhbnNwb3J0X3RydW5rMV90ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ic2lwX3RyX3RydW5rXzIiLz4NCiAgICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
-      "%%to_trunk1_ctx%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzaXBfdHJhbnNwb3J0X3RydW5rMl90ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ic2lwX3RyX3RydW5rXzEiLz4NCiAgICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
-      "%%trunk1_ctx_name%%" : "sip_transport_trunk1_test",
-      "%%trunk2_ctx_name%%" : "sip_transport_trunk2_test"
-    }
-],
-
-  "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk2_ctx%%",
-      "command2" : "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk1_ctx%%",
-      "command3" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk1_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
-      "command4" : "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk2_ctx_name%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%Tr.2.RemotePort%%"
+      "TrunkId": 2,
+      "TrunkName": "sip_tr_trunk_2",
+      "Port": 5095,
+      "SipDomain": "%%DEV_DOM%%",
+      "SipGroup": "sip_transport",
+      "RemotePort": "%%EXTER_PORT_2%%"
     }
   ],
-  "PostConf": [
+  "UserVar": [
     {
-      "command1" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
-      "command2" : "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
-      "command3" : "/domain/%%DEV_DOM%%/routing/delete %%trunk1_ctx_name%%",
-      "command4" : "/domain/%%DEV_DOM%%/routing/delete %%trunk2_ctx_name%%"
+      "%%to_trunk2_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzaXBfdHJhbnNwb3J0X3RydW5rMV90ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ic2lwX3RyX3RydW5rXzIiLz4NCiAgICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
+      "%%to_trunk1_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzaXBfdHJhbnNwb3J0X3RydW5rMl90ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InJ1bGUxIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8ZXh0ZXJuYWw+DQogICAgICAgIDx0cnVuayB2YWx1ZT0ic2lwX3RyX3RydW5rXzEiLz4NCiAgICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
+      "%%trunk1_ctx_name%%": "sip_transport_trunk1_test",
+      "%%trunk2_ctx_name%%": "sip_transport_trunk2_test"
     }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk2_ctx%%",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk1_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk1_ctx_name%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%trunk2_ctx_name%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%Tr.2.RemotePort%%"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/routing/delete %%trunk1_ctx_name%%",
+    "/domain/%%DEV_DOM%%/routing/delete %%trunk2_ctx_name%%"
   ],
   "Tests": [
     {
       "Name": "test_tcp_only_mode",
-      "Description": "Проверка режима tcp_only.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 tcp_only.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport tcp_only"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport tcp_only"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "TCP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -77,7 +69,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -96,7 +88,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -109,7 +101,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -128,7 +120,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_502",
               "Commands": [
@@ -147,7 +139,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_403",
               "Commands": [
@@ -166,23 +158,21 @@
     },
     {
       "Name": "test_tcp_prefer_mode",
-      "Description": "Проверка режима tcp_prefer",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 tcp_prefer",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport tcp_prefer"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport tcp_prefer"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "TCP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -195,7 +185,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -214,7 +204,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -227,7 +217,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -242,12 +232,11 @@
             }
           ]
         },
-
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -260,7 +249,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -279,7 +268,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -292,7 +281,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -311,23 +300,21 @@
     },
     {
       "Name": "test_udp_only_mode",
-      "Description": "Проверка режима udp_only",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 udp_only",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport udp_only"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport udp_only"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -340,7 +327,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -359,7 +346,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -372,7 +359,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -391,7 +378,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "TCP_RECV_403",
               "Commands": [
@@ -410,23 +397,21 @@
     },
     {
       "Name": "test_udp_prefer_mode",
-      "Description": "Проверка режима udp_prefer",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0440\u0435\u0436\u0438\u043c\u0430 udp_prefer",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport udp_prefer"
-            }
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport udp_prefer"
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -439,7 +424,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -458,7 +443,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -471,7 +456,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "TCP_UAC_RECV_BYE",
               "Commands": [
@@ -486,12 +471,11 @@
             }
           ]
         },
-
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -504,7 +488,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [
@@ -523,7 +507,7 @@
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "UDP_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -536,7 +520,7 @@
             },
             {
               "Type": "Trunk",
-              "TrunkId" : 2,
+              "TrunkId": 2,
               "WriteStat": true,
               "Name": "UDP_UAC_RECV_BYE",
               "Commands": [

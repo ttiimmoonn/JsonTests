@@ -1,58 +1,53 @@
 {
   "TestName": "rfc3261_491_response_test",
-  "AutoTest" : true,
-  "Isolate" : true,
-  "RepeatCounter" : 2,
+  "AutoTest": true,
+  "Isolate": true,
+  "RepeatCounter": 2,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11001,
+      "Expires": 90,
+      "Port": 11001,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 11002,
+      "Expires": 90,
+      "Port": 11002,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1" :"/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]",
-      "command2" :"/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit set headers = [p-uac-call-id,p-uas-call-id]"
   ],
   "PostConf": [
-    {
-      "command1" :"/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit clean --force",
-      "command2" :"/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit clean --force"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% sip-transit clean --force",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% sip-transit clean --force"
   ],
   "Tests": [
     {
       "Name": "test_491_on_msr_and_core",
-      "Description": "Пытаемся столкнуть реквесты на ядре или MSR. При этом на сип должен протранслироваться 491 ответ. После получения 491 ожидаем пересогласование от MSR.",
+      "Description": "\u041f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u0441\u0442\u043e\u043b\u043a\u043d\u0443\u0442\u044c \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u044b \u043d\u0430 \u044f\u0434\u0440\u0435 \u0438\u043b\u0438 MSR. \u041f\u0440\u0438 \u044d\u0442\u043e\u043c \u043d\u0430 \u0441\u0438\u043f \u0434\u043e\u043b\u0436\u0435\u043d \u043f\u0440\u043e\u0442\u0440\u0430\u043d\u0441\u043b\u0438\u0440\u043e\u0432\u0430\u0442\u044c\u0441\u044f 491 \u043e\u0442\u0432\u0435\u0442. \u041f\u043e\u0441\u043b\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 491 \u043e\u0436\u0438\u0434\u0430\u0435\u043c \u043f\u0435\u0440\u0435\u0441\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u043d\u0438\u0435 \u043e\u0442 MSR.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_491",
               "Commands": [
                 {
@@ -80,7 +75,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_491",
               "Commands": [
                 {
@@ -112,13 +107,13 @@
     },
     {
       "Name": "test_491_on_msr_and_core_send_re_invite",
-      "Description": "Пытаемся столкнуть реквесты на ядре или MSR. При этом на сип должен протранслироваться 491 ответ. После получения 491 отправляем повторный re-invite.",
+      "Description": "\u041f\u044b\u0442\u0430\u0435\u043c\u0441\u044f \u0441\u0442\u043e\u043b\u043a\u043d\u0443\u0442\u044c \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u044b \u043d\u0430 \u044f\u0434\u0440\u0435 \u0438\u043b\u0438 MSR. \u041f\u0440\u0438 \u044d\u0442\u043e\u043c \u043d\u0430 \u0441\u0438\u043f \u0434\u043e\u043b\u0436\u0435\u043d \u043f\u0440\u043e\u0442\u0440\u0430\u043d\u0441\u043b\u0438\u0440\u043e\u0432\u0430\u0442\u044c\u0441\u044f 491 \u043e\u0442\u0432\u0435\u0442. \u041f\u043e\u0441\u043b\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f 491 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0435\u043c \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u044b\u0439 re-invite.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_491_AND_SEND_RE_INVITE",
               "Commands": [
                 {
@@ -146,7 +141,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_RECV_491_AND_SEND_RE_INVITE",
               "Commands": [
                 {
@@ -178,14 +173,14 @@
     },
     {
       "Name": "test_491_on_sip",
-      "Description": "Со стороны UAC отсылаем 491 на t38 и ожидаём повторного re-invite, со стороны UAS отсылаем 491 на g711 и повторного re-invite",
+      "Description": "\u0421\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b UAC \u043e\u0442\u0441\u044b\u043b\u0430\u0435\u043c 491 \u043d\u0430 t38 \u0438 \u043e\u0436\u0438\u0434\u0430\u0451\u043c \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u043e\u0433\u043e re-invite, \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b UAS \u043e\u0442\u0441\u044b\u043b\u0430\u0435\u043c 491 \u043d\u0430 g711 \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u043d\u043e\u0433\u043e re-invite",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAS_SEND_491",
               "Commands": [
                 {
@@ -199,8 +194,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAC_SEND_491",
               "Commands": [
                 {

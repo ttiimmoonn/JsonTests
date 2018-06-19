@@ -40,32 +40,28 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/lists/declare sub_test blf sub_test %%0.Number%% %%1.Number%%",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
-      "command4": "/domain/%%DEV_DOM%%/lists/info sub_test",
-      "command5": "/domain/%%DEV_DOM%%/lists/declare pr_sub_test presence pr_sub_test %%0.Number%% %%1.Number%%",
-      "command6": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
-      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 10",
-      "command8": "/domain/%%DEV_DOM%%/lists/info pr_sub_test",
-      "command9": "sleep 1"
-    }
+    "/domain/%%DEV_DOM%%/lists/declare sub_test blf sub_test %%0.Number%% %%1.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/lists/info sub_test",
+    "/domain/%%DEV_DOM%%/lists/declare pr_sub_test presence pr_sub_test %%0.Number%% %%1.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/lists/info pr_sub_test",
+    "sleep 1"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/lists/remove sub_test ",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
-      "command3": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
-      "command4": "/domain/%%DEV_DOM%%/lists/remove pr_sub_test ",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
-    }
+    "/domain/%%DEV_DOM%%/lists/remove sub_test ",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/lists/remove pr_sub_test ",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
   ],
   "Tests": [
     {
       "Name": "no_notify_after_subscription_expired",
-      "Description": "Проверка отсутствия нотификаций после истечения подписки.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044f \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u043f\u043e\u0441\u043b\u0435 \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -124,7 +120,7 @@
     },
     {
       "Name": "test_dialog_notifications_after_restrict_mwi",
-      "Description": "Проверка dialog нотификаций, после запрета подписки mwi.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 dialog \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439, \u043f\u043e\u0441\u043b\u0435 \u0437\u0430\u043f\u0440\u0435\u0442\u0430 \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438 mwi.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -184,7 +180,7 @@
     },
     {
       "Name": "test_dialog_notifications_state_after_resubscription",
-      "Description": "Проверка dialog нотификаций после переподписки. Проверяем, что адаптер повторяет последний стейт в случае переподписки",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 dialog \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u043f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0430\u0434\u0430\u043f\u0442\u0435\u0440 \u043f\u043e\u0432\u0442\u043e\u0440\u044f\u0435\u0442 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 \u0441\u0442\u0435\u0439\u0442 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438",
       "TestProcedure": [
         {
           "StartUA": [
@@ -247,7 +243,7 @@
     },
     {
       "Name": "test_presence_notifications_state_after_resubscription",
-      "Description": "Проверка presence нотификаций после переподписки. Проверяем, что адаптер повторяет последний стейт в случае переподписки",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 presence \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u043f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0430\u0434\u0430\u043f\u0442\u0435\u0440 \u043f\u043e\u0432\u0442\u043e\u0440\u044f\u0435\u0442 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 \u0441\u0442\u0435\u0439\u0442 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438",
       "TestProcedure": [
         {
           "StartUA": [
@@ -297,7 +293,7 @@
     {
       "Name": "test_notifications_diff_call_id",
       "Ref": "#90674",
-      "Description": "Создаём две подписки на одного и того же юзера c разными call-id. Проверяем, что нотификации идут в обе подписки.",
+      "Description": "\u0421\u043e\u0437\u0434\u0430\u0451\u043c \u0434\u0432\u0435 \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438 \u043d\u0430 \u043e\u0434\u043d\u043e\u0433\u043e \u0438 \u0442\u043e\u0433\u043e \u0436\u0435 \u044e\u0437\u0435\u0440\u0430 c \u0440\u0430\u0437\u043d\u044b\u043c\u0438 call-id. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u0438\u0434\u0443\u0442 \u0432 \u043e\u0431\u0435 \u043f\u043e\u0434\u043f\u0438\u0441\u043a\u0438.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -357,7 +353,7 @@
     },
     {
       "Name": "test_retrans_401_on_subscribe",
-      "Description": "Проверяем повтор 401 ответа в случае перепосылок SUBSCRIBE",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043f\u043e\u0432\u0442\u043e\u0440 401 \u043e\u0442\u0432\u0435\u0442\u0430 \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u043f\u043e\u0441\u044b\u043b\u043e\u043a SUBSCRIBE",
       "TestProcedure": [
         {
           "StartUA": [

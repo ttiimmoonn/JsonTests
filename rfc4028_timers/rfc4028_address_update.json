@@ -40,40 +40,36 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
-      "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control false",
-      "command3": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% rfc-4028-control true",
-      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-      "command5": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90",
-      "command6": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ctr chold clip cnip",
-      "command7": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ctr",
-      "command8": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold",
-      "command9": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-      "command10": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
-      "command11": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
-      "command12": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
-      "command13": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control false",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% rfc-4028-control true",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% ctr chold clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control --force",
-      "command2": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control --force",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command7": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip chold ctr",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
-      "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control --force",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip cnip chold ctr",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
   ],
   "Tests": [
     {
       "Name": "rfc4028_save_refresher_in_address_update",
-      "Description": "Проверка сохранения refresher параметра в address_update. A звонит на B, при этом устанавливает параметр refresher в uac. B делает трансфер на C, в сторону А идёт UPDATE c refresher=uas. После получения address_update абонент А высылает UPDATE реквесты согласно таймеру. Ожидается, что адаптер не переключит режим обновления сесии и не будет высылать UPDATE в сторону А.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u044f refresher \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u0430 \u0432 address_update. A \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 B, \u043f\u0440\u0438 \u044d\u0442\u043e\u043c \u0443\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 refresher \u0432 uac. B \u0434\u0435\u043b\u0430\u0435\u0442 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440 \u043d\u0430 C, \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0410 \u0438\u0434\u0451\u0442 UPDATE c refresher=uas. \u041f\u043e\u0441\u043b\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f address_update \u0430\u0431\u043e\u043d\u0435\u043d\u0442 \u0410 \u0432\u044b\u0441\u044b\u043b\u0430\u0435\u0442 UPDATE \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u044b \u0441\u043e\u0433\u043b\u0430\u0441\u043d\u043e \u0442\u0430\u0439\u043c\u0435\u0440\u0443. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0430\u0434\u0430\u043f\u0442\u0435\u0440 \u043d\u0435 \u043f\u0435\u0440\u0435\u043a\u043b\u044e\u0447\u0438\u0442 \u0440\u0435\u0436\u0438\u043c \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f \u0441\u0435\u0441\u0438\u0438 \u0438 \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u0432\u044b\u0441\u044b\u043b\u0430\u0442\u044c UPDATE \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0410.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -124,7 +120,7 @@
     },
     {
       "Name": "rfc4028_session_expire_after_adress_update",
-      "Description": "Проверка корректности работы таймера сессии после address_update. A звонит на B, при этом устанавливает параметр refresher в uac. B делает трансфер на C, в сторону А идёт UPDATE c refresher=uas. После получения address_update абонент А не высылает обновление сессии. Ожидается, что ssw отобьёт вызов по истечению таймера",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u0440\u0430\u0431\u043e\u0442\u044b \u0442\u0430\u0439\u043c\u0435\u0440\u0430 \u0441\u0435\u0441\u0441\u0438\u0438 \u043f\u043e\u0441\u043b\u0435 address_update. A \u0437\u0432\u043e\u043d\u0438\u0442 \u043d\u0430 B, \u043f\u0440\u0438 \u044d\u0442\u043e\u043c \u0443\u0441\u0442\u0430\u043d\u0430\u0432\u043b\u0438\u0432\u0430\u0435\u0442 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440 refresher \u0432 uac. B \u0434\u0435\u043b\u0430\u0435\u0442 \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440 \u043d\u0430 C, \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0410 \u0438\u0434\u0451\u0442 UPDATE c refresher=uas. \u041f\u043e\u0441\u043b\u0435 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u044f address_update \u0430\u0431\u043e\u043d\u0435\u043d\u0442 \u0410 \u043d\u0435 \u0432\u044b\u0441\u044b\u043b\u0430\u0435\u0442 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435 \u0441\u0435\u0441\u0441\u0438\u0438. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e ssw \u043e\u0442\u043e\u0431\u044c\u0451\u0442 \u0432\u044b\u0437\u043e\u0432 \u043f\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044e \u0442\u0430\u0439\u043c\u0435\u0440\u0430",
       "TestProcedure": [
         {
           "StartUA": [

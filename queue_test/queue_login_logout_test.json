@@ -2,256 +2,251 @@
   "TestName": "queue_test",
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10106,
+      "Expires": 3600,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "161",
       "Login": "161",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10107,
+      "Expires": 3600,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "162",
       "Login": "162",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10108,
+      "Expires": 3600,
+      "Port": 10108,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "163",
       "Login": "163",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10109,
+      "Expires": 3600,
+      "Port": 10109,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "164",
       "Login": "164",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10110,
+      "Expires": 3600,
+      "Port": 10110,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 5,
+      "UserId": 5,
       "Number": "165",
       "Login": "165",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10111,
+      "Expires": 3600,
+      "Port": 10111,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 6,
+      "UserId": 6,
       "Number": "166",
       "Login": "166",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10112,
+      "Expires": 3600,
+      "Port": 10112,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 7,
+      "UserId": 7,
       "Number": "167",
       "Login": "167",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10113,
+      "Expires": 3600,
+      "Port": 10113,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 8,
+      "UserId": 8,
       "Number": "168",
       "Login": "168",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10114,
+      "Expires": 3600,
+      "Port": 10114,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 9,
+      "UserId": 9,
       "Number": "169",
       "Login": "169",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10115,
+      "Expires": 3600,
+      "Port": 10115,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 10,
+      "UserId": 10,
       "Number": "170",
       "Login": "170",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10116,
+      "Expires": 3600,
+      "Port": 10116,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 11,
+      "UserId": 11,
       "Number": "171",
       "Login": "171",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10117,
+      "Expires": 3600,
+      "Port": 10117,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 12,
+      "UserId": 12,
       "Number": "172",
       "Login": "172",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10118,
+      "Expires": 3600,
+      "Port": 10118,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 13,
+      "UserId": 13,
       "Number": "173",
       "Login": "173",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10119,
+      "Expires": 3600,
+      "Port": 10119,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 14,
+      "UserId": 14,
       "Number": "174",
       "Login": "174",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10120,
+      "Expires": 3600,
+      "Port": 10120,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 15,
+      "UserId": 15,
       "Number": "175",
       "Login": "175",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10121,
+      "Expires": 3600,
+      "Port": 10121,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 16,
+      "UserId": 16,
       "Number": "176",
       "Login": "176",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10122,
+      "Expires": 3600,
+      "Port": 10122,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 17,
+      "UserId": 17,
       "Number": "177",
       "Login": "177",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10123,
+      "Expires": 3600,
+      "Port": 10123,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 18,
+      "UserId": 18,
       "Number": "178",
       "Login": "178",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10124,
+      "Expires": 3600,
+      "Port": 10124,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 19,
+      "UserId": 19,
       "Number": "179",
       "Login": "179",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10125,
+      "Expires": 3600,
+      "Port": 10125,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 20,
+      "UserId": 20,
       "Number": "180",
       "Login": "180",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 3600,
-      "Port" : 10126,
+      "Expires": 3600,
+      "Port": 10126,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     }
   ],
   "UserVar": [
     {
       "%%AGENT_PASS%%": "1111",
       "%%COMPLITE_CODE%%": "#161",
-      "%%AUXWORK_CODE%%" : "#162",
-      "%%OFF_AUXWORK_CODE%%" : "#163",
-      "%%TRUNK_NUMBER%%" : "A002"
+      "%%AUXWORK_CODE%%": "#162",
+      "%%OFF_AUXWORK_CODE%%": "#163",
+      "%%TRUNK_NUMBER%%": "A002"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%20.Number%%} cc_agent",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%20.Number%%} cc_agent"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%20.Number%%} cc_agent",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%20.Number%%} cc_agent"
   ],
-  "PostConf": [
-    {
-    }
-  ],
+  "PostConf": [],
   "Tests": [
     {
       "Name": "queue_test",
@@ -261,178 +256,178 @@
           "ServiceFeature": [
             {
               "code": "*160*%%0.Number%%*%%AGENT_PASS%%#",
-              "userId" : 0
+              "userId": 0
             },
             {
               "code": "*160*%%1.Number%%*%%AGENT_PASS%%#",
-              "userId" : 1
+              "userId": 1
             },
             {
               "code": "*160*%%2.Number%%*%%AGENT_PASS%%#",
-              "userId" : 2
+              "userId": 2
             },
             {
               "code": "*160*%%3.Number%%*%%AGENT_PASS%%#",
-              "userId" : 3
+              "userId": 3
             },
             {
               "code": "*160*%%4.Number%%*%%AGENT_PASS%%#",
-              "userId" : 4
+              "userId": 4
             },
             {
               "code": "*160*%%5.Number%%*%%AGENT_PASS%%#",
-              "userId" : 5
+              "userId": 5
             },
             {
               "code": "*160*%%6.Number%%*%%AGENT_PASS%%#",
-              "userId" : 6
+              "userId": 6
             },
             {
               "code": "*160*%%7.Number%%*%%AGENT_PASS%%#",
-              "userId" : 7
+              "userId": 7
             },
             {
               "code": "*160*%%8.Number%%*%%AGENT_PASS%%#",
-              "userId" : 8
+              "userId": 8
             },
             {
               "code": "*160*%%9.Number%%*%%AGENT_PASS%%#",
-              "userId" : 9
+              "userId": 9
             },
             {
               "code": "*160*%%10.Number%%*%%AGENT_PASS%%#",
-              "userId" : 10
+              "userId": 10
             },
             {
               "code": "*160*%%11.Number%%*%%AGENT_PASS%%#",
-              "userId" : 11
+              "userId": 11
             },
             {
               "code": "*160*%%12.Number%%*%%AGENT_PASS%%#",
-              "userId" : 12
+              "userId": 12
             },
             {
               "code": "*160*%%13.Number%%*%%AGENT_PASS%%#",
-              "userId" : 13
+              "userId": 13
             },
             {
               "code": "*160*%%14.Number%%*%%AGENT_PASS%%#",
-              "userId" : 14
+              "userId": 14
             },
             {
               "code": "*160*%%15.Number%%*%%AGENT_PASS%%#",
-              "userId" : 15
+              "userId": 15
             },
             {
               "code": "*160*%%16.Number%%*%%AGENT_PASS%%#",
-              "userId" : 16
+              "userId": 16
             },
             {
               "code": "*160*%%17.Number%%*%%AGENT_PASS%%#",
-              "userId" : 17
+              "userId": 17
             },
             {
               "code": "*160*%%18.Number%%*%%AGENT_PASS%%#",
-              "userId" : 18
+              "userId": 18
             },
             {
               "code": "*160*%%19.Number%%*%%AGENT_PASS%%#",
-              "userId" : 19
+              "userId": 19
             },
             {
               "code": "*160*%%20.Number%%*%%AGENT_PASS%%#",
-              "userId" : 20
+              "userId": 20
             }
           ]
         },
         {
-            "Stop" : true
+          "Stop": true
         },
         {
           "ServiceFeature": [
             {
               "code": "#160",
-              "userId" : 0
+              "userId": 0
             },
             {
               "code": "#160",
-              "userId" : 1
+              "userId": 1
             },
             {
               "code": "#160",
-              "userId" : 2
+              "userId": 2
             },
             {
               "code": "#160",
-              "userId" : 3
+              "userId": 3
             },
             {
               "code": "#160",
-              "userId" : 4
+              "userId": 4
             },
             {
               "code": "#160",
-              "userId" : 5
+              "userId": 5
             },
             {
               "code": "#160",
-              "userId" : 6
+              "userId": 6
             },
             {
               "code": "#160",
-              "userId" : 7
+              "userId": 7
             },
             {
               "code": "#160",
-              "userId" : 8
+              "userId": 8
             },
             {
               "code": "#160",
-              "userId" : 9
+              "userId": 9
             },
             {
               "code": "#160",
-              "userId" : 10
+              "userId": 10
             },
             {
               "code": "#160",
-              "userId" : 11
+              "userId": 11
             },
             {
               "code": "#160",
-              "userId" : 12
+              "userId": 12
             },
             {
               "code": "#160",
-              "userId" : 13
+              "userId": 13
             },
             {
               "code": "#160",
-              "userId" : 14
+              "userId": 14
             },
             {
               "code": "#160",
-              "userId" : 15
+              "userId": 15
             },
             {
               "code": "#160",
-              "userId" : 16
+              "userId": 16
             },
             {
               "code": "#160",
-              "userId" : 17
+              "userId": 17
             },
             {
               "code": "#160",
-              "userId" : 18
+              "userId": 18
             },
             {
               "code": "#160",
-              "userId" : 19
+              "userId": 19
             },
             {
               "code": "#160",
-              "userId" : 20
+              "userId": 20
             }
           ]
         }

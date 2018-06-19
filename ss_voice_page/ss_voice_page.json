@@ -3,76 +3,71 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% voice_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% voice_page_control",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% voice_page priority = 0_flash_override",
-      "command6" : "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\"",
-      "command7": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% dnd",
-      "command8": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
-      "command9": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% voice_page",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% voice_page_control",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% voice_page priority = 0_flash_override",
+    "/domain/%%DEV_DOM%%/sip/properties/set auto_answer_version alert-info template: \"Auto Answer\"",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% dnd",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% voice_page",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% voice_page",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% voice_page_control",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% voice_page_control clip dnd cnip"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% voice_page",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% voice_page",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% voice_page_control",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% voice_page_control clip dnd cnip"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple voice_page_test",
-      "Description": "Проверка установки Alert-Info хедера, а также подстановки в displayName VoicePage",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 Alert-Info \u0445\u0435\u0434\u0435\u0440\u0430, \u0430 \u0442\u0430\u043a\u0436\u0435 \u043f\u043e\u0434\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0438 \u0432 displayName VoicePage",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SIMPLE_VP_TEST",
               "Commands": [
                 {
@@ -86,7 +81,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_AUTOANSWER_VP_TEST",
               "Commands": [
                 {
@@ -104,20 +99,18 @@
     },
     {
       "Name": "voice_page_accept_incoming_vp_false",
-      "Description": "Проверка запрета VP вызовов. (accept_incoming_vp = false)",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0437\u0430\u043f\u0440\u0435\u0442\u0430 VP \u0432\u044b\u0437\u043e\u0432\u043e\u0432. (accept_incoming_vp = false)",
       "TestProcedure": [
         {
-          "SendSSHCommand" : [
-          {
-            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control accept_incoming_vp = false"
-          }
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control accept_incoming_vp = false"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_AUTOANSWER_VP_TEST",
               "Commands": [
                 {
@@ -132,30 +125,26 @@
           ]
         },
         {
-          "SendSSHCommand" : [
-          {
-            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control accept_incoming_vp = true"
-          }
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control accept_incoming_vp = true"
           ]
         }
       ]
     },
     {
       "Name": "voice_page_dnd_test. (block_incoming_vp_by_dnd)",
-      "Description": "Проверка block_incoming_vp_by_dnd true/false. Активируем DND на юзере, ставим block_incoming_vp_by_dnd true, делаем VP вызов - вызов отбивается. Далее ставим block_incoming_vp_by_dnd=false - VP вызов проходит.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 block_incoming_vp_by_dnd true/false. \u0410\u043a\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u043c DND \u043d\u0430 \u044e\u0437\u0435\u0440\u0435, \u0441\u0442\u0430\u0432\u0438\u043c block_incoming_vp_by_dnd true, \u0434\u0435\u043b\u0430\u0435\u043c VP \u0432\u044b\u0437\u043e\u0432 - \u0432\u044b\u0437\u043e\u0432 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f. \u0414\u0430\u043b\u0435\u0435 \u0441\u0442\u0430\u0432\u0438\u043c block_incoming_vp_by_dnd=false - VP \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0442.",
       "TestProcedure": [
         {
-          "SendSSHCommand" : [
-          {
-            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control block_incoming_vp_by_dnd = true"
-          }
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control block_incoming_vp_by_dnd = true"
           ]
         },
         {
           "ServiceFeature": [
             {
               "code": "*26#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         },
@@ -163,7 +152,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_AUTOANSWER_VP_TEST",
               "Commands": [
                 {
@@ -178,17 +167,15 @@
           ]
         },
         {
-          "SendSSHCommand" : [
-          {
-            "command1": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control block_incoming_vp_by_dnd = false"
-          }
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% voice_page_control block_incoming_vp_by_dnd = false"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_SIMPLE_VP_TEST",
               "Commands": [
                 {
@@ -202,7 +189,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAC_AUTOANSWER_VP_TEST",
               "Commands": [
                 {
@@ -220,7 +207,7 @@
           "ServiceFeature": [
             {
               "code": "#26#",
-              "userId" : 1
+              "userId": 1
             }
           ]
         }

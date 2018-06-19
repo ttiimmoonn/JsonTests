@@ -1,81 +1,78 @@
 {
   "TestName": "options_control_forking_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10107,
-      "QParam" : 1
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10108,
-      "QParam" : 1
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 1
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 10"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 10"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0",
-      "command2": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% isActive true",
-      "command3": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% isActive true",
-      "command4": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% isActive true",
-      "command5": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% isActive true"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set sip.group %%0.Number%%@%%0.SipDomain%% options_control 0",
+    "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% isActive true",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% isActive true",
+    "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% isActive true",
+    "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% isActive true"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "options_control_forking_test",
-      "Description": "Включаем OPTIONS-контроль на юзере с forking. Проверяем, что всем юзерам рассылается OPTIONS, далее прозваниваем данного юзера",
+      "Description": "\u0412\u043a\u043b\u044e\u0447\u0430\u0435\u043c OPTIONS-\u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043d\u0430 \u044e\u0437\u0435\u0440\u0435 \u0441 forking. \u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u0441\u0435\u043c \u044e\u0437\u0435\u0440\u0430\u043c \u0440\u0430\u0441\u0441\u044b\u043b\u0430\u0435\u0442\u0441\u044f OPTIONS, \u0434\u0430\u043b\u0435\u0435 \u043f\u0440\u043e\u0437\u0432\u0430\u043d\u0438\u0432\u0430\u0435\u043c \u0434\u0430\u043d\u043d\u043e\u0433\u043e \u044e\u0437\u0435\u0440\u0430",
       "TestProcedure": [
-        {"Sleep" : 5},
+        {
+          "Sleep": 5
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_RECV_OPTIONS",
               "Commands": [
                 {
@@ -89,7 +86,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS_RECV_OPTIONS",
               "Commands": [
                 {
@@ -103,7 +100,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_OPTIONS",
               "Commands": [
                 {
@@ -118,13 +115,13 @@
           ]
         },
         {
-          "Sleep" : 1 
+          "Sleep": 1
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -138,7 +135,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -152,7 +149,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
@@ -166,12 +163,12 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"Тест options-контороль (forking)\"",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"\u0422\u0435\u0441\u0442 options-\u043a\u043e\u043d\u0442\u043e\u0440\u043e\u043b\u044c (forking)\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -184,14 +181,16 @@
     },
     {
       "Name": "options_control_forking_disable_one_concact_test",
-      "Description": "Включаем OPTIONS-контроль на юзере с forking. Не отвечаем на один из OPTIONS, делаем вызов и проверяем, что занятия идут только на те контакты, которые ответили на OPTIONS. После отвечаем на все OPTIONS и проверяем, что вызов приходит на все контакты.",
+      "Description": "\u0412\u043a\u043b\u044e\u0447\u0430\u0435\u043c OPTIONS-\u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043d\u0430 \u044e\u0437\u0435\u0440\u0435 \u0441 forking. \u041d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u043d\u0430 \u043e\u0434\u0438\u043d \u0438\u0437 OPTIONS, \u0434\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0437\u0430\u043d\u044f\u0442\u0438\u044f \u0438\u0434\u0443\u0442 \u0442\u043e\u043b\u044c\u043a\u043e \u043d\u0430 \u0442\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043e\u0442\u0432\u0435\u0442\u0438\u043b\u0438 \u043d\u0430 OPTIONS. \u041f\u043e\u0441\u043b\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u043d\u0430 \u0432\u0441\u0435 OPTIONS \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 \u043d\u0430 \u0432\u0441\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b.",
       "TestProcedure": [
-        {"Sleep" : 5},
+        {
+          "Sleep": 5
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_OPTIONS",
               "Commands": [
                 {
@@ -205,7 +204,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_RECV_OPTIONS",
               "Commands": [
                 {
@@ -219,7 +218,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_IGNORE_OPTIONS",
               "Commands": [
                 {
@@ -234,13 +233,13 @@
           ]
         },
         {
-          "Sleep" : 1 
+          "Sleep": 1
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -254,7 +253,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_IGNORE_OPTIONS",
               "Commands": [
                 {
@@ -263,13 +262,13 @@
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s",
-                  "NoTimeOutError" : true
+                  "NoTimeOutError": true
                 }
               ]
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_SEND_BYE",
               "Commands": [
                 {
@@ -283,12 +282,12 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"Тест options-контороль (forking)\"",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"\u0422\u0435\u0441\u0442 options-\u043a\u043e\u043d\u0442\u043e\u0440\u043e\u043b\u044c (forking)\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -301,7 +300,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_OPTIONS",
               "Commands": [
                 {
@@ -315,7 +314,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_RECV_OPTIONS",
               "Commands": [
                 {
@@ -329,7 +328,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_RECV_OPTIONS",
               "Commands": [
                 {
@@ -344,13 +343,13 @@
           ]
         },
         {
-          "Sleep" : 1 
+          "Sleep": 1
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -364,7 +363,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -378,7 +377,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
@@ -392,12 +391,12 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"Тест options-контороль (forking)\"",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"\u0422\u0435\u0441\u0442 options-\u043a\u043e\u043d\u0442\u043e\u0440\u043e\u043b\u044c (forking)\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -410,14 +409,16 @@
     },
     {
       "Name": "options_control_forking_disable_all_concacts_test",
-      "Description": "Включаем OPTIONS-контроль на юзере с forking. Не отвечаем на все OPTIONS, делаем вызов и получаем 502. После отвечаем на все OPTIONS и проверяем, что вызов приходит на все контакты.",
+      "Description": "\u0412\u043a\u043b\u044e\u0447\u0430\u0435\u043c OPTIONS-\u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u043d\u0430 \u044e\u0437\u0435\u0440\u0435 \u0441 forking. \u041d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u043d\u0430 \u0432\u0441\u0435 OPTIONS, \u0434\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0438 \u043f\u043e\u043b\u0443\u0447\u0430\u0435\u043c 502. \u041f\u043e\u0441\u043b\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u043d\u0430 \u0432\u0441\u0435 OPTIONS \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0432\u044b\u0437\u043e\u0432 \u043f\u0440\u0438\u0445\u043e\u0434\u0438\u0442 \u043d\u0430 \u0432\u0441\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b.",
       "TestProcedure": [
-        {"Sleep" : 5},
+        {
+          "Sleep": 5
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_IGNORE_OPTIONS",
               "Commands": [
                 {
@@ -431,7 +432,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_IGNORE_OPTIONS",
               "Commands": [
                 {
@@ -445,7 +446,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_IGNORE_OPTIONS",
               "Commands": [
                 {
@@ -460,13 +461,13 @@
           ]
         },
         {
-          "Sleep" : 1 
+          "Sleep": 1
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_480",
               "Commands": [
                 {
@@ -484,7 +485,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_OPTIONS",
               "Commands": [
                 {
@@ -498,7 +499,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_RECV_OPTIONS",
               "Commands": [
                 {
@@ -512,7 +513,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_RECV_OPTIONS",
               "Commands": [
                 {
@@ -527,13 +528,13 @@
           ]
         },
         {
-          "Sleep" : 1 
+          "Sleep": 1
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -547,7 +548,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -561,7 +562,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_SEND_BYE",
               "Commands": [
                 {
@@ -575,12 +576,12 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"Тест options-контороль (forking)\"",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"\u0422\u0435\u0441\u0442 options-\u043a\u043e\u043d\u0442\u043e\u0440\u043e\u043b\u044c (forking)\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"

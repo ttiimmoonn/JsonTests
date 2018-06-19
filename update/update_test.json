@@ -1,62 +1,57 @@
 {
   "TestName": "update_test",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10116,
-      "QParam" : 0.5
+      "Port": 10116,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10117,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10117,
+      "QParam": 1
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
   "PreConf": [
-    {
-    "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
-    "command2": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
-    "command3": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
-    "command4": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%%  %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
-      "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
-      "command6": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
-    }
+    "/domain/%%DEV_DOM%%/alias/clean %%0.Number%%  %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
+    "/domain/%%DEV_DOM%%/media-profile/remove drop_729",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
   ],
   "Tests": [
     {
       "Name": "uac_simple_update_test",
-      "Description": "Проверка корректности обработки UPDATE реквеста UAC mode",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u043e\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 UPDATE \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u0430 UAC mode",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_RECV_BYE",
               "Commands": [
                 {
@@ -69,7 +64,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAC_SIMPLE_UPDATE_TEST",
               "Commands": [
                 {
@@ -87,13 +82,13 @@
     },
     {
       "Name": "uas_update_in_erly_state",
-      "Description": "Проверка корректности отбработки UPDATE реквеста в предответном состоянии UAS mode",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u043e\u0442\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 UPDATE \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u0430 \u0432 \u043f\u0440\u0435\u0434\u043e\u0442\u0432\u0435\u0442\u043d\u043e\u043c \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 UAS mode",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE_IN_ERLY_STATE",
               "Commands": [
                 {
@@ -106,7 +101,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -124,13 +119,13 @@
     },
     {
       "Name": "uas_update_in_answer_state",
-      "Description": "Проверка корректности отбработки UPDATE реквеста в ответном состоянии UAS mode",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043a\u043e\u0440\u0440\u0435\u043a\u0442\u043d\u043e\u0441\u0442\u0438 \u043e\u0442\u0431\u0440\u0430\u0431\u043e\u0442\u043a\u0438 UPDATE \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u0430 \u0432 \u043e\u0442\u0432\u0435\u0442\u043d\u043e\u043c \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 UAS mode",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE_IN_ANSWER_STATE",
               "Commands": [
                 {
@@ -144,7 +139,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -162,13 +157,13 @@
     },
     {
       "Name": "uas_two_update",
-      "Description": "Проверка отправки 500 сообщения при отправке двух UPDATE",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 500 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f \u043f\u0440\u0438 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0435 \u0434\u0432\u0443\u0445 UPDATE",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -182,7 +177,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_SEND_BYE",
               "Commands": [
                 {
@@ -200,13 +195,13 @@
     },
     {
       "Name": "uas_update_before_answer_recv",
-      "Description": "Проверка отправки 491 ответа на UPDATE, который послали до завершения предыдущего o/a",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 491 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 UPDATE, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043f\u043e\u0441\u043b\u0430\u043b\u0438 \u0434\u043e \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d\u0438\u044f \u043f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0435\u0433\u043e o/a",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -220,7 +215,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -238,24 +233,22 @@
     },
     {
       "Name": "uas_recv_488_to_update",
-      "Description": "Проверка отправки 488 ответа на UPDATE, при использовании кодека запрещённого в mp",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 488 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 UPDATE, \u043f\u0440\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0438 \u043a\u043e\u0434\u0435\u043a\u0430 \u0437\u0430\u043f\u0440\u0435\u0449\u0451\u043d\u043d\u043e\u0433\u043e \u0432 mp",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/media-profile/declare drop_729 drop_729 system",
-              "command2": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMA * true",
-              "command3": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMU * true",
-              "command4": "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio G729 * false",
-              "command5": "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile drop_729"
-            }
+            "/domain/%%DEV_DOM%%/media-profile/declare drop_729 drop_729 system",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMA * true",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMU * true",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio G729 * false",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile drop_729"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS_UPDATE",
               "Commands": [
                 {
@@ -269,7 +262,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -285,10 +278,8 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
-              "command2": "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
+            "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
           ]
         }
       ]

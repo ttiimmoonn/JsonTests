@@ -43,31 +43,25 @@
     }
   ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_CHATROOM%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_chat_room_test",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ivr_chat_room_test",
-      "command3": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ivr_chat_room_test"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_CHATROOM%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_chat_room_test",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context ivr_chat_room_test",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context ivr_chat_room_test"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
-      "command2": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing",
-      "command3": "/domain/%%DEV_DOM%%/routing/delete ivr_chat_room_test"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete ivr_chat_room_test"
   ],
   "Tests": [
     {
       "Name": "ivr_simple_chat_room_test",
-      "Description": "Собираем chat_room из 3 юзеров. Двое отбиваются сами, третий отбивается конференцией по single_subscriber_conference_timeout",
+      "Description": "\u0421\u043e\u0431\u0438\u0440\u0430\u0435\u043c chat_room \u0438\u0437 3 \u044e\u0437\u0435\u0440\u043e\u0432. \u0414\u0432\u043e\u0435 \u043e\u0442\u0431\u0438\u0432\u0430\u044e\u0442\u0441\u044f \u0441\u0430\u043c\u0438, \u0442\u0440\u0435\u0442\u0438\u0439 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u043a\u043e\u043d\u0444\u0435\u0440\u0435\u043d\u0446\u0438\u0435\u0439 \u043f\u043e single_subscriber_conference_timeout",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/timers/core/set single_subscriber_conference_timeout 60"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/set single_subscriber_conference_timeout 60"
           ]
         },
         {
@@ -121,9 +115,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/timers/core/clean single_subscriber_conference_timeout"
-            }
+            "/domain/%%DEV_DOM%%/timers/core/clean single_subscriber_conference_timeout"
           ]
         }
       ]

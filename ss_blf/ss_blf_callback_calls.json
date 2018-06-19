@@ -3,73 +3,69 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_and_callback_calls blf blf_and_callback_calls %%0.Number%% %%1.Number%% %%2.Number%%",
-      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
-      "command4" : "/domain/%%DEV_DOM%%/lists/info blf_and_callback_calls",
-      "command5": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% auto_redial_with_callback",
-      "command6" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 1, recall_timer = 2"
-    }
+    "/domain/%%DEV_DOM%%/lists/declare blf_and_callback_calls blf blf_and_callback_calls %%0.Number%% %%1.Number%% %%2.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/lists/info blf_and_callback_calls",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% auto_redial_with_callback",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 1, recall_timer = 2"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/lists/remove blf_and_callback_calls ",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% auto_redial_with_callback",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% auto_redial_with_callback"
-    }
+    "/domain/%%DEV_DOM%%/lists/remove blf_and_callback_calls ",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% auto_redial_with_callback",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% auto_redial_with_callback"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_blf_and_callback_calls",
-      "Description": "Тестирование нотификаций для callback вызовов.",
+      "Description": "\u0422\u0435\u0441\u0442\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0439 \u0434\u043b\u044f callback \u0432\u044b\u0437\u043e\u0432\u043e\u0432.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "SS_BLF_TEST",
               "Commands": [
                 {
@@ -84,14 +80,14 @@
           ]
         },
         {
-          "Sleep" : 2
+          "Sleep": 2
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS",
               "Commands": [
                 {
@@ -105,8 +101,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_AUTOREDIAL",
               "Commands": [
                 {
@@ -125,7 +121,7 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     }

@@ -1,70 +1,64 @@
 {
-  "TestName" : "ivr_test_time_block",
-  "AutoTest" : true,
-  "Users" : [
-      {
-        "UserId" : 0,
-        "Number": "156",
-        "Login": "156",
-        "Password": "123",
-        "SipDomain": "%%DEV_DOM%%",
-        "Expires" : 90,
-        "Port" : 20000,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      },
-      {
-        "UserId" : 1,
-        "Number": "157",
-        "Login": "157",
-        "Password": "123",
-        "SipDomain": "%%DEV_DOM%%",
-        "Expires" : 90,
-        "Port" : 20002,
-        "SipGroup": "sip.ab",
-        "QParam" : 0.5
-      }
+  "TestName": "ivr_test_time_block",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
   ],
   "UserVar": [
     {
-      "%%IVR_TIME_SCRIPT_ACCEPT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+7\",\"time_ranges\":[{\"time\":\"%%NowTime-120;%H:%M%%-%%NowTime+120;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"undefined\",\"Yes\":\"dial_22\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_TIME_SCRIPT_REJECT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+7\",\"time_ranges\":[{\"time\":\"%%NowTime-240;%H:%M%%-%%NowTime-120;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"dial_22\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_TIME_SCRIPT_REJECT_WD%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+7\",\"time_ranges\":[{\"time\":\"%%NowTime-120;%H:%M%%-%%NowTime+120;%H:%M%%,%%NowWeekDay+1%%,%%NowWeekDay+2%%,%%NowWeekDay+3%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"dial_22\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_TIME_SCRIPT_WRONG_GMT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+6\",\"time_ranges\":[{\"time\":\"%%NowTime-120;%H:%M%%-%%NowTime+120;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"dial_22\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_TIME_SCRIPT_GMT%%" : "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+6\",\"time_ranges\":[{\"time\":\"%%NowTime-3720;%H:%M%%-%%NowTime-3480;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"undefined\",\"Yes\":\"dial_22\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%" : "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdGVzdF90aW1lX2Jsb2NrIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMD8iLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfdGVzdF90aW1lX2Jsb2NrIi8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
+      "%%IVR_TIME_SCRIPT_ACCEPT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+7\",\"time_ranges\":[{\"time\":\"%%NowTime-120;%H:%M%%-%%NowTime+120;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"undefined\",\"Yes\":\"dial_22\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_TIME_SCRIPT_REJECT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+7\",\"time_ranges\":[{\"time\":\"%%NowTime-240;%H:%M%%-%%NowTime-120;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"dial_22\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_TIME_SCRIPT_REJECT_WD%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+7\",\"time_ranges\":[{\"time\":\"%%NowTime-120;%H:%M%%-%%NowTime+120;%H:%M%%,%%NowWeekDay+1%%,%%NowWeekDay+2%%,%%NowWeekDay+3%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"dial_22\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_TIME_SCRIPT_WRONG_GMT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+6\",\"time_ranges\":[{\"time\":\"%%NowTime-120;%H:%M%%-%%NowTime+120;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"dial_22\",\"Yes\":\"undefined\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":3,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":630,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":370},{\"cx\":540,\"cy\":425},{\"cx\":450,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%IVR_TIME_SCRIPT_GMT%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"time_21\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"time_21\":{\"name\":\"time\",\"params\":{\"description\":\"\",\"time_zone\":\"GMT+6\",\"time_ranges\":[{\"time\":\"%%NowTime-3720;%H:%M%%-%%NowTime-3480;%H:%M%%,%%NowWeekDay-1%%,%%NowWeekDay%%,%%NowWeekDay+1%%\"}]},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"No\":\"undefined\",\"Yes\":\"dial_22\"},\"links\":{\"No\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}},\"Yes\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}},\"dial_22\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":20},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":3}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":3}}}}},\"name\":\"ivr_test_time_block\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfdGVzdF90aW1lX2Jsb2NrIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMD8iLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfdGVzdF90aW1lX2Jsb2NrIi8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
     }
-   ],
+  ],
   "PreConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-      "command1": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_test_time_block"
-    }
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_test_time_block"
   ],
   "PostConf": [
-    {
-      "command0": "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-      "command2": "/domain/%%DEV_DOM%%/routing/delete ivr_test_time_block"
-    }
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete ivr_test_time_block"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "ivr_time_block_acept_time_test",
-      "Description": "Проверка похождения вызова по ветке yes блока Time.",
-        "TestProcedure": [
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 yes \u0431\u043b\u043e\u043a\u0430 Time.",
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_ACCEPT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_ACCEPT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -78,8 +72,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -95,30 +89,26 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
           ]
         }
       ]
     },
     {
       "Name": "ivr_time_block_reject_time_test",
-      "Description": "Проверка похождения вызова по ветке no блока Time при несоотвествии времени",
-        "TestProcedure": [
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no \u0431\u043b\u043e\u043a\u0430 Time \u043f\u0440\u0438 \u043d\u0435\u0441\u043e\u043e\u0442\u0432\u0435\u0441\u0442\u0432\u0438\u0438 \u0432\u0440\u0435\u043c\u0435\u043d\u0438",
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_REJECT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_REJECT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -132,8 +122,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -149,30 +139,26 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
           ]
         }
       ]
     },
     {
       "Name": "ivr_time_block_reject_week_day_test",
-      "Description": "Проверка похождения вызова по ветке no блока Time при несоотвествии дня недели",
-        "TestProcedure": [
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no \u0431\u043b\u043e\u043a\u0430 Time \u043f\u0440\u0438 \u043d\u0435\u0441\u043e\u043e\u0442\u0432\u0435\u0441\u0442\u0432\u0438\u0438 \u0434\u043d\u044f \u043d\u0435\u0434\u0435\u043b\u0438",
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_REJECT_WD%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_REJECT_WD%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -186,8 +172,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -203,30 +189,26 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
           ]
         }
       ]
     },
     {
       "Name": "ivr_time_block_wrong_gmt_test",
-      "Description": "Проверка похождения вызова по ветке no блока Time при несоотвествии GMT",
-        "TestProcedure": [
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 no \u0431\u043b\u043e\u043a\u0430 Time \u043f\u0440\u0438 \u043d\u0435\u0441\u043e\u043e\u0442\u0432\u0435\u0441\u0442\u0432\u0438\u0438 GMT",
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_WRONG_GMT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_WRONG_GMT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -240,8 +222,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -257,30 +239,26 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
           ]
         }
       ]
     },
     {
       "Name": "ivr_time_block_gmt_test",
-      "Description": "Проверка похождения вызова по ветке yes блока Time в чужом GMT",
-        "TestProcedure": [
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043f\u043e\u0445\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u043e \u0432\u0435\u0442\u043a\u0435 yes \u0431\u043b\u043e\u043a\u0430 Time \u0432 \u0447\u0443\u0436\u043e\u043c GMT",
+      "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command0": "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_GMT%%"
-            }
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_test_time_block --json %%IVR_TIME_SCRIPT_GMT%%"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS_SEND_BYE",
               "Commands": [
                 {
@@ -294,8 +272,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
+              "UserId": 0,
+              "WriteStat": true,
               "Name": "UAC_RECV_BYE",
               "Commands": [
                 {
@@ -311,9 +289,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command0": "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
-            }
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_test_time_block"
           ]
         }
       ]

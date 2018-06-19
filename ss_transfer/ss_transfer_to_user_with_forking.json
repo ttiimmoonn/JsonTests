@@ -62,33 +62,27 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} chold ctr clip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} clip",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} chold ctr clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} chold ctr clip",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} chold ctr clip",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force"
   ],
   "Tests": [
     {
       "Name": "test_semi_attended_transfer_to_fork_user",
-      "Description": "Проверка успешного полусопровождаемого трансфера на юзера с forking.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0443\u0441\u043f\u0435\u0448\u043d\u043e\u0433\u043e \u043f\u043e\u043b\u0443\u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 forking.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         },
         {
@@ -169,13 +163,11 @@
     },
     {
       "Name": "test_unattended_transfer_to_fork_user",
-      "Description": "Проверка успешного несопровождаемого трансфера на юзера с forking.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0443\u0441\u043f\u0435\u0448\u043d\u043e\u0433\u043e \u043d\u0435\u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 forking.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         },
         {
@@ -256,13 +248,11 @@
     },
     {
       "Name": "test_attended_transfer_to_fork_user",
-      "Description": "Проверка успешного сопровождаемого трансфера на юзера с forking.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u0443\u0441\u043f\u0435\u0448\u043d\u043e\u0433\u043e \u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430 \u043d\u0430 \u044e\u0437\u0435\u0440\u0430 \u0441 forking.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% fork-mode all-contacts"
           ]
         },
         {

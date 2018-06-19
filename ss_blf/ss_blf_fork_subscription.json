@@ -3,117 +3,113 @@
   "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10105,
-      "QParam" : 0.5
+      "Port": 10105,
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10106,
-      "QParam" : 0.5
+      "Port": 10106,
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10107,
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10108,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10108,
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10109,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10109,
+      "QParam": 1
     },
     {
-      "UserId" : 5,
+      "UserId": 5,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10110,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10110,
+      "QParam": 1
     },
     {
-      "UserId" : 6,
+      "UserId": 6,
       "Number": "160",
       "Login": "160",
       "Password": "123",
       "SipGroup": "sip.ab",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10111,
-      "QParam" : 1
+      "Expires": 90,
+      "Port": 10111,
+      "QParam": 1
     }
   ],
   "UserVar": [
     {}
   ],
   "PreConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/lists/declare blf_fork_test blf blf_fork_test %%3.Number%% %%0.Number%% %%4.Number%% %%5.Number%% %%6.Number%%",
-      "command2" : "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10",
-      "command4" : "/domain/%%DEV_DOM%%/lists/info blf_fork_test",
-      "command5" : "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% ml",
-      "command6" : "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% ml line_count=3"
-    }
+    "/domain/%%DEV_DOM%%/lists/declare blf_fork_test blf blf_fork_test %%3.Number%% %%0.Number%% %%4.Number%% %%5.Number%% %%6.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10",
+    "/domain/%%DEV_DOM%%/lists/info blf_fork_test",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% ml line_count=3"
   ],
   "PostConf": [
-    {
-      "command1" : "/domain/%%DEV_DOM%%/lists/remove blf_fork_test ",
-      "command2" : "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% blf",
-      "command3" : "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% blf",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% ml",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% ml"
-    }
+    "/domain/%%DEV_DOM%%/lists/remove blf_fork_test ",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% blf",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% ml"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "blf_fork_subscribe_to_one_user",
-      "Description": "Подписываемся с одного юзера на другого, используя разные контакты. Делаем вызов и проверяем, что нотификации приходят всем контактам.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u043c\u0441\u044f \u0441 \u043e\u0434\u043d\u043e\u0433\u043e \u044e\u0437\u0435\u0440\u0430 \u043d\u0430 \u0434\u0440\u0443\u0433\u043e\u0433\u043e, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044f \u0440\u0430\u0437\u043d\u044b\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u0440\u0438\u0445\u043e\u0434\u044f\u0442 \u0432\u0441\u0435\u043c \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430\u043c.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE",
               "Commands": [
                 {
@@ -127,9 +123,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE",
               "Commands": [
                 {
@@ -143,9 +139,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 2,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE",
               "Commands": [
                 {
@@ -160,14 +156,14 @@
           ]
         },
         {
-          "Sleep" : 5
+          "Sleep": 5
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_RECV_CALL",
               "Commands": [
                 {
@@ -181,8 +177,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_SEND_CALL",
               "Commands": [
                 {
@@ -194,22 +190,21 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     },
-
     {
       "Name": "blf_fork_send_481_on_notify",
-      "Description": "Подписываемся с одного юзера на другого, используя разные контакты. Делаем вызов, с нескольких контактов отсылаем 481 на NOTIFY и проверяем, что нотификации перестают ходить в данные контакты. Те контакты, которые отправляют 200 OK, должны получать нотификации.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u043c\u0441\u044f \u0441 \u043e\u0434\u043d\u043e\u0433\u043e \u044e\u0437\u0435\u0440\u0430 \u043d\u0430 \u0434\u0440\u0443\u0433\u043e\u0433\u043e, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044f \u0440\u0430\u0437\u043d\u044b\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432, \u0441 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043e\u0432 \u043e\u0442\u0441\u044b\u043b\u0430\u0435\u043c 481 \u043d\u0430 NOTIFY \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u0435\u0440\u0435\u0441\u0442\u0430\u044e\u0442 \u0445\u043e\u0434\u0438\u0442\u044c \u0432 \u0434\u0430\u043d\u043d\u044b\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b. \u0422\u0435 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442 200 OK, \u0434\u043e\u043b\u0436\u043d\u044b \u043f\u043e\u043b\u0443\u0447\u0430\u0442\u044c \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE_CONTACT_0",
               "Commands": [
                 {
@@ -223,9 +218,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE_CONTACT_1",
               "Commands": [
                 {
@@ -239,9 +234,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 2,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE_CONTACT_2",
               "Commands": [
                 {
@@ -256,14 +251,14 @@
           ]
         },
         {
-          "Sleep" : 5
+          "Sleep": 5
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_RECV_CALL",
               "Commands": [
                 {
@@ -277,8 +272,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_SEND_CALL",
               "Commands": [
                 {
@@ -290,25 +285,24 @@
                 }
               ]
             }
-          ]  
+          ]
         },
         {
-          "Sleep" : 10
+          "Sleep": 10
         }
       ]
     },
-
     {
       "Name": "blf_fork_subscribe_to_several_users",
-      "Description": "Подписываемся с разных контактов на разных юзеров. Делаем вызов и проверяем, что нотификации приходят всем контактам.",
+      "Description": "\u041f\u043e\u0434\u043f\u0438\u0441\u044b\u0432\u0430\u0435\u043c\u0441\u044f \u0441 \u0440\u0430\u0437\u043d\u044b\u0445 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043e\u0432 \u043d\u0430 \u0440\u0430\u0437\u043d\u044b\u0445 \u044e\u0437\u0435\u0440\u043e\u0432. \u0414\u0435\u043b\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432 \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u043d\u043e\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0438 \u043f\u0440\u0438\u0445\u043e\u0434\u044f\u0442 \u0432\u0441\u0435\u043c \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430\u043c.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE_CONTACT_0",
               "Commands": [
                 {
@@ -322,9 +316,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 1,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE_CONTACT_1",
               "Commands": [
                 {
@@ -338,9 +332,9 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
-              "BackGround" : true,
+              "UserId": 2,
+              "WriteStat": true,
+              "BackGround": true,
               "Name": "UAC_SUBSCRIBE_CONTACT_2",
               "Commands": [
                 {
@@ -355,14 +349,14 @@
           ]
         },
         {
-          "Sleep" : 5
+          "Sleep": 5
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "SIMPLE_UAS_RECV_CALL",
               "Commands": [
                 {
@@ -376,8 +370,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_SEND_CALL",
               "Commands": [
                 {
@@ -391,8 +385,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 5,
-              "WriteStat" : true,
+              "UserId": 5,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_SEND_CALL",
               "Commands": [
                 {
@@ -406,8 +400,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 6,
-              "WriteStat" : true,
+              "UserId": 6,
+              "WriteStat": true,
               "Name": "SIMPLE_UAC_SEND_CALL",
               "Commands": [
                 {
@@ -419,7 +413,7 @@
                 }
               ]
             }
-          ]  
+          ]
         }
       ]
     }

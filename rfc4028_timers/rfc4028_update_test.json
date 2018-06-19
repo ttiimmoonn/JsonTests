@@ -29,28 +29,22 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
-      "command2": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
-      "command3": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-      "command4": "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
-    }
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
   ],
   "Tests": [
     {
       "Name": "rfc4028_refresh_session_by_update",
-      "Description": "Проверка обновления сессий посредством UPDATE реквеста. Контроль включен на обеих сторонах. Ожидается, что адаптер будет слать UPDATE запросы в обе сессии.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f \u0441\u0435\u0441\u0441\u0438\u0439 \u043f\u043e\u0441\u0440\u0435\u0434\u0441\u0442\u0432\u043e\u043c UPDATE \u0440\u0435\u043a\u0432\u0435\u0441\u0442\u0430. \u041a\u043e\u043d\u0442\u0440\u043e\u043b\u044c \u0432\u043a\u043b\u044e\u0447\u0435\u043d \u043d\u0430 \u043e\u0431\u0435\u0438\u0445 \u0441\u0442\u043e\u0440\u043e\u043d\u0430\u0445. \u041e\u0436\u0438\u0434\u0430\u0435\u0442\u0441\u044f, \u0447\u0442\u043e \u0430\u0434\u0430\u043f\u0442\u0435\u0440 \u0431\u0443\u0434\u0435\u0442 \u0441\u043b\u0430\u0442\u044c UPDATE \u0437\u0430\u043f\u0440\u043e\u0441\u044b \u0432 \u043e\u0431\u0435 \u0441\u0435\u0441\u0441\u0438\u0438.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control true"
           ]
         },
         {
@@ -87,16 +81,14 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false"
-            }
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% rfc-4028-control false"
           ]
         }
       ]
     },
     {
       "Name": "rfc4028_no_response_to_update_refresh_from_uas",
-      "Description": "Проверка отбоя вызова при неответе на UPDATE реквест со стороны UAS",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u0431\u043e\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u0440\u0438 \u043d\u0435\u043e\u0442\u0432\u0435\u0442\u0435 \u043d\u0430 UPDATE \u0440\u0435\u043a\u0432\u0435\u0441\u0442 \u0441\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b UAS",
       "TestProcedure": [
         {
           "StartUA": [
@@ -133,7 +125,7 @@
     },
     {
       "Name": "rfc4028_recv_481_resp_on_refresh_request",
-      "Description": "Проверка отбоя вызова при получении 481 ответа на refresh реквест",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u0431\u043e\u044f \u0432\u044b\u0437\u043e\u0432\u0430 \u043f\u0440\u0438 \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0438 481 \u043e\u0442\u0432\u0435\u0442\u0430 \u043d\u0430 refresh \u0440\u0435\u043a\u0432\u0435\u0441\u0442",
       "TestProcedure": [
         {
           "StartUA": [

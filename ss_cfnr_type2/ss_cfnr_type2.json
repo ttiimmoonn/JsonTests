@@ -95,44 +95,40 @@
     {}
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfnr_type2",
-      "command2": "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cfnr_type2",
-      "command3": "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr_type2",
-      "command4": "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% cfnr_type2",
-      "command5": "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% cfnr_type2",
-      "command6": "/domain/%%DEV_DOM%%/ss/enable %%5.Number%% cfnr_type2",
-      "command7": "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% cfnr_type2"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/enable %%5.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/enable %%6.Number%% cfnr_type2"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr_type2",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr_type2",
-      "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr_type2",
-      "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr_type2",
-      "command7": "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% cfnr_type2",
-      "command8": "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfnr_type2",
-      "command9": "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cfnr_type2",
-      "command10": "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr_type2",
-      "command11": "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% cfnr_type2",
-      "command12": "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% cfnr_type2",
-      "command13": "/domain/%%DEV_DOM%%/ss/disable %%5.Number%% cfnr_type2",
-      "command14": "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% cfnr_type2"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%6.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%5.Number%% cfnr_type2",
+    "/domain/%%DEV_DOM%%/ss/disable %%6.Number%% cfnr_type2"
   ],
-"Tests": [
+  "Tests": [
     {
       "Name": "simple_cfnr_type2_test",
-      "Description": "Звоним на абонента с cfnr_type2, не отвечаем и проверяем переадресацию, а также отсутствие 181 ответа",
+      "Description": "\u0417\u0432\u043e\u043d\u0438\u043c \u043d\u0430 \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430 \u0441 cfnr_type2, \u043d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u0438 \u043f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044e, \u0430 \u0442\u0430\u043a\u0436\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 181 \u043e\u0442\u0432\u0435\u0442\u0430",
       "TestProcedure": [
         {
           "ServiceFeature": [
             {
               "code": "*42*%%0.Number%%#",
-              "userId" : 2
+              "userId": 2
             }
           ]
         },
@@ -140,7 +136,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -154,7 +150,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
@@ -168,7 +164,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -185,8 +181,8 @@
         {
           "ServiceFeature": [
             {
-             "code": "#42#",
-              "userId" : 2
+              "code": "#42#",
+              "userId": 2
             }
           ]
         },
@@ -194,7 +190,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
@@ -208,7 +204,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "SIMPLE_UAC_RECV_BYE",
               "Commands": [
                 {
@@ -226,25 +222,23 @@
     },
     {
       "Name": "test_too_many_hops",
-      "Description": "Настраиваем cfnr_type2 двум абонентам друг на друга. На все занятия не отвечаем. При звонке на одного из юзеров ожидаем получение 483 ответа",
+      "Description": "\u041d\u0430\u0441\u0442\u0440\u0430\u0438\u0432\u0430\u0435\u043c cfnr_type2 \u0434\u0432\u0443\u043c \u0430\u0431\u043e\u043d\u0435\u043d\u0442\u0430\u043c \u0434\u0440\u0443\u0433 \u043d\u0430 \u0434\u0440\u0443\u0433\u0430. \u041d\u0430 \u0432\u0441\u0435 \u0437\u0430\u043d\u044f\u0442\u0438\u044f \u043d\u0435 \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c. \u041f\u0440\u0438 \u0437\u0432\u043e\u043d\u043a\u0435 \u043d\u0430 \u043e\u0434\u043d\u043e\u0433\u043e \u0438\u0437 \u044e\u0437\u0435\u0440\u043e\u0432 \u043e\u0436\u0438\u0434\u0430\u0435\u043c \u043f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 483 \u043e\u0442\u0432\u0435\u0442\u0430",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr_type2 number = %%1.Number%%, timeout = 2",
-              "command2": "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cfnr_type2 number = %%2.Number%%, timeout = 2",
-              "command3": "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfnr_type2 number = %%3.Number%%, timeout = 2",
-              "command4": "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% cfnr_type2 number = %%4.Number%%, timeout = 2",
-              "command5": "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% cfnr_type2 number = %%5.Number%%, timeout = 2",
-              "command6": "/domain/%%DEV_DOM%%/ss/activate %%5.Number%% cfnr_type2 number = %%6.Number%%, timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr_type2 number = %%1.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cfnr_type2 number = %%2.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% cfnr_type2 number = %%3.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% cfnr_type2 number = %%4.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% cfnr_type2 number = %%5.Number%%, timeout = 2",
+            "/domain/%%DEV_DOM%%/ss/activate %%5.Number%% cfnr_type2 number = %%6.Number%%, timeout = 2"
           ]
         },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 0,
+              "UserId": 0,
               "Name": "UAS0_RECV_CANCEL",
               "Commands": [
                 {
@@ -258,7 +252,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 1,
+              "UserId": 1,
               "Name": "UAS1_RECV_CANCEL",
               "Commands": [
                 {
@@ -272,7 +266,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
+              "UserId": 2,
               "Name": "UAS2_RECV_CANCEL",
               "Commands": [
                 {
@@ -286,7 +280,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
+              "UserId": 3,
               "Name": "UAS3_RECV_CANCEL",
               "Commands": [
                 {
@@ -300,7 +294,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
+              "UserId": 4,
               "Name": "UAS4_RECV_CANCEL",
               "Commands": [
                 {
@@ -314,7 +308,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 5,
+              "UserId": 5,
               "Name": "UAS5_RECV_CANCEL",
               "Commands": [
                 {
@@ -328,7 +322,7 @@
             },
             {
               "Type": "User",
-              "UserId" : 7,
+              "UserId": 7,
               "Name": "UAC_RECV_483",
               "Commands": [
                 {
@@ -344,27 +338,23 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
-              "command2": "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr_type2",
-              "command3": "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2",
-              "command4": "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr_type2",
-              "command5": "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr_type2",
-              "command6": "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr_type2"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr_type2",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cfnr_type2",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cfnr_type2",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cfnr_type2",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% cfnr_type2",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%5.Number%% cfnr_type2"
           ]
         }
       ]
     },
     {
       "Name": "cfnr_type2_to_call_initiator",
-      "Description": "Настраиваем переадресацию на инициатора вызова. В этом случае переадресация не должна сработать.",
+      "Description": "\u041d\u0430\u0441\u0442\u0440\u0430\u0438\u0432\u0430\u0435\u043c \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044e \u043d\u0430 \u0438\u043d\u0438\u0446\u0438\u0430\u0442\u043e\u0440\u0430 \u0432\u044b\u0437\u043e\u0432\u0430. \u0412 \u044d\u0442\u043e\u043c \u0441\u043b\u0443\u0447\u0430\u0435 \u043f\u0435\u0440\u0435\u0430\u0434\u0440\u0435\u0441\u0430\u0446\u0438\u044f \u043d\u0435 \u0434\u043e\u043b\u0436\u043d\u0430 \u0441\u0440\u0430\u0431\u043e\u0442\u0430\u0442\u044c.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr_type2 number = %%1.Number%%, timeout = 2"
-            }
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr_type2 number = %%1.Number%%, timeout = 2"
           ]
         },
         {
@@ -401,9 +391,7 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr"
-            }
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr"
           ]
         }
       ]

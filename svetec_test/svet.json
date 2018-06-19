@@ -1,38 +1,30 @@
 {
   "TestName": "svet_test",
-  "Users": [
-  ],
+  "Users": [],
   "Trunks": [
     {
-      "TrunkId" : 1,
-      "TrunkName" : "svetec",
-      "Port" : 5087,
-      "SipDomain" : "pv.ssw3",
-      "SipGroup" : "svetec_gr"
+      "TrunkId": 1,
+      "TrunkName": "svetec",
+      "Port": 5087,
+      "SipDomain": "pv.ssw3",
+      "SipGroup": "svetec_gr"
     }
   ],
   "UserVar": [
-    {
-    }
+    {}
   ],
-  "PreConf": [
-    {
-    }
-  ],
-  "PostConf": [
-    {
-    }
-  ],
-"Tests": [
+  "PreConf": [],
+  "PostConf": [],
+  "Tests": [
     {
       "Name": "simple_svet_test",
-      "Description": "Светец-Элтекс. Тестирвоание.",
+      "Description": "\u0421\u0432\u0435\u0442\u0435\u0446-\u042d\u043b\u0442\u0435\u043a\u0441. \u0422\u0435\u0441\u0442\u0438\u0440\u0432\u043e\u0430\u043d\u0438\u0435.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "SVET_TEST_RECV_302",
               "Commands": [
                 {
@@ -49,13 +41,13 @@
     },
     {
       "Name": "simple_svet_test",
-      "Description": "Светец-Элтекс. Тестирвоание.",
+      "Description": "\u0421\u0432\u0435\u0442\u0435\u0446-\u042d\u043b\u0442\u0435\u043a\u0441. \u0422\u0435\u0441\u0442\u0438\u0440\u0432\u043e\u0430\u043d\u0438\u0435.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "Trunk",
-              "TrunkId" : 1,
+              "TrunkId": 1,
               "Name": "SVET_TEST_UAC_SIPT",
               "Commands": [
                 {

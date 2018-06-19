@@ -74,59 +74,53 @@
     {
       "%%CONNECTED_NAME%%": "\"RCI transfer test\"",
       "%%TRANSFEE_NAME%%": "TransfeeUser",
-      "%%TR_NAME1%%" : "tr_name1",
-      "%%TR_NAME2%%" : "tr_name2",
-      "%%TR_NAME3%%" : "tr_name3",
-      "%%TR_NAME4%%" : "tr_name4",
-      "%%TR_NAME5%%" : "tr_name5"
+      "%%TR_NAME1%%": "tr_name1",
+      "%%TR_NAME2%%": "tr_name2",
+      "%%TR_NAME3%%": "tr_name3",
+      "%%TR_NAME4%%": "tr_name4",
+      "%%TR_NAME5%%": "tr_name5"
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%5.Number%%} chold ctr clip cnip",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} chold",
-      "command3": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} ctr",
-      "command4": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} clip",
-      "command5": "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} cnip",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
-      "command9": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%5.Number%%} chold ctr clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%5.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication rpi",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication rpi",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TRANSFEE_NAME%%"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} chold",
-      "command2": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} ctr",
-      "command3": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} clip",
-      "command4": "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} cnip",
-      "command5": "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%5.Number%%} chold ctr clip cnip",
-      "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
-      "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-      "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
-      "command9": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%5.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%5.Number%%} chold ctr clip cnip",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
   ],
   "Tests": [
     {
       "Name": "test_rpi_for_several_unattended_transfer",
-      "Description": "Проверка отправки нескольких address update в случае каскадного несопровождаемого трансфера.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 address update \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043a\u0430\u0441\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u043d\u0435\u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
-              "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
-              "command3": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
-              "command4": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
-              "command5": "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
-              "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
-              "command8": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
-              "command9": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
-              "command10": "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
-              "command11": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
+            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
+            "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
+            "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
           ]
         },
         {
@@ -218,42 +212,38 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-              "command3": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
-              "command4": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command5": "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-              "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
-              "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
-              "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
-              "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
-              "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
           ]
         }
       ]
     },
     {
       "Name": "test_rpi_for_several_attended_transfer",
-      "Description": "Проверка отправки нескольких address update в случае каскадного сопровождаемого трансфера.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 address update \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043a\u0430\u0441\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
-              "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
-              "command3": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
-              "command4": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
-              "command5": "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
-              "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
-              "command8": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
-              "command9": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
-              "command10": "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
-              "command11": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
+            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
+            "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
+            "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
           ]
         },
         {
@@ -345,42 +335,38 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-              "command3": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
-              "command4": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command5": "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-              "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
-              "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
-              "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
-              "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
-              "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
           ]
         }
       ]
     },
     {
       "Name": "test_rpi_for_several_semi_attended_transfer",
-      "Description": "Проверка отправки нескольких address update в случае каскадного полусопровождаемого трансфера.",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u043a\u0430 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u0438\u0445 address update \u0432 \u0441\u043b\u0443\u0447\u0430\u0435 \u043a\u0430\u0441\u043a\u0430\u0434\u043d\u043e\u0433\u043e \u043f\u043e\u043b\u0443\u0441\u043e\u043f\u0440\u043e\u0432\u043e\u0436\u0434\u0430\u0435\u043c\u043e\u0433\u043e \u0442\u0440\u0430\u043d\u0441\u0444\u0435\u0440\u0430.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
-              "command2": "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
-              "command3": "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
-              "command4": "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
-              "command5": "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
-              "command7": "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
-              "command8": "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
-              "command9": "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
-              "command10": "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
-              "command11": "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
-            }
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%TR_NAME1%%",
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%1.SipDomain%% displayName %%TR_NAME2%%",
+            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%1.SipDomain%% displayName %%TR_NAME3%%",
+            "/domain/%%DEV_DOM%%/alias/set %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%1.SipDomain%% displayName %%TR_NAME4%%",
+            "/domain/%%DEV_DOM%%/alias/set %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName %%TR_NAME5%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication none",
+            "/domain/%%DEV_DOM%%/sip/user/set %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication rpi",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
           ]
         },
         {
@@ -472,19 +458,17 @@
         },
         {
           "SendSSHCommand": [
-            {
-              "command1": "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
-              "command2": "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
-              "command3": "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
-              "command4": "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
-              "command5": "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
-              "command6": "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
-              "command7": "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
-              "command8": "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
-              "command9": "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
-              "command10": "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
-              "command11": "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
-            }
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/alias/clean %%5.Number%% %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%5.SipGroup%% %%5.Number%%@%%5.SipDomain%% remote-ctr-indication --force",
+            "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force"
           ]
         }
       ]

@@ -1,61 +1,61 @@
 {
   "TestName": "ss_chunt_group",
-  "AutoTest" : true,
+  "AutoTest": true,
   "Users": [
     {
-      "UserId" : 0,
+      "UserId": 0,
       "Number": "156",
       "Login": "156",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10100,
+      "Expires": 90,
+      "Port": 10100,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 1,
+      "UserId": 1,
       "Number": "157",
       "Login": "157",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10106,
+      "Expires": 90,
+      "Port": 10106,
       "SipGroup": "sip.ab",
-      "QParam" : 0.5
+      "QParam": 0.5
     },
     {
-      "UserId" : 2,
+      "UserId": 2,
       "Number": "158",
       "Login": "158",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10107,
+      "Expires": 90,
+      "Port": 10107,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 3,
+      "UserId": 3,
       "Number": "159",
       "Login": "159",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
-      "Port" : 10108,
+      "Expires": 90,
+      "Port": 10108,
       "SipGroup": "sip.ab",
-      "QParam" : 1
+      "QParam": 1
     },
     {
-      "UserId" : 4,
+      "UserId": 4,
       "Number": "155",
       "Login": "155",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
-      "Expires" : 90,
+      "Expires": 90,
       "SipGroup": "sip.ab",
-      "Port" : 10109,
-      "QParam" : 1
+      "Port": 10109,
+      "QParam": 1
     }
   ],
   "UserVar": [
@@ -66,29 +66,27 @@
     }
   ],
   "PreConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = group, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3"
-    }
+    "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = group, numbers = %%ChuntGroup%%, queue_strategy = drop, queue_size= 3"
   ],
   "PostConf": [
-    {
-      "command1": "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
-      "command2": "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
-    }
+    "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
   ],
   "Tests": [
     {
       "Name": "chunt_basic_test_wout_100_rel",
-      "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
+      "Description": "\u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c \u043e\u0434\u0438\u043d \u0432\u044b\u0437\u043e\u0432 \u0432 \u0433\u0440\u0443\u043f\u043f\u0443. \u041d\u0430 \u043e\u0434\u043d\u043e\u043c \u0438\u0437 UAS \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c, \u043e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u043c CANCEL",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -101,8 +99,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -115,8 +113,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -129,8 +127,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -148,15 +146,17 @@
     },
     {
       "Name": "chunt_basic_test_with_100_rel",
-      "Description": "Запускаем один вызов в группу. На одном из UAS отвечаем, остальным CANCEL",
+      "Description": "\u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c \u043e\u0434\u0438\u043d \u0432\u044b\u0437\u043e\u0432 \u0432 \u0433\u0440\u0443\u043f\u043f\u0443. \u041d\u0430 \u043e\u0434\u043d\u043e\u043c \u0438\u0437 UAS \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c, \u043e\u0441\u0442\u0430\u043b\u044c\u043d\u044b\u043c CANCEL",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -169,8 +169,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -183,8 +183,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -197,8 +197,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -216,15 +216,17 @@
     },
     {
       "Name": "chunt_queue_overload_test",
-      "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
+      "Description": "\u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c N+1 \u0432\u044b\u0437\u043e\u0432\u043e\u0432, \u0433\u0434\u0435 N - \u0434\u043b\u0438\u043d\u0430 \u043e\u0447\u0435\u0440\u0435\u0434\u0438. \u041d\u0430 \u0432\u0441\u0435\u0445 UAS \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c, N+1 \u0432\u044b\u0437\u0432\u043e\u0432 \u043e\u0442\u0431\u0438\u0442",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -237,8 +239,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -251,8 +253,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -265,8 +267,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -284,15 +286,17 @@
     },
     {
       "Name": "chunt_queue_overload_test_with_100rel",
-      "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS отвечаем, N+1 вызвов отбит",
+      "Description": "\u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c N+1 \u0432\u044b\u0437\u043e\u0432\u043e\u0432, \u0433\u0434\u0435 N - \u0434\u043b\u0438\u043d\u0430 \u043e\u0447\u0435\u0440\u0435\u0434\u0438. \u041d\u0430 \u0432\u0441\u0435\u0445 UAS \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c, N+1 \u0432\u044b\u0437\u0432\u043e\u0432 \u043e\u0442\u0431\u0438\u0442",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -305,8 +309,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -319,8 +323,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -333,8 +337,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -352,15 +356,17 @@
     },
     {
       "Name": "chunt_block_on_486_wout_100rel",
-      "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку. Результат: Все UAS были заблокированы на 15 сек. Последний UAS разбирает очередь",
+      "Description": "\u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c N+1 \u0432\u044b\u0437\u043e\u0432\u043e\u0432, \u0433\u0434\u0435 N - \u0434\u043b\u0438\u043d\u0430 \u043e\u0447\u0435\u0440\u0435\u0434\u0438. \u041d\u0430 \u0432\u0441\u0435\u0445 UAS (\u043a\u0440\u043e\u043c\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0433\u043e) \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432\u044b, \u043d\u0430 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u043c \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u0438 \u043a\u043b\u0430\u0434\u0451\u043c \u0442\u0440\u0443\u0431\u043a\u0443. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u0412\u0441\u0435 UAS \u0431\u044b\u043b\u0438 \u0437\u0430\u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d\u044b \u043d\u0430 15 \u0441\u0435\u043a. \u041f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 UAS \u0440\u0430\u0437\u0431\u0438\u0440\u0430\u0435\u0442 \u043e\u0447\u0435\u0440\u0435\u0434\u044c",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -373,8 +379,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -387,8 +393,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WOUT100REL",
               "Commands": [
                 {
@@ -401,8 +407,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WOUT100REL",
               "Commands": [
                 {
@@ -420,15 +426,17 @@
     },
     {
       "Name": "chunt_block_on_486_with_100rel",
-      "Description": "Запускаем N+1 вызовов, где N - длина очереди. На всех UAS (кроме последнего) отбиваем вызовы, на последнем отвечаем и кладём трубку. Результат: Все UAS были заблокированы на 15 сек. Последний UAS разбирает очередь",
+      "Description": "\u0417\u0430\u043f\u0443\u0441\u043a\u0430\u0435\u043c N+1 \u0432\u044b\u0437\u043e\u0432\u043e\u0432, \u0433\u0434\u0435 N - \u0434\u043b\u0438\u043d\u0430 \u043e\u0447\u0435\u0440\u0435\u0434\u0438. \u041d\u0430 \u0432\u0441\u0435\u0445 UAS (\u043a\u0440\u043e\u043c\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0433\u043e) \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u043c \u0432\u044b\u0437\u043e\u0432\u044b, \u043d\u0430 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u043c \u043e\u0442\u0432\u0435\u0447\u0430\u0435\u043c \u0438 \u043a\u043b\u0430\u0434\u0451\u043c \u0442\u0440\u0443\u0431\u043a\u0443. \u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442: \u0412\u0441\u0435 UAS \u0431\u044b\u043b\u0438 \u0437\u0430\u0431\u043b\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d\u044b \u043d\u0430 15 \u0441\u0435\u043a. \u041f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0439 UAS \u0440\u0430\u0437\u0431\u0438\u0440\u0430\u0435\u0442 \u043e\u0447\u0435\u0440\u0435\u0434\u044c",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -441,8 +449,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -455,8 +463,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_CHUNT_WITH100REL",
               "Commands": [
                 {
@@ -469,8 +477,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
@@ -488,15 +496,17 @@
     },
     {
       "Name": "chunt_group_race_of_200Ok_and_cancel",
-      "Description": "Проверяем, что адаптер отбивает вызов через BYE, если получил 200 OK",
+      "Description": "\u041f\u0440\u043e\u0432\u0435\u0440\u044f\u0435\u043c, \u0447\u0442\u043e \u0430\u0434\u0430\u043f\u0442\u0435\u0440 \u043e\u0442\u0431\u0438\u0432\u0430\u0435\u0442 \u0432\u044b\u0437\u043e\u0432 \u0447\u0435\u0440\u0435\u0437 BYE, \u0435\u0441\u043b\u0438 \u043f\u043e\u043b\u0443\u0447\u0438\u043b 200 OK",
       "TestProcedure": [
-        {"Sleep" : 4},
+        {
+          "Sleep": 4
+        },
         {
           "StartUA": [
             {
               "Type": "User",
-              "UserId" : 1,
-              "WriteStat" : true,
+              "UserId": 1,
+              "WriteStat": true,
               "Name": "UAS1_RACE_200OK_AND_CANCEL",
               "Commands": [
                 {
@@ -509,8 +519,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 2,
-              "WriteStat" : true,
+              "UserId": 2,
+              "WriteStat": true,
               "Name": "UAS2_RACE_200OK_AND_CANCEL",
               "Commands": [
                 {
@@ -523,8 +533,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 3,
-              "WriteStat" : true,
+              "UserId": 3,
+              "WriteStat": true,
               "Name": "UAS3_RACE_200OK_AND_CANCEL_RECV_BYE",
               "Commands": [
                 {
@@ -537,8 +547,8 @@
             },
             {
               "Type": "User",
-              "UserId" : 4,
-              "WriteStat" : true,
+              "UserId": 4,
+              "WriteStat": true,
               "Name": "UAC_WITH100REL",
               "Commands": [
                 {
