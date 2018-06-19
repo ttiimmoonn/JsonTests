@@ -97,7 +97,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -111,7 +111,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -125,7 +125,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -170,7 +170,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -184,7 +184,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -198,7 +198,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -234,7 +234,7 @@
       ]
     },
     {
-      "Name": "find_me_wout_dname",
+      "Name": "zone_page_wout_dname",
       "Description": "dName не получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. На стороне Б ожидаем dName c сервиса ZonePage",
       "TestProcedure": [
         {
@@ -243,7 +243,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -257,7 +257,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -271,7 +271,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -316,7 +316,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -330,7 +330,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -344,7 +344,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -395,7 +395,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -409,7 +409,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -423,7 +423,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -476,7 +476,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -490,7 +490,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -504,7 +504,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -557,7 +557,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -571,7 +571,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -585,7 +585,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -638,7 +638,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS1_FIND_ME_WOUT100REL",
+              "Name": "UAS1_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -652,7 +652,7 @@
               "Type": "User",
               "UserId": 2,
               "WriteStat": true,
-              "Name": "UAS2_FIND_ME_WOUT100REL",
+              "Name": "UAS2_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
@@ -666,7 +666,7 @@
               "Type": "User",
               "UserId": 3,
               "WriteStat": true,
-              "Name": "UAS3_FIND_ME_WOUT100REL",
+              "Name": "UAS3_ZP_WOUT100REL",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
