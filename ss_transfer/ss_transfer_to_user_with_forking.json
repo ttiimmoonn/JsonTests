@@ -349,7 +349,7 @@
               "Name": "UAS_FORK_CONTACT0",
               "Commands": [
                 {
-                  "SourceFile": "ss_transfer/uas_recv_update_on_confir_st.xml",
+                  "SourceFile": "ss_transfer/uas_recv_update_in_confir_st.xml",
                   "Options": "-m 1 -d 5000",
                   "SippType": "uas",
                   "Timeout": "60s"
