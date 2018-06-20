@@ -70,21 +70,21 @@
     "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% zone_page",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% zone_page announcement_files = [system sounds/ai_error.wav], announcement_pause = 1, announcement_playback_cnt = 2, announcement_repeat_time = 1, display_name = %%ZONE_PAGE_NAME%%, intro_pause = 1, intro_files = [system sounds/ai_error.wav], members = [%%1.Number%%,%%2.Number%%,%%3.Number%%], priority = 0_flash_override, terminate_when_initiator_disconnects = true, terminate_when_last_listener_leave = true, terminate_when_playback_ends = true",
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% {%%0.Number%%-%%4.Number%%}@%%0.SipDomain%% terminal_type smart",
-    "/domain/%%DEV_DOM%%/ss/enable {%%1.Number%%-%%3.Number%%} cnip",
-    "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%3.Number%%} cnip",
-    "/domain/%%DEV_DOM%%/ss/enable {%%1.Number%%-%%3.Number%%} clip",
-    "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%3.Number%%} clip"
+    "/domain/%%DEV_DOM%%/ss/enable {%%1.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%1.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%1.Number%%-%%4.Number%%} clip"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% zone_page",
     "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% zone_page",
-    "/domain/%%DEV_DOM%%/ss/deactivate {%%1.Number%%-%%3.Number%%} cnip",
-    "/domain/%%DEV_DOM%%/ss/disable {%%1.Number%%-%%3.Number%%} cnip",
     "/domain/%%DEV_DOM%%/alias/clean %%4.Number%% %%4.SipGroup%% %%4.Number%%@%%4.SipDomain%% displayName",
     "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-    "/domain/%%DEV_DOM%%/ss/deactivate {%%1.Number%%-%%3.Number%%} clip",
-    "/domain/%%DEV_DOM%%/ss/disable {%%1.Number%%-%%3.Number%%} clip"
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%1.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%1.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%1.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%1.Number%%-%%4.Number%%} cnip"
   ],
   "Tests": [
     {
