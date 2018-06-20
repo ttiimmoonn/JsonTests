@@ -72,7 +72,8 @@
     "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cf_sip",
     "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cf_sip",
     "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_min_se 90",
-    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90"
+    "/domain/%%DEV_DOM%%/timers/sip/set rfc4028_use_se 90",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control true"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} chold",
@@ -86,7 +87,8 @@
     "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
     "/domain/%%DEV_DOM%%/alias/clean %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% displayName",
     "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cf_sip",
-    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cf_sip"
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% rfc-4028-control false"
   ],
   "Tests": [
     {
