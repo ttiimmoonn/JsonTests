@@ -47,6 +47,9 @@
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
     "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ctr",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
     "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
     "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
     "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none"
@@ -57,6 +60,9 @@
     "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
     "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip clip",
     "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
     "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
     "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force"
