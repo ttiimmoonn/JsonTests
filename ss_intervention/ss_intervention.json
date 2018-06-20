@@ -45,12 +45,18 @@
   "PreConf": [
     "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% intervention",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% intervention",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
     "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%INTER_DNAME1%%",
     "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName %%INTER_DNAME2%%"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% intervention",
     "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% intervention",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip cnip",
     "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName"
   ],
   "Tests": [
