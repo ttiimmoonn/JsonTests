@@ -171,7 +171,7 @@
       ]
     },
     {
-      "Name": "ctr_flush_plus_4",
+      "Name": "ctr_flash_plus_4",
       "Description": "Тестирование CT по flash + 4",
       "TestProcedure": [
         {
@@ -187,7 +187,7 @@
                   "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_DIGITS %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "30s"
+                  "Timeout": "40s"
                 }
               ]
             },
