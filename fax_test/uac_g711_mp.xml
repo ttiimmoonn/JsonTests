@@ -3,7 +3,8 @@
 <scenario name = "new_script">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<User variables="cdpn_dom,cgpn_dom,cdpn" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,dummy"/>
+<Reference variables="dummy"/>
 
     <nop hide="true">
     <action>
@@ -76,7 +77,12 @@
 ]]>
 </send>
 
-<recv request="INVITE"> </recv>
+<recv request="INVITE">
+    <action>
+        <ereg regexp="a=ecan:fb on -" search_in="msg" check_it="true" assign_to="dummy" />
+        <ereg regexp="a=silenceSupp:off - - - -" check_it="true" search_in="msg" assign_to="dummy"/>
+    </action>
+</recv>
 
 <send>
 <![CDATA[
@@ -157,10 +163,9 @@
 
 <recv response="100"> </recv> 
 <recv response="200"> 
-<action>
-    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-</action>
-
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+    </action>
 </recv>
 
 
@@ -191,7 +196,13 @@
     Принимаем переход на g711
 -->
 
-<recv request="INVITE"/>
+<recv request="INVITE">
+    <action>
+        <ereg regexp="a=ecan:fb on -" search_in="msg" check_it_inverse="true" assign_to="dummy" />
+        <ereg regexp="a=silenceSupp:off - - - -" check_it_inverse="true" search_in="msg" assign_to="dummy"/>
+    </action>
+</recv>
+
 <send retrans="500">
 <![CDATA[
     SIP/2.0 200 OK

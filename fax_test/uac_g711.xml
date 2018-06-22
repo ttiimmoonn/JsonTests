@@ -3,7 +3,8 @@
 <scenario name = "new_script">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-<User variables="cdpn_dom,cgpn_dom,cdpn" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,dummy" />
+<Reference variables="dummy"/>
 
     <nop hide="true">
     <action>
@@ -79,7 +80,7 @@
 Принимаем переход на T38
 -->
 
-<recv request="INVITE"> </recv>
+<recv request="INVITE"/>
 
 <send retrans="500">
 <![CDATA[
@@ -96,9 +97,12 @@
 
 <recv request="ACK"> </recv>
 
-
-
-<recv request="INVITE"> </recv>
+<recv request="INVITE">
+    <action>
+        <ereg regexp="a=ecan:fb on -" search_in="msg" check_it="true"  assign_to="dummy" />
+        <ereg regexp="a=silenceSupp:off - - - -" check_it="true" search_in="msg" assign_to="dummy"/>
+    </action>
+</recv>
 
 <send retrans="500">
 <![CDATA[
@@ -141,7 +145,12 @@
     Принимаем переход на g711
 -->
 
-<recv request="INVITE"/>
+<recv request="INVITE">
+    <action>
+        <ereg regexp="a=ecan:fb on -" search_in="msg" check_it_inverse="true" assign_to="dummy" />
+        <ereg regexp="a=silenceSupp:off - - - -" check_it_inverse="true" search_in="msg" assign_to="dummy"/>
+    </action>
+</recv>
 
 <send retrans="500">
 <![CDATA[
