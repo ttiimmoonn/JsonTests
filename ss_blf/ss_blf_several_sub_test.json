@@ -142,7 +142,7 @@
         },
         {
           "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
+            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
           ]
         },
         {
@@ -180,11 +180,11 @@
           ]
         },
         {
-          "Sleep": 2
+          "Sleep": 10
         },
         {
           "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
+            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
           ]
         }
       ]
@@ -250,7 +250,7 @@
         },
         {
           "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
+            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
           ]
         },
         {
@@ -288,11 +288,11 @@
           ]
         },
         {
-          "Sleep": 2
+          "Sleep": 10
         },
         {
           "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%DEV_DOM%%.%%3.Number%%"
+            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
           ]
         }
       ]
