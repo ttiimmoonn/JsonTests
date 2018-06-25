@@ -28,8 +28,7 @@
     Content-Length: [len]
     
     <?xml version="1.0" encoding="UTF-8"?>
-    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
-    [$cdpn]@[$cdpn_dom]">
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="pres:[$cdpn]@[$cdpn_dom]">
     <tuple id="sg89ae">
     <status><basic>open</basic></status>
     <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
@@ -67,8 +66,7 @@
     Content-Length: [len]
     
     <?xml version="1.0" encoding="UTF-8"?>
-    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
-    [$cdpn]@[$cdpn_dom]">
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="pres:[$cdpn]@[$cdpn_dom]">
     <tuple id="sg89ae">
     <status><basic>open</basic></status>
     <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
@@ -101,8 +99,7 @@
     Content-Length: [len]
     
     <?xml version="1.0" encoding="UTF-8"?>
-    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
-    [$cdpn]@[$cdpn_dom]">
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="pres:[$cdpn]@[$cdpn_dom]">
     <tuple id="sg89ae">
     <status><basic>open</basic></status>
     <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
@@ -133,8 +130,7 @@
     Content-Length: [len]
     
     <?xml version="1.0" encoding="UTF-8"?>
-    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="si
-    [$cdpn]@[$cdpn_dom]">
+    <presence xmlns="urn:ietf:params:xml:ns:pidf" xmlns:dm="urn:ietf:params:xml:ns:pidf:data-model" xmlns:rpid="urn:ietf:params:xml:ns:pidf:rpid" entity="pres:[$cdpn]@[$cdpn_dom]">
     <tuple id="sg89ae">
     <status><basic>open</basic></status>
     <contact priority="0.8">sip:[$cdpn]@[$cdpn_dom]</contact>
