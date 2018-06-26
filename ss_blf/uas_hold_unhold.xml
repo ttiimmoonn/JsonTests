@@ -14,7 +14,7 @@
     <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
-    <ereg regexp="sip:([^@]@)?[^;>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
@@ -102,7 +102,7 @@
 <recv response="100" optional="true"> </recv>
 <recv response="200">
         <action>
-            <ereg regexp="sip:([^@]@)?[^;>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
+            <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
         	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" check_it="true" />
         	<ereg regexp="a=recvonly" search_in="body" assign_to="chk_recv_only" check_it="true" />
         </action>
@@ -152,7 +152,7 @@
 <recv response="100" optional="true"> </recv>
 <recv response="200">
         <action>
-            <ereg regexp="sip:([^@]@)?[^;>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
+            <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
         	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" check_it="true" />
         	<ereg regexp="a=sendrecv" search_in="body" assign_to="chk_send_recv" check_it="true" />
         </action>

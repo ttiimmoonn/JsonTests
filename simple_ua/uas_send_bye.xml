@@ -35,7 +35,7 @@
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
     <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
-    <ereg regexp="sip:([^@]@)?[^;>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+).*?;reason=(.*)$" search_in="hdr" header="Diversion:" assign_to="dummy,dummy,diver_name,diver_num,diver_reason"/>
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>

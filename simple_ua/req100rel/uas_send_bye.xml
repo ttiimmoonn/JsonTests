@@ -29,7 +29,7 @@
 	<ereg regexp=".*" search_in="hdr" header="Via:" assign_to="inv_via" />
 	<ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="inv_cseq" />
 	<assignstr assign_to="local_tag" value="[call_number][pid]"/>
-    <ereg regexp="sip:([^@]@)?[^;>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
