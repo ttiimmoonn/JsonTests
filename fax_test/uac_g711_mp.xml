@@ -164,6 +164,7 @@
 <recv response="100"> </recv> 
 <recv response="200"> 
     <action>
+        <ereg regexp="a=silenceSupp:off - - - -" search_in="body" check_it="true" assign_to="dummy" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
