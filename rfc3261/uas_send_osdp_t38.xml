@@ -10,6 +10,7 @@
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
 </action>
 </recv>
 
@@ -67,7 +68,7 @@
 
 <send>
 <![CDATA[
-    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -100,13 +101,14 @@
         <assign assign_to="sdp_chk" value="" />
         <ereg regexp="T38FaxRateManagement" search_in="body" check_it="true" assign_to="sdp_chk" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
 
 <send crlf="true">
 <![CDATA[
-    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -120,7 +122,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
