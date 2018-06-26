@@ -15,7 +15,7 @@
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
     <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
-    <log message="INVITE [timestamp]"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
 </action>
 </recv>
 
@@ -94,7 +94,7 @@
 <pause milliseconds="2000"/>
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]

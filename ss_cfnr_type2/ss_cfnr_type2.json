@@ -365,7 +365,7 @@
               "Name": "SIMPLE_UAS_SEND_BYE",
               "Commands": [
                 {
-                  "SourceFile": "ss_cfnr/uas_delay_answer.xml",
+                  "SourceFile": "ss_cfnr_type2/uas_delay_answer.xml",
                   "Options": "-m 1 -d 4000",
                   "SippType": "uas",
                   "NeedAuth": true,
@@ -379,7 +379,7 @@
               "Name": "SIMPLE_UAC_WOUT_181",
               "Commands": [
                 {
-                  "SourceFile": "ss_cfnr/uac_wout_181.xml",
+                  "SourceFile": "ss_cfnr_type2/uac_wout_181.xml",
                   "Options": "-m 1 -d 2000 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,

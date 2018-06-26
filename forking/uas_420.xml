@@ -9,6 +9,7 @@
 
 <recv request="INVITE">
     <action>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
         <ereg regexp="Require:.*100rel.*" search_in="msg" check_it="true" assign_to="chk_req_100rel"/>
     </action>
 </recv>
@@ -120,7 +121,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[call_number][local_port]
     To: <sip:[$remote_number]@[$remote_domain]>tag=[$remote_tag]
