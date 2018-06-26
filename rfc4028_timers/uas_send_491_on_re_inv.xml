@@ -91,6 +91,7 @@
         <ereg regexp=".*" search_in="hdr" header="To:" assign_to="re_inv_to" />
         <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="re_inv_via" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="re_inv_cseq" />
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
@@ -108,7 +109,7 @@
 
 <send>
 <![CDATA[
-    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "rfc4028 pending test" <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: "[$remote_number]" <sip:[$remote_number]@[$remore_domain]>;tag=[$remote_tag]
@@ -146,7 +147,7 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
     [last_from:]
     [last_to:]
@@ -177,6 +178,7 @@
         <assign assign_to="se" value="" />
         <assign assign_to="options" value="" />
         <ereg regexp="Session-Expires:\s?(90)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
@@ -212,7 +214,7 @@
 
 <send>
 <![CDATA[
-    INVITE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "rfc4028 pending test" <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: "[$remote_number]" <sip:[$remote_number]@[$remore_domain]>;tag=[$remote_tag]
@@ -240,13 +242,14 @@
 <recv response="100" optional="true"> </recv>
 <recv response="200">
     <action>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
 
 <send>
 <![CDATA[
-    ACK sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -260,7 +263,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]

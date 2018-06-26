@@ -11,6 +11,7 @@
         <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
         <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
         <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
@@ -65,7 +66,7 @@
 
 <send retrans="500">
 <![CDATA[
-    INVITE sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$local_number] <sip:[$local_number]@[$cgpn_dom]>;tag=[call_number][local_port]
     To: [$remote_number] <sip:[$remote_number]@[$cdpn_dom]>;tag=[$remote_tag]
@@ -98,7 +99,7 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
     [last_from:]
     [last_to:]
@@ -110,7 +111,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [service] <sip:[service]@[$cgpn_dom]>;tag=[call_number][local_port]
     To: [$remote_number] <sip:[$remote_number]@[$cdpn_dom]>;tag=[$remote_tag]
@@ -123,7 +124,5 @@
 
 
 <recv response="200"></recv>
-
-
 
 </scenario>

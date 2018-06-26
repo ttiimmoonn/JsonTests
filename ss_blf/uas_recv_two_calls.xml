@@ -29,6 +29,7 @@
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     <!-- Set flag for first call -->
     <assignstr assign_to="call_1_received" value="true"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
 </action>
 </recv>
 
@@ -102,7 +103,7 @@
 <!-- Set first call on hold -->
 <send retrans="500">
 <![CDATA[
-    INVITE sip:[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$local_number] <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: [$remote_number] <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -130,12 +131,13 @@
 <recv response="200" auth="true">
     <action>
         <assignstr assign_to="state_call_1" value="hold"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
 <send>
 <![CDATA[
-    ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -152,7 +154,7 @@
 <!-- Changing state of first call to unhold -->
 <send retrans="500">
 <![CDATA[
-    INVITE sip:[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$local_number] <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: [$remote_number] <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -179,12 +181,13 @@
 <recv response="200" auth="true">
     <action>
         <assignstr assign_to="state_call_1" value="unhold"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
 <send>
 <![CDATA[
-    ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -196,7 +199,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -228,6 +231,7 @@
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     <!-- Set flag for second call -->
     <assignstr assign_to="call_2_received" value="true"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
 </action>
 </recv>
 
@@ -298,7 +302,7 @@
 <!-- Set second call on hold -->
 <send retrans="500">
 <![CDATA[
-    INVITE sip:[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$local_number] <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: [$remote_number] <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -331,7 +335,7 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -348,7 +352,7 @@
 <!-- Set second call on unhold -->
 <send retrans="500">
 <![CDATA[
-    INVITE sip:[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$local_number] <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: [$remote_number] <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -376,12 +380,13 @@
 <recv response="200" auth="true">
     <action>
         <assignstr assign_to="state_call_2" value="unhold"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
 <send>
 <![CDATA[
-    ACK sip:[$local_number]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -395,7 +400,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]

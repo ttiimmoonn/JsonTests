@@ -18,6 +18,7 @@
         <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
         <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
         <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
 
@@ -79,7 +80,7 @@
 
 <send>
 <![CDATA[
-    UPDATE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    UPDATE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "rfc4028 pending test" <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: "[$remote_number]" <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]

@@ -254,7 +254,7 @@
 		<ereg regexp="Session-Expires:\s?(120)\s?;\s?(refresher=uac)" search_in="msg" check_it="true" assign_to="dummy,se,options"/>
 		<!--Проверяем, что нам передали Min-SE: 120-->
 		<ereg regexp="Min-SE:\s?(120)" search_in="msg" check_it="true" assign_to="dummy,min_se"/>
-
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
 	</action>
 </recv>
 
@@ -277,7 +277,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
