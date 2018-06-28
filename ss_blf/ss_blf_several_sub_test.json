@@ -62,17 +62,17 @@
     {}
   ],
   "PreConf": [
-    "/domain/%%DEV_DOM%%/lists/declare blf_test blf blf_test %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
+    "/domain/%%DEV_DOM%%/lists/declare blf_several blf blf_several %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%%",
     "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% blf",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% blf max_subscribe = 10",
     "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% blf",
     "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
     "/domain/%%DEV_DOM%%/ss/enable %%2.Number%% blf",
     "/domain/%%DEV_DOM%%/ss/activate %%2.Number%% blf max_subscribe = 10",
-    "/domain/%%DEV_DOM%%/lists/info blf_test"
+    "/domain/%%DEV_DOM%%/lists/info blf_several"
   ],
   "PostConf": [
-    "/domain/%%DEV_DOM%%/lists/remove blf_test ",
+    "/domain/%%DEV_DOM%%/lists/remove blf_several ",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% blf",
     "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% blf",
     "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% blf",
@@ -141,11 +141,6 @@
           "Sleep": 2
         },
         {
-          "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
-          ]
-        },
-        {
           "StartUA": [
             {
               "Type": "User",
@@ -177,14 +172,6 @@
                 }
               ]
             }
-          ]
-        },
-        {
-          "Sleep": 10
-        },
-        {
-          "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
           ]
         }
       ]
@@ -249,11 +236,6 @@
           "Sleep": 2
         },
         {
-          "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
-          ]
-        },
-        {
           "StartUA": [
             {
               "Type": "User",
@@ -285,14 +267,6 @@
                 }
               ]
             }
-          ]
-        },
-        {
-          "Sleep": 10
-        },
-        {
-          "SendSSHCommand": [
-            "/cluster/bus/voip/list binding where binding_key = blf.%%3.Number%%.%%DEV_DOM%%"
           ]
         }
       ]
