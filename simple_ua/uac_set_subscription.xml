@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uac_set_sub">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,EXP,EVENT" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,exp,event" />
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="fixedsubtag"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="exp" value="[$EXP]"/>
+        <assignstr assign_to="event" value="[$EVENT]"/>
+    </action>
+</nop>
+
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Set [$event] subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: [$event]
+    Accept: application/dialog-info+xml
+    Expires: [$exp]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="401" auth="true"/>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "Set [$event] subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    [authentication]
+    Event: [$event]
+    Accept: application/dialog-info+xml
+    Expires: [$exp]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="NOTIFY" optional="true">
+    <action>
+        <assignstr assign_to="recv_notify" value="true"/>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+    </action>
+</recv>
+
+<recv response="200" test="recv_notify" next="send_200_to_notify"/>
+
+<recv request="NOTIFY">
+    <action>
+        <assignstr assign_to="recv_notify" value="true"/>
+        <ereg regexp=".*" search_in="hdr" header="From:" assign_to="not_from" />
+        <ereg regexp=".*" search_in="hdr" header="To:" assign_to="not_to" />
+        <ereg regexp=".*" search_in="hdr" header="Via:" assign_to="not_via" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="not_cseq" />
+    </action>
+</recv>
+
+<label id="send_200_to_notify"/>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    Via:[$not_via]
+    From:[$not_from]
+    To:[$not_to]
+    [last_Call-ID:]
+    CSeq: [$not_cseq] NOTIFY
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="2000"/>
+
+</scenario>
