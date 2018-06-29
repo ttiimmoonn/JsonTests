@@ -50,8 +50,16 @@
   "UserVar": [
     {}
   ],
-  "PreConf": [],
-  "PostConf": [],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/lists/declare sub_timer_test presence sub_timer_test %%1.Number%% %%2.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% presence max_subscribe = 1"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/lists/remove sub_timer_test",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% presence",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% presence"
+  ],
   "Tests": [
     {
       "Name": "test_invite_retrans",
@@ -495,6 +503,120 @@
                   "MsgType": "response",
                   "Method": "INVITE",
                   "Code": 500
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_notify_retaransmission",
+      "Description": "Проверка перепосылок запроса NOTIFY",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "SET_PRESENCE_SUB",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_set_subscription.xml",
+                  "NeedAuth": true,
+                  "CidStr": "subfrom%%1.Number%%to%%2.Number%%",
+                  "StartCseq": 3,
+                  "Options": "-m 1 -set EXP 90 -set EVENT presence -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_NO_RESPONSE_TO_NOTIFY",
+              "Commands": [
+                {
+                  "SourceFile": "sip_timers/uas_no_response_to_notify.xml",
+                  "Options": "-m 1 -d 35000",
+                  "SippType": "uas",
+                  "Timeout": "50s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAC_SEND_PUBLISH",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_publish.xml",
+                  "NeedAuth": true,
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "WaitBackGroudUA" : {
+            "timeout" : 40
+          }
+        },
+        {
+          "CheckRetransmission": [
+            {
+              "Timer": "E",
+              "UA": "1",
+              "Msg": [
+                {
+                  "MsgType": "request",
+                  "Method": "NOTIFY",
+                  "Code": null
+                }
+              ]
+            },
+            {
+              "Timer": "F",
+              "UA": "1",
+              "Msg": [
+                {
+                  "MsgType": "request",
+                  "Method": "NOTIFY",
+                  "Code": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "DROP_PRESENCE_SUB",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_set_subscription.xml",
+                  "CidStr": "subfrom%%1.Number%%to%%2.Number%%",
+                  "StartCseq": 3,
+                  "NeedAuth": true,
+                  "Options": "-m 1 -set EXP 0 -set EVENT presence -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "Timeout": "10s"
                 }
               ]
             }
