@@ -52,6 +52,7 @@
     "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_to_trunk%%",
     "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_from_trunk%%",
     "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_for_trunk%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% dynamic %%Tr.1.Login%% %%Tr.1.Password%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sip_transport udp_only",
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
   ],
   "PostConf": [
