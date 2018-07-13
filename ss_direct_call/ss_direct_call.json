@@ -1,0 +1,81 @@
+{
+  "TestName": "ss_direct_call",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 1
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% direct_call",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% direct_call number = %%1.Number%%"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% direct_call",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% direct_call"
+  ],
+  "Tests": [
+    {
+      "Name": "direct_call_test",
+      "Description": "Проверка услуги direct_call. Активируем услугу direct_call для абонента, шлём INVITE без номера. Ожидается, что система смаршрутизирует вызов на номер, указаный при активации direct_call",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_INVITE_WOUT_CDPN",
+              "Commands": [
+                {
+                  "SourceFile": "ss_direct_call/send_invite_without_number.xml",
+                  "Options": " -m 1 -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
