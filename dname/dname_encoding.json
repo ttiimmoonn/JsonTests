@@ -1,0 +1,293 @@
+{
+  "TestName": "dname_encoding",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 1
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%SIP_DNAME%%": "SIP_АБОНЕНТ_A",
+      "%%CONNECTED_NAME%%": "SIP_АБОНЕНТ_B",
+      "%%SIP_DNAME_LATIN1%%": "SIP_ABONENT_A",
+      "%%CONNECTED_NAME_LATIN1%%": "SIP_ABONENT_B"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%CONNECTED_NAME%%",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} clip"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} clip"
+  ],
+  "Tests": [
+    {
+      "Name": "test_send_dname_in_utf-8",
+      "Description": "Отправляем имя абонента в кодировке UTF-8 на sip, проверяем на стороне Б корректность имени в кодировке UTF-8",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% support-encoding utf8",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% support-encoding utf8"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_DNAME_IN_UTF8",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_DNAME_IN_UTF8",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_send_dname_in_latin1",
+      "Description": "Отправляем имя абонента в кодировке latin1 на sip, проверяем на стороне Б корректность имени в кодировке UTF-8",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% support-encoding latin1"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_DNAME_IN_UTF8",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME_LATIN1%% -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_DNAME_IN_LATIN1",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME encode(\"%%SIP_DNAME_LATIN1%%\",\"latin-1\") -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME encode(\"%%CONNECTED_NAME_LATIN1%%\", \"latin-1\")",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% support-encoding utf8"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_recv_dname_in_latin1",
+      "Description": "Отправляем имя абонента в кодировке UTF-8 на sip, на стороне Б включаем support-encoding latin1, проверяем на стороне Б корректность имени в кодировке latin1.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% support-encoding latin1"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_DNAME_IN_LATIN1",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME encode(\"%%SIP_DNAME_LATIN1%%\", \"latin-1\") -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_DNAME_IN_UTF8",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% support-encoding utf8"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_send_dname_in_cp1251",
+      "Description": "Отправляем имя абонента в кодировке cp1251 на sip, проверяем на стороне Б корректность имени в кодировке UTF-8",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% support-encoding cp1251"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_DNAME_IN_UTF8",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME %%SIP_DNAME%% -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_DNAME_IN_CP1251",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME encode(\"%%SIP_DNAME%%\",\"cp1251\") -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME encode(\"%%CONNECTED_NAME%%\", \"cp1251\")",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% support-encoding utf8"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_recv_dname_in_cp1251",
+      "Description": "Отправляем имя абонента в кодировке UTF-8 на sip, на стороне Б включаем support-encoding cp1251, проверяем на стороне Б корректность имени в кодировке cp1251.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% support-encoding cp1251"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_DNAME_IN_CP1251",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_DNAME encode(\"%%SIP_DNAME%%\", \"cp1251\") -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_DNAME_IN_UTF8",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%% -set CHK_CONNECTED_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_NAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% support-encoding utf8"
+          ]
+        }
+      ]
+    }
+  ]
+}
