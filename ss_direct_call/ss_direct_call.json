@@ -31,11 +31,16 @@
   ],
   "PreConf": [
     "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% direct_call",
-    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% direct_call number = %%1.Number%%"
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% direct_call number = %%1.Number%%",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} cnip"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% direct_call",
-    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% direct_call"
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% direct_call",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} clip, cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} clip, cnip"
   ],
   "Tests": [
     {
