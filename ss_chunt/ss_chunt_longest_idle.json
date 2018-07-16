@@ -1,0 +1,230 @@
+{
+  "TestName": "ss_chunt_longest_idle",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10107,
+      "SipGroup": "sip.ab",
+      "QParam": 1
+    },
+    {
+      "UserId": 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10108,
+      "SipGroup": "sip.ab",
+      "QParam": 1
+    },
+    {
+      "UserId": 4,
+      "Number": "155",
+      "Login": "155",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10109,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%ChuntUser%%": "%%0.Number%%",
+      "%%ChuntSipDomain%%": "%%0.SipDomain%%",
+      "%%ChuntSipGroup%%": "%%0.SipGroup%%",
+      "%%ChuntGroup%%": "[%%1.Number%%,%%2.Number%%,%%3.Number%%]"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%ChuntSipGroup%% %%ChuntUser%%@%%ChuntSipDomain%% shared_peer undefined",
+    "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% ml line_count=3",
+    "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/activate %%ChuntUser%% chunt mode = longest_idle, cyclic = false, numbers = [%%ChuntGroup%%], max_shift_count = 3, queue_strategy = wait, window_shift_timeout = 5000"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate %%4.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/disable %%4.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%ChuntUser%% chunt",
+    "/domain/%%DEV_DOM%%/ss/disable %%ChuntUser%% chunt"
+  ],
+  "Tests": [
+    {
+      "Name": "chunt_longest_idle",
+      "Description": "pass",
+      "TestProcedure": [
+        {
+          "Sleep": 4
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_RECV_CALL_1",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 12000",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS_RECV_CALL_2",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 8000",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS_RECV_CALL_3",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 4000",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "WriteStat": true,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 3 -r 1 -rp 1000 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CALL_3",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 8000",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CALL_2",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 8000",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CALL_1",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 8000",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 4,
+              "WriteStat": true,
+              "Name": "UAC_MAKE_CALL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 3 -r 1 -rp 2300 -set CDPN %%ChuntUser%% -set CDPNDOM %%ChuntSipDomain%% -d 2000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "CheckDifference": [
+            {
+              "Difference": 2300,
+              "Mode": "between_ua",
+              "CompareMode": "perMsg",
+              "Calls": "1",
+              "UA": "user:3,user:2,user:1",
+              "Msg": [
+                {
+                  "MsgType": "request",
+                  "Method": "INVITE",
+                  "Code": null
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
