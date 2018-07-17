@@ -110,7 +110,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive false"
+            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% isActive false"
           ]
         },
         {
@@ -133,7 +133,7 @@
         },
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% sip.ab %%3.Number%%@%%3.SipDomain%% isActive true"
+            "/domain/%%DEV_DOM%%/alias/set %%3.Number%% %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% isActive true"
           ]
         }
       ]
