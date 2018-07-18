@@ -169,12 +169,41 @@
 <nop hide="true" condexec="compare_result">
     <action>
         <warning message="Wrong direction in blf body. Current direction [$blf_direction]. Require direction [$CHK_DIRECTION]. State [$blf_state]"/>
-        <exec int_cmd="stop_now"/>
+        <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</nop>
+
+<!-- Handling NOTIFY with state trying -->
+
+<nop hide="true" test="blf_state" test_var_value="trying" next="wait_cb_notify" condexec="blf_state" condexec_var_value="trying">
+    <action>
+        <warning message="Callback call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_cb_state" value="confirmed"/>
+    </action>
+</nop>
+
+<!-- if early notification was recieved first -->
+
+<nop hide="true" condexec="next_cb_state" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="next_cb_state" value="confirmed"/>
     </action>
 </nop>
 
 
-<recv request="NOTIFY">
+<!-- Handling notification with state confirmed -->
+
+<nop hide="true" test="blf_state" test_var_value="confirmed" next="wait_cb_notify" condexec="blf_state" condexec_var_value="confirmed">
+    <action>
+        <warning message="Callback call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_cb_state" value="terminated"/>
+    </action>
+</nop>
+
+
+<!-- Handling notification with state terminated -->
+
+<nop hide="true" test="blf_state" test_var_value="terminated" next="unsub">
     <action>
         <assign assign_to="dummy" value="" />
         <assign assign_to="blf_state" value="" />
@@ -187,7 +216,8 @@
 
 <nop hide="true">
     <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+        <assignstr assign_to="sub_fail" value="true"/>
+        <warning message="Recv unexpected state: [$blf_state]"/>
     </action>
 </nop>
 

@@ -90,8 +90,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -148,8 +148,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -206,8 +206,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set WOUT_DNAME true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -263,8 +263,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set WOUT_DNAME true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -326,8 +326,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -391,8 +391,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -456,8 +456,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set WOUT_DNAME true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -521,8 +521,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set WOUT_DNAME true",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -592,8 +592,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME %%SIP_DNAME%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%0.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\" -set DISPLAY_NAME %%SIP_DNAME%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"

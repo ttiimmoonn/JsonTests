@@ -63,7 +63,7 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <warning message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
@@ -77,7 +77,7 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <log message="Point 4. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+        <warning message="Point 4. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
