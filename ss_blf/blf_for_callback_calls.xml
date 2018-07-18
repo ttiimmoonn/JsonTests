@@ -196,7 +196,7 @@
 <nop hide="true" test="blf_state" test_var_value="trying" next="wait_cb_notify" condexec="blf_state" condexec_var_value="trying">
     <action>
         <warning message="Callback call changed state to: [$blf_state]" />
-        <assignstr assign_to="next_cb_state" value="terminated"/>
+        <assignstr assign_to="next_cb_state" value="confirmed"/>
     </action>
 </nop>
 
@@ -204,13 +204,24 @@
 
 <nop hide="true" condexec="next_cb_state" condexec_inverse="true">
     <action>
+        <assignstr assign_to="next_cb_state" value="confirmed"/>
+    </action>
+</nop>
+
+
+<!-- Handling notification with state confirmed -->
+
+<nop hide="true" test="blf_state" test_var_value="confirmed" next="wait_cb_notify" condexec="blf_state" condexec_var_value="confirmed">
+    <action>
+        <warning message="Callback call changed state to: [$blf_state]" />
         <assignstr assign_to="next_cb_state" value="terminated"/>
     </action>
 </nop>
 
+
 <!-- Handling notification with state terminated -->
 
-<nop hide="true" test="blf_state" test_var_value="terminated" next="wait_notify">
+<nop hide="true" test="blf_state" test_var_value="terminated" next="unsub">
     <action>
         <warning message="Callback call changed state to: [$blf_state]" />
     </action>
@@ -221,6 +232,7 @@
 <nop hide="true" next="unsub">
     <action>
         <assignstr assign_to="sub_fail" value="true"/>
+        <warning message="Recv unexpected state: [$blf_state]"/>
     </action>
 </nop>
 

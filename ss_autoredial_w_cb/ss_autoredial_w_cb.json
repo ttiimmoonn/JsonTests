@@ -53,7 +53,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 2"
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 3, recall_timer = 5"
           ]
         },
         {
@@ -69,14 +69,14 @@
                   "Options": "-m 2",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 },
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "10s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -87,8 +87,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%1.Number%%# -set CDPNDOM %%1.SipDomain%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%1.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -146,8 +146,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%1.Number%%# -set CDPNDOM %%1.SipDomain%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%1.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -198,8 +198,8 @@
               "Name": "UAC_FOR_TEST_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_autoredial_w_cb/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%1.Number%%# -set CDPNDOM %%1.SipDomain%% -d 27000",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%1.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"

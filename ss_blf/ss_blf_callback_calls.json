@@ -45,7 +45,7 @@
     "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% blf max_subscribe = 10",
     "/domain/%%DEV_DOM%%/lists/info blf_and_callback_calls",
     "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% auto_redial_with_callback",
-    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 1, recall_timer = 2"
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% auto_redial_with_callback a_no_answer_timeout = 5, b_no_answer_timeout = 5, recall_count = 1, recall_timer = 5"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/lists/remove blf_and_callback_calls ",
@@ -92,7 +92,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 1000",
+                  "Options": "-m 1 -d 4000",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -106,8 +106,8 @@
               "Name": "UAC_AUTOREDIAL",
               "Commands": [
                 {
-                  "SourceFile": "ss_blf/uac_recv_487.xml",
-                  "Options": "-m 1 -set CDPN *39*%%2.Number%%# -set CDPNDOM %%2.SipDomain%%",
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN *39*%%2.Number%%# -set CDPNDOM %%1.SipDomain%% -set CHK_CONNECTED_NAME \"Service activated\"",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
