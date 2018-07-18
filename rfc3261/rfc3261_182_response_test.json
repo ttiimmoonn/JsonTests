@@ -1,0 +1,77 @@
+{
+  "TestName": "test_182_sip_response",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 11001,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 11002,
+      "SipGroup": "sip.ab",
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreCoconConf": [
+  ],
+  "PostCoconConf": [
+  ],
+  "Tests": [
+    {
+      "Name": "test_of_processing_182_sip_response",
+      "Description": "Проверка обработки 182 ответа. А звонит на Б. Сторона Б отправляет 182 ответ. Ожидается, что 182 сообщение со стороны Б протранслируется на сторону A как 183 с SDP.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_SEND_182",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_send_182_response.xml",
+                  "Options": "-m 1 -nr",
+                  "SippType": "uas",
+                  "NeedAuth": false,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAC_RECV_183",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uac_recv_183_response.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -nr",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
