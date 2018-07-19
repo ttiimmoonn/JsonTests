@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "Simple UAC send bye">
+<scenario name = "UAC send call from fake transport params">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN,DISPLAY_NAME,WOUT_DNAME,FAKE_IP,FAKE_PORT" />
 <User variables="dummy"/>
 <Reference variables="dummy"/>
 
 <nop hide="true">
-<action>
-    <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
-    <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
-    <assignstr assign_to="cdpn" value="[$CDPN]"/>
-    <assignstr assign_to="fake_ip" value="[$FAKE_IP]"/>
-    <assignstr assign_to="fake_port" value="[$FAKE_PORT]"/>
-    <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
-    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
-</action>
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="fake_ip" value="[$FAKE_IP]"/>
+        <assignstr assign_to="fake_port" value="[$FAKE_PORT]"/>
+        <assignstr assign_to="display_name" value="\"[$DISPLAY_NAME]\" "/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    </action>
 </nop>
+
+
+<!-- Assign default for display_name var -->
 
 <nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
     <action>
@@ -24,17 +27,23 @@
     </action>
 </nop>
 
+<!-- Clear display_name if WOUT_DNAME was passed to script -->
+
 <nop hide="true" condexec="WOUT_DNAME">
     <action>
         <assignstr assign_to="display_name" value="" />
     </action>
 </nop>
 
+<!-- Assign cgpn same as service if CGPN wasn't passed to script -->
+
 <nop hide="true" condexec="CGPN" condexec_inverse="true">
     <action>
-        <assignstr assign_to="cgpn" value="[$cgpn]" />
+        <assignstr assign_to="cgpn" value="[service]" />
     </action>
 </nop>
+
+<!-- Assign cgpn if CGPN was passed to script -->
 
 <nop hide="true" condexec="CGPN">
     <action>
@@ -42,16 +51,10 @@
     </action>
 </nop>
 
-<nop hide="true" condexec="WOUT_DNAME">
-    <action>
-        <assignstr assign_to="display_name" value="" />
-    </action>
-</nop>
-
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [$fake_ip]:[$fake_port];branch=[branch]
+    Via: SIP/2.0/[transport] [$fake_ip]:[$fake_port];rport;branch=[branch]
     From: [$display_name]<sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
@@ -73,12 +76,10 @@
 
 <recv response="100" optional="true"></recv>
 
-<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
+<!-- If 401 response is recieved, then send INVITE with [authentication] -->
 <recv response="401" optional="true" auth="true" next="auth_invite">
     <action>
-        <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
-        <!--Забрали branch -->
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
     </action>
  </recv>
@@ -92,14 +93,16 @@
 <recv response="200" auth="true">
     <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-        <ereg regexp="sip:([^@]@)?([^;>])+([^>]+)?" search_in="hdr" header="Contact:" check_it="true" assign_to="contact,ip,dummy,dummy"/>
+        <ereg regexp="sip:([^@]+)?@?([^:;>]+)(:[^;>]+)?([^>]+)?" search_in="hdr" header="Contact:" check_it="true" assign_to="contact,dummy,ip,dummy,dummy"/>
     </action>
  </recv>
+
 <nop hide="true">
     <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="[transport]" />
+        <setdest host="[$ip]" port="[remote_port]" protocol="[transport]" />
     </action>
 </nop>
+
 <send crlf="true">
 <![CDATA[
     ACK [$contact] SIP/2.0
@@ -147,10 +150,8 @@
 <!-- Уходим в label call_continue -->
 <send next="call_continue" crlf="true">
 <![CDATA[
-<send>
-<![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [$fake_ip]:[$fake_port];branch=[branch]
+    Via: SIP/2.0/[transport] [$fake_ip]:[$fake_port];rport;branch=[branch]
     From: [$display_name]<sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
