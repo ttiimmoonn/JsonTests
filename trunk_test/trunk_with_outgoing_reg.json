@@ -53,7 +53,7 @@
   "Tests": [
     {
       "Name": "chk_outgoing_registration",
-      "Description": "Принимаем REGISTER от ssw, производим авторизацию, прозванимаем транк",
+      "Description": "Принимаем REGISTER от ssw, производим авторизацию, делаем входяший и исходящий вызовы. Ожидается, что вызовы пройдут успешно.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -113,12 +113,46 @@
               ]
             }
           ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN 89134543412 -set CGPNDOM test.domain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
       "Name": "send_403_to_reg_request",
-      "Description": "Принимаем REGISTER от ssw и отправляем 403 ответ",
+      "Description": "Принимаем REGISTER от ssw и отправляем 403 ответ, пытаемся позвонить через транк. Ожидается, что вызов будет отклонён 480 сообщением.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -173,7 +207,7 @@
     },
     {
       "Name": "send_423_to_reg_request",
-      "Description": "Принимаем REGISTER от ssw и отправляем 423 ответ",
+      "Description": "Принимаем REGISTER от ssw и отправляем 423 ответ. Ожидается, что ссв повторит REGISTER c новым expires. После регистрации прозваниваем транк в обе стороны.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -238,12 +272,46 @@
               ]
             }
           ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN 89134543412 -set CGPNDOM test.domain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     {
       "Name": "options_control_test",
-      "Description": "Проверка options_control для транка c out reg",
+      "Description": "Проверка options_control для транка c out reg. Включаем options_control для транка, игнорируем первый OPTIONS, делаем вызов. Ожидается, что вызов будет отклонён 480 сообщением. Далее отвечаем на OPTIONS и делаем вызов. Ожидается, что вызов пройдёт успешно.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -372,6 +440,412 @@
               ]
             }
           ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% options_control 0"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "registration_expired_test",
+      "Ref": "#92359",
+      "Description": "Проверка перевода транка в неактивное состояние в случае истечения Expires. Включаем out-registration на транке, отвечаем на первый REGISTER, ждём re-REGISTER от ссв и не отвечаем на него, после чего пытаемся прозвонить транк в обе стороны. Ожидается, что при попытки совершить исходящий вызов с транка вызов будет отбит 480 сообщением, в случае попытки совершить входяший вызов на транк вызов будет отбит 403 сообщением. Далее ждём повторуную попытку перерегистрации, отвечаем на нее 200 ответом и прозваниваем транк в обе стороны. Ожидается, что вызовы пройдут успешно.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 32"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 33
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_IGNORE_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_ignore_register.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN 89134543412 -set CGPNDOM test.domain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN 89134543412 -set CGPNDOM test.domain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_non_200_response_on_re_registration",
+      "Ref": "#92359",
+      "Description": "Проверка перевода транка в неактивное состояние при получении не 200 ответа на перерегистрацию. Включаем транку исходящюю регистрацию, отвечаем 200 на REGISTER и ждём перерегистрацию. На перерегистрацию отправляем 500 ответ и пытаемся прозвонить транк в обе стороны. Ожидается, что при попытки совершить исходящий вызов с транка вызов будет отбит 480 сообщением, в случае попытки совершить входяший вызов на транк вызов будет отбит 403 сообщением. Далее ожидаем следующую поптыку перерегистрации от ссв, отвечаем 200 и прозваниваем транк в обе стороны. Ожидается, что вызовы пройдут успешно",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 32"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_SEND_500_ON_REG",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_send_500_on_reg.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_403.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN 89134543412 -set CGPNDOM test.domain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN 89134543412 -set CGPNDOM test.domain",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "chk_stop_registration_by_cocon_command",
+      "Ref": "#92355",
+      "Description": "Проверка отправки REGISTER c Expires 0 в случае установки параметра out-registration в 0. Устанавливаем транку out-registration 0. Ожидается, что ссв отправит REGISTER с expires=0",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 32"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%% -set CHK_EXP 32",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "BackGround": true,
+              "Name": "UAS_RECV_REGISTER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_recv_reg.xml",
+                  "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%% -set CHK_EXP 0",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 0"
+          ]
+        },
+        {
+          "Sleep": 5
         }
       ]
     }
