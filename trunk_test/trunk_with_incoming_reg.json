@@ -197,7 +197,7 @@
             "Trunks": {
               "1": {
                 "script": "trunk_test/success_registration_with_auth.xml",
-                "contact_port": 10112,
+                "contact_port": 9990,
                 "contact_ip": "1.1.1.1",
                 "expires": 90
               }
@@ -210,7 +210,7 @@
           ]
         },
         {
-          "Sleep": 1
+          "Sleep": 5
         },
         {
           "StartUA": [
@@ -270,8 +270,8 @@
               "Name": "UAC_TEST",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CGPN 89134851343 -set CGPNDOM %%DEV_DOM%%",
+                  "SourceFile": "trunk_test/uac_send_bye_fake_transport.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CGPN 89134851343 -set CGPNDOM %%DEV_DOM%% -set FAKE_IP 1.1.1.1 -set FAKE_PORT 9990",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
