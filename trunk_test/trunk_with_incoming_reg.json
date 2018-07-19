@@ -6,8 +6,8 @@
       "TrunkId": 1,
       "TrunkName": "test_trunk_inc_reg",
       "Port": 10110,
-      "SipGroup": "sip.gr.%%DEV_DOM%%",
-      "SipDomain": "sip.gr.%%DEV_DOM%%",
+      "SipGroup": "%%DEV_DOM%%",
+      "SipDomain": "%%DEV_DOM%%",
       "RtpPort": 20003,
       "Login": "inc_trunk_username",
       "Password": "inc_trunk_password",
@@ -63,8 +63,8 @@
   ],
   "Tests": [
     {
-      "Name": "chk_incoming_registration",
-      "Description": "Регистируемся на ссв как транк и делаем вызов через данный транк.",
+      "Name": "test_outgoing_call_from_trunk_with_reg",
+      "Description": "Проверка исходящих вызовов с транка. Регистируем на ссв транк, делаем вызовов с юзера в данный транк. Ожидается, что вызов пройдёт успешно.",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -124,8 +124,69 @@
       ]
     },
     {
+      "Name": "test_incoming_call_to_trunk_with_reg",
+      "Description": "Проверка входящих вызовов на транк. Регистируем на ссв транк, делаем вызовов с данного транка на юзера. Ожидается, что вызов пройдёт успешно.",
+      "TestProcedure": [
+        {
+          "ManualReg": {
+            "Trunks": {
+              "1": {
+                "script": "trunk_test/success_registration_with_auth.xml"
+              }
+            }
+          }
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CGPN 89134851343 -set CGPNDOM %%DEV_DOM%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "DropManualReg": {
+            "Trunks": [
+              "1"
+            ]
+          }
+        }
+      ]
+    },
+    {
       "Name": "chk_nat_traversal_option",
-      "Description": "Регистируемся на ссв как транк и делаем вызов через данный транк.",
+      "Description": "Проверка nat_traversal для транка с регистрацией. Активируем транку опцию nat_traversal, отправляем регистрацию с левым контактом, после успешной регистрации делаем входящий и исходящий вызовы. Ожидается, что адаптер сохранит в качестве контакта реальный транспорт и оба вызова пройдут успешно.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -187,6 +248,40 @@
           ]
         },
         {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CGPN 89134851343 -set CGPNDOM %%DEV_DOM%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "DropManualReg": {
             "Trunks": [
               "1"
@@ -197,7 +292,7 @@
     },
     {
       "Name": "options_control_test",
-      "Description": "Проверяем options_control для транка с регистрацией",
+      "Description": "Проверяем options_control для транка с регистрацией. Активируем options_control для транка, игнорируем первый OPTIONS, делаем попытку вызова. Ожидается, что вызов будет отбит 480 сообщением. Далее отвечаем на OPTIONS и делаем вызов. Ожидается, что вызов пройдёт успешно.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -335,7 +430,7 @@
     },
     {
       "Name": "send_call_to_unregistered_trunk",
-      "Description": "Пытаемся прозвонить разрегистрированный транк",
+      "Description": "Пытаемся прозвонить разрегистрированный транк. Ожидается, что вызов будет отклонён 480 сообщением.",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -376,7 +471,7 @@
     },
     {
       "Name": "send_call_after_reg_expired",
-      "Description": "Пытаемся прозвонить в транк, регистрация которого истекла",
+      "Description": "Пытаемся прозвонить в транк, регистрация которого истекла. Ожидается, что вызов будет отклонён 480 сообщением.",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -419,7 +514,7 @@
     },
     {
       "Name": "test_423_response",
-      "Description": "Проверка 423 ответа",
+      "Description": "Проверка 423 ответа. Отправляем REGISTER с expires=2. Ожидается, что адаптер пришлёт 423 сообщение с Min-Expires",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -447,7 +542,7 @@
     },
     {
       "Name": "send_call_after_re_register",
-      "Description": "Проверка прохождения вызова после перерегистрации транка",
+      "Description": "Проверка прохождения вызовов после перерегистрации транка. Регистируем транк с expires=90, ждём 60 сек, делаем перерегистрацию, ждём ещё 60 сек и делаем два вызова (входящий и исходящий). Ожидается, что вызовы пройдут успешно.",
       "TestProcedure": [
         {
           "ManualReg": {
@@ -514,6 +609,40 @@
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
                   "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CGPN 89134851343 -set CGPNDOM %%DEV_DOM%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
