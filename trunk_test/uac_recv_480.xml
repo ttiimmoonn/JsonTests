@@ -17,7 +17,7 @@
 
     <nop hide="true" condexec="CGPN" condexec_inverse="true">
         <action>
-            <assignstr assign_to="cgpn" value="[$cgpn]" />
+            <assignstr assign_to="cgpn" value="[service]" />
         </action>
     </nop>
 
