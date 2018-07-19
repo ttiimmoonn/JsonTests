@@ -279,6 +279,74 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "cfos_to_unreachable_user",
+      "Description": "Звоним на абонента с cfos. Абонент не отвечает на invite. Ожидается, что после срабатывания no_response_timeout на ядре, вызов будет переадресован.",
+      "TestProcedure": [
+        {
+          "ServiceFeature": [
+            {
+              "code": "*24*%%0.Number%%#",
+              "userId": 2
+            }
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "SIMPLE_UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS_NO_REPOSNSE_TO_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfos/uas_no_response_to_invite.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_RECV_181",
+              "Commands": [
+                {
+                  "SourceFile": "ss_cfos/uac_recv_181.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ServiceFeature": [
+            {
+              "code": "#24#",
+              "userId": 2
+            }
+          ]
+        }
+      ]
     }
   ]
 }

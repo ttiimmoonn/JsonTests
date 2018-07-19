@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas_no_response_to_invite">
+
+<recv request="INVITE"></recv>
+
+<pause milliseconds="40000"/>
+
+</scenario>
