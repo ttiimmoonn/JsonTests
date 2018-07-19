@@ -144,7 +144,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": 0,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "UAS_TEST",
               "Commands": [
@@ -250,7 +250,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": 0,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "UAS_TEST",
               "Commands": [
@@ -620,7 +620,7 @@
           "StartUA": [
             {
               "Type": "User",
-              "UserId": 0,
+              "UserId": 1,
               "WriteStat": true,
               "Name": "UAS_TEST",
               "Commands": [
