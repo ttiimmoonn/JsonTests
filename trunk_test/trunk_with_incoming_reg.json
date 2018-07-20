@@ -494,11 +494,26 @@
               "Type": "User",
               "UserId": 0,
               "WriteStat": true,
-              "Name": "UAC_TEST",
+              "Name": "UAC_RECV_480",
               "Commands": [
                 {
                   "SourceFile": "options_control_test/uac_recv_480.xml",
                   "Options": "-m 1 -set CDPN D001 -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_403",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_403.xml",
+                  "Options": "-m 1 -d 4000 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CGPN 89134851343 -set CGPNDOM %%DEV_DOM%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
