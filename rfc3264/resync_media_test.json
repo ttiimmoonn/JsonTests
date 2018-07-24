@@ -34,7 +34,7 @@
   "PostConf": [],
   "Tests": [
     {
-      "Name": "chk_resync_both_sides_after_answer",
+      "Name": "chk_resync_both_sides_after_answer(early_pending)",
       "Description": "Проверка пересогласования медии после ответа в случае, когда не удалось пересогласоваться в предответном. А и Б не поддерживают 100rel. А звонит на Б, Б даёт alerting, в этот момент делается resync медии. Ожидается, что после ответа медия будет пересогласована для обеих сторон.",
       "TestProcedure": [
         {
@@ -82,6 +82,58 @@
         },
         {
           "Sleep": 10
+        }
+      ]
+    },
+    {
+      "Name": "chk_resync_both_sides_after_answer",
+      "Description": "Проверка пересогласования медии после ответа. А и Б не поддерживают 100rel. А звонит на Б, Б отвечает, в этот момент делается resync медии. Ожидается, что после ответа медия будет пересогласована для обеих сторон.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAS_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_recv_re_invite.xml",
+                  "Options": "-m 1 -d 500",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "Name": "UAC_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_recv_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 3
+        },
+        {
+          "SendSSHCommand": [
+             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%% --mode core_down"
+          ]
+        },
+        {
+          "Sleep": 5
         }
       ]
     },
