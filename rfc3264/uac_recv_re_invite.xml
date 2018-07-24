@@ -70,7 +70,7 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$contact] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -116,6 +116,13 @@
 </send>
 
 <recv request="ACK"/>
+
+<nop hide="true">
+   <action>
+          <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
+     </action>
+</nop>
+
 
 <pause milliseconds="2000"/>
 
