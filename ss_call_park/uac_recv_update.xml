@@ -84,10 +84,9 @@
 </send>
 
 
-<!-- Данный UPDATE является лишним и появляется из-за кривой процедуры трансфера -->
 <recv request="UPDATE">
     <action>
-        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:(([^;@]+)@)?([^>]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,dummy,rpi_connected_number,dummy"/>
     </action>
 </recv>
 
@@ -108,7 +107,7 @@
 
 <recv request="UPDATE">
     <action>
-        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:(([^;@]+)@)?([^>]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,dummy,rpi_connected_number,dummy"/>
     </action>
 </recv>
 
@@ -142,20 +141,20 @@
 
 <nop hide="true">
     <action>
-        <strcmp assign_to="compare_result" variable="rpi_connected_number" value="*57*1%23"/>
+        <strcmp assign_to="compare_result" variable="rpi_connected_number" value=""/>
     </action>
 </nop>
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Connected number check failed. Require Connected Number: *57*1%23; Current Connected Number: [$rpi_connected_number]; compare_result: [$compare_result]."/>
+        <warning message="Connected number check failed. Require Connected Number: ''; Current Connected Number: [$rpi_connected_number]; compare_result: [$compare_result]."/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
 
 <recv request="UPDATE">
     <action>
-        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:(([^;@]+)@)?([^>]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,dummy,rpi_connected_number,dummy"/>
     </action>
 </recv>
 
