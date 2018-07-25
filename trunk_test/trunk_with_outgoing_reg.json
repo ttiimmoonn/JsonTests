@@ -41,6 +41,7 @@
     "/domain/%%DEV_DOM%%/trunk/sip/declare ctx_out_reg_trunk_test_for_trunk %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
     "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-login %%Tr.1.Login%%",
     "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-password %%Tr.1.Password%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sipdomain %%Tr.1.SipDomain%%",
     "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ctx_out_reg_trunk_test_for_user"
   ],
@@ -57,7 +58,6 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sipdomain %%Tr.1.SipDomain%%",
             "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 90",
             "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
@@ -156,7 +156,6 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sipdomain %%Tr.1.SipDomain%%",
             "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 90",
             "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
@@ -211,7 +210,6 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sipdomain %%Tr.1.SipDomain%%",
             "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 32",
             "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]
@@ -315,7 +313,6 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sipdomain %%Tr.1.SipDomain%%",
             "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% out-registration 180",
             "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
           ]

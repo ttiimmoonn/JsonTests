@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAS_REG_AUTH">
 
-<Global variables="USERNAME,PASSWORD,REG_DOMAIN" />
+<Global variables="USERNAME,PASSWORD,REG_DOMAIN,CHK_EXP" />
 <User variables="dummy"/>
 <Reference variables="dummy,PASSWORD,USERNAME,REG_DOMAIN"/>
 
@@ -80,7 +80,20 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Wrong registration domain"/>
+        <warning message="Wrong registration domain [$local_domain], need: [$REG_DOMAIN]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_EXP">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_EXP" variable2="exp"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong expires time. Exp in message: [$exp], require exp: [$CHK_EXP]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
