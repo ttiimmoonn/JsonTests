@@ -74,7 +74,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -173,7 +173,7 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -228,7 +228,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%% -nr",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -332,7 +332,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -470,7 +470,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -496,7 +496,7 @@
                   "Options": "-m 1",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -548,7 +548,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -646,7 +646,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -716,7 +716,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -814,7 +814,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%% -set CHK_EXP 32",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
@@ -833,7 +833,7 @@
                   "Options": "-m 1 -set USERNAME %%Tr.1.Login%% -set PASSWORD %%Tr.1.Password%% -set REG_DOMAIN %%Tr.1.SipDomain%% -set CHK_EXP 0",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "20s"
+                  "Timeout": "30s"
                 }
               ]
             }
