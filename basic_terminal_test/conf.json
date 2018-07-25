@@ -1,0 +1,193 @@
+{
+  "TestName": "basic_term_conference",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "150",
+      "Login": "150",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 180,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 1
+    },
+    {
+      "UserId": 1,
+      "Number": "151",
+      "Login": "151",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 180,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 1
+    },
+    {
+      "UserId": 2,
+      "Number": "152",
+      "Login": "152",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 180,
+      "Port": 10107,
+      "QParam": 1
+    },
+    {
+      "UserId": 3,
+      "Number": "153",
+      "Login": "153",
+      "Password": "123",
+      "SipGroup": "sip.ab",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 180,
+      "Port": 10108,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    "domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% terminal_type basic",
+    "domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% terminal_type basic",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold dtmf_sequence_as_flash = true",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% conference destroy_mode = by_no_master",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%3.Number%%} clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%3.Number%%} cnip"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% conference",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%3.Number%%} clip cnip"
+  ],
+  "Tests": [
+    {
+      "Name": "testing_of_add_on_user_to_server_conf",
+      "Description": "Тест добавления юзеров в конференцию для случая, когда конференция была создана через *71#. Создаём конференцию посредством набора *71#, добавляем двух абонентов через flash 3. Далее отбиваем вызов на стороне мастера конференции. Ожидается, что всем участникам конференции придёт отбой.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_AGENT_1",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "80s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS_AGENT_2",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "80s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_CREATE_CONF",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uac_create_conf.xml",
+                  "Options": "-m 1 -set CDPN *71# -set CDPNDOM %%DEV_DOM%% -set CDPN_DIGITS1 %%1.Number%% -set CDPN_DIGITS2 %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "80s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "testing_of_add_on_user_to_3way_conf",
+      "Description": "Тест добавления юзеров в конференцию для случая, когда конференция была создана через flash+3. Создаём трехстороннюю конференцию, добавляем двух абонентов через flash 3. Далее отбиваем вызов на стороне мастера конференции. Ожидается, что всем участникам конференции придёт отбой.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_AGENT_1",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "80s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "Name": "UAS_AGENT_2",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "80s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "Name": "UAS_AGENT_3",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "80s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_CREATE_CONF",
+              "Commands": [
+                {
+                  "SourceFile": "basic_terminal_test/uac_create_conf.xml",
+                  "Options": "-m 1 -set CDPN %%3.Number%% -set CDPNDOM %%DEV_DOM%% -set CDPN_DIGITS1 %%1.Number%% -set CDPN_DIGITS2 %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "80s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
