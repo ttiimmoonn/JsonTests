@@ -50,9 +50,14 @@
 
 <recv response="100" optional="true"></recv>
 <recv response="183" optional="true"></recv>
-<recv response="180" optional="true"></recv>
+<recv response="180">
+    <action>
+        <ereg regexp=".*" check_it="true" search_in="body" assign_to="180_sdp"/>
+    </action>
+</recv>
 <recv response="200" auth="true">
     <action>
+        <ereg regexp=".*" check_it="true" search_in="body" assign_to="200_sdp"/>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="sip:([^@]+)?@?([^:;>]+)(:[^;>]+)?([^>]+)?" search_in="hdr" header="Contact:" check_it="true" assign_to="contact,dummy,ip,dummy,dummy"/>
         <ereg regexp="o=([^ ]+)\s([^ ]+)\s([^ ]+)" check_it="true" search_in="body" assign_to="dummy,dummy,first_ss_id,first_ss_vrs"/>
@@ -191,7 +196,6 @@
 <nop hide="true">
     <action>
         <test assign_to="compare_result" variable="second_ss_vrs" compare="greater_than" variable2="first_ss_vrs" />
-        <warning message="result: [$compare_result]"/>
     </action>
 </nop>
 
@@ -206,7 +210,6 @@
 <nop hide="true">
     <action>
         <test assign_to="compare_result" variable="second_ss_id" compare="equal" variable2="first_ss_id" />
-        <warning message="result: [$compare_result]"/>
     </action>
 </nop>
 
@@ -216,6 +219,22 @@
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
+
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="compare_result" variable="180_sdp" variable2="200_sdp" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="SDP in 180 and sdp in 200 are different.\nSDP in 180:\n[$180_sdp]SDP in 200:\n[$200_sdp]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
 
 <!--
     Ждём 2 секунды

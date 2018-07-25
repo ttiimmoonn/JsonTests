@@ -131,7 +131,6 @@
 <nop hide="true">
     <action>
         <test assign_to="compare_result" variable="second_ss_vrs" compare="greater_than" variable2="first_ss_vrs" />
-        <warning message="result: [$compare_result]"/>
     </action>
 </nop>
 
