@@ -292,6 +292,58 @@
           "Sleep": 10
         }
       ]
+    },
+    {
+      "Name": "chk_resync_a_side_after_answer_if_initial_invite_wout_sdp",
+      "Description": "Проверка пересогласования медии для плеча A в случае, когда initial INVITE не содержит sdp. А и Б не поддерживают 100rel. А звонит на Б посредством отправки INVITE без sdp, Б даёт alerting, в этот момент делается resync медии. Ожидается, что на сторону А придёт osdp в 200 ответе, причём session_version в данном оффере будет больше session_id (таким образом мы узнаем, что ядро \"свежую\" sdp).",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAS_RECV_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_recv_re_invite.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "Name": "UAC_SEND_INV_WOUT_OFFER_AND_WAIT_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uac_send_inv_wout_offer_and_chk_sdp_params.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "SendSSHCommand": [
+             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+          ]
+        },
+        {
+          "Sleep": 10
+        }
+      ]
     }
   ]
 }
