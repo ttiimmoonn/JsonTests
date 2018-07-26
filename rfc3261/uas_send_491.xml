@@ -239,7 +239,7 @@
 
 <nop hide="true">
 <action>
-    <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,1,8" />
+    <exec rtp_stream="[media_path]/test.alaw,1,8" />
 </action>
 </nop>
 

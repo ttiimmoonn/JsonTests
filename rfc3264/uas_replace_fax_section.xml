@@ -125,7 +125,7 @@
 
 <nop>
 <action>
-        <exec play_pcap_image="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/fax_t38.pcap"/>
+        <exec play_pcap_image="[media_path]/fax_t38.pcap"/>
 </action>
 </nop>
 
