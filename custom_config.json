@@ -3,6 +3,7 @@
     {
       "%%SIPP_PATH%%": "/home/vragov/Work/sipp/SIPp/sipp",
       "%%SRC_PATH%%": "/home/vragov/Work/scripts",
+      "%%MEDIA_PATH%%":"/home/vragov/Work/scripts/media_files",
       "%%TEMP_PATH%%": "/tmp/sipp_test/temp",
       "%%LOG_PATH%%": "/tmp/sipp_test/log",
       "%%IP%%": "192.168.118.249",
