@@ -64,7 +64,7 @@
 <pause milliseconds="1000"/>
 <nop>
     <action>
-	    <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/dtmf_star_inband.pcap"/>
+	    <exec play_pcap_audio="[media_path]/dtmf_star_inband.pcap"/>
     </action>
 </nop>
 

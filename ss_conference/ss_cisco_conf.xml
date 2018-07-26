@@ -91,7 +91,7 @@
 
 <nop hide="true">
    <action>
-        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,-1,0" />
+        <exec rtp_stream="[media_path]/test.ulaw,-1,0" />
      </action>
 </nop>
 

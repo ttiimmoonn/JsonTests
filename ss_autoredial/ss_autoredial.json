@@ -204,7 +204,7 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS_SEND_480",
+              "Name": "UAS_RECV_CANCEL",
               "Commands": [
                 {
                   "SourceFile": "ss_autoredial/uas_recv_cancel.xml",

@@ -137,7 +137,7 @@
 -->
 <nop>
 <action>
-     <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
+     <exec play_pcap_audio="[media_path]/g711-fax2.pcap"/>
 </action>
 </nop>
 
@@ -179,7 +179,7 @@
 
 <nop hide="true">
    <action>
-        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.alaw,-1,8" />
+        <exec rtp_stream="[media_path]/test.alaw,-1,8" />
      </action>
 </nop>
 
