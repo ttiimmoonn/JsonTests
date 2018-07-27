@@ -396,6 +396,58 @@
           "Sleep": 10
         }
       ]
+    },
+    {
+      "Name": "chk_resync_media_in_early_state_if_update_pending",
+      "Description": "Проверка пересогласования медии в состоянии early в случае, когда оба плеча ответили 491 ответом на UPDATE. А и Б поддерживают 100rel. А звонит на Б, Б даёт alerting с Require: 100rel, в этот момент делается resync медии, ссв отправляет UPDATE запросы в оба плеча, тест отвечает 491 и выслает свой UPDATE c osdp. Ожидается, что адаптер пробросит в ядро Pending на Progress с osdp и пришлёт в ядро Progress c osdp от юзера. Ядро в этом случае должно, на свой оsdp сгенерировать bh asdp в msr и сделать re-invite на MSR c osdp, который был получен от юера.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAS_UPDATE_NOT_SUP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/req100rel/uas_send_491_on_update.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "Name": "UAC_UPDATE_NOT_SUP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/req100rel/uac_send_491_on_update.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "SendSSHCommand": [
+             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+          ]
+        },
+        {
+          "Sleep": 10
+        }
+      ]
     }
   ]
 }
