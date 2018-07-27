@@ -344,6 +344,58 @@
           "Sleep": 10
         }
       ]
+    },
+    {
+      "Name": "chk_resync_media_in_early_state_if_update_not_supported",
+      "Description": "Проверка пересогласования медии в состоянии early для плеча А и после ответа для плеча Б для случая, когда оба плеча не поддерживают UPDATE. А и Б поддерживают 100rel. А звонит на Б, Б даёт alerting, в этот момент делается resync медии. Ожидается, что на сторону А придёт osdp в 183 ответе, на который будет выдан asdp в PRACK. На сторону Б будет отправлен re-INVITE после ответа, так как в этом случае обновить медию в предответном состоянии невозможно.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAS_UPDATE_NOT_SUP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/req100rel/uas_update_not_supp.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "Name": "UAC_UPDATE_NOT_SUP",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/req100rel/uac_update_not_supp.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Sleep": 2
+        },
+        {
+          "SendSSHCommand": [
+             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+          ]
+        },
+        {
+          "Sleep": 10
+        }
+      ]
     }
   ]
 }
