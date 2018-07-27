@@ -73,6 +73,10 @@
     </action>
 </nop>
 
+<!-- Для того, чтобы убедиться, что адаптер не пришлёт re-Invite до получения ACK спим 250 ms --> 
+
+<pause milliseconds="250"/>
+
 <send>
 <![CDATA[
     ACK [$contact] SIP/2.0
