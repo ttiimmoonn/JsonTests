@@ -63,7 +63,7 @@
 <nop hide="true">
    <action>
   <!--    <exec play_pcap_audio="/home/ssw/sipp/sipp/pcap/sip.pcap"/> -->
-        <exec rtp_stream="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/test.ulaw,-1,0" />
+        <exec rtp_stream="[media_path]/test.ulaw,-1,0" />
      </action>
 </nop>
 

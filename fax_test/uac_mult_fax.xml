@@ -111,7 +111,7 @@
 <pause milliseconds="4000"/>
 <nop>
 <action>
-     <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
+     <exec play_pcap_audio="[media_path]/g711-fax2.pcap"/>
 </action>
 </nop>
 
@@ -183,7 +183,7 @@
 <pause milliseconds="4000"/>
 <nop>
 <action>
-     <exec play_pcap_audio="/home/vragov/Work/sipp/sipp/sipp-3.4.1/pcap/g711-fax2.pcap"/>
+     <exec play_pcap_audio="[media_path]/g711-fax2.pcap"/>
 </action>
 </nop>
 
