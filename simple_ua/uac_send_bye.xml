@@ -15,29 +15,29 @@
     </action>
 </nop>
 
-    <nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
-        <action>
-            <assignstr assign_to="display_name" value="\"Simple UAC send bye\" " />
-        </action>
-    </nop>
+<nop hide="true" condexec="DISPLAY_NAME" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="display_name" value="\"Simple UAC send bye\" " />
+    </action>
+</nop>
 
-    <nop hide="true" condexec="CGPN" condexec_inverse="true">
-        <action>
-            <assignstr assign_to="cgpn" value="[service]" />
-        </action>
-    </nop>
+<nop hide="true" condexec="CGPN" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="cgpn" value="[service]" />
+    </action>
+</nop>
 
-    <nop hide="true" condexec="CGPN">
-        <action>
-            <assignstr assign_to="cgpn" value="[$CGPN]" />
-        </action>
-    </nop>
+<nop hide="true" condexec="CGPN">
+    <action>
+        <assignstr assign_to="cgpn" value="[$CGPN]" />
+    </action>
+</nop>
 
-    <nop hide="true" condexec="WOUT_DNAME">
-        <action>
-            <assignstr assign_to="display_name" value="" />
-        </action>
-    </nop>
+<nop hide="true" condexec="WOUT_DNAME">
+    <action>
+        <assignstr assign_to="display_name" value="" />
+    </action>
+</nop>
 
 <send>
 <![CDATA[
