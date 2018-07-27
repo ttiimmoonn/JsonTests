@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAC send CANCEL">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
 <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
@@ -13,15 +13,27 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="CGPN" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="cgpn" value="[service]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="CGPN">
+    <action>
+        <assignstr assign_to="cgpn" value="[$CGPN]" />
+    </action>
+</nop>
+
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Simple UAC send CANCEL" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [$inv_cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Require: 100rel
     Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
@@ -92,7 +104,7 @@
 <![CDATA[
     CANCEL sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$inv_branch]
-    From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Simple UAC send CANCEL" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id:]
     CSeq: [$last_cseq] CANCEL
@@ -132,7 +144,7 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -148,7 +160,7 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -164,11 +176,11 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$inv_branch]
-    From: "Simple UAC send CANCEL" <sip:[service]@[$cgpn_dom]>;tag=[call_number]
+    From: "Simple UAC send CANCEL" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [$inv_cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     [authentication]
     Require: 100rel
     Max-Forwards: 70

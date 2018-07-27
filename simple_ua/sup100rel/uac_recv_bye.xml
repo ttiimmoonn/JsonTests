@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAC send BYE sup100rel">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CGPN" />
 <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
@@ -25,15 +25,27 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="CGPN" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="cgpn" value="[service]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="CGPN">
+    <action>
+        <assignstr assign_to="cgpn" value="[$CGPN]" />
+    </action>
+</nop>
+
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: [$display_name]<sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Supported: 100rel
     Max-Forwards: 70
     Content-Type: application/sdp
@@ -144,7 +156,7 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -154,11 +166,11 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: [$display_name]<sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: [$display_name]<sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Supported: 100rel
