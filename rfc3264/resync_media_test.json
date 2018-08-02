@@ -77,7 +77,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%% --mode core_down"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%% --mode core_down"
           ]
         },
         {
@@ -129,7 +129,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%% --mode core_down"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%% --mode core_down"
           ]
         },
         {
@@ -181,7 +181,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
           ]
         },
         {
@@ -233,7 +233,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
           ]
         },
         {
@@ -285,7 +285,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
           ]
         },
         {
@@ -337,7 +337,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
           ]
         },
         {
@@ -389,7 +389,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
           ]
         },
         {
@@ -441,7 +441,7 @@
         },
         {
           "SendSSHCommand": [
-             "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
+            "/domain/%%DEV_DOM%%/calls/.media/sync --oaddr_a %%1.Number%% --oaddr_b %%0.Number%%"
           ]
         },
         {

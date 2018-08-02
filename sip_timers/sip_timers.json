@@ -102,25 +102,21 @@
           "CheckRetransmission": [
             {
               "Timer": "A",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "INVITE",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "INVITE",
+                "Code": null
+              }
             },
             {
               "Timer": "B",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "INVITE",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "INVITE",
+                "Code": null
+              }
             }
           ]
         }
@@ -166,25 +162,21 @@
           "CheckRetransmission": [
             {
               "Timer": "E",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "PRACK",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "PRACK",
+                "Code": null
+              }
             },
             {
               "Timer": "F",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "PRACK",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "PRACK",
+                "Code": null
+              }
             }
           ]
         }
@@ -230,25 +222,21 @@
           "CheckRetransmission": [
             {
               "Timer": "E",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "CANCEL",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "CANCEL",
+                "Code": null
+              }
             },
             {
               "Timer": "F",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "CANCEL",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "CANCEL",
+                "Code": null
+              }
             }
           ]
         }
@@ -294,25 +282,21 @@
           "CheckRetransmission": [
             {
               "Timer": "G",
-              "UA": "2",
-              "Msg": [
-                {
-                  "MsgType": "response",
-                  "Method": "INVITE",
-                  "Code": 200
-                }
-              ]
+              "UA": "user:2",
+              "Msg": {
+                "MsgType": "response",
+                "Method": "INVITE",
+                "Code": 200
+              }
             },
             {
               "Timer": "H",
-              "UA": "2",
-              "Msg": [
-                {
-                  "MsgType": "response",
-                  "Method": "INVITE",
-                  "Code": 200
-                }
-              ]
+              "UA": "user:2",
+              "Msg": {
+                "MsgType": "response",
+                "Method": "INVITE",
+                "Code": 200
+              }
             }
           ]
         }
@@ -358,25 +342,21 @@
           "CheckRetransmission": [
             {
               "Timer": "E",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "BYE",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "BYE",
+                "Code": null
+              }
             },
             {
               "Timer": "F",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "BYE",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "BYE",
+                "Code": null
+              }
             }
           ]
         }
@@ -422,25 +402,21 @@
           "CheckRetransmission": [
             {
               "Timer": "G",
-              "UA": "2",
-              "Msg": [
-                {
-                  "MsgType": "response",
-                  "Method": "INVITE",
-                  "Code": 486
-                }
-              ]
+              "UA": "user:2",
+              "Msg": {
+                "MsgType": "response",
+                "Method": "INVITE",
+                "Code": 486
+              }
             },
             {
               "Timer": "H",
-              "UA": "2",
-              "Msg": [
-                {
-                  "MsgType": "response",
-                  "Method": "INVITE",
-                  "Code": 486
-                }
-              ]
+              "UA": "user:2",
+              "Msg": {
+                "MsgType": "response",
+                "Method": "INVITE",
+                "Code": 486
+              }
             }
           ]
         }
@@ -486,25 +462,21 @@
           "CheckRetransmission": [
             {
               "Timer": "G",
-              "UA": "2",
-              "Msg": [
-                {
-                  "MsgType": "response",
-                  "Method": "INVITE",
-                  "Code": 500
-                }
-              ]
+              "UA": "user:2",
+              "Msg": {
+                "MsgType": "response",
+                "Method": "INVITE",
+                "Code": 500
+              }
             },
             {
               "Timer": "H",
-              "UA": "2",
-              "Msg": [
-                {
-                  "MsgType": "response",
-                  "Method": "INVITE",
-                  "Code": 500
-                }
-              ]
+              "UA": "user:2",
+              "Msg": {
+                "MsgType": "response",
+                "Method": "INVITE",
+                "Code": 500
+              }
             }
           ]
         }
@@ -572,33 +544,29 @@
           ]
         },
         {
-          "WaitBackGroudUA" : {
-            "timeout" : 40
+          "WaitBackGroudUA": {
+            "timeout": 40
           }
         },
         {
           "CheckRetransmission": [
             {
               "Timer": "E",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "NOTIFY",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "NOTIFY",
+                "Code": null
+              }
             },
             {
               "Timer": "F",
-              "UA": "1",
-              "Msg": [
-                {
-                  "MsgType": "request",
-                  "Method": "NOTIFY",
-                  "Code": null
-                }
-              ]
+              "UA": "user:1",
+              "Msg": {
+                "MsgType": "request",
+                "Method": "NOTIFY",
+                "Code": null
+              }
             }
           ]
         },

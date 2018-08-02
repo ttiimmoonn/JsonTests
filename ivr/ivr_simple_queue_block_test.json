@@ -245,8 +245,9 @@
           "CheckDifference": [
             {
               "Difference": 3000,
-              "Mode": "between_ua",
-              "UA": "1,2,3",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
+              "UA": "user:1,user:2,user:3",
               "Msg": [
                 {
                   "MsgType": "request",
@@ -341,8 +342,9 @@
           "CheckDifference": [
             {
               "Difference": 0,
-              "Mode": "between_ua",
-              "UA": "1,2,3",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
+              "UA": "user:1,user:2,user:3",
               "Msg": [
                 {
                   "MsgType": "request",
@@ -458,8 +460,9 @@
           "CheckDifference": [
             {
               "Difference": 3000,
-              "Mode": "between_ua",
-              "UA": "1,2,3",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
+              "UA": "user:1,user:2,user:3",
               "Msg": [
                 {
                   "MsgType": "request",
@@ -554,8 +557,9 @@
           "CheckDifference": [
             {
               "Difference": 1000,
-              "Mode": "between_ua",
-              "UA": "1,2,3",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
+              "UA": "user:1,user:2,user:3",
               "Msg": [
                 {
                   "MsgType": "request",

@@ -154,9 +154,11 @@
           "CheckDifference": [
             {
               "Difference": 3000,
-              "Mode": "inner_ua",
-              "CompareMode": "perUa",
-              "Calls": "1",
+              "CompareMode": "inside_ua",
+              "SearchMode": "inside_call",
+              "Calls": [
+                1
+              ],
               "UA": "user:3",
               "Msg": [
                 {
@@ -275,9 +277,11 @@
           "CheckDifference": [
             {
               "Difference": 10000,
-              "Mode": "inner_ua",
-              "CompareMode": "perUa",
-              "Calls": "1",
+              "CompareMode": "inside_ua",
+              "SearchMode": "inside_call",
+              "Calls": [
+                1
+              ],
               "UA": "user:3",
               "Msg": [
                 {
@@ -397,9 +401,11 @@
           "CheckDifference": [
             {
               "Difference": 12000,
-              "Mode": "inner_ua",
-              "CompareMode": "perUa",
-              "Calls": "1",
+              "CompareMode": "inside_ua",
+              "SearchMode": "inside_call",
+              "Calls": [
+                1
+              ],
               "UA": "user:3",
               "Msg": [
                 {

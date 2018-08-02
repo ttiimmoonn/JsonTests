@@ -130,7 +130,8 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1,user:2",
               "Msg": [
                 {
@@ -142,7 +143,8 @@
             },
             {
               "Difference": 0,
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1",
               "Msg": [
                 {
@@ -229,7 +231,8 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1,user:2",
               "Msg": [
                 {
@@ -241,7 +244,8 @@
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1",
               "Msg": [
                 {
@@ -328,7 +332,8 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1,user:2",
               "Msg": [
                 {
@@ -340,7 +345,8 @@
             },
             {
               "Difference": 0,
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1",
               "Msg": [
                 {
@@ -427,7 +433,8 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1,user:2",
               "Msg": [
                 {
@@ -439,7 +446,8 @@
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1",
               "Msg": [
                 {
@@ -526,7 +534,8 @@
           "CheckDifference": [
             {
               "Difference": 0,
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1,user:2",
               "Msg": [
                 {
@@ -538,7 +547,8 @@
             },
             {
               "Difference": 0,
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1",
               "Msg": [
                 {
@@ -626,7 +636,8 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1,user:2",
               "Msg": [
                 {
@@ -638,7 +649,8 @@
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1",
               "Msg": [
                 {
@@ -727,7 +739,8 @@
           "CheckDifference": [
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1,user:2",
               "Msg": [
                 {
@@ -739,7 +752,8 @@
             },
             {
               "Difference": "%%FIND_ME_TIMER%%",
-              "Mode": "between_ua",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
               "UA": "user:0,user:1",
               "Msg": [
                 {

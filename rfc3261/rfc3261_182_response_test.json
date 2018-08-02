@@ -28,10 +28,8 @@
   "UserVar": [
     {}
   ],
-  "PreCoconConf": [
-  ],
-  "PostCoconConf": [
-  ],
+  "PreCoconConf": [],
+  "PostCoconConf": [],
   "Tests": [
     {
       "Name": "test_of_processing_182_sip_response",

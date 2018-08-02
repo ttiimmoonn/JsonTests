@@ -60,7 +60,7 @@
     "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cfnr",
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
-	"/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip clip",
     "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
     "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
     "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",

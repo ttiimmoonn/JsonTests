@@ -1402,9 +1402,11 @@
           "CheckDifference": [
             {
               "Difference": 5000,
-              "Mode": "inner_ua",
-              "CompareMode": "perUa",
-              "Calls": "1",
+              "CompareMode": "inside_ua",
+              "SearchMode": "inside_call",
+              "Calls": [
+                1
+              ],
               "UA": "user:3",
               "Msg": [
                 {
@@ -1570,9 +1572,11 @@
           "CheckDifference": [
             {
               "Difference": 0,
-              "Mode": "between_ua",
-              "CompareMode": "perUa",
-              "Calls": "1",
+              "CompareMode": "between_ua",
+              "SearchMode": "inside_call",
+              "Calls": [
+                1
+              ],
               "UA": "user:0,user:3",
               "Msg": [
                 {

@@ -417,7 +417,7 @@
           ]
         },
         {
-         "StartUA": [
+          "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
@@ -508,7 +508,7 @@
           ]
         },
         {
-         "StartUA": [
+          "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
@@ -579,7 +579,6 @@
             }
           ]
         },
- 
         {
           "SendSSHCommand": [
             "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
@@ -600,7 +599,7 @@
           ]
         },
         {
-         "StartUA": [
+          "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
@@ -691,7 +690,7 @@
           ]
         },
         {
-         "StartUA": [
+          "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
@@ -762,7 +761,6 @@
             }
           ]
         },
- 
         {
           "SendSSHCommand": [
             "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% displayName",
