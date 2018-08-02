@@ -190,8 +190,9 @@
           "CheckDifference": [
             {
               "Difference": 5000,
-              "Mode": "between_ua",
-              "UA": "1,2",
+              "CompareMode": "between_ua",
+              "SearchMode": "between_calls",
+              "UA": "user:1,user:2",
               "Msg": [
                 {
                   "MsgType": "request",
