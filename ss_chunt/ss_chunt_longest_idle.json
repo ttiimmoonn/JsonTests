@@ -67,7 +67,6 @@
     }
   ],
   "PreConf": [
-    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%ChuntSipGroup%% %%ChuntUser%%@%%ChuntSipDomain%% shared_peer undefined",
     "/domain/%%DEV_DOM%%/ss/enable %%4.Number%% ml",
     "/domain/%%DEV_DOM%%/ss/activate %%4.Number%% ml line_count=3",
     "/domain/%%DEV_DOM%%/ss/enable %%ChuntUser%% chunt",
@@ -82,8 +81,13 @@
   "Tests": [
     {
       "Name": "chunt_longest_idle",
-      "Description": "pass",
+      "Description": "Проверка режима longest_idle для услуги chunt. Сбрасываем предыдущую статистику с группового номера (shared_peer в undefined). Делаем три вызова в группу из трёх абонентов, вызовы распределяются по очереди. Первый абонент разговаривает 12с, второй 8с, третий 4с. Далее снова делаем три вызова в групуу. Ожидается, что первый вызвов будет распределён на третьего абонента в группе, второй на второго, третий на первого.",
       "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%ChuntSipGroup%% %%ChuntUser%%@%%ChuntSipDomain%% shared_peer undefined"
+          ]
+        },
         {
           "Sleep": 4
         },
@@ -211,7 +215,8 @@
             {
               "Difference": 2300,
               "CompareMode": "between_ua",
-              "SearchMode": "perMsg",
+              "SearchMode": "between_calls",
+              "MaxError": 0.5,
               "Calls": [
                 1
               ],
