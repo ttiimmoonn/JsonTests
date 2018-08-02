@@ -162,9 +162,9 @@
               "UA": "user:3",
               "Msg": [
                 {
-                  "MsgType": "request",
+                  "MsgType": "response",
                   "Method": "INVITE",
-                  "Code": null
+                  "Code": 200
                 },
                 {
                   "MsgType": "request",
