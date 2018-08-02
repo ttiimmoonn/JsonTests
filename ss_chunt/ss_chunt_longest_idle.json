@@ -210,9 +210,11 @@
           "CheckDifference": [
             {
               "Difference": 2300,
-              "Mode": "between_ua",
-              "CompareMode": "perMsg",
-              "Calls": "1",
+              "CompareMode": "between_ua",
+              "SearchMode": "perMsg",
+              "Calls": [
+                1
+              ],
               "UA": "user:3,user:2,user:1",
               "Msg": [
                 {
