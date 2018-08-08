@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "new_script">
-
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
-    <nop hide="true">
+
+<nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
     </action>
-    </nop>
-
-
+</nop>
 
 <send>
 <![CDATA[
@@ -36,9 +34,11 @@
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
+
 <recv response="100" optional="true"></recv>
+
 <!--Если получено 401 идем на label 2 и отсылаем INVITE c аутентификацией -->
-<recv response="401" auth="true" next="2" optional="true">
+<recv response="401" auth="true" next="auth_invite" optional="true">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -47,11 +47,38 @@
     </action>
  </recv>
 
-<label id="3" />
+<label id="call_continue" />
 
-<recv response="100"></recv>
+<recv response="100" optional="true"></recv>
 <recv response="183" optional="true"></recv>
-<recv response="408" optional="true" next="6">
+<recv response="180" optional="true"></recv>
+
+<recv response="487" optional="true" next="send_ack_on_error_resp">
+   <action>
+    <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+   </action>
+</recv>
+
+<recv response="480" optional="true" next="send_ack_on_error_resp">
+   <action>
+    <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+   </action>
+</recv>
+<recv response="408" optional="true" next="send_ack_on_error_resp">
+   <action>
+	<!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+   </action>
+</recv>
+<recv response="486" optional="true" next="send_ack_on_error_resp">
    <action>
 	<!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
@@ -60,46 +87,17 @@
    </action>
 </recv>
 
+<recv response="500">
+   <action>
+	<!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+   </action>
+</recv>
 
-<recv response="180"></recv>
-
-<pause milliseconds="1000"/>
-
-<send crlf="true">
-<![CDATA[
-    CANCEL sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    [last_via:]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [cseq] CANCEL
-    Content-Length: 0
-]]>
-</send>
-
-<recv response="487" optional="true" next="next_200" />
-<recv response="200" crlf="true" next="next_487" />
-<label id="next_200" />
-<recv response="200" crlf="true" next="continue" />
-<label id="next_487" />
-<recv response="487" crlf="true" next="continue" />
-<label id="continue" />
-
-<send next="5">
-<![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    [last_via:]
-    [last_from:]
-    [last_to:]
-    [last_call-id:]
-    CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
-    Content-Length: 0
-]]>
-
-</send>
 <!--Отправка INVITE c аутентификацией -->
-<label id="2"/>
+<label id="auth_invite"/>
 
 <send>
 <![CDATA[
@@ -115,7 +113,7 @@
 </send>
 
 <!-- Уходим в label 3 -->
-<send next="3" crlf="true">
+<send next="call_continue" crlf="true">
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
@@ -139,9 +137,9 @@
 ]]>
 </send>
 
-<label id="6"/>
+<label id="send_ack_on_error_resp"/>
 
-<send next="5">
+<send>
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
@@ -153,8 +151,5 @@
     Content-Length: 0
 ]]>
 </send>
-
-
-<label id="5"/>
 
 </scenario>
