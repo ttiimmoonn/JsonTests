@@ -1,0 +1,237 @@
+{
+  "TestName": "ss_fax_to_email",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+      "%%EMAIL%%" : "eltex.tester@bk.ru"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% fax_to_email",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% fax_to_email",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% fax_to_email",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr chold"
+  ],
+  "Tests": [
+    {
+      "Name": "test_ss_fax2email_for_direct_call",
+      "Description": "Проверка дво fax2email для прямого вызова на фича-код. Активируем услугу fax2email. Звоним на фича-код услуги и передаём факс. Ожидается, что факс передастся успешно.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% fax_to_email email = %%EMAIL%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_SEND_FAX_ON_T38",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_send_t38_fax.xml",
+                  "Options": "-m 1 -set CDPN *73# -set CDPNDOM %%0.SipDomain%% -d 60000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_ss_fax2email_reject_call(ss_not_activated)",
+      "Description": "Проверка отбоя вызова на фича-код услуги fax_to_email в случае, когда услуга не активирована. Деактивируем услугу у абонента. Звоним на фича-код услуги. Ожидается, что вызов будет отбит.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% fax_to_email"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_RECV_480",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN *73# -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "10s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_ss_fax2email_for_transfered_call(unattended_transfer)",
+      "Description": "Проверка услуги fax_to_email в случае несопровождаемого трансфера на фича-код услуги. А звонит на Б, А делает несопровождаемый трансфер на фича-код услуги. Ожидается, что на сторону Б пойдёт пересогласование на t38 и начнётся процедура приёма факса.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% fax_to_email email = %%EMAIL%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_SEND_FAX_ON_T38",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uas_send_t38_fax.xml",
+                  "Options": "-m 1 -d 60000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_MAKE_UNAT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_succ_unattended_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN *73# -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_ss_fax2email_reject_transfer(ss_not_activated)",
+      "Description": "Проверка невозможности совершения трансфера на фича-код услуги в случае, когда услуга не активирована. Деактивируем услугу у абонента А. А звонит на Б, А делает несопровождаемый трансфер на фича-код услуги. Ожидается, что трансфер будет отклонён.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% fax_to_email"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_FAIL_UNAT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_fail_unattended_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN *73# -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_ss_fax2email_for_transfered_call(attended_transfer)",
+      "Description": "Проверка услуги fax_to_email в случае сопровождаемого трансфера на фича-код услуги. А звонит на Б, А звонит на фича-код услуги, А делает сопровождаемый трансфер абонента Б на фича-код. Ожидается, что на сторону Б пойдёт пересогласование на t38 и начнётся процедура приёма факса.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% fax_to_email email = %%EMAIL%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAS_SEND_FAX_ON_T38",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uas_send_t38_fax.xml",
+                  "Options": "-m 1 -d 60000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAC_MAKE_AT_TRANSFER",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_succ_attended_transfer.xml",
+                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN *73# -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
