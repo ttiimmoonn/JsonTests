@@ -52,7 +52,10 @@
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} clip",
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} cnip",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold",
-    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr"
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
@@ -65,7 +68,10 @@
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfu",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
-    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% fax_to_email cfu cfnr ctr chold"
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% fax_to_email cfu cfnr ctr chold",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force"
   ],
   "Tests": [
     {
