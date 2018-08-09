@@ -1,4 +1,4 @@
-{
+  {
   "TestName": "ss_fax_to_email",
   "AutoTest": true,
   "Users": [
@@ -23,27 +23,51 @@
       "SipGroup": "sip.ab",
       "Port": 10106,
       "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10107,
+      "QParam": 0.5
     }
   ],
   "UserVar": [
     {
-      "%%EMAIL%%" : "eltex.tester@bk.ru"
+      "%%EMAIL%%" : "eltex.tester@bk.ru",
+      "%%FAX_SENDER_NAME%%": "\"Fax sender\"",
+      "%%FAX_RECVER_NAME%%": "\"Fax receiver\"",
+      "%%FEATURE_CODE%%": "*73#"
+
     }
   ],
   "PreConf": [
-    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% fax_to_email",
-    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% chold ctr",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%FAX_SENDER_NAME%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% fax_to_email chold ctr cfu cfnr",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} cnip",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% chold",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ctr",
     "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
     "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} clip cnip",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% fax_to_email",
-    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% fax_to_email",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% chold",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ctr",
-    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ctr chold"
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfu",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cfnr",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% fax_to_email cfu cfnr ctr chold"
   ],
   "Tests": [
     {
@@ -60,11 +84,11 @@
             {
               "Type": "User",
               "UserId": 0,
-              "Name": "UAC_SEND_FAX_ON_T38",
+              "Name": "UAC_SEND_T38_FAX",
               "Commands": [
                 {
                   "SourceFile": "ss_fax_to_email/uac_send_t38_fax.xml",
-                  "Options": "-m 1 -set CDPN *73# -set CDPNDOM %%0.SipDomain%% -d 60000",
+                  "Options": "-m 1 -set CDPN %%FEATURE_CODE%% -set CDPNDOM %%0.SipDomain%% -d 60000",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "90s"
@@ -93,7 +117,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_fax_to_email/uac_recv_480.xml",
-                  "Options": "-m 1 -set CDPN *73# -set CDPNDOM %%0.SipDomain%%",
+                  "Options": "-m 1 -set CDPN %%FEATURE_CODE%% -set CDPNDOM %%0.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "10s"
@@ -118,7 +142,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_SEND_FAX_ON_T38",
+              "Name": "UAS_SEND_T38_FAX",
               "Commands": [
                 {
                   "SourceFile": "ss_fax_to_email/uas_send_t38_fax.xml",
@@ -136,7 +160,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_fax_to_email/uac_succ_unattended_transfer.xml",
-                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN *73# -set CDPNDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN %%FEATURE_CODE%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "60s"
@@ -179,7 +203,7 @@
               "Commands": [
                 {
                   "SourceFile": "ss_fax_to_email/uac_fail_unattended_transfer.xml",
-                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN *73# -set CDPNDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN %%FEATURE_CODE%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
@@ -204,7 +228,7 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAS_SEND_FAX_ON_T38",
+              "Name": "UAS_SEND_T38_FAX",
               "Commands": [
                 {
                   "SourceFile": "ss_fax_to_email/uas_send_t38_fax.xml",
@@ -222,10 +246,128 @@
               "Commands": [
                 {
                   "SourceFile": "ss_fax_to_email/uac_succ_attended_transfer.xml",
-                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN *73# -set CDPNDOM %%1.SipDomain%%",
+                  "Options": "-m 1 -set FIRST_CDPN %%1.Number%% -set SECOND_CDPN %%FEATURE_CODE%% -set CDPNDOM %%1.SipDomain%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "30s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_ss_fax2email_redirecting_call(redirect_by_cfu)",
+      "Description": "Проверка услуги fax_to_email в случае безусловной переадресации на фича-код услуги. Абоненту Б активируем cfu на фича-код услуги. A звонит на Б, система переадресует данный вызов на фича-код услуги. Ожидается, что абоненту А придёт re-invite с T38 и начнётся процедура приёма факса.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% fax_to_email email = %%EMAIL%%",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfu  number=%%FEATURE_CODE%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_T38_FAX",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_send_t38_fax.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 60000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_ss_fax2email_redirecting_call(redirect_by_cfnr)",
+      "Description": "Проверка услуги fax_to_email в случае переадресации по не ответу на фича-код услуги. Абоненту Б активируем cfnr на фича-код услуги. A звонит на Б, система переадресует данный вызов на фича-код услуги. Ожидается, что абоненту А придёт re-invite с T38 и начнётся процедура приёма факса.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% fax_to_email email = %%EMAIL%%",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr number=%%FEATURE_CODE%%, timeout = 5"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_T38_FAX",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_send_t38_fax.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 60000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_ss_fax2email_reject_redirecting_call(redirect_by_cfnr)",
+      "Description": "Проверка отбоя вызова, который был переадресован на фича-код fax_to_email, для случая, когда у переадресующего абонента не активирована услуга fax_to_email. Деактивируем абоненту Б fax_to_email, активируем абоненту Б cfnr на фича-код fax_to_email. A звонит на Б, система переадресует данный вызов на фича-код услуги. Ожидается, что вызов будет отбит.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% fax_to_email",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cfnr number=%%FEATURE_CODE%%, timeout = 5"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_RECV_480",
+              "Commands": [
+                {
+                  "SourceFile": "ss_fax_to_email/uac_recv_480.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 60000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "90s"
                 }
               ]
             }

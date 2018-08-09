@@ -49,7 +49,7 @@
 <label id="call_continue"/>
 
 <recv response="100" optional="true"></recv>
-<recv response="183" optional="true"></recv>
+<recv response="181" optional="true"></recv>
 <recv response="180" optional="true"></recv>
 <recv response="183" optional="true"></recv>
 <recv response="480">
