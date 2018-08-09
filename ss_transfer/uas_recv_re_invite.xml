@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "UAS recv UPDATE">
+<scenario name = "UAS recv re-INVITE">
 
 <Global variables="CHK_CONNECTED_NUMBER,CHK_CONNECTED_NAME,CHK_RPI,CHK_PAI" />
 <User variables="rpi_connected_name,rpi_connected_number,pai_connected_name,pai_connected_number,dummy,connected_name,connected_number" />
@@ -17,6 +17,11 @@
 <action>
     <ereg regexp="[0-9]+" search_in="hdr" header="To:" assign_to="number" />
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="first_cseq" />
+    <ereg regexp="o=([^ ]+)\s([^ ]+)\s([^ ]+)" check_it="true" search_in="body" assign_to="dummy,dummy,first_ss_id,first_ss_vrs"/>
+    <todouble assign_to="first_ss_vrs" variable="first_ss_vrs"/>
+    <todouble assign_to="first_ss_id" variable="first_ss_id"/>
+    <todouble assign_to="first_cseq" variable="first_cseq"/>
 </action>
 </recv>
 
@@ -82,6 +87,11 @@
     <action>
         <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,rpi_connected_name,rpi_connected_number"/>
         <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="P-Asserted-Identity:" assign_to="dummy,dummy,pai_connected_name,pai_connected_number"/>
+        <ereg regexp="o=([^ ]+)\s([^ ]+)\s([^ ]+)" check_it="true" search_in="body" assign_to="dummy,dummy,second_ss_id,second_ss_vrs"/>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="second_cseq" />
+        <todouble assign_to="second_ss_vrs" variable="second_ss_vrs"/>
+        <todouble assign_to="second_ss_id" variable="second_ss_id"/>
+        <todouble assign_to="second_cseq" variable="second_cseq"/>
     </action>
 </recv>
 
@@ -166,5 +176,45 @@
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
+
+<nop hide="true">
+    <action>
+        <test assign_to="compare_result" variable="second_ss_vrs" compare="equal" variable2="first_ss_vrs" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result" condexec_inverse="true">
+    <action>
+        <warning message="First session version ([$first_ss_vrs]) must be equal second session version ([$second_ss_vrs])"/>
+    </action>
+</nop>
+
+
+<nop hide="true">
+    <action>
+        <test assign_to="compare_result" variable="second_ss_id" compare="equal" variable2="first_ss_id" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result" condexec_inverse="true">
+    <action>
+        <warning message="First session id ([$first_ss_id]) must be equal second session id ([$second_ss_id])"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true">
+    <action>
+        <test assign_to="compare_result" variable="second_cseq" compare="greater_than" variable2="first_cseq" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result" condexec_inverse="true">
+    <action>
+        <warning message="First cseq ([$first_cseq]) must be greater than second cseq ([$second_cseq])"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
 
 </scenario>
