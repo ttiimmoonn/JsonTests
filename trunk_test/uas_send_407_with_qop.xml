@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "UAS_REG_AUTH">
+
+<Global variables="USERNAME,PASSWORD,REG_DOMAIN,CHK_EXP" />
+<User variables="dummy"/>
+<Reference variables="dummy,PASSWORD,USERNAME,REG_DOMAIN"/>
+
+<recv request="REGISTER">
+  <action>
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
+    <ereg regexp="\s+([0-9]+)" search_in="hdr" header="Expires:" check_it="true" assign_to="dummy,exp" />
+  </action>
+</recv>
+
+<send>
+<![CDATA[
+      SIP/2.0 407 Proxy Authentication Required
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+      Proxy-Authenticate: Digest realm=[$local_domain]", nonce="47ebe028cda119c35d4877b383027d28da013815", algorithm=MD5
+      Content-Length: [len]
+]]>
+</send>
+
+<recv request="REGISTER">
+        <action>
+                <verifyauth assign_to="authvalid" username="[$USERNAME]" password="[$PASSWORD]"/>
+        </action>
+  </recv>
+
+<nop hide="true" test="authvalid" next="goodauth" />
+<nop hide="true" next="badauth" />
+
+<label id="badauth"/>
+<send>
+<![CDATA[
+      SIP/2.0 403 Forbidden
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Content-Length: 0
+]]>
+</send>
+
+<nop hide="true" next="exit">
+  <action>
+    <warning message="Auth failed."/>
+    <exec int_cmd="stop_now"/>
+  </action>
+</nop>
+
+<label id="goodauth"/>
+<send>
+<![CDATA[
+      SIP/2.0 200 OK
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag01[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Contact: <sip:[local_ip]:[local_port];transport=[transport]>;expires=[$exp]
+      Content-Length: 0
+]]>
+</send>
+
+<label id="exit"/>
+
+<nop hide="true" condexec="REG_DOMAIN">
+    <action>
+        <strcmp assign_to="compare_result" variable="REG_DOMAIN" variable2="local_domain"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong registration domain [$local_domain], need: [$REG_DOMAIN]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_EXP">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_EXP" variable2="exp"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong expires time. Exp in message: [$exp], require exp: [$CHK_EXP]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
+</scenario>
