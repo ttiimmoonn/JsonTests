@@ -63,7 +63,7 @@
 
 <label id="call_continue" />
 
-<recv response="100" >
+<recv response="100" optional="true">
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
