@@ -5,14 +5,16 @@
 <Global variables="CDPNDOM,CGPNDOM,CDPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn,check,dummy" />
 <Reference variables="dummy"/>
-    <nop hide="true">
+
+<nop hide="true">
     <action>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="mwi_subscriber" value="[service]"/>
     </action>
-    </nop>
+</nop>
 
 
 <send>
@@ -54,7 +56,7 @@
     <action>
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip"/>
         <assign assign_to="check" value="" />
-        <ereg regexp="Messages-Waiting: yes\nMessage-Account: sip:\*90#@.*\nVoice\-Message: 1/0 \(0/0\)" search_in="body" check_it="true" assign_to="check"/>
+        <ereg regexp="Messages-Waiting: yes\nMessage-Account: sip:([^@]+)@([^\n]+)\nVoice\-Message: 1/0 \(0/0\)" search_in="body" check_it="true" assign_to="check,user,dummy"/>
     </action>
 </recv>
 
@@ -82,7 +84,7 @@
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Via:" assign_to="new_ip"/>
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="contact_ip"/>
         <assign assign_to="check" value="" />
-        <ereg regexp="Messages-Waiting: no\nMessage-Account: sip:\*90#@.*\nVoice-Message: 0/0 \(0/0\)" search_in="body" check_it="true" assign_to="check"/>
+        <ereg regexp="Messages-Waiting: no\nMessage-Account: sip:([^@]+)@([^\n]+)\nVoice\-Message: 0/0 \(0/0\)" search_in="body" check_it="true" assign_to="check,user,dummy"/>
     </action>
 </recv>
 
@@ -176,5 +178,20 @@
 </send>
 
 <label id="exit"/>
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="compare_result" variable="user" variable2="mwi_subscriber"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Check of mwi subscriber name failed. Require Name: [$mwi_subscriber]; Current name: [$user]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
 <pause milliseconds="2000"/>
+
 </scenario>
