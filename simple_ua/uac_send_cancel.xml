@@ -28,7 +28,7 @@
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$inv_branch]
     From: "Simple UAC send CANCEL" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
@@ -63,14 +63,7 @@
 
 <label id="call_continue" />
 
-<recv response="100" optional="true">
-    <action>
-        <!--Забрали CSeq -->
-        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
-        <!--Забрали branch -->
-        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
-    </action>
-</recv>
+<recv response="100" optional="true"/>
 
 <recv response="180" ontimeout="cancel_call" timeout="5000">
     <action>
@@ -135,6 +128,13 @@
 
 <!--Отправка INVITE c аутентификацией -->
 <label id="auth_invite"/>
+
+<nop>
+    <action>
+        <!--update invite branch -->
+        <assignstr assign_to="inv_branch" value="z9hG4bK-o-2-[call_number][pid]"/>
+    </action>
+</nop>
 
 <send>
 <![CDATA[
