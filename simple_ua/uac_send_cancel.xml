@@ -81,7 +81,7 @@
 <send crlf="true">
 <![CDATA[
     CANCEL sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$inv_branch]
     From: "Simple UAC send CANCEL" <sip:[$cgpn]@[$cgpn_dom]>;tag=[call_number]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id:]
