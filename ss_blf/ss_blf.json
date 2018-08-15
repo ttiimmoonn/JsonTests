@@ -633,32 +633,6 @@
       ]
     },
     {
-      "Name": "subscribe_to_unknown_user",
-      "Description": "Подписка на несуществующего юзера",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": 1,
-              "WriteStat": true,
-              "BackGround": true,
-              "Name": "SUBSCRIBE_TO_UNKNOWN_USER",
-              "Commands": [
-                {
-                  "SourceFile": "ss_blf/recv_404_to_subscribe.xml",
-                  "Options": "-m 1 -set CDPN A9138345 -set CDPNDOM %%0.SipDomain%% -aa",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "60s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "Name": "test_blf_notifications_if_call_hold_and_unhold(recipient side)",
       "Description": "Проверка blf нотификаций при постоновке на hold с последующим снятием. Юзер C подписывется на Б. А звонит на Б, Б ставит на hold, Б снимает с hold. Ожидается, что никаких нотификаций при постоновке и снятии с hold приходить не будет.",
       "TestProcedure": [
