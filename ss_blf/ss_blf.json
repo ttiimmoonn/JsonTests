@@ -131,7 +131,7 @@
     },
     {
       "Name": "test_blf_notifications_for_outgoing_call",
-      "Description": "Тестирование всех blf нотификаций для исходяего вызова.",
+      "Description": "Тестирование всех blf нотификаций для исходящего вызова.",
       "TestProcedure": [
         {
           "StartUA": [
