@@ -1,0 +1,122 @@
+{
+  "TestName": "rfc3261_test_420_response",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10100,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 10106,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "PreConf": [],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel false"
+  ],
+  "Tests": [
+    {
+      "Name": "test_processing_of_420_response",
+      "Description": "Проверка обработки 420 ответа с Unsupported: 100rel. Устанавливаем абоненту Б req100rel=true, А звонит на Б, Б отправляет 420 с Unsupported: 100rel. Ожидается, что ссв повторит INVITE, но уже без Require: 100rel.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_SEND_420",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_send_420_response.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_cancel_request_after_recv_420_response_on_invite",
+      "Description": "Проверка того, что CANCEL не будет отправляться для INVITE-транзакции, которую завершили 420 ответом. Устанавливаем абоненту Б req100rel=true, А звонит на Б, Б отправляет 420 с Unsupported: 100rel, А отправляет CANCEL. Ожидается, что на сторону Б пойдёт CANCEL для последней INVITE-транзакции. ",
+      "Ref": "Bug #65347",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% req100rel true"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CANCEL_AFTER_SEND_420",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3261/uas_recv_cancel_after_420.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_cancel.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
