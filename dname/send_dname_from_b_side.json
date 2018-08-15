@@ -1,5 +1,5 @@
 {
-  "TestName": "dname_tests",
+  "TestName": "send_dname_from_b_side_test",
   "AutoTest": true,
   "Users": [
     {
@@ -27,7 +27,9 @@
   ],
   "UserVar": [
     {
-      "%%ALERTING_NAME%%": "\"Вызываемый абонент Test\""
+      "%%ALERTING_DNAME%%": "\"Alerting DNAME\"",
+      "%%CONNECTED_NUMBER%%": "89134852323",
+      "%%CONNECTED_DNAME%%": "\"Connected DNAME\""
     }
   ],
   "PreConf": [
@@ -65,7 +67,7 @@
               "Commands": [
                 {
                   "SourceFile": "dname/uas_send_dname_in_to_hdr.xml",
-                  "Options": "-m 1 -set DNAME %%ALERTING_NAME%%",
+                  "Options": "-m 1 -set DNAME %%ALERTING_DNAME%%",
                   "SippType": "uas",
                   "Timeout": "20s"
                 }
@@ -79,7 +81,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%ALERTING_NAME%% -set CHK_ALERTING_NUMBER %%1.Number%%",
+                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%ALERTING_DNAME%% -set CHK_ALERTING_NUMBER %%1.Number%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -119,6 +121,45 @@
                 {
                   "SourceFile": "simple_ua/uac_recv_bye.xml",
                   "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%1.Number%% -set CHK_ALERTING_NUMBER %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_dname_in_rpi_header",
+      "Description": "Проверка передачи DNAME со стороны Б в заголовке Remote-Party-ID. А звонит на Б, Б в 180 ответе передаёт ALERTING_DNAME. Ожидается, что в 180 ответе на стороне А Remote-Party-ID будет c ALERTING_DNAME. Б в 200 ответе передаёт CONNECTED_DNAME. Ожидается, что на сторне А в  200 ответ будет Remote-Party-ID с CONNECTED_DNAME.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_WITH_DNAME_IN_RPI_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "dname/uas_send_dname_in_rpi_hdr.xml",
+                  "Options": "-m 1 -set ALERTING_DNAME %%ALERTING_DNAME%% -set CONNECTED_DNAME %%CONNECTED_DNAME%% -set CONNECTED_NUMBER %%CONNECTED_NUMBER%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%ALERTING_DNAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_DNAME%% -set CHK_CONNECTED_NUMBER %%CONNECTED_NUMBER%%",
                   "SippType": "uac",
                   "NeedAuth": true,
                   "Timeout": "40s"
