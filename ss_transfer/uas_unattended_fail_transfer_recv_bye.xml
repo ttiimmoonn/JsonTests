@@ -240,7 +240,7 @@
 </send>
 
 <recv response="100" optional="true"></recv>
-<recv response="487">
+<recv response="481">
         <action>
             <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
             <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
