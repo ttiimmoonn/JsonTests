@@ -757,6 +757,73 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "test_blf_notifications_if_subscribe_to_user_during_a_call",
+      "Description": "Проверка отправки текущего состояния линии в первом NOTIFY. А звонит на Б, Б отвечает, С подписывается на А. Ожидается, что в NOTIFY придёт confirmed state.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "BackGround": true,
+              "Name": "UAC_HOLD_UNHOLD",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 6000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {"Sleep": 4},
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "SS_BLF_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "ss_blf/blf_check_state_in_first_notify.xml",
+                  "Options": "-m 1 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -aa -set CHK_DIRECTION initiator",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "WaitBackGroundUA": {
+            "timeout": 20
+          }
+        }
+      ]
     }
   ]
 }

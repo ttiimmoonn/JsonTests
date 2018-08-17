@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "BLF">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CHK_DIRECTION,EXPIRES" />
+<User variables="cdpn_dom,cgpn_dom,cdpn,blf_state,blf_direction,dummy,exp" />
+<Reference variables="dummy" />
+
+<!-- Setting expires value -->
+
+<nop hide="true" condexec="EXPIRES">
+    <action>
+        <assignstr assign_to="exp" value="[$EXPIRES]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="EXPIRES" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="exp" value="3600"/>
+    </action>
+</nop>
+
+<!-- Setting common params -->
+
+<nop hide="true">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="exp" value="3600"/>
+    </action>
+</nop>
+
+<!-- Start subscription -->
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: [$exp]
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="401" auth="true" optional="true" next="send_auth_to_subscribe"/>
+
+<label id="recv_200_to_subscribe"/>
+
+<recv request="NOTIFY" optional="true">
+    <action>
+        <assign assign_to="blf_state" value="" />
+        <assign assign_to="blf_direction" value="" />
+        <ereg regexp="<state>([a-z]+)</state>" search_in="msg" check_it="true" assign_to="dummy,blf_state"/>
+        <ereg regexp="direction=\"([^\"]+)\"" search_in="msg" check_it="true" assign_to="dummy,blf_direction"/>
+        <assignstr assign_to="first_notify_recv" value="true"/>
+    </action>
+</recv>
+
+<recv response="200" next="sub_continue" test="first_notify_recv">
+    <action>
+        <ereg regexp=";tag=(\w+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,subscribe_remote_tag" />
+    </action>
+</recv>
+
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="blf_state" value="" />
+        <assign assign_to="blf_direction" value="" />
+        <ereg regexp="<state>([a-z]+)</state>" search_in="msg" check_it="true" assign_to="dummy,blf_state"/>
+        <ereg regexp="direction=\"([^\"]+)\"" search_in="msg" check_it="true" assign_to="dummy,blf_direction"/>
+    </action>
+</recv>
+
+<label id="sub_continue"/>
+
+<send next="handle_notify">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<!-- Pause for skip NOTIFY with dummy body -->
+
+<pause milliseconds="1000"/>
+
+
+<!-- Recv blf notification -->
+
+<label id="wait_notify"/>
+
+<recv request="NOTIFY">
+    <action>
+        <assign assign_to="blf_state" value="" />
+        <assign assign_to="blf_direction" value="" />
+        <ereg regexp="<state>([a-z]+)</state>" search_in="msg" check_it="true" assign_to="dummy,blf_state"/>
+        <ereg regexp="direction=\"([^\"]+)\"" search_in="msg" check_it="true" assign_to="dummy,blf_direction"/>
+    </action>
+</recv>
+
+<send next="handle_notify">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Stop subscription -->
+
+<label id="unsub"/>
+
+<send>
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
+    [last_call-id:]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="401" auth="true" optional="true" next="send_auth_to_unsubscribe"/>
+
+<label id="recv_200_to_unsubscribe"/>
+
+<!-- Recv 200 and go to exit -->
+
+<recv response="200" next="exit"/>
+
+
+<label id="send_auth_to_subscribe"/>
+
+<send next="recv_200_to_subscribe">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: [$exp]
+    Content-Length: 0
+]]>
+</send>
+
+<label id="send_auth_to_unsubscribe"/>
+
+<send next="recv_200_to_unsubscribe">
+<![CDATA[
+    SUBSCRIBE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: "BLF subscription" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    To: <sip:[$cdpn]@[$cdpn_dom]>;tag=[$subscribe_remote_tag]
+    Call-ID: [call_id]
+    [authentication]
+    CSeq: [cseq] SUBSCRIBE
+    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Event: dialog
+    Accept: application/dialog-info+xml
+    Expires: 0
+    Content-Length: 0
+]]>
+</send>
+
+<label id="handle_notify"/>
+<!-- Exit if fail flag is setted -->
+<nop next="unsub" test="sub_fail" test_var_value="true"/>
+
+<!-- Checking notification direction if needed -->
+
+<nop hide="true" condexec="CHK_DIRECTION">
+    <action>
+        <strcmp assign_to="compare_result" variable="blf_direction" variable2="CHK_DIRECTION"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong direction in blf body. Current direction [$blf_direction]. Require direction [$CHK_DIRECTION]. State [$blf_state]"/>
+        <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</nop>
+
+<!-- Set first state to confirmed -->
+
+<nop hide="true" condexec="next_state" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="next_state" value="confirmed"/>
+    </action>
+</nop>
+
+<!-- Comparing current state and next state -->
+
+<nop hide="true">
+    <action>
+        <strcmp assign_to="state_compare" variable="blf_state" variable2="next_state"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="state_compare">
+    <action>
+        <warning message="Recv message with unexpected state: [$blf_state]. Expected state: [$next_state]"/>
+        <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</nop>
+
+<!-- Handling NOTIFY with state confirmed -->
+
+<nop hide="true" test="blf_state" test_var_value="confirmed" next="wait_notify" condexec="blf_state" condexec_var_value="confirmed">
+    <action>
+        <warning message="Call changed state to: [$blf_state]" />
+        <assignstr assign_to="next_state" value="terminated"/>
+    </action>
+</nop>
+
+<!-- Handling notification with state terminated -->
+
+<nop hide="true" test="blf_state" test_var_value="terminated" next="unsub">
+    <action>
+        <warning message="Call changed state to: [$blf_state]" />
+    </action>
+</nop>
+
+<!-- Setting failed flag -->
+
+<nop hide="true" next="unsub">
+    <action>
+        <assignstr assign_to="sub_fail" value="true"/>
+    </action>
+</nop>
+
+<!-- Script exit -->
+
+<label id="exit"/>
+
+<!-- Checking failed flag before exit -->
+
+<pause milliseconds="2000"/>
+
+<nop hide="true" condexec="sub_fail">
+    <action>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+</scenario>
