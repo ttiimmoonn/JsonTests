@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-
-<!--
-   A UAS that receives an UPDATE before it has generated a final
-   response to a previous UPDATE on the same dialog MUST return a 500
-   response to the new UPDATE, and MUST include a Retry-After header
-   field with a randomly chosen value between 0 and 10 seconds.
--->
-
 <scenario name = "uas_update">
 
 <Global variables="CGPNDOM,chk_retry_after" />
@@ -18,19 +10,16 @@
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,local_number"/>
     <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,remote_number"/>
     <ereg regexp=";tag=(\w+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_tag" />
-    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain" />
-    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain" />
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_domain"/>
+    <ereg regexp="<sip:.*@([^;>]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_domain"/>
     <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" check_it="true" assign_to="inv_cseq" />
     <ereg regexp=".*" search_in="hdr" header="From:" check_it="true" assign_to="inv_from" />
     <ereg regexp=".*" search_in="hdr" header="To:" check_it="true" assign_to="inv_to" />
     <ereg regexp=".*" search_in="hdr" header="Via:" check_it="true" assign_to="inv_via" />
-    <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" check_it="true" header="Contact:" assign_to="new_ip" />
-
-    <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact" />
+    <assignstr assign_to="local_tag" value="[call_number][pid]" />
 </action>
 </recv>
-
-
 
 <send>
 <![CDATA[
@@ -43,8 +32,6 @@
     Content-Length: 0
 ]]>
 </send>
-
-
 
 <send retrans="500">
 <![CDATA[
@@ -70,7 +57,7 @@
 ]]>
 </send>
 
-<recv request="PRACK"></recv>
+<recv request="PRACK"/>
 
 <send>
 <![CDATA[
@@ -87,17 +74,9 @@
 
 <pause milliseconds="1000"/> 
 
-<!-- Устанавливаем из контакта dest IP  -->
-<nop hide="true">
-    <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
-    </action>
-</nop>
-
-
 <send>
 <![CDATA[
-    UPDATE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    UPDATE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -120,7 +99,7 @@
 
 <send>
 <![CDATA[
-    UPDATE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
+    UPDATE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -140,14 +119,17 @@
     a=rtpmap:0 PCMU/8000
 ]]>
 </send>
+
 <recv response="500" optional="true">
     <action>
         <ereg regexp="Retry-After:" search_in="msg" check_it="true" assign_to="chk_retry_after"/>
-    </action>    
+        <assignstr assign_to="500_received" value="true"/>
+    </action>
 </recv>
 
-<recv response="200"></recv>
+<recv response="200" next="recv_500" test="500_received" test_inverse="true"/>
 
+<label id="send_answer"/>
 
 <send retrans="500">
 <![CDATA[
@@ -162,18 +144,11 @@
 ]]>
 </send>
 
-
 <recv request="ACK"></recv>
-<!--
-<nop hide="true">
-<action>
-    <exec rtp_stream="[media_path]/test.ulaw,1,0" />
-</action>
-</nop>
--->
+
 <recv request="BYE"></recv>
 
-<send>
+<send next="exit">
 <![CDATA[
     SIP/2.0 200 OK
     [last_Via:]
@@ -184,5 +159,18 @@
     Content-Length: 0
 ]]>
 </send>
+
+
+<label id="recv_500"/>
+
+<recv response="500" next="send_answer">
+    <action>
+        <ereg regexp="Retry-After:" search_in="msg" check_it="true" assign_to="chk_retry_after"/>
+    </action>
+</recv>
+
+<label id="exit"/>
+
 <pause milliseconds="2000"/>
+
 </scenario>

@@ -45,7 +45,7 @@
   "Tests": [
     {
       "Name": "accept_update_with_o_sdp_in_early_state",
-      "Description": "Проверка обработки UPDATE-запроса c osdp в early состоянии для случая, когда предыдущее o/a было завершено. А звонит на Б, обе стороны требуют 100rel. После завершения o/a взаимодейсвия, с обеих сторон высылается UPDATE c osdp. Ожидается, что на UPDATE будет отправлен 200 OK c asdp.",
+      "Description": "Проверка обработки UPDATE-запроса c osdp в предответном состоянии для случая, когда предыдущее o/a было завершено. А звонит на Б, обе стороны требуют 100rel. После завершения o/a взаимодейсвия, с обеих сторон высылается UPDATE c osdp. Ожидается, что на UPDATE будет отправлен 200 OK c asdp.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -55,10 +55,10 @@
               "Name": "UAS_SEND_UPDATE_AND_RECV_200",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uas_send_update_with_osdp_recv_200.xml",
+                  "SourceFile": "update/req100rel/uas_send_update_in_early_st_with_osdp_recv_200.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "60s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -68,11 +68,11 @@
               "Name": "UAC_SEND_UPDATE_AND_RECV_200",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uac_send_update_with_osdp_recv_200.xml",
+                  "SourceFile": "update/req100rel/uac_send_update_in_early_st_with_osdp_recv_200.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "NeedAuth": true,
                   "SippType": "uac",
-                  "Timeout": "200s"
+                  "Timeout": "20s"
                 }
               ]
             }
@@ -82,7 +82,7 @@
     },
     {
       "Name": "reject_update_with_o_sdp_in_early_state",
-      "Description": "Проверка отправки 488 ответа на UPDATE-запрос c osdp в early состоянии для случая, когда предложенный кодек не поддерживается. Создаём медиа-профиль, запрещающий использовать кодек G729. Назначаем данный профиль абонентам А и Б. А звонит на Б, обе стороны требуют 100rel. После завершения o/a взаимодейсвия, с обеих сторон высылается UPDATE, в котором osdp с запрещённым кодеком. Ожидается, что на UPDATE будет отправлен 488 ответ.",
+      "Description": "Проверка получения 488 ответа на UPDATE-запрос c osdp в предответном состоянии для случая, когда предложенный кодек не поддерживается. Создаём медиа-профиль, запрещающий использовать кодек G729. Назначаем данный профиль абонентам А и Б. А звонит на Б, обе стороны требуют 100rel. После завершения o/a взаимодейсвия, с обеих сторон высылается UPDATE, в котором osdp с запрещённым кодеком. Ожидается, что на UPDATE будет отправлен 488 ответ.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -102,10 +102,10 @@
               "Name": "UAS_SEND_UPDATE_AND_RECV_488",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uas_send_update_with_osdp_recv_488.xml",
+                  "SourceFile": "update/req100rel/uas_send_update_in_early_st_with_osdp_recv_488.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "60s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -115,11 +115,11 @@
               "Name": "UAC_SEND_UPDATE_AND_RECV_488",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uac_send_update_with_osdp_recv_488.xml",
+                  "SourceFile": "update/req100rel/uac_send_update_in_early_st_with_osdp_recv_488.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "NeedAuth": true,
                   "SippType": "uac",
-                  "Timeout": "200s"
+                  "Timeout": "20s"
                 }
               ]
             }
@@ -136,7 +136,7 @@
     },
     {
       "Name": "accept_update_without_o_sdp_in_early_state",
-      "Description": "Проверка обработки UPDATE-запроса без osdp в early состоянии. А звонит на Б, А и Б не поддерживают 100rel. Абонент Б отвечает 180 сообщением на INVITE и высылает UPDATE. Ожидается, что на UPDATE запрос будет отправлен 200 ответ.",
+      "Description": "Проверка обработки UPDATE-запроса без osdp в предответном состоянии. А звонит на Б, А и Б не поддерживают 100rel. Абонент Б отвечает 180 сообщением на INVITE и высылает UPDATE. Ожидается, что на UPDATE запрос будет отправлен 200 ответ.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -146,10 +146,10 @@
               "Name": "UAS_SEND_UPDATE_IN_EARLY_ST",
               "Commands": [
                 {
-                  "SourceFile": "update/uas_send_update_wout_osdp_recv_200.xml",
+                  "SourceFile": "update/uas_send_update_in_early_st_wout_osdp_recv_200.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
-                  "Timeout": "60s"
+                  "Timeout": "20s"
                 }
               ]
             },
@@ -163,7 +163,7 @@
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "NeedAuth": true,
                   "SippType": "uac",
-                  "Timeout": "200s"
+                  "Timeout": "20s"
                 }
               ]
             }
@@ -172,36 +172,36 @@
       ]
     },
     {
-      "Name": "uas_update_in_answer_state",
-      "Description": "Проверка корректности отбработки UPDATE реквеста в ответном состоянии UAS mode",
+      "Name": "accept_update_with_o_sdp_in_confirmed_state",
+      "Description": "Проверка обработки UPDATE-запроса c osdp в состоянии ответа. А звонит на Б, Б отвечает на вызов. Далее с обеих сторон высылается UPDATE c osdp. Ожидается, что на UPDATE будет отправлен 200 OK c asdp.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
-              "Name": "UAS_UPDATE_IN_ANSWER_STATE",
+              "Name": "UAS_UPDATE_IN_ANSWER_STATE_RECV_200",
               "Commands": [
                 {
-                  "SourceFile": "update/uas_update.xml",
+                  "SourceFile": "update/uas_send_update_in_answ_st_with_osdp_recv_200.xml",
                   "Options": "-m 1",
                   "NeedAuth": true,
                   "SippType": "uas",
-                  "Timeout": "200s"
+                  "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Name": "UAC_UPDATE_IN_ANSWER_STATE_RECV_200",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "update/uac_send_update_in_answ_st_with_osdp_recv_200.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 3000",
                   "SippType": "uac",
                   "NeedAuth": true,
-                  "Timeout": "60s"
+                  "Timeout": "20s"
                 }
               ]
             }
@@ -210,92 +210,17 @@
       ]
     },
     {
-      "Name": "uas_two_update",
-      "Description": "Проверка отправки 500 сообщения при отправке двух UPDATE",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": 0,
-              "Name": "UAS_UPDATE",
-              "Commands": [
-                {
-                  "SourceFile": "update/uas_two_updates.xml",
-                  "Options": "-m 1",
-                  "NeedAuth": true,
-                  "SippType": "uas",
-                  "Timeout": "60s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": 1,
-              "Name": "SIMPLE_UAC_SEND_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "60s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "uas_update_before_answer_recv",
-      "Description": "Проверка отправки 491 ответа на UPDATE, который послали до завершения предыдущего o/a",
-      "TestProcedure": [
-        {
-          "StartUA": [
-            {
-              "Type": "User",
-              "UserId": 0,
-              "Name": "UAS_UPDATE",
-              "Commands": [
-                {
-                  "SourceFile": "update/uas_update_before_answer_recv.xml",
-                  "Options": "-m 1",
-                  "NeedAuth": true,
-                  "SippType": "uas",
-                  "Timeout": "200s"
-                }
-              ]
-            },
-            {
-              "Type": "User",
-              "UserId": 1,
-              "Name": "SIMPLE_UAC_RECV_BYE",
-              "Commands": [
-                {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
-                  "NeedAuth": true,
-                  "Timeout": "60s"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Name": "uas_recv_488_to_update",
-      "Description": "Проверка отправки 488 ответа на UPDATE, при использовании кодека запрещённого в mp",
+      "Name": "reject_update_with_o_sdp_in_confirmed_state",
+      "Description": "Проверка получения 488 ответа на UPDATE-запрос c osdp в состоянии ответа для случая, когда предложенный кодек не поддерживается. Создаём медиа-профиль, запрещающий использовать кодек G729. Назначаем данный профиль абонентам А и Б. А звонит на Б, Б отвечает. Далее обе стороны высылают UPDATE, в котором osdp с запрещённым кодеком. Ожидается, что на UPDATE будет отправлен 488 ответ.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/media-profile/declare drop_729 drop_729 system",
-            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMA * true",
-            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio PCMU * true",
-            "/domain/%%DEV_DOM%%/media-profile/codecs-add drop_729 audio G729 * false",
-            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile drop_729"
+            "/domain/%%DEV_DOM%%/media-profile/declare update_test_mp_no_729 no_729 system",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add update_test_mp_no_729 audio G729 18 false",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add update_test_mp_no_729 audio PCMA 8 true",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add update_test_mp_no_729 audio PCMU 0 true",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile update_test_mp_no_729",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile update_test_mp_no_729"
           ]
         },
         {
@@ -303,28 +228,27 @@
             {
               "Type": "User",
               "UserId": 0,
-              "Name": "UAS_UPDATE",
+              "Name": "UAS_UPDATE_IN_ANSWER_STATE_RECV_488",
               "Commands": [
                 {
-                  "SourceFile": "update/uas_update_recv_488.xml",
+                  "SourceFile": "update/uas_send_update_in_answ_st_with_osdp_recv_488.xml",
                   "Options": "-m 1",
-                  "NeedAuth": true,
                   "SippType": "uas",
-                  "Timeout": "200s"
+                  "Timeout": "20s"
                 }
               ]
             },
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "SIMPLE_UAC_RECV_BYE",
+              "Name": "UAC_UPDATE_IN_ANSWER_STATE_RECV_488",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uac_recv_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
-                  "SippType": "uac",
+                  "SourceFile": "update/uac_send_update_in_answ_st_with_osdp_recv_488.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 3000",
                   "NeedAuth": true,
-                  "Timeout": "60s"
+                  "SippType": "uac",
+                  "Timeout": "20s"
                 }
               ]
             }
@@ -333,7 +257,84 @@
         {
           "SendSSHCommand": [
             "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
-            "/domain/%%DEV_DOM%%/media-profile/remove drop_729"
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile",
+            "/domain/%%DEV_DOM%%/media-profile/remove update_test_mp_no_729"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_update_with_osdp_when_previos_update_not_yet_handled",
+      "Description": "Проверка получения 500 ответа на UPDATE в случае, когда он был отправлен до завершения обработки предыдущего UPDATE. A звонит на Б, A посылает первый UPDATE и следом второй, не дожидаясь 200 OK на первый. Ожидается, что на второй UPDATE будет получен 500 ответ, а на первый 200 ответ",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_SEND_TWO_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/req100rel/uas_send_two_updates.xml",
+                  "Options": "-m 1",
+                  "NeedAuth": true,
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_TWO_UPDATE",
+              "Commands": [
+                {
+                  "SourceFile": "update/req100rel/uac_send_two_updates.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_update_with_odsp_when_previous_oa_exchange_was_not_completed",
+      "Description": "Проверка обработки UPDATE запроса, который был отправлен до завершения предыдущего o/a. А звонит на Б. А и Б не поддерживают 100rel. После перехода в состояние alerting обе стороны пытаются обновить медию посредством UPDATE. Ожидается, что на UPDATE со стороны А будет отправлен 500 ответ, а со стороны Б 491 ответ. Далее абонент Б ответчает и обе стороны снова пытаются отправить UPDATE. Ожидается, что на оба UPDATE запроса будет отправлен 200 ответ.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_SEND_UPDATE_BEFORE_ASDP",
+              "Commands": [
+                {
+                  "SourceFile": "update/uas_update_before_asdp_recv_491.xml",
+                  "Options": "-m 1 -d 3000",
+                  "NeedAuth": true,
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_UPDATE_BEFORE_ASDP",
+              "Commands": [
+                {
+                  "SourceFile": "update/uac_update_before_asdp_recv_500.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "20s"
+                }
+              ]
+            }
           ]
         }
       ]

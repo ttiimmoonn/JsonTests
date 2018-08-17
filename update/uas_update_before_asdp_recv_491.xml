@@ -17,8 +17,7 @@
     <ereg regexp=".*" search_in="hdr" header="From:" check_it="true" assign_to="inv_from" />
     <ereg regexp=".*" search_in="hdr" header="To:" check_it="true" assign_to="inv_to" />
     <ereg regexp=".*" search_in="hdr" header="Via:" check_it="true" assign_to="inv_via" />
-    <ereg regexp="sip:.*@([0-9A-Za-z\.]+):([0-9]+)" search_in="hdr" header="Contact:" check_it="true" assign_to="dummy,remote_ip,remote_port"/>
-
+    <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     <assignstr assign_to="local_tag" value="[call_number][pid]"/>
 </action>
 </recv>
@@ -68,7 +67,7 @@
 
 <send retrans="500">
 <![CDATA[
-    UPDATE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
+    UPDATE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -91,6 +90,7 @@
 
 <recv response="491"></recv>
 
+<pause/>
 
 <send retrans="500">
 <![CDATA[
@@ -120,7 +120,7 @@
 
 <send retrans="500">
 <![CDATA[
-    UPDATE sip:[$remote_number]@[$remote_ip]:[$remote_port] SIP/2.0
+    UPDATE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
     To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
@@ -142,27 +142,20 @@
 </send>
 
 <recv response="200"></recv>
-<!--
-<nop hide="true">
-<action>
-    <exec rtp_stream="[media_path]/test.g729,1,18" />
-</action>
-</nop>
--->
+
+<recv request="BYE"></recv>
+
 <send>
 <![CDATA[
-    BYE sip:[$remote_number]@[remote_ip]:[remote_port] SIP/2.0
-    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: <sip:[$local_number]@[$local_domain]>;tag=[$local_tag]
-    To: <sip:[$remote_number]@[$remote_domain]>;tag=[$remote_tag]
-    [last_call-id]
-    CSeq: [cseq] BYE
-    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
-    Max-Forwards: 70
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
     Content-Length: 0
 ]]>
 </send>
 
-<recv response="200"></recv>
 <pause milliseconds="2000"/>
 </scenario>
