@@ -1,5 +1,5 @@
 {
-  "TestName": "update_test",
+  "TestName": "update_request_test",
   "AutoTest": true,
   "Users": [
     {
@@ -44,18 +44,18 @@
   ],
   "Tests": [
     {
-      "Name": "uac_simple_update_test",
-      "Description": "Проверка корректности обработки UPDATE реквеста UAC mode",
+      "Name": "accept_update_with_o_sdp_in_early_state",
+      "Description": "Проверка обработки UPDATE-запроса c osdp в early состоянии для случая, когда предыдущее o/a было завершено посредством PRACK. А звонит на Б, обе стороны требуют 100rel. После того как на обеих сторонах завершается o/a взаимодейсвие, с обеих сторон высылается UPDATE c osdp. Ожидается, что на UPDATE будет отправлен 200 OK c asdp.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
-              "Name": "SIMPLE_UAS_RECV_BYE",
+              "Name": "UAS_SEND_UPDATE_IN_EARLY_ST",
               "Commands": [
                 {
-                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "SourceFile": "update/req100rel/uas_accept_update_in_early_state.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -65,17 +65,71 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAC_SIMPLE_UPDATE_TEST",
+              "Name": "UAC_SEND_UPDATE_IN_EARLY_ST",
               "Commands": [
                 {
-                  "SourceFile": "update/uac.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SourceFile": "update/req100rel/uac_accept_update_in_early_state.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "NeedAuth": true,
                   "SippType": "uac",
                   "Timeout": "200s"
                 }
               ]
             }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "reject_update_with_o_sdp_in_early_state",
+      "Description": "Проверка отправки 488 ответа на UPDATE-запрос c osdp для случая, когда предложенный кодек не поддерживается. А звонит на Б, обе стороны требуют 100rel. После того как на обеих сторонах завершается o/a взаимодейсвие, с обеих сторон высылается UPDATE c osdp. Ожидается, что на UPDATE будет отправлен 200 OK c asdp.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/media-profile/declare update_test_mp_no_729 no_729 system",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add update_test_mp_no_729 audio G729 18 false",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add update_test_mp_no_729 audio PCMA 8 true",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-add update_test_mp_no_729 audio PCMU 0 true",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile update_test_mp_no_729",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile update_test_mp_no_729"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "Name": "UAS_SEND_UPDATE_IN_EARLY_ST",
+              "Commands": [
+                {
+                  "SourceFile": "update/req100rel/uas_reject_update_in_early_state.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_UPDATE_IN_EARLY_ST",
+              "Commands": [
+                {
+                  "SourceFile": "update/req100rel/uac_reject_update_in_early_state.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
+                  "NeedAuth": true,
+                  "SippType": "uac",
+                  "Timeout": "200s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% media-profile",
+            "/domain/%%DEV_DOM%%/media-profile/remove update_test_mp_no_729"
           ]
         }
       ]
