@@ -52,10 +52,10 @@
             {
               "Type": "User",
               "UserId": 0,
-              "Name": "UAS_SEND_UPDATE_IN_EARLY_ST",
+              "Name": "UAS_SEND_UPDATE_AND_RECV_200",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uas_accept_update_in_early_state.xml",
+                  "SourceFile": "update/req100rel/uas_send_update_with_osdp_recv_200.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -65,10 +65,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAC_SEND_UPDATE_IN_EARLY_ST",
+              "Name": "UAC_SEND_UPDATE_AND_RECV_200",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uac_accept_update_in_early_state.xml",
+                  "SourceFile": "update/req100rel/uac_send_update_with_osdp_recv_200.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "NeedAuth": true,
                   "SippType": "uac",
@@ -82,7 +82,7 @@
     },
     {
       "Name": "reject_update_with_o_sdp_in_early_state",
-      "Description": "Проверка отправки 488 ответа на UPDATE-запрос c osdp для случая, когда предложенный кодек не поддерживается. Создаём медиа-профиль, запрещающий использовать кодек G729. Назначаем данный профиль абонентам А и Б. А звонит на Б, обе стороны требуют 100rel. После завершения o/a взаимодейсвия, с обеих сторон высылается UPDATE, в котором osdp с запрещённым кодеком. Ожидается, что на UPDATE будет отправлен 488 ответ.",
+      "Description": "Проверка отправки 488 ответа на UPDATE-запрос c osdp в early состоянии для случая, когда предложенный кодек не поддерживается. Создаём медиа-профиль, запрещающий использовать кодек G729. Назначаем данный профиль абонентам А и Б. А звонит на Б, обе стороны требуют 100rel. После завершения o/a взаимодейсвия, с обеих сторон высылается UPDATE, в котором osdp с запрещённым кодеком. Ожидается, что на UPDATE будет отправлен 488 ответ.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -99,10 +99,10 @@
             {
               "Type": "User",
               "UserId": 0,
-              "Name": "UAS_SEND_UPDATE_IN_EARLY_ST",
+              "Name": "UAS_SEND_UPDATE_AND_RECV_488",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uas_reject_update_in_early_state.xml",
+                  "SourceFile": "update/req100rel/uas_send_update_with_osdp_recv_488.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -112,10 +112,10 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "UAC_SEND_UPDATE_IN_EARLY_ST",
+              "Name": "UAC_SEND_UPDATE_AND_RECV_488",
               "Commands": [
                 {
-                  "SourceFile": "update/req100rel/uac_reject_update_in_early_state.xml",
+                  "SourceFile": "update/req100rel/uac_send_update_with_osdp_recv_488.xml",
                   "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "NeedAuth": true,
                   "SippType": "uac",
@@ -135,18 +135,18 @@
       ]
     },
     {
-      "Name": "uas_update_in_erly_state",
-      "Description": "Проверка корректности отбработки UPDATE реквеста в предответном состоянии UAS mode",
+      "Name": "accept_update_without_o_sdp_in_early_state",
+      "Description": "Проверка обработки UPDATE-запроса без osdp в early состоянии. А звонит на Б, А и Б не поддерживают 100rel. Абонент Б отвечает 180 сообщением на INVITE и высылает UPDATE. Ожидается, что на UPDATE запрос будет отправлен 200 ответ.",
       "TestProcedure": [
         {
           "StartUA": [
             {
               "Type": "User",
               "UserId": 0,
-              "Name": "UAS_UPDATE_IN_ERLY_STATE",
+              "Name": "UAS_SEND_UPDATE_IN_EARLY_ST",
               "Commands": [
                 {
-                  "SourceFile": "update/uas_erly_update.xml",
+                  "SourceFile": "update/uas_send_update_wout_osdp_recv_200.xml",
                   "Options": "-m 1",
                   "SippType": "uas",
                   "Timeout": "60s"
@@ -156,14 +156,14 @@
             {
               "Type": "User",
               "UserId": 1,
-              "Name": "SIMPLE_UAC_SEND_BYE",
+              "Name": "UAC_SEND_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uac_send_bye.xml",
-                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 1000",
-                  "SippType": "uac",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -d 2000",
                   "NeedAuth": true,
-                  "Timeout": "60s"
+                  "SippType": "uac",
+                  "Timeout": "200s"
                 }
               ]
             }
