@@ -57,6 +57,7 @@
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
         <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
         <ereg regexp="\s?(.*)" search_in="hdr" header="p-uas-call-id:" check_it="true" assign_to="dummy,remote_call_id" />
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
 </action>
 </recv>
 
@@ -89,6 +90,7 @@
         <assign assign_to="sdp_chk" value="" />
         <ereg regexp="T38FaxVersion" search_in="body" check_it="true" assign_to="sdp_chk" />
         <assign assign_to="sdp_chk" value="" />
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
         <ereg regexp="T38FaxRateManagement" search_in="body" check_it="true" assign_to="sdp_chk" />
     </action>
 </recv>
@@ -129,7 +131,7 @@
 
 <send retrans="500">
 <![CDATA[
-    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    INVITE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "rfc3264 send inactive t38 a_sdp" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
@@ -161,11 +163,13 @@
 <recv response="200" crlf="true">
     <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
 </recv>
+
 <send>
 <![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -193,7 +197,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: "Pending Test Wout Re-INVITE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
@@ -257,7 +261,7 @@
 
 <send>
 <![CDATA[
-    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    ACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
     [last_from:]
     [last_to:]
