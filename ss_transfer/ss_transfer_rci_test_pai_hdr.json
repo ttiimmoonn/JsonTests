@@ -44,10 +44,11 @@
     }
   ],
   "PreConf": [
-    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%2.Number%%} chold ctr clip cnip",
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} chold",
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} ctr",
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%2.Number%%} cnip",
     "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication pai",
     "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication pai",
     "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication pai",
@@ -57,7 +58,8 @@
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} chold",
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} ctr",
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} clip",
-    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%2.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%2.Number%%} chold ctr clip cnip",
     "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
     "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
     "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
