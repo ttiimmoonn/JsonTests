@@ -71,6 +71,9 @@
     "/domain/%%DEV_DOM%%/cc/agent/set %%1.Number%% pickup true ",
     "/domain/%%DEV_DOM%%/cc/agent/set %%0.Number%% display_name %%AGENT0_NAME%%",
     "/domain/%%DEV_DOM%%/cc/agent/set %%1.Number%% display_name %%AGENT1_NAME%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%3.Number%% clip cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%3.Number%% cnip",
     "sleep 10"
   ],
   "PostConf": [
@@ -83,7 +86,10 @@
     "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cc_agent",
     "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cc_agent",
     "/domain/%%DEV_DOM%%/ss/deactivate %%2.Number%% cc_agent",
-    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent"
+    "/domain/%%DEV_DOM%%/ss/disable %%2.Number%% cc_agent",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%3.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%3.Number%% clip cnip"
   ],
   "Tests": [
     {
