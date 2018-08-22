@@ -1,0 +1,225 @@
+{
+  "TestName": "user_send_dname_from_b_side",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 1
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%ALERTING_DNAME%%": "\"Alerting DNAME\"",
+      "%%CONNECTED_DNAME%%": "\"Connected DNAME\"",
+      "%%ALIAS_B_DNAME%%": "\"Alias DNAME\"",
+      "%%ALERTING_NUMBER%%": "89134386578",
+      "%%CONNECTED_NUMBER%%": "89134852323"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clip"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clip"
+  ],
+  "Tests": [
+    {
+      "Name": "send_to_with_dname",
+      "Description": "Проверка передачи display_name со стороны Б из заголовка To. Передаём display_name в поле To: со стороны Б и проверяем его наличие в RPI на стороне А.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_WITH_DNAME_IN_TO_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "dname/uas_send_dname_in_to_hdr.xml",
+                  "Options": "-m 1 -set DNAME %%ALERTING_DNAME%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%ALERTING_DNAME%% -set CHK_ALERTING_NUMBER %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_to_wout_dname",
+      "Description": "Проверка передачи номера вместо display_name в случае, когда имя ни каким образом не было передано со стороны Б. Не передаём display_name в поле To: со стороны Б и проверяем, что в RPI вместо Dname номер.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_WOUT_DNAME_IN_TO_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%1.Number%% -set CHK_ALERTING_NUMBER %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_dname_in_rpi_header",
+      "Description": "Проверка передачи DNAME со стороны Б. А звонит на Б, Б в 180 ответе передаёт ALERTING_DNAME. Ожидается, что в 180 ответе на стороне А в Remote-Party-ID будет ALERTING_DNAME. Б в 200 ответе передаёт CONNECTED_DNAME. Ожидается, что на сторне А в 200 ответ в Remote-Party-ID  будет CONNECTED_DNAME.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_WITH_DNAME_IN_RPI_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "dname/uas_send_dname_in_rpi_hdr.xml",
+                  "Options": "-m 1 -set ALERTING_DNAME %%ALERTING_DNAME%% -set ALERTING_NUMBER %%ALERTING_NUMBER%% -set CONNECTED_DNAME %%CONNECTED_DNAME%% -set CONNECTED_NUMBER %%CONNECTED_NUMBER%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%ALERTING_DNAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%CONNECTED_DNAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ignore_rpi_if_dname_is_setted_on_alias",
+      "Description": "Проверка игнорирования display_name со стороны Б в случае, когда display_name установлен на alias. Абоненту Б устанавливаем display_name на уровне alias. А звонит на Б, Б передает display_name в 180 и 200 сообщениях в заголовке Remote-Party-ID. Ожидается, что на сторону а в 180 и 200 сообщениях придёт display_name, который установлен на alias.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_B_DNAME%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_WITH_DNAME_IN_RPI_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "dname/uas_send_dname_in_rpi_hdr.xml",
+                  "Options": "-m 1 -set ALERTING_DNAME %%ALERTING_DNAME%% -set ALERTING_NUMBER %%ALERTING_NUMBER%% -set CONNECTED_DNAME %%CONNECTED_DNAME%% -set CONNECTED_NUMBER %%CONNECTED_NUMBER%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": " -m 1 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%% -set CHK_ALERTING_NAME %%ALIAS_B_DNAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%ALIAS_B_DNAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
+          ]
+        }
+      ]
+    }
+  ]
+}

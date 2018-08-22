@@ -1,0 +1,167 @@
+{
+  "TestName": "trunk_send_dname_from_b_side",
+  "AutoTest": true,
+  "Trunks": [
+    {
+      "TrunkId": 0,
+      "TrunkName": "sip_dname_test_trunk",
+      "Port": 5094,
+      "SipDomain": "%%DEV_DOM%%",
+      "SipGroup": "dname.group"
+    }
+  ],
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 1
+    }
+  ],
+  "UserVar": [
+    {
+      "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfZm9yX2RuYW1lX3RydW5rX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4KICA8cnVsZSBuYW1lPSJydWxlMSI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGV4dGVybmFsPgogICAgICAgIDx0cnVuayB2YWx1ZT0ic2lwX2RuYW1lX3Rlc3RfdHJ1bmsiLz4KICAgICAgPC9leHRlcm5hbD4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KPC9jb250ZXh0Pg==",
+      "%%trunk_ctx_name%%": "ctx_for_dname_trunk_test",
+      "%%TRUNK_NUMBER%%": "0001",
+      "%%CONNECTED_NUMBER%%": "89134852323",
+      "%%ALERTING_NUMBER%%": "89134386578",
+      "%%ALERTING_DNAME%%": "\"Alerting DNAME\"",
+      "%%CONNECTED_DNAME%%": "\"Connected DNAME\"",
+      "%%TO_DNAME%%": "\"DNAME in to header\""
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare default.routing %%Tr.0.SipGroup%% %%Tr.0.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.0.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%trunk_ctx_name%%"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.0.SipGroup%% %%Tr.0.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/routing/delete %%trunk_ctx_name%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing"
+  ],
+  "Tests": [
+   {
+      "Name": "send_to_with_dname",
+      "Description": "Проверка передачи display_name со стороны Б из заголовка To. Передаём display_name в поле To: со стороны Б и проверяем его наличие в RPI на стороне А.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 0,
+              "WriteStat": true,
+              "Name": "UAS_WITH_DNAME_IN_TO_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "dname/uas_send_dname_in_to_hdr.xml",
+                  "Options": "-m 1 -set DNAME %%TO_DNAME%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%0.SipDomain%% -set CHK_ALERTING_NAME %%TO_DNAME%% -set CHK_ALERTING_NUMBER %%TRUNK_NUMBER%% -set CHK_CONNECTED_NUMBER %%TRUNK_NUMBER%% -set CHK_CONNECTED_NAME %%TO_DNAME%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_to_wout_dname",
+      "Description": "Проверка передачи номера вместо display_name в случае, когда имя ни каким образом не было передано со стороны Б. Не передаём display_name в поле To: со стороны Б и проверяем, что в RPI вместо Dname номер.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 0,
+              "WriteStat": true,
+              "Name": "UAS_WOUT_DNAME_IN_TO_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%0.SipDomain%% -set CHK_ALERTING_NAME %%TRUNK_NUMBER%% -set CHK_ALERTING_NUMBER %%TRUNK_NUMBER%% -set CHK_CONNECTED_NAME %%TRUNK_NUMBER%% -set CHK_CONNECTED_NUMBER %%TRUNK_NUMBER%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_dname_in_rpi_header_from_trunk",
+      "Description": "Проверка передачи DNAME со стороны Б. А звонит на Б, Б в 180 ответе передаёт ALERTING_DNAME. Ожидается, что в 180 ответе на стороне А в Remote-Party-ID будет ALERTING_DNAME. Б в 200 ответе передаёт CONNECTED_DNAME. Ожидается, что на сторне А в 200 ответ в Remote-Party-ID  будет CONNECTED_DNAME.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 0,
+              "WriteStat": true,
+              "Name": "UAS_WITH_DNAME_IN_RPI_HDR",
+              "Commands": [
+                {
+                  "SourceFile": "dname/uas_send_dname_in_rpi_hdr.xml",
+                  "Options": "-m 1 -set ALERTING_DNAME %%ALERTING_DNAME%% -set ALERTING_NUMBER %%ALERTING_NUMBER%% -set CONNECTED_DNAME %%CONNECTED_DNAME%% -set CONNECTED_NUMBER %%CONNECTED_NUMBER%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_CHK_RPI_DNAME",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": " -m 1 -set CDPN %%TRUNK_NUMBER%% -set CDPNDOM %%0.SipDomain%% -set CHK_ALERTING_NAME %%ALERTING_DNAME%% -set CHK_ALERTING_NUMBER %%ALERTING_NUMBER%% -set CHK_CONNECTED_NAME %%CONNECTED_DNAME%% -set CHK_CONNECTED_NUMBER %%CONNECTED_NUMBER%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
