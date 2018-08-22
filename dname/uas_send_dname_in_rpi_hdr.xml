@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAS send dname in to hdr">
-<Global variables="ALERTING_DNAME,CONNECTED_DNAME,CONNECTED_NUMBER"/>
+<Global variables="ALERTING_DNAME,CONNECTED_DNAME,CONNECTED_NUMBER,ALERTING_NUMBER"/>
 
 <recv request="INVITE">
 <action>
@@ -30,7 +30,7 @@
     [last_To:]
     [last_Call-ID:]
     [last_CSeq:]
-    Remote-Party-ID: "[$ALERTING_DNAME]" <sip:[$number]@[local_ip]>
+    Remote-Party-ID: "[$ALERTING_DNAME]" <sip:[$ALERTING_NUMBER]@[local_ip]>
     Content-Length: 0
 ]]>
 </send>
