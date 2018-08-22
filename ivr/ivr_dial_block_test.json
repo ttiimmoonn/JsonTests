@@ -50,17 +50,34 @@
   "UserVar": [
     {
       "%%IVR_DIAL_TEST%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"play_28\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":2},\"cases\":{\"Busy/No answer\":\"dial_26\",\"Error\":\"dial_27\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":720,\"cy\":425},{\"cx\":630,\"cy\":480}],\"text_pos\":0.2},\"Error\":{\"points\":[{\"cx\":810,\"cy\":370},{\"cx\":810,\"cy\":425},{\"cx\":810,\"cy\":480}],\"text_pos\":0.2}}},\"dial_26\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%2.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":3,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":540,\"cy\":575},{\"cx\":450,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":2,\"y\":4}},\"Error\":{\"points\":[{\"cx\":630,\"cy\":520},{\"cx\":630,\"cy\":575},{\"cx\":630,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":4}}}},\"dial_27\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"%%3.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":3},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":900,\"cy\":575},{\"cx\":990,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":5,\"y\":4}},\"Error\":{\"points\":[{\"cx\":810,\"cy\":520},{\"cx\":810,\"cy\":575},{\"cx\":810,\"cy\":630}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":4}}}},\"play_28\":{\"name\":\"play\",\"params\":{\"description\":\"\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"next\":\"dial_25\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2}}}},\"name\":\"ivr_dial_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%IVR_LOOP_TEST%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":4,\"y\":0},\"cases\":{\"next\":\"dial_25\"},\"links\":{\"next\":{\"points\":[{\"cx\":810,\"cy\":70},{\"cx\":810,\"cy\":125},{\"cx\":810,\"cy\":180}],\"text_pos\":0.2}}},\"dial_25\":{\"name\":\"dial\",\"params\":{\"description\":\"\",\"numbers\":\"CDPN\",\"noanswer_timeout\":5},\"pos\":{\"x\":4,\"y\":1},\"cases\":{\"Error\":\"undefined\",\"Busy/No answer\":\"undefined\"},\"links\":{\"Error\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":810,\"cy\":275},{\"cx\":810,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":4,\"y\":2}},\"Busy/No answer\":{\"points\":[{\"cx\":810,\"cy\":220},{\"cx\":720,\"cy\":275},{\"cx\":630,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":3,\"y\":2}}}}},\"name\":\"ivr_dial_block_test\",\"description\":\"\",\"version\":\"3.9.0.117\"}",
-      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfZGlhbF9ibG9ja190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDEiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfZGlhbF9ibG9ja190ZXN0Ii8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4="
+      "%%IVR_CALL_TO_VAR%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"dial_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"dial_2\":{\"name\":\"dial\",\"params\":{\"description\":\"DialBlock\",\"numbers\":\"DIAL_NUMBER\",\"noanswer_timeout\":5},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"ivr_dial_block_test\",\"description\":\"\",\"version\":\"3.11.0.218\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}",
+      "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfZGlhbF9ibG9ja190ZXN0IiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9faXZyIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IkEwMDElIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8YWN0aW9ucz4KICAgICAgIDxzZXRfb3B0aW9ucz4KICAgICAgICA8b3B0aW9uIGtleT0iaXZyX3ZhcmlhYmxlOmRpYWxfbnVtYmVyIiB2YWx1ZT0ieyV9Ii8+CiAgICAgICA8L3NldF9vcHRpb25zPgogICAgPC9hY3Rpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9kaWFsX2Jsb2NrX3Rlc3QiLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KICA8cnVsZSBuYW1lPSJ0b19sb2NhbCI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+CiAgICAgIDxmaW5hbCB2YWx1ZT0idHJ1ZSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGxvY2FsLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KPC9jb250ZXh0Pg==",
+      "%%ALIAS_B_DNAME%%": "\"User B DNAME\""
     }
   ],
   "PreConf": [
     "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
-    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_dial_block_test"
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_dial_block_test",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication none",
+    "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
-    "/domain/%%DEV_DOM%%/routing/delete ivr_dial_block_test"
+    "/domain/%%DEV_DOM%%/routing/delete ivr_dial_block_test",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% remote-ctr-indication --force",
+    "/domain/%%DEV_DOM%%/sip/user/clean %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication --force"
   ],
   "Tests": [
     {
@@ -271,6 +288,67 @@
         {
           "SendSSHCommand": [
             "domain/%%DEV_DOM%%/ivr/script/delete ivr_dial_block_test"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "ivr_call_to_var_which_set_by_routing",
+      "Description": "Проверка вызова посредством блока dial на переменную, установленную на маршрутизации. Импортируем контекст, который устанавливает переменную DIAL_NUMBER по префиксу A001{%}. Импортируем скрипт с блоком Dial, который звонит на переменную DIAL_NUMBER. Делаем вызов на намер A001[Number]. Ожидается, что вызов поступит на [Number] (параллельно проверяем обновление DNAME). Далее делаем вызов на номер A001. Ожидается, что вызов отобьётся 487 ответом.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%ALIAS_B_DNAME%%",
+            "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_dial_block_test --json %%IVR_CALL_TO_VAR%%",
+            "/domain/%%DEV_DOM%%/sip/user/set %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% remote-ctr-indication rpi"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001%%1.Number%% -set CDPNDOM %%0.SipDomain%% -set DISPLAY_NAME \"IVR DIAL BLOCK TEST (CALL_TO_VAR)\" -set CHK_ALERTING_NAME %%ALIAS_B_DNAME%% -set CHK_ALERTING_NUMBER %%1.Number%% -set CHK_CONNECTED_NAME %%ALIAS_B_DNAME%% -set CHK_CONNECTED_NUMBER %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "ivr/uac_recv_487.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "domain/%%DEV_DOM%%/ivr/script/delete ivr_dial_block_test",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName",
+            "/domain/%%DEV_DOM%%/sip/user/set %%3.SipGroup%% %%3.Number%%@%%3.SipDomain%% remote-ctr-indication none"
           ]
         }
       ]
