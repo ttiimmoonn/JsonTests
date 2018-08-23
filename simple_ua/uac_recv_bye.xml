@@ -91,7 +91,6 @@
 
 <recv response="180" optional="true" next="call_continue">
     <action>
-        <ereg regexp="Remote-Party-ID:" check_it="true" search_in="msg" assign_to="dummy"/>
         <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,alerting_name,alerting_number"/>
     </action>
 </recv>
