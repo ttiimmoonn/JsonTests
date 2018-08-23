@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
-<scenario name = "SIP INFO VIDEO TEST">
+<scenario name = "uac send dtmf in application/dtmf-relay">
 
 <Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
 <nop hide="true">
