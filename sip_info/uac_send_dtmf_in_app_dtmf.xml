@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "SIP INFO VIDEO TEST">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
+<nop hide="true">
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CGPN" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="cgpn" value="[service]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="CGPN">
+    <action>
+        <assignstr assign_to="cgpn" value="[$CGPN]" />
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv response="100" optional="true"></recv>
+
+<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
+<recv response="401" optional="true" auth="true" next="auth_invite">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+    </action>
+ </recv>
+
+<label id="call_continue" />
+
+<recv response="100" optional="true"></recv>
+<recv response="183" optional="true"></recv>
+<recv response="180" optional="true"></recv>
+<recv response="200" auth="true">
+    <action>
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
+    </action>
+</recv>
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    0
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    1
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    2
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    3
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    4
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    5
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    6
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    7
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    8
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    9
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    10
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    11
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    12
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    13
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    14
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    15
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send retrans="500">
+<![CDATA[
+    INFO [$contact] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id]
+    CSeq: [cseq] INFO
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/dtmf
+    Content-Length: [len]
+
+    16
+]]>
+</send>
+
+<recv response="200"/>
+
+<pause milliseconds="1000"/>
+
+<send>
+<![CDATA[
+    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [cseq] BYE
+    Max-Forwards: 70
+    Content-Length: 0
+]]>
+</send>
+
+<recv response="200" next="end" crlf="true"></recv>
+
+<!--Отправка INVITE c аутентификацией -->
+<label id="auth_invite"/>
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<!-- Уходим в label call_continue -->
+<send next="call_continue" crlf="true">
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    From: <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    [authentication]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<label id="end"/>
+<pause milliseconds="2000"/>
+</scenario>

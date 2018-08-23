@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "uas recv dtmf in application/dtmf">
+
+<recv request="INVITE">
+    <action>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="To:" check_it="true" assign_to="dummy,local_number"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<send>
+<![CDATA[
+    SIP/2.0 180 Ringing
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="1100"/>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[$local_tag]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=sipp 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK"></recv>
+
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="0" search_in="msg" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="1" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="2" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="3" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="4" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="5" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="6" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="7" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="8" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="9" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="10" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="11" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="12" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="13" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="14" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="15" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="INFO">
+    <action>
+        <ereg regexp="16" search_in="msg" check_it="true" assign_to="dummy"/>
+        <ereg regexp="application/dtmf" search_in="hdr" header="Content-Type:" check_it="true" assign_to="dummy"/>
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="BYE"></recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+</scenario>
