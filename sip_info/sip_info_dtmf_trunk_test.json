@@ -1,0 +1,140 @@
+{
+  "TestName": "trunk_sip_info_dtmf_test",
+  "AutoTest": true,
+  "Trunks": [
+    {
+      "TrunkId": 1,
+      "TrunkName": "trunk_sip_info_dtmf_1",
+      "Port": 5094,
+      "SipDomain": "%%DEV_DOM%%",
+      "SipGroup": "dtmf_test"
+    },
+    {
+      "TrunkId": 2,
+      "TrunkName": "trunk_sip_info_dtmf_2",
+      "Port": 5099,
+      "SipDomain": "%%DEV_DOM%%",
+      "SipGroup": "dtmf_test"
+    }
+  ],
+  "UserVar": [
+    {
+      "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJzaXBfaW5mb19kdG1mX3Rlc3QiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4KICA8cnVsZSBuYW1lPSJydWxlMSI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGV4dGVybmFsPgogICAgICAgIDx0cnVuayB2YWx1ZT0idHJ1bmtfc2lwX2luZm9fZHRtZl8xIi8+CiAgICAgIDwvZXh0ZXJuYWw+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4=",
+      "%%to_trunk_ctx_name%%": "sip_info_dtmf_test",
+      "%%trunk_number_1%%": "0001",
+      "%%trunk_number_2%%": "0002"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%to_trunk_ctx%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare default_routing %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%to_trunk_ctx_name%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%Tr.2.SipGroup%% %%Tr.2.TrunkName%%@%%Tr.2.SipDomain%% routing.context %%to_trunk_ctx_name%%"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/routing/delete %%to_trunk_ctx_name%%"
+  ],
+  "Tests": [
+    {
+      "Name": "check_sending_dtmf_in_app_dtmf",
+      "Description": "Проверка отправки dtmf методом SIP INFO c content-type: application/dtmf. Настраиваем транк, чтобы исходящие SIP INFO для dtmf шли с application/dtmf. Делаем вызов на данный транк и отправляем все возможные dtmf сигналы. Ожидается, что dtmf сигналы протраслируется и будут соответствовать content-type: application/dtmf (0-16).",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% dtmf-relay false"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_DTMF",
+              "Commands": [
+                {
+                  "SourceFile": "sip_info/uas_check_app_dtmf_content.xml",
+                  "Options": "-m 2",
+                  "SippType": "uas",
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "Name": "UAC_SEND_DTMF",
+              "Commands": [
+                {
+                  "SourceFile": "sip_info/uac_send_dtmf_in_app_dtmf_relay.xml",
+                  "Options": "-m 1 -set CDPN %%trunk_number_2%% -set CDPNDOM %%Tr.1.SipDomain%% -set CGPNDOM %%Tr.2.SipDomain%% -set CGPN %%trunk_number_1%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                },
+                {
+                  "SourceFile": "sip_info/uac_send_dtmf_in_app_dtmf.xml",
+                  "Options": "-m 1 -set CDPN %%trunk_number_2%% -set CDPNDOM %%Tr.1.SipDomain%% -set CGPNDOM %%Tr.2.SipDomain%% -set CGPN %%trunk_number_1%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "check_sending_dtmf_in_app_dtmf_relay",
+      "Description": "Проверка отправки dtmf методом SIP INFO c content-type: application/dtmf-relay. Настраиваем транк, чтобы исходящие SIP INFO для dtmf шли с application/dtmf-relay, а также устанавливаем параметр dtmf-duration в 80. Делаем вызов на данный транк и отправляем все возможные dtmf сигналы. Ожидается, что dtmf сигналы протраслируются и будут соответствовать content-type: application/dtmf-relay (0-9,*,#,ABCD,hookflash), также ожидается, что параметр Duration будет установлен в 80.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% dtmf-relay true",
+            "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% dtmf-duration 80"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_DTMF",
+              "Commands": [
+                {
+                  "SourceFile": "sip_info/uas_check_app_dtmf_relay_content.xml",
+                  "Options": "-m 2",
+                  "SippType": "uas",
+                  "Timeout": "90s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "Name": "UAC_SEND_DTMF",
+              "Commands": [
+                {
+                  "SourceFile": "sip_info/uac_send_dtmf_in_app_dtmf.xml",
+                  "Options": "-m 1 -set CDPN %%trunk_number_2%% -set CDPNDOM %%Tr.1.SipDomain%% -set CGPNDOM %%Tr.2.SipDomain%% -set CGPN %%trunk_number_1%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                },
+                {
+                  "SourceFile": "sip_info/uac_send_dtmf_in_app_dtmf_relay.xml",
+                  "Options": "-m 1 -set CDPN %%trunk_number_2%% -set CDPNDOM %%Tr.1.SipDomain%% -set CGPNDOM %%Tr.2.SipDomain%% -set CGPN %%trunk_number_1%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
