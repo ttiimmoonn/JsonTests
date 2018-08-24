@@ -44,7 +44,7 @@
     [last_CSeq:]
     Require: 100rel
     Rseq: [cseq]
-    Contact: <sip:[$local_number][local_ip]:[local_port]>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -100,7 +100,7 @@
     To:[$inv_to];tag=[$local_tag]
     [last_call-id]
     CSeq: [$inv_cseq] INVITE
-    Contact: <sip:[$local_number][local_ip]:[local_port];user=phone>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port];user=phone>
     Content-Length: [len]
     Content-Type: application/sdp
     

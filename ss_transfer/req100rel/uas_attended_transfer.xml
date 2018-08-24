@@ -47,7 +47,7 @@
     [last_CSeq:]
     Require: 100rel
     Rseq: [cseq]
-    Contact: <sip:[$local_number][local_ip]:[local_port]>
+    Contact: <sip:[$local_number]@[local_ip]:[local_port]>
     Content-Type: application/sdp
     Content-Length: [len]
 
