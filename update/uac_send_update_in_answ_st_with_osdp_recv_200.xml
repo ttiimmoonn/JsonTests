@@ -81,6 +81,9 @@
     <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
         <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
+        <ereg regexp="o=([^ ]+)\s([^ ]+)\s([^ ]+)" check_it="true" search_in="body" assign_to="dummy,dummy,first_ss_id,first_ss_vrs"/>
+        <todouble assign_to="first_ss_vrs" variable="first_ss_vrs"/>
+        <todouble assign_to="first_ss_id" variable="first_ss_id"/>
     </action>
  </recv>
 
@@ -122,6 +125,9 @@
 <recv response="200">
     <action>
         <ereg regexp="m=audio\s([0-9]+)\sRTP/AVP\s8" search_in="body" check_it="true" assign_to="dummy"/>
+        <ereg regexp="o=([^ ]+)\s([^ ]+)\s([^ ]+)" check_it="true" search_in="body" assign_to="dummy,dummy,second_ss_id,second_ss_vrs"/>
+        <todouble assign_to="second_ss_vrs" variable="second_ss_vrs"/>
+        <todouble assign_to="second_ss_id" variable="second_ss_id"/>
     </action>
 </recv>
 
@@ -185,5 +191,34 @@
 
 <label id="exit"/>
 
+<nop hide="true">
+    <action>
+        <test assign_to="compare_result" variable="second_ss_vrs" compare="greater_than" variable2="first_ss_vrs" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result" condexec_inverse="true">
+    <action>
+        <warning message="First session version ([$first_ss_vrs]) must be greater than second ([$second_ss_vrs])"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
+<nop hide="true">
+    <action>
+        <test assign_to="compare_result" variable="second_ss_id" compare="equal" variable2="first_ss_id" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result" condexec_inverse="true">
+    <action>
+        <warning message="First session id ([$first_ss_id]) must be equal second session id ([$second_ss_id])"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+
 <pause milliseconds="2000"/>
+
 </scenario>

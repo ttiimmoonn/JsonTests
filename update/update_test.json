@@ -36,7 +36,7 @@
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/alias/clean %%0.Number%%  %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile",
-    "/domain/%%DEV_DOM%%/media-profile/remove drop_729",
+    "/domain/%%DEV_DOM%%/media-profile/remove update_test_mp_no_729",
     "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
     "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
     "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clip",
