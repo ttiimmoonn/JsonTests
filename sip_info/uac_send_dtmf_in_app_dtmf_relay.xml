@@ -451,7 +451,7 @@
     Content-Type: application/dtmf-relay
     Content-Length: [len]
 
-    Signal=hookflash
+    Signal=hf
     Duration=100
 ]]>
 </send>
