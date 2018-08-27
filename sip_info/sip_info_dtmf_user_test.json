@@ -1,5 +1,5 @@
 {
-  "TestName": "trunk_sip_info_dtmf_test",
+  "TestName": "user_sip_info_dtmf_test",
   "AutoTest": true,
   "Users": [
     {
