@@ -157,6 +157,7 @@
 <recv response="491" optional="true" crlf="true" next="491_hadling">
     <action>
         <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
     </action>
 </recv>
 
@@ -266,7 +267,7 @@
     [last_from:]
     [last_to:]
     [last_call-id:]
-    [last_CSeq:]    
+    CSeq: [$last_cseq] ACK
     Contact: <sip:[service]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
