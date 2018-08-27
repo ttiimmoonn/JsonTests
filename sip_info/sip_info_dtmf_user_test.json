@@ -36,7 +36,7 @@
   "Tests": [
     {
       "Name": "check_sending_dtmf_in_app_dtmf",
-      "Description": "Проверка отправки dtmf методом SIP INFO c content-type: application/dtmf. Настраиваем транк, чтобы исходящие SIP INFO для dtmf шли с application/dtmf. Делаем вызов на данный транк и отправляем все возможные dtmf сигналы. Ожидается, что dtmf сигналы протраслируется и будут соответствовать content-type: application/dtmf (0-16).",
+      "Description": "Проверка отправки dtmf методом SIP INFO c content-type: application/dtmf. Настраиваем юзера, чтобы исходящие SIP INFO для dtmf шли с application/dtmf. Делаем вызов на данного юзера и отправляем все возможные dtmf сигналы. Ожидается, что dtmf сигналы протраслируется и будут соответствовать content-type: application/dtmf (0-16).",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -85,7 +85,7 @@
     },
     {
       "Name": "check_sending_dtmf_in_app_dtmf_relay",
-      "Description": "Проверка отправки dtmf методом SIP INFO c content-type: application/dtmf-relay. Настраиваем транк, чтобы исходящие SIP INFO для dtmf шли с application/dtmf-relay, а также устанавливаем параметр dtmf-duration в 80. Делаем вызов на данный транк и отправляем все возможные dtmf сигналы. Ожидается, что dtmf сигналы протраслируются и будут соответствовать content-type: application/dtmf-relay (0-9,*,#,ABCD,hookflash), также ожидается, что параметр Duration будет установлен в 80.",
+      "Description": "Проверка отправки dtmf методом SIP INFO c content-type: application/dtmf-relay. Настраиваем юзера, чтобы исходящие SIP INFO для dtmf шли с application/dtmf-relay, а также устанавливаем параметр dtmf-duration в 80. Делаем вызов на данного юзера и отправляем все возможные dtmf сигналы. Ожидается, что dtmf сигналы протраслируются и будут соответствовать content-type: application/dtmf-relay (0-9,*,#,ABCD,hookflash), также ожидается, что параметр Duration будет установлен в 80.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
