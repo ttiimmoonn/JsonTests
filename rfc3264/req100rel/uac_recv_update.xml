@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAC recv UPDATE (intervention)">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
 <User variables="dummy"/>
 <Reference variables="dummy"/>
 
@@ -15,16 +15,28 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="CGPN" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="cgpn" value="[service]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="CGPN">
+    <action>
+        <assignstr assign_to="cgpn" value="[$CGPN]" />
+    </action>
+</nop>
+
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC receive re-INVITE (resync media test)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC receive re-INVITE (resync media test)" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Allow: INVITE, ACK, CANCEL, BYE, UPDATE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Require: 100rel
     Content-Type: application/sdp
@@ -59,7 +71,7 @@
     <action>
         <ereg regexp="[0-9]+" search_in="hdr" header="RSeq:" assign_to="last_rseq" />
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-        <ereg regexp="sip:([^@]+)?@?([^:;>]+)(:[^;>]+)?([^>]+)?" search_in="hdr" header="Contact:" check_it="true" assign_to="contact,dummy,ip,dummy,dummy"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
         <ereg regexp="o=([^ ]+)\s([^ ]+)\s([^ ]+)" check_it="true" search_in="body" assign_to="dummy,dummy,first_ss_id,first_ss_vrs"/>
         <todouble assign_to="first_ss_vrs" variable="first_ss_vrs"/>
         <todouble assign_to="first_ss_id" variable="first_ss_id"/>
@@ -68,7 +80,7 @@
 
 <send>
 <![CDATA[
-    PRACK sip:[$contact] SIP/2.0
+    PRACK [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -115,19 +127,13 @@
     <action>
         <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-        <ereg regexp="sip:([^@]+)?@?([^:;>]+)(:[^;>]+)?([^>]+)?" search_in="hdr" header="Contact:" check_it="true" assign_to="contact,dummy,ip,dummy,dummy"/>
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="contact"/>
     </action>
  </recv>
 
-<nop hide="true">
-    <action>
-        <setdest host="[$ip]" port="[remote_port]" protocol="UDP" />
-    </action>
-</nop>
-
 <send crlf="true">
 <![CDATA[
-    ACK [$contact] SIP/2.0
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     [last_from:]
     [last_to:]
@@ -150,7 +156,7 @@
 <![CDATA[
     BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC receive re-INVITE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC receive re-INVITE" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
@@ -181,12 +187,12 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC receive re-INVITE (resync media test)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC receive re-INVITE (resync media test)" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
     Require: 100rel
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     [authentication]
     Max-Forwards: 70

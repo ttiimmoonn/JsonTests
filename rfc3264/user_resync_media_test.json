@@ -1,5 +1,5 @@
 {
-  "TestName": "resync_media_test",
+  "TestName": "user_resync_media_test",
   "AutoTest": true,
   "Users": [
     {

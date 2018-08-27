@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "test">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
 <User variables="cdpn_dom,cgpn_dom,cdpn,sdp_chk,first_ss_vrs,first_ss_id" />
 <Reference variables="sdp_chk,first_ss_vrs,first_ss_id"/>
 
@@ -15,15 +15,28 @@
     </action>
 </nop>
 
+<nop hide="true" condexec="CGPN" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="cgpn" value="[service]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="CGPN">
+    <action>
+        <assignstr assign_to="cgpn" value="[$CGPN]" />
+    </action>
+</nop>
+
+
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC receive re-INVITE (resync media test)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC receive re-INVITE (resync media test)" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -85,7 +98,7 @@
     [last_to:]
     [last_call-id:]
     CSeq: [$last_cseq] ACK
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -106,7 +119,7 @@
     [last_Via:]
     [last_From:]
     [last_To:]
-    Contact: sip:[service]@[local_ip]:[local_port]
+    Contact: sip:[$cgpn]@[local_ip]:[local_port]
     [last_Call-ID:]
     [last_CSeq:]
     Max-Forwards: 70
@@ -139,7 +152,7 @@
 <![CDATA[
     BYE [$contact] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC receive re-INVITE" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC receive re-INVITE" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
     [last_call-id:]
     CSeq: [cseq] BYE
@@ -165,7 +178,7 @@
     [last_to:]
     [last_call-id:]
     [last_CSeq:]    
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Content-Length: 0
 ]]>
 </send>
@@ -175,11 +188,11 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "UAC receive re-INVITE (resync media test)" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC receive re-INVITE (resync media test)" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Content-Type: application/sdp

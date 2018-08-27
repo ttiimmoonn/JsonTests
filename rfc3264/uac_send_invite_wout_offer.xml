@@ -2,27 +2,40 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "uac_send_invite_wout_o_sdp">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
 <User variables="chk_sdp"/>
 <Reference variables="chk_sdp" />
-    <nop hide="true">
+<nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
     </action>
-    </nop>
+</nop>
+
+<nop hide="true" condexec="CGPN" condexec_inverse="true">
+    <action>
+        <assignstr assign_to="cgpn" value="[service]" />
+    </action>
+</nop>
+
+<nop hide="true" condexec="CGPN">
+    <action>
+        <assignstr assign_to="cgpn" value="[$CGPN]" />
+    </action>
+</nop>
+
 
 <send>
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Simple UAC send bye" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Simple UAC send bye" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Length: 0
 ]]>
@@ -118,11 +131,11 @@
 <![CDATA[
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
-    From: "Simple UAC send bye" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "Simple UAC send bye" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     [authentication]
     Content-Length: 0
     Max-Forwards: 70

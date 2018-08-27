@@ -42,7 +42,7 @@
     Require: 100rel
     Allow: INVITE, ACK, CANCEL, BYE, UPDATE
     Rseq: [cseq]
-    Contact: <sip:[$number][local_ip]:[local_port]>
+    Contact: <sip:[$number]@[local_ip]:[local_port]>
     Content-Type: application/sdp
     Content-Length: [len]
 
