@@ -2,9 +2,10 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "Simple UAC send bye">
 
-<Global variables="CGPN,CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CHK_ALERTING_NAME,CHK_CONNECTED_NAME,CHK_ALERTING_NUMBER,CHK_CONNECTED_NUMBER"/>
-<User variables="dummy,alerting_name,connected_name,alerting_number,connected_number"/>
-<Reference variables="dummy,alerting_name,connected_name,alerting_number,connected_number" />
+<Global variables="CGPN,CDPNDOM,CGPNDOM,CDPN,DISPLAY_NAME,WOUT_DNAME,CHK_ALERTING_NAME,CHK_CONNECTED_NAME,CHK_ALERTING_NUMBER,CHK_CONNECTED_NUMBER,CHK_PROGRESS_NAME,CHK_PROGRESS_NUMBER,CHK_FORWARD_NAME,CHK_FORWARD_NUMBER,HANDLE_UNEXPECTED_MSG"/>
+<User variables="dummy"/>
+<Reference variables="dummy"/>
+
 <nop hide="true">
     <action>
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
@@ -61,10 +62,8 @@
     a=rtpmap:8 PCMA/8000
 ]]>
 </send>
-<recv response="100" optional="true"></recv>
 
-
-
+<recv response="100" optional="true"/>
 
 <!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
 <recv response="401" optional="true" auth="true" next="auth_invite">
@@ -83,8 +82,17 @@
         <ereg regexp="Remote-Party-ID:" check_it_inverse="true" search_in="msg" assign_to="dummy"/>
     </action>
 </recv>
-<recv response="183" optional="true" next="call_continue"></recv>
-<recv response="181" optional="true" next="call_continue"></recv>
+<recv response="183" optional="true" next="call_continue">
+    <action>
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,progress_name,progress_number"/>
+    </action>
+</recv>
+<recv response="181" optional="true" next="call_continue">
+    <action>
+       <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,forward_name,forward_number"/>
+    </action>
+</recv>
+
 <recv response="180" optional="true" next="call_continue">
     <action>
         <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,alerting_name,alerting_number"/>
@@ -94,15 +102,11 @@
     <action>
          <!--Забрали CSeq -->
         <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
-        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="remote_target"/>
         <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,connected_name,connected_number"/>
     </action>
- </recv>
-<nop hide="true">
-    <action>
-        <setdest host="[$new_ip]" port="[remote_port]" protocol="[transport]" />
-    </action>
-</nop>
+</recv>
+
 <send crlf="true">
 <![CDATA[
     ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
@@ -125,7 +129,7 @@
 
 <send>
 <![CDATA[
-    BYE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    BYE [$remote_target] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$display_name] <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>[peer_tag_param]
@@ -136,9 +140,8 @@
 ]]>
 </send>
 
-<recv response="200" next="end" crlf="true"></recv>
+<recv response="200" next="end" crlf="true"/>
 
-<!--Отправка INVITE c аутентификацией -->
 <label id="auth_invite"/>
 
 <send>
@@ -178,7 +181,59 @@
 ]]>
 </send>
 
+<label id="_unexp.main"/>
+
+<!-- Handle unexpected address_update -->
+
+<nop condexec="HANDLE_UNEXPECTED_MSG" condexec_inverse="true">
+    <action>
+        <warning message="Unexpected message processing is forbidden"/>
+        <jump variable="_unexp.retaddr" />
+    </action>
+</nop>
+
+<recv request="INVITE">
+    <action>
+        <!-- update remote target -->
+        <ereg regexp="sip:([^@]@)?[^>]+" search_in="hdr" header="Contact:" check_it="true" assign_to="remote_target"/>
+        <!-- Update connected name -->
+        <ereg regexp="(\"([^\"]+)\")?\s?<sip:([^;@]+)" search_in="hdr" header="Remote-Party-ID:" assign_to="dummy,dummy,connected_name,connected_number"/>
+    </action>
+</recv>
+
+<send retrans="500">
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Content-Type: application/sdp
+    Content-Length: [len]
+
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+<recv request="ACK"/>
+
+<nop>
+  <action>
+    <jump variable="_unexp.retaddr" />
+  </action>
+</nop>
+
 <label id="end"/>
+
+<!-- Check number from 180 Ringing -->
 
 <nop hide="true" condexec="CHK_ALERTING_NUMBER">
     <action>
@@ -188,10 +243,12 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Alerting number check failed. Require Alerting Number: [$CHK_ALERTING_NUMBER]; Current Alerting Number: [$alerting_number]; compare_result: [$compare_result]"/>
+        <warning message="Wrong number in 180 response. Require number: [$CHK_ALERTING_NUMBER]; number in response: [$alerting_number]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
+
+<!-- Check display name from 180 Ringing -->
 
 <nop hide="true" condexec="CHK_ALERTING_NAME">
     <action>
@@ -201,10 +258,72 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Alerting dname check failed. Require Alerting DName: [$CHK_ALERTING_NAME]; Current Alerting DName: [$alerting_name]; compare_result: [$compare_result]"/>
+        <warning message="Wrong display name in 180 response. Require display name: [$CHK_ALERTING_NAME]; display name in response: [$alerting_name]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
+
+<!-- Check number from 183 Session Progress-->
+
+<nop hide="true" condexec="CHK_PROGRESS_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_PROGRESS_NUMBER" variable2="progress_number"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong number in 183 response. Require number: [$CHK_PROGRESS_NUMBER]; number in response: [$progress_number]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<!-- Check display name from 183 Session Progress-->
+
+<nop hide="true" condexec="CHK_PROGRESS_NAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_PROGRESS_NAME" variable2="progress_name"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong display name in 183 response. Require display name: [$CHK_PROGRESS_NAME]; display name in response: [$progress_name]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<!-- Check number from 181 Call Is Being Forwarded-->
+
+<nop hide="true" condexec="CHK_FORWARD_NUMBER">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_FORWARD_NUMBER" variable2="forward_number"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong number in 181 response. Require number: [$CHK_FORWARD_NUMBER]; number in response: [$forward_number]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<!-- Check display name from 181 Call Is Being Forwarded-->
+
+<nop hide="true" condexec="CHK_FORWARD_NAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="CHK_FORWARD_NAME" variable2="forward_name"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Wrong display name in 181 response. Require display name: [$CHK_FORWARD_NAME]; display name in response: [$forward_name]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<!-- Check connected number -->
 
 <nop hide="true" condexec="CHK_CONNECTED_NUMBER">
     <action>
@@ -214,10 +333,12 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Connected number check failed. Require Connected Number: [$CHK_CONNECTED_NUMBER]; Current Connected Number: [$connected_number]; compare_result: [$compare_result]"/>
+        <warning message="Wrong number in 200 response. Require number: [$CHK_CONNECTED_NUMBER]; number in response: [$connected_number]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
+
+<!-- Check connected display name -->
 
 <nop hide="true" condexec="CHK_CONNECTED_NAME">
     <action>
@@ -227,11 +348,10 @@
 
 <nop hide="true" condexec="compare_result">
     <action>
-        <warning message="Connected name check failed. Require Connected DName: [$CHK_CONNECTED_NAME]; Current Connected DName: [$connected_name]; compare_result: [$compare_result]"/>
+        <warning message="Wrong display name in 200 response. Require display name: [$CHK_CONNECTED_NAME]; display name in response: [$connected_name]"/>
         <exec int_cmd="stop_now"/>
     </action>
 </nop>
-
 
 <pause milliseconds="2000"/>
 
