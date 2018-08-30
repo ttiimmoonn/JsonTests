@@ -450,6 +450,63 @@
           ]
         }
       ]
+    },
+    {
+      "Name": "ivr_wout_dname",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName не получен через SIP и не задан на абоненте, на маршрутизации не выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б не будет передано имя. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б не будет передано имя. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_check_dname_re_name"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 2 -d 2000 -set CHK_DNAME \"\" -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A001 -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True -set CHK_CONNECTED_NAME %%DNAME_ALIAS%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN A002 -set CDPNDOM %%0.SipDomain%% -set WOUT_DNAME True -set CHK_CONNECTED_NAME %%DNAME_ALIAS%% -set HANDLE_UNEXPECTED_MSG true -set CHK_CONNECTED_NUMBER %%1.Number%% ",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
+          ]
+        }
+      ]
     }
   ]
 }
