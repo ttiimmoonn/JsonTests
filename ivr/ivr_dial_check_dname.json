@@ -27,13 +27,13 @@
   ],
   "UserVar": [
     {
-      "%%IVR_SCRIPT_BEGIN-DIAL%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"dial_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"dial_2\":{\"name\":\"dial\",\"params\":{\"description\":\"call_to_number_uas\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"ivr_check_dname\",\"description\":\"\",\"version\":\"3.11.0.218\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}",
-      "%%IVR_SCRIPT_BEGIN-PLAY-DIAL%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"play_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"play_2\":{\"name\":\"play\",\"params\":{\"description\":\"Play\",\"play\":[{\"type\":\"tone\",\"name\":\"tone://?f1=100&f2=100&on_msec=25&off_msec=25&duration=1000\",\"location\":\"\",\"group\":\"\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"dial_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2}}},\"dial_3\":{\"name\":\"dial\",\"params\":{\"description\":\"Call\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":1,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":180,\"cy\":425},{\"cx\":90,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":3}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":270,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}}}}},\"name\":\"ivr_play_check_dname\",\"description\":\"\",\"version\":\"3.11.0.218\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}",
+      "%%IVR_SCRIPT_BEGIN_DIAL%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"dial_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"dial_2\":{\"name\":\"dial\",\"params\":{\"description\":\"call_to_number_uas\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":180,\"cy\":275},{\"cx\":90,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":2}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"ivr_check_dname\",\"description\":\"\",\"version\":\"3.11.0.218\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}",
+      "%%IVR_SCRIPT_BEGIN_PLAY_DIAL%%": "{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"play_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"play_2\":{\"name\":\"play\",\"params\":{\"description\":\"Play\",\"play\":[{\"type\":\"tone\",\"name\":\"tone://?f1=100&f2=100&on_msec=25&off_msec=25&duration=1000\",\"location\":\"\",\"group\":\"\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"dial_3\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2}}},\"dial_3\":{\"name\":\"dial\",\"params\":{\"description\":\"Call\",\"numbers\":\"%%1.Number%%\",\"noanswer_timeout\":5},\"pos\":{\"x\":1,\"y\":2},\"cases\":{\"Busy/No answer\":\"undefined\",\"Error\":\"undefined\"},\"links\":{\"Busy/No answer\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":180,\"cy\":425},{\"cx\":90,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":0,\"y\":3}},\"Error\":{\"points\":[{\"cx\":270,\"cy\":370},{\"cx\":270,\"cy\":425},{\"cx\":270,\"cy\":480}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":3}}}}},\"name\":\"ivr_play_check_dname\",\"description\":\"\",\"version\":\"3.11.0.218\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}",
       "%%CTX_TO_IVR%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfY2hlY2tfZG5hbWUiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0iY2FsbF9pbl9pdnJfd2l0aF9wbGF5Ij4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMiIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9wbGF5X2NoZWNrX2RuYW1lIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0iY2FsbF9pbl9pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX2NoZWNrX2RuYW1lIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
-      "%%CTX_TO_IVR_CHANGES_NM%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfY2hlY2tfZG5hbWVfcmVfbmFtZSIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJjYWxsX2luX2l2cl93aXRoX3BsYXkiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAyIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJKb25fU25vdyIvPg0KICAgIDwvYWN0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9wbGF5X2NoZWNrX2RuYW1lIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0iY2FsbF9pbl9pdnIiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAxIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJKb25fU25vdyIvPg0KICAgIDwvYWN0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGl2ciBzY3JpcHQ9Iml2cl9jaGVja19kbmFtZSIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+",
-      "%%DNAME_CONTEXT%%":"Jon_Snow",
-      "%%DNAME_ALIAS%%":"Daenerys_Targaryen",
-      "%%DNAME_SIP%%":"Robb_Stark"
+      "%%CTX_TO_IVR_CHANGES_NM%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJpdnJfY2hlY2tfZG5hbWVfcmVfbmFtZSIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPg0KICA8cnVsZSBuYW1lPSJjYWxsX2luX2l2cl93aXRoX3BsYXkiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJBMDAyIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxhY3Rpb25zPg0KICAgICAgPGNhbGxpbmcgZGlzcGxheV9uYW1lPSJSb3V0aW5nRG5hbWUiLz4NCiAgICA8L2FjdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxpdnIgc2NyaXB0PSJpdnJfcGxheV9jaGVja19kbmFtZSIvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9ImNhbGxfaW5faXZyIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iQTAwMSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8YWN0aW9ucz4NCiAgICAgIDxjYWxsaW5nIGRpc3BsYXlfbmFtZT0iUm91dGluZ0RuYW1lIi8+DQogICAgPC9hY3Rpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8aXZyIHNjcmlwdD0iaXZyX2NoZWNrX2RuYW1lIi8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
+      "%%DNAME_CONTEXT%%":"RoutingDname",
+      "%%DNAME_ALIAS%%":"AliasDname",
+      "%%DNAME_SIP%%":"SipDname"
     }
   ],
   "PreConf": [
@@ -42,9 +42,9 @@
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} clip",
     "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR%%",
     "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%CTX_TO_IVR_CHANGES_NM%%",    
-    "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_check_dname --json %%IVR_SCRIPT_BEGIN-DIAL%%",
-    "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_play_check_dname --json %%IVR_SCRIPT_BEGIN-PLAY-DIAL%%",
-    "/domain/%%DEV_DOM%%/alias/set %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%DNAME_ALIAS%%"
+    "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_check_dname --json %%IVR_SCRIPT_BEGIN_DIAL%%",
+    "/domain/%%DEV_DOM%%/ivr/script/.import --id ivr_play_check_dname --json %%IVR_SCRIPT_BEGIN_PLAY_DIAL%%",
+    "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName %%DNAME_ALIAS%%"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
@@ -54,13 +54,13 @@
     "/domain/%%DEV_DOM%%/ivr/script/delete ivr_play_check_dname",
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} cnip",
     "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} clip",
-    "/domain/tm/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
+    "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% displayName"
 
   ],
   "Tests": [
     {
       "Name": "ivr_set_dname_only_sip",
-      "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из sip.",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено от абонента А. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено от абонента А. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -112,7 +112,7 @@
     },
     {
       "Name": "ivr_set_dname_on_sip_and_alias",
-      "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP и выставлен на абоненте, на маршрутизации не выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в alias.",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName получен через SIP и задан на абоненте, на маршрутизации не выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было задано в alias А. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено в alias А. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -164,14 +164,14 @@
         },
         {
           "SendSSHCommand": [
-            "/domain/tm/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
           ]
         }
       ]
     },
     {
       "Name": "ivr_set_dname_on_sip_and_routing",
-      "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName получен через SIP и на абоненте не задано, на маршрутизации выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было задано в маршрутизации. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено в маршрутизации. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -224,7 +224,7 @@
     },
     {
       "Name": "ivr_set_dname_on_alias_and_routing",
-      "Description": "Проверка имени вызывающего абонента после IVR: dName не получен через SIP, выставлен на абоненте, на маршрутизации выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName не получен через SIP и задан на абоненте, на маршрутизации выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было задано в маршрутизации. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено в маршрутизации. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -276,14 +276,14 @@
         },
         {
           "SendSSHCommand": [
-            "/domain/tm/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
           ]
         }
       ]
     },
     {
       "Name": "ivr_set_dname_only_alias",
-      "Description": "Проверка имени вызывающего абонента после IVR: dName не получен через SIP, выставлен на абоненте, на маршрутизации не выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в alias.",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName не получен через SIP и задан на абоненте, на маршрутизации не выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было задано в alias A. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено  в alias A. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -335,7 +335,7 @@
         },
         {
           "SendSSHCommand": [
-            "/domain/tm/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
           ]
         }
       ]
@@ -343,7 +343,7 @@
     },
     {
       "Name": "ivr_set_dname_only_route",
-      "Description": "Проверка имени вызывающего абонента после IVR: dName не получен через SIP, на абоненте не выставлен и указан в маршрутизации. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName не получен через SIP и не задан на абоненте, на маршрутизации выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было задано в маршрутизации A. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено  в маршрутизации. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -395,7 +395,7 @@
     },
     {
       "Name": "ivr_set_dname_on_sip_alias_and_routing",
-      "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP, выставлен на абоненте и указан в маршрутизации. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
+      "Description": "Проверка передачи имени вызывающего абонента при вызове через ivr блок Dial в случае, когда dName получен через SIP и задан на абоненте, на маршрутизации выставлен. Абонент A звонит на ivr-скрипт, который сразу делает вызов на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было задано в маршрутизации A. Параллельно в 200 ответе на сторону А проверяется передача имени Б в заголовке Remote-Party-ID, которое установлено на уровне alias. Далее абонент А делает вызов на ivr-скрипт, который сначала отвечает на вызов, а потом делает попытку позвонить на абонента Б. Ожидается, что в INVITE к абоненту Б будет передано имя, которое было получено  в маршрутизации. Параллельно проверяется, что на сторону А придёт re-INVITE c заголовком Remote-Party-ID, в котором передаётся имя абонента Б установленное на alias.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -446,7 +446,7 @@
         },
         {
           "SendSSHCommand": [
-            "/domain/tm/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% displayName"
           ]
         }
       ]
