@@ -59,7 +59,7 @@
   ],
   "Tests": [
     {
-      "Name": "cft_set_dname_only_sip",
+      "Name": "ivr_set_dname_only_sip",
       "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP, на абоненте не выставлен, на маршрутизации не выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из sip.",
       "TestProcedure": [
         {
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "Name": "cft_set_dname_on_sip_and_alias",
+      "Name": "ivr_set_dname_on_sip_and_alias",
       "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP и выставлен на абоненте, на маршрутизации не выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в alias.",
       "TestProcedure": [
         {
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "Name": "cft_set_dname_on_sip_and_routing",
+      "Name": "ivr_set_dname_on_sip_and_routing",
       "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP, на абоненте не выставлен, на маршрутизации выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
       "TestProcedure": [
         {
@@ -223,7 +223,7 @@
       ]
     },
     {
-      "Name": "cft_set_dname_on_alias_and_routing",
+      "Name": "ivr_set_dname_on_alias_and_routing",
       "Description": "Проверка имени вызывающего абонента после IVR: dName не получен через SIP, выставлен на абоненте, на маршрутизации выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
       "TestProcedure": [
         {
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "Name": "cft_set_dname_only_alias",
+      "Name": "ivr_set_dname_only_alias",
       "Description": "Проверка имени вызывающего абонента после IVR: dName не получен через SIP, выставлен на абоненте, на маршрутизации не выставлен. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в alias.",
       "TestProcedure": [
         {
@@ -342,7 +342,7 @@
     
     },
     {
-      "Name": "cft_set_dname_only_route",
+      "Name": "ivr_set_dname_only_route",
       "Description": "Проверка имени вызывающего абонента после IVR: dName не получен через SIP, на абоненте не выставлен и указан в маршрутизации. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
       "TestProcedure": [
         {
@@ -394,7 +394,7 @@
       ]
     },
     {
-      "Name": "cft_set_dname_on_sip_alias_and_routing",
+      "Name": "ivr_set_dname_on_sip_alias_and_routing",
       "Description": "Проверка имени вызывающего абонента после IVR: dName получен через SIP, выставлен на абоненте и указан в маршрутизации. Вызов проходит в IVR скрипт, который звонит на Б. Ожидается, что в INVITE к абоненту Б, dname будет из указанного в маршрутизации.",
       "TestProcedure": [
         {
