@@ -457,7 +457,7 @@
       "TestProcedure": [
         {
           "SendSSHCommand": [
-            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_check_dname_re_name"
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context ivr_check_dname"
           ]
         },
         {
