@@ -1,0 +1,228 @@
+{
+  "TestName": "dialer_common_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20004,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+    "%%IVR_DIALER_TEST_SCRIPT%%":"{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"cases\":{\"next\":\"play_2\"},\"pos\":{\"x\":1,\"y\":0},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"play_2\":{\"name\":\"play\",\"params\":{\"description\":\"Play_test_info\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"cases\":{\"next\":\"undefined\"},\"pos\":{\"x\":1,\"y\":1},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"test_dialer\",\"description\":\"\",\"version\":\"3.11.0.151\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ivr/script/.import --id test_dialer --json %%IVR_DIALER_TEST_SCRIPT%%",
+    "/domain/%%DEV_DOM%%/properties/restrictions/set dialer\\channels 1",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 1 --recall_timeout 1 --time_interval 00:00-23:00 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 1",  	
+    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer_retry call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 2 --recall_timeout 10 --time_interval 00:00-23:00 --numbers %%0.Number%% %%1.Number%% --min_duration 2"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/dialer/list",
+    "domain/%%DEV_DOM%%/ivr/script/delete test_dialer",
+    "/domain/%%DEV_DOM%%/ss/dialer/template/remove test_dialer",
+    "/domain/%%DEV_DOM%%/ivr/script/delete test_dialer_retry",
+    "/domain/%%DEV_DOM%%/ss/dialer/template/remove test_dialer_retry",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip"
+  ],
+  "Tests": [
+    {
+      "Name": "dialer_base_test",
+      "Description": "Тест проверки запуска автообзвона. Загужается ivr скрипт для сходящего вызова в котором проигрывается звук activated.wav. Создается шаблон компании с загруженным ivr для обзвона 3х абонентов. Регистрируем трех абонентов и запускаем автообзвон для них. Ожидается, что абоненты примут вызов и компания пройдет успешно.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_0_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml", 
+                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_1_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_2_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/dialer/declare test_1 test_dialer now"
+          ]
+        },
+        {
+			"Sleep" : 15
+        }
+      ]      
+    },
+    {
+      "Name": "dialer_retry_test",
+      "Description": "Тест проверки повторной попытки при автообзвоне. Загужается ivr скрипт для сходящего вызова в котором проигрывается звук activated.wav. Регестрируем двух абонентов и запускаем автообзвон для них. Первый абонент заканчивает диалог быстрее таймера минимального времени, а второй не отвечает на вызов. Ожидается, что SSW через заданное время повторит попытку и абоненты проведут диалог - компания пройдет успешно.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 5"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_RECV_CANCEL",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_cancel.xml", 
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 100",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/ss/dialer/declare test_2 test_dialer_retry now"
+          ]
+        },
+        {
+      "Sleep" : 14
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml", 
+                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml", 
+                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 60"
+          ]
+        }
+      ]      
+    }
+  ]
+}
+
