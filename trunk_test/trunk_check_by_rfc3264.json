@@ -1,0 +1,556 @@
+{
+  "TestName": "trunk_check_by_rfc3264.json",
+  "AutoTest": true,
+  "Trunks": [
+    {
+      "TrunkId": 1,
+      "TrunkName": "test_trunk_rfc3264",
+      "Port": 10110,
+      "SipGroup": "test.gr",
+      "SipDomain": "%%DEV_DOM%%",
+      "RtpPort": 20003
+    }
+  ],
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 11001,
+      "RtpPort": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+      "%%ctx_to_trunk%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfdHJ1bmtfdGVzdF9yZmMzMjY0X2Zvcl91c2VyIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+DQogIDxydWxlIG5hbWU9InRvX3RydW5rIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iRCUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxleHRlcm5hbD4NCiAgICAgIDx0cnVuayB2YWx1ZT0idGVzdF90cnVua19yZmMzMjY0Ii8+DQogICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSIlIi8+DQogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxsb2NhbC8+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
+      "%%ctx_from_trunk%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfdHJ1bmtfdGVzdF9yZmMzMjY0X2Zvcl90cnVuayIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+",
+      "%%ctx_for_trunk%%": "ctx_trunk_test_rfc3264_for_trunk",
+      "%%ctx_for_user%%": "ctx_trunk_test_rfc3264_for_user",
+      "%%expected_max_call_timer%%": "5",
+      "%%max_call_timer_cocon%%": "500",
+      "%%max_call_timer%%": "1000",
+      "%%trunk_number%%":"89134851343"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_to_trunk%%",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_from_trunk%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_for_trunk%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sip_transport udp_only",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% ml line_count=5",
+    "/domain/%%DEV_DOM%%/media-profile/declare test_prof_g729 only_g729 system",
+    "/domain/%%DEV_DOM%%/media-profile/declare test_prof_T38 only_T38 system",
+    "/domain/%%DEV_DOM%%/media-profile/codecs-add test_prof_T38 image T38 true",    
+    "/domain/%%DEV_DOM%%/media-profile/codecs-add test_prof_g729 audio G729 18 true"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_trunk%%",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_user%%",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% ml",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% ml",
+    "/domain/%%DEV_DOM%%/media-profile/remove test_prof_g729",
+    "/domain/%%DEV_DOM%%/media-profile/remove test_prof_T38"
+  ],
+  "Tests": [
+    {
+      "Name": "check_oa_exchange_with_simcap_rfc3407",
+      "Description": "Проверка согласования медиа при наличии sdp-атрибутов из rfc3407. INV поступает из транка на SSW с предложением в SDP. Ожидается, что согласование медиа пройдет удачно и вызов пройдет успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE_RFC3407_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_send_bye_with_sdp_rfc3407.xml",
+                  "Options": "-m 1 -d 5000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_BYE_RFC3407_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_bye_with_sdp_rfc3407.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "check_oa_exchange_2_video_codecs",
+      "Description": "Проверка корректности o/a при передаче 2 видео кодеков в a_sdp.  INV поступает из транка на SSW с предложением в SDP. SSW предлагает UAS 2 видеокодека 96 и 97. Ожидается, что согласование медиа пройдет удачно и вызов пройдет успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_2_VIDEO_CODECS",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_send_2_video_codecs.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "replace_fax_section_to_media",
+      "Description": "Проверка перехода на медию при замене секции image на audio. INV поступает с транка на SSW. Устанавливает соединение с PCMA. После этого, UAS согласует с SSW медиа T38. SSW согласует с UAC медиа T38. После UAS снова согласовывает возвращение медиа на PCMA. Ожидается, что SSW согласует медиа в обоих плечах согласно запросам UAS и вызов пройдет успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_REPLACE_IMAGE_TO_AUDIO",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_replace_fax_section.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RECV_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_t38_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "reject_re_invite_with_t38",
+      "Description": "Проверка пересогласования плеча А на 711 в случае если плечо Б отбило запрос на переход на t38 488 ответом. INV поступает с транка на SSW. Устанавливается соединение по PCMA, после чего UAC пересогласовывает медиа c SSW по Т38. Когда SSW пытается добавить в медиа Т38 в плече Б, UAS отказывается 488 сообщением. После этого SSW возвращает медиа без T38 на стороне А с UAC. Ожидается, что SSW обработает запрос на пересогласование медиа и отказ 488, медиа будет согласованно, диалог завершится успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_488_ON_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_send_488_on_t38.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_T38_RE_INVITE",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_re_inv_with_media_after_t38.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_inactive_image_section",
+      "Description": "При получении offer с image, в a_sdp отдаём image c атрибутом a=inactive. После чего со стороны UAC высылаем новый offer с активным image. Ожидается, что SSW согласует медиа в обоих плечах и вызов пройдет успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_T38_RE_INV",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_replace_fax_section.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_send_inactive_image_in_answer.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "refresh_inactive_t38_to_audio",
+      "Description": "При получении offer с image, в a_sdp отдаём image c атрибутом a=inactive. Далее со стороны UAC шлём re-invite c PCMA. Ожидается, что SSW согласует медиа в обоих плечах и вызов пройдет успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_T38_RE_INV",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_t38_recv_re_inv_to_media.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_IMAGE_INACTIVE_IN_A_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_refresh_inactive_image_to_audio.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_t38_initial_offer_test",
+      "Description": "Отправляем initial INVITE c offer t38. INV поступает с транка на SSW. SSW устанавливает диалог с UAS по PCMA, а с UAC по Т38, после чего предлагает UAS медиа Т38. Ожидается, что SSW согласует медиа в обоих плечах по Т38 и вызов пройдет успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_RECV_T38_OFFER",
+              "Commands": [
+                {
+                  "SourceFile": "rfc3264/uas_recv_t38_offer.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3264/uas_send_488_on_t38.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "rfc3264/uas_send_488_on_t38_and_recv_re_invite.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_T38_OFFER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_send_t38_offer.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "trunk_test/uac_send_t38_o_and_recv_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                },
+                {
+                  "SourceFile": "trunk_test/uac_send_t38_o_and_reject_re_invite.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_re_invite_wout_sdp",
+      "Description": "Проверка корректности обработки re-invite без sdp. INV поступает с транка на SSW. Устанавливается соединение с медиа PCMA. UAS посылает INV без SDP. Ожидается, что SSW примет этот INV и согласует медиа, диалог пройдет успешно.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_RE_INVITE_WOUT_SDP",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uas_send_re_invite_wout_offer.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_INITIAL_INVITE_WOUT_OFFER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_send_invite_wout_offer.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "send_invite_incompatible_codecs_profile",
+      "Description": "Проверка отклонения вызова с 488 при несоответствии кодеков из медиа профиля и кодеком предложенных UAC. Транку назначается медиа профиль с одним кодеком g729. INV поступает с транка на SSW. Ожидается, что SSW отклонит вызов с ответом 488.",      
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
+            "/domain/%%DEV_DOM%%/alias/set-for-iface %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% media-profile test_prof_g729",
+            "/domain/%%DEV_DOM%%/media-profile/info test_prof_T38"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_INITIAL_INVITE_WOUT_OFFER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_488_sdp_g729_only.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/alias/set-for-iface %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% media-profile default"            
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "check_incompatible_codecs_t38_profile",
+      "Description": "Проверка отклонения вызова с 488 при несоответствии кодеков из медиа профиля абонентов на SSW. Транку назначается медиа профиль с одним кодеком Т38. Абоненту назначается профиль с кодеком G729. INV c T38 в медиа поступает с транка на SSW. Ожидается, что SSW отклонит вызов с ответом 488.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
+            "/domain/%%DEV_DOM%%/alias/set-for-iface %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% media-profile test_prof_T38",
+            "/domain/%%DEV_DOM%%/alias/set-for-iface %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% media-profile-outgoing test_prof_T38",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-remove test_prof_T38 <other> <other> *",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile test_prof_g729",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile-outgoing test_prof_g729",
+            "/domain/%%DEV_DOM%%/media-profile/codecs-remove test_prof_g729 <other> <other> *",
+            "/domain/%%DEV_DOM%%/alias/info %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%%",
+            "/domain/%%DEV_DOM%%/iface/info sip1 %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
+            "/domain/%%DEV_DOM%%/media-profile/info test_prof_T38",
+            "/domain/%%DEV_DOM%%/media-profile/info test_prof_g729"    
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_SEND_INITIAL_INVITE_WOUT_OFFER",
+              "Commands": [
+                {
+                  "SourceFile": "trunk_test/uac_recv_488_sdp_t38_only.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/alias/set-for-iface %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% media-profile default",
+            "/domain/%%DEV_DOM%%/alias/set-for-iface %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% media-profile-outgoing default",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile default",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% media-profile-outgoing default"                       
+          ]
+        }
+      ]
+    }
+  ]
+}
