@@ -49,7 +49,7 @@
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
     "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 1 --recall_timeout 1 --time_interval 00:00-23:00 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 1",  	
-    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer_retry call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 2 --recall_timeout 10 --time_interval 00:00-23:00 --numbers %%0.Number%% %%1.Number%% --min_duration 2"
+    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer_retry call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 2 --recall_timeout 10 --time_interval 00:00-23:00 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 2"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/ss/dialer/list",
@@ -131,7 +131,7 @@
     },
     {
       "Name": "dialer_retry_test",
-      "Description": "Тест проверки повторной попытки автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук activated.wav.  Создаём шаблон компании, в котором указываем данный ivr-скрипт, таймер min_duration (минимальное время разговора) 10 секунд и таймер recall_timeout (время между повторными вызовами) 2 секунды. При поступлении вызова первый абонент завершает вызов быстрее чем min_duration, второй абонент не отвечает на вызов. Ожидается, что SSW через время таймера recall_timeout повторит попытку дозвона и компания пройдет успешно.",
+      "Description": "Тест проверки повторной попытки автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук activated.wav.  Создаём шаблон компании, в котором указываем данный ivr-скрипт, таймер min_duration (минимальное время разговора) 10 секунд и таймер recall_timeout (время между повторными вызовами) 2 секунды. При поступлении вызова первый абонент завершает вызов быстрее чем min_duration секунд, второй абонент не отвечает на вызов, а третий абонент завершит вызов позже чем через min_duration секунд. Ожидается, что SSW по истечению таймера recall_timeout повторит попытку дозвона только для первого и второго абонента.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -166,6 +166,22 @@
                 {
                   "SourceFile": "simple_ua/uas_send_bye.xml",
                   "Options": "-m 1 -d 100",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_2_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -d 3000 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
