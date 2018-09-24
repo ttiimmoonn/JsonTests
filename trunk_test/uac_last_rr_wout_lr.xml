@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "UAC Record-Route Test (wout lr)">
+
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
+<User variables="dummy" />
+<Reference variables="dummy" />
+    
+<nop hide="true">
+    <action>
+        <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
+        <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
+        <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="cgpn" value="[$CGPN]"/>
+        <assignstr assign_to="local_tag" value="[call_number][pid]"/>
+        <assignstr assign_to="send_via" value="Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/UDP proxy2.eltex.ru:5030;branch=z9hG4bK-12385-1-19
+Via: SIP/2.0/UDP proxy1.eltex.ru:5030;branch=z9hG4bK-12385-1-20
+"/>
+        <assignstr assign_to="rr_in_response" value="Record-Route: <sip:[local_ip]:[local_port]>
+Record-Route: <sip:proxy2.eltex.ru;lr>
+Record-Route: <sip:proxy1.eltex.ru;lr>
+"/>
+        <assignstr assign_to="route_in_request" value="Route: <sip:proxy2.eltex.ru;lr>
+Route: <sip:proxy1.eltex.ru;lr>
+Route: <sip:[$cgpn]@[local_ip]:[local_port]>
+"/>
+    </action>
+</nop>
+
+<send>
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    [$send_via]
+    [$rr_in_response]
+    From: "UAC Record-Route Test" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    Call-ID: [call_id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+<recv response="100" optional="true"></recv>
+<!--Если получено 401 идем на label auth_invite и отсылаем INVITE c аутентификацией -->
+<recv response="401" optional="true" auth="true" next="auth_invite">
+    <action>
+        <!--Забрали CSeq -->
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq"/>
+        <!--Забрали branch -->
+        <ereg regexp="(\w|-)*" search_in="hdr" header="branch=" assign_to="last_branch"/>
+        <ereg regexp="((Record-Route:[^\n]+)\n)+" search_in="msg" check_it_inverse="true" assign_to="recv_rr,dummy" />
+    </action>
+ </recv>
+
+<label id="call_continue" />
+
+
+<!--Проверяем, что ссв не присылает rr -->
+
+<recv response="100" optional="true">
+    <action>
+        <ereg regexp="((Record-Route:[^\n]+)\n)+" search_in="msg" check_it_inverse="true" assign_to="recv_rr,dummy" />
+    </action>
+</recv>
+
+<recv response="180">
+    <action>
+        <assignstr assign_to="recv_rr" value="" />
+        <assignstr assign_to="recv_via" value="" />
+        <ereg regexp="((Record-Route:[^\n]+)\n)+" check_it="true" search_in="msg" assign_to="recv_rr,dummy" />
+        <ereg regexp="((Via:[^\n]+)\n)+" search_in="msg" check_it="true" assign_to="recv_via,dummy" />
+    </action>
+</recv>
+<!--Проверяем, что ссв прислал rr хедеры в том же порядке-->
+<nop>
+    <action>
+        <strcmp assign_to="compare_result" variable="recv_rr" variable2="rr_in_response"/>
+    </action>
+</nop>
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Record-Route hdr chk failed. Require rr:\n[$rr_in_response]; Current rr:\n[$recv_rr]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<!--Проверяем, что ссв прислал via хедеры в том же порядке-->
+
+<nop>
+    <action>
+        <strcmp assign_to="compare_result" variable="recv_via" variable2="send_via"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Via hdr chk failed. Require via:\n[$recv_via]; Current via:\n[$recv_via]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<recv response="200" auth="true">
+    <action>
+        <!--Забрали CSeq -->
+        <assignstr assign_to="recv_rr" value="" />
+        <assignstr assign_to="recv_via" value="" />
+        <ereg regexp="[0-9]+" search_in="hdr" header="CSeq:" assign_to="last_cseq" />
+        <ereg regexp="((Record-Route:[^\n]+)\n)+" check_it="true" search_in="msg" assign_to="recv_rr,dummy" />
+        <ereg regexp="((Via:[^\n]+)\n)+" search_in="msg" check_it="true" assign_to="recv_via,dummy" />
+        <ereg regexp="[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" search_in="hdr" header="Contact:" assign_to="new_ip" />
+    </action>
+ </recv>
+
+<!--Проверяем, что ссв прислал rr хедеры в том же порядке-->
+
+<nop>
+    <action>
+        <strcmp assign_to="compare_result" variable="recv_rr" variable2="rr_in_response"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Record-Route hdr chk failed. Require rr:\n[$rr_in_response]; Current rr:\n[$recv_rr]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+
+
+<!--Проверяем, что ссв прислал via хедеры в том же порядке-->
+
+<nop>
+    <action>
+        <strcmp assign_to="compare_result" variable="recv_via" variable2="send_via"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Via hdr chk failed. Require via:\n[$rr_in_response]; Current via:\n[$recv_rr]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<!--
+<nop hide="true">
+    <action>
+        <setdest host="[$new_ip]" port="[remote_port]" protocol="UDP" />
+    </action>
+</nop>
+-->
+
+<send crlf="true">
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<pause milliseconds="1000" crlf="true"/>
+
+<recv request="BYE">
+    <action>
+        <assignstr assign_to="recv_route" value=""/>
+        <ereg regexp="BYE\ssip:([0-9]+\.){3}[0-9]+:[0-9]+\sSIP\/2\.0" check_it="true" search_in="msg" assign_to="dummy" />
+        <ereg regexp="((Route:[^\n]+)\n)+" check_it="true" search_in="msg" assign_to="recv_route,dummy" />
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 200 OK
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<!--Проверяем, что ссв прислал Route хедеры в нужном порядке-->
+<nop>
+    <action>
+        <strcmp assign_to="compare_result" variable="route_in_request" variable2="recv_route"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <warning message="Route hdr chk failed. Require Route:\n[$route_in_request]; Current Route:\n[$recv_route]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop next="end"/>
+
+
+<!--Отправка INVITE c аутентификацией -->
+<label id="auth_invite"/>
+
+
+<send>
+<![CDATA[
+    ACK sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[$last_branch]
+    [last_from:]
+    [last_to:]
+    [last_call-id:]
+    CSeq: [$last_cseq] ACK
+    Content-Length: 0
+]]>
+</send>
+
+<nop>
+    <action>
+        <assignstr assign_to="send_via" value="Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+Via: SIP/2.0/UDP proxy2.eltex.ru:5030;branch=z9hG4bK-12385-1-19
+Via: SIP/2.0/UDP proxy1.eltex.ru:5030;branch=z9hG4bK-12385-1-20
+"/>
+    </action>
+</nop>
+
+<!-- Уходим в label call_continue -->
+<send next="call_continue" crlf="true">
+<![CDATA[
+    INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
+    [$send_via]
+    [$rr_in_response]
+    From: "UAC Record-Route Test" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
+    [last_call-id]
+    CSeq: [cseq] INVITE
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
+    [authentication]
+    Max-Forwards: 70
+    Content-Type: application/sdp
+    Content-Length: [len]
+    
+    v=0
+    o=tester 123456 654321 IN IP[local_ip_type] [local_ip]
+    s=A conversation
+    c=IN IP[local_ip_type] [local_ip]
+    t=0 0
+    m=audio [auto_media_port] RTP/AVP 8
+    a=rtpmap:8 PCMA/8000
+]]>
+</send>
+
+
+<label id="end"/>
+
+</scenario>
