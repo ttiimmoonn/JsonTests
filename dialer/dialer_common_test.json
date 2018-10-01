@@ -4,8 +4,8 @@
   "Users": [
     {
       "UserId": 0,
-      "Number": "156",
-      "Login": "156",
+      "Number": "160",
+      "Login": "160",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
@@ -15,8 +15,8 @@
     },
     {
       "UserId": 1,
-      "Number": "157",
-      "Login": "157",
+      "Number": "161",
+      "Login": "161",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
@@ -26,8 +26,8 @@
     },
     {
       "UserId": 2,
-      "Number": "158",
-      "Login": "158",
+      "Number": "162",
+      "Login": "162",
       "Password": "123",
       "SipDomain": "%%DEV_DOM%%",
       "Expires": 90,
@@ -38,7 +38,7 @@
   ],
   "UserVar": [
     {
-    "%%IVR_DIALER_TEST_SCRIPT%%":"{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"cases\":{\"next\":\"play_2\"},\"pos\":{\"x\":1,\"y\":0},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"play_2\":{\"name\":\"play\",\"params\":{\"description\":\"Play_test_info\",\"play\":[{\"location\":\"system\",\"group\":\"\",\"name\":\"activated.wav\",\"type\":\"file\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"cases\":{\"next\":\"undefined\"},\"pos\":{\"x\":1,\"y\":1},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"test_dialer\",\"description\":\"\",\"version\":\"3.11.0.151\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}"
+    "%%IVR_DIALER_TEST_SCRIPT%%":"{\"actions\":{\"begin_1\":{\"name\":\"begin\",\"params\":{\"description\":\"\"},\"pos\":{\"x\":1,\"y\":0},\"cases\":{\"next\":\"play_2\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":70},{\"cx\":270,\"cy\":125},{\"cx\":270,\"cy\":180}],\"text_pos\":0.2}}},\"play_2\":{\"name\":\"play\",\"params\":{\"description\":\"Play_test_info\",\"play\":[{\"type\":\"tone\",\"name\":\"tone://?f1=100&f2=100&on_msec=100&off_msec=100&duration=8000\",\"location\":\"\",\"group\":\"\",\"variable_type\":\"\"}],\"replay\":\"1\"},\"pos\":{\"x\":1,\"y\":1},\"cases\":{\"next\":\"undefined\"},\"links\":{\"next\":{\"points\":[{\"cx\":270,\"cy\":220},{\"cx\":270,\"cy\":275},{\"cx\":270,\"cy\":330}],\"text_pos\":0.2,\"pos\":{\"x\":1,\"y\":2}}}}},\"name\":\"test_dialer\",\"description\":\"\",\"version\":\"3.11.0.262\",\"settings\":{\"speech\":\"key=&quality=hi&lang=ru-RU&speaker=oksana&speed=1.0&emotion=neutral\"}}"
     }
   ],
   "PreConf": [
@@ -48,12 +48,12 @@
     "/domain/%%DEV_DOM%%/properties/restrictions/set dialer\\channels 1",
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
     "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
-    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 1 --recall_timeout 1 --time_interval 00:00-23:00 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 1",  	
-    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer_retry call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 2 --recall_timeout 10 --time_interval 00:00-23:00 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 2"
+    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 1 --recall_timeout 1 --time_interval 00:00-23:59 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 1",  	
+    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer_retry call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 2 --recall_timeout 31 --time_interval 00:00-23:59 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 4"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/ss/dialer/list",
-    "domain/%%DEV_DOM%%/ivr/script/delete test_dialer",
+    "/domain/%%DEV_DOM%%/ivr/script/delete test_dialer",
     "/domain/%%DEV_DOM%%/ss/dialer/template/remove test_dialer",
     "/domain/%%DEV_DOM%%/ivr/script/delete test_dialer_retry",
     "/domain/%%DEV_DOM%%/ss/dialer/template/remove test_dialer_retry",
@@ -78,7 +78,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml", 
-                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -94,7 +94,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -110,7 +110,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -125,13 +125,13 @@
           ]
         },
         {
-			"Sleep" : 15
+			"Sleep" : 30
         }
       ]      
     },
     {
       "Name": "dialer_retry_test",
-      "Description": "Тест проверки повторной попытки автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук activated.wav.  Создаём шаблон компании, в котором указываем данный ivr-скрипт, таймер min_duration (минимальное время разговора) 10 секунд и таймер recall_timeout (время между повторными вызовами) 2 секунды. При поступлении вызова первый абонент завершает вызов быстрее чем min_duration секунд, второй абонент не отвечает на вызов, а третий абонент завершит вызов позже чем через min_duration секунд. Ожидается, что SSW по истечению таймера recall_timeout повторит попытку дозвона только для первого и второго абонента.",
+      "Description": "Тест проверки повторной попытки автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук activated.wav.  Создаём шаблон компании, в котором указываем данный ivr-скрипт, таймер min_duration (минимальное время разговора) 4 секунды и таймер recall_timeout (время между повторными вызовами) 31 секунда. При поступлении вызова первый абонент завершает вызов быстрее чем min_duration секунд, второй абонент не отвечает на вызов, а третий абонент завершит вызов позже чем через min_duration (8) секунд. Ожидается, что SSW по истечению таймера recall_timeout повторит попытку дозвона только для первого и второго абонента.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
@@ -149,7 +149,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_cancel.xml", 
-                  "Options": "-m 1 -d 2000",
+                  "Options": "-m 1 -d 100",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -181,7 +181,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml",
-                  "Options": "-m 1 -d 3000 -set CHK_CGPN %%0.Number%%",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -196,7 +196,7 @@
           ]
         },
         {
-      "Sleep" : 14
+          "Sleep" : 30
         },
         {
           "StartUA": [
@@ -208,7 +208,7 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml", 
-                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "40s"
@@ -223,9 +223,25 @@
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml", 
-                  "Options": "-m 1 -d 2000 -set CHK_CGPN %%0.Number%%",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_NOT_EXPECT_RECV",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",                   
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "ReqExCode": 255,
                   "Timeout": "40s"
                 }
               ]
