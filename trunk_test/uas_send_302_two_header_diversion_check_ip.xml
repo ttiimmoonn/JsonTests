@@ -61,7 +61,7 @@
     [last_CSeq:]
     Diversion: <sip:[$old_cdpn]@[local_ip]>;reason=user-busy;counter=2
     Diversion: <sip:[$local_number]@[local_ip]>;reason=user-busy;counter=1
-    Contact: <sip:[$cdpn_new]@192.168.118.26;user=phone>
+    Contact: <sip:[$cdpn_new]@[local_ip];user=phone>
     Content-Type: application/sdp
     Content-Length: [len]
 

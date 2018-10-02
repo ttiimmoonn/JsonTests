@@ -47,7 +47,7 @@
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$display_name]<sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
-    To: "[$cdpn_old]" <sip:[$cdpn_old]@[$cdpn_dom]>
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
     Diversion: <sip:[$cdpn_old]@[local_ip]>;reason=user-busy;counter=1
@@ -169,7 +169,7 @@
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
     From: [$display_name]<sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
-    To: "[$cdpn_old]" <sip:[$cdpn_old]@[$cdpn_dom]>
+    To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
     Diversion: <sip:[$cdpn_old]@[local_ip]>;reason=user-busy;counter=1
