@@ -1,5 +1,5 @@
 {
-  "TestName": "dialer_common_test",
+  "TestName": "dialer_test",
   "AutoTest": true,
   "Users": [
     {
@@ -34,6 +34,17 @@
       "Port": 20004,
       "SipGroup": "sip.ab",
       "QParam": 0.5
+    },
+    {
+      "UserId": 3,
+      "Number": "163",
+      "Login": "163",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20006,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
     }
   ],
   "UserVar": [
@@ -42,14 +53,14 @@
     }
   ],
   "PreConf": [
-    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
-    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip",
     "/domain/%%DEV_DOM%%/ivr/script/.import --id test_dialer --json %%IVR_DIALER_TEST_SCRIPT%%",
     "/domain/%%DEV_DOM%%/properties/restrictions/set dialer\\channels 1",
-    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
-    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip",
     "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 1 --recall_timeout 1 --time_interval 00:00-23:59 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 1",  	
-    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer_retry call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 2 --recall_timeout 31 --time_interval 00:00-23:59 --numbers %%0.Number%% %%1.Number%% %%2.Number%% --min_duration 4"
+    "/domain/%%DEV_DOM%%/ss/dialer/template/declare test_dialer_retry call_on_three_users test_dialer %%0.Number%% --lines_limit 1 --calls_limit 2 --recall_timeout 31 --time_interval 00:00-23:59 --numbers %%0.Number%% %%1.Number%% %%2.Number%% %%3.Number%% --min_duration 4"
   ],
   "PostConf": [
     "/domain/%%DEV_DOM%%/ss/dialer/list",
@@ -57,15 +68,15 @@
     "/domain/%%DEV_DOM%%/ss/dialer/template/remove test_dialer",
     "/domain/%%DEV_DOM%%/ivr/script/delete test_dialer_retry",
     "/domain/%%DEV_DOM%%/ss/dialer/template/remove test_dialer_retry",
-    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
-    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip",
-    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%} cnip",
-    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%} clip"
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip"
   ],
   "Tests": [
     {
       "Name": "dialer_base_test",
-      "Description": "Тест проверки запуска автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук activated.wav. Создаём шаблон компании, в котором указываем данный ivr-скрипт. Далее запускаем автообзвон посредством cocon команды, используя ранее созданный шаблон. Ожидается, что всем абонентам поступит вызов, и компания завершится успешно.",
+      "Description": "Тест проверки запуска автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук tone://?f1=100&f2=100&on_msec=100&off_msec=100&duration=8000. Создаём шаблон компании, в котором указываем данный ivr-скрипт. Далее запускаем автообзвон посредством cocon команды, используя ранее созданный шаблон. Ожидается, что всем абонентам поступит вызов, и компания завершится успешно.",
       "TestProcedure": [
         {
           "StartUA": [
@@ -125,19 +136,16 @@
           ]
         },
         {
-			"Sleep" : 30
+          "WaitBackGroundUA": {
+            "timeout": 40
+          }
         }
       ]      
     },
     {
       "Name": "dialer_retry_test",
-      "Description": "Тест проверки повторной попытки автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук activated.wav.  Создаём шаблон компании, в котором указываем данный ivr-скрипт, таймер min_duration (минимальное время разговора) 4 секунды и таймер recall_timeout (время между повторными вызовами) 31 секунда. При поступлении вызова первый абонент завершает вызов быстрее чем min_duration секунд, второй абонент не отвечает на вызов, а третий абонент завершит вызов позже чем через min_duration (8) секунд. Ожидается, что SSW по истечению таймера recall_timeout повторит попытку дозвона только для первого и второго абонента.",
+      "Description": "Тест проверки повторной попытки автообзвона. Импортируем ivr-скрипт для исходящих вызовов, в котором проигрывается звук tone://?f1=100&f2=100&on_msec=100&off_msec=100&duration=8000.  Создаём шаблон компании, в котором указываем данный ivr-скрипт, таймер min_duration (минимальное время разговора) 4 секунды и таймер recall_timeout (время между повторными вызовами) 31 секунда. При поступлении вызова первый абонент завершает вызов быстрее чем min_duration секунд, второй абонент не отвечает на вызов, а третий абонент завершит вызов позже чем через min_duration (8) секунд, четвертый абонент отбивает 486 ответом. Ожидается, что SSW по истечению таймера recall_timeout повторит попытку дозвона только для первого, второго и четвертого абонентов.",
       "TestProcedure": [
-        {
-          "SendSSHCommand": [
-            "domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 5"
-          ]
-        },
         {
           "StartUA": [
             {
@@ -152,7 +160,7 @@
                   "Options": "-m 1 -d 100",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "40s"
+                  "Timeout": "110s"
                 }
               ]
             },
@@ -168,7 +176,7 @@
                   "Options": "-m 1 -d 100",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "40s"
+                  "Timeout": "110s"
                 }
               ]
             },
@@ -184,7 +192,23 @@
                   "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "40s"
+                  "Timeout": "110s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "BackGround": true,
+              "WriteStat": true,
+              "Name": "UAS_3_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "dialer/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "110s"
                 }
               ]
             }
@@ -196,7 +220,9 @@
           ]
         },
         {
-          "Sleep" : 30
+          "WaitBackGroundUA": {
+            "timeout": 110
+          }
         },
         {
           "StartUA": [
@@ -204,14 +230,14 @@
               "Type": "User",
               "UserId": 0,
               "WriteStat": true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_0_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml", 
                   "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "40s"
+                  "Timeout": "60s"
                 }
               ]
             },
@@ -219,14 +245,14 @@
               "Type": "User",
               "UserId": 1,
               "WriteStat": true,
-              "Name": "UAS_RECV_BYE",
+              "Name": "UAS_1_RECV_BYE",
               "Commands": [
                 {
                   "SourceFile": "simple_ua/uas_recv_bye.xml", 
                   "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
-                  "Timeout": "40s"
+                  "Timeout": "60s"
                 }
               ]
             },
@@ -242,15 +268,25 @@
                   "SippType": "uas",
                   "NeedAuth": true,
                   "ReqExCode": 255,
-                  "Timeout": "40s"
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAS_3_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml", 
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
                 }
               ]
             }
-          ]
-        },
-        {
-          "SendSSHCommand": [
-            "domain/%%DEV_DOM%%/timers/core/set no_answer_timeout 60"
           ]
         }
       ]      
