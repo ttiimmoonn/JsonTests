@@ -1,0 +1,1848 @@
+{
+  "TestName": "route_conditions",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "151",
+      "Login": "151",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "152",
+      "Login": "152",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20002,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "153",
+      "Login": "153",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20004,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 3,
+      "Number": "154",
+      "Login": "154",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20006,
+      "SipGroup": "sip.test_route",
+      "QParam": 0.5
+    },
+    {
+      "UserId": 4,
+      "Number": "155",
+      "Login": "155",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 20008,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+      "%%good_display_name%%":"good_display_name",
+      "%%bad_display_name%%":"bad_display_name",
+      "%%conditions_cgpn_in_list%%":"PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjb25kaXRpb25zX2NncG5faW5fbGlzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9ImNvbmRpdGlvbnNfY2dwbl9pbl9saXN0XzIiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZ3BuIGluX2xpc3Q9InRlc3RfY29uZGl0aW9uc19jZ3BuX2luX2xpc3RfZmFsc2UiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxub19yb3V0ZS8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc19jZ3BuX2luX2xpc3RfMSI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNncG4gaW5fbGlzdD0idGVzdF9jb25kaXRpb25zX2NncG5faW5fbGlzdF90cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+Cg==",
+      "%%conditions_cgpn_number%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_cgpn_number\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_number_0\"> <conditions> <cgpn digits=\"%%2.Number%%\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_number_1\"> <conditions> <cgpn digits=\"%%0.Number%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_cgpn_apri_presentationAllowed%%":"PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJjb25kaXRpb25zX2NncG5fYXByaV9wcmVzZW50YXRpb25BbGxvd2VkLnhzZCIgbmFtZT0iY29uZGl0aW9uc19jZ3BuX2FwcmlfcHJlc2VudGF0aW9uQWxsb3dlZCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9ImNvbmRpdGlvbnNfYWRkcmVzc05vdEF2YWlsYWJsZSI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNncG4gYXByaT0iYWRkcmVzc05vdEF2YWlsYWJsZSIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPG5vX3JvdXRlLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KICA8cnVsZSBuYW1lPSJjb25kaXRpb25zX3ByZXNlbnRhdGlvbkFsbG93ZWQiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZ3BuIGFwcmk9InByZXNlbnRhdGlvbkFsbG93ZWQiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4K",
+      "%%conditions_cgpn_nai_subscriberNumber%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"conditions_cgpn_nai_subscriberNumber.xsd\" name=\"conditions_cgpn_nai_subscriberNumber\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_nationalNumber\"> <conditions> <cgpn nai=\"nationalNumber\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_internationNumber\"> <conditions> <cgpn nai=\"internationNumber\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_subscriberNumber\"> <conditions> <cgpn nai=\"subscriberNumber\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_cgpn_ni_emergency%%":"PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJjb25kaXRpb25zX2NncG5fbmlfZW1lcmdlbmN5LnhzZCIgbmFtZT0iY29uZGl0aW9uc19jZ3BuX25pX2VtZXJnZW5jeSIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9ImNvbmRpdGlvbnNfcHJpdmF0ZSI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNncG4gbmk9InByaXZhdGUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxub19yb3V0ZS8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc19sb2NhbCI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNncG4gbmk9ImxvY2FsIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bm9fcm91dGUvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgogIDxydWxlIG5hbWU9ImNvbmRpdGlvbnNfaW50ZXJuYXRpb25hbCI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNncG4gbmk9ImludGVybmF0aW9uYWwiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxub19yb3V0ZS8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc19pbnRlcmNpdHkiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZ3BuIG5pPSJpbnRlcmNpdHkiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxub19yb3V0ZS8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc19lbWVyZ2VuY3kiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZ3BuIG5pPSJlbWVyZ2VuY3kiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4=",
+      "%%conditions_cgpn_npi_telexNumberingPlan%%":"PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJjb25kaXRpb25zX2NncG5fbnBpX3RlbGV4TnVtYmVyaW5nUGxhbi54c2QiIG5hbWU9ImNvbmRpdGlvbnNfY2dwbl9ucGlfdGVsZXhOdW1iZXJpbmdQbGFuIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc19pc2RuVGVsZXBob255Ij4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2dwbiBucGk9ImlzZG5UZWxlcGhvbnkiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxub19yb3V0ZS8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc190ZWxleE51bWJlcmluZ1BsYW4iPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZ3BuIG5waT0idGVsZXhOdW1iZXJpbmdQbGFuIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+",
+      "%%conditions_cgpn_screening_networkProvided%%":"PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJjb25kaXRpb25zX2NncG5fc2NyZWVuaW5nX25ldHdvcmtQcm92aWRlZC54c2QiIG5hbWU9ImNvbmRpdGlvbnNfY2dwbl9zY3JlZW5pbmdfbmV0d29ya1Byb3ZpZGVkIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc191c2VyUHJvdmlkZWRWZXJpZmllZEFuZFBhc3NlZCI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNncG4gc2NyZWVuaW5nPSJ1c2VyUHJvdmlkZWRWZXJpZmllZEFuZFBhc3NlZCIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPG5vX3JvdXRlLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KICA8cnVsZSBuYW1lPSJjb25kaXRpb25zX3VzZXJQcm92aWRlZFZlcmlmaWVkQW5kRmFpbGVkIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2dwbiBzY3JlZW5pbmc9InVzZXJQcm92aWRlZFZlcmlmaWVkQW5kRmFpbGVkIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bm9fcm91dGUvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgogIDxydWxlIG5hbWU9ImNvbmRpdGlvbnNfbmV0d29ya1Byb3ZpZGVkIj4KICAgIDxjb25kaXRpb25zPgogICAgICA8Y2dwbiBzY3JlZW5pbmc9Im5ldHdvcmtQcm92aWRlZCIvPgogICAgPC9jb25kaXRpb25zPgogICAgPHJlc3VsdD4KICAgICAgPGxvY2FsLz4KICAgIDwvcmVzdWx0PgogIDwvcnVsZT4KPC9jb250ZXh0Pg==",
+      "%%conditions_cdpn_in_list%%":"PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjb25kaXRpb25zX2NkcG5faW5fbGlzdCIgZGlnaXRtYXA9IigqWzAtOSpdWzAtOSpdLiN8I1swLTkqXVswLTkqXS4jfCojWzAtOSpdWzAtOSpdLiN8MXh4LnwxMHh4LikiPgogIDxydWxlIG5hbWU9ImNvbmRpdGlvbnNfY2Rwbl9pbl9saXN0XzIiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGluX2xpc3Q9InRlc3RfY29uZGl0aW9uc19jZHBuX2luX2xpc3RfZmFsc2UiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxub19yb3V0ZS8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CiAgPHJ1bGUgbmFtZT0iY29uZGl0aW9uc19jZHBuX2luX2xpc3RfMSI+CiAgICA8Y29uZGl0aW9ucz4KICAgICAgPGNkcG4gaW5fbGlzdD0idGVzdF9jb25kaXRpb25zX2NkcG5faW5fbGlzdF90cnVlIi8+CiAgICA8L2NvbmRpdGlvbnM+CiAgICA8cmVzdWx0PgogICAgICA8bG9jYWwvPgogICAgPC9yZXN1bHQ+CiAgPC9ydWxlPgo8L2NvbnRleHQ+",
+      "%%conditions_cdpn_number%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_cdpn_number\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_number_0\"> <conditions> <cdpn digits=\"%%0.Number%%\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_number_1\"> <conditions> <cdpn digits=\"%%2.Number%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_access_category_semiautoCallIV%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_access_category_semiautoCallIV\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_unknownAtThisTime\"> <conditions> <calling category=\"unknownAtThisTime\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_operatorFrench\"> <conditions> <calling category=\"operatorFrench\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_operatorEngish\"> <conditions> <calling category=\"operatorEngish\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_operatorRussian\"> <conditions> <calling category=\"operatorRussian\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_operatorSpanish\"> <conditions> <calling category=\"operatorSpanish\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_reserved\"> <conditions> <calling category=\"reserved\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_ordinarySubscriber\"> <conditions> <calling category=\"ordinarySubscriber\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_subscriberWithPriority\"> <conditions> <calling category=\"subscriberWithPriority\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_dataCall\"> <conditions> <calling category=\"dataCall\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_testCall\"> <conditions> <calling category=\"testCall\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_spare\"> <conditions> <calling category=\"spare\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_freeSubscriber\"> <conditions> <calling category=\"freeSubscriber\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_paidSubscriber\"> <conditions> <calling category=\"paidSubscriber\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_localSubscriber\"> <conditions> <calling category=\"localSubscriber\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_localTaksofon\"> <conditions> <calling category=\"localTaksofon\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_autoCallI\"> <conditions> <calling category=\"autoCallI\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_semiautoCallI\"> <conditions> <calling category=\"semiautoCallI\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_autoCallII\"> <conditions> <calling category=\"autoCallII\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_semiautoCallII\"> <conditions> <calling category=\"semiautoCallII\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_autoCallIII\"> <conditions> <calling category=\"autoCallIII\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_semiautoCallIII\"> <conditions> <calling category=\"semiautoCallIII\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_autoCallIV\"> <conditions> <calling category=\"autoCallIV\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_semiautoCallIV\"> <conditions> <calling category=\"semiautoCallIV\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_access_display_name%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_access_display_name\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_access_display_name_false\"> <conditions> <calling display_name=\"%%bad_display_name%%\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_access_display_name_true\"> <conditions> <calling display_name=\"%%good_display_name%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_access_have_access_to%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_access_have_access_to\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_access_have_access_to_false\"> <conditions> <calling have_access_to=\"conditions_access_have_access_to_false\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_access_have_access_to_true\"> <conditions> <calling have_access_to=\"conditions_access_have_access_to_true\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_access_type%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_access_type\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_access_private\"> <conditions> <calling access_private=\"true\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_access_local\"> <conditions> <calling access_local=\"true\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_access_zone\"> <conditions> <calling access_zone=\"true\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_access_intercity\"> <conditions> <calling access_intercity=\"true\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_access_international\"> <conditions> <calling access_international=\"true\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_redirecting_number_in_list%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_redirecting_number_in_list\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_redirecting_number_in_list_false\"> <conditions> <rgn in_list=\"conditions_redirecting_number_in_list_false\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_redirecting_number_in_list_true\"> <conditions> <rgn in_list=\"conditions_redirecting_number_in_list_true\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_redirecting_number_number%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"conditions_redirecting_number_number.xsd\" name=\"conditions_redirecting_number_number\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_redirecting_number_number_false\"> <conditions> <rgn digits=\"%%3.Number%%\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_redirecting_number_number_true\"> <conditions> <rgn digits=\"%%4.Number%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_redirecting_number_empty%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_redirecting_number_empty\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_redirecting_number_empty_true\"> <conditions> <rgn empty=\"true\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_time_time%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_time_time\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_time_false\"> <conditions> <time value=\"%%NowTime+3600;%H:%M%% - %%NowTime+4600;%H:%M%%\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_time_true\"> <conditions> <time value=\"%%NowTime;%H:%M%% - %%NowTime+60;%H:%M%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_time_date%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_time_date\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_date_true\"> <conditions> <date value=\"01.01.1000 - 01.01.1001\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_date_fasle\"> <conditions> <date value=\"%%NowTime;%d.%m.%Y%% - %%NowTime;%d.%m.%Y%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_time_weekday%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"conditions_time_weekday.xsd\" name=\"conditions_time_weekday\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_weekday_false\"> <conditions> <weekday value=\"%%NowWeekDay+1%%,%%NowWeekDay+2%%\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_weekday_true\"> <conditions> <weekday value=\"%%NowWeekDay%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_time_timetable%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"conditions_time_timetable.xsd\" name=\"conditions_time_timetable\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_timetable_false\"> <conditions> <timetable value=\"conditions_time_timetable_false\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_timetable_true\"> <conditions> <timetable value=\"conditions_time_timetable_true\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_extended_sip_480%%":"<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_extended_sip_480\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_extended_sip_410\"> <conditions> <cause sip=\"410\"\/> <\/conditions> <result> <no_route\/> <\/result> <\/rule> <rule name=\"conditions_extended_sip_480\"> <conditions> <cause sip=\"480\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <rule name=\"conditions_extended_sip_base\"> <conditions> <cdpn digits=\"%\"\/> <\/conditions> <actions> <cause sip=\"480, 410\"\/> <\/actions> <result> <local\/> <\/result> <\/rule> <\/context>",
+      "%%conditions_extended_acp_terminationDenied%%":"<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_extended_acp_terminationDenied\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_extended_acp_mediaControlXml\"> <conditions> <cause acp=\"mediaControlXml\"\/> <\/conditions> <result> <no_route\/> <\/result> <\/rule> <rule name=\"conditions_extended_acp_terminationDenied\"> <conditions> <cause acp=\"notReachable\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <rule name=\"conditions_extended_acp_base\"> <conditions> <cdpn digits=\"%\"\/> <\/conditions> <actions> <cause acp=\"notReachable, mediaControlXml\"\/> <\/actions> <result> <local\/> <\/result> <\/rule> <\/context>",
+      "%%conditions_extended_isup%%":"<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_extended_isup\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_extended_isup\"> <conditions> <cause isup=\"16\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <rule name=\"conditions_extended_receiving_code_true\"> <conditions> <cgpn digits=\"%%0.Number%%\"\/> <\/conditions> <actions> <cause isup=\"16\"\/> <\/actions> <result> <no_route isup_cause=\"16\"\/> <\/result> <\/rule> <rule name=\"conditions_extended_receiving_code_false\"> <conditions> <cgpn digits=\"%%0.Number%%\"\/> <\/conditions> <actions> <cause isup=\"18\"\/> <\/actions> <result> <no_route isup_cause=\"18\"\/> <\/result> <\/rule> <\/context>",
+      "%%conditions_extended_tag%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_extended_tag\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_extended_tag_call\"> <conditions> <tag value=\"Local_call\"/> </conditions> <result> <local/> </result> </rule> <rule name=\"conditions_extended_tag_add\"> <conditions> <cgpn digits=\"%%0.Number%%\"/> </conditions> <result> <continue context=\"conditions_extended_tag\" tag=\"Local_call\"/> </result> </rule> </context>"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%-%%4.Number%%} cnip"
+
+    ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%-%%4.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%-%%4.Number%%} cnip"
+  ],
+  "Tests": [
+  {
+      "Name": "conditions_cgpn_in_list",
+      "Description": "Абонент 0 добавляется в in_list test_conditions_cgpn_in_list_true, а абонент 2 добавляется в in_list test_conditions_cgpn_in_list_false. Для теста добавляется контекст conditions_cgpn_in_list с правилом conditions_cgpn_in_list_1, где используется in_list test_conditions_cgpn_in_list_true и conditions_cgpn_in_list_2, где используется in_list test_conditions_cgpn_in_list_false: вызов на локального абонента, если cgpn соответствует заданному в test_conditions_cgpn_in_list_true и «Нет маршрута» в другом случаи. Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что  абонент 0 попадет в правило test_conditions_cgpn_in_list_true и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%conditions_cgpn_in_list%%",
+            "/domain/%%DEV_DOM%%/lists/declare test_conditions_cgpn_in_list_true default List_test_route_true %%0.Number%%",
+            "/domain/%%DEV_DOM%%/lists/declare test_conditions_cgpn_in_list_false default List_test_route_false %%2.Number%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cgpn_in_list",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cgpn_in_list"          
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cgpn_in_list",
+            "/domain/%%DEV_DOM%%/lists/remove test_conditions_cgpn_in_list_true ",
+            "/domain/%%DEV_DOM%%/lists/remove test_conditions_cgpn_in_list_false ",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_cgpn_number",
+      "Description": "Для теста добавляется контекст conditions_cgpn_number с правилом conditions_number_1 cgpn номер абонента 0, conditions_number_0 cgpn номер абонента 2: вызов на локального абонента, если cgpn соответствует указанному в conditions_number_1, если указанному в conditions_number_0 правила ведет в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что  абонент 0 попадет в правило conditions_number_1 и вызовет абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_cgpn_number%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cgpn_number",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cgpn_number"          
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_cgpn_apri_presentationAllowed",
+      "Description": "Для абонента 0 определяется параметр apri presentationAllowed, а для абонента 1 apri - presentationRestricted. Для теста добавляется контекст conditions_cgpn_apri_presentationAllowed с правилом conditions_presentationAllowed: вызов на локального абонента, если apri соответствует заданному presentationAllowed. Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что  абонент 0 попадет в правило conditions_presentationAllowed и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {"Print" : "Тестирование apri."},
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%conditions_cgpn_apri_presentationAllowed%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cgpn_apri_presentationAllowed",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cgpn_apri_presentationAllowed",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% apri presentationAllowed",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% apri presentationRestricted",
+            "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/enable %%1.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clir mode = user_defined",
+            "/domain/%%DEV_DOM%%/ss/activate %%1.Number%% clir mode = user_defined"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cgpn_apri_presentationAllowed",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",            
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% apri",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clir",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% apri",
+            "/domain/%%DEV_DOM%%/ss/deactivate %%1.Number%% clir",
+            "/domain/%%DEV_DOM%%/ss/disable %%1.Number%% clir"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_cgpn_nai_subscriberNumber",
+      "Description": "Для абонента 0 определяется параметр nai - subscriberNumber, а для абонента 1 nai - unknown. Для теста добавляется контекст conditions_cgpn_nai_subscriberNumber с правилом conditions_subscriberNumber, conditions_unknown, conditions_nationalNumber, conditions_internationNumber: вызов на локального абонента, если nai соответствует subscriberNumber, три других правила ведут в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что  абонент 0 попадет в правило conditions_subscriberNumber и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {"Print" : "Тестирование nai."},
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_cgpn_nai_subscriberNumber%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cgpn_nai_subscriberNumber",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cgpn_nai_subscriberNumber",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% nai subscriberNumber",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% nai unknown"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cgpn_nai_subscriberNumber",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",            
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% nai",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% nai"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_cgpn_ni_emergency",
+      "Description": "Для абонента 0 определяется параметр ni - emergency, а для абонента 1 ni - conditions_zone. Для теста добавляется контекст conditions_cgpn_ni_emergency с правилом conditions_emergency, conditions_intercity, conditions_international, conditions_local, conditions_private, conditions_zone: вызов на локального абонента, если ni соответствует emergency, пять других правила ведут в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_emergency и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {"Print" : "Тестирование ni."},
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%conditions_cgpn_ni_emergency%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cgpn_ni_emergency",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cgpn_ni_emergency",         
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% ni emergency",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% ni conditions_zone"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cgpn_ni_emergency",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",            
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% ni",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% ni"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_cgpn_npi_telexNumberingPlan",
+      "Description": "Для абонента 0 определяется параметр npi - telexNumberingPlan, а для абонента 1 npi  dataNumberingPlan. Для теста добавляется контекст conditions_cgpn_npi_telexNumberingPlan с правилом conditions_isdnTelephony, conditions_dataNumberingPlan, conditions_telexNumberingPlan: вызов на локального абонента, если npi соответствует telexNumberingPlan, два других правила ведут в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_telexNumberingPlan и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {"Print" : "Тестирование npi."},
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%conditions_cgpn_npi_telexNumberingPlan%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cgpn_npi_telexNumberingPlan",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cgpn_npi_telexNumberingPlan",         
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% npi telexNumberingPlan",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% npi dataNumberingPlan"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cgpn_npi_telexNumberingPlan",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",            
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% npi",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% npi"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_cgpn_screening_networkProvided",
+      "Description": "Для абонента 0 определяется параметр screening - networkProvided, а для абонента 1 screening - userProvidedNotVerified. Для теста добавляется контекст conditions_cgpn_screening_networkProvided с правилом conditions_networkProvided, conditions_userProvidedVerifiedAndFailed, conditions_userProvidedVerifiedAndPassed, conditions_userProvidedNotVerified: вызов на локального абонента, если screening соответствует telexNumberingPlan, три других правила ведут в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_networkProvided и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {"Print" : "Тестирование screening."},
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%conditions_cgpn_screening_networkProvided%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cgpn_screening_networkProvided",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cgpn_screening_networkProvided",         
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% screening networkProvided",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% screening userProvidedNotVerified"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cgpn_screening_networkProvided",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",            
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipGroup%% screening",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipGroup%% screening"
+          ]
+        }
+      ]
+  },
+ {
+      "Name": "conditions_cdpn_in_list",
+      "Description": "Абонент 2 добавляется в in_list test_conditions_cdpn_in_list_true, а абонент 1 добавляется в in_list test_conditions_cdpn_in_list_false. Для теста добавляется контекст conditions_cdpn_in_list с правилом conditions_cdpn_in_list_1, где используется in_list test_conditions_cdpn_in_list_true и conditions_cdpn_in_list_2, где используется in_list test_conditions_cdpn_in_list_false: вызов на локального абонента, если cdpn соответствует заданному test_conditions_cdpn_in_list_true и «Нет маршрута» в другом случаи. Абонент 0 и  совершают вызов на абонента 2, а абонент 1 на абонента 0. Ожидается, что  абонент 0 попадет в правило conditions_cdpn_in_list и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%conditions_cdpn_in_list%%",
+            "/domain/%%DEV_DOM%%/lists/declare test_conditions_cdpn_in_list_true default List_test_route_true %%2.Number%%",
+            "/domain/%%DEV_DOM%%/lists/declare test_conditions_cdpn_in_list_false default List_test_route_false %%1.Number%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cdpn_in_list",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cdpn_in_list"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cdpn_in_list",
+            "/domain/%%DEV_DOM%%/lists/remove test_conditions_cdpn_in_list_true ",
+            "/domain/%%DEV_DOM%%/lists/remove test_conditions_cdpn_in_list_false ",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_cdpn_number",
+      "Description": "Для теста добавляется контекст conditions_cdpn_number с правилом conditions_number_1 cdpn номер абонента 0, conditions_number_0 cdpn номер абонента 2: вызов на локального абонента, если cdpn соответствует conditions_number_1, и в  «Нет маршрута», если conditions_number_0. Абонент 0 и  совершают вызов на абонента 2, а абонент 1 на абонента 0. Ожидается, что  абонент 0 попадет в правило conditions_cdpn_in_list и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",      
+      "TestProcedure": [
+        {"Print" : "Тестирование number."},
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_cdpn_number%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_cdpn_number",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_cdpn_number"          
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%1.Number%% -set CDPNDOM %%1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cdpn_number",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_access_category_semiautoCallIV",
+      "Description": "Для абонента 0 определяется параметр category - semiautoCallIV, а абоненту 1 operatorGerman. Для теста добавляется контекст conditions_access_category_semiautoCallIV с правилом на каждую категорию, кроме operatorGerman: вызов на локального абонента, если category соответствует semiautoCallIV, остальные правила ведут в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_ semiautoCallIV и совершит вызов абонента 2.",      
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_access_category_semiautoCallIV%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_access_category_semiautoCallIV",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_access_category_semiautoCallIV",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% category semiautoCallIV",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% category operatorGerman"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_access_category_semiautoCallIV",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% category",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% category"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_access_display_name",
+      "Description": "Для теста добавляется контекст conditions_access_display_name с правилом display name conditions_access_display_name_false и conditions_access_display_true: вызов на локального абонента, если display name соответствует переменной good_display_name, а если display name соответствует bad_display_name правило ведет в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_access_display_true и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",        
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_access_display_name%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_access_display_name",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_access_display_name"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%% -set DISPLAY_NAME %%good_display_name%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set DISPLAY_NAME %%bad_display_name%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_access_display_name",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_access_have_access_to",
+      "Description": "Для абонента 0 и 2 определяется параметр access_group - conditions_access_have_access_to_true, а для абонента 1 access_group - conditions_access_have_access_to_false. Для теста добавляется контекст conditions_access_have_access_to с правилом conditions_access_have_access_to_true и conditions_access_have_access_to_false: вызов на локального абонента, если access_group соответствует conditions_access_have_access_to_true, а если access_group name соответствует conditions_access_have_access_to_false правило ведет в «Нет маршрута». Абонент 0 и абонент 1 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_access_have_access_to_true и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_access_have_access_to%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_access_have_access_to",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_access_have_access_to",
+            "/domain/%%DEV_DOM%%/access-group/add conditions_access_have_access_to_true",
+            "/domain/%%DEV_DOM%%/access-group/add conditions_access_have_access_to_false",
+            "/domain/%%DEV_DOM%%/access-group/add-access conditions_access_have_access_to_true conditions_access_have_access_to_true",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% access_group conditions_access_have_access_to_true",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% access_group conditions_access_have_access_to_false",
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% access_group conditions_access_have_access_to_true"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_access_have_access_to",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/access-group/remove conditions_access_have_access_to_true",
+            "yes",
+            "/domain/%%DEV_DOM%%/access-group/remove conditions_access_have_access_to_false",
+            "yes",
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% access_group",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% access_group",
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% access_group"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_access_type",
+      "Description": "Для теста создается контекст  conditions_access_type, в который добавляется по правилу для каждый типа доступа, кроме  emergency: правило с international ведет в результат local, остальные правила ведут в no_route. Абонент 0 и 2 назначается ni — international, а абоненту 1 ni — emergency. 0 и 1 абонент совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_access_international и дозвонится до 2 абонента, а  абонент 1 не найдет правило и отобьется с 404 сообщением.",    
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_access_type%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_access_type",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_access_type",
+            "/domain/%%DEV_DOM%%/access-type/declare conditions_access_private true true false false false false false false false false false false 16 Normal",
+            "/domain/%%DEV_DOM%%/access-type/declare conditions_access_local false false true true false false false false false false false false 16 Normal",
+            "/domain/%%DEV_DOM%%/access-type/declare conditions_access_zone false false false false true true false false false false false false 16 Normal",
+            "/domain/%%DEV_DOM%%/access-type/declare conditions_access_intercity false false false false false false true true false false false false 16 Normal",
+            "/domain/%%DEV_DOM%%/access-type/declare conditions_access_international false false false false false false false false true true false false 16 Normal",
+            "/domain/%%DEV_DOM%%/access-type/declare conditions_access_emergency false false false false false false false false false false true true 16 Normal",
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% ni international",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni emergency",
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ni international",    
+            "/domain/%%DEV_DOM%%/alias/set %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% access_type conditions_access_international",
+            "/domain/%%DEV_DOM%%/alias/set %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% access_type conditions_access_emergency",
+            "/domain/%%DEV_DOM%%/alias/set %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% access_type conditions_access_international"          
+          
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_access_type",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% ni",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% ni",
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% ni",  
+            "/domain/%%DEV_DOM%%/access-type/remove conditions_access_private",
+            "/domain/%%DEV_DOM%%/access-type/remove conditions_access_local",
+            "/domain/%%DEV_DOM%%/access-type/remove conditions_access_zone",
+            "/domain/%%DEV_DOM%%/access-type/remove conditions_access_intercity",
+            "/domain/%%DEV_DOM%%/access-type/remove conditions_access_international",
+            "/domain/%%DEV_DOM%%/access-type/remove conditions_access_emergency",
+            "/domain/%%DEV_DOM%%/alias/clean %%0.Number%% %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% access-type",
+            "/domain/%%DEV_DOM%%/alias/clean %%1.Number%% %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% access-type",
+            "/domain/%%DEV_DOM%%/alias/clean %%2.Number%% %%2.SipGroup%% %%2.Number%%@%%2.SipDomain%% access-type"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_redirecting_number_in_list",
+      "Description": "Абонент 4 добавляется в in_list conditions_redirecting_number_in_list_true, а абонент 2 добавляется в in_list conditions_redirecting_number_in_list_false. Для теста добавляется контекст conditions_redirecting_number_in_list с правилом conditions_redirecting_number_in_list_true и conditions_redirecting_number_in_list_false: вызов на локального абонента, если number из diversion входит в список conditions_redirecting_number_in_list_true и если number из diversion соответствует листу conditions_redirecting_number_in_list_false ведет в «Нет маршрута». Абонент 0 с diversion от абонента 4 и абонент 1 с diversion от абонента 0 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_redirecting_number_in_list_true и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",         
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_redirecting_number_in_list%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_redirecting_number_in_list",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_redirecting_number_in_list",
+            "/domain/%%DEV_DOM%%/lists/declare conditions_redirecting_number_in_list_true default List_test_route_true %%4.Number%%",
+            "/domain/%%DEV_DOM%%/lists/declare conditions_redirecting_number_in_list_false default List_test_route_false %%2.Number%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_send_divers_header.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%% -set CDPN_OLD %%4.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_divers_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_OLD %%0.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_redirecting_number_in_list",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/lists/remove conditions_redirecting_number_in_list_true",
+            "/domain/%%DEV_DOM%%/lists/remove conditions_redirecting_number_in_list_false"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_redirecting_number_number",
+      "Description": " Для теста добавляется контекст conditions_redirecting_number_number с правилом conditions_redirecting_number_number_true и conditions_redirecting_number_number_fasle: вызов на локального абонента, если number из diversion соответствует %%4.Number%% и если number из diversion соответствует %%2.Number%% ведет в «Нет маршрута». Абонент 0 с diversion от абонента 4 и абонент 1 с diversion от абонента 0 совершают вызов на абонента 2. Ожидается, что абонент 0 попадет в правило conditions_redirecting_number_number_true и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",         
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_redirecting_number_number%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_redirecting_number_number",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_redirecting_number_number"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1 -set CHK_CGPN %%0.Number%%",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_send_divers_header.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%% -set CDPN_OLD %%4.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_divers_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_OLD %%0.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_redirecting_number_number",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_redirecting_number_empty",
+      "Description": "Для теста добавляется контекст conditions_redirecting_number_empty с правилом conditions_redirecting_number_empty_true: вызов на локального абонента, если diversion присутствует в запросе. Абонент 0 без поля diversion и абонент 1 c diversion от абонента 4 совершают вызов на абонента 2. Ожидается, что  абонент 0 попадет в правило conditions_redirecting_number_empty_true и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",         
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_redirecting_number_empty%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_redirecting_number_empty",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_redirecting_number_empty"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_divers_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_OLD %%4.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_redirecting_number_empty",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_time_time",
+      "Description": "Для теста добавляется контекст conditions_time_time с правилом conditions_time_time_true и conditions_time_time_false: вызов на локального абонента, если время вызова соответствует [текущая; текущая + 60 секунд] и вызов в нет маршрута, если время соответствует отрезку в 1000 году. Абонент 0 совершает вызов на абонента 2; через 60 секунд абонент 1  совершает вызов на абонента 2. Ожидается, что  абонент 0 попадет в правило conditions_time_time_true и совершит вызов абонента 2, а абонент 1 не попадет ни в одно правило и отобьется с 404.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_time_time%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_time_time",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_time_time"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+      "Sleep" : 120
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_divers_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPN_OLD %%4.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_time_time",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_time_date",
+      "Description": "Для теста добавляется контекст conditions_time_date с правилом conditions_time_date_true и conditions_time_date_false: вызов на локального абонента, если дата вызова соответствует [текущая; текущая] и вызов в нет маршрута, если дата соответствует отрезку в 1000 году. Абонент 0 совершает вызов на абонента 2. Ожидается, что  абонент 0 попадет в правило conditions_time_date_true и совершит вызов абонента 2",         
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_time_date%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_redirecting_number_empty"
+           ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_time_date",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_time_weekday",
+      "Description": "Для теста добавляется контекст conditions_time_weekday с правилом conditions_time_weekday_true и conditions_time_weekday_false: вызов на локального абонента, если день недели соответствует вызова соответствует текущему дню и вызов в нет маршрута, если день недели соответствует следующему дню. Абонент 0 совершает вызов на абонента 2; Ожидается, что  абонент 0 попадет в правило conditions_time_weekday_true и совершит вызов абонента 2.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_time_weekday%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_time_weekday"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_time_weekday",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_time_timetable",
+      "Description": "Для теста добавляется контекст conditions_time_timetable с правилом conditions_time_timetable_true и conditions_time_timetable_false: вызов на локального абонента, если время вызова соответствует вызову по расписанию conditions_time_timetable_true и вызов в нет маршрута, если время соответствует вызову по расписанию conditions_time_timetable_false. Абонент 0 совершает вызов на абонента 2; а абонент 1 совершает вызов на абонента 2 через 130 секунд. Ожидается, что  абонент 0 попадет в правило conditions_time_weekday_true и совершит вызов абонента 2. А абонент 1 не попадет ни в одно правило и отобьется с 404.",      
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_time_timetable%%",
+            "/domain/%%DEV_DOM%%/calendar/timetable/declare conditions_time_timetable_false * %%NowTime+120;%H:%M%%-%%NowTime+180;%H:%M%%",
+            "/domain/%%DEV_DOM%%/calendar/timetable/declare conditions_time_timetable_true * %%NowTime;%H:%M%%-%%NowTime+60;%H:%M%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_time_timetable",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_time_timetable"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+      "Sleep" : 120
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/calendar/timetable/remove conditions_time_timetable_false",
+            "/domain/%%DEV_DOM%%/calendar/timetable/remove conditions_time_timetable_true"
+
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_extended_sip",
+      "Description": "Для теста добавляется контекст conditions_extended_sip_480 с правилом conditions_extended_sip_base, conditions_extended_sip_410 и conditions_extended_sip_480: вызов на локального абонента, если sip код последнего вызова 480, и вызов в нет маршрута, если sip код был 410. Абонент 0 совершает вызов на абонента 2; а абонент 1 совершает вызов на абонента 3. Ожидается, что  абонент 0 и 1 попадут в правило conditions_extended_sip_base: абонент 0 будет отбит 480 ответом, после чего попадет в правило conditions_extended_sip_480 и найдет абонента 2, а абонента 1 будет отбит 486 ответом и не будет повторно смаршрутизирован. ", 
+        "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_extended_sip_480%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_extended_sip_480",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_extended_sip_480"
+          ]
+        },
+         {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_SEND_480",
+              "Commands": [
+                {
+                  "SourceFile": "route/uas_send_480.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAS_SEND_486",
+              "Commands": [
+                {
+                  "SourceFile": "route/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_486",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_486.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/routing/delete conditions_extended_sip_480"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_extended_acp",
+      "Description": "Для теста добавляется контекст conditions_extended_acp_terminationDenied с правилом conditions_extended_acp_base, conditions_extended_sip_mediaControlXml и conditions_extended_acp_terminationDenied: вызов на локального абонента, если код acp последнего диалога terminationDenied (480), и вызов в нет маршрута, если acp код последнего диалога mediaControlXml или иной другойю. Абонент 0 совершает вызов на абонента 2; а абонент 1 совершает вызов на абонента 3. Ожидается, что  абонент 0 и 1 попадут в правило conditions_extended_sip_base: абонент 0 будет отбит 480 ответом, после чего попадет в правило conditions_extended_acp_terminationDenied и найдет абонента 2, а абонента 1 будет отбит 486 ответом и не будет повторно смаршрутизирован.",      
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_extended_acp_terminationDenied%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_extended_acp_terminationDenied",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_extended_acp_terminationDenied"
+          ]
+        },
+         {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_SEND_480(terminationDenied)",
+              "Commands": [
+                {
+                  "SourceFile": "route/uas_send_480.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                },
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAS_SEND_486(bPtyBusyUDUB)",
+              "Commands": [
+                {
+                  "SourceFile": "route/uas_send_486.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_486(bPtyBusyUDUB)",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_486.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%3.Number%% -set CDPNDOM %%3.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_extended_acp_terminationDenied",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_extended_isup",
+      "Description": "Для теста добавляется контекст conditions_extended_isup с правилом conditions_extended_isup, conditions_extended_receiving_code_true и conditions_extended_receiving_code_false: вызов на локального абонента, если если предыдущий вызов был завершен с причиной isup 16. Абонент 0 и 1 совершает вызов на абонента 2 и по cgpn попадают в тупиковые правила указывающие причину завершения isup. Ожидается, что  абонент 0 попадет в conditions_extended_receiving_code_true и получит isup 16, а абонент 1 попадет в conditions_extended_receiving_code_false и получит isup 18. После этого абоненты по своим кодам повторно маршрутизируются: 0 попадет в правило conditions_extended_isup, а 1 отобъется.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_extended_isup%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_extended_isup",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_extended_isup"
+          ]
+        },
+         {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_extended_isup",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
+      "Name": "conditions_extended_tag",
+      "Description": "Для теста добавляется контекст conditions_extended_tag с правилом conditions_extended_add и conditions_extended_tag_call: вызов на локального абонента, если маршрутизация имеет тег Local_call и добавление тега, если CGPN 0 абонента. Абонент 0 и 1 совершает вызов на абонента 2. Ожидается, что  абонент 0 попадет в conditions_extended_add, получит tag, после чего повторно смаршрутизируется и дозвонится до 2 абонента, а абонент 1 не попав в правило по тегу отобъется с 404 сообщением.",      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_extended_tag%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_extended_tag",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context conditions_extended_tag"
+          ]
+        },
+         {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAC_RESV_404",
+              "Commands": [
+                {
+                  "SourceFile": "route/uac_recv_404.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_extended_tag",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  }
+  ]
+}
