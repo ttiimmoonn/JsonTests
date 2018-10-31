@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<scenario name = "omg_wtf">
+
+<Global variables="CHK_DNAME,CHK_CGPN" />
+<User variables="chk_dname,chk_number,dummy,dname" />
+<Reference variables="dummy,dname"/>
+
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <assignstr assign_to="chk_dname" value="[$CHK_DNAME]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_CGPN">
+    <action>
+        <assignstr assign_to="chk_number" value="[$CHK_CGPN]"/>
+    </action>
+</nop>
+
+<recv request="INVITE">
+    <action>
+        <ereg regexp="<sip:([^;@]+)" search_in="hdr" header="From:" check_it="true" assign_to="dummy,remote_number"/>
+        <ereg regexp="\s?\"?([^\"]+)\"?\s+<sip:" search_in="hdr" header="From:" assign_to="dummy,dname" />
+    </action>
+</recv>
+
+<send>
+<![CDATA[
+    SIP/2.0 100 Trying
+    [last_Via:]
+    [last_From:]
+    [last_To:]
+    [last_Call-ID:]
+    [last_CSeq:]
+    Content-Length: 0
+]]>
+</send>
+
+
+<pause milliseconds="3000"/>
+<send>
+<![CDATA[
+    SIP/2.0 486 Busy Here
+    [last_Via:]
+    [last_From:]
+    [last_To:];tag=[call_number][local_port]
+    [last_Call-ID:]
+    [last_CSeq:]
+    [last_contact]
+    Reason: Q.850;cause=17;text="User busy"
+    Content-Length: 0
+]]>
+</send>
+
+<recv request="ACK"></recv>
+
+
+<nop hide="true" condexec="CHK_DNAME">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_dname" variable2="dname"/>
+        <log message="Point 1. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 2. chk_dname: [$chk_dname]; dname: [$dname]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="CHK_CGPN">
+    <action>
+        <strcmp assign_to="compare_result" variable="chk_number" variable2="remote_number"/>
+        <log message="Point 3. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+    </action>
+</nop>
+
+<nop hide="true" condexec="compare_result">
+    <action>
+        <log message="Point 4. chk_number: [$chk_number]; number: [$remote_number]; compare_result: [$compare_result]"/>
+        <exec int_cmd="stop_now"/>
+    </action>
+</nop>
+</scenario>
