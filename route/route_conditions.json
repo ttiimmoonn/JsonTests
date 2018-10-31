@@ -82,6 +82,7 @@
       "%%conditions_time_date%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_time_date\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_date_true\"> <conditions> <date value=\"01.01.1000 - 01.01.1001\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_date_fasle\"> <conditions> <date value=\"%%NowTime;%d.%m.%Y%% - %%NowTime;%d.%m.%Y%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
       "%%conditions_time_weekday%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"conditions_time_weekday.xsd\" name=\"conditions_time_weekday\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_weekday_false\"> <conditions> <weekday value=\"%%NowWeekDay+1%%,%%NowWeekDay+2%%\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_weekday_true\"> <conditions> <weekday value=\"%%NowWeekDay%%\"/> </conditions> <result> <local/> </result> </rule> </context>",
       "%%conditions_time_timetable%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"conditions_time_timetable.xsd\" name=\"conditions_time_timetable\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_timetable_false\"> <conditions> <timetable value=\"conditions_time_timetable_false\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_timetable_true\"> <conditions> <timetable value=\"conditions_time_timetable_true\"/> </conditions> <result> <local/> </result> </rule> </context>",
+      "%%conditions_time_day_types%%":"<context xmlns:xs=\"http://www.w3.org/2001/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_time_day_types\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_time_day_types_work\"> <conditions> <weekday day_types=\"work\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_day_types_day_off\"> <conditions> <weekday day_types=\"day-off\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_day_types_half_holiday\"> <conditions> <weekday day_types=\"half-holiday\"/> </conditions> <result> <no_route/> </result> </rule> <rule name=\"conditions_time_day_types_holiday\"> <conditions> <weekday day_types=\"holiday\"/> </conditions> <result> <local/> </result> </rule> </context>",
       "%%conditions_extended_sip_480%%":"<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_extended_sip_480\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_extended_sip_410\"> <conditions> <cause sip=\"410\"\/> <\/conditions> <result> <no_route\/> <\/result> <\/rule> <rule name=\"conditions_extended_sip_480\"> <conditions> <cause sip=\"480\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <rule name=\"conditions_extended_sip_base\"> <conditions> <cdpn digits=\"%\"\/> <\/conditions> <actions> <cause sip=\"480, 410\"\/> <\/actions> <result> <local\/> <\/result> <\/rule> <\/context>",
       "%%conditions_extended_acp_terminationDenied%%":"<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_extended_acp_terminationDenied\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_extended_acp_mediaControlXml\"> <conditions> <cause acp=\"mediaControlXml\"\/> <\/conditions> <result> <no_route\/> <\/result> <\/rule> <rule name=\"conditions_extended_acp_terminationDenied\"> <conditions> <cause acp=\"notReachable\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <rule name=\"conditions_extended_acp_base\"> <conditions> <cdpn digits=\"%\"\/> <\/conditions> <actions> <cause acp=\"notReachable, mediaControlXml\"\/> <\/actions> <result> <local\/> <\/result> <\/rule> <\/context>",
       "%%conditions_extended_isup%%":"<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"conditions_extended_isup\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"conditions_extended_isup\"> <conditions> <cause isup=\"16\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <rule name=\"conditions_extended_receiving_code_true\"> <conditions> <cgpn digits=\"%%0.Number%%\"\/> <\/conditions> <actions> <cause isup=\"16\"\/> <\/actions> <result> <no_route isup_cause=\"16\"\/> <\/result> <\/rule> <rule name=\"conditions_extended_receiving_code_false\"> <conditions> <cgpn digits=\"%%0.Number%%\"\/> <\/conditions> <actions> <cause isup=\"18\"\/> <\/actions> <result> <no_route isup_cause=\"18\"\/> <\/result> <\/rule> <\/context>",
@@ -235,6 +236,7 @@
         },
         {
           "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/routing/delete conditions_cgpn_number",
             "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
             "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
           ]
@@ -1455,6 +1457,59 @@
       ]
   },
   {
+      "Name": "conditions_time_day_types",
+      "Description": "Текущий день задается как holiday. Для теста добавляется контекст conditions_time_day_types с правилом на каждый тип дня: вызов на локального абонента, если тип дня соответствует holiday и вызов в нет маршрута, если любому другому. Абонент 0 совершает вызов на абонента 2; Ожидается, что  абонент 0 попадет в правило conditions_time_day_types_ holiday и совершит вызов абонента 2.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/calendar/set day %%NowTime;%Y%% %%NowTime;%m%% %%NowTime;%d%% HOLIDAY",
+            "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%conditions_time_day_types%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context conditions_time_day_types"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_recv_bye.xml",
+                  "Options": "-m 1",
+                  "SippType": "uas",
+                  "Timeout": "20s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -d 200 -set CDPN %%2.Number%% -set CDPNDOM %%2.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/calendar/clean day %%NowTime;%Y%% %%NowTime;%m%% %%NowTime;%d%%",
+            "/domain/%%DEV_DOM%%/routing/delete conditions_time_day_types",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+  },
+  {
       "Name": "conditions_time_timetable",
       "Description": "Для теста добавляется контекст conditions_time_timetable с правилом conditions_time_timetable_true и conditions_time_timetable_false: вызов на локального абонента, если время вызова соответствует вызову по расписанию conditions_time_timetable_true и вызов в нет маршрута, если время соответствует вызову по расписанию conditions_time_timetable_false. Абонент 0 совершает вызов на абонента 2; а абонент 1 совершает вызов на абонента 2 через 130 секунд. Ожидается, что  абонент 0 попадет в правило conditions_time_weekday_true и совершит вызов абонента 2. А абонент 1 не попадет ни в одно правило и отобьется с 404.",      
       "TestProcedure": [
@@ -1527,7 +1582,8 @@
             "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
             "/domain/%%DEV_DOM%%/iface/user-set sip1 %%1.SipGroup%% %%1.Number%%@%%1.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
             "/domain/%%DEV_DOM%%/calendar/timetable/remove conditions_time_timetable_false",
-            "/domain/%%DEV_DOM%%/calendar/timetable/remove conditions_time_timetable_true"
+            "/domain/%%DEV_DOM%%/calendar/timetable/remove conditions_time_timetable_true",
+            "/domain/%%DEV_DOM%%/routing/delete conditions_time_timetable"
 
           ]
         }
