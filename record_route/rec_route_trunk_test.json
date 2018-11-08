@@ -1,0 +1,252 @@
+{
+  "TestName": "trunk_chek_rec_route",
+  "AutoTest": true,
+  "Trunks": [
+    {
+      "TrunkId": 1,
+      "TrunkName": "test_trunk_rec_route",
+      "Port": 10110,
+      "SipGroup": "test.gr",
+      "SipDomain": "%%DEV_DOM%%",
+      "RtpPort": 20003
+    }
+  ],
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "Port": 11001,
+      "RtpPort": 20000,
+      "SipGroup": "sip.ab",
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+      "%%ctx_to_trunk%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfdGVzdF9yZWNfcm91dGVfZm9yX3VzZXIiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0idG9fdHJ1bmsiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGNkcG4gZGlnaXRzPSJEJSIvPg0KICAgIDwvY29uZGl0aW9ucz4NCiAgICA8cmVzdWx0Pg0KICAgICAgPGV4dGVybmFsPg0KICAgICAgPHRydW5rIHZhbHVlPSJ0ZXN0X3RydW5rX3JlY19yb3V0ZSIvPg0KICAgICA8L2V4dGVybmFsPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQogIDxydWxlIG5hbWU9InRvX2xvY2FsIj4NCiAgICA8Y29uZGl0aW9ucz4NCiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgPC9jb25kaXRpb25zPg0KICAgIDxyZXN1bHQ+DQogICAgICA8bG9jYWwvPg0KICAgIDwvcmVzdWx0Pg0KICA8L3J1bGU+DQo8L2NvbnRleHQ+",
+      "%%ctx_from_trunk%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJjdHhfdGVzdF9yZWNfcm91dGVfZm9yX3RydW5rIiBkaWdpdG1hcD0iKCpbMC05Kl1bMC05Kl0uI3wjWzAtOSpdWzAtOSpdLiN8KiNbMC05Kl1bMC05Kl0uI3wxeHgufDEweHguKSI+CiAgPHJ1bGUgbmFtZT0idG9fbG9jYWwiPgogICAgPGNvbmRpdGlvbnM+CiAgICAgIDxjZHBuIGRpZ2l0cz0iJSIvPgogICAgICA8ZmluYWwgdmFsdWU9InRydWUiLz4KICAgIDwvY29uZGl0aW9ucz4KICAgIDxyZXN1bHQ+CiAgICAgIDxsb2NhbC8+CiAgICA8L3Jlc3VsdD4KICA8L3J1bGU+CjwvY29udGV4dD4=",
+      "%%ctx_for_trunk%%": "ctx_test_rec_route_for_trunk",
+      "%%ctx_for_user%%": "ctx_test_rec_route_for_user",
+      "%%trunk_number%%":"D89134851343"
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_to_trunk%%",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml-base64 %%ctx_from_trunk%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_for_trunk%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sip_transport udp_only",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context default_routing",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_trunk%%",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_for_user%%",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip"
+  ],
+  "Tests": [
+    {
+      "Name": "record-route-without-lr-uac-trunk_test",
+      "Description": "Проверка обработки заголовка record-route без lr (UAC mode). Делаем вызов с транка на абонента посредством INVITE c заголовками Record-Route. При этом верхний заголовок Record-Route не содержит параметра lr.  Ожидается, что SSW в sip-ответах будет присылать тот же самый список заголовков Record-Route (порядок заголовков в ответе не изменяется). Далее абонент завершает вызов. Ожидается, что при завершении вызова SSW отправит BYE, в котором в качестве RURI будет использован URI из верхнего Record-Route. Ожидается, что BYE будет содержать заголовки Route, сформированные из Record-Route, в том же порядке, при этом верхний Record-Route не используется при формировании (так как он используется при формировании RURI), а также в конец списка добавляется Route, который содержит URI из контакта.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAC_SEND_RR_WOUT_LR",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uac_last_rr_wout_lr.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%Tr.1.SipDomain%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-with-lr-uac-trunk_test",
+      "Description": "Проверка обработки заголовка record-route с lr (UAC mode). Делаем вызов с транка на абонента посредством INVITE c заголовками Record-Route. При этом верхний заголовок Record-Route содержит параметр lr.  Ожидается, что SSW в sip-ответах будет присылать тот же самый список заголовков Record-Route (порядок заголовков в ответе не изменяется). Далее абонент завершает вызов. Ожидается, что при завершении вызова SSW отправит BYE, в котором в качестве RURI будет использован URI из контакта. Ожидается, что BYE будет содержать заголовки Route, сформированные из Record-Route, в том же порядке.",
+      "TestProcedure": [
+        
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAC_SEND_RR_WITH_LR",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uac_last_rr_with_lr.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%trunk_number%% -set CGPNDOM %%0.SipDomain%% -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-without-lr-uas-trunk_test",
+      "Description":"Проверка обработки заголовка record-route без lr (UAS mode). Делаем вызов с абонента на транк посредством INVITE. Абонент со стороны трнака используется в надежных предворительных ответах заголовки Record-Route. При этом нижний заголовок Record-Route не содержит параметр lr. Ожидается, что SSW в sip-запросах укажет в ruri первый заголовок record-route (из тех, что без lr), перевернет оставшиеся список адресов Record-Route и добавит в самый низ списка route маршрут contact абонента из транка. Ожидается, что в BYE будет содержать заголовки Route, сформированные из Record-Route, но в обратном порядке порядке, при этом record-route без параметра lr не используется при формировании (так как он используется при формировании RURI), а также в конец списка добавляется Route, который содержит URI из контакта.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_BYE_WITH_LRUAS",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uas_last_rr_wout_lr.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%trunk_number%% -set CGPN %%0.Number%% -set CGPNDOM %%0.SipDomain%% -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-with-lr-uas-trunk_test",
+      "Description": "Проверка обработки заголовка record-route с lr (UAC mode). Делаем вызов с абонента на транк посредством INVITE. Абонент со стороны трнака используе в надежных предварительных ответах заголовки Record-Route. При этом верхний заголовок Record-Route содержит параметр lr.  Ожидается, что SSW в sip-ответах будет присылать тот же самый список заголовков Record-Route, но в обратном порядке. Далее абонент завершает вызов. Ожидается, что при завершении вызова SSW отправит BYE, в котором в качестве RURI будет использован URI из контакта. Ожидается, что BYE будет содержать заголовки Route, сформированные из Record-Route, но в обратном порядке.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_for_user%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "Name": "UAS_RECV_BYE_WITH_LRUAS",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uas_last_rr_with_lr.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAC_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%trunk_number%% -set CGPN %%0.Number%% -set CGPNDOM %%0.SipDomain%% -set CDPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/trunk/sip/info %%Tr.1.SipGroup%% %%Tr.1.TrunkName%%",
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+    }
+  ]
+}

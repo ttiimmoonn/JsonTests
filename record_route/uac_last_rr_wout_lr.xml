@@ -2,7 +2,7 @@
 <!DOCTYPE scenario SYSTEM "sipp.dtd">
 <scenario name = "UAC Record-Route Test (wout lr)">
 
-<Global variables="CDPNDOM,CGPNDOM,CDPN" />
+<Global variables="CDPNDOM,CGPNDOM,CDPN,CGPN" />
 <User variables="dummy" />
 <Reference variables="dummy" />
     
@@ -11,6 +11,7 @@
         <assignstr assign_to="cgpn_dom" value="[$CGPNDOM]"/>
         <assignstr assign_to="cdpn_dom" value="[$CDPNDOM]"/>
         <assignstr assign_to="cdpn" value="[$CDPN]"/>
+        <assignstr assign_to="cgpn" value="[$CGPN]"/>
         <assignstr assign_to="local_tag" value="[call_number][pid]"/>
         <assignstr assign_to="send_via" value="Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
 Via: SIP/2.0/UDP proxy2.eltex.ru:5030;branch=z9hG4bK-12385-1-19
@@ -22,7 +23,7 @@ Record-Route: <sip:proxy1.eltex.ru;lr>
 "/>
         <assignstr assign_to="route_in_request" value="Route: <sip:proxy2.eltex.ru;lr>
 Route: <sip:proxy1.eltex.ru;lr>
-Route: <sip:[service]@[local_ip]:[local_port]>
+Route: <sip:[$cgpn]@[local_ip]:[local_port]>
 "/>
     </action>
 </nop>
@@ -32,11 +33,11 @@ Route: <sip:[service]@[local_ip]:[local_port]>
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     [$send_via]
     [$rr_in_response]
-    From: "UAC Record-Route Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC Record-Route Test" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     Call-ID: [call_id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     Max-Forwards: 70
     Content-Type: application/sdp
     Content-Length: [len]
@@ -249,11 +250,11 @@ Via: SIP/2.0/UDP proxy1.eltex.ru:5030;branch=z9hG4bK-12385-1-20
     INVITE sip:[$cdpn]@[remote_ip]:[remote_port] SIP/2.0
     [$send_via]
     [$rr_in_response]
-    From: "UAC Record-Route Test" <sip:[service]@[$cgpn_dom]>;tag=[$local_tag]
+    From: "UAC Record-Route Test" <sip:[$cgpn]@[$cgpn_dom]>;tag=[$local_tag]
     To: "[$cdpn]" <sip:[$cdpn]@[$cdpn_dom]>
     [last_call-id]
     CSeq: [cseq] INVITE
-    Contact: <sip:[service]@[local_ip]:[local_port]>
+    Contact: <sip:[$cgpn]@[local_ip]:[local_port]>
     [authentication]
     Max-Forwards: 70
     Content-Type: application/sdp

@@ -1,0 +1,201 @@
+{
+  "TestName": "record_route_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10106,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10109,
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {}
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%} clip"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%} clip"
+  ],
+  "Tests": [
+    {
+      "Name": "record-route-without-lr-uac-test",
+      "Description": "Проверка обработки заголовка record-route без lr (UAC mode). Делаем вызов с абонента на абонента посредством INVITE c заголовками Record-Route. При этом верхний заголовок Record-Route не содержит параметра lr.  Ожидается, что SSW в sip-ответах будет присылать тот же самый список заголовков Record-Route (порядок заголовков в ответе не изменяется). Далее абонент завершает вызов. Ожидается, что при завершении вызова SSW отправит BYE, в котором в качестве RURI будет использован URI из верхнего Record-Route. Ожидается, что BYE будет содержать заголовки Route, сформированные из Record-Route, в том же порядке, при этом верхний Record-Route не используется при формировании (так как он используется при формировании RURI), а также в конец списка добавляется Route, который содержит URI из контакта.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_RR_WOUT_LR",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uac_last_rr_wout_lr.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-with-lr-uac-test",
+      "Description": "Проверка обработки заголовка record-route с lr (UAC mode). Делаем вызов с абонента на абонента посредством INVITE c заголовками Record-Route. При этом верхний заголовок Record-Route содержит параметр lr.  Ожидается, что SSW в sip-ответах будет присылать тот же самый список заголовков Record-Route (порядок заголовков в ответе не изменяется). Далее абонент завершает вызов. Ожидается, что при завершении вызова SSW отправит BYE, в котором в качестве RURI будет использован URI из контакта. Ожидается, что BYE будет содержать заголовки Route, сформированные из Record-Route, в том же порядке.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_RR_WITH_LR",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uac_last_rr_with_lr.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPN %%1.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-without-lr-uas-test",
+      "Description":"Проверка обработки заголовка record-route без lr (UAS mode). Делаем вызов с абонента на абонента посредством INVITE. Абонент со стороны трнака используется в надежных предворительных ответах заголовки Record-Route. При этом нижний заголовок Record-Route не содержит параметр lr. Ожидается, что SSW в sip-запросах укажет в ruri первый заголовок record-route (из тех, что без lr), перевернет оставшиеся список адресов Record-Route и добавит в самый низ списка route маршрут contact абонента Б. Ожидается, что в BYE будет содержать заголовки Route, сформированные из Record-Route, но в обратном порядке порядке, при этом record-route без параметра lr не используется при формировании (так как он используется при формировании RURI), а также в конец списка добавляется Route, который содержит URI из контакта.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uas_last_rr_wout_lr.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_RR_WITH_LR",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "record-route-with-lr-uas-test",
+      "Description": "Проверка обработки заголовка record-route с lr (UAC mode). Делаем вызов с абонента на абонента посредством INVITE. Абонент со стороны трнака используе в надежных предварительных ответах заголовки Record-Route. При этом верхний заголовок Record-Route содержит параметр lr.  Ожидается, что SSW в sip-ответах будет присылать тот же самый список заголовков Record-Route, но в обратном порядке. Далее абонент завершает вызов. Ожидается, что при завершении вызова SSW отправит BYE, в котором в качестве RURI будет использован URI из контакта. Ожидается, что BYE будет содержать заголовки Route, сформированные из Record-Route, но в обратном порядке.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_RECV_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "record_route/uas_last_rr_with_lr.xml",
+                  "Options": "-m 1 -d 2000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "Name": "UAC_SEND_RR_WITH_LR",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_send_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CDPNDOM %%0.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "40s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
