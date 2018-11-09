@@ -120,7 +120,7 @@
               "Commands": [
                 {
                   "SourceFile": "trunk_test/uas_send_302_two_header_diversion.xml",
-                  "Options": "-m 1 -set SERV_IP %%SERV_IP%% -set SERV_PORT %%EXTER_PORT%% -set CDPN_ORIG %%0.Number%% -set CDPN_OLD %%1.Number%% -set CDPN_NEW %%2.Number%%",
+                  "Options": "-m 1 -set SERV_IP %%EXTER_IP%% -set SERV_PORT %%EXTER_PORT%% -set CDPN_ORIG %%0.Number%% -set CDPN_OLD %%1.Number%% -set CDPN_NEW %%2.Number%%",
                   "SippType": "uas",
                   "NeedAuth": true,
                   "Timeout": "60s"
