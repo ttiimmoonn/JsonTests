@@ -1,0 +1,193 @@
+{
+  "TestName": "diversion_head_cascade_test",
+  "AutoTest": true,
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 1,
+      "Number": "157",
+      "Login": "157",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10107,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 2,
+      "Number": "158",
+      "Login": "158",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10109,
+      "QParam": 0.5
+    },
+    {
+      "UserId": 3,
+      "Number": "159",
+      "Login": "159",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10111,
+      "QParam": 0.5
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/enable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cf_sip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/activate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cf_sip"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cf_sip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cnip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} clip",
+    "/domain/%%DEV_DOM%%/ss/disable {%%0.Number%%,%%1.Number%%,%%2.Number%%,%%3.Number%%} cf_sip"
+  ],
+"Tests": [
+    {
+      "Name": "diversion_test_cascade_recv_302",
+      "Description": "Проверка каскадной обработки 302 ответа. У Абонента_0,1 активируется услуга cf_sip. Делаем вызов с Абонента_3 на Абонента_0. Абонента_0 отвечает 302 сообщением, указав: в Contact URI Абонента_1, а в поле Diversion URI Абонента_0. Ожидается, что SSW корректно обработает сообщение и отправит INVITE c RURI из Contact 302 сообщения, сохранив заголовки From, To, Diversion. Абонент_1 отвечает 302 сообщением, указав в Contact URI Абонент_2, добавив второй заголовок Diversion c URI Абонента_1. Ожидается, что вызов с Абонент_2 завершиться успешно, а в INVITE запросе будет указан заголовок From Абонента_3 и заголовок To Абонента_0.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST_SEND_DIVERSION",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uas_send_302_one_header_diversion.xml",
+                  "Options": "-m 1 -set CDPN_NEW %%1.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "50s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_TEST_SEND_DIVERSION_TWO",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uas_send_302_two_header_diversion.xml",
+                  "Options": "-m 1 -set SERV_IP %%EXTER_IP%% -set SERV_PORT %%EXTER_PORT%% -set CDPN_ORIG %%0.Number%% -set CDPN_NEW %%2.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 1000 -set CHK_CGPN %%3.Number%% -set CHK_CDPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "70s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 3,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%0.Number%% -set CGPN %%3.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPNDOM %%3.SipDomain%% -set CHK_CONNECTED_NUMBER %%2.Number%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "diversion_test_cascade_inv_with_302",
+      "Description": "Проверка каскадной обработки 302 ответа при INVITE с заголовком Diversion. У Абонента_0 активируем услугу cf_sip. Делаем вызов с Абонента_1 на Абонента_0 по средствам INVITE с заголовком Diversion, где указан номер cdpn_old, который якобы отказался от диалога 302 сообщением, так же cdpn_old указан в To, а в RURI указан номер абонента из транка. Ожидается, что SSW корректно обработает INVITE, отправит его Абоненту_0, оставив заголовки From, To и Diversion неизменными. Абонент_0 отвечает 302 сообщением, указав в Contact URI Абонента_1, добавив второй заголовок Diversion c URI абонента из Абонента_0. Ожидается, что вызов на Абонента_1 завершиться успешно, а в INVITE запросе будет указан заголовок From Абонента 2 и заголовок To cdpn_old.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST_SEND_DIVERSION_TWO",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uas_send_302_two_header_diversion.xml",
+                  "Options": "-m 1 -set SERV_IP %%IP%% -set CDPN_ORIG %%2.Number%% -set CDPN_NEW %%1.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 1,
+              "WriteStat": true,
+              "Name": "UAS_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 1000",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "70s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 2,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uac_send_divers_header.xml",
+                  "Options": "-m 1 -set CDPN_ORIG %%2.Number%% -set CDPN %%0.Number%% -set CGPN %%2.Number%% -set CDPNDOM %%0.SipDomain%% -set CGPNDOM %%2.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

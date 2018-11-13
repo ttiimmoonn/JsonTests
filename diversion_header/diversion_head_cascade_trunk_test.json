@@ -1,0 +1,234 @@
+{
+  "TestName": "diversion_head_cascade_trunk_test",
+  "AutoTest": true,
+  "Trunks": [
+    {
+      "TrunkId": 1,
+      "TrunkName": "test_trunk_diversion_send_invite",
+      "Port": 10111,
+      "SipGroup": "test.gr",
+      "SipDomain": "%%DEV_DOM%%",
+      "RtpPort": 19005
+    },
+    {
+      "TrunkId": 2,
+      "TrunkName": "test_trunk_diversion_recv_302",
+      "Port": 10113,
+      "SipGroup": "test.gr",
+      "SipDomain": "%%DEV_DOM%%",
+      "RtpPort": 19000
+    },
+    {
+      "TrunkId": 3,
+      "TrunkName": "test_trunk_diversion_send_bye",
+      "Port": 10115,
+      "SipGroup": "test.gr",
+      "SipDomain": "%%DEV_DOM%%",
+      "RtpPort": 19008
+    }
+  ],
+  "Users": [
+    {
+      "UserId": 0,
+      "Number": "156",
+      "Login": "156",
+      "Password": "123",
+      "SipDomain": "%%DEV_DOM%%",
+      "Expires": 90,
+      "SipGroup": "sip.ab",
+      "Port": 10105,
+      "QParam": 0.5
+    }
+  ],
+  "UserVar": [
+    {
+      "%%ctx_test_diversion_head_for_trunk_2%%": "<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"ctx_test_diversion_head_for_trunk_2\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"to_trunk\"> <conditions> <cdpn digits=\"%\"\/> <\/conditions> <result> <external> <trunk value=\"%%Tr.2.TrunkName%%\"\/> <\/external> <\/result> <\/rule> <\/context>",
+      "%%ctx_test_diversion_head_for_trunk_3%%": "<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"ctx_test_diversion_head_for_trunk_3\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"to_trunk\"> <conditions> <cdpn digits=\"%\"\/> <\/conditions> <result> <external> <trunk value=\"%%Tr.3.TrunkName%%\"\/> <\/external> <\/result> <\/rule> <\/context>",
+      "%%ctx_test_diversion_head_for_user%%": "<context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"ctx_test_diversion_head_for_user\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"to_local\"> <conditions> <cdpn digits=\"%\"\/> <final value=\"true\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <\/context><context xmlns:xs=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xs:noNamespaceSchemaLocation=\"ecss_routing.xsd\" name=\"ctx_test_diversion_head_for_trunk_2\" digitmap=\"(*[0-9*][0-9*].#|#[0-9*][0-9*].#|*#[0-9*][0-9*].#|1xx.|10xx.)\"> <rule name=\"to_local\"> <conditions> <cdpn digits=\"%\"\/> <final value=\"true\"\/> <\/conditions> <result> <local\/> <\/result> <\/rule> <\/context>",
+      "%%ctx_to_trunk_2%%": "ctx_test_diversion_head_for_trunk_2",
+      "%%ctx_to_trunk_3%%": "ctx_test_diversion_head_for_trunk_3",
+      "%%ctx_to_user%%": "ctx_test_diversion_head_for_user",
+      "%%test_trunk_1_diversion_send_invite_number%%":"89134851343",
+      "%%test_trunk_2_diversion_recv_302_number%%":"89134851344",
+      "%%test_trunk_3_diversion_send_bye_number%%":"89134851345"
+
+    }
+  ],
+  "PreConf": [
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%ctx_test_diversion_head_for_trunk_2%%",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%ctx_test_diversion_head_for_trunk_3%%",
+    "/domain/%%DEV_DOM%%/routing/.xbin/.import-context --xml %%ctx_test_diversion_head_for_user%%",
+
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_to_trunk_2%% %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.1.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_to_trunk_2%% %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.2.Port%% sip-proxy %%EXTER_PORT%%",
+    "/domain/%%DEV_DOM%%/trunk/sip/declare %%ctx_to_trunk_2%% %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% %%SSW_IPSET%% static %%IP%% %%Tr.3.Port%% sip-proxy %%EXTER_PORT%%",
+
+
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% sip_transport udp_only",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% sip_transport udp_only",
+    "/domain/%%DEV_DOM%%/trunk/sip/set %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% sip_transport udp_only",
+
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_to_trunk_3%%",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% routing.context %%ctx_to_trunk_2%%",
+
+    "/domain/%%DEV_DOM%%/trunk/services/activate %%DEV_DOM%% %%Tr.2.TrunkName%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
+  ],
+  "PostConf": [
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/deactivate %%0.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cnip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% clip",
+    "/domain/%%DEV_DOM%%/ss/disable %%0.Number%% cf_sip",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_to_trunk_2%%",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_to_trunk_3%%",
+    "/domain/%%DEV_DOM%%/routing/delete %%ctx_to_user%%"
+  ],
+"Tests": [
+    {
+      "Name": "test_trunk_recv_diversion_header",
+      "Description": "Проверка каскадной обработки 302 ответа. У Транка_2 и Абонента_0 активируется услуга cf_sip. Делаем вызов с Транка_1 на Транк_2.  Транк_2 отвечает 302 сообщением, указав: в Contact URI Абонента_0, а в поле Diversion URI Транка 2. Ожидается, что SSW корректно обработает сообщение и отправит INVITE c RURI из Contact 302 сообщения, сохранив заголовки From, To, Diversion. Абонент_0 отвечает 302 сообщением, указав в Contact URI абонента из Транка_3, добавив второй заголовок Diversion c URI Абонента_0. Ожидается, что вызов с Транком_3 завершиться успешно, а в INVITE запросе будет указан заголовок From Транка_1 и заголовок To Транка_2.",
+      "TestProcedure": [
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "WriteStat": true,
+              "Name": "UAS_TEST_SEND_DIVERSION",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uas_send_302_one_header_diversion.xml",
+                  "Options": "-m 1 -set CDPN_NEW %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "50s"
+                }
+              ]
+            },
+            {
+              "Type": "User",
+              "UserId": 0,
+              "WriteStat": true,
+              "Name": "UAS_TEST_SEND_DIVERSION_TWO",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uas_send_302_two_header_diversion.xml",
+                  "Options": "-m 1 -set SERV_IP %%EXTER_IP%% -set SERV_PORT %%EXTER_PORT%% -set CDPN_ORIG %%test_trunk_2_diversion_recv_302_number%% -set CDPN_NEW %%test_trunk_3_diversion_send_bye_number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 3,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 1000 -set CHK_CGPN %%test_trunk_1_diversion_send_invite_number%% -set CHK_CDPN %%test_trunk_2_diversion_recv_302_number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "70s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uac_recv_bye.xml",
+                  "Options": "-m 1 -set CDPN %%test_trunk_2_diversion_recv_302_number%% -set CGPN %%test_trunk_1_diversion_send_invite_number%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Name": "test_trunk_send_diversion_header",
+      "Description": "Проверка каскадной обработки 302 ответа при INVITE из транка с заголовком Diversion. У Транка_2 активируем услугу cf_sip. Делаем вызов с Транка_1 на Транк_2 по средствам INVITE с заголовком Diversion, где указан номер cdpn_orig, который якобы отказался от диалога 302 сообщением, так же cdpn_orig указан в To, а в RURI указан номер абонента из транка. Ожидается, что SSW корректно обработает INVITE, отправит его в Транк_2, оставив заголовки From, To и Diversion неизменными. Транк_2 отвечает 302 сообщением, указав в Contact URI абонента из Транка_3, добавив второй заголовок Diversion c URI абонента из Транка_2. Ожидается, что вызов с Транком_3 завершиться успешно, а в INVITE запросе будет указан заголовок From Транка_1 и заголовок To cdpn_orig.",
+      "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% routing.context %%ctx_to_trunk_3%%"
+          ]
+        },
+        {
+          "StartUA": [
+            {
+              "Type": "Trunk",
+              "TrunkId": 2,
+              "WriteStat": true,
+              "Name": "UAS_TEST_SEND_DIVERSION_TWO",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uas_send_302_two_header_diversion.xml",
+                  "Options": "-m 1 -set SERV_IP %%IP%% -set CDPN_ORIG %%0.Number%% -set CDPN_NEW %%test_trunk_3_diversion_send_bye_number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 3,
+              "WriteStat": true,
+              "Name": "UAS_SEND_BYE",
+              "Commands": [
+                {
+                  "SourceFile": "simple_ua/uas_send_bye.xml",
+                  "Options": "-m 1 -d 1000 -set CHK_CGPN %%test_trunk_1_diversion_send_invite_number%% -set CHK_CDPN %%0.Number%%",
+                  "SippType": "uas",
+                  "NeedAuth": true,
+                  "Timeout": "70s"
+                }
+              ]
+            },
+            {
+              "Type": "Trunk",
+              "TrunkId": 1,
+              "WriteStat": true,
+              "Name": "UAC_TEST_SEND_DIVER_HEADER",
+              "Commands": [
+                {
+                  "SourceFile": "diversion_header/uac_send_divers_header.xml",
+                  "Options": "-m 1 -set CDPN_ORIG %%0.Number%% -set CDPN %%test_trunk_2_diversion_recv_302_number%% -set CGPN %%test_trunk_1_diversion_send_invite_number%% -set CDPNDOM %%Tr.2.SipDomain%% -set CGPNDOM %%Tr.1.SipDomain%%",
+                  "SippType": "uac",
+                  "NeedAuth": true,
+                  "Timeout": "60s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        }
+      ]
+    }
+  ]
+}
