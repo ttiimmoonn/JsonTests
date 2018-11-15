@@ -76,7 +76,7 @@
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%ctx_to_trunk_3%%",
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% routing.context %%ctx_to_trunk_2%%",
 
-    "/domain/%%DEV_DOM%%/trunk/services/activate %%DEV_DOM%% %%Tr.2.TrunkName%% cf_sip",
+    "/domain/%%DEV_DOM%%/trunk/services/activate %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% cf_sip",
     "/domain/%%DEV_DOM%%/ss/enable %%0.Number%% cf_sip",
     "/domain/%%DEV_DOM%%/ss/activate %%0.Number%% cf_sip"
   ],
@@ -90,6 +90,7 @@
     "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.1.SipGroup%% %%Tr.1.TrunkName%% --force",
     "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% --force",
     "/domain/%%DEV_DOM%%/trunk/sip/remove %%Tr.3.SipGroup%% %%Tr.3.TrunkName%% --force",
+    "/domain/%%DEV_DOM%%/trunk/services/deactivate %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% cf_sip",
     "/domain/%%DEV_DOM%%/iface/user-set sip1 %%0.SipGroup%% %%0.Number%%@%%0.SipDomain%% routing.context %%SSW_DEF_ROUTE%%",
     "/domain/%%DEV_DOM%%/routing/delete %%ctx_to_trunk_2%%",
     "/domain/%%DEV_DOM%%/routing/delete %%ctx_to_trunk_3%%",
