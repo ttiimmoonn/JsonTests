@@ -50,8 +50,9 @@
       "%%ctx_to_user%%": "ctx_test_diversion_head_for_user",
       "%%test_trunk_1_diversion_send_invite_number%%":"89134851343",
       "%%test_trunk_2_diversion_recv_302_number%%":"89134851344",
-      "%%test_trunk_3_diversion_send_bye_number%%":"89134851345"
-
+      "%%test_trunk_3_diversion_send_bye_number%%":"89134851345",
+      "%%to_trunk_ctx%%": "PGNvbnRleHQgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4czpub05hbWVzcGFjZVNjaGVtYUxvY2F0aW9uPSJlY3NzX3JvdXRpbmcueHNkIiBuYW1lPSJkaXZlcl90cnVua19jdHgiIGRpZ2l0bWFwPSIoKlswLTkqXVswLTkqXS4jfCNbMC05Kl1bMC05Kl0uI3wqI1swLTkqXVswLTkqXS4jfDF4eC58MTB4eC4pIj4NCiAgPHJ1bGUgbmFtZT0icnVsZTEiPg0KICAgIDxjb25kaXRpb25zPg0KICAgICAgPGZpbmFsIHZhbHVlPSJ0cnVlIi8+DQogICAgICA8Y2RwbiBkaWdpdHM9IiUiLz4NCiAgICA8L2NvbmRpdGlvbnM+DQogICAgPHJlc3VsdD4NCiAgICAgIDxleHRlcm5hbD4NCiAgICAgICAgPHRydW5rIHZhbHVlPSJkaXZlcl90cjIiLz4NCiAgICAgIDwvZXh0ZXJuYWw+DQogICAgPC9yZXN1bHQ+DQogIDwvcnVsZT4NCjwvY29udGV4dD4=",
+      "%%trunk_ctx_name%%": "diver_trunk_ctx"
     }
   ],
   "PreConf": [
@@ -97,8 +98,13 @@
 "Tests": [
     {
       "Name": "test_trunk_recv_diversion_header",
-      "Description": "Проверка каскадной обработки 302 ответа. У Транка_2 и Абонента_0 активируется услуга cf_sip. Делаем вызов с Транка_1 на Транк_2.  Транк_2 отвечает 302 сообщением, указав: в Contact URI Абонента_0, а в поле Diversion URI Транка 2. Ожидается, что SSW корректно обработает сообщение и отправит INVITE c RURI из Contact 302 сообщения, сохранив заголовки From, To, Diversion. Абонент_0 отвечает 302 сообщением, указав в Contact URI абонента из Транка_3, добавив второй заголовок Diversion c URI Абонента_0. Ожидается, что вызов с Транком_3 завершиться успешно, а в INVITE запросе будет указан заголовок From Транка_1 и заголовок To Транка_2.",
+      "Description": "Проверка каскадной обработки 302 ответа. У Транка_2 и Абонента_0 активируется услуга cf_sip. Делаем вызов с Транка_1 на Транк_2.  Транк_2 отвечает 302 сообщением, указав: в Contact URI Абонента_0, а в поле Diversion свой URI. Ожидается, что SSW отправит INVITE c RURI из Contact 302 сообщения, сохранив заголовки From, To, Diversion. Абонент_0 отвечает 302 сообщением, указав в Contact URI абонента из Транка_3, добавив второй заголовок Diversion c своим URI. Ожидается, что вызов завершиться успешно, а в INVITE запросе будет указан заголовок From Транка_1 и заголовок To Транка_2.",
       "TestProcedure": [
+        {
+          "SendSSHCommand": [
+            "/domain/%%DEV_DOM%%/iface/user-set sip1 %%Tr.2.SipGroup%% %%Tr.2.TrunkName%% routing.context %%SSW_DEF_ROUTE%%"
+          ]
+        },
         {
           "StartUA": [
             {
@@ -167,7 +173,7 @@
     },
     {
       "Name": "test_trunk_send_diversion_header",
-      "Description": "Проверка каскадной обработки 302 ответа при INVITE из транка с заголовком Diversion. У Транка_2 активируем услугу cf_sip. Делаем вызов с Транка_1 на Транк_2 по средствам INVITE с заголовком Diversion, где указан номер cdpn_orig, который якобы отказался от диалога 302 сообщением, так же cdpn_orig указан в To, а в RURI указан номер абонента из транка. Ожидается, что SSW корректно обработает INVITE, отправит его в Транк_2, оставив заголовки From, To и Diversion неизменными. Транк_2 отвечает 302 сообщением, указав в Contact URI абонента из Транка_3, добавив второй заголовок Diversion c URI абонента из Транка_2. Ожидается, что вызов с Транком_3 завершиться успешно, а в INVITE запросе будет указан заголовок From Транка_1 и заголовок To cdpn_orig.",
+      "Description": "Проверка каскадной обработки 302 ответа при INVITE из транка с заголовком Diversion. У Транка_2 активируем услугу cf_sip. Делаем вызов с Транка_1 на Транк_2 по средствам INVITE с заголовком Diversion, где указан номер cdpn_orig, который якобы отказался от диалога 302 сообщением, так же cdpn_orig указан в To, а в RURI указан номер абонента из транка. Ожидается, что SSW отправит INVITE в Транк_2, оставив заголовки From, To и Diversion неизменными. Транк_2 отвечает 302 сообщением, указав в Contact URI абонента из Транка_3, добавив второй заголовок Diversion cо своим URI. Ожидается, что вызов с Транком_3 завершиться успешно, а в INVITE запросе будет указан заголовок From Транка_1 и заголовок To cdpn_orig.",
       "TestProcedure": [
         {
           "SendSSHCommand": [
